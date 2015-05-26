@@ -1,0 +1,61 @@
+<% title(@venue.name) %>
+<div class="container">
+  <h3><i class="glyphicon glyphicon-flag"></i> Profil Arena</h3>  
+  <div class="row">
+	<div class="col-md-4">
+		<div class="row login_box">
+	    <div class="col-md-12 col-xs-12 white" align="center">
+        <h1><%= @venue.name %></h1>
+        <span><%= @venue.address %></span>
+	    </div>
+        <div class="col-md-6 col-xs-6 follow line white" align="center">
+            <h3>
+                 <%= @venue.courts.count %> <br/> <span>LAPANGAN</span>
+            </h3>
+        </div>
+        <div class="col-md-6 col-xs-6 follow line white" align="center">
+          <h3>
+               125651 <br/> <span>TARIF</span>
+          </h3>
+        </div>
+        
+        <div class="col-md-12 col-xs-12 login_control">
+		    	<%= render partial: 'elements/clear_search_button', locals: { path: venue_path(@venue) } %>
+				  <%= render 'reservations/search_form' %>
+        </div>
+	  </div>
+  </div>
+	<div class="well col-md-8">
+		
+			<% if search_params_exist? && @reservations.empty? %>
+
+				<%= render 'reservations/reservation_prompt' %>
+
+			<% elsif search_params_exist? && @reservations.present? %> 
+        
+        <%= render partial: 'reservations/reservations', locals: { collection: @reservations } %>
+
+      <% else %> 
+	    	<% @venue.courts.each do |court| %>
+		      <div class="panel report panel-primary">
+	          <div class="panel-heading clickable">
+              <h5 class="panel-title">
+                  <%= court.name %>
+              <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
+              </h5>
+              <span class="pull-right badge"id="report">
+                  Jenis <%= court.category %> 
+              </span>
+	          </div>
+	          <div class="panel-body">
+ 								<%= render court.reservations %>	
+	          </div>
+	      </div>
+	    	<% end %>
+	    <% end %>
+	  
+
+	</div>
+
+  </div>    
+</div>

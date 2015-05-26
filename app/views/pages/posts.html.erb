@@ -1,0 +1,27 @@
+<% title("Blog") %>
+<h1>Blog</h1>
+
+<div class="col-xs-8">
+	<% @posts.each do |post| %>
+		<div class="title-box">
+		  <p>
+		    <%= link_to "#{post.title}", post_path(post.slug) %> <br/>
+		    <span><small><em><%= time_ago_in_words(post.updated_at) %> ago</em></small></span>
+		  </p>
+		</div>
+		<%= sanitize truncate(post.content_html, length: 200, escape: false )%>
+	<% end %>
+
+	<div class="pagination-control text-center">
+	  <%= paginate @posts %>
+	</div>	
+</div>
+<div class="col-xs-4">
+	<h5 class="text-center">Daftar Artikel</h5>
+	<hr>
+	<% @posts.each do |post| %>
+	<p>
+		<%= link_to "#{post.created_at.to_date} | #{post.title}", post_path(post.slug) %>
+	</p>
+	<% end %>
+</div>

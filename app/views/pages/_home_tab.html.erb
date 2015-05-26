@@ -1,0 +1,28 @@
+<div class="tab-pane fade in active" id="home">
+  <div class="container">
+    <h1><i class="fa fa-home"></i> Home</h1>  
+    
+    <h3 class="head text-center">Hai, <%= current_user.email %></h3>
+    <p class="narrow text-center">
+      <%= current_user.reservations.count %> Pesanan Terdaftar
+    </p>
+
+    <p class="text-center">
+      <a href="" class="btn btn-success btn-outline-rounded green"> create your profile <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+    </p>  
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+      <%= render partial: 'reservations/reservations', locals: { collection: current_user.reservations } %>
+      </div>
+
+      <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+          <%= render partial: 'venues/venue', collection: current_user.favorite_venues %>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>

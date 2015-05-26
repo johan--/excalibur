@@ -1,0 +1,22 @@
+
+  <li class="ticket-item">
+    <div class="row">
+      <div class="ticket-user col-md-6 col-sm-12">
+        <span class="user-name"><%= reservation.court.venue.name %></span>
+        <span class="user-at"><%= reservation.date_reserved %></span>
+        <span class="user-company"><i class="fa fa-clock-o"></i><%= reservation.start %> - <%= reservation.finish %></span>
+      </div>
+      <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
+        <div class="divider hidden-md hidden-sm hidden-xs"></div>
+        <i class="glyphicon glyphicon-pencil"></i>
+        <span class="time"><%= time_ago_in_words(reservation.created_at) %> ago</span>
+      </div>
+      <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
+        <span class="divider hidden-xs"></span>
+        <span class="type"><%= reservation.court.name %></span>
+      </div>
+      <div class="ticket-state bg-palegreen">
+        <i class="fa fa-check"></i>
+      </div>
+    </div>
+  </li>

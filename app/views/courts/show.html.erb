@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @court.name %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @court.venue %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @court.price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @court.category %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @court.rating %>
+</p>
+
+<%= link_to 'Edit', edit_court_path(@court) %> |
+<%= link_to 'Back', courts_path %>

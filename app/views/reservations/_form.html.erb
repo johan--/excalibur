@@ -1,0 +1,23 @@
+<%= form_for(@reservation) do |f| %>
+  <%= render 'elements/error_messages', object: @reservation %>
+
+  <div class="field">
+    <%= f.label :date_reserved %><br>
+    <%= f.date_select :date_reserved %>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br>
+    <%= f.time_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.number_field :duration, min: 1, max: 6, step: 1 %> Jam
+  </div>
+  <div class="field">
+    <%= f.label :lapangan %><br>
+    <%= f.select :court_id, courts_of_venue(params[:ven]) %>
+  </div>  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

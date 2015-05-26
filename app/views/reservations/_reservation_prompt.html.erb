@@ -1,0 +1,6 @@
+<p>
+	<%= @reservations.count %> pesanan yang bertabrakan, silahkan klik tombol di bawah untuk memesan.
+</p>
+<p>
+	<%= link_to "Book Lapangan", new_reservation_path(ven: @venue), class: "btn btn-primary" %>
+</p>

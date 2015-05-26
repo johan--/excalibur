@@ -1,0 +1,75 @@
+<h1 class="text-center">Daftar Arena</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="input-group" id="adv-search">
+        <input type="text" class="form-control" placeholder="Search for snippets" />
+        <div class="input-group-btn">
+            <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <form class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label for="filter">Filter by</label>
+                            <select class="form-control">
+                                <option value="0" selected>All Snippets</option>
+                                <option value="1">Featured</option>
+                                <option value="2">Most popular</option>
+                                <option value="3">Top rated</option>
+                                <option value="4">Most commented</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="contain">Author</label>
+                            <input class="form-control" type="text" />
+                          </div>
+                          <div class="form-group">
+                            <label for="contain">Contains the words</label>
+                            <input class="form-control" type="text" />
+                          </div>
+                          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </div>        
+  </div>
+
+  <div class="col-md-8">
+    <% @venues.each do |venue| %>
+      <div class="panel report panel-primary">
+          <div class="panel-heading clickable">
+              <h5 class="panel-title">
+                  <%= venue.name %>
+              <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
+              </h5>
+              <span class="pull-right badge"id="report">
+                  <%= venue.courts.count %> Lapangan
+              </span>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                  <%= venue.address %>
+                  <span class="badge pull-right">
+                      Alamat
+                  </span>                         
+              </li>
+              <li class="list-group-item">
+                  <%= venue.phone %>
+                  <span class="badge pull-right">
+                      Nomor Telepon
+                  </span>                         
+              </li>
+              </ul>
+          </div>
+      </div>
+    
+    <% end %>
+  </div>
+
+<%= link_to 'New Venue', new_venue_path %>
+</div>
