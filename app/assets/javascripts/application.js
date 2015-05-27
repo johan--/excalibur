@@ -16,6 +16,7 @@
 //= require fullcalendar
 //= require venues
 //= require searchForm
+//= require shojiLayout
 //= require clickablePanel
 //= require listHiddenMenu
 //= require bootstrap 

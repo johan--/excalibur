@@ -1,29 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% title(@firm.name) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @firm.name %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-  <%= @firm.region %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @firm.city %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @firm.address %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @firm.phone %>
-</p>
-
-<%= link_to 'Edit', edit_firm_path(@firm) %> |
-<%= link_to 'Back', firms_path %>
+<% @firm.venues.each do |venue| %>
+  <div class="panel report panel-primary">
+    <div class="panel-heading clickable">
+      <h5 class="panel-title">
+          <%= venue.name %>
+      <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
+      </h5>
+      <span class="pull-right badge"id="report">
+        
+      </span>
+    </div>
+    <div class="panel-body">
+      <%= render partial: 'venue_card', locals: { collection: venue.courts.first.reservations } %>
+    </div>
+  </div>
+<% end %>

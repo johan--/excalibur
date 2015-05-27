@@ -24,6 +24,7 @@ Fustal::Application.routes.draw do
   namespace :admin do
     root "base#index"
     resources :users
+    resources :firms, only: [:index]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     get "posts/dashboard", to: "posts#dashboard", as: "posts_dashboard"
     resources :posts

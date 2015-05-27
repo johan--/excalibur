@@ -1,0 +1,119 @@
+<div class="shoji" id="shoji">
+	<div class="shoji-rail">
+    <div class="shoji-panel shoji-panel-left">
+        <div class="panel-group" id="sidebar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu 1</a>
+                    </h4>
+                </div>
+                <ul id="sidebar-first" class="list-group panel-collapse collapse">
+                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
+                </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-second">Menu 2</a>
+                    </h4>
+                </div>
+                <ul id="sidebar-second" class="list-group panel-collapse collapse">
+                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
+                </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-third">Menu 3</a>
+                    </h4>
+                </div>
+                <ul id="sidebar-third" class="list-group panel-collapse collapse">
+                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
+                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="shoji-panel shoji-panel-right">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">Log off</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+	</div>
+
+	<div class="shoji-door">
+	  <div class="content">
+	    <nav class="navbar navbar-default square" role="navigation" id="navbar">
+	      <div class="navbar-banner">
+	        <a href="#" class="navbar-brand pull-left">
+	        	<strong><%= @firm.name %></strong>
+	        </a>
+	      </div>
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle navbar-toggle-left" data-slide="right">
+	          <i class="glyphicon glyphicon-th-large"></i>
+	        </button>
+	        <button type="button" class="navbar-toggle navbar-toggle-right" data-slide="left">
+	          <i class="glyphicon glyphicon-cog"></i>
+	        </button>
+	    	</div>
+	      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hai, <%= current_user.email %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li><a href="#">Log off</a></li>
+                  <li class="divider" />
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+              </ul>
+            </li>
+          </ul>
+	      </div>
+	    </nav>
+
+	    <!-- <div class="container"> -->
+        <div class="row">
+          <div class="hidden-xs col-sm-3">
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Menu 1</h4>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="#">Menu Item 1</a></li>
+                  <li><a href="#">Menu Item 2</a></li>
+                  <li><a href="#">Menu Item 3</a></li>
+                </ul>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Menu 2</h4>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="#">Menu Item 1</a></li>
+                  <li><a href="#">Menu Item 2</a></li>
+                  <li><a href="#">Menu Item 3</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-9">
+              <%= yield %>
+          </div>
+        </div>
+	    <!-- </div> -->
+
+	  </div>
+	</div>
+
+</div>
+

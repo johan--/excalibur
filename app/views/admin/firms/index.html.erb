@@ -1,0 +1,36 @@
+<% title("Users Admin") %>
+<h1>Users <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p><%= page_entries_info @firms %></p>
+  <%= paginate @firms %>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>User ID</th>
+    <th>Name</th>
+    <th>Created At</th>
+    <th>Category</th>
+    <th># of Venues</th>
+  </tr>
+
+  <% @firms.each do |firm| %>
+
+  <tr>
+    <td><%= firm.id %></td>
+    <td><%= firm.name %></td>
+    <td><%= time_ago_in_words(firm.created_at) %></td>
+    <td><%= firm.category %> ago</td>
+    <td><%= firm.venues %></td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+<div class="text-center">
+  <p><%= page_entries_info @firms %></p>
+  <%= paginate @firms %>
+</div>

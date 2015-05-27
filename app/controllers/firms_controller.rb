@@ -1,15 +1,17 @@
 class FirmsController < ApplicationController
   before_action :set_firm, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_admin, only: [:new, :create, :destroy]
+  before_action :firm_layout, only: [:show, :edit, :update]
   # GET /firms
   # GET /firms.json
-  def index
-    @firms = Firm.all
-  end
+  # def index
+  #   @firms = Firm.all
+  # end
 
   # GET /firms/1
   # GET /firms/1.json
   def show
+    # @reserve_by_date = @firm.reservations.group_by { |res| res.date_reserved }
   end
 
   # GET /firms/new
@@ -69,6 +71,8 @@ class FirmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def firm_params
-      params.require(:firm).permit(:name, :region, :city, :address, :phone)
+      params.require(:firm).permit(
+        :name, :region, :city, :address, :phone
+      )
     end
 end

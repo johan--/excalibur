@@ -19,7 +19,6 @@
       </header>
 
       <div class="container">
-
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3 text-center">
             <%= render 'layouts/messages' %>
@@ -28,10 +27,13 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <%= yield %>
+            <% if @firm_layout  %>
+              <%= render 'layouts/firm_dashboard' %>
+            <% else %>          
+              <%= yield %>
+            <% end %>
           </div>
         </div>
-
       </div>
 
     </div>  

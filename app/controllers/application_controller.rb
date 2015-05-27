@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   def disable_nav
     @disable_nav = true
   end
+  def firm_layout
+    @firm_layout = true
+  end
 
   # Devise permitted params
   def configure_permitted_parameters

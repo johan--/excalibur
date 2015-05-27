@@ -5,4 +5,8 @@ class Venue < ActiveRecord::Base
 
   # Pagination
   paginates_per 20
+
+  # def all_reservations
+  # 	self.courts.reservations
+  # end
 end
