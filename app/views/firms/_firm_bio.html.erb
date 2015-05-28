@@ -1,27 +1,29 @@
-<p>
-  <strong>Name:</strong>
-  <%= @firm.name %>
-</p>
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @firm.name %>
+  </li>
 
-<p>
-  <strong>Region:</strong>
-  <%= @firm.region %>
-</p>
+  <li>
+    <strong>Region:</strong>
+    <%= @firm.region %>
+  </li>
 
-<p>
-  <strong>City:</strong>
-  <%= @firm.city %>
-</p>
+  <li>
+    <strong>City:</strong>
+    <%= @firm.city %>
+  </li>
 
-<p>
-  <strong>Address:</strong>
-  <%= @firm.address %>
-</p>
+  <li>
+    <strong>Address:</strong>
+    <%= @firm.address %>
+  </li>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @firm.phone %>
-</p>
+  <li>
+    <strong>Phone:</strong>
+    <%= @firm.phone %>
+  </li>
 
 <%= link_to 'Edit', edit_firm_path(@firm) %> |
-<%= link_to 'Back', firms_path %>
+<%= link_to 'Back', firms_path %>  
+</ul>

@@ -19,6 +19,7 @@
     /*background: #fafafa url(http://subtlepatterns.com/patterns/geometry2.png);*/
     background: #fafafa url(image_path('brickwall.png'));
     background-size: 30%;
+    /*position: fixed;*/
 }
 
 p.narrow{
@@ -164,6 +165,7 @@ li.active:after {
 }
 
 .tab-content{
+    /*margin-top: 30px;*/
 }
 .tab-pane{
    position: relative;

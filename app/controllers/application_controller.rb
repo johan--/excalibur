@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    inside_path
+    home_path
   end
 
   # Auto-sign out locked users
@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
     authenticate_user!
 
     if current_user && !current_user.admin?
-      redirect_to root_path
+      redirect_to home_path
     end
   end
   helper_method :require_admin!

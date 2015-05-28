@@ -11,26 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526005621) do
+ActiveRecord::Schema.define(version: 20150527135246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courts", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.integer  "price",                  null: false
-    t.integer  "category",               null: false
-    t.integer  "rating",     default: 0, null: false
-    t.integer  "venue_id",               null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",       null: false
+    t.integer  "price",      null: false
+    t.string   "unit",       null: false
+    t.integer  "category",   null: false
+    t.integer  "venue_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "courts", ["venue_id"], name: "index_courts_on_venue_id", using: :btree
 
   create_table "firms", force: :cascade do |t|
     t.string   "name",       null: false
-    t.integer  "region",     null: false
     t.string   "city",       null: false
     t.string   "address",    null: false
     t.string   "phone",      null: false
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150526005621) do
 
   add_index "firms", ["city"], name: "index_firms_on_city", using: :btree
   add_index "firms", ["name"], name: "index_firms_on_name", using: :btree
-  add_index "firms", ["region"], name: "index_firms_on_region", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -80,11 +78,25 @@ ActiveRecord::Schema.define(version: 20150526005621) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
+  create_table "reservation_transitions", force: :cascade do |t|
+    t.string   "to_state",                      null: false
+    t.text     "metadata",       default: "{}"
+    t.integer  "sort_key",                      null: false
+    t.integer  "reservation_id",                null: false
+    t.boolean  "most_recent",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "reservation_transitions", ["reservation_id", "most_recent"], name: "index_reservation_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "reservation_transitions", ["reservation_id", "sort_key"], name: "index_reservation_transitions_parent_sort", unique: true, using: :btree
+
   create_table "reservations", force: :cascade do |t|
     t.date     "date_reserved", null: false
     t.time     "start",         null: false
     t.decimal  "duration",      null: false
     t.time     "finish",        null: false
+    t.integer  "charge",        null: false
     t.integer  "court_id",      null: false
     t.integer  "booker_id",     null: false
     t.string   "booker_type",   null: false
@@ -115,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150526005621) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone_number",                           null: false
+    t.string   "full_name",                              null: false
     t.datetime "deleted_at"
   end
 
@@ -123,12 +136,15 @@ ActiveRecord::Schema.define(version: 20150526005621) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "venues", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "address",    null: false
+    t.string   "name",                   null: false
+    t.string   "province",               null: false
+    t.string   "city",                   null: false
+    t.string   "address",                null: false
+    t.integer  "rating",     default: 0, null: false
     t.string   "phone"
-    t.integer  "firm_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "firm_id",                null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "venues", ["firm_id"], name: "index_venues_on_firm_id", using: :btree

@@ -14,7 +14,7 @@ gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'
 gem 'bootstrap_form'
 
-gem "fullcalendar-rails", '2.0.2.0'
+# gem "fullcalendar-rails", '2.0.2.0'
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
@@ -32,8 +32,10 @@ gem 'bootstrap-sass', '3.3.3'
 
 gem "paranoia", "~> 2.0"
 gem 'ransack'
-gem 'siphon'
-gem "simple_calendar", "~> 1.1.0"
+# gem 'siphon'
+# gem "simple_calendar", "~> 1.1.0"
+
+gem 'statesman', '~> 1.2.3'
 
 group :development do
   gem 'thin', '1.5.1'

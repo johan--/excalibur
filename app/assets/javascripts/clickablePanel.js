@@ -3,11 +3,11 @@ $(document).on('click', '.panel-heading span.clickable', function (e) {
     if (!$this.hasClass('panel-collapsed')) {
         $this.parents('.panel').find('.panel-body').slideUp();
         $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('fa fa-angle-double-up').addClass('fa fa-angle-double-down');
+        $this.find('i').removeClass('fa fa-chevron-up').addClass('fa fa-chevron-down');
     } else {
         $this.parents('.panel').find('.panel-body').slideDown();
         $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('fa fa-angle-double-down').addClass('fa fa-angle-double-up');
+        $this.find('i').removeClass('fa fa-chevron-down').addClass('fa fa-chevron-up');
     }
 });
 $(document).on('click', '.panel div.clickable', function (e) {
@@ -15,11 +15,11 @@ $(document).on('click', '.panel div.clickable', function (e) {
     if (!$this.hasClass('panel-collapsed')) {
         $this.parents('.panel').find('.panel-body').slideUp();
         $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('fa fa-angle-double-up').addClass('fa fa-angle-double-down');
+        $this.find('i').removeClass('fa fa-chevron-up').addClass('fa fa-chevron-down');
     } else {
         $this.parents('.panel').find('.panel-body').slideDown();
         $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('fa fa-angle-double-down').addClass('fa fa-angle-double-up');
+        $this.find('i').removeClass('fa fa-chevron-down').addClass('fa fa-chevron-up');
     }
 });
 $(document).ready(function () {

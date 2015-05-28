@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="panel-body">
-      <%= render partial: 'venue_card', locals: { collection: venue.courts.first.reservations } %>
+      <%= render partial: 'venue_card', locals: { collection: venue.courts, venue: venue } %>
     </div>
   </div>
 <% end %>

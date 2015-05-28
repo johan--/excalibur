@@ -1,7 +1,8 @@
 class FirmsController < ApplicationController
-  before_action :set_firm, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, only: [:new, :create, :destroy]
-  before_action :firm_layout, only: [:show, :edit, :update]
+  before_action :set_firm, only: [:show, :edit, :update, :destroy, 
+                                  :all_reservations, :analysis]
+  before_action :require_admin, only: [:destroy]
+  before_action :firm_layout
   # GET /firms
   # GET /firms.json
   # def index
@@ -12,6 +13,12 @@ class FirmsController < ApplicationController
   # GET /firms/1.json
   def show
     # @reserve_by_date = @firm.reservations.group_by { |res| res.date_reserved }
+  end
+
+  def all_reservations
+  end
+
+  def analysis
   end
 
   # GET /firms/new

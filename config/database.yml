@@ -10,3 +10,13 @@ development:
   pool: 5
   port: 5432
   password: galliani
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: fustal_test
+  username: postgres
+  host: localhost
+  pool: 5
+  port: 5432
+  password: galliani

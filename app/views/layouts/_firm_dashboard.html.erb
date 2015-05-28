@@ -1,50 +1,26 @@
+<div class="container-fluid">
 <div class="shoji" id="shoji">
 	<div class="shoji-rail">
     <div class="shoji-panel shoji-panel-left">
-        <div class="panel-group" id="sidebar">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu 1</a>
-                    </h4>
-                </div>
-                <ul id="sidebar-first" class="list-group panel-collapse collapse">
-                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
-                </ul>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-second">Menu 2</a>
-                    </h4>
-                </div>
-                <ul id="sidebar-second" class="list-group panel-collapse collapse">
-                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
-                </ul>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-third">Menu 3</a>
-                    </h4>
-                </div>
-                <ul id="sidebar-third" class="list-group panel-collapse collapse">
-                    <li class="list-group-item"><a href="#">Menu Item 1</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 2</a></li>
-                    <li class="list-group-item"><a href="#">Menu Item 3</a></li>
-                </ul>
-            </div>
+      <div class="panel-group" id="sidebar">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu Aksi</a>
+              </h4>
+          </div>
+          <ul id="sidebar-first" class="list-group panel-collapse collapse in">
+            <li class="list-group-item"><%= link_to "Halaman Utama", firm_path(@firm) %></li>
+            <li class="list-group-item"><%= link_to "Daftar Pemesanan", all_reservations_firm_path(@firm) %></li>
+            <li class="list-group-item"><a href="#">Menu Item 3</a></li>
+          </ul>
         </div>
+      </div>
     </div>
     <div class="shoji-panel shoji-panel-right">
         <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">Log off</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, data:{method: :delete} %></li>
+            <li><%= link_to "Edit Akun", edit_user_registration_path %></li>
         </ul>
     </div>
 	</div>
@@ -68,7 +44,10 @@
 	      <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hai, <%= current_user.email %> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle small-font" data-toggle="dropdown">
+                Hai, <%= current_user.email %>
+                <b class="caret"></b>
+              </a>
               <ul class="dropdown-menu">
                   <li><a href="#">Log off</a></li>
                   <li class="divider" />
@@ -89,20 +68,16 @@
                   <h4 class="panel-title">Menu 1</h4>
                 </div>
                 <ul class="nav nav-pills nav-stacked">
-                  <li><a href="#">Menu Item 1</a></li>
-                  <li><a href="#">Menu Item 2</a></li>
+                  <li><%= link_to "Halaman Utama", firm_path(@firm) %></li>
+                  <li><%= link_to "Daftar Pemesanan", all_reservations_firm_path(@firm) %></li>
                   <li><a href="#">Menu Item 3</a></li>
                 </ul>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title">Menu 2</h4>
+                  <h4 class="panel-title">Profil</h4>
                 </div>
-                <ul class="nav nav-pills nav-stacked">
-                  <li><a href="#">Menu Item 1</a></li>
-                  <li><a href="#">Menu Item 2</a></li>
-                  <li><a href="#">Menu Item 3</a></li>
-                </ul>
+                  <%= render 'firm_bio' %>
               </div>
             </div>
           </div>
@@ -117,3 +92,4 @@
 
 </div>
 
+</div>

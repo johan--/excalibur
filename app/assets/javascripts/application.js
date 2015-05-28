@@ -13,12 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require fullcalendar
 //= require venues
 //= require searchForm
 //= require shojiLayout
-//= require clickablePanel
 //= require listHiddenMenu
+//= require clickablePanel
 //= require bootstrap 
 //= require analytics
 //= require common

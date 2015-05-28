@@ -5,7 +5,6 @@ class CreateCourts < ActiveRecord::Migration
       t.integer :price, null: false
       t.string  :unit, null: false
       t.integer :category, null: false
-      t.integer :rating, null: false, default: 0
       t.references :venue, index: true, null: false
 
       t.timestamps null: false

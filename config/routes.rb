@@ -9,7 +9,12 @@ Fustal::Application.routes.draw do
     resources :reservations, skip: [:new, :create, :edit, :update]
   end
 
-  resources :firms
+  resources :firms do
+    member do
+      get "all_reservations"
+      get "analysis"
+    end
+  end
   resources :relationships, only: [:create, :destroy]
   root "pages#landing"
   get "home", to: "pages#home", as: "home"

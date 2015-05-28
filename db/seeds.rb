@@ -8,7 +8,7 @@ u = User.new(
     password_confirmation: "asdasdasd",
     # first_name: "Galih",
     # last_name: "Muhammad",
-    # full_name: "Galih Muhammad",
+    full_name: "Galih Muhammad",
     phone_number: "081399279500",
     admin: true
 )
@@ -21,7 +21,7 @@ u.save!
     email: "user#{i}@example.com",
     password: "1234567",
     password_confirmation: "1234567",
-    # full_name: "Example #{i}",
+    full_name: "Example #{i}",
     phone_number: "0813992795#{i}",
   )
   u.skip_confirmation!

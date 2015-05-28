@@ -2,102 +2,72 @@
 	<!-- Header -->
 	<header>
 		<ul class="list-inline">
-			<li class="active"><a href="#home" data-toggle="tab">Booking</a></li>
-			<li class=""><a href="#qualification" data-toggle="tab">Qualification</a></li>
+			<li class="active"><a href="#home" data-toggle="tab">Upcoming</a></li>
+			<li class=""><a href="#qualification" data-toggle="tab">History</a></li>
 		</ul>
 	</header>
 	<!-- tab Content -->
 	<div class="tab-content">
 
 		<!-- Tab Pane - Home -->
-		<div class="tab-pane fade active in" id="home">
-	<div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel List Group with Expandable Setail Section</h3>
-        </div>   
-        <ul class="list-group">
-        <% (Date.today..1.month.from_now.to_date).each_with_index do |date, index| %>
-            <li class="list-group-item">
-                <div class="row toggle" id="dropdown-detail-<%= index %>" data-toggle="detail-<%= index %>">
-                    <div class="col-xs-10">
-                        <%= date %> | <%= Reservation.by_date(date).count %>
-                    </div>
-                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
-                </div>
-                <div id="detail-<%= index %>">
-                    <hr></hr>
-                    <div class="container">
-                        <div class="fluid-row">
-                            <div class="col-xs-1">
-                                Detail:
-                            </div>
-                            <div class="col-xs-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                            <div class="col-xs-1">
-                                Detail:
-                            </div>
-                            <div class="col-xs-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                            <div class="col-xs-1">
-                                Detail:
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-		<%  end %>
-        </ul>
+<div class="tab-pane active in" id="home">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+		<% (Date.today..1.month.from_now.to_date).each_with_index do |date, index| %>
+	  <div class="panel panel-default">
+	    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+		    <div class="panel-heading" role="tab" id="headingOne">
+		          <strong><%= date %></strong>
+		          <span class="badge"><%= Reservation.by_date(date).count %></span> <i class="fa fa-chevron-down pull-right"></i>
+		    </div>
+	    </a>
+	    <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="panel-body">
+	      	<hr>
+			<% collection.each do |court| %>
+	    		<span><%= court.name %>
+					<% Reservation.by_court(court).by_date(date).each do |res| %>
+						<span class="label label-primary">
+							<%= res.start %>-<%= res.finish %>
+						</span>
+					<% end %>		            
+				<hr></hr>
+	    		</span>
+			<% end %>
+	      </div>
+	    </div>
+	  </div>
+	  <% end %>
+
 	</div>
-
-
-			<div class="clearfix"></div>
-		</div>
+</div>
 		
 		<!-- Tab Pane - Education & Experience -->
 		<div class="tab-pane fade" id="qualification">
 			<div class="education">
-				<h4><i class="fa fa-graduation-cap color"></i> Education</h4>
+				<h4><i class="fa fa-graduation-cap color"></i> Pemesanan</h4>
 				<hr>
 				<div class="row">
-					<div class="col-md-8 col-sm-8">
+					<div class="col-md-6 col-sm-12">
 						<div class="education-item">
 							<!-- Eudcation detail and year -->
-							<h5>B.E (Computer Science) <small>2006-2010</small></h5>
-							<p>At vero eos et accusamus odio dignissimos voluptatum et iusto odio dignissimos voluptatum deleniti atque corrupti quos.</p>
+							<h5>
+								<span class="badge"><%= Reservation.by_venue(venue).count %></span> Transaksi Sempurna 
+								<span class="badge">Rp</span> <%= Reservation.by_venue(venue).count %>
+							</h5>
 						</div>
 					</div>
-					<div class="col-md-8 col-sm-8">
+					<div class="col-md-6 col-sm-12">
 						<div class="education-item">
-							<h5>MCA (Computer Application) <small>2010-2012</small></h5>
-							<p>At vero eos et accusamus odio dignissimos voluptatum et iusto odio dignissimos voluptatum deleniti atque corrupti quos.</p>
+							<!-- Eudcation detail and year -->
+							<h5>
+								<span class="badge"><%= Reservation.by_venue(venue).count %></span> Transaksi Batal
+								<span class="badge">Rp</span> <%= Reservation.by_venue(venue).count %>
+							</h5>
 						</div>
-					</div>
+					</div>					
 				</div>
 			</div>
 			<hr>
-			<div class="experience">
-				<h4><i class="fa fa-database color"></i> Experience</h4>
-				<hr>
-				<div class="row">
-					<div class="col-md-8 col-sm-8">
-						<!-- Experience Detail -->
-						<div class="experience-item">
-							<!-- Experience detail and year -->
-							<h5>Programmer - AshoApps <small>2012-2013</small></h5>
-							<p>At vero eos et accusamus odio dignissimos voluptatum et iusto odio dignissimos voluptatum deleniti atque corrupti quos.</p>
-						</div>
-					</div>
-					<div class="col-md-8 col-sm-8">
-						<!-- Experience Detail -->
-						<div class="experience-item">
-							<h5>Developer - Rage Solution <small>2013-2014</small></h5>
-							<p>At vero eos et accusamus odio dignissimos voluptatum et iusto odio dignissimos voluptatum deleniti atque corrupti quos.</p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>  
