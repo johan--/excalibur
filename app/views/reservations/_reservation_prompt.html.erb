@@ -1,6 +1,10 @@
+<h3>
+	HasilPencarian
+</h3>
 <p>
-	<%= @reservations.count %> pesanan yang bertabrakan, silahkan klik tombol di bawah untuk memesan.
+	<%= @reservations.count %> pesanan terdaftar pada <%= @rev_search.date_reserved_eq %>, antara jam
+	<%= @rev_search.start_gteq %>-<%= @rev_search.start_lteq %>, silahkan isi formulir di bawah untuk memesan atau lakukan pencarian kembali.
 </p>
-<p>
-	<%= link_to "Book Lapangan", new_reservation_path(ven: @venue), class: "btn btn-primary" %>
-</p>
+<%= render partial: 'reservations/form', locals: { date: @rev_search.date_reserved_eq, start: @rev_search.start_gteq } %>
+
+<%= render partial: 'reservations/reservations', locals: { collection: @reservations } %>

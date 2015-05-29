@@ -13,9 +13,9 @@ class ReservationStateMachine
   transition from: :waiting,    to: [:confirmed, :cancelled]
   # transition from: :shipped,    to: :refunded
 
-  guard_transition(to: :checking_out) do |order|
-    order.products_in_stock?
-  end
+  # guard_transition(to: :checking_out) do |order|
+  #   order.products_in_stock?
+  # end
 
   # before_transition(from: :checking_out, to: :cancelled) do |order, transition|
   #   order.reallocate_stock

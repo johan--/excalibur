@@ -1,61 +1,51 @@
 <% title(@venue.name) %>
-<div class="container">
-  <h3><i class="glyphicon glyphicon-flag"></i> Profil Arena</h3>  
+<div class="container" style="margin-top: 10px; margin-bottom: 10px;">   
   <div class="row">
-	<div class="col-md-4">
-		<div class="row login_box">
-	    <div class="col-md-12 col-xs-12 white" align="center">
-        <h1><%= @venue.name %></h1>
-        <span><%= @venue.address %></span>
-	    </div>
-        <div class="col-md-6 col-xs-6 follow line white" align="center">
-            <h3>
-                 <%= @venue.courts.count %> <br/> <span>LAPANGAN</span>
-            </h3>
-        </div>
-        <div class="col-md-6 col-xs-6 follow line white" align="center">
-          <h3>
-               125651 <br/> <span>TARIF</span>
-          </h3>
-        </div>
-        
-        <div class="col-md-12 col-xs-12 login_control">
-		    	<%= render partial: 'elements/clear_search_button', locals: { path: venue_path(@venue) } %>
-				  <%= render 'reservations/search_form' %>
-        </div>
-	  </div>
-  </div>
-	<div class="well col-md-8">
-		
-			<% if search_params_exist? && @reservations.empty? %>
+    <div class="board">
+          <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+      <div class="board-inner">
+        <ul class="nav nav-tabs" id="myTab">
+          <div class="liner"></div>
+          <li>
+            <%= link_to home_path do %>
+              <span class="round-tabs one">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              </span> 
+            <% end %>
+          </li>
+          <li class="active">
+            <a href="#main" data-toggle="tab" title="main">
+              <span class="round-tabs two">
+                <span class="glyphicon glyphicon-flag"></span>
+              </span> 
+            </a>
+          </li>
+          <li>
+            <a href="#booking" data-toggle="tab" title="blah blah">
+              <span class="round-tabs four">
+                <i class="glyphicon glyphicon-pushpin"></i>
+              </span> 
+            </a>
+          </li>
+          <li>
+            <a href="#doner" data-toggle="tab" title="completed">
+             <span class="round-tabs five">
+                <i class="glyphicon glyphicon-ok"></i>
+             </span> 
+            </a>
+          </li>
+           
+        </ul>
+      </div>
 
-				<%= render 'reservations/reservation_prompt' %>
+      <div class="tab-content">
+        <%= render 'main_tab'  %>
+        <%= render 'booking_tab' %>
+        <%= render 'doner_tab' %>
+        <div class="clearfix"></div>
+      </div>
 
-			<% elsif search_params_exist? && @reservations.present? %> 
-        
-        <%= render partial: 'reservations/reservations', locals: { collection: @reservations } %>
+    </div>
 
-      <% else %> 
-	    	<% @venue.courts.each do |court| %>
-		      <div class="panel report panel-primary">
-	          <div class="panel-heading clickable">
-              <h5 class="panel-title">
-                  <%= court.name %>
-              <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
-              </h5>
-              <span class="pull-right badge"id="report">
-                  Jenis <%= court.category %> 
-              </span>
-	          </div>
-	          <div class="panel-body">
- 								<%= render court.reservations %>	
-	          </div>
-	        </div>
-	    	<% end %>
-	    <% end %>
-	  
-
-	</div>
-
-  </div>    
+  </div>   
 </div>

@@ -12,7 +12,7 @@ u = User.new(
     phone_number: "081399279500",
     admin: true
 )
-u.skip_confirmation!
+# u.skip_confirmation!
 u.save!
 
 # Test user accounts
@@ -24,7 +24,7 @@ u.save!
     full_name: "Example #{i}",
     phone_number: "0813992795#{i}",
   )
-  u.skip_confirmation!
+  # u.skip_confirmation!
   u.save!
 
   puts "#{i} test users created..." if (i % 5 == 0)
@@ -35,7 +35,6 @@ firm_array = []
 (1..5).each do |i|
   firm_array << Firm.create!(
     name: "Bisnis #{i}",
-    region: "#{i}",
     city: "Jakarta Selatan",
     address: "Example Address No. #{i}",
     phone: "0819999999#{i}",
@@ -48,8 +47,10 @@ end
 venue_array = []
 firm_array.each do |firm|
   venue_array << Venue.create!(
-    name: "Tempat 1",
+    name: "Arena 1",
     address: "Example Address No. 1",
+    province: "DKI Jakarta",
+    city: "Jakarta Selatan",
     phone: "08199999991",
     firm_id: firm.id
   )
@@ -60,6 +61,7 @@ venue_array.each do |venue|
     Court.create!(
       name: "Lapangan #{i}",
       price: 100000,
+      unit: "Jam",
       category: 1,
       venue_id: venue.id
     )

@@ -2,7 +2,7 @@
 
   <div class="field">
     <%= f.label :date_reserved_eq, "Tanggal" %><br>
-    <%= f.date_select :date_reserved_eq %>
+    <%= f.date_select :date_reserved_eq, label: "Tanggal" %>
   </div>
 
   <div class="field">
@@ -11,8 +11,8 @@
   </div>
   <div class="field" id="start-filter">
     <%= f.label :start_gteq, label: "Jam" %><br>
-    <%= f.time_select :start_gteq, { minute_step: 30 }, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}, include_blank: true %>
-    <%= f.time_select :start_lteq, { minute_step: 30 }, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}, include_blank: true %>    
+    <%= f.time_select :start_gteq, { minute_step: 60 }, include_blank: true %>
+    <%= f.time_select :start_lteq, { minute_step: 60 }, include_blank: true %>    
   </div>
   
   <div class="field">

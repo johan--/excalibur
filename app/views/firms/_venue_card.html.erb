@@ -11,34 +11,7 @@
 
 		<!-- Tab Pane - Home -->
 <div class="tab-pane active in" id="home">
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-		<% (Date.today..1.month.from_now.to_date).each_with_index do |date, index| %>
-	  <div class="panel panel-default">
-	    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
-		    <div class="panel-heading" role="tab" id="headingOne">
-		          <strong><%= date %></strong>
-		          <span class="badge"><%= Reservation.by_date(date).count %></span> <i class="fa fa-chevron-down pull-right"></i>
-		    </div>
-	    </a>
-	    <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-	      <div class="panel-body">
-	      	<hr>
-			<% collection.each do |court| %>
-	    		<span><%= court.name %>
-					<% Reservation.by_court(court).by_date(date).each do |res| %>
-						<span class="label label-primary">
-							<%= res.start %>-<%= res.finish %>
-						</span>
-					<% end %>		            
-				<hr></hr>
-	    		</span>
-			<% end %>
-	      </div>
-	    </div>
-	  </div>
-	  <% end %>
-
-	</div>
+	<%= render partial: 'elements/booking_calendar', locals: { collection: collection } %>       
 </div>
 		
 		<!-- Tab Pane - Education & Experience -->

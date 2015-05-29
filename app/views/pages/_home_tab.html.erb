@@ -13,7 +13,7 @@
 
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-          <div class="panel report panel-primary">
+          <div class="panel report panel-success">
             <div class="panel-heading clickable">
               <h5 class="panel-title">
                   Pesanan
@@ -23,7 +23,7 @@
                 <%= current_user.reservations.count %>   
               </span>
             </div>
-            <div class="panel-body">
+            <div class="panel-body reservation">
               <%= render partial: 'reservations/reservations', locals: { collection: current_user.reservations } %>
             </div>
           </div>

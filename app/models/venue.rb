@@ -6,7 +6,11 @@ class Venue < ActiveRecord::Base
   # Pagination
   paginates_per 20
 
-  # def all_reservations
-  # 	self.courts.reservations
-  # end
+  def average_price
+  	self.courts.map{ |court| court.price }.sum / self.courts.count
+  end
+
+  def all_reservations
+  	self.courts.map{ |court| court.reservations }
+  end
 end

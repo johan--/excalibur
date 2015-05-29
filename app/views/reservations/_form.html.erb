@@ -3,11 +3,11 @@
 
   <div class="field">
     <%= f.label :date_reserved %><br>
-    <%= f.date_select :date_reserved %>
+    <%= f.date_select :date_reserved, default: date %>
   </div>
   <div class="field">
     <%= f.label :start %><br>
-    <%= f.time_select :start %>
+    <%= f.time_select :start, default: start %>
   </div>
   <div class="field">
     <%= f.label :duration %><br>
@@ -15,9 +15,9 @@
   </div>
   <div class="field">
     <%= f.label :lapangan %><br>
-    <%= f.select :court_id, courts_of_venue(params[:ven]) %>
+    <%= f.select :court_id, courts_of_venue(@venue) %>
   </div>  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Pesan", class: "btn btn-primary" %>
   </div>
 <% end %>

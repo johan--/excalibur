@@ -10,9 +10,11 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
-    # @reservation = Reservation.new
     @rev_search = Reservation.search(search_params)
     @reservations = @rev_search.result
+    @reservation = Reservation.new
+    @date_group = Reservation.by_venue(@venue).upcoming.group_by { |r| r.date_reserved }
+    @court_group = Reservation.by_venue(@venue).in_seven.group_by { |r| r.court }
   end
 
   # GET /venues/new
@@ -67,7 +69,7 @@ class VenuesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_venue
-      @venue = Venue.find(params[:id])
+      @venue = Venue.includes(:courts).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
