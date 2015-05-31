@@ -31,7 +31,7 @@
     
       <% if search_params_exist? %>
 
-        <%= render 'reservations/reservation_prompt' %>
+        <%= render partial: 'reservations/reservation_prompt', locals: { type: 'user' } %>
 
       <% else %> 
       <h3>Pemesanan 7 hari ke depan</h3>
@@ -51,7 +51,7 @@
             </a>
             <div id="collapse<%= court.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="court-<%= court.id %>">
               <div class="panel-body reservation">
-              <%= render partial: 'reservations/reservations', locals: { collection: bookings } %>
+              <%= render partial: 'reservations/reservations', locals: { collection: bookings, type: 'user' } %>
               </div>
             </div>
           </div>

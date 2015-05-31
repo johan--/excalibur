@@ -2,6 +2,5 @@
 	followed_type: followed.class.name),
 			 html: { method: :delete }, remote: true, format: :js) do |f| %>
 			 
-	<%= f.submit "Unfollow", class: "btn btn-sm btn-danger" %>
-
+	<%= f.button "- Favorit", class: "btn btn-sm btn-danger", data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Menghapus arena dari favorit...."} %>
 <% end %>

@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require venues
+//= require jquery.turbolinks
 //= require searchForm
 //= require shojiLayout
 //= require listHiddenMenu

@@ -14,7 +14,7 @@
       </small>    
       <%= f.check_box :remember_me, label: 'Simpan Sesi' %> 
     <% end -%>
-    <%= f.submit "Masuk", class: "btn btn-block btn-primary" %>
+    <%= f.button "Masuk", class: "btn btn-block btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Memasuki sesi...."} %>
   <% end %>
   <%= render "devise/shared/links" %>
     

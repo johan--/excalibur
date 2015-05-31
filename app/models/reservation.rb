@@ -1,14 +1,17 @@
 class Reservation < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
-  has_many :transitions, class_name: "ReservationTransition"
+  has_many :reservation_transitions
   
   belongs_to :court
   belongs_to :booker, polymorphic: true
 
-  # scope :stale, ->(duration) { where(["state='onhold' OR (state != 'done' AND updated_at < ?)", duration.ago]) }
   # scope :cancelled, -> { where(state: cancelled) }
   # scope :completed, -> { where(state: completed) }
+
+  # Reservation.in_state(:state_1, :state_2, etc)
   default_scope { order(date_reserved: :desc) }
+  # default_scope where(:rating => 'G')
+  scope :by_time, ->(start, finish) { where(start: start, finish: finish) }
   scope :by_date, ->(date) { where(date_reserved: date) }
   scope :by_court, ->(court_id) { where(court_id: court_id) }
   scope :upcoming, -> { where("date_reserved > ?", Date.today) }
@@ -19,16 +22,28 @@ class Reservation < ActiveRecord::Base
   
   before_save :set_attribute!
 
+  delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
+           to: :state_machine
   def state_machine
-    @state_machine ||= OrderStateMachine.new(self, transition_class: OrderTransition)
+    @state_machine ||= ReservationStateMachine.new(self, 
+                      transition_class: ReservationTransition)
   end
 
+
+  def first_in_line?
+    arr = queueing_up(self)
+    return true if arr.first.id == self.id
+  end
+
+  def queueing_up(r)
+    Reservation.by_court(r.court_id).by_date(r.date_reserved).by_time(r.start, r.finish).order(created_at: :asc)
+  end
 
 
 private
 	
   def self.transition_class
-    OrderTransition
+    ReservationTransition
   end
 
   def self.initial_state
@@ -39,5 +54,6 @@ private
 		self.finish = start + duration.to_i.hours
     self.charge = self.court.price * self.duration
 	end
+
 
 end

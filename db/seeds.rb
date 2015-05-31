@@ -17,7 +17,7 @@ u.save!
 
 # Test user accounts
 (1..50).each do |i|
-  u = User.new(
+  y = User.new(
     email: "user#{i}@example.com",
     password: "1234567",
     password_confirmation: "1234567",
@@ -25,7 +25,7 @@ u.save!
     phone_number: "0813992795#{i}",
   )
   # u.skip_confirmation!
-  u.save!
+  y.save!
 
   puts "#{i} test users created..." if (i % 5 == 0)
 
@@ -56,9 +56,10 @@ firm_array.each do |firm|
   )
 end
 
+court_array = []
 venue_array.each do |venue|
   (1..4).each do |i|
-    Court.create!(
+    court_array << Court.create!(
       name: "Lapangan #{i}",
       price: 100000,
       unit: "Jam",
@@ -67,3 +68,32 @@ venue_array.each do |venue|
     )
   end
 end
+
+# court_array.each do |court|
+#   (1..3).each do |i|
+#     Reservation.create!(
+#       date_reserved: "10/05/2015",
+#       start: "15:00",
+#       duration: 2,
+#       category: 1,
+#       venue_id: court.id
+#       booker: u
+#     )
+#   end
+# end
+  
+a = Reservation.create!(
+  date_reserved: "10/05/2015",
+  start: "15:00",
+  duration: 2,
+  court: Court.first,
+  booker: User.first
+)
+
+b = a.dup 
+b.court_id = 1
+b.booker = User.second
+
+c = a.dup 
+c.court_id = 1
+c.booker = User.third

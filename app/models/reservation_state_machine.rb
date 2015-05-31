@@ -8,14 +8,14 @@ class ReservationStateMachine
   state :waiting
   # state :refunded
 
-  transition from: :pending,    to: [:confirmed, :waiting, :cancelled]
+  transition from: :pending,    to: [:confirmed, :waiting]
   transition from: :confirmed,  to: [:completed, :cancelled]
   transition from: :waiting,    to: [:confirmed, :cancelled]
   # transition from: :shipped,    to: :refunded
 
-  # guard_transition(to: :checking_out) do |order|
-  #   order.products_in_stock?
-  # end
+  guard_transition(from: :pending, to: :confirmed) do |reservation|
+    reservation.first_in_line?
+  end
 
   # before_transition(from: :checking_out, to: :cancelled) do |order, transition|
   #   order.reallocate_stock

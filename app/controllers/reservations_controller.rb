@@ -1,5 +1,9 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy,
+                                          :confirm]
+
+  respond_to :html
+  respond_to :js
 
   # GET /reservations
   # GET /reservations.json
@@ -29,7 +33,11 @@ class ReservationsController < ApplicationController
     
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to home_path, notice: 'Pemesanan berhasil dilakukan' }
+        format.html do 
+          # @reservation.state_machine.transition_to!(:confirmed)
+          redirect_to home_path 
+          flash[:notice] = 'Pemesanan berhasil dilakukan' 
+        end
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -61,6 +69,16 @@ class ReservationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def confirm
+  if @reservation.state_machine.transition_to!(:confirmed)
+    flash[:notice] = "Success"
+    redirect_to home_path
+  else
+    flash[:error] = "Could not transition to 'received'"
+    redirect_to home_path
+  end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

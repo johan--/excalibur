@@ -2,6 +2,5 @@
 
 	<div><%= f.hidden_field :followed_id %></div>
 	<div><%= f.hidden_field :followed_type %></div>
-	<%= f.submit "Follow", class: "btn btn-sm btn-primary" %>
-
+	<%= f.button "+ Favorit", class: "btn btn-sm btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Menyimpan arena sebagai favorit...."} %>
 <% end %>

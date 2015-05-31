@@ -17,25 +17,13 @@
       <header>
         <%= render 'layouts/navigation' %>
       </header>
-
+        
         <% if @firm_layout  %>
           <%= render 'layouts/firm_dashboard' %>
         <% else %>          
 
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 text-center">
-            <%= render 'layouts/messages' %>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-12">
               <%= yield %>
-          </div>
-        </div>
-        
-      </div>
       <% end %>
     </div>  
   <% end %>

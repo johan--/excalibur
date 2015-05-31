@@ -1,6 +1,11 @@
 Fustal::Application.routes.draw do
   
-  resources :reservations, skip: [:show, :index]
+  resources :reservations, skip: [:show, :index] do
+    member do
+      put "confirm" => "reservations#confirm", as: :confirm
+    end
+  end
+
   resources :venues do
     resources :courts
   end

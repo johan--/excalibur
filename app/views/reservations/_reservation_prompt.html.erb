@@ -7,4 +7,4 @@
 </p>
 <%= render partial: 'reservations/form', locals: { date: @rev_search.date_reserved_eq, start: @rev_search.start_gteq } %>
 
-<%= render partial: 'reservations/reservations', locals: { collection: @reservations } %>
+<%= render partial: 'reservations/reservations', locals: { collection: @reservations, type: type } %>
