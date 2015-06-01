@@ -29,7 +29,6 @@ class Reservation < ActiveRecord::Base
                       transition_class: ReservationTransition)
   end
 
-
   def first_in_line?
     arr = queueing_up(self)
     return true if arr.first.id == self.id
@@ -39,6 +38,25 @@ class Reservation < ActiveRecord::Base
     Reservation.by_court(r.court_id).by_date(r.date_reserved).by_time(r.start, r.finish).order(created_at: :asc)
   end
 
+  def confirmed?
+    return true if self.state_machine.current_state == 'confirmed'
+  end
+
+  def completed?
+    return true if self.state_machine.current_state == 'completed'
+  end
+
+  def waiting?
+    return true if self.state_machine.current_state == 'waiting'
+  end
+
+  def pending?
+    return true if self.state_machine.current_state == 'pending'
+  end
+
+  def cancelled?
+    return true if self.state_machine.current_state == 'cancelled'
+  end
 
 private
 	

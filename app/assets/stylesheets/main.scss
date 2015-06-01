@@ -4,7 +4,7 @@
 @import "styles/shoji-layout";
 @import "styles/v-card";
 @import "styles/circular-layout-tabs";
-@import "styles/venues";
+@import "styles/ticket-styles";
 @import "styles/user-profile-flat";
 
 .white {
@@ -14,3 +14,11 @@
 div.reservation {
     padding: 0px;
 }
+
+/*@media( max-width : 585px ){*/
+    #main {
+    	padding-left: 15px;
+    	padding-right: 15px;
+    }
+
+/*}*/

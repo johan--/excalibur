@@ -7,6 +7,9 @@ Fustal::Application.routes.draw do
   end
 
   resources :venues do
+    member do
+      get "bookings" => "venues#bookings", as: :bookings
+    end
     resources :courts
   end
 

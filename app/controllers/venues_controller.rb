@@ -17,6 +17,10 @@ class VenuesController < ApplicationController
     @court_group = Reservation.by_venue(@venue).in_seven.group_by { |r| r.court }
   end
 
+  def bookings
+    @date_group = Reservation.by_venue(@venue).upcoming.group_by { |r| r.date_reserved }
+  end
+
   # GET /venues/new
   def new
     @venue = Venue.new

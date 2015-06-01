@@ -9,7 +9,7 @@ $brand-danger: #d9534f;
 $brand-info: #5bc0de;
 
 // Body scaffolding
-$body-bg: #eeeeee;
+$body-bg: #fffff;
 $text-color: #000;
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
@@ -350,7 +350,6 @@ html,body {
 
 #wrap {
   min-height: 100%;
-  padding-bottom: 120px;
 }
 
 blockquote{
@@ -552,7 +551,6 @@ img {
   background-color: #222222;
   color: #fff;
   height: 100px;
-  margin-top: -100px;
   letter-spacing: 1px;
 
   .footer-first-row {

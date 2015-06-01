@@ -1,11 +1,19 @@
 <%= search_form_for @ven_search, url: home_path do |f| %>
 
-  	<%= f.text_field :name_cont, class: "form-control", placeholder: "nama tempat" %>
-
-    <div align="center">
+	<div class="field">
+		<%= f.text_field :name_cont, class: "form-control", placeholder: "nama tempat" %>
+	</div>
+	<div class="field">
+		<%= f.select :province_eq, province_lists, { index: nil }, class: "form-control", placeholder: "provinsi" %>
+	</div>
+	<div class="field">
+		<%= f.text_field :address_cont, class: "form-control", placeholder: "alamat" %>
+	</div>
+	<br>
+    <div class="actions" align="center">
     	<%= render partial: 'elements/clear_search_button', locals: { path: home_path } %>
     	<%= f.submit "Cari", class: "btn btn-primary" %>
     </div>            
 
-
-<% end %>	 
+<% end %>
+<hr>
