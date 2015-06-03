@@ -1,0 +1,65 @@
+<% title(@firm.name) %>
+
+<% @firm.venues.each do |venue| %>
+  <div class="panel report panel-primary">
+    <div class="panel-heading clickable">
+      <h5 class="panel-title">
+          <%= venue.name %>
+      <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
+      </h5>
+      <span class="pull-right badge"id="report">
+        
+      </span>
+    </div>
+    <div class="panel-body">
+
+<div class="v-card">
+  <!-- Header -->
+  <header>
+    <ul class="list-inline">
+      <li class="active"><a href="#home" data-toggle="tab">6 Bulan Terakhir</a></li>
+      <li class=""><a href="#qualification" data-toggle="tab">> 6 Bulan</a></li>
+    </ul>
+  </header>
+  <!-- tab Content -->
+  <div class="tab-content">
+
+    <!-- Tab Pane - Home -->
+<div class="tab-pane active in" id="home">
+  <%= render partial: 'elements/booking_calendar', locals: { collection: Reservation.by_venue(venue).group_by { |r| r.date_reserved } } %>       
+</div>
+    
+    <!-- Tab Pane - Education & Experience -->
+    <div class="tab-pane fade" id="qualification">
+      <div class="education">
+        <h4><i class="fa fa-graduation-cap color"></i> Pemesanan</h4>
+        <hr>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="education-item">
+              <!-- Eudcation detail and year -->
+              <h5>
+                <span class="badge"><%= Reservation.by_venue(venue).count %></span> Transaksi Sempurna 
+                <span class="badge">Rp</span> <%= Reservation.by_venue(venue).count %>
+              </h5>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="education-item">
+              <!-- Eudcation detail and year -->
+              <h5>
+                <span class="badge"><%= Reservation.by_venue(venue).count %></span> Transaksi Batal
+                <span class="badge">Rp</span> <%= Reservation.by_venue(venue).count %>
+              </h5>
+            </div>
+          </div>          
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>  
+
+    </div>
+  </div>
+<% end %>

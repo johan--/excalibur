@@ -24,6 +24,12 @@ class Reservation < ActiveRecord::Base
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
+
+  def code
+    date = date_reserved.strftime("%d/%m/%Y")
+    "#{court.venue.name}: #{court.name} #{date}-#{start}"
+  end           
+
   def state_machine
     @state_machine ||= ReservationStateMachine.new(self, 
                       transition_class: ReservationTransition)
@@ -56,6 +62,10 @@ class Reservation < ActiveRecord::Base
 
   def cancelled?
     return true if self.state_machine.current_state == 'cancelled'
+  end
+
+  def down_payment
+    (self.charge * 0.5).round(0)
   end
 
 private

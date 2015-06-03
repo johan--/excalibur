@@ -19,6 +19,7 @@ feature "UserSignsUps", :type => :feature do
 				fill_in("user[password_confirmation]", with: "foobarbaz", :match => :prefer_exact)
 				fill_in("user[full_name]", with: "foobar baz", :match => :prefer_exact)
 				fill_in("user[phone_number]", with: "009008007", :match => :prefer_exact)
+				choose 'Pemain'
 				click_button  "Daftar"
 			end
 

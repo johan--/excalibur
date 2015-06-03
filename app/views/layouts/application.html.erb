@@ -7,10 +7,6 @@
   <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <script>
-   Ajaxify.init( { #{session[:ajaxify] ? '' : 'active: false,'}  scroll_to_top: false } );
-   - sleep 1
-  </script>  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -24,6 +20,7 @@
       
       <div id="main">
         <%= render 'layouts/messages' %>
+        <div class="spinner"></div>
         <% if @firm_layout  %>
           <%= render 'layouts/firm_dashboard' %>
         <% elsif @venue_layout  %>

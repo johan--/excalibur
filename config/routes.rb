@@ -5,7 +5,8 @@ Fustal::Application.routes.draw do
       put "confirm" => "reservations#confirm", as: :confirm
     end
   end
-
+  resources :installments
+  
   resources :venues do
     member do
       get "bookings" => "venues#bookings", as: :bookings
@@ -17,12 +18,17 @@ Fustal::Application.routes.draw do
     resources :reservations, skip: [:new, :create, :edit, :update]
   end
 
-  resources :firms do
-    member do
-      get "all_reservations"
-      get "analysis"
-    end
+  # resources :firms do
+  #   member do
+  #     get "all_reservations"
+  #     get "settings"
+  #   end
+  # end
+
+  resources :subscriptions do
+    resources :payments
   end
+
   resources :relationships, only: [:create, :destroy]
   root "pages#landing"
   get "home", to: "pages#home", as: "home"
@@ -41,6 +47,13 @@ Fustal::Application.routes.draw do
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     get "posts/dashboard", to: "posts#dashboard", as: "posts_dashboard"
     resources :posts
+  end
+
+  namespace :biz do
+    root "base#show"
+    get "settings", to: "base#settings", as: :settings
+    get "bookings", to: "base#bookings", as: :bookings
+    resources :base, only: [:edit, :update]
   end
 
 end

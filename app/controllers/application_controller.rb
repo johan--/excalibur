@@ -18,14 +18,12 @@ class ApplicationController < ActionController::Base
   # Devise permitted params
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(
+      :category,
       :email,
       :password,
       :password_confirmation,
       :phone_number,
-      :full_name,
-      :category,
-      :investor, 
-      :business
+      :full_name
       )
     }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(
@@ -48,7 +46,12 @@ class ApplicationController < ActionController::Base
 
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    home_path
+    if resource.category == 2
+      # firm_path(resource.find_firm) 
+      biz_root_path
+    else
+      home_path
+    end
   end
 
   # Auto-sign out locked users
@@ -73,6 +76,14 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :require_admin!
+
+  # Only permits operator users
+  def require_operator!
+    if current_user && !current_user.operator?
+      redirect_to home_path
+    end
+  end
+  helper_method :require_operator!
 
   def search_params
     params[:q]

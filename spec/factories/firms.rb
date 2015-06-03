@@ -5,16 +5,16 @@ FactoryGirl.define do
     sequence(:phone) { |n| "0111111#{n}" }
     sequence(:address) { |n| "Jl. Example No. #{n}" } 
     city "DKI Jakarta"
-    # factory :one_venue_firm do
-    #   transient do
-    #     year 2015
-    #   end
 
-    #   after(:create) do |firm, evaluator|
-    #     FactoryGirl.create(:income_statement, firm: firm)
-    #     FactoryGirl.create(:cash_flow, firm: firm)
-    #   end
-    # end
+    factory :firm_with_team do
+      ignore do
+        manager { FactoryGirl.create(:manager) }
+      end
+
+      after(:create) do |firm, evaluator|
+        FactoryGirl.create(:active_manager, user: evaluator.manager, rosterable: firm)
+      end
+    end
   end
     
   trait :capital do
@@ -38,8 +38,10 @@ FactoryGirl.define do
       city "Jakarta Selatan"
       sequence(:address) { |n| "Jl. Ibukota No. #{n}" }       
 
-      before(:create) do |venue, evaluator|
-        FactoryGirl.create(:firm)
+      factory :cap_venue_with_firm do
+        before(:create) do |venue, evaluator|
+          FactoryGirl.create(:firm)
+        end
       end
     end
 

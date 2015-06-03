@@ -4,11 +4,11 @@
     
     <h3 class="head text-center">Hai, <%= current_user.email %></h3>
     <p class="narrow text-center">
-      <%= current_user.reservations.count %> Pesanan Terdaftar
+      <%= current_user.current_reservations.count %> Pesanan Terdaftar
     </p>
 
     <p class="text-center">
-      <a href="" class="btn btn-success btn-outline-rounded green"> create your profile <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+      <%= link_to "Konfirmasi Uang Muka", new_installment_path, class: "btn btn-success btn-outline-rounded green" %>
     </p>  
 
     <div class="row">

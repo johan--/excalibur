@@ -15,12 +15,6 @@ class FirmsController < ApplicationController
     # @reserve_by_date = @firm.reservations.group_by { |res| res.date_reserved }
   end
 
-  def all_reservations
-  end
-
-  def analysis
-  end
-
   # GET /firms/new
   def new
     @firm = Firm.new

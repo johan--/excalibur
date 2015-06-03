@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
-//= require ajaxify_rails
 //= require ajaxify_custom
 //= require searchForm
 //= require shojiLayout

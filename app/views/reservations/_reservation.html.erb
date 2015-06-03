@@ -34,8 +34,8 @@
       </div>
       <div class="ticket-type  col-md-3 col-sm-6 col-xs-12">
         <span class="divider hidden-xs"></span>
-        <span class="type"><%= reservation.state_machine.current_state %></span>
-        <%= link_to "Konfirmasi", confirm_reservation_path(reservation), method: :put, class: "btn btn-xs btn-primary" if reservation.first_in_line? %>
+        <span class="type"><%= "Uang Muka" %></span>
+        <span><%= idr_money(reservation.down_payment) %></span>
       </div>
       <%= reservation_state_sign(reservation) %>
     </div>

@@ -3,9 +3,9 @@ require 'rails_helper'
 feature "UserMakesReservations", :type => :feature do
   subject { page }
 
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:user_2) { FactoryGirl.create(:user) }
-  let!(:venue_1) { FactoryGirl.create(:capital_venue) }
+  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user_2) { FactoryGirl.create(:player) }
+  let!(:venue_1) { FactoryGirl.create(:cap_venue_with_firm) }
   let!(:venue_2) { FactoryGirl.create(:satellite_venue) }
   let!(:res_2) { FactoryGirl.create(:direct_booking, 
                     court: venue_1.courts.first, booker: user_2) }
@@ -41,18 +41,18 @@ feature "UserMakesReservations", :type => :feature do
         end
         
         it { should have_content("Pemesanan berhasil dilakukan") }
-        it { should_not have_link("Konfirmasi") }
+        it { should_not have_link("1 Pesanan Terdaftar") }
       end
   	end
   end
 
-  describe "confirming reservation" do
-    before do 
-      sign_in user_2 
-      click_link "Konfirmasi"
-    end
+  # describe "confirming reservation" do
+  #   before do 
+  #     sign_in user_2 
+  #     click_link "Konfirmasi"
+  #   end
 
-    it { should have_content("Success") }
-  end
+  #   it { should have_content("Success") }
+  # end
 
 end

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base  
 # Relations
   has_many :posts
+  has_many :rosters
   has_many :relationships,  foreign_key: "follower_id", 
                             dependent: :destroy
 
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
                         source: :follower
 
   has_many :reservations, as: :booker
-
+  has_many :installments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -29,6 +30,18 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   attr_accessor :login
+
+  def operator?
+    return true if self.category == 2
+  end
+
+  def find_firm
+    self.rosters.firm_team.first.rosterable.id
+  end
+
+  def current_reservations
+    self.reservations#.upcoming
+  end
 
   # relationship methods
     def following?(followed)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527135246) do
+ActiveRecord::Schema.define(version: 20150601232744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,32 @@ ActiveRecord::Schema.define(version: 20150527135246) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "installments", force: :cascade do |t|
+    t.integer  "reservation_id", null: false
+    t.integer  "user_id",        null: false
+    t.datetime "pay_day",        null: false
+    t.string   "pay_code",       null: false
+    t.integer  "total",          null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "installments", ["pay_code"], name: "index_installments_on_pay_code", using: :btree
+  add_index "installments", ["reservation_id"], name: "index_installments_on_reservation_id", using: :btree
+  add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "subscription_id", null: false
+    t.string   "pay_code",        null: false
+    t.datetime "pay_day",         null: false
+    t.integer  "total",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "payments", ["pay_code"], name: "index_payments_on_pay_code", using: :btree
+  add_index "payments", ["subscription_id"], name: "index_payments_on_subscription_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -107,6 +133,34 @@ ActiveRecord::Schema.define(version: 20150527135246) do
   add_index "reservations", ["booker_type", "booker_id"], name: "index_reservations_on_booker_type_and_booker_id", using: :btree
   add_index "reservations", ["court_id"], name: "index_reservations_on_court_id", using: :btree
 
+  create_table "rosters", force: :cascade do |t|
+    t.integer  "rosterable_id",   null: false
+    t.string   "rosterable_type", null: false
+    t.integer  "user_id",         null: false
+    t.integer  "role"
+    t.datetime "deleted_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "rosters", ["deleted_at"], name: "index_rosters_on_deleted_at", using: :btree
+  add_index "rosters", ["rosterable_type", "rosterable_id", "user_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id_and_user_id", using: :btree
+  add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
+  add_index "rosters", ["user_id"], name: "index_rosters_on_user_id", using: :btree
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "category",   null: false
+    t.integer  "firm_id",    null: false
+    t.integer  "status",     null: false
+    t.date     "start_date", null: false
+    t.date     "end_date",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subscriptions", ["firm_id"], name: "index_subscriptions_on_firm_id", using: :btree
+  add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -129,6 +183,7 @@ ActiveRecord::Schema.define(version: 20150527135246) do
     t.string   "phone_number",                           null: false
     t.string   "full_name",                              null: false
     t.datetime "deleted_at"
+    t.integer  "category",                               null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

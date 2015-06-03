@@ -10,19 +10,21 @@ u = User.new(
     # last_name: "Muhammad",
     full_name: "Galih Muhammad",
     phone_number: "081399279500",
+    category: 3,
     admin: true
 )
 # u.skip_confirmation!
 u.save!
 
 # Test user accounts
-(1..50).each do |i|
+(1..25).each do |i|
   y = User.new(
     email: "user#{i}@example.com",
     password: "1234567",
     password_confirmation: "1234567",
     full_name: "Example #{i}",
     phone_number: "0813992795#{i}",
+    category: 1
   )
   # u.skip_confirmation!
   y.save!
@@ -30,6 +32,24 @@ u.save!
   puts "#{i} test users created..." if (i % 5 == 0)
 
 end
+
+manager_array = []
+(1..5).each do |i|
+  manager_array << User.create!(
+    email: "manager#{i}@example.com",
+    password: "1234567",
+    password_confirmation: "1234567",
+    full_name: "Manager #{i}",
+    phone_number: "0813992795#{i}",
+    category: 2
+  )
+  # u.skip_confirmation!
+  # z.save!
+
+  puts "#{i} test managers created..." if (i % 5 == 0)
+
+end
+
 
 firm_array = []
 (1..5).each do |i|
@@ -39,9 +59,19 @@ firm_array = []
     address: "Example Address No. #{i}",
     phone: "0819999999#{i}",
   )
-  
-  puts "#{i} test firms created..." if (i % 5 == 0)
+    puts "#{i} test firms created..." if (i % 5 == 0)
 
+end
+
+
+manager_array.each do |manager|
+  firm_array.each do |firm|
+    Roster.create!(
+      user: manager,
+      rosterable: firm,
+      role: 0
+    )
+  end
 end
 
 venue_array = []

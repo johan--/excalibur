@@ -5,34 +5,19 @@ FactoryGirl.define do
     password "foobarbaz"
     password_confirmation "foobarbaz"
     sequence(:full_name) { |n| "Person #{n}" }
+    
+		factory :player do
+      category 1
+    end
 
-		factory :admin do
+    factory :admin do
 			admin true
+      category 3
 		end
+
+    factory :manager do
+      category 2
+    end
   end
-
-  # factory :roster do
-  #   user
-  #   active true
-
-  #   factory :active_owner do
-  #     role "Pemilik"
-  #     rosterable_type "Firm"
-  #   end
-
-  #   factory :active_member do
-  #     role "Anggota"
-  #     rosterable_type "Firm"
-  #   end
-
-  #   factory :head_capitalist do
-  #     role "Pemilik"
-  #     rosterable_type "Backer"
-  #   end    
-  # end
-  # trait :rosterable_id do
-  #   rosterable_id
-  # end
-
 
 end

@@ -5,6 +5,16 @@ module ApplicationHelper
     end
   end
 
+  def into_hub(user)
+    if user.admin?
+      admin_root_path
+    elsif user.operator?
+      biz_root_path
+    else
+      home_path
+    end
+  end
+
   def province_lists
   	[ "DKI Jakarta", "Banten", "Jawa Barat" ]
   end
@@ -31,6 +41,20 @@ module ApplicationHelper
 			content_tag(:i, '', class: "glyphicon glyphicon-remove"), 
 			class: "ticket-state bg-coral")			
   	end
+  end
+
+  def idr_money(number)
+    number_to_currency(number, unit: "Rp ", separator: ",", 
+                       delimiter: ".", negative_format: "(%u%n)",
+                       raise: true, precision: 0)
+# => R$1234567890,50
+  end
+
+  def idr_no_symbol(number)
+    number_to_currency(number, unit: "", separator: ",", 
+                       delimiter: ".", negative_format: "(%u%n)",
+                       raise: true, precision: 0)
+# => R$1234567890,50
   end
 
 end
