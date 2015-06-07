@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, except: [
-    :home, :inside
+    :home
   ]
   before_action :disable_nav, only: :landing
   
@@ -18,9 +18,6 @@ class PagesController < ApplicationController
       format.html
       format.js
     end
-  end
-
-  def inside
   end
   
   def posts

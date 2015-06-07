@@ -1,17 +1,19 @@
 FactoryGirl.define do
 
   factory :roster do
-    # before(:create) do |roster, evaluator|
-    #   FactoryGirl.create(:manager)
-    # end
-
     user
 
     factory :active_manager do
-      role 0
+      state "aktif"
+      role 1
       association :rosterable, factory: :firm
     end
 
+    factory :pending_member do
+      state "menunggu konfirmasi"
+      role 2
+      association :rosterable, factory: :firm
+    end
     # factory :user do
     #   role 1
     #   association :rosterable, factory: :team

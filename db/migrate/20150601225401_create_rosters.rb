@@ -3,7 +3,8 @@ class CreateRosters < ActiveRecord::Migration
     create_table :rosters do |t|
       t.references  :rosterable, polymorphic: true, index: true, null: false
       t.references  :user, index: true, null: false
-      t.integer     :role
+      t.integer     :role, null: false
+      t.string      :state, null: false
       t.datetime    :deleted_at, index: true
 
       t.timestamps null: false

@@ -3,7 +3,7 @@
 	<div class="shoji-rail">
     <div class="shoji-panel shoji-panel-left">
       <div class="panel-group" id="sidebar">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
           <div class="panel-heading">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu Aksi</a>
@@ -12,7 +12,7 @@
           <ul id="sidebar-first" class="list-group panel-collapse collapse in">
             <li class="list-group-item"><%= link_to "Halaman Utama", biz_root_path %></li>
             <li class="list-group-item"><%= link_to "Riwayat Pemesanan", biz_bookings_path %></li>
-            <li class="list-group-item"><a href="#">Halaman Tim</a></li>
+            <li class="list-group-item"><%= link_to "Halaman Manajemen", biz_management_path %></li>
           </ul>
         </div>
       </div>
@@ -62,22 +62,30 @@
         <div class="row">
           <div class="hidden-xs col-sm-3">
             <div class="panel-group">
-              <div class="panel panel-default">
+              <div class="panel panel-primary">
                 <div class="panel-heading">
                   <h4 class="panel-title">Menu</h4>
                 </div>
                 <ul class="nav nav-pills nav-stacked">
                   <li><%= link_to "Halaman Utama", biz_root_path %></li>
                   <li><%= link_to "Riwayat Pemesanan", biz_bookings_path %></li>
-                  <li><%= link_to "Opsi Tindakan", biz_settings_path %></li>
+                  <li><%= link_to "Halaman Manajemen", biz_management_path %></li>
                 </ul>
               </div>
-              <div class="panel panel-default">
+              <div class="panel panel-info">
                 <div class="panel-heading">
                   <h4 class="panel-title">Profil</h4>
                 </div>
                   <%= render 'biz/base/firm_bio' %>
               </div>
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Preferensi</h4>
+                </div>
+                <div class="panel-body">
+                  <%= render 'biz/base/firm_prefs' %>
+                </div>
+              </div>              
             </div>
           </div>
           <div class="col-xs-12 col-sm-9">

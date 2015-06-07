@@ -1,3 +1,4 @@
+@import "bootstrap-datepicker3";
 @import "styles/landing";
 @import "styles/clickable-panel";
 @import "styles/profile-box";
@@ -7,6 +8,8 @@
 @import "styles/ticket-styles";
 @import "styles/user-profile-flat";
 @import "styles/stylish-panel";
+@import "styles/responsive-table";
+@import "bootstrap-toggle";
 
 .white {
 	color: white;
@@ -16,6 +19,10 @@ div.reservation {
     padding: 0px;
 }
 
+.danger-link {
+	color: #BE371F;
+}
+
 /*@media( max-width : 585px ){*/
     #main {
     	padding-left: 15px;
@@ -23,3 +30,4 @@ div.reservation {
     }
 
 /*}*/
+

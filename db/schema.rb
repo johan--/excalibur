@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601232744) do
+ActiveRecord::Schema.define(version: 20150603113500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,19 +64,23 @@ ActiveRecord::Schema.define(version: 20150601232744) do
   end
 
   add_index "installments", ["pay_code"], name: "index_installments_on_pay_code", using: :btree
+  add_index "installments", ["reservation_id", "pay_code"], name: "index_installments_on_reservation_id_and_pay_code", unique: true, using: :btree
+  add_index "installments", ["reservation_id", "pay_day"], name: "index_installments_on_reservation_id_and_pay_day", unique: true, using: :btree
   add_index "installments", ["reservation_id"], name: "index_installments_on_reservation_id", using: :btree
   add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "subscription_id", null: false
     t.string   "pay_code",        null: false
-    t.datetime "pay_day",         null: false
+    t.date     "pay_day",         null: false
+    t.time     "pay_time",        null: false
     t.integer  "total",           null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "payments", ["pay_code"], name: "index_payments_on_pay_code", using: :btree
+  add_index "payments", ["subscription_id", "pay_code"], name: "index_payments_on_subscription_id_and_pay_code", unique: true, using: :btree
+  add_index "payments", ["subscription_id", "pay_day"], name: "index_payments_on_subscription_id_and_pay_day", unique: true, using: :btree
   add_index "payments", ["subscription_id"], name: "index_payments_on_subscription_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
@@ -137,7 +141,8 @@ ActiveRecord::Schema.define(version: 20150601232744) do
     t.integer  "rosterable_id",   null: false
     t.string   "rosterable_type", null: false
     t.integer  "user_id",         null: false
-    t.integer  "role"
+    t.integer  "role",            null: false
+    t.string   "state",           null: false
     t.datetime "deleted_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -148,18 +153,31 @@ ActiveRecord::Schema.define(version: 20150601232744) do
   add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
   add_index "rosters", ["user_id"], name: "index_rosters_on_user_id", using: :btree
 
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",         null: false
+    t.text     "value"
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
+
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "category",   null: false
     t.integer  "firm_id",    null: false
-    t.integer  "status",     null: false
+    t.integer  "category",   null: false
+    t.string   "state",      null: false
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "subscriptions", ["firm_id"], name: "index_subscriptions_on_firm_id", using: :btree
-  add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
+  add_index "subscriptions", ["category"], name: "index_subscriptions_on_category", using: :btree
+  add_index "subscriptions", ["firm_id", "state"], name: "index_subscriptions_on_firm_id_and_state", using: :btree
+  add_index "subscriptions", ["firm_id"], name: "index_subscriptions_on_firm_id", unique: true, using: :btree
+  add_index "subscriptions", ["state"], name: "index_subscriptions_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

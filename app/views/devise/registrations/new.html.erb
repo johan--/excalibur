@@ -4,9 +4,9 @@
   
     <div class="container-page">        
 
-    <%= bootstrap_form_for(resource, :as => resource_name,
+    <%= simple_form_for(resource, :as => resource_name,
           :url => registration_path(resource_name),
-          :html => { :role => "form" }, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f| %>
+          :html => { :role => "form" }) do |f| %>
 
         <div class="form-group col-lg-12">            
           <%= devise_error_messages! %>
@@ -19,30 +19,27 @@
         </div>
 
           <div class="form-group col-lg-12">
-            <%= f.form_group :category, label: { text: "Jenis Pengguna" }, required: true do %>
-              <%= f.radio_button :category, '2', label: "Pengelola Arena", id: "firm", inline: true %>
-              <%= f.radio_button :category, '1', label: "Pemain", id: "player", inline: true  %>
-            <% end %>
+            <%= f.input :category, collection: user_categories, as: :radio_buttons, label: "Jenis Pengguna", required: true %>
           </div>
-                    
+
           <div class="form-group col-lg-12">
-            <%= f.email_field :email, class: "form-control", placeholder: "ini akan digunakan untuk kontak dan login", required: true %>
+            <%= f.input :email, class: "form-control", placeholder: "ini akan digunakan untuk kontak dan login", required: true %>
           </div>
           
           <div class="form-group col-lg-12">
-            <%= f.telephone_field :phone_number, class: "form-control", label: "Nomor Telepon", placeholder: "sama seperti email, untuk kontak dan login", required: true %>
+            <%= f.input :phone_number, class: "form-control", label: "Nomor Telepon", placeholder: "sama seperti email, untuk kontak dan login", required: true %>
           </div>
                     
           <div class="form-group col-lg-12">
-            <%= f.password_field :password, class: "form-control", label: 'Kata Kunci', placeholder: "panjang minimal 8 karakter, huruf, angka, atau campurannya", required: true %>
+            <%= f.input :password, class: "form-control", label: 'Kata Kunci', placeholder: "panjang minimal 8 karakter, huruf, angka, atau campurannya", required: true %>
           </div>
           
           <div class="form-group col-lg-12">
-            <%= f.password_field :password_confirmation, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true %>
+            <%= f.input :password_confirmation, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true %>
           </div>
                   
           <div class="form-group col-lg-12">
-            <%= f.text_field :full_name, label: "Nama Lengkap", class: "form-control", help: "Jika tidak ada nama belakang,", required: true %>
+            <%= f.input :full_name, label: "Nama Lengkap", class: "form-control", help: "Jika tidak ada nama belakang,", required: true %>
           </div>
       </div>
     
@@ -60,7 +57,7 @@
             Cara pembayaran hanyalah dengan transfer bank, melalui atm ataupun teller bank. Kami tidak akan pernah meminta dan menyimpan data rekening yang sensitif seperti nomor PIN atau nomor kartu kredit kamu.
           </p>
 
-          <%= f.submit "Daftar", class: "btn btn-block btn-primary" %>
+          <%= f.button :submit, "Daftar", class: "btn btn-block btn-primary", data: {disable_with: "Sedang didaftarkan...."} %>
         </div>
       
       </div>

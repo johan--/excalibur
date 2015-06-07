@@ -15,8 +15,20 @@ FactoryGirl.define do
         FactoryGirl.create(:active_manager, user: evaluator.manager, rosterable: firm)
       end
     end
+
+    # factory :firm_with_subscription do
+    #   after(:create) do |firm, evaluator|
+    #     FactoryGirl.create(:active_1_mo, firm: firm)
+    #   end            
+    # end    
+
+    trait :with_subscription do
+      after(:create) do |firm, evaluator|
+        FactoryGirl.create(:active_1_mo, firm: firm)
+      end            
+    end        
   end
-    
+
   trait :capital do
     city "DKI Jakarta"
     sequence(:address) { |n| "Jl. Ibukota No. #{n}" } 
@@ -59,15 +71,15 @@ FactoryGirl.define do
       number_of_court 4
     end   
 
-      after(:create) do |venue, evaluator|
-        FactoryGirl.create(:court, venue: venue)
-      end    
+    after(:create) do |venue, evaluator|
+      FactoryGirl.create_list(:court, evaluator.number_of_court, venue: venue)
+    end    
   end
 
 
   factory :court do
     sequence(:name) { |n| "Court #{n}" }
-    price 150000
+    price 100000
     unit "Jam"
     category 1
     venue

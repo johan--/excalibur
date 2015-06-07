@@ -17,8 +17,10 @@
 //= require ajaxify_custom
 //= require searchForm
 //= require shojiLayout
+//= require biz
 //= require listHiddenMenu
 //= require clickablePanel
 //= require bootstrap 
+//= require bootstrap-datepicker
 //= require analytics
 //= require common

@@ -158,7 +158,7 @@ $navbar-default-toggle-border-color: #dddddd;
 // Navbar: Inverted navbar
 // -> Basics
 $navbar-inverse-color: #fff;
-$navbar-inverse-bg: #222222;
+$navbar-inverse-bg: $brand-primary;
 $navbar-inverse-border: darken($navbar-inverse-bg, 7%);
 // -> Links
 $navbar-inverse-link-color: #fff;
@@ -548,7 +548,7 @@ img {
 //***********************************************************
 // FOOTER
 #footer {
-  background-color: #222222;
+  background-color: $brand-primary;
   color: #fff;
   height: 100px;
   margin-top: 30px;

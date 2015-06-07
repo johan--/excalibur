@@ -46,11 +46,14 @@ class ApplicationController < ActionController::Base
 
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    if resource.category == 2
-      # firm_path(resource.find_firm) 
-      biz_root_path
+    if resource.operator?
+      if resource.with_no_firm?
+        new_firm_path
+      else
+        biz_root_path
+      end
     else
-      home_path
+      user_root_path
     end
   end
 
@@ -72,15 +75,19 @@ class ApplicationController < ActionController::Base
     authenticate_user!
 
     if current_user && !current_user.admin?
-      redirect_to home_path
+      redirect_to user_root_path
     end
   end
   helper_method :require_admin!
 
   # Only permits operator users
   def require_operator!
-    if current_user && !current_user.operator?
-      redirect_to home_path
+    if !current_user.operator?
+      redirect_to user_root_path
+    else
+      if current_user.with_no_firm? 
+        redirect_to posts_path
+      end
     end
   end
   helper_method :require_operator!

@@ -1,33 +1,32 @@
+<% title("Preferensi #{@firm.name}") %>
 
-  <div class="row stylish-panel">
-    <div class="col-md-4">
-      <div>
-        <i class="fa fa-credit-card fa-3x"></i>
-        <h3>Pembayaran</h3>
-        <p>
-          Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
-        </p>
-          <%= link_to "Ke Halaman Pembayaran »", '#', class: "btn btn-primary" %>
-      </div>
+<h2>Preferensi Bisnis</h2>
+
+    <div class="col-sm-10">
+        <hr>
+        <%= simple_form_for :firm_pref, url: biz_save_settings_path, method: "put", as: 'pref_horizontal', html: { class: 'form-horizontal' },
+              wrapper: :horizontal_form,
+              wrapper_mappings: {
+                check_boxes: :horizontal_radio_and_checkboxes,
+                radio_buttons: :horizontal_radio_and_checkboxes,
+                file: :horizontal_file_input,
+                boolean: :horizontal_boolean
+              } do |f| %>
+
+            <h4>Uang Muka</h4>
+            <%= f.input :dp_state, collection: auto_options, as: :radio_buttons, checked: current_dp_pref(@firm), label: "Pembayaran Uang Muka" %>        
+
+            <%= f.input :dp_percent, as: :select, collection: dp_percentages, selected: current_dp(@firm), prompt: "Pilih % Uang Muka", label: "% Uang Muka" %>
+
+            <%= f.input :dp_deadline, as: :select, collection: dp_deadlines, selected: current_dp_deadline(@firm), label: "Tenggat Waktu" %>
+            <hr>
+            
+            <h4>Otomasi</h4>
+            <%= f.input :auto_confirmation_state, as: :select, collection: auto_confirm_options, selected: current_auto_confirmation_pref(@firm), label: "Konfirmasi Otomatis" %>
+
+            <%= f.input :auto_promo_state, collection: auto_options, as: :radio_buttons, checked: current_auto_promo_pref(@firm), label: "Promo Otomatis" %>
+            <hr>
+
+            <%= f.button :submit, "Simpan Preferensi Bisnis", class: "btn btn-primary" %>
+        <% end %>
     </div>
-    <div class="col-md-4">
-      <div>
-        <i class="fa fa-users fa-3x"></i>
-        <h3>Akses Anggota Tim</h3>
-        <p>
-          Atur akses dan tindakan yang bisa dilakukan tiap pengguna yang berkaitan.
-        </p>
-        <a href="<%=  %>" class="btn btn-primary" title="See more">Ke Halaman Anggota »</a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div>
-        <i class="fa fa-crosshairs fa-3x"></i>
-        <h3>Preferensi</h3>
-        <p>
-          Untuk mengatur preferensi seperti metode pembayaran, uang muka, dan sebagainya.
-        </p>
-        <a href="<%=  %>" class="btn btn-primary" title="See more">Ke Halaman Akun Usaha »</a>
-      </div>
-    </div>
-  </div>

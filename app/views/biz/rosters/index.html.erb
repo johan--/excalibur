@@ -1,0 +1,58 @@
+<% title("Laman Tim") %>
+
+
+	<h3 class="text-center">Daftar Anggota Tim</h3>
+
+	<p class="narrow text-center">
+		<small>Tambah Anggota Tim</small>
+		<%= link_to "+ Pengguna Yang Terdaftar", new_biz_roster_path, class: "btn btn-md btn-primary" %> 
+
+		<%= link_to "+ Anggota Yang Belum Mendaftar", new_biz_roster_path(register: true), class: "btn btn-md btn-info" %> 		
+	</p>
+
+ 	<br>
+	<div class="row">
+        <div id="no-more-tables">
+            <table class="col-md-12 table-bordered table-striped table-condensed cf text-center">
+        		<thead class="cf">
+        			<tr>
+        				<th class="text-center">#</th>
+        				<th class="text-center">Nama</th>
+        				<th class="text-center">Peran</th>
+        				<th class="text-center">Bergabung</th>
+        				<th class="text-center">Edit</th>
+        				<th class="text-center">Hapus</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        		<% @rosters.each_with_index do |member, index| %>
+        			<tr>
+        				<td data-title="#"><%= index + 1 %>.</td>
+        				<td data-title="Nama"><%= member.user.full_name %></td>
+        				<td data-title="Peran"><%= role_translated(member.role) %></td>
+        				<td data-title="Bergabung" class="numeric"><%= member.created_at.to_date %></td>
+        				<td data-title="Koreksi">
+						  <%= link_to edit_biz_roster_path(member), class: "table-link" do %>
+							<span class="fa-stack">
+							  <i class="fa fa-square fa-stack-2x"></i>
+							  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+							</span>
+					  	  <% end %>        					
+        				</td>
+        				<td data-title="Hapus" class="numeric">
+							<%= link_to biz_roster_path(member), confirm: 'Kamu yakin?', method: :delete, class: "danger-link" do %>
+								<span class="fa-stack">
+									<i class="fa fa-square fa-stack-2x"></i>
+									<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+								</span>
+							<% end %>        				
+        				</td>
+        			</tr>
+        		<% end %>
+        		</tbody>
+        	</table>
+        </div>
+    </div>
+
+
+  </div>

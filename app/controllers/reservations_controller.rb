@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
       if @reservation.save
         format.html do 
           # @reservation.state_machine.transition_to!(:confirmed)
-          redirect_to home_path 
+          redirect_to user_root_path 
           flash[:notice] = 'Pemesanan berhasil dilakukan' 
         end
         format.json { render :show, status: :created, location: @reservation }
@@ -51,7 +51,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to home_path, notice: 'Pemesanan berhasil dikoreksi' }
+        format.html { redirect_to user_root_path, notice: 'Pemesanan berhasil dikoreksi' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -73,10 +73,10 @@ class ReservationsController < ApplicationController
 def confirm
   if @reservation.state_machine.transition_to!(:confirmed)
     flash[:notice] = "Success"
-    redirect_to home_path
+    redirect_to user_root_path
   else
     flash[:error] = "Could not transition to 'received'"
-    redirect_to home_path
+    redirect_to user_root_path
   end
 end
 

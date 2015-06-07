@@ -28,15 +28,26 @@ class User < ActiveRecord::Base
 
   # Validations
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_presence_of :category
 
   attr_accessor :login
+
+  before_save :up_full_name
 
   def operator?
     return true if self.category == 2
   end
 
+  def with_no_firm?
+    return true if find_firm.active.first.nil?
+  end
+
   def find_firm
-    self.rosters.firm_team.first.rosterable.id
+    self.rosters.firm_team
+  end
+
+  def firm_locator
+    find_firm.first.rosterable
   end
 
   def current_reservations
@@ -106,5 +117,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  
+private
+
+  def up_full_name
+    self.full_name = full_name.titleize
+  end
+
 end

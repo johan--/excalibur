@@ -16,7 +16,7 @@ feature "AuthenticationSteps", :type => :feature do
 				# end
 
 				describe "visiting the home page" do
-					before { visit home_path }
+					before { visit user_root_path }
 					it { should have_title('Masuk') }
 				end				
 
@@ -73,7 +73,7 @@ feature "AuthenticationSteps", :type => :feature do
 
 			describe "in the Pages Controller" do
 				describe "visiting the home page" do
-					before { visit home_path }
+					before { visit user_root_path }
 					it { should have_title('Home') }
 				end				
 

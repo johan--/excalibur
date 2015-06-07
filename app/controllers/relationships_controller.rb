@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
 		current_user.follow!(@followed)
 		# current_user.follow!(params[:followed_id], params[:followed_type])
 		respond_to do |format|
-			format.html { redirect_to home_path, notice: "Berhasil di Follow" }
+			format.html { redirect_to user_root_path, notice: "Berhasil di Follow" }
 			format.js
 		end
 	end
@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
 		@relationship = Relationship.find(params[:id])
 		@relationship.destroy
 		respond_to do |format|
-			format.html { redirect_to home_path }
+			format.html { redirect_to user_root_path }
 			format.js
 		end
 	end

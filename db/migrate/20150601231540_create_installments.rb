@@ -9,5 +9,7 @@ class CreateInstallments < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :installments, [:reservation_id, :pay_code], unique: true
+    add_index :installments, [:reservation_id, :pay_day], unique: true
   end
 end

@@ -28,7 +28,7 @@ class InstallmentsController < ApplicationController
 
     respond_to do |format|
       if @installment.save
-        format.html { redirect_to home_path, notice: 'Installment was successfully created.' }
+        format.html { redirect_to user_root_path, notice: 'Installment was successfully created.' }
         format.json { render :show, status: :created, location: @installment }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class InstallmentsController < ApplicationController
   def update
     respond_to do |format|
       if @installment.update(installment_params)
-        format.html { redirect_to home_path, notice: 'Installment was successfully updated.' }
+        format.html { redirect_to user_root_path, notice: 'Installment was successfully updated.' }
         format.json { render :show, status: :ok, location: @installment }
       else
         format.html { render :edit }

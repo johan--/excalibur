@@ -63,12 +63,21 @@ firm_array = []
 
 end
 
+firm_array.each do |firm|
+  Subscription.create!(
+    category: 1,
+    start_date: Date.today,
+    state: "aktif",
+    firm: firm
+  )
+end
 
 manager_array.each do |manager|
   firm_array.each do |firm|
-    Roster.create!(
+    firm.rosters.create!(
       user: manager,
-      rosterable: firm,
+      # rosterable: firm,
+      state: "aktif",
       role: 0
     )
   end
@@ -123,7 +132,9 @@ a = Reservation.create!(
 b = a.dup 
 b.court_id = 1
 b.booker = User.second
+b.save!
 
 c = a.dup 
 c.court_id = 1
 c.booker = User.third
+c.save!

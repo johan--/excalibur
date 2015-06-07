@@ -1,0 +1,41 @@
+<%= simple_form_for([:biz, @roster]) do |f|  %>
+
+  <%= f.error_notification %>
+
+  
+    <div class="well row">
+    	<% unless defined?(edit) && edit %>
+		    <div class="col-xs-12" data-toggle="tooltip" 
+		        title="masukkan alamat email milik rekan kerja yang telah terdaftar di situs ini">
+		    <%= f.input :user_email, as: :email, label: "Email Rekan Kerja", required: true %>
+		    </div>
+		    <div class="col-xs-12" data-toggle="tooltip" 
+		        title="masukkan nomor telepon milik rekan kerja yang telah terdaftar di situs ini">
+		    <%= f.input :user_phone, as: :tel, label: "Nomor Telepon Rekan Kerja", required: true %>
+		    </div>
+	    <% end %>
+	    <% if defined?(register) && register %>
+          <div class="col-xs-12 col-sm-6">
+            <%= f.input :password, as: :password, class: "form-control", label: 'Kata Kunci', placeholder: "panjang minimal 8 karakter dapat berisi huruf dan angka", required: true %>
+          </div>
+          
+          <div class="col-xs-12 col-sm-6">
+            <%= f.input :password_confirmation, as: :password, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true %>
+          </div>
+                  
+          <div class="col-xs-12 col-sm-12">
+            <%= f.input :full_name, as: :string, label: "Nama Lengkap", class: "form-control", required: true %>
+          </div>
+	    <% end %>
+
+	    <div class="col-xs-12" data-toggle="tooltip" 
+	        title="peran akan menentukan sejauh mana akses yang diberikan">
+	    <%= f.input :role, collection: role_options, prompt: "Pilih Peran", label: "Peran di Usaha" %>
+	    </div>
+	</div>
+	    
+    <div class="actions">
+      <%= f.button :submit, "Simpan", class: "btn btn-primary" %>
+    </div>
+
+<% end %>

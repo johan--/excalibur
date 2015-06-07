@@ -1,5 +1,4 @@
-class RostersController < ApplicationController
-	before_action :set_firm
+class Biz::RostersController < Biz::BaseController
   before_action :set_roster, only: [:edit, :update, :destroy]
 
   def index
@@ -15,18 +14,21 @@ class RostersController < ApplicationController
 
   def create
     @roster = Roster.new(roster_params)
+    @roster.rosterable = @firm
+    @roster.state = 'aktif'
 
       if @roster.save
-        redirect_to home_path(@firm)
+        redirect_to biz_rosters_path
         flash[:notice] = 'Pengguna berhasil ditambah ke dalam tim'
       else
-        render :new
+        redirect_to biz_rosters_path
+        flash[:warning] = 'Pengguna gagal ditambah ke dalam tim'
       end
   end
 
   def update
     if @roster.update(roster_params)
-      redirect_to home_path(@firm)
+      redirect_to biz_rosters_path
       flash[:notice] = 'Anggota tim berhasil dikoreksi'
     else
       render :edit 
@@ -36,7 +38,7 @@ class RostersController < ApplicationController
   def destroy
     @roster.destroy
     respond_to do |format|
-      format.html { redirect_to home_path(@firm), notice: 'Hak anggota tim berhasil dihapus' }
+      format.html { redirect_to biz_root_path(@firm), notice: 'Hak anggota tim berhasil dihapus' }
       format.json { head :no_content }
     end
   end
@@ -51,8 +53,8 @@ class RostersController < ApplicationController
 
   def roster_params
     params.require(:roster).permit(
-      :role, :status, :user_email, :user_phone, :user_id, :firm_id,
-      :password, :password_confirmation, :first_name, :last_name
+      :role, :state, :user_email, :user_phone, :user_id, :firm_id,
+      :password, :password_confirmation, :full_name
     )
   end
 

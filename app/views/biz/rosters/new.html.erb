@@ -1,0 +1,12 @@
+<% title("Tambah Anggota") %>
+
+<h3>Tambah Anggota</h3>
+<% if params[:register] %>
+	<h5>yang belum mendaftar</h5>
+	<hr>
+	<%= render partial: 'form', locals: { register: true } %>
+<% else %>
+	<h5>yang sudah mendaftar</h5>
+	<hr>
+	<%= render 'form' %>
+<% end %>

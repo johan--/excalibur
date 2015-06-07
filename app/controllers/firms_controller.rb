@@ -1,18 +1,8 @@
 class FirmsController < ApplicationController
-  before_action :set_firm, only: [:show, :edit, :update, :destroy, 
-                                  :all_reservations, :analysis]
-  before_action :require_admin, only: [:destroy]
-  before_action :firm_layout
-  # GET /firms
-  # GET /firms.json
-  # def index
-  #   @firms = Firm.all
-  # end
 
-  # GET /firms/1
-  # GET /firms/1.json
-  def show
-    # @reserve_by_date = @firm.reservations.group_by { |res| res.date_reserved }
+  def index
+    @firm_search = Firm.search(search_params)
+    @firms = @firm_search.result
   end
 
   # GET /firms/new
@@ -20,49 +10,42 @@ class FirmsController < ApplicationController
     @firm = Firm.new
   end
 
-  # GET /firms/1/edit
-  def edit
-  end
-
   # POST /firms
   # POST /firms.json
   def create
     @firm = Firm.new(firm_params)
 
-    respond_to do |format|
-      if @firm.save
-        format.html { redirect_to @firm, notice: 'Firm was successfully created.' }
-        format.json { render :show, status: :created, location: @firm }
-      else
-        format.html { render :new }
-        format.json { render json: @firm.errors, status: :unprocessable_entity }
-      end
+    if @firm.save
+      @member = @firm.rosters.build(
+      user: current_user, role: 0, state: "aktif")
+      @sub =  @firm.build_subscription(category: 1, 
+                            start_date: Date.today, state: "aktif")
+        if @member.save && @sub.save
+          redirect_to biz_root_path
+          flash[:notice] = 'Bisnismu berhasil didaftarkan'
+        else
+          render :new 
+          flash[:warning] = 'Bisnismu gagal didaftarkan, coba lagi'
+        end
+    else
+      render :new 
     end
   end
 
-  # PATCH/PUT /firms/1
-  # PATCH/PUT /firms/1.json
-  def update
-    respond_to do |format|
-      if @firm.update(firm_params)
-        format.html { redirect_to @firm, notice: 'Firm was successfully updated.' }
-        format.json { render :show, status: :ok, location: @firm }
+  def join
+    set_firm
+    @member = @firm.rosters.build(
+    user: current_user, role: 2, state: "menunggu")
+
+      if @member.save
+        redirect_to posts_path
+        flash[:notice] = 'Tunggu konfirmasi dari moderator bisnis ini'
       else
-        format.html { render :edit }
-        format.json { render json: @firm.errors, status: :unprocessable_entity }
+        render :new 
+        flash[:warning] = 'Kamu gagal bergabung, coba lagi'
       end
-    end
   end
 
-  # DELETE /firms/1
-  # DELETE /firms/1.json
-  def destroy
-    @firm.destroy
-    respond_to do |format|
-      format.html { redirect_to firms_url, notice: 'Firm was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -73,7 +56,9 @@ class FirmsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def firm_params
       params.require(:firm).permit(
-        :name, :region, :city, :address, :phone
+        :name, :region, :city, :address, :phone,
+        subscription_attributes: [
+          :id, :firm_id, :category, :start_date, :state]
       )
     end
 end

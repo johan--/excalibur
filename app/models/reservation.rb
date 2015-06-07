@@ -8,22 +8,27 @@ class Reservation < ActiveRecord::Base
   # scope :cancelled, -> { where(state: cancelled) }
   # scope :completed, -> { where(state: completed) }
 
-  # Reservation.in_state(:state_1, :state_2, etc)
   default_scope { order(date_reserved: :desc) }
   # default_scope where(:rating => 'G')
   scope :by_time, ->(start, finish) { where(start: start, finish: finish) }
   scope :by_date, ->(date) { where(date_reserved: date) }
+  # scope :between_date, ->(date_1, date_2) { where("date_reserved between ? and ?", date_1, date_2) } 
+  scope :between_date, ->(date_1, date_2) { where(date_reserved: date_1..date_2) } 
   scope :by_court, ->(court_id) { where(court_id: court_id) }
   scope :upcoming, -> { where("date_reserved > ?", Date.today) }
   scope :in_seven, -> { where("date_reserved < ?", 7.days.from_now) }
   scope :in_fourteen, -> { where("date_reserved < ?", 14.days.from_now) }
 
   scope :by_venue, ->(venue_id) { joins(:court).merge(Court.by_venue(venue_id)) }
-  
+
   before_save :set_attribute!
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
+
+  # def chargeable
+  #  Reservation.in_state(:confirmed, :completed)
+  # end
 
   def code
     date = date_reserved.strftime("%d/%m/%Y")

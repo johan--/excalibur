@@ -1,35 +1,70 @@
-<p id="notice"><%= notice %></p>
+<% title("Cari Bisnis Terdaftar") %>
 
-<h1>Listing Firms</h1>
+<div class="container">
+  
+  <h3 class="text-center">Cari Bisnis Terdaftar </h3>
+    <div class="col-md-8 col-md-offset-2" id="join-firm">
+      <%= search_form_for @firm_search, url: firms_path, :builder => SimpleForm::FormBuilder do |f| %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Region</th>
-      <th>City</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div class="field">
+          <%= f.input :name_cont, as: :string, class: "form-control", placeholder: "nama bisnis yang sudah didaftarkan", label: "Nama Bisnis" %>
+        </div>
+        <div class="field">
+          <%= f.input :address_cont, as: :string, class: "form-control", placeholder: "alamat bisnis yang sudah didaftarkan", label: "Alamat" %>
+        </div>
+        <br>
+        <div class="actions" align="center">
+          <%= render partial: 'elements/clear_search_button', locals: { path: user_root_path } %>
+          <%= f.submit "Cari", class: "btn btn-primary" %>
+        </div>            
 
-  <tbody>
-    <% @firms.each do |firm| %>
-      <tr>
-        <td><%= firm.name %></td>
-        <td><%= firm.region %></td>
-        <td><%= firm.city %></td>
-        <td><%= firm.address %></td>
-        <td><%= firm.phone %></td>
-        <td><%= link_to 'Show', firm %></td>
-        <td><%= link_to 'Edit', edit_firm_path(firm) %></td>
-        <td><%= link_to 'Destroy', firm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>  
+      <hr>
+      <%= link_to 'Kembali ke laman pendaftaran', new_firm_path %>
+    </div>
+  <% if search_params_exist? %>
+    <div class="col-md-12 search-result">
 
-<br>
+    <h3 class="text-center">Hasil Pencarian </h3>
+      <p><%= @firms.count %> hasil ditemukan</p>
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf text-center">
+            <thead class="cf">
+              <tr>
+                <th class="text-center">Nama Bisnis</th>
+                <th class="text-center">Kota</th>
+                <th class="text-center">Alamat</th>
+                <th class="text-center">Dibuat</th>
+                <th class="text-center">Bergabung</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @firms.each_with_index do |firm, index| %>
+              <tr>
+                <td id="name-<%= index %>"data-title="Nama"><%= firm.name %></td>
+                <td data-title="Kota"><%= firm.city %></td>
+                <td id="address-<%= index %>" data-title="Alamat"><%= firm.address %></td>
+                <td data-title="Dibuat">
+                  <%= firm.created_at.to_date %>
+                </td>
+                <td data-title="Bergabung">
+                  <%= link_to join_firm_path(firm), confirm: 'Kamu yakin?', method: :post, class: "danger-link" do %>
+                    <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-level-up fa-stack-1x fa-inverse"></i>
+                    </span>
+                  <% end %>               
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>    
 
-<%= link_to 'New Firm', new_firm_path %>
+      
+    </div>
+  <% end %>
+  
+</div>

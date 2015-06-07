@@ -31,7 +31,7 @@ feature "UserMakesReservations", :type => :feature do
         click_button "Cari"
   		end
 
-      it { should_not have_content("0 pesanan terdaftar pada May 10, 2015, 
+      it { should have_content("0 pesanan terdaftar pada May 10, 2015, 
         antara jam 15:00-17:00") }
 
       describe "making the reservation" do

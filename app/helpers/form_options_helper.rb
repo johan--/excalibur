@@ -25,4 +25,12 @@ module FormOptionsHelper
 		end
 	end
 
+	def role_options
+		[ ['Pemilik', 0], ['Pengelola', 1], ['Staff', 2] ]
+	end
+
+	def user_categories
+		[ ['Pemain', 1], ['Pengelola Arena', 2] ]
+	end
+
 end

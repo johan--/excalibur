@@ -1,37 +1,21 @@
-<%= form_for(@firm) do |f| %>
-  <% if @firm.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@firm.errors.count, "error") %> prohibited this firm from being saved:</h2>
-
-      <ul>
-      <% @firm.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@firm) do |f| %>
+  <%= f.error_notification %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.input :name, label: "Nama Bisnis" %>
   </div>
   <div class="field">
-    <%= f.label :region %><br>
-    <%= f.number_field :region %>
+    <%= f.input :city, label: "Kota" %>
   </div>
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <%= f.input :address, label: "Alamat" %>
   </div>
   <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.input :phone, label: "Nomor Telepon Kantor" %>
   </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit, "Daftarkan", class: "btn btn-block btn-primary", data: {disable_with: "Mendaftarkan bisnis...."} %>
   </div>
 <% end %>

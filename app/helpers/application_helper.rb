@@ -11,7 +11,7 @@ module ApplicationHelper
     elsif user.operator?
       biz_root_path
     else
-      home_path
+      user_root_path
     end
   end
 
