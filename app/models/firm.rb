@@ -15,8 +15,17 @@ class Firm < ActiveRecord::Base
     s.key :auto_promo, defaults: { state: "off" }
   end
 
+  # after_create :starting_up
+
   def starter
     self.users.first
+  end
+
+  def starting_up(current_user)
+    roster = self.rosters.build(user: current_user, role: 0, state: "aktif")
+    subs = self.build_subscription(category: 1, start_date: Date.today, state: "aktif")
+    roster.save!
+    subs.save!
   end
 
   # def all_reservations

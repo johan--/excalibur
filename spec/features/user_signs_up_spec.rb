@@ -24,7 +24,7 @@ feature "UserSignsUp", :type => :feature do
 			end
 
 			it { should have_title('Home') }
-			it { should have_link('Keluar', href: destroy_user_session_path) }
+			it { should have_link('', href: destroy_user_session_path) }
 			it { should_not have_link('Masuk', href: new_user_session_path) }
 		end
 
@@ -47,16 +47,16 @@ feature "UserSignsUp", :type => :feature do
 					fill_in("firm[city]", with: "DKI Jakarta")
 					fill_in("firm[address]", with: "Jl. Blabla No. 99")
 					fill_in("firm[phone]", with: "123456789")
-					click_button  "Daftarkan"
+					click_button  "Proses"
 				end
 
-				it { should have_title('Home | PT. Futsal Indonesia') }
+				it { should have_content('PT. Futsal Indonesia') }
 				it { should have_content('Bisnismu berhasil didaftarkan') }
 				it { should have_css('#subscription-state', text: 'Aktif') }
 			end
 
 			describe "find an existing firm" do
-				let!(:firm_1) { FactoryGirl.create(:firm_with_team) }
+				let!(:firm_1) { FactoryGirl.create(:firm_with_team, :with_subscription) }
 
 				before do
 					click_link "Klik di sini"

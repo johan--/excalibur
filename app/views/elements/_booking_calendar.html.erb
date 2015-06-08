@@ -12,7 +12,8 @@
         <hr>
     <% bookings.each do |res| %>
       <span class="label label-primary ticket">
-        <%= res.start %>-<%= res.finish %>: <%= res.court.name %>
+        <%= res.start %>-<%= res.finish %>| 
+        <%= res.court.name %> |
       </span>
     <% end %>
       </div>

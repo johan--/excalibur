@@ -1,21 +1,5 @@
-<%= simple_form_for(@firm) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for :firm, url: biz_update_bio_path, method: "put" do |f| %>
 
-  <div class="field">
-    <%= f.input :name, label: "Nama Bisnis" %>
-  </div>
-  <div class="field">
-    <%= f.input :city, label: "Kota" %>
-  </div>
-  <div class="field">
-    <%= f.input :address, label: "Alamat" %>
-  </div>
-  <div class="field">
-    <%= f.input :phone, label: "Nomor Telepon Kantor" %>
-  </div>
+  <%= render 'elements/firm_fields', f: f %>
 
-
-  <div class="actions">
-    <%= f.button :submit, "Daftarkan", class: "btn btn-block btn-primary", data: {disable_with: "Mendaftarkan bisnis...."} %>
-  </div>
 <% end %>

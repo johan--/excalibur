@@ -24,7 +24,7 @@ feature "FirmHandlesSubscription", :type => :feature do
   end
 
   describe "the subscription page of a firm"  do
-  	it { should have_title("Langganan") }
+  	it { should have_title("Akun Berlangganan") }
   	it { should have_content("Aktif") }
   	it { should have_css("#next-deadline", text: sub_1.end_date) }
   	it { should have_css('#next-bill', text: 'Rp 40000') }
@@ -42,15 +42,14 @@ feature "FirmHandlesSubscription", :type => :feature do
   		page.execute_script("$('#payment_pay_day').val('03/07/2015')")
   		click_button "Simpan"
   	end
-  		it { should have_content("Pembayaran berhasil dicatat, tunggu konfirmasi") }
-  		it { should have_css('.list-group-item', text: "fkafoffagag") }
-  		it { should have_css('.list-group-item', text: "03-07-2015") }
-  		it { should have_css("#next-deadline", text: "11-08-2015") }
-  		it { should have_content('Rp 0') }  		
+    after { Timecop.return }
+    
+      it { should have_content("Pembayaran berhasil dicatat, tunggu konfirmasi") }
+      it { should have_css('.list-group-item', text: "fkafoffagag") }
+      it { should have_css('.list-group-item', text: "03-07-2015") }
+      it { should have_no_css("#next-deadline", text: Date.today.strftime("%d-%m-%Y")) }
+      it { should have_content('Rp 0') }      
 
-    after do
-      Timecop.return
-    end      
   end
 
   # describe "missing the deadline of payment" do

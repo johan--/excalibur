@@ -5,10 +5,16 @@ class Biz::BaseController < ApplicationController
   before_action :firm_layout
 
   def show
-  	
+    @firm.venues.each do |venue|
+  	  # @confirmed = Reservation.in_state(:confirmed).by_venue(venue).upcoming.group_by { |r| r.date_reserved }
+      @confirmed = Reservation.in_state(:confirmed).upcoming_with_states(venue)
+      @waiting = Reservation.in_state(:waiting).upcoming_with_states(venue)
+      @pending = Reservation.in_state(:pending).upcoming_with_states(venue)
+    end
   end
 
   def bookings
+    @reservations = Reservation.by_venue(venue).group_by { |r| r.date_reserved } 
   end
 
   def management
@@ -51,45 +57,37 @@ class Biz::BaseController < ApplicationController
 
   end
 
-  # def new
-  #   @firm = Firm.new
-  # end
-
-  def edit
+  def edit_bio
   end
 
+  def update_bio
+    @dp = @firm.update_attributes!(
+      name: firm_params[:name], city: firm_params[:city], 
+      phone: firm_params[:phone], address: firm_params[:address]
+      )
 
-  # def create
-  #   @firm = Firm.new(firm_params)
+    redirect_to biz_root_path
+    flash[:notice] = 'Akun bisnis berhasil dikoreksi'
+  end 
 
+
+  # def update
   #   respond_to do |format|
-  #     if @firm.save
-  #       format.html { redirect_to @firm, notice: 'Firm was successfully created.' }
-  #       format.json { render :show, status: :created, location: @firm }
+  #     if @firm.update(firm_params)
+  #       format.html { redirect_to @firm, notice: 'Akun bisnis berhasil dikoreksi' }
+  #       format.json { render :show, status: :ok, location: @firm }
   #     else
-  #       format.html { render :new }
+  #       format.html { render :edit }
   #       format.json { render json: @firm.errors, status: :unprocessable_entity }
   #     end
   #   end
   # end
 
-  def update
-    respond_to do |format|
-      if @firm.update(firm_params)
-        format.html { redirect_to @firm, notice: 'Firm was successfully updated.' }
-        format.json { render :show, status: :ok, location: @firm }
-      else
-        format.html { render :edit }
-        format.json { render json: @firm.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_firm
-      @firm = Firm.find(current_user.firm_locator.id) 
+      @firm = Firm.find(current_user.firm_locator.id)
       if @firm.nil?
         redirect_to posts_path
       end

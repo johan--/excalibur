@@ -2,8 +2,7 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy,
                                           :confirm]
 
-  respond_to :html
-  respond_to :js
+  respond_to :html, :js
 
   # GET /reservations
   # GET /reservations.json

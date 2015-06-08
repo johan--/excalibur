@@ -84,10 +84,8 @@ class ApplicationController < ActionController::Base
   def require_operator!
     if !current_user.operator?
       redirect_to user_root_path
-    else
-      if current_user.with_no_firm? 
-        redirect_to posts_path
-      end
+    elsif current_user.with_no_firm?
+      redirect_to posts_path
     end
   end
   helper_method :require_operator!

@@ -51,7 +51,9 @@ Fustal::Application.routes.draw do
     put "save_settings", to: "base#save_settings", as: :save_settings
     post "subscribes", to: "base#subscribes", as: :subscribes
     get "bookings", to: "base#bookings", as: :bookings
-    resources :base, only: [:edit, :update]
+    # resources :base, only: [:edit, :update]
+    get "edit_bio", to: "base#edit_bio", as: :edit_bio
+    put "update_bio", to: "base#update_bio", as: :update_bio
     resources :rosters
 
     get "subscription", to: "base#subscription", as: :subscription

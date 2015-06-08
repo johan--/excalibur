@@ -20,12 +20,12 @@
       
       <div id="main">
         <%= render 'layouts/messages' %>
-        
+
         <% if @firm_layout  %>
           <%= render 'layouts/firm_dashboard' %>
         <% elsif @venue_layout  %>
           <%= render 'layouts/venue_layout' %>
-        <% else %>          
+        <% else %>
           <%= yield %>        
       </div>
       <% end %>

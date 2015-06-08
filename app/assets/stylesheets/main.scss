@@ -9,7 +9,16 @@
 @import "styles/user-profile-flat";
 @import "styles/stylish-panel";
 @import "styles/responsive-table";
-@import "bootstrap-toggle";
+
+
+/* Progress Bar */
+$nprogress-color: $brand-coral;
+$nprogress-height: 10px;
+$nprogress-zindex: 10100;
+@import 'nprogress';
+@import 'nprogress-bootstrap';
+
+
 
 .white {
 	color: white;
@@ -23,11 +32,6 @@ div.reservation {
 	color: #BE371F;
 }
 
-/*@media( max-width : 585px ){*/
-    #main {
-    	padding-left: 15px;
-    	padding-right: 15px;
-    }
-
-/*}*/
-
+.coral {
+	color: $brand-coral;
+}

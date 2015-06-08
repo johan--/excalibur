@@ -7,6 +7,7 @@ $brand-success: #5cb85c;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 $brand-info: #5bc0de;
+$brand-coral: #FA396f;
 
 // Body scaffolding
 $body-bg: #fffff;
@@ -135,7 +136,7 @@ $navbar-border-radius: 0px;
 
 // Navbar: Default navbar
 // -> Basics
-$navbar-default-color: #777777;
+$navbar-default-color: $brand-primary;
 $navbar-default-bg: #f8f8f8;
 $navbar-default-border: darken($navbar-default-bg, 7%);
 // -> Links
@@ -452,7 +453,7 @@ $space-xs: 10px;
 //***********************************************************
 // NAVBAR
 .navbar-brand {
-  font-size: inherit;
+  font-size: 20px;
 }
 //***********************************************************
 

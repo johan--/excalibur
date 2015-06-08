@@ -16,17 +16,18 @@ class FirmsController < ApplicationController
     @firm = Firm.new(firm_params)
 
     if @firm.save
-      @member = @firm.rosters.build(
-      user: current_user, role: 0, state: "aktif")
-      @sub =  @firm.build_subscription(category: 1, 
-                            start_date: Date.today, state: "aktif")
-        if @member.save && @sub.save
+      @firm.starting_up(current_user)
+      # @member = @firm.rosters.build(
+      # user: current_user, role: 0, state: "aktif")
+      # @sub =  @firm.build_subscription(category: 1, 
+      #                       start_date: Date.today, state: "aktif")
+        # if @member.save && @sub.save
           redirect_to biz_root_path
           flash[:notice] = 'Bisnismu berhasil didaftarkan'
-        else
-          render :new 
-          flash[:warning] = 'Bisnismu gagal didaftarkan, coba lagi'
-        end
+        # else
+        #   render :new 
+        #   flash[:warning] = 'Bisnismu gagal didaftarkan, coba lagi'
+        # end
     else
       render :new 
     end
@@ -56,9 +57,9 @@ class FirmsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def firm_params
       params.require(:firm).permit(
-        :name, :region, :city, :address, :phone,
-        subscription_attributes: [
-          :id, :firm_id, :category, :start_date, :state]
+        :name, :region, :city, :address, :phone
+        # , subscription_attributes: [
+        #   :id, :firm_id, :category, :start_date, :state]
       )
     end
 end

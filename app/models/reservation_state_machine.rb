@@ -9,9 +9,8 @@ class ReservationStateMachine
   # state :refunded
 
   transition from: :pending,    to: [:confirmed, :waiting]
-  transition from: :confirmed,  to: [:completed, :cancelled]
   transition from: :waiting,    to: [:confirmed, :cancelled]
-  # transition from: :shipped,    to: :refunded
+  transition from: :confirmed,  to: [:completed, :cancelled]
 
   guard_transition(from: :pending, to: :confirmed) do |reservation|
     reservation.first_in_line?

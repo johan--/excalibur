@@ -14,13 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
-//= require ajaxify_custom
+//= require nprogress
+//= require nprogress-turbolinks
 //= require searchForm
 //= require shojiLayout
 //= require biz
-//= require listHiddenMenu
 //= require clickablePanel
 //= require bootstrap 
 //= require bootstrap-datepicker
-//= require analytics
-//= require common
+//= require datepicker

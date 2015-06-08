@@ -1,7 +1,8 @@
 module ApplicationHelper
   def title(value)
     unless value.nil?
-      @title = "#{value} | Fustal"
+      # @title = "#{value} | Fustal"
+      @title = "#{value}"
     end
   end
 

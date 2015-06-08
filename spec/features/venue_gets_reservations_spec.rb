@@ -16,7 +16,7 @@ feature "VenueGetsReservations", :type => :feature do
   before { sign_in user }
 
   describe "biz home" do
-    it { should have_title("Home | #{firm_1.name}") }
+    it { should have_title("Home Dashboard") }
     it { should have_content(firm_1.name) }
   end
 

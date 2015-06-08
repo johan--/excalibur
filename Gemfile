@@ -9,6 +9,7 @@ gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
+gem 'nprogress-rails'
 # gem 'react-rails', '~> 1.0'
 
 gem 'jbuilder', '2.2.6'
@@ -26,6 +27,7 @@ gem 'font-awesome-sass', '4.2.2'
 # Bootstrap 3: https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass', '3.3.3'
 
+gem 'goldiloader'
 gem "paranoia", "~> 2.0"
 gem 'ransack'
 # gem 'siphon'

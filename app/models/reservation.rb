@@ -8,7 +8,7 @@ class Reservation < ActiveRecord::Base
   # scope :cancelled, -> { where(state: cancelled) }
   # scope :completed, -> { where(state: completed) }
 
-  default_scope { order(date_reserved: :desc) }
+  default_scope { order(date_reserved: :asc) }
   # default_scope where(:rating => 'G')
   scope :by_time, ->(start, finish) { where(start: start, finish: finish) }
   scope :by_date, ->(date) { where(date_reserved: date) }
@@ -20,7 +20,7 @@ class Reservation < ActiveRecord::Base
   scope :in_fourteen, -> { where("date_reserved < ?", 14.days.from_now) }
 
   scope :by_venue, ->(venue_id) { joins(:court).merge(Court.by_venue(venue_id)) }
-
+  scope :upcoming_with_states, ->(venue) { by_venue(venue).upcoming.group_by{ |r| r.date_reserved } }
   before_save :set_attribute!
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
@@ -71,6 +71,10 @@ class Reservation < ActiveRecord::Base
 
   def down_payment
     (self.charge * 0.5).round(0)
+  end
+
+  def upcoming_reservations(state, venue)
+    self.in_state(state.to_sym).by_venue(venue).upcoming.group_by{ |r| r.date_reserved}
   end
 
 private
