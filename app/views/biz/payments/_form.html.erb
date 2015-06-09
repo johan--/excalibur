@@ -11,7 +11,7 @@
 
     <%= f.input :pay_code, label: "Kode Pembayaran", required: true %>
 
-    <%= f.input :pay_day, :required => true, :input_html => { "data-behaviour" => "datepicker" }, label: "Tanggal Pembayaran" %>
+    <%= f.input :pay_day, required: true, input_html: { "data-behaviour" => "datepicker" }, label: "Tanggal Pembayaran" %>
 
     <%= f.input :pay_time, as: :time, required: true, label: "Jam Pembayaran" %>
     <%= f.input :total, required: true, label: "Total" %>

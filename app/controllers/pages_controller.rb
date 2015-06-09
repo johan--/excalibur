@@ -10,7 +10,6 @@ class PagesController < ApplicationController
 
   def home
     @ven_search = Venue.search(search_params)
-    # make name the default sort column
     @ven_search.sorts = 'name' if @ven_search.sorts.empty?    
     @venues = @ven_search.result
     # @venues = Venue.all.page(params[:page]).per(20)

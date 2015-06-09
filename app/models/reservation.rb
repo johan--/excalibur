@@ -9,7 +9,9 @@ class Reservation < ActiveRecord::Base
   # scope :completed, -> { where(state: completed) }
 
   default_scope { order(date_reserved: :asc) }
-  # default_scope where(:rating => 'G')
+  
+  scope :paid, -> { where(state: ['confirmed', 'completed', 'cancelled']) }
+  scope :unpaid, -> { where(state: ['pending']) }
   scope :by_time, ->(start, finish) { where(start: start, finish: finish) }
   scope :by_date, ->(date) { where(date_reserved: date) }
   # scope :between_date, ->(date_1, date_2) { where("date_reserved between ? and ?", date_1, date_2) } 
@@ -21,6 +23,8 @@ class Reservation < ActiveRecord::Base
 
   scope :by_venue, ->(venue_id) { joins(:court).merge(Court.by_venue(venue_id)) }
   scope :upcoming_with_states, ->(venue) { by_venue(venue).upcoming.group_by{ |r| r.date_reserved } }
+
+  before_create :set_state!
   before_save :set_attribute!
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
@@ -50,23 +54,23 @@ class Reservation < ActiveRecord::Base
   end
 
   def confirmed?
-    return true if self.state_machine.current_state == 'confirmed'
+    return true if self.state == 'confirmed'
   end
 
   def completed?
-    return true if self.state_machine.current_state == 'completed'
+    return true if self.state == 'completed'
   end
 
   def waiting?
-    return true if self.state_machine.current_state == 'waiting'
+    return true if self.state == 'waiting'
   end
 
   def pending?
-    return true if self.state_machine.current_state == 'pending'
+    return true if self.state == 'pending'
   end
 
   def cancelled?
-    return true if self.state_machine.current_state == 'cancelled'
+    return true if self.state == 'cancelled'
   end
 
   def down_payment
@@ -85,6 +89,10 @@ private
 
   def self.initial_state
     :pending
+  end
+
+  def set_state!
+    self.state = "pending"
   end
 
 	def set_attribute!

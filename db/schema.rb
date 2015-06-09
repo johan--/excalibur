@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150603113500) do
     t.decimal  "duration",      null: false
     t.time     "finish",        null: false
     t.integer  "charge",        null: false
+    t.string   "state",         null: false
     t.integer  "court_id",      null: false
     t.integer  "booker_id",     null: false
     t.string   "booker_type",   null: false
@@ -134,8 +135,11 @@ ActiveRecord::Schema.define(version: 20150603113500) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "reservations", ["booker_id", "booker_type", "court_id"], name: "index_reservations_on_booker_id_and_booker_type_and_court_id", using: :btree
   add_index "reservations", ["booker_type", "booker_id"], name: "index_reservations_on_booker_type_and_booker_id", using: :btree
+  add_index "reservations", ["court_id", "date_reserved", "start"], name: "index_reservations_on_court_id_and_date_reserved_and_start", using: :btree
   add_index "reservations", ["court_id"], name: "index_reservations_on_court_id", using: :btree
+  add_index "reservations", ["date_reserved", "start", "finish"], name: "index_reservations_on_date_reserved_and_start_and_finish", using: :btree
 
   create_table "rosters", force: :cascade do |t|
     t.integer  "rosterable_id",   null: false

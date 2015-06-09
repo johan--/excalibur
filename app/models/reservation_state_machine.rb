@@ -9,11 +9,16 @@ class ReservationStateMachine
   # state :refunded
 
   transition from: :pending,    to: [:confirmed, :waiting]
-  transition from: :waiting,    to: [:confirmed, :cancelled]
+  transition from: :waiting,    to: [:confirmed]
   transition from: :confirmed,  to: [:completed, :cancelled]
 
   guard_transition(from: :pending, to: :confirmed) do |reservation|
     reservation.first_in_line?
+  end
+
+  after_transition do |res, transition|
+    res.state = transition.to_state
+    res.save!
   end
 
   # before_transition(from: :checking_out, to: :cancelled) do |order, transition|
@@ -26,5 +31,7 @@ class ReservationStateMachine
 
   # after_transition(to: :purchased) do |order, transition|
   #   MailerService.order_confirmation(order).deliver
+      # model.state = transition.to_state
+      # model.save!
   # end
 end

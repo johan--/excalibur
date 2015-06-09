@@ -1,7 +1,7 @@
-<%= div_for(followed, class: "follow-form") do %>
+<div id="follow_form_<%= followed.id %>">
 	<% if current_user.following?(followed) %>
 		<%= render partial: 'relationships/unfollow', locals: { followed: followed } %>
 	<% else %>
 		<%= render partial: 'relationships/follow', locals: { followed: followed } %>
-	<% end %>
-<% end %>
+	<% end %>	
+</div>

@@ -1,21 +1,24 @@
-<%= form_for(@reservation) do |f| %>
-  <%= render 'elements/error_messages', object: @reservation %>
+<%= simple_form_for @reservation, html: { class: 'form-horizontal' },
+              wrapper: :horizontal_form,
+              wrapper_mappings: {
+                check_boxes: :horizontal_radio_and_checkboxes,
+                radio_buttons: :horizontal_radio_and_checkboxes,
+                file: :horizontal_file_input,
+                boolean: :horizontal_boolean
+              } do |f| %>
+  <%= f.error_notification %>
 
   <div class="field">
-    <%= f.label :date_reserved %><br>
-    <%= f.date_select :date_reserved, default: date %>
+    <%= f.input :date_reserved, input_html: { "data-behaviour" => "datepicker", class: 'form-control' }, label: "Tanggal", required: true %>
   </div>
   <div class="field">
-    <%= f.label :start %><br>
-    <%= f.time_select :start, default: start %>
+    <%= f.input :start, as: :hour, input_html: { class: 'form-control' }, label: "Jam Main", required: true %>
   </div>
   <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.number_field :duration, min: 1, max: 6, step: 1 %> Jam
+    <%= f.input :duration, collection: durations, prompt: "Pilih", label: "Lama Pemakaian", required: true %>
   </div>
   <div class="field">
-    <%= f.label :lapangan %><br>
-    <%= f.select :court_id, courts_of_venue(@venue) %>
+    <%= f.association :court, collection: courts_of_venue(@venue), prompt: "Pilih Lapangan", label: "Lapangan", required: true %>
   </div>  
   <div class="actions">
     <%= f.submit "Pesan", class: "btn btn-primary" %>

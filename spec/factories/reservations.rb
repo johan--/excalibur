@@ -15,13 +15,20 @@ FactoryGirl.define do
 			factory :user_booking do
 		      after(:create) do |res, evaluator|
 		        FactoryGirl.create(:player)
-		      end				
+		      end
 			end
 		end
 
 		factory :indirect_booking do
 			association :booker, factory: :firm
-		end		
+		end
+
+		# trait :confirmed do
+		#     after(:create) do |res, evaluator|
+		# 		res.transition_to!		        
+		#     end			
+		# end 
+
 	end
 
 end
