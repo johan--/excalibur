@@ -1,10 +1,11 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :user_layout
 
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.all
+    @venues = Venue.all.group_by { |v| v.province }
   end
 
   # GET /venues/1

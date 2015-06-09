@@ -23,12 +23,13 @@
 
         <% if @firm_layout  %>
           <%= render 'layouts/firm_dashboard' %>
-        <% elsif @venue_layout  %>
-          <%= render 'layouts/venue_layout' %>
+        <% elsif @user_layout  %>
+          <%= render 'layouts/user_layout' %>
         <% else %>
-          <%= yield %>        
+          <%= yield %>
+        <% end %>
       </div>
-      <% end %>
+      
     </div>  
   <% end %>
   

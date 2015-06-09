@@ -1,17 +1,15 @@
-<%= search_form_for @rev_search, url: venue_path(@venue) do |f| %>
+<%= search_form_for @rev_search, url: venue_path(@venue), builder: SimpleForm::FormBuilder do |f| %>
 
   <div class="field">
-    <%= f.label :date_reserved_eq, "Tanggal" %><br>
-    <%= f.date_select :date_reserved_eq, label: "Tanggal" %>
+    <%= f.input :date_reserved_eq, :required => true, :input_html => { "data-behaviour" => "datepicker" }, label: "Tanggal" %>
   </div>
 
   <div class="field">
-    Tentukan Jam Mulai?
+    Tentukan Rentang Jam?
     <%= check_box_tag "show-start-filter" %> 
   </div>
   <div class="field" id="start-filter">
-    <%= f.label :start_gteq, label: "Jam" %><br>
-    <%= f.time_select :start_gteq, { minute_step: 60 }, include_blank: true %>
+    <%= f.time_select :start_gteq, { minute_step: 60 }, include_blank: true %> -
     <%= f.time_select :start_lteq, { minute_step: 60 }, include_blank: true %>    
   </div>
   
@@ -21,8 +19,7 @@
   </div>
 
   <div class="field" id="court-filter">
-    <%= f.label :court_id_eq, "Lapangan" %><br>
-    <%= f.text_field :court_id_eq %>
+    <%= f.input :court_id_eq, collections: @venue.courts.map{ |c| [c.name, c.id] }, label: "Lapangan" %>
   </div>  
   <div class="actions">
     <%= f.submit "Cari", class: "btn btn-primary" %>

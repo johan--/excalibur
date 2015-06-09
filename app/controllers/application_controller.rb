@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
   def firm_layout
     @firm_layout = true
   end
+  def user_layout
+    @user_layout = true
+  end
 
   # Devise permitted params
   def configure_permitted_parameters

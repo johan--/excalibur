@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-
+  before_action :user_layout, only: [:edit]
 
 	# def create
 	# 	super

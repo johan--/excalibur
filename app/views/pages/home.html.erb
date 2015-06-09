@@ -1,52 +1,50 @@
 <% title("Home") %>
+  
+  <h1><i class="fa fa-home"></i> Home</h1>  
+  
+  <h3 class="head text-center">Hai, <%= current_user.email %></h3>
+  <p class="narrow text-center">
+    <%= current_user.current_reservations.count %> Pesanan Terdaftar
+  </p>
+
+  <p class="text-center">
+    <%= link_to "Lihat Daftar Arena", venues_path, class: "btn btn-info" %>
+  </p>  
 
   <div class="row">
-    <div class="board">
-          <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
-      <div class="board-inner">
-        <ul class="nav nav-tabs" id="myTab">
-          <div class="liner"></div>
-          <li class="active">
-            <a href="#home" data-toggle="tab" title="welcome">
-            <span class="round-tabs one">
-              <i class="glyphicon glyphicon-home"></i>
-            </span> 
-        		</a>
-        	</li>
-          <li>
-            <a href="#lists" data-toggle="tab" title="completed">
-             <span class="round-tabs four">
-                <i class="glyphicon glyphicon-list-alt"></i>
-             </span> 
-            </a>
-          </li>
-          <li>
-            <a href="#messages" data-toggle="tab" title="blah blah">
-              <span class="round-tabs three">
-                <i class="glyphicon glyphicon-comment"></i>
-              </span> 
-            </a>
-          </li>
-       		<li><a href="#profile" data-toggle="tab" title="firm">
-            <span class="round-tabs two">
-              <i class="glyphicon glyphicon-user"></i>
-           	</span> </a>
-          </li>
-           
-        </ul>
-      </div>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel report panel-success">
+          <div class="panel-heading clickable">
+            <h5 class="panel-title">
+                Pesanan
+            <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
+            </h5>
+            <span class="pull-right badge"id="report">
+              <%= current_user.reservations.count %>   
+            </span>
+          </div>
+          <div class="panel-body reservation">
+            <%= render partial: 'reservations/reservations', locals: { collection: current_user.reservations, type: 'user' } %>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel report panel-primary">
+          <div class="panel-heading clickable">
+            <h5 class="panel-title">
+                Arena Favorit
+            <span class="badge"><i class="fa fa-chevron-down"></i></span>        
+            </h5>
+            <span class="pull-right badge"id="report">
+              <%= current_user.favorite_venues.count %> 
+            </span>
+          </div>
+          <div class="panel-body">
+            <%= render partial: 'venues/venue', collection: current_user.favorite_venues %>
+          </div>
+        </div>
       
-        <div class="tab-content">
-          <%= render partial: 'home_tab', locals: {active: true} %>
-          <%= render 'lists_tab' %>
-          <%= render 'messages_tab' %>
-          <%= render 'profile_tab' %>
-          <div class="clearfix"></div>
-        </div>        
-      
-
-
-	</div>
-
-	</div>   
-
+    </div>
+    
+  </div>

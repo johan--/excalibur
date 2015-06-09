@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     :home
   ]
   before_action :disable_nav, only: :landing
+  before_action :user_layout, only: :home
   
   def landing
   end
