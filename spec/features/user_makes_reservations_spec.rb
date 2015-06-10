@@ -11,7 +11,7 @@ feature "UserMakesReservations", :type => :feature do
                     court: venue_1.courts.first, booker: user_2) }
   
 
-  describe "in home tab" do
+  describe "making reservation" do
     before do 
       sign_in user 
       click_link "Lihat Daftar Arena"
@@ -22,7 +22,7 @@ feature "UserMakesReservations", :type => :feature do
       it { should have_content(venue_2.name) }
   	end
 
-  	describe "filtering the reservation", js: true do
+  	describe "filtering the reservations", js: true do
   		let!(:days_later) { 7.days.from_now.to_date }
       before do
   			click_link "Lihat", href: venue_path(venue_1)
@@ -52,13 +52,22 @@ feature "UserMakesReservations", :type => :feature do
   	end
   end
 
-  # describe "confirming reservation" do
-  #   before do 
-  #     sign_in user_2 
-  #     click_link "Konfirmasi"
-  #   end
+  describe "paying installment for reservation", js: true do
+    let!(:now) { (res_2.date_reserved - 7.days).to_date }
+    before do 
+      sign_in user_2 
+      click_button "Lihat Reservasi Saya"
+      click_link "Bayar"
+      # page.execute_script("$('.show-datepicker').datepicker('setDate', '#{Date.today}')")
+      select res_2.code, from: 'installment_reservation_id'
+      fill_in "installment_pay_time", with: "15:00"
+      fill_in "installment_total", with: res_2.down_payment
+      page.execute_script("$('#installment_pay_day').val('#{now}')")
+      fill_in "installment_pay_code", with: "fkafoffagag"
+      click_button "Simpan"      
+    end
 
-  #   it { should have_content("Success") }
-  # end
+    it { should have_content("Pembayaran berhasil dicatat") }
+  end
 
 end

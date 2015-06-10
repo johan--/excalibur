@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20150603113500) do
   create_table "installments", force: :cascade do |t|
     t.integer  "reservation_id", null: false
     t.integer  "user_id",        null: false
-    t.datetime "pay_day",        null: false
     t.string   "pay_code",       null: false
+    t.datetime "pay_day",        null: false
+    t.time     "pay_time",       null: false
     t.integer  "total",          null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -65,7 +66,8 @@ ActiveRecord::Schema.define(version: 20150603113500) do
 
   add_index "installments", ["pay_code"], name: "index_installments_on_pay_code", using: :btree
   add_index "installments", ["reservation_id", "pay_code"], name: "index_installments_on_reservation_id_and_pay_code", unique: true, using: :btree
-  add_index "installments", ["reservation_id", "pay_day"], name: "index_installments_on_reservation_id_and_pay_day", unique: true, using: :btree
+  add_index "installments", ["reservation_id", "pay_day", "pay_time"], name: "index_installments_on_reservation_id_and_pay_day_and_pay_time", unique: true, using: :btree
+  add_index "installments", ["reservation_id", "user_id"], name: "index_installments_on_reservation_id_and_user_id", using: :btree
   add_index "installments", ["reservation_id"], name: "index_installments_on_reservation_id", using: :btree
   add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
 

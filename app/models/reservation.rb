@@ -1,7 +1,8 @@
 class Reservation < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
   has_many :reservation_transitions
-  
+  has_many :installments
+
   belongs_to :court
   belongs_to :booker, polymorphic: true
 
@@ -47,6 +48,10 @@ class Reservation < ActiveRecord::Base
   def first_in_line?
     arr = queueing_up(self)
     return true if arr.first.id == self.id
+  end
+
+  def has_installments?
+    return true if self.installments.count != 0
   end
 
   def queueing_up(r)

@@ -19,7 +19,7 @@ class PagesController < ApplicationController
       format.js
     end
   end
-  
+
   def posts
     @posts = Post.published.page(params[:page]).per(10)
   end

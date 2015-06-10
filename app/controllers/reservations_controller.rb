@@ -1,24 +1,20 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy,
                                           :confirm]
+  before_action :user_layout
 
   respond_to :html, :js
-
-  # GET /reservations
-  # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = current_user.reservations
   end
 
-  # GET /reservations/1
-  # GET /reservations/1.json
   def show
   end
 
-  # GET /reservations/new
-  def new
-    @reservation = Reservation.new
-  end
+  # # GET /reservations/new
+  # def new
+  #   @reservation = Reservation.new
+  # end
 
   # GET /reservations/1/edit
   def edit
@@ -69,20 +65,11 @@ class ReservationsController < ApplicationController
     end
   end
 
-def confirm
-  if @reservation.state_machine.transition_to!(:confirmed)
-    flash[:notice] = "Success"
-    redirect_to user_root_path
-  else
-    flash[:error] = "Could not transition to 'received'"
-    redirect_to user_root_path
-  end
-end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      @reservation = current_user.reservations.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

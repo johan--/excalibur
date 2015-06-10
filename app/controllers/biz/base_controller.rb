@@ -3,18 +3,32 @@ class Biz::BaseController < ApplicationController
   before_action :set_firm
   before_action :check_subscription, except: [:subscription, :expiration]
   before_action :firm_layout
-
+  
+  respond_to :html, :js
+  
   def show
     @firm.venues.each do |venue|
   	  # @confirmed = Reservation.in_state(:confirmed).by_venue(venue).upcoming.group_by { |r| r.date_reserved }
       @confirmed = Reservation.in_state(:confirmed).upcoming_with_states(venue)
       @waiting = Reservation.in_state(:waiting).upcoming_with_states(venue)
       @pending = Reservation.in_state(:pending).upcoming_with_states(venue)
+      # @received = Reservation.upcoming_with_states(venue).installments
     end
   end
 
   def bookings
     @reservations = Reservation.by_venue(venue).group_by { |r| r.date_reserved } 
+  end
+
+  def confirm
+    @reservation = Reservation.find_by(id: params[:res_id])
+    if @reservation.state_machine.transition_to!(:confirmed)
+      flash[:notice] = "Success"
+      redirect_to user_root_path
+    else
+      flash[:error] = "Could not transition to 'received'"
+      redirect_to user_root_path
+    end
   end
 
   def management
@@ -54,7 +68,6 @@ class Biz::BaseController < ApplicationController
   end
 
   def expiration
-
   end
 
   def edit_bio

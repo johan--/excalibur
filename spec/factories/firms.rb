@@ -7,7 +7,7 @@ FactoryGirl.define do
     city "DKI Jakarta"
 
     factory :firm_with_team do
-      ignore do
+      transient do
         manager { FactoryGirl.create(:manager) }
       end
 

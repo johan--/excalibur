@@ -1,4 +1,4 @@
-<%= search_form_for @ven_search, url: user_root_path, builder: SimpleForm::FormBuilder do |f| %>
+<%= search_form_for @ven_search, url: venues_path, builder: SimpleForm::FormBuilder do |f| %>
 
 	<div class="field">
 		<%= f.input :name_cont, as: :string, class: "form-control", label: "Nama Arena" %>
@@ -11,7 +11,7 @@
 	</div>
 	<br>
     <div class="actions" align="center">
-    	<%= render partial: 'elements/clear_search_button', locals: { path: user_root_path } %>
+    	<%= render partial: 'elements/clear_search_button', locals: { path: request.original_url } %>
     	<%= f.submit "Cari", class: "btn btn-primary" %>
     </div>            
 

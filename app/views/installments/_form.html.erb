@@ -1,24 +1,28 @@
-<%= simple_form_for(@installment) do |f| %>
-  <%= render 'elements/error_messages', object: @installment %>
+<%= simple_form_for @installment, html: { class: 'form-horizontal' },
+              wrapper: :horizontal_form,
+              wrapper_mappings: {
+                check_boxes: :horizontal_radio_and_checkboxes,
+                radio_buttons: :horizontal_radio_and_checkboxes,
+                file: :horizontal_file_input,
+                boolean: :horizontal_boolean
+              } do |f| %>
+  <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label :reservation_id, "Reservasi" %><br>
-    <%= f.select :reservation_id, related_reservations %>
-  </div>
-  <div class="field">
-    <%= f.label :pay_day, "Tanggal Pembayaran" %><br>
-    <%= f.date_select :pay_day, default: Date.today %>
-  </div>
-  <div class="field">
-    <%= f.label :total, "Total Uang Muka" %><br>
-    <%= f.number_field :total, min: 0, max: 1000000, step: 10000 %>
-  </div>
-  <div class="field">
-    <%= f.label :pay_code, "Berita Pembayaran" %><br>
-    <%= f.text_field :pay_code %>
-  </div>  
+  
+    <%= f.input :reservation_id, collection: related_reservations, prompt: "Pilih", label: "Reservasi", required: true %>
+
+    <%= f.input :pay_day, input_html: { "data-behaviour" => "datepicker", class: 'form-control' }, label: "Tanggal Pembayaran", required: true %>
+
+    <%= f.input :pay_time, as: :time, input_html: { class: 'form-control' }, label: "Jam Pembayaran", required: true %>
+
+    <%= f.input :total, label: "Total", input_html: {
+      min: 10000, max: 500000, step: 10000
+      }, required: true %>
+
+    <%= f.input :pay_code, label: "Kode Pembayaran", required: true %>
+
   <div class="actions">
-    <%= f.submit "Simpan", class: "btn btn-primary" %>
+    <%= f.button :submit, "Simpan", class: "btn btn-primary" %>
   </div>
 
 <% end %>

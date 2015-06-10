@@ -4,8 +4,8 @@
 		<ul class="list-inline">
 			<li class="active"><a href="#qualification" data-toggle="tab">Ringkasan</a></li>
 			<li class=""><a href="#home" data-toggle="tab">Terkonfirmasi</a></li>
-			<li class=""><a href="#waiting" data-toggle="tab">Waiting List</a></li>
-			<li class=""><a href="#pending" data-toggle="tab">Menunggu Konfirmasi</a></li>
+			<li class=""><a href="#waiting" data-toggle="tab">Menunggu Konfirmasi</a></li>
+			<li class=""><a href="#pending" data-toggle="tab">Daftar Tunggu</a></li>
 		</ul>
 	</header>
 	<!-- tab Content -->
@@ -40,13 +40,13 @@
 								<span class="label label-primary"><%= @confirmed.count %></span>
 							</h5>
 							<h5>
-								Waiting List
-								<span class="label label-primary"><%= @waiting.count %></span>
-							</h5>
-							<h5>
 								Menunggu Konfirmasi
+								<span class="label label-primary" id="paid"><%= @waiting.count %></span>
+							</h5>							
+							<h5>
+								Daftar Tunggu
 								<span class="label label-primary"><%= @pending.count %></span>
-							</h5>								
+							</h5>
 						</div>
 						<hr>
 					</div>

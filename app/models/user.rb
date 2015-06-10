@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def current_reservations
-    self.reservations#.upcoming
+    self.reservations.upcoming
   end
 
   # relationship methods

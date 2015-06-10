@@ -1,11 +1,11 @@
 Fustal::Application.routes.draw do
   
-  resources :reservations, skip: [:show, :index] do
-    member do
-      put "confirm" => "reservations#confirm", as: :confirm
-    end
+  resources :reservations, skip: [:show, :new] do
+    # member do
+    #   put "confirm" => "reservations#confirm", as: :confirm
+    # end
   end
-  resources :installments
+  resources :installments, skip: :destroy
   
   resources :venues do
     member do
@@ -46,12 +46,14 @@ Fustal::Application.routes.draw do
 
   namespace :biz do
     root "base#show"
+    post "subscribes", to: "base#subscribes", as: :subscribes
     get "management", to: "base#management", as: :management
     get "settings", to: "base#settings", as: :settings
     put "save_settings", to: "base#save_settings", as: :save_settings
-    post "subscribes", to: "base#subscribes", as: :subscribes
+    
     get "bookings", to: "base#bookings", as: :bookings
-    # resources :base, only: [:edit, :update]
+    put "confirm" => "base#confirm", as: :confirm
+    
     get "edit_bio", to: "base#edit_bio", as: :edit_bio
     put "update_bio", to: "base#update_bio", as: :update_bio
     resources :rosters

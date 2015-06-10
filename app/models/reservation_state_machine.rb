@@ -16,6 +16,10 @@ class ReservationStateMachine
     reservation.first_in_line?
   end
 
+  guard_transition(from: :pending, to: :waiting) do |reservation|
+    reservation.has_installments?
+  end
+
   after_transition do |res, transition|
     res.state = transition.to_state
     res.save!
