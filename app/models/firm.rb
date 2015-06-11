@@ -1,12 +1,13 @@
 class Firm < ActiveRecord::Base
   has_many :venues
+  has_many :courts, through: :venues, :class_name => 'Court'
   has_one  :subscription
   has_many :payments, through: :subscription
   has_many :rosters, as: :rosterable
   has_many :users, through: :rosters,
 					 source: :rosterable, source_type: 'Firm'
 
-  # accepts_nested_attributes_for :subscription
+  accepts_nested_attributes_for :venues
 
   has_settings do |s|
     s.key :down_payment, defaults: { state: "on", percentage: 0.5, 
@@ -28,14 +29,5 @@ class Firm < ActiveRecord::Base
     subs.save!
   end
 
-  # def all_reservations
-  #   Reservation.in_state(:confirmed, :completed).between_date(start_date, end_date).by_venue(ven) 
-  #   result = arr.map{ |res| (res.charge * self.commission).round(0) }.compact.sum
-  # end
-
-  # def switch_preferences!(name, key, value)
-  # 	self.settings(name.to_sym).update_attributes!(
-  # 		Hash.try_convert({key=>value}))
-  # end
 
 end

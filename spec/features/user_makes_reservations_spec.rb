@@ -59,11 +59,11 @@ feature "UserMakesReservations", :type => :feature do
       click_button "Lihat Reservasi Saya"
       click_link "Bayar"
       # page.execute_script("$('.show-datepicker').datepicker('setDate', '#{Date.today}')")
-      select res_2.code, from: 'installment_reservation_id'
       fill_in "installment_pay_time", with: "15:00"
       fill_in "installment_total", with: res_2.down_payment
       page.execute_script("$('#installment_pay_day').val('#{now}')")
       fill_in "installment_pay_code", with: "fkafoffagag"
+      select res_2.code, from: 'installment_reservation_id'
       click_button "Simpan"      
     end
 

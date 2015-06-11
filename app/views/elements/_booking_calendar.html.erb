@@ -11,10 +11,14 @@
       <div class="panel-body">
         <hr>
     <% bookings.each do |res| %>
-      <span class="label label-primary ticket">
-        <%= res.start %>-<%= res.finish %>| 
-        <%= res.court.name %> | <%= link_to "Konfirmasi", biz_confirm_path(res_id: res.id), method: :put if res.waiting? %>
-      </span>
+        <span class="label label-primary ticket">
+          <%= res.start %>-<%= res.finish %>
+          <%= res.court.name %> |
+          <%= link_to "Konfirmasi |", biz_confirm_path(res_id: res.id), method: :put if res.waiting? %>
+          <%= link_to biz_view_path(res_id: res.id), remote: true do %>
+            Lihat
+          <% end %>
+        </span>
     <% end %>
       </div>
     </div>

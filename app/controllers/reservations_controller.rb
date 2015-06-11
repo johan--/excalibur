@@ -1,22 +1,13 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy,
+  before_action :set_reservation, only: [:show, :edit, :update, 
                                           :confirm]
   before_action :user_layout
 
   respond_to :html, :js
-  def index
-    @reservations = current_user.reservations
-  end
 
   def show
   end
 
-  # # GET /reservations/new
-  # def new
-  #   @reservation = Reservation.new
-  # end
-
-  # GET /reservations/1/edit
   def edit
   end
 
@@ -55,15 +46,13 @@ class ReservationsController < ApplicationController
     end
   end
 
-  # DELETE /reservations/1
-  # DELETE /reservations/1.json
-  def destroy
-    @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Pesanan berhasil dihancurkan' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @reservation.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to reservations_url, notice: 'Pesanan berhasil dihancurkan' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
 
   private

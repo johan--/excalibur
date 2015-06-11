@@ -1,0 +1,33 @@
+<%= simple_form_for [:biz, @venue] do |f| %>
+  <%= f.error_notification %>
+
+  <h3>Arena/Tempat</h3><hr>
+  <div class="field">
+    <%= f.input :name, label: "Nama Tempat", required: true %>
+  </div>
+  <div class="field">
+    <%= f.input :province, collection: province_lists, prompt: "Pilih", label: "Provinsi", required: true, placeholder: "untuk memudahkan pencarian" %>
+  </div>
+  <div class="field">
+    <%= f.input :city, label: "Kota", required: true, placeholder: "untuk memudahkan pencarian" %>
+  </div>  
+  <div class="field">
+    <%= f.input :address, label: "Alamat" %>
+  </div>
+  <div class="field">
+    <%= f.input :phone, label: "Nomor Telepon" %>
+  </div>
+  <h3>Lapangan</h3><hr>
+  <div id="courts">
+    <%= f.fields_for :courts do |court| %>
+      <%= render 'court_fields', f: court %>
+      <div class="links">
+        <%= link_to_add_association 'tambah lapangan', f, :courts, class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.button :submit, "Simpan", class: "btn btn-primary btn-sm"  %>
+  </div>
+<% end %>

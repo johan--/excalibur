@@ -15,6 +15,7 @@ gem 'nprogress-rails'
 gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'
 gem 'simple_form'
+gem 'cocoon'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

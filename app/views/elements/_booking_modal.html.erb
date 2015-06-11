@@ -1,0 +1,23 @@
+<div class="modal-header modal-header-success">
+  <h3><%= "Reservasi No. #{@reservation.id}" %></h3>
+</div>
+<div class="modal-body">
+  <center>
+  <h3 class="media-heading"><%= @reservation.date_reserved %> <small><%= @reservation.start %>-<%= @reservation.finish %> </small></h3>
+    <span><strong>Status: </strong></span>
+      <%= state_label(@reservation) %>
+    <span><strong>Pemesan: </strong></span>
+      <span class="label label-info"><%= @reservation.booker.full_name %></span>
+  </center>
+<p class="text-center">
+  <strong>Pembayaran: </strong><br>
+    <% @reservation.installments.each do |ins| %>
+      Kode: #<%= ins.pay_code %>, sebesar <%= idr_money(ins.total) %> pada <%= ins.pay_day %>
+    <% end %>
+</p>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+</div>
+

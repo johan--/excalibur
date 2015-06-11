@@ -53,6 +53,7 @@ feature "UserSignsUp", :type => :feature do
 				it { should have_content('PT. Futsal Indonesia') }
 				it { should have_content('Bisnismu berhasil didaftarkan') }
 				it { should have_css('#subscription-state', text: 'Aktif') }
+				# it { should have_css('#no-venue', text: 'Daftarkan Arena') }
 			end
 
 			describe "find an existing firm" do

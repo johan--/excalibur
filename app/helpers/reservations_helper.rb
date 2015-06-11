@@ -29,6 +29,24 @@ module ReservationsHelper
   	end
   end
 
+  def state_label(reservation)
+  	if reservation.confirmed?
+		content_tag(:span, reservation.state, class: "label label-success", 
+				:"data-toggle" => "tooltip", :"title" => "sudah dibayar" )
+  	elsif reservation.completed?
+		content_tag(:span, reservation.state, class: "label label-success",
+				:"data-toggle" => "tooltip", :"title" => "transaksi selesai" )
+  	elsif reservation.waiting?
+		content_tag(:span, 	reservation.state, class: "label label-success",
+				:"data-toggle" => "tooltip", :"title" => "waiting list" )
+  	elsif reservation.pending?
+		content_tag(:span, 	reservation.state, class: "label label-warning",
+				:"data-toggle" => "tooltip", :"title" => "belum dibayar")
+  	elsif reservation.cancelled?
+		content_tag(:span, 	reservation.state, class: "label label-danger",
+				:"data-toggle" => "tooltip", :"title" => "dibatalkan" )
+  	end
+  end
 
 
 end

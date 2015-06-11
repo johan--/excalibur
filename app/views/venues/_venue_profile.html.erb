@@ -1,0 +1,10 @@
+  <h3 class="head text-center"><%= @venue.name %></h3>
+  <p class="narrow text-center">
+    <small><cite title="San Francisco, USA"><i class="glyphicon glyphicon-map-marker"></i> <%= @venue.address %></cite></small>
+  </p>
+  </p>
+  <p class="narrow text-center">
+    <span class="label label-info"><%= @venue.province %>, <%= @venue.province %></span> 
+    <span class="label label-warning"><%= @venue.courts.count %> Lapangan</span>
+    <span class="label label-warning" id="avg_price">@ <%= idr_money(@venue.average_price) %> / Jam </span>
+  </p>

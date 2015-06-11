@@ -1,5 +1,10 @@
 module FormOptionsHelper
 
+
+  def province_lists
+  	[ "DKI Jakarta", "Banten", "Jawa Barat" ]
+  end
+  
 	def hours_available
 		[
 			["1", "01"], ["2", "02"], ["3", "03"], ["4", "04"], ["5", "05"],

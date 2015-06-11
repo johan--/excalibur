@@ -13,6 +13,9 @@ class Reservation < ActiveRecord::Base
   
   scope :paid, -> { where(state: ['confirmed', 'completed', 'cancelled']) }
   scope :unpaid, -> { where(state: ['pending']) }
+  scope :confirmed, -> { where(state: ['confirmed']) }
+  scope :waiting, -> { where(state: ['waiting']) }
+  scope :pending, -> { where(state: ['pending']) }
   scope :by_time, ->(start, finish) { where(start: start, finish: finish) }
   scope :by_date, ->(date) { where(date_reserved: date) }
   # scope :between_date, ->(date_1, date_2) { where("date_reserved between ? and ?", date_1, date_2) } 

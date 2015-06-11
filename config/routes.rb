@@ -1,21 +1,12 @@
 Fustal::Application.routes.draw do
   
-  resources :reservations, skip: [:show, :new] do
-    # member do
-    #   put "confirm" => "reservations#confirm", as: :confirm
-    # end
-  end
+  resources :reservations, skip: [:new, :destroy, :index]
   resources :installments, skip: :destroy
   
-  resources :venues do
+  resources :venues, only: [:index, :show] do
     member do
       get "bookings" => "venues#bookings", as: :bookings
     end
-    resources :courts
-  end
-
-  resources :courts do
-    resources :reservations, skip: [:new, :create, :edit, :update]
   end
 
   resources :firms, only: [:index, :new, :create] do
@@ -52,6 +43,7 @@ Fustal::Application.routes.draw do
     put "save_settings", to: "base#save_settings", as: :save_settings
     
     get "bookings", to: "base#bookings", as: :bookings
+    get "view", to: "base#view", as: :view
     put "confirm" => "base#confirm", as: :confirm
     
     get "edit_bio", to: "base#edit_bio", as: :edit_bio
@@ -62,6 +54,7 @@ Fustal::Application.routes.draw do
     get "expiration", to: "base#expiration", as: :expiration
     
     resources :payments, skip: :destroy
+    resources :venues, skip: :destroy
   end
 
 end

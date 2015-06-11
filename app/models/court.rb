@@ -3,4 +3,8 @@ class Court < ActiveRecord::Base
   has_many 	 :reservations
 
   scope :by_venue, ->(venue_id) { where(venue_id: venue_id) }
+
+
+
+    
 end

@@ -16,9 +16,7 @@ module ApplicationHelper
     end
   end
 
-  def province_lists
-  	[ "DKI Jakarta", "Banten", "Jawa Barat" ]
-  end
+
 
 
   def idr_money(number)

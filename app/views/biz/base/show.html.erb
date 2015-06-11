@@ -1,18 +1,44 @@
 <% title("Home Dashboard") %>
 
-<% @firm.venues.each do |venue| %>
-  <div class="panel report panel-primary">
-    <div class="panel-heading">
-      <h5 class="panel-title">
-          Reservasi Untuk <%= venue.name %> 
-      <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
-      </h5>
-      <span class="pull-right badge"id="report">
-        
-      </span>
-    </div>
-    <div class="panel-body">
-      <%= render partial: 'venue_card', locals: { venue: venue } %>
+<% if @firm.venues.count == 0 %>
+
+  <div class="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+    <div class="box">
+      <div class="box-icon">
+          <span class="fa fa-4x fa-info"></span>
+      </div>
+      <div class="info" id="no-venue">
+          <h4 class="text-center">Selamat Datang! </h4>
+          <p class="text-center">Kamu belum mendaftarkan arena futsal, silahkan klik tombol di bawah untuk mendaftarkannya</p>
+          <%= link_to "Daftarkan Arena", new_biz_venue_path, class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
+
+
+<% else %>
+  <% @firm.venues.each do |venue| %>
+    <div class="panel report panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+            Reservasi <%= venue.name %> 
+        <span class="badge"><%= link_to "Edit", edit_biz_venue_path(venue) %></span>
+        </h5>
+        <span class="pull-right badge"id="report">
+          <%= link_to "Lihat", biz_venue_path(venue), remote: true %></i>
+        </span>
+      </div>
+      <div class="panel-body">
+        <%= render partial: 'venue_card', locals: { venue: venue } %>
+        
+        <div id="venue-modal" class="modal fade">
+          <div class="modal-dialog">
+            <div id="inner-venue-modal" class="modal-content">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  <% end %>
 <% end %>

@@ -2,8 +2,16 @@ class Venue < ActiveRecord::Base
   belongs_to :firm
   has_many 	 :courts
   has_many 	 :followers, as: :followed
-
+  
+  accepts_nested_attributes_for :courts, :reject_if => :all_blank
+  
   scope :by_firm, ->(firm_id) { where(firm_id: firm_id) }
+
+  has_settings do |s|
+    s.key :primetime, defaults: { state: "on", start_at: "14:00", 
+                     end_at: "24:00", active: "weekends", 
+                     increase: "0.10" }
+  end
 
   # Pagination
   paginates_per 20

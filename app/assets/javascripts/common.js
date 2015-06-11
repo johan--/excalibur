@@ -1,19 +1,18 @@
-// $(document).on("ready page:change", function()  {
-//   $("#join-firm").css("display","none");
+// $(document).on('page:fetch',   function() { NProgress.start(); });
+// $(document).on('page:change',  function() { NProgress.done(); });
+// $(document).on('page:restore', function() { NProgress.remove(); });
+$(document).on('ready page:load', function() {
+    var REFRESH_INTERVAL_IN_MILLIS = 5000;
+     if ($('.f-pending-message').length > 0) {
+       setTimeout(function(){
+        #disable page scrolling to top after loading page content
+        Turbolinks.enableTransitionCache(true);
 
-//   $("#join-firm-prompt").click(function(){
-//     // if ($("#join-firm-prompt").is(":checked")) {
-//       // Show the hidden div
-//       $("#join-firm").show("fast");
-//     }
-//     // else {
-//     //   // Otherwise, hide it
-//     //   $("#join-firm").hide("fast");
-//     // }
-//   });
+        # pass current page url to visit method
+        Turbolinks.visit(location.toString());
 
-// });
-
-// $(document).on("click","#join-firm-prompt",function(){
-//   $("#join-firm").show();
-// });
+        #enable page scroll reset in case user clicks other link
+        Turbolinks.enableTransitionCache(false);
+         }, REFRESH_INTERVAL_IN_MILLIS);
+    }
+});

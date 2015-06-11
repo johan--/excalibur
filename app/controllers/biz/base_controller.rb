@@ -12,21 +12,25 @@ class Biz::BaseController < ApplicationController
       @confirmed = Reservation.in_state(:confirmed).upcoming_with_states(venue)
       @waiting = Reservation.in_state(:waiting).upcoming_with_states(venue)
       @pending = Reservation.in_state(:pending).upcoming_with_states(venue)
-      # @received = Reservation.upcoming_with_states(venue).installments
     end
+    @reservation = Reservation.find_by(id: params[:res_id])
   end
 
   def bookings
     @reservations = Reservation.by_venue(venue).group_by { |r| r.date_reserved } 
   end
 
+  def view
+    @reservation = Reservation.find_by(id: params[:res_id])
+  end
+
   def confirm
     @reservation = Reservation.find_by(id: params[:res_id])
     if @reservation.state_machine.transition_to!(:confirmed)
-      flash[:notice] = "Success"
+      flash[:notice] = "Berhasil dikonfirmasi"
       redirect_to user_root_path
     else
-      flash[:error] = "Could not transition to 'received'"
+      flash[:error] = "Gagal dikonfirmasi, coba lagi"
       redirect_to user_root_path
     end
   end

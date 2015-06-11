@@ -4,13 +4,16 @@
   
   <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
   <p class="narrow text-center">
-    <%= current_user.current_reservations.count %> Pesanan Terdaftar
-    <span class="label label-info"><%= current_user.current_reservations.count %> Pesanan Akan Datang</span> 
-    <span class="label label-warning"><%=  %> Lapangan</span>    
+    <%= current_user.current_reservations.count %> Pesanan Akan Datang
+  </p>
+
+  <p class="narrow text-center">
+    <span class="label label-success"><%= current_user.current_reservations.confirmed.count %> Terkonfirmasi</span> 
+    <span class="label label-info"><%= current_user.current_reservations.waiting.count %> Menunggu Konfirmasi</span>
+    <span class="label label-warning"><%= current_user.current_reservations.pending.count %> Pending</span>
   </p>
 
   <p class="text-center">
-    
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
       Cari Arena
     </button>    

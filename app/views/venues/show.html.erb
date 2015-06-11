@@ -1,24 +1,18 @@
 <% title(@venue.name) %>
 
-<h3 class="head text-center"><%= @venue.name %><%= render partial: 'relationships/follow_form', locals: { followed: @venue } %></h3>    
+<%= render 'venue_profile' %>
+<%= render partial: 'relationships/follow_form', locals: { followed: @venue } %>
   <p class="narrow text-center">
-    <small><cite title="San Francisco, USA"><i class="glyphicon glyphicon-map-marker"></i><%= @venue.address %></cite></small>
-  </p>
-  <p class="narrow text-center">
-    <span class="label label-info"><%= @venue.province %>, <%= @venue.province %></span> 
-    <span class="label label-warning"><%= @venue.courts.count %> Lapangan</span>
-  </p>
-
       <div class="tabbable-panel">
         <div class="tabbable-line">
           <ul class="nav nav-tabs ">
             <li class="active">
               <a href="#tab_default_1" data-toggle="tab">
-              Cek Reservasi </a>
+              Cek  </a>
             </li>
             <li>
               <a href="#tab_default_2" data-toggle="tab">
-              Reservasi 7 Hari Ke Depan </a>
+              7 Hari Ke Depan </a>
             </li>
             <li>
               <a href="#tab_default_3" data-toggle="tab">
@@ -55,7 +49,7 @@
             <a data-toggle="collapse" data-parent="#court-accordion" href="#collapse<%= court.id %>" aria-expanded="false" aria-controls="collapse<%= court.id %>">
               <div class="panel-heading" role="tab" id="court-<%= court.id %>">
                 <h5 class="panel-title">
-                  <%= court.name %>
+                  <%= court.name %>[<%= category_translated(court.category) %>]
                 <span class="badge"><i class="fa fa-chevron-down"></i></span>                        
                 </h5>
                 <span class="pull-right badge"id="report">

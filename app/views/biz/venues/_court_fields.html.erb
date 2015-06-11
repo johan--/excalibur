@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <%= f.input :name, label: "Nama Lapangan", placeholder: "contoh: Lapangan 1", required: true %>
+  <%= f.input :price, label: "Tarif per Jam", required: true %>
+  <%= f.hidden_field :unit, value: "Jam", readonly: true, required: true %>
+  <%= f.input :category, collection: court_categories, prompt: "Pilih", label: "Jenis", required: true %>
+
+  <%= link_to_remove_association "hapus lapangan", f, class: "btn btn-danger btn-sm" %>
+</div>
+<br>
