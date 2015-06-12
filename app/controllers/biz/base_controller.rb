@@ -53,6 +53,7 @@ class Biz::BaseController < ApplicationController
     @auto_prom = @firm.settings(:auto_promo).update_attributes!(
       state: firm_pref_params[:auto_promo_state])
 
+    flash[:notice] = "Preferensi bisnis berhasil dikoreksi"
     redirect_to biz_root_path
   end 
 
@@ -60,7 +61,7 @@ class Biz::BaseController < ApplicationController
     a = @firm.build_subscription(
           category: 1, state: "aktif", start_date: Date.today)
     if a.save
-      flash[:notice] = "Berhasil Berlangganan"
+      flash[:notice] = "Berhasil berlangganan"
     else
       flash[:warning] = "Ada masalah, coba ulangi lagi"
     end

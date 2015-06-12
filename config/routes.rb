@@ -54,7 +54,13 @@ Fustal::Application.routes.draw do
     get "expiration", to: "base#expiration", as: :expiration
     
     resources :payments, skip: :destroy
-    resources :venues, skip: :destroy
+    resources :venues, skip: :destroy do
+      member do
+        get 'preferences'=> "venues#preferences", as: :preferences
+        put "save_preferences", to: "venues#save_preferences", as: :save_preferences
+      end
+    end
+
   end
 
 end

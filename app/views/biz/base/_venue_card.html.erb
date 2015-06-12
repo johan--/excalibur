@@ -25,15 +25,44 @@
 		<!-- Tab Pane - Education & Experience -->
 		<div class="tab-pane active in" id="qualification">
 			<div class="education">
-				<h4><i class="fa fa-folder color"></i> Reservasi</h4>
-				<hr>
+				<h4><i class="fa fa-folder color"></i> Ringkasan</h4><hr>
 				<div class="row">
 					<div class="col-md-6 col-sm-12">
 						<div class="education-item">
-							<!-- Eudcation detail and year -->
-							<h4>
-								Reservasi Tercatat 
-							</h4>
+							<h4>Preferensi Arena </h4>
+							<h5>
+								Kenaikan Harga Menurut Hari<br>
+								<span class="label label-success">
+									status: <%= venue.settings(:primeday).state %>
+								</span>
+								<span class="label label-success">
+									kapan: <%= venue.settings(:primeday).active %>
+								</span>
+								<span class="label label-success">
+									besaran: +<%= venue.settings(:primeday).increase %>
+								</span>
+							</h5>
+
+							<h5>
+								Kenaikan Harga Menurut Jam<br>
+								<span class="label label-success">
+									status: <%= venue.settings(:primetime).state %>
+								</span>
+								<span class="label label-success">
+									kapan: <%= venue.settings(:primetime).start_at %>-<%= venue.settings(:primetime).end_at %>
+								</span>
+								<span class="label label-success">
+									besaran: +<%= venue.settings(:primetime).increase %>
+								</span>
+							</h5>							
+
+						</div>
+						<hr>
+					</div>
+	
+					<div class="col-md-6 col-sm-12">
+						<div class="education-item">
+							<h4>Reservasi Tercatat </h4>
 
 							<h5>
 								Terkonfirmasi 
@@ -47,10 +76,13 @@
 								Daftar Tunggu
 								<span class="label label-primary"><%= @pending.count %></span>
 							</h5>
+
 						</div>
 						<hr>
 					</div>
-									
+							
+
+
 				</div>
 			</div>
 

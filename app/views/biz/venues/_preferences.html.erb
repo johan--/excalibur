@@ -1,0 +1,28 @@
+<div class="modal-header modal-header-info">
+  <h3>Preferensi <%= @venue.name %></h3>
+</div>
+<div class="modal-body">
+    <%= simple_form_for :venue_pref, url: save_preferences_biz_venue_path(@venue), method: "put" do |f| %>
+
+        <h4>Hari</h4>
+        <%= f.input :day_state, collection: auto_options, as: :radio_buttons, checked: current_primeday_state(@venue), label: "Status" %>        
+
+        <%= f.input :day_active, collection: days_list, as: :select, selected: current_day_active(@venue), label: "Hari", prompt: "Pilih Hari Aktif" %>
+
+        <%= f.input :day_increase, label: "Kenaikan" %>
+        <hr>
+        
+        <h4>Jam</h4>
+        <%= f.input :time_state, as: :select, collection: auto_options, selected: current_primetime_state(@venue), label: "Jam Primetime" %>
+
+        <%= f.input :time_start, collection: all_hours, as: :select, selected: current_time_start(@venue), label: "Jam Mulai" %>
+        <%= f.input :time_end, collection: all_hours, as: :select, selected: current_time_end(@venue), label: "Jam Berakhir" %>
+        <%= f.input :time_increase, default: selected: current_time_increase(@venue), label: "Kenaikan" %>
+        <hr>
+
+        <%= f.button :submit, "Simpan Preferensi Arena", class: "btn btn-primary" %>
+    <% end %>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+</div>

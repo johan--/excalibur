@@ -21,8 +21,13 @@
     <div class="panel report panel-primary">
       <div class="panel-heading">
         <h5 class="panel-title">
-            Reservasi <%= venue.name %> 
-        <span class="badge"><%= link_to "Edit", edit_biz_venue_path(venue) %></span>
+          <%= venue.name %> 
+        <span class="badge">
+          <%= link_to "Edit", edit_biz_venue_path(venue) %>
+        </span>
+        <span>
+          <%= link_to "Atur Preferensi", preferences_biz_venue_path(venue), remote: true %>
+        </span>
         </h5>
         <span class="pull-right badge"id="report">
           <%= link_to "Lihat", biz_venue_path(venue), remote: true %></i>
