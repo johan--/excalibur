@@ -32,6 +32,10 @@ hr.light {
     border-color: #fff;
 }
 
+hr.coral {
+    border-color: $brand-coral;
+}
+
 a {
     color: $brand-primary;
     -webkit-transition: all .35s;

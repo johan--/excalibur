@@ -52,21 +52,28 @@ module PreferencesHelper
 
 # Venue prefs
 
-	def current_primeday_state(venue)
-		if venue.settings(:primeday).state == "off"
+	def current_primeday_state(court)
+		if court.settings(:primeday).state == "off"
 			auto_options[0]
 		else
 			auto_options[1]
 		end
 	end
 
-	def current_primetime_state(venue)
-		if venue.settings(:primetime).state == "off"
+	def current_primetime_state(court)
+		if court.settings(:primetime).state == "off"
 			auto_options[0]
 		else
 			auto_options[1]
 		end
 	end
 
+	def current_time_start(court)
+		court.settings(:primetime).start_at
+	end
+
+	def current_time_end(court)
+		court.settings(:primetime).end_at
+	end
 
 end

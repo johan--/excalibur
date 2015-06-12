@@ -55,9 +55,11 @@ Fustal::Application.routes.draw do
     
     resources :payments, skip: :destroy
     resources :venues, skip: :destroy do
-      member do
-        get 'preferences'=> "venues#preferences", as: :preferences
-        put "save_preferences", to: "venues#save_preferences", as: :save_preferences
+      resources :courts, skip: :destroy do
+        member do
+          get 'preferences'=> "courts#preferences", as: :preferences
+          put "save_preferences", to: "courts#save_preferences", as: :save_preferences
+        end
       end
     end
 

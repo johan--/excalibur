@@ -40,23 +40,7 @@ class Biz::VenuesController < Biz::BaseController
     end  	
   end
 
-  def preferences    
-  end
 
-  def save_preferences
-    @primeday = @venue.settings(:primeday).update_attributes!(
-        state: pref_params[:day_state], active: pref_params[:day_active],
-        increase: pref_params[:day_increase]        
-      )
-    @primetime = @venue.settings(:primetime).update_attributes!(
-        state: pref_params[:time_state], start_at: pref_params[:time_start],
-        end_at: pref_params[:time_end],
-        increase: pref_params[:time_increase]        
-      )
-    
-    flash[:notice] = 'Preferensi Arena berhasil dikoreksi'
-    redirect_to biz_root_path
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

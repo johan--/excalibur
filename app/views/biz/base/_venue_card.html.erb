@@ -2,77 +2,31 @@
 	<!-- Header -->
 	<header>
 		<ul class="list-inline">
-			<li class="active"><a href="#qualification" data-toggle="tab">Ringkasan</a></li>
-			<li class=""><a href="#home" data-toggle="tab">Terkonfirmasi</a></li>
-			<li class=""><a href="#waiting" data-toggle="tab">Menunggu Konfirmasi</a></li>
+			<li class="active"><a href="#front" data-toggle="tab">Sekilas</a></li>
+			<li class=""><a href="#confirmed" data-toggle="tab">Terkonfirmasi</a></li>
 			<li class=""><a href="#pending" data-toggle="tab">Daftar Tunggu</a></li>
+			<li class=""><a href="#fee" data-toggle="tab">Tarif</a></li>
 		</ul>
 	</header>
 	<!-- tab Content -->
 	<div class="tab-content">
 
-		<!-- Tab Pane - Home -->
-		<div class="tab-pane fade" id="home">
-			<%= render partial: 'elements/booking_calendar', locals: { collection: @confirmed } %>       
-		</div>
-		<div class="tab-pane fade" id="waiting">
-			<%= render partial: 'elements/booking_calendar', locals: { collection: @waiting } %>       
-		</div>		
-		<div class="tab-pane fade" id="pending">
-			<%= render partial: 'elements/booking_calendar', locals: { collection: @pending } %>       
-		</div>
-
-		<!-- Tab Pane - Education & Experience -->
-		<div class="tab-pane active in" id="qualification">
+		<div class="tab-pane active in" id="front">
 			<div class="education">
-				<h4><i class="fa fa-folder color"></i> Ringkasan</h4><hr>
+				<h4><i class="fa fa-folder color"></i> Sekilas</h4><hr>
 				<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<div class="education-item">
-							<h4>Preferensi Arena </h4>
-							<h5>
-								Kenaikan Harga Menurut Hari<br>
-								<span class="label label-success">
-									status: <%= venue.settings(:primeday).state %>
-								</span>
-								<span class="label label-success">
-									kapan: <%= venue.settings(:primeday).active %>
-								</span>
-								<span class="label label-success">
-									besaran: +<%= venue.settings(:primeday).increase %>
-								</span>
-							</h5>
 
-							<h5>
-								Kenaikan Harga Menurut Jam<br>
-								<span class="label label-success">
-									status: <%= venue.settings(:primetime).state %>
-								</span>
-								<span class="label label-success">
-									kapan: <%= venue.settings(:primetime).start_at %>-<%= venue.settings(:primetime).end_at %>
-								</span>
-								<span class="label label-success">
-									besaran: +<%= venue.settings(:primetime).increase %>
-								</span>
-							</h5>							
-
-						</div>
-						<hr>
-					</div>
-	
-					<div class="col-md-6 col-sm-12">
+					<div class="col-md-12 col-sm-12">
 						<div class="education-item">
 							<h4>Reservasi Tercatat </h4>
 
 							<h5>
 								Terkonfirmasi 
 								<span class="label label-primary"><%= @confirmed.count %></span>
-							</h5>
-							<h5>
+
 								Menunggu Konfirmasi
 								<span class="label label-primary" id="paid"><%= @waiting.count %></span>
-							</h5>							
-							<h5>
+
 								Daftar Tunggu
 								<span class="label label-primary"><%= @pending.count %></span>
 							</h5>
@@ -80,13 +34,36 @@
 						</div>
 						<hr>
 					</div>
-							
-
-
+					<div class="col-md-12 col-sm-12">
+						<h4>Menunggu Konfirmasi </h4>
+						<%= render partial: 'elements/booking_calendar', locals: { collection: @waiting } %>  
+					</div>
 				</div>
 			</div>
-
 		</div>
+
+		<div class="tab-pane fade" id="confirmed">
+			<%= render partial: 'elements/booking_calendar', locals: { collection: @confirmed } %>       
+		</div>
+		<div class="tab-pane fade" id="fee">
+			<div class="col-md-8 col-sm-12">
+				<div class="education-item">
+					<h4>Tarif </h4>
+
+					<% venue.courts.each do |court| %>
+						<%= render partial: 'biz/courts/preferences', locals: { court: court, venue: venue } %>
+					<% end %>
+
+				</div>
+				<hr>
+			</div>		
+		</div>		
+		<div class="tab-pane fade" id="pending">
+			<%= render partial: 'elements/booking_calendar', locals: { collection: @pending } %>       
+		</div>
+
+
+
 	</div>
 	
 </div>  

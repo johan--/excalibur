@@ -1,6 +1,6 @@
 require 'rails_helper'
-# require 'phantomjs'
 
+# This takes very long, debugging is necessary
 feature "FirmHandlesSubscription", :type => :feature do
   subject { page }
 
@@ -42,7 +42,6 @@ feature "FirmHandlesSubscription", :type => :feature do
   		page.execute_script("$('#payment_pay_day').val('03/07/2015')")
   		click_button "Simpan"
   	end
-    after { Timecop.return }
     
       it { should have_content("Pembayaran berhasil dicatat, tunggu konfirmasi") }
       it { should have_css('.list-group-item', text: "fkafoffagag") }
@@ -50,6 +49,7 @@ feature "FirmHandlesSubscription", :type => :feature do
       it { should have_no_css("#next-deadline", text: Date.today.strftime("%d-%m-%Y")) }
       it { should have_content('Rp 0') }      
 
+    after { Timecop.return }
   end
 
   # describe "missing the deadline of payment" do

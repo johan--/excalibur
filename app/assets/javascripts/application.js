@@ -17,7 +17,6 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
-//= require cocoon
 //= require searchForm
 //= require shojiLayout
 //= require biz

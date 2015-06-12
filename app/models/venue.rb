@@ -7,12 +7,12 @@ class Venue < ActiveRecord::Base
   
   scope :by_firm, ->(firm_id) { where(firm_id: firm_id) }
 
-  has_settings do |s|
-    s.key :primeday, defaults: { state: "on", 
-                                 active: "weekends", increase: "20000" }                
-    s.key :primetime, defaults: { state: "on", start_at: "14:00", 
-                     end_at: "24:00", increase: "20000" }
-  end
+  # has_settings do |s|
+  #   s.key :primeday, defaults: { state: "on", 
+  #                                active: "weekends", increase: "20000" }                
+  #   s.key :primetime, defaults: { state: "on", start_at: "14:00", 
+  #                    end_at: "24:00", increase: "20000" }
+  # end
 
   # Pagination
   paginates_per 20

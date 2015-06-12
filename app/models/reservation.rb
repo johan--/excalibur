@@ -108,5 +108,8 @@ private
     self.charge = self.court.price * self.duration
 	end
 
+  def check_prime_time_day
+  end
+
 
 end

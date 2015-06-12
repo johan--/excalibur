@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "FirmChangesVenuePreferences", :type => :feature do
+feature "FirmChangesCourtPreferences", :type => :feature do
   subject { page }
 
   let!(:user) { FactoryGirl.create(:manager) }
@@ -14,13 +14,15 @@ feature "FirmChangesVenuePreferences", :type => :feature do
 
   describe "into the preference form", js: true do
   	before do
-  		click_link "Preferensi"		
-  		select "Minggu", from: "venue_pref[day_active]"
-  		fill_in "venue_pref[day_increase]", with: "30000"
+      click_link "Tarif"
+  		click_link "Atur", match: :first
+  		# select "Minggu", from: "court_pref[day_active]"
+  		fill_in "court_pref[day_increase]", with: "40000"
   		click_button "Simpan"
   	end
 
-  	it { should have_content('Preferensi Arena berhasil dikoreksi') }
+  	it { should have_content("Preferensi #{venue_1.courts.last.name} 
+      berhasil dikoreksi") }
   end
 
 end
