@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def app_name
+    return "Fols 9"
+  end
+
   def title(value)
     unless value.nil?
       # @title = "#{value} | Fustal"

@@ -5,6 +5,10 @@ class ReservationsController < ApplicationController
 
   respond_to :html, :js
 
+  def index
+    @reservations = current_user.reservations
+  end
+
   def show
   end
 

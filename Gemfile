@@ -40,7 +40,7 @@ gem 'statesman', '~> 1.2.3'
 # gem "fullcalendar-rails", '2.0.2.0'
 gem 'bootstrap-datepicker-rails'
 
-group :development do
+group :development, :test do
   gem 'thin', '1.5.1'
 end
 
@@ -63,8 +63,8 @@ group :test, :development do
   # gem 'faker', '~> 1.4.3'
   gem 'timecop'
   gem 'poltergeist'
+  # gem 'phantomjs', :require => 'phantomjs/poltergeist'
   # gem 'selenium-webdriver', '~> 2.45.0'
-  # gem "capybara-webkit"
 end
 
 # PostgreSQL

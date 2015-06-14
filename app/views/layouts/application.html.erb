@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title><%= @title || "Fustal" %></title>
+  <title><%= @title || app_name %></title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -12,28 +12,52 @@
 <body>
   <% if @disable_nav  %>
     <%= yield %>
-  <% else %>
-    <div id="wrap">
-      <header>
-        <%= render 'layouts/navigation' %>
-      </header>
-      
-      <div id="main">
-        <%= render 'layouts/messages' %>
-
-        <% if @firm_layout  %>
-          <%= render 'layouts/firm_dashboard' %>
-        <% elsif @user_layout  %>
-          <%= render 'layouts/user_layout' %>
-        <% else %>
-          <%= yield %>
-        <% end %>
+  <% elsif @normal_nav  %>
+  <div id="wrap">
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <div class="container">
+    
+      <%= render 'layouts/messages' %>
+      <div class="row">
+        <%= yield %>    
       </div>
       
     </div>  
+  </div>
+  <% else %>
+    <div id="wrap">
+      <%= render 'layouts/messages' %>
+      <div class="shoji" id="shoji">
+        <div class="shoji-rail">
+          <div class="shoji-panel shoji-panel-left">
+
+          <ul class="nav nav-sidebar">
+            <% if @firm_layout %>
+              <%= render 'layouts/firm_sidebar' %>
+            <% elsif @user_layout %>
+              <%= render 'layouts/user_sidebar' %>
+            <% end %>
+          </ul>        
+
+          </div>
+          <div class="shoji-panel shoji-panel-right">
+              <ul class="nav nav-pills nav-stacked">
+                  <%= render 'layouts/rightbar_links' %>
+              </ul>
+          </div>
+        </div>
+
+        <div class="shoji-door">
+          <%= render 'layouts/shoji_content' %>
+        </div>
+
+      </div>
+      
+        
+    </div>  
   <% end %>
   
-  <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

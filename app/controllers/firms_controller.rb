@@ -1,4 +1,5 @@
 class FirmsController < ApplicationController
+  before_action :normal_nav
 
   def index
     @firm_search = Firm.search(search_params)

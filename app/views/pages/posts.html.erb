@@ -1,37 +1,30 @@
 <% title("Blog") %>
-<div class="containter">
 
-<h3 class="text-center">Blog</h3>
+<div class="col-sm-8">
+	<h1 class="text-center">Blog</h1>
+	<%= render 'layouts/messages' %>
+	<% @posts.each do |post| %>
+		<div class="title-box">
+		  <p>
+		    <%= link_to "#{post.title}", post_path(post.slug) %> <br/>
+		    <span><small><em><%= time_ago_in_words(post.updated_at) %> ago</em></small></span>
+		  </p>
+		</div>
+		<%= sanitize truncate(post.content_html, length: 200, escape: false )%>
+	<% end %>
 
-<div class="row">
-
-	<div class="col-sm-8">
-		<% @posts.each do |post| %>
-			<div class="title-box">
-			  <p>
-			    <%= link_to "#{post.title}", post_path(post.slug) %> <br/>
-			    <span><small><em><%= time_ago_in_words(post.updated_at) %> ago</em></small></span>
-			  </p>
-			</div>
-			<%= sanitize truncate(post.content_html, length: 200, escape: false )%>
-		<% end %>
-
-		<div class="pagination-control text-center">
-		  <%= paginate @posts %>
-		</div>	
-	</div>
-	<div class="col-sm-4">
-		<h5 class="text-center">Daftar Artikel</h5>
-		<hr>
-		<% @posts.each do |post| %>
-		<p>
-			<%= link_to "#{post.created_at.to_date} | #{post.title}", post_path(post.slug) %>
-		</p>
-		<% end %>
-	</div>
-
-	
+	<div class="pagination-control text-center">
+	  <%= paginate @posts %>
+	</div>	
+</div>
+<div class="col-sm-4">
+	<h5 class="text-center">Daftar Artikel</h5>
+	<hr>
+	<% @posts.each do |post| %>
+	<p>
+		<%= link_to "#{post.created_at.to_date} | #{post.title}", post_path(post.slug) %>
+	</p>
+	<% end %>
 </div>
 
-	
-</div>
+		

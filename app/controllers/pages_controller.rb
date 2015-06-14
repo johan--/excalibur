@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, except: [
-    :home
+    :home, :contact
   ]
   before_action :disable_nav, only: :landing
-  before_action :user_layout, only: :home
+  before_action :normal_nav, only: :posts
+  before_action :user_layout, only: [:home, :contact]
   
   def landing
   end
@@ -30,6 +31,8 @@ class PagesController < ApplicationController
     redirect_to posts_path
   end
 
+  def contact
+  end
   
   def email
     @name = params[:name]

@@ -7,10 +7,14 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
   before_filter :authenticate_user!, unless: :devise_controller?  
-
+  before_filter :normal_nav, if: :devise_controller?
+  
   def disable_nav
     @disable_nav = true
   end
+  def normal_nav
+    @normal_nav = true
+  end  
   def firm_layout
     @firm_layout = true
   end

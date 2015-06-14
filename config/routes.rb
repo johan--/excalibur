@@ -1,6 +1,6 @@
 Fustal::Application.routes.draw do
   
-  resources :reservations, skip: [:new, :destroy, :index]
+  resources :reservations, skip: [:new, :destroy]
   resources :installments, skip: :destroy
   
   resources :venues, only: [:index, :show] do
@@ -53,6 +53,8 @@ Fustal::Application.routes.draw do
     get "subscription", to: "base#subscription", as: :subscription
     get "expiration", to: "base#expiration", as: :expiration
     
+    get "contact", to: "base#contact", as: "contact"
+
     resources :payments, skip: :destroy
     resources :venues, skip: :destroy do
       resources :courts, skip: :destroy do
