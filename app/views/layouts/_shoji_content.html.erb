@@ -45,9 +45,9 @@
         </div>
 
         <div class="col-xs-12 col-sm-10 main" style="left: 1%;">
-            <%= yield %>
-            
-            <%= debug(params) if Rails.env.development? %>
+          <%= render 'layouts/messages' %>
+          
+          <%= yield %>
         </div>
 
     </div>

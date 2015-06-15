@@ -1,0 +1,8 @@
+<%= form_for(:subscriber) do |f| %>
+  <div class="input-group">
+    <%= f.text_field :email, required: true, placeholder: "Alamat Email kamu", class: "form-control" %>
+    <span class="input-group-btn">
+    	<%= f.submit "Simpan Email", class: "btn btn-success btn-circle" %>
+    </span>
+  </div>
+<% end %>  

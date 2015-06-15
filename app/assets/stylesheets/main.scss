@@ -1,5 +1,6 @@
 @import "bootstrap-datepicker3";
-@import "styles/landing";
+@import "styles/buttons";
+@import "styles/new-landing";
 @import "styles/clickable-panel";
 @import "styles/profile-box";
 @import "styles/shoji-layout";
@@ -33,6 +34,34 @@ div.reservation {
 .coral {
 	color: $brand-coral;
 }
+
+/* Main format */
+hr {
+    /*max-width: 50px;*/
+    border-color: $brand-primary;
+    border-width: 3px;
+}
+
+hr.light {
+    border-color: #fff;
+}
+
+hr.coral {
+    border-color: $brand-coral;
+}
+
+a {
+    color: $brand-primary;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+a:hover,
+a:focus {
+    color: #eb3812;
+}
+
 
 /*
  * Main content

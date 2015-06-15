@@ -13,22 +13,22 @@
   <% if @disable_nav  %>
     <%= yield %>
   <% elsif @normal_nav  %>
-  <div id="wrap">
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <div class="container">
-    
-      <%= render 'layouts/messages' %>
-      <div class="row">
-        <%= yield %>    
-      </div>
+    <div id="wrap">
+      <header>
+        <%= render 'layouts/navigation' %>
+      </header>
+      <div class="container">
       
-    </div>  
-  </div>
+        <%= render 'layouts/messages' %>
+        <div class="row">
+          <%= yield %>    
+        </div>
+        
+      </div>  
+    </div>
   <% else %>
     <div id="wrap">
-      <%= render 'layouts/messages' %>
+      
       <div class="shoji" id="shoji">
         <div class="shoji-rail">
           <div class="shoji-panel shoji-panel-left">
@@ -54,8 +54,6 @@
         </div>
 
       </div>
-      
-        
     </div>  
   <% end %>
   

@@ -24,6 +24,7 @@ Fustal::Application.routes.draw do
   get "posts", to: "pages#posts", as: "posts"
   get "posts/:id", to: "pages#show_post", as: "post"
 
+
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   namespace :admin do

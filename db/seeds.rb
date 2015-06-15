@@ -1,7 +1,5 @@
-Generated with RailsBricks
-Initial seed file to use with Devise User Model
 
-Temporary admin account
+# Temporary admin account
 u = User.new(
     email: "galih@gmail.com",
     password: "asdasdasd",
@@ -115,7 +113,7 @@ court_array.each do |court|
       start: "15:00",
       duration: 2,
       category: 1,
-      venue_id: court.id
+      venue_id: court.id,
       booker: u
     )
   end

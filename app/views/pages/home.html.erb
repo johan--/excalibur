@@ -4,7 +4,7 @@
   
   <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
   <p class="narrow text-center">
-    <%= current_user.current_reservations.count %> Pesanan Akan Datang
+    <%= current_user.current_reservations.count %> Reservasi
   </p>
 
   <p class="narrow text-center">
@@ -29,10 +29,7 @@
       <div>
         <i class="glyphicon glyphicon-pushpin fa-3x"></i>
         <h3>Reservasi</h3>
-        <p>
-          Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
-        </p>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myReservations">
+        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myReservations">
           Lihat Reservasi Saya
         </button>
       </div>
@@ -42,15 +39,12 @@
         <i class="fa fa-flag fa-3x"></i>
         <h3>Arena</h3>
         <p>
-          Atur akses dan tindakan yang bisa dilakukan tiap pengguna yang berkaitan.
-        </p>
-        <p>
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myArenas">
+          <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myArenas">
             Lihat Arena Favorit Saya
           </button>
         </p>
         <p>
-          <%= link_to "Lihat Daftar Arena", venues_path, class: "btn btn-info btn-lg" %>
+          <%= link_to "Lihat Daftar Arena", venues_path, class: "btn btn-info btn-md" %>
         </p>
       </div>
     </div>
