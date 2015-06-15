@@ -42,7 +42,7 @@
             </thead>
             <tbody>
             <% @firms.each_with_index do |firm, index| %>
-              <%= render partial: 'firm', locals: { firm: firm, index: index, roster: true } %>
+              <%= render partial: 'firm', locals: { firm: firm, index: index, roster: "true" } %>
             <% end %>
             </tbody>
           </table>

@@ -1,3 +1,7 @@
 <div class="phone">
-  <%= image_tag("home_screen.png", class: "img-responsive img-rounded") %>
+  <% if defined?(type) && type == 'firm' %>
+    <%= image_tag("admin.png", class: "img-responsive img-rounded") %>
+  <% else %>
+    <%= image_tag("home_screen.png", class: "img-responsive img-rounded") %>
+  <% end %>
 </div>

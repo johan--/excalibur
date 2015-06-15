@@ -84,3 +84,19 @@ Image placeholders: placemi.com
     background-color: #222;
     box-shadow: 20px 20px 40px #887;
 }
+
+.tablet {
+    position: relative;
+    /*max-width: 263px;*/
+    max-width: 231px;
+    margin: 0 auto;
+    padding: 65px 15px 55px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background-color: #222;
+    box-shadow: 20px 20px 40px #887;
+}
+
+.desktop {
+    background-color: transparent;
+}
