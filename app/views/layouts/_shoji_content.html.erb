@@ -1,56 +1,56 @@
-          <div class="content">
-            <nav class="navbar navbar-inverse square navbar-fixed-top" role="navigation" id="navbar">
-              <div class="navbar-banner">
-                <%= link_to :back do %>
-                  <i class="fa fa-chevron-left fa-2x"></i> 
-                <% end %>
-                <a href="#" class="navbar-brand">
-                  <strong><%= @title %></strong>
-                </a>
-              </div>
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle navbar-toggle-left" data-slide="right">
-                  <i class="glyphicon glyphicon-th-large"></i>
-                </button>
-                <button type="button" class="navbar-toggle navbar-toggle-right" data-slide="left">
-                  <i class="glyphicon glyphicon-cog"></i>
-                </button>
-              </div>
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle small-font" data-toggle="dropdown">
-                      <%= current_user.full_name %>
-                      <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <%= render 'layouts/rightbar_links' %>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+<div class="content">
+  <nav class="navbar navbar-inverse square navbar-fixed-top" role="navigation" id="navbar">
+    <div class="navbar-banner">
+      <%= link_to :back do %>
+        <i class="fa fa-chevron-left fa-2x"></i> 
+      <% end %>
+      <a href="#" class="navbar-brand">
+        <strong><%= @title %></strong>
+      </a>
+    </div>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle navbar-toggle-left" data-slide="right">
+        <i class="glyphicon glyphicon-th-large"></i>
+      </button>
+      <button type="button" class="navbar-toggle navbar-toggle-right" data-slide="left">
+        <i class="glyphicon glyphicon-cog"></i>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle small-font" data-toggle="dropdown">
+            <%= current_user.full_name %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <%= render 'layouts/rightbar_links' %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-            <div class="container-fluid">
-              <div class="row row-offcanvas row-offcanvas-left">
+  <div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
 
-                  <div class="hidden-xs col-sm-2 sidebar-offcanvas" id="sidebar">
-                    <ul class="nav sidebar-nav list-group panel-collapse collapse in" id="sidebar-first">
-                      <% if @firm_layout %>
-                        <%= render 'layouts/firm_sidebar' %>
-                      <% elsif @user_layout %>
-                        <%= render 'layouts/user_sidebar' %>
-                      <% end %>                
-                    </ul>
-                  </div>
+        <div class="hidden-xs col-sm-2 sidebar-offcanvas" id="sidebar">
+          <ul class="nav sidebar-nav list-group panel-collapse collapse in" id="sidebar-first">
+            <% if @firm_layout %>
+              <%= render 'layouts/firm_sidebar' %>
+            <% elsif @user_layout %>
+              <%= render 'layouts/user_sidebar' %>
+            <% end %>                
+          </ul>
+        </div>
 
-                  <div class="col-xs-12 col-sm-10 main" style="left: 1%;">
-                      <%= yield %>
-                      
-                      <%= debug(params) if Rails.env.development? %>
-                  </div>
+        <div class="col-xs-12 col-sm-10 main" style="left: 1%;">
+            <%= yield %>
+            
+            <%= debug(params) if Rails.env.development? %>
+        </div>
 
-              </div>
-            </div>
+    </div>
+  </div>
 
-          </div>
+</div>
