@@ -1,0 +1,7 @@
+<% if @firm_layout %>
+  <%= render 'layouts/firm_sidebar' %>
+<% elsif @user_layout %>
+  <%= render 'layouts/user_sidebar' %>
+<% elsif @admin_layout %>
+  <%= render 'layouts/admin_sidebar' %>
+<% end %>

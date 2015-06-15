@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   def user_layout
     @user_layout = true
   end
+  def admin_layout
+    @admin_layout = true
+  end
 
   # Devise permitted params
   def configure_permitted_parameters

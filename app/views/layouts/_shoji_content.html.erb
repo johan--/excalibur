@@ -36,11 +36,7 @@
 
         <div class="hidden-xs col-sm-2 sidebar-offcanvas" id="sidebar">
           <ul class="nav sidebar-nav list-group panel-collapse collapse in" id="sidebar-first">
-            <% if @firm_layout %>
-              <%= render 'layouts/firm_sidebar' %>
-            <% elsif @user_layout %>
-              <%= render 'layouts/user_sidebar' %>
-            <% end %>                
+            <%= render 'layouts/sidebar_options' %>        
           </ul>
         </div>
 

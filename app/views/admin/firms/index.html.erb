@@ -1,36 +1,29 @@
-<% title("Users Admin") %>
-<h1>Users <small>Admin</small></h1>
-<p><%= link_to "Back to Admin", admin_root_path %></p>
+<% title("All Firms") %>
 
-<div class="text-center">
-  <p><%= page_entries_info @firms %></p>
-  <%= paginate @firms %>
-</div>
+<div class="col-md-12 search-result">
 
-<table class="table table-striped">
-  <tr>
-    <th>User ID</th>
-    <th>Name</th>
-    <th>Created At</th>
-    <th>Category</th>
-    <th># of Venues</th>
-  </tr>
+<h3 class="text-center">Pengelola Arena Yang Terdaftar </h3>
+  <p><%= @firms.count %> hasil ditemukan</p>
+  <div class="row">
+    <div id="no-more-tables">
+      <table class="col-md-12 table-bordered table-striped table-condensed cf text-center">
+        <thead class="cf">
+          <tr>
+            <th class="text-center">Nama Bisnis</th>
+            <th class="text-center">Arena</th>
+            <th class="text-center">Kota</th>
+            <th class="text-center">Alamat</th>
+            <th class="text-center">Dibuat</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @firms.each_with_index do |firm, index| %>
+          <%= render partial: 'firms/firm', locals: { firm: firm, index: index }  %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>    
 
-  <% @firms.each do |firm| %>
-
-  <tr>
-    <td><%= firm.id %></td>
-    <td><%= firm.name %></td>
-    <td><%= time_ago_in_words(firm.created_at) %></td>
-    <td><%= firm.category %> ago</td>
-    <td><%= firm.venues %></td>
-  </tr>
-
-  <% end %>
-
-</table>
-
-<div class="text-center">
-  <p><%= page_entries_info @firms %></p>
-  <%= paginate @firms %>
+  
 </div>

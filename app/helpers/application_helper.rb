@@ -1,6 +1,6 @@
 module ApplicationHelper
   def app_name
-    return "Fols 9"
+    return "futsalHero"
   end
 
   def title(value)

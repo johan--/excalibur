@@ -34,11 +34,7 @@
           <div class="shoji-panel shoji-panel-left">
 
           <ul class="nav nav-sidebar">
-            <% if @firm_layout %>
-              <%= render 'layouts/firm_sidebar' %>
-            <% elsif @user_layout %>
-              <%= render 'layouts/user_sidebar' %>
-            <% end %>
+            <%= render 'layouts/sidebar_options' %>
           </ul>        
 
           </div>

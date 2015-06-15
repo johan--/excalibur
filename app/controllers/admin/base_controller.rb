@@ -1,5 +1,6 @@
 class Admin::BaseController < ApplicationController
   before_filter :require_admin!
+  before_action :admin_layout
 
   def index
     @last_signups = User.last_signups(10)
@@ -7,4 +8,8 @@ class Admin::BaseController < ApplicationController
     @count = User.users_count
     @post_count = Post.count
   end
+
+private
+
+
 end

@@ -1,0 +1,19 @@
+<tr>
+  <td id="name-<%= index %>"data-title="Nama"><%= firm.name %></td>
+  <td id="venues-<%= index %>"data-title="Arena"><%= firm.venues.map{ |v| v.name } %></td>
+  <td data-title="Kota"><%= firm.city %></td>
+  <td id="address-<%= index %>" data-title="Alamat"><%= firm.address %></td>
+  <td data-title="Dibuat">
+    <%= firm.created_at.to_date %>
+  </td>
+  <% if defined?(roster) && roster == 'true' %>
+  <td data-title="Bergabung">
+    <%= link_to join_firm_path(firm), confirm: 'Kamu yakin?', method: :post, class: "danger-link" do %>
+      <span class="fa-stack">
+        <i class="fa fa-square fa-stack-2x"></i>
+        <i class="fa fa-level-up fa-stack-1x fa-inverse"></i>
+      </span>
+    <% end %>
+  </td>
+  <% end %>
+</tr>
