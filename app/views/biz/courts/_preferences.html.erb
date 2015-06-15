@@ -2,7 +2,7 @@
 	<div class="col-md-3">
 		<%= court.name %>
     <span>
-      <%= link_to "Atur", preferences_biz_venue_court_path(venue, court), remote: true %>
+      <%= link_to "Atur", preferences_biz_venue_court_path(venue, court), remote: true, id: "pref-court-#{court.id}" %>
     </span>									
 	</div>
 	<div class="col-md-9">

@@ -15,7 +15,7 @@ feature "FirmChangesPreferences", :type => :feature do
   describe "into the preference form" do
     before do
       click_link "Halaman Manajemen", match: :first
-      click_link "Preferensi"   
+      click_link "Ke Halaman Preferensi"   
       select "0.75", from: "firm_pref[dp_percent]"
       click_button "Simpan"
     end

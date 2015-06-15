@@ -4,7 +4,7 @@
 	 <div class="profile">
         <div class="col-sm-12">
             <h2><%= @subscription.firm.name %></h2>
-            <p><strong>Status: </strong> <%= (@subscription.state.titleize) %></p>
+            <p id="subscription-state"><strong>Status: </strong> <%= (@subscription.state.titleize) %></p>
             <p><strong>Jenis Paket: </strong>
                 <span class="tags"><%= @subscription.category %></span> 
             </p>

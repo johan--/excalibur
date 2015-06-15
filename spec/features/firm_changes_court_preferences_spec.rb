@@ -15,7 +15,7 @@ feature "FirmChangesCourtPreferences", :type => :feature do
   describe "into the preference form", js: true do
   	before do
       click_link "Tarif"
-  		click_link "Atur", match: :first
+  		click_link "pref-court-#{venue_1.courts.last.id}"
   		# select "Minggu", from: "court_pref[day_active]"
   		fill_in "court_pref[day_increase]", with: "40000"
   		click_button "Simpan"

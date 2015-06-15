@@ -52,7 +52,13 @@ feature "UserSignsUp", :type => :feature do
 
 				it { should have_content('PT. Futsal Indonesia') }
 				it { should have_content('Bisnismu berhasil didaftarkan') }
-				it { should have_css('#subscription-state', text: 'Aktif') }
+
+				describe "subscription-state" do
+					before { click_link "Langganan", match: :first }
+				
+					it { should have_css('#subscription-state', text: 'Aktif') }
+				end
+
 				# it { should have_css('#no-venue', text: 'Daftarkan Arena') }
 			end
 
