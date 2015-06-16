@@ -7,7 +7,7 @@
   <h3 class="text-center">Masuk Ke Dalam Sesi Penggunaan</h3>
   <hr>
   <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <%= f.input :login, as: :string, label: "Email atau Nomor Telepon", class: "form-control", required: true %>
+    <%= f.input :email, as: :string, label: "Email", class: "form-control", required: true %>
     <%= f.input :password, class: "form-control", label: "Kata Kunci", placeholder: "masukkan password kamu, minimal 8 karakter", required: true %>
 
     <% if devise_mapping.rememberable? -%>

@@ -7,7 +7,7 @@ u = User.new(
     # first_name: "Galih",
     # last_name: "Muhammad",
     full_name: "Galih Muhammad",
-    phone_number: "081399279500",
+    # phone_number: "081399279500",
     category: 3,
     admin: true
 )
@@ -21,7 +21,7 @@ u.save!
     password: "1234567",
     password_confirmation: "1234567",
     full_name: "Example #{i}",
-    phone_number: "0813992795#{i}",
+    # phone_number: "0813992795#{i}",
     category: 1
   )
   # u.skip_confirmation!
@@ -38,7 +38,7 @@ manager_array = []
     password: "1234567",
     password_confirmation: "1234567",
     full_name: "Manager #{i}",
-    phone_number: "0813992795#{i}",
+    # phone_number: "0813992795#{i}",
     category: 2
   )
   # u.skip_confirmation!
@@ -112,8 +112,7 @@ court_array.each do |court|
       date_reserved: "10/05/2015",
       start: "15:00",
       duration: 2,
-      category: 1,
-      venue_id: court.id,
+      venue: court,
       booker: u
     )
   end

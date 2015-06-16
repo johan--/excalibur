@@ -32,14 +32,14 @@ class ApplicationController < ActionController::Base
       :email,
       :password,
       :password_confirmation,
-      :phone_number,
+      # :phone_number,
       :full_name
       )
     }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(
-      :login, 
+      # :login, 
       :email,
-      :phone_number,
+      # :phone_number,
       :password, 
       :remember_me
       ) 

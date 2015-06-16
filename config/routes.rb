@@ -25,7 +25,8 @@ Fustal::Application.routes.draw do
   get "posts/:id", to: "pages#show_post", as: "post"
 
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations", 
+                              :omniauth_callbacks => "omniauth_callbacks" }
 
   namespace :admin do
     root "base#index"

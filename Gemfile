@@ -36,9 +36,11 @@ gem 'ransack'
 gem 'ledermann-rails-settings'
 gem 'statesman', '~> 1.2.3'
 
-# gem "simple_calendar", "~> 1.1.0"
-# gem "fullcalendar-rails", '2.0.2.0'
 gem 'bootstrap-datepicker-rails'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google'
 
 group :development, :test do
   gem 'thin', '1.5.1'

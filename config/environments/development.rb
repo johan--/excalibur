@@ -24,6 +24,8 @@ Fustal::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.app_domain = 'localhost:3000'
+
   # Mailer
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
