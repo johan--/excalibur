@@ -27,5 +27,4 @@ doc/
 
 # Ignore application configuration
 /config/application.yml
-/config/facebook.yml
 .secret
