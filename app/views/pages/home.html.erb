@@ -7,6 +7,8 @@
     <%= current_user.current_reservations.count %> Reservasi
   </p>
 
+  <%= current_user.email if Rails.env.test? %>
+
   <p class="narrow text-center">
     <span class="label label-success"><%= current_user.current_reservations.confirmed.count %> Terkonfirmasi</span> 
     <span class="label label-info"><%= current_user.current_reservations.waiting.count %> Menunggu Konfirmasi</span>

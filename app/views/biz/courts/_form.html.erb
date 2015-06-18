@@ -2,7 +2,7 @@
   <h3>Preferensi <%= @court.name %></h3>
 </div>
 <div class="modal-body">
-    <%= simple_form_for :court_pref, url: save_preferences_biz_venue_court_path(@venue, @court), method: "put" do |f| %>
+    <%= simple_form_for :court_pref, url: save_preferences_biz_venue_court_path(@venue, @court), method: "put", html: { novalidate: true } do |f| %>
 
         <h4>Hari</h4>
         <%= f.input :day_state, collection: auto_options, as: :radio_buttons, checked: current_primeday_state(@court), label: "Status" %>        

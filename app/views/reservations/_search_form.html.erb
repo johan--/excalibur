@@ -9,8 +9,8 @@
     <%= check_box_tag "show-start-filter" %> 
   </div>
   <div class="field" id="start-filter">
-    <%= f.time_select :start_gteq, { minute_step: 60 }, include_blank: true %> -
-    <%= f.time_select :start_lteq, { minute_step: 60 }, include_blank: true %>    
+    <%= f.time_select :start_gteq, { minute_step: 60 }, include_blank: true, required: false %> -
+    <%= f.time_select :start_lteq, { minute_step: 60 }, include_blank: true, required: false %>    
   </div>
   
   <div class="field">
@@ -19,9 +19,9 @@
   </div>
 
   <div class="field" id="court-filter">
-    <%= f.input :court_id_eq, collections: @venue.courts.map{ |c| [c.name, c.id] }, label: "Lapangan" %>
+    <%= f.input :court_id_eq, collections: @venue.courts.map{ |c| [c.name, c.id] }, label: "Lapangan", required: false %>
   </div>  
   <div class="actions">
-    <%= f.submit "Cari", class: "btn btn-primary" %>
+    <%= f.button :submit, "Cari", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -17,9 +17,10 @@
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
         <% if !user_signed_in? %>
-          <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-          <li><%= link_to "Masuk", new_user_session_path %></li>
-          <li><%= link_to "Daftar", new_user_registration_path %></li>
+          <% unless Rails.env.production? %>
+            <li><%= link_to "Masuk", new_user_session_path %></li>
+            <li><%= link_to "Daftar", new_user_registration_path %></li>
+          <% end %>
         <% else %>
           <li>
             <%= link_to into_hub(current_user), class: 'navbar-brand' do %>

@@ -149,7 +149,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 8..128.
-  config.password_length = 4..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -243,7 +243,14 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
-  config.omniauth :facebook, ENV["FB_TEST_APP_ID"], ENV["FB_TEST_APP_SEC"]
+  require 'omniauth-google-oauth2'
+
+  if Rails.env.production?
+    config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SEC']
+  else  
+    config.omniauth :facebook, ENV['FB_TEST_APP_ID'], ENV['FB_TEST_APP_SEC']
+  end
+    config.omniauth :google_oauth2, ENV['GO_APP_ID'], ENV['GO_APP_SEC'], { access_type: "offline", approval_prompt: "" }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

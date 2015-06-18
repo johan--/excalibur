@@ -25,7 +25,7 @@ feature "FirmHandlesRosters", :type => :feature do
   	before do
   		click_link "+ Anggota Yang Belum Mendaftar"
       fill_in("roster[user_email]", with: "galliani@example.com")
-      fill_in("roster[user_phone]", with: "0811199194")
+      # fill_in("roster[user_phone]", with: "0811199194")
       fill_in("roster[password]", with: "foobarbaz")
       fill_in("roster[password_confirmation]", with: "foobarbaz")
       fill_in("roster[full_name]", with: "alex galliani")
@@ -40,7 +40,7 @@ feature "FirmHandlesRosters", :type => :feature do
       before do
         sign_out
         visit new_user_session_path
-        fill_in("user[login]", with: "0811199194")
+        fill_in("user[email]", with: "galliani@example.com")
         fill_in("user[password]", with: "foobarbaz")
         click_button  "Masuk"
       end
@@ -53,7 +53,8 @@ feature "FirmHandlesRosters", :type => :feature do
     before do
       click_link "+ Pengguna Yang Terdaftar"
       fill_in("roster[user_email]", with: user_2.email)
-      fill_in("roster[user_phone]", with: user_2.phone_number)
+      fill_in("roster[full_name]", with: user_2.full_name)
+      # fill_in("roster[user_phone]", with: user_2.phone_number)
       select 'Staff', from: 'roster_role'
       click_button "Simpan"     
     end
@@ -65,7 +66,7 @@ feature "FirmHandlesRosters", :type => :feature do
       before do
         sign_out
         visit new_user_session_path
-        fill_in("user[login]", with: user_2.email)
+        fill_in("user[email]", with: user_2.email)
         fill_in("user[password]", with: user_2.password)
         click_button  "Masuk"
       end

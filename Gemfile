@@ -10,12 +10,16 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
-# gem 'react-rails', '~> 1.0'
 
 gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'
+
 gem 'simple_form'
 gem 'cocoon'
+gem 'judge'
+gem 'judge-simple_form'
+# gem 'client_side_validations'
+# gem 'client_side_validations-simple_form'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -40,7 +44,7 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-google'
+gem "omniauth-google-oauth2"
 
 group :development, :test do
   gem 'thin', '1.5.1'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616004642) do
+ActiveRecord::Schema.define(version: 20150616034735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20150616004642) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "installments", force: :cascade do |t|
     t.integer  "reservation_id", null: false
@@ -207,8 +218,6 @@ ActiveRecord::Schema.define(version: 20150616004642) do
     t.string   "full_name",                              null: false
     t.datetime "deleted_at"
     t.integer  "category",               default: 1,     null: false
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -230,5 +239,6 @@ ActiveRecord::Schema.define(version: 20150616004642) do
   add_index "venues", ["firm_id"], name: "index_venues_on_firm_id", using: :btree
 
   add_foreign_key "courts", "venues"
+  add_foreign_key "identities", "users"
   add_foreign_key "venues", "firms"
 end

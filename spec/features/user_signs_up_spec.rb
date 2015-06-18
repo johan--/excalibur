@@ -18,9 +18,9 @@ feature "UserSignsUp", :type => :feature do
 				fill_in("user[password]", with: "foobarbaz")
 				fill_in("user[password_confirmation]", with: "foobarbaz")
 				fill_in("user[full_name]", with: "foobar baz")
-				fill_in("user[phone_number]", with: "009008007")
+				# fill_in("user[phone_number]", with: "009008007")
 				choose 'Pemain'
-				click_button  "Daftar"
+				click_button "Daftar"
 			end
 
 			it { should have_title('Home') }
@@ -34,7 +34,7 @@ feature "UserSignsUp", :type => :feature do
 				fill_in("user[password]", with: "foobarbaz")
 				fill_in("user[password_confirmation]", with: "foobarbaz")
 				fill_in("user[full_name]", with: "Manager1")
-				fill_in("user[phone_number]", with: "11111111")
+				# fill_in("user[phone_number]", with: "11111111")
 				choose 'Pengelola'
 				click_button  "Daftar"
 			end

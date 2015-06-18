@@ -1,4 +1,5 @@
 Fustal::Application.routes.draw do
+  mount Judge::Engine => '/judge'  
   
   resources :reservations, skip: [:new, :destroy]
   resources :installments, skip: :destroy
@@ -45,7 +46,6 @@ Fustal::Application.routes.draw do
     get "settings", to: "base#settings", as: :settings
     put "save_settings", to: "base#save_settings", as: :save_settings
     
-    get "bookings", to: "base#bookings", as: :bookings
     get "view", to: "base#view", as: :view
     put "confirm" => "base#confirm", as: :confirm
     
@@ -60,6 +60,8 @@ Fustal::Application.routes.draw do
 
     resources :payments, skip: :destroy
     resources :venues, skip: :destroy do
+      get "bookings", to: "venues#bookings", as: :bookings
+
       resources :courts, skip: :destroy do
         member do
           get 'preferences'=> "courts#preferences", as: :preferences

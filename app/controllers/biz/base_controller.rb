@@ -16,10 +16,6 @@ class Biz::BaseController < ApplicationController
     @reservation = Reservation.find_by(id: params[:res_id])
   end
 
-  def bookings
-    @reservations = Reservation.by_venue(venue).group_by { |r| r.date_reserved } 
-  end
-
   def view
     @reservation = Reservation.find_by(id: params[:res_id])
   end

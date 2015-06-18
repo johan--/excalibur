@@ -27,3 +27,12 @@ en:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "Email sudah pernah terdaftar"
+            password:
+              too_short: "Panjang minimal 6 karakter"

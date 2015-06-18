@@ -5,7 +5,7 @@ class Roster < ActiveRecord::Base
   validates_associated :user
   validates_presence_of :rosterable_type, :rosterable_id, :role
 
-  attr_accessor :user_email, :user_phone, :password, 
+  attr_accessor :user_email, :user_name, :password, 
                 :password_confirmation, :full_name
 
   before_create :check_attributes!
@@ -39,15 +39,15 @@ private
   def check_attributes!
   	if password && password_confirmation && full_name
   	  a = User.new(
-  			email: user_email, phone_number: user_phone,
+  			email: user_email, #phone_number: user_phone,
   			password: password, password_confirmation: password_confirmation,
   			full_name: full_name, category: 2
   			)
   	  a.save!
   	  self.user_id = a.id
   	else
-  	  if user_email && user_phone
-  		b =  User.find_by_email_and_phone_number(user_email, user_phone)
+  	  if user_email && full_name
+  		b =  User.find_by(email: user_email, full_name: full_name)
   			self.user_id = b.id
   	  end
   	end

@@ -1,64 +1,92 @@
 <% title("Daftar") %>
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 50px;">
   
-    <div class="container-page" style="margin-top: 50px;">        
+  <div class="container-page">
 
-    <%= simple_form_for(resource, :as => resource_name,
-          :url => registration_path(resource_name),
-          :html => { :role => "form" }) do |f| %>
-
-        <div class="form-group col-lg-12">            
-          <%= devise_error_messages! %>
-        </div>
-
-      <div class="col-md-6">
-        <div class="col-lg-12">
-          <h3 class="dark-grey text-center">Registrasi Pengguna</h3>
-          <hr>
-        </div>
-
-          <div class="form-group col-lg-12">
-            <%= f.input :category, collection: user_categories, as: :radio_buttons, label: "Jenis Pengguna", required: true %>
-          </div>
-
-          <div class="form-group col-lg-12">
-            <%= f.input :email, class: "form-control", placeholder: "ini akan digunakan untuk kontak dan login", required: true %>
-          </div>
-          
-          <div class="form-group col-lg-12">
-            <%= f.input :password, class: "form-control", input_html: { maxlength: 20, minlength: 6 }, label: 'Kata Kunci', placeholder: "panjang minimal 8 karakter, huruf, angka, atau campurannya", required: true %>
-          </div>
-          
-          <div class="form-group col-lg-12">
-            <%= f.input :password_confirmation, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true %>
-          </div>
-                  
-          <div class="form-group col-lg-12">
-            <%= f.input :full_name, label: "Nama Lengkap", class: "form-control", help: "Jika tidak ada nama belakang,", required: true %>
-          </div>
-      </div>
-    
-      <div class="col-md-6">
-        <div class="col-lg-12">
-          <h3 class="dark-grey text-center">Syarat dan Ketentuan</h3>
-          <hr>
-          <p>
-            Dengan mengklik tombol "Daftar" di bawah ini, kamu telah menyetujui syarat dan ketentuan penggunaan aplikasi ini.
-          </p>
-          <p>
-            Setelah mendaftar, kamu akan mendapatkan masa penggunaan gratis selama 30 hari. Di hari 31, kamu harus memilih untuk melanjutkan penggunaan aplikasi ini (kami harap kamu melanjutkan ^_^) dengan membayar atau tidak melanjutkan penggunaan. Akun dan semua catatan yang telah kamu buat akan disimpan selama 90 hari sebelum akhirnya dihapus.
-          </p>
-          <p>
-            Cara pembayaran hanyalah dengan transfer bank, melalui atm ataupun teller bank. Kami tidak akan pernah meminta dan menyimpan data rekening yang sensitif seperti nomor PIN atau nomor kartu kredit kamu.
-          </p>
-
-          <%= f.button :submit, "Daftar", class: "btn btn-block btn-primary", data: {disable_with: "Sedang didaftarkan...."} %>
-        </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
       
-      </div>
-      <% end %>
+      <div class="tabbable-panel" style="margin-top: 50px;">
+        <div class="tabbable-line">
 
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_default_1">
+              
+              <h3 class="text-center">Masuk dengan akun</h3>
+              <div class="omb_login">
+                <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                  <div class="col-xs-6 col-sm-3">
+                    <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-lg btn-block omb_btn-facebook" do %>
+                      <i class="fa fa-facebook visible-xs"></i>
+                      <span class="hidden-xs">Facebook</span>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <%= link_to user_omniauth_authorize_path(:google_oauth2), class: "btn btn-lg btn-block omb_btn-google" do %>
+                      <i class="fa fa-google-plus visible-xs"></i>
+                      <span class="hidden-xs">Google+</span>
+                    <% end %>
+                  </div>  
+                </div>
+                <div class="row omb_row-sm-offset-3 omb_loginOr">
+                  <div class="col-xs-12 col-sm-6">
+                    <hr class="omb_hrOr">
+                    <span class="omb_spanOr">atau</span>
+                  </div>
+                </div>                
+              </div>            
+
+              <h3 class="text-center">Buat akun baru</h3>
+
+              <%= render 'form' %>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      </div>
     </div>
+
+
+  </div>
   
 </div>
+<script language="JavaScript">
+  judgeValidateForm($('#new_user'));
+  function asyncValidateInput(elm) {
+    var dfd = new $.Deferred();
+    var q = judge.validate(elm,function(element, status, messages){
+      if(status == 'valid'){
+        element.style.border = '';
+        $(element).parent().find('.field_with_errors').remove();
+        dfd.resolve();
+      }else if(status == 'invalid'){
+        element.style.border = '1px solid red';
+        $(element).parent().find('.field_with_errors').remove();
+        $(element).after('<p class="field_with_errors">' + messages.join(',') + '</p>');
+        dfd.reject();
+      }
+    });
+    if(q.validations.length == 0){
+      dfd.resolve();
+    }
+    return dfd;
+  }
+  function judgeValidateForm(frm) {
+    $(frm).submit(function (e) {
+      e.preventDefault();
+      $(frm).find('.field_with_errors').remove();
+      var defers = [];
+      $(frm).find('.form-control').each(function (idx, elm) {
+        defers.push(asyncValidateInput(elm));
+      });
+      $.when.apply($, defers).done(function() {
+        $(frm).unbind('submit');
+        $(frm).submit();
+      });
+    });
+  }
+</script>

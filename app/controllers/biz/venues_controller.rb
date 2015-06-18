@@ -4,6 +4,10 @@ class Biz::VenuesController < Biz::BaseController
 
   respond_to :html, :js
 
+  def bookings
+    @reservations = Reservation.by_venue(params[:venue_id]).group_by { |r| r.date_reserved } 
+  end
+
   def show
   end
 

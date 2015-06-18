@@ -7,11 +7,7 @@
     	<% unless defined?(edit) && edit %>
 		    <div class="col-xs-12" data-toggle="tooltip" 
 		        title="masukkan alamat email milik rekan kerja yang telah terdaftar di situs ini">
-		    <%= f.input :user_email, as: :email, label: "Email Rekan Kerja", required: true %>
-		    </div>
-		    <div class="col-xs-12" data-toggle="tooltip" 
-		        title="masukkan nomor telepon milik rekan kerja yang telah terdaftar di situs ini">
-		    <%= f.input :user_phone, as: :tel, label: "Nomor Telepon Rekan Kerja", required: true %>
+		    <%= f.input :user_email, as: :email, label: "Email Rekan", required: true %>
 		    </div>
 	    <% end %>
 	    <% if defined?(register) && register %>
@@ -23,10 +19,10 @@
             <%= f.input :password_confirmation, as: :password, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true %>
           </div>
                   
+	    <% end %>
           <div class="col-xs-12 col-sm-12">
             <%= f.input :full_name, as: :string, label: "Nama Lengkap", class: "form-control", required: true %>
           </div>
-	    <% end %>
 
 	    <div class="col-xs-12" data-toggle="tooltip" 
 	        title="peran akan menentukan sejauh mana akses yang diberikan">
