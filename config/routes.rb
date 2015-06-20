@@ -1,6 +1,13 @@
 Fustal::Application.routes.draw do
   mount Judge::Engine => '/judge'  
   
+  namespace :api, :path => "", defaults: { format: :json }  do  
+    namespace :v1 do
+      resources :reservations, skip: [:new, :destroy]
+    end
+  end 
+
+  resources :reservations, skip: [:new, :destroy]
   resources :reservations, skip: [:new, :destroy]
   resources :installments, skip: :destroy
   

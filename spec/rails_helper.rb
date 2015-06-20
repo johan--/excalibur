@@ -12,7 +12,8 @@ Capybara.server do |app, port|
   Rack::Handler::Thin.run(app, :Port => port)
 end
 require 'support/omniauth_macros'
-require 'support/utilities'
+require 'support/features_helpers'
+require 'support/requests_helpers'
 require 'support/database_cleaner'
 OmniAuth.config.test_mode = true
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -37,7 +38,7 @@ OmniAuth.config.test_mode = true
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

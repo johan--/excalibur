@@ -25,6 +25,7 @@ FactoryGirl.define do
 		        	user: evaluator.user)
 		      end				
 			end
+
 		end
 
 		factory :indirect_booking do

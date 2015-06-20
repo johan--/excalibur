@@ -105,11 +105,9 @@ private
 
 	def set_attribute!
 		self.finish = start + duration.to_i.hours
-    self.charge = self.court.price * self.duration
+    find_court = Court.find_by(id: court_id)
+    self.charge = find_court.price * self.duration
 	end
-
-  def check_prime_time_day
-  end
 
 
 end
