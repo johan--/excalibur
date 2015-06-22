@@ -26,42 +26,68 @@ describe "reservations API", :type => :request do
     expect(response).to be_success            # test for the 200 status-code
     json = JSON.parse(response.body)
    
-    # expect(json['start']).to eq(book_4.start) 
-    # expect(json['finish']).to eq(book_4.finish) 
     expect(json['state']).to eq(book_4.state) 
   end
 
   describe "POST 'create' " do
-  	let!(:venue_2) { FactoryGirl.create(:cap_venue_with_firm) }
-  	let!(:court_5) { FactoryGirl.create(:court, venue: venue_2) }
+  	let!(:court_5) { FactoryGirl.create(:court, venue: venue) }
   	let!(:book_1) { FactoryGirl.create(:user_booking, court: court_5) }
-  	let(:api_request) { { format: :json } }
-
-  	before :each do
-  		api_request.merge attributes_for(:reservation)
-  	end
 
     context "valid reservation" do
       it "returns a successful json string with success message" do
-        	post api_v1_reservations_path( 
+        post api_v1_reservations_path, {
         	:reservation => { date_reserved: book_1.date_reserved,
         	start: book_1.start, duration: book_1.duration, 
-        	court_id: court_5.id })
+        	court_id: court_5.id } }.to_json, {'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
 
-        expect(response).to be_success
-        parsed_response = JSON.parse(response.body)
-        expect(parsed_response['success']).to eq("Reservasi berhasil dibuat")
+        expect(response.status).to eq(201)
+        # expect(response.message).to eq("Reservasi berhasil dibuat")
       end
     end
 
-    # context "incorrect email format" do
-    #   it "returns an error if an incorrect email format is submitted" do
-    #     post :create, { email: "new@studentexample" }
-    #     parsed_response = JSON.parse(response.body)
-    #     expect(response).to be_bad_request
-    #     expect(parsed_response['invalid']).to eq("Invalid email format.")
+    # context "invalid reservation" do
+    #   it "returns an error response" do
+    #     post api_v1_reservations_path, {
+    #     	:reservation => { date_reserved: book_1.date_reserved,
+    #     	start: book_1.start, duration: book_1.duration, 
+    #     	court_id: book_1.court_id, charge: "0" } }.to_json, 
+    #     	{'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+
+    #     expect(response.status).to eq(422)
     #   end
     # end
+  end
+
+  describe "PUT 'update' " do
+  	context "valid update" do
+	  it "updates successfully" do
+	    put api_v1_reservation_path(book_4.id), {
+	    	:reservation => { start: "18:00" } }.to_json, 
+	    	{'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+
+	    expect(response.status).to eq(200)
+	    # expect(response.message).to eq("Reservasi berhasil dibuat")
+	  end
+	end
+
+ #  	context "invalid update" do
+	#   it "returns an error response" do
+	#     put api_v1_reservation_path(book_4.id), {
+	#     	:reservation => { booker_id: '50' } }.to_json, 
+	#     	{'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+
+	#     expect(response.status).to eq(422)
+	#   end
+	# end
+  end
+
+  it 'DELETE /listings/:id.json' do
+    delete api_v1_reservation_path(book_4.id), { 
+      :reservation => {id: book_4.id} }.to_json, 
+      {'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+
+	# expect(Reservation.where(id: book_4.id)).to be_empty
+	expect(response.status).to eq(200)
   end
 
 end

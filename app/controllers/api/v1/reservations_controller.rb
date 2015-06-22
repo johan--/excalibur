@@ -2,8 +2,7 @@ module API
   module V1
     class ReservationsController < ApplicationController
       before_action :set_reservation, only: [:show, :edit, :update, 
-                                              :confirm]
-      before_action :user_layout
+                                             :destroy, :confirm]
 
       def index
         @reservations = current_user.reservations
@@ -20,8 +19,7 @@ module API
         @reservation.booker = current_user
         
         if @reservation.save
-          render 'show', formats: [:json], handlers: [:jbuilder], status: 201
-          flash[:success] = 'Reservasi berhasil dibuat'
+          render json: @reservation, status: 201, message: 'Reservasi berhasil dibuat'
         else
           render json: {error: "Reservasi tidak bisa dibuat"}, status: 422
         end
@@ -29,7 +27,7 @@ module API
 
       def update        
         if @reservation.update(reservation_params)
-          render 'show', formats: [:json], handlers: [:jbuilder], status: 200
+          render json: @reservation, status: 200, message: 'Reservasi berhasil dikoreksi'
         else
           render json: {error: "Reservasi gagal dikoreksi"}, status: 422
         end
@@ -52,7 +50,8 @@ module API
 
         def reservation_params
           params.require(:reservation).permit(
-            :date_reserved, :start, :finish, :court_id, :court
+            :date_reserved, :start, :duration, 
+            :court_id, :court#, :booker, :booker_type, :booker_id
           )
         end
     end

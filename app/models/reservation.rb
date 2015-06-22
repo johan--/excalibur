@@ -6,11 +6,9 @@ class Reservation < ActiveRecord::Base
   belongs_to :court
   belongs_to :booker, polymorphic: true
 
-  # scope :cancelled, -> { where(state: cancelled) }
-  # scope :completed, -> { where(state: completed) }
+  validates_numericality_of :booker_id, :court_id, :duration
 
-  default_scope { order(date_reserved: :asc) }
-  
+  default_scope { order(date_reserved: :asc) }  
   scope :paid, -> { where(state: ['confirmed', 'completed', 'cancelled']) }
   scope :unpaid, -> { where(state: ['pending']) }
   scope :confirmed, -> { where(state: ['confirmed']) }
@@ -34,9 +32,7 @@ class Reservation < ActiveRecord::Base
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
            to: :state_machine
 
-  # def chargeable
-  #  Reservation.in_state(:confirmed, :completed)
-  # end
+
 
   def code
     date = date_reserved.strftime("%d/%m/%Y")

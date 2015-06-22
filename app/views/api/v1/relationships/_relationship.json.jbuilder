@@ -1,0 +1,5 @@
+json.id relationship.id
+json.follower_id relationship.follower_id
+json.followed_type relationship.followed_type
+json.followed_id relationship.followed_id
+json.created_at relationship.created_at
