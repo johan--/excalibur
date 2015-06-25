@@ -1,9 +1,9 @@
 class API::V1::UsersController < API::V1::BaseController
-  skip_before_action :authenticate_with_token!, only: [:create]
+  skip_before_action :authenticate_with_token!, only: [:create, :show]
 
   def show
-	@user = User.find(params[:id])
-	# respond_with User.find(params[:id])
+	  @user = User.find(params[:id])
+	  # respond_with User.find(params[:id])
   end
 
   def create
