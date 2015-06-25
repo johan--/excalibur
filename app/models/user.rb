@@ -36,8 +36,11 @@ class User < ActiveRecord::Base
   # validates_presence_of :category, :email, :password, :password_confirmation
   validates :email, :presence => true
   validates :full_name, :presence => true
-  
+  validates :auth_token, uniqueness: true
+
+  before_create :set_auth_token!
   before_save :up_full_name
+
 
   def operator?
     return true if self.category == 2
@@ -110,17 +113,6 @@ class User < ActiveRecord::Base
       where("admin = ? AND locked = ?",false,false).count
     end
 
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions.to_hash).where(
-        ["lower(phone_number) = :value OR lower(email) = :value", 
-        { :value => login.downcase }]
-      ).first
-    else
-      where(conditions.to_hash).first
-    end
-  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
@@ -153,7 +145,6 @@ class User < ActiveRecord::Base
         user.save!
       end
     end
-
     # Associate the identity with the user if needed
     if identity.user != user
       identity.user = user
@@ -165,11 +156,23 @@ class User < ActiveRecord::Base
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
+ 
 
-private
+# private
 
   def up_full_name
     self.full_name = full_name.titleize
+  end
+
+  def set_auth_token!
+    begin
+      self.auth_token = generate_auth_token!
+    end while self.class.exists?(auth_token: auth_token)    
+  end
+
+  def generate_auth_token!
+    # SecureRandom.base64.tr('+/=', 'Qrt')
+    SecureRandom.uuid.gsub(/\-/,'')
   end
 
 end

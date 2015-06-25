@@ -42,6 +42,8 @@ gem 'statesman', '~> 1.2.3'
 
 gem 'bootstrap-datepicker-rails'
 
+# Devise: https://github.com/plataformatec/devise
+gem 'devise', '3.4.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
@@ -75,9 +77,6 @@ end
 
 # PostgreSQL
 gem 'pg'
-
-# Devise: https://github.com/plataformatec/devise
-gem 'devise', '3.4.1'
 
 # Redcarpet: https://github.com/vmg/redcarpet
 gem 'redcarpet', '3.2.2'

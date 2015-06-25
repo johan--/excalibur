@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
 
-  before_action :detect_device_format
+  before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
   before_filter :authenticate_user!, unless: :devise_controller?  
   before_filter :normal_nav, if: :devise_controller?
   
+
   def disable_nav
     @disable_nav = true
   end

@@ -1,37 +1,47 @@
 require 'rails_helper'
 
-describe "relationships API", :type => :request do
+describe API::V1::RelationshipsController do
   let!(:user) { FactoryGirl.create(:player) }
   let!(:user_2) { FactoryGirl.create(:player) }
   let!(:venue) { FactoryGirl.create(:cap_venue_with_firm) }
   let!(:following) { FactoryGirl.create(:follow, follower: user, 
                                               followed: user_2) }
 
-  before do 
-  	login user 
+  before(:each) do 
+    api_authorization_header(user.auth_token)
   end
 
-  it 'sends a list of relationships' do
-    get '/v1/relationships'
+  describe "GET #index" do
+    context "when pass in with current user" do
+      
+      it 'sends a list of relationships' do
+        get :index, format: :json
 
-    expect(response).to be_success            # test for the 200 status-code
-    json = JSON.parse(response.body)
-    expect(json['relationships'].length).to eq(1) # check to make sure the right amount of relationships are returned
+        expect(response).to be_success # test for the 200 status-code
+        # json = JSON.parse(response.body)
+        # expect(json['relationships'].length).to eq(1) 
+      end
+
+    end
   end
 
-  it 'shows attributes of a relationships' do
-    get api_v1_relationship_path(following.id)
+  describe "GET #show" do
+    context "when passed in a relationship id" do
+      it 'shows attributes of a relationships' do
+        get :show, { id: following.id, format: :json }
 
-    expect(response).to be_success            # test for the 200 status-code
+        expect(response).to be_success            
+      end
+    end
   end
 
   describe "POST 'create' " do
     context "valid relationship" do
       it "returns a successful json string with success message" do
-        post api_v1_relationships_path, {
+        post :create, {
         	:relationship => { follower_id: user.id,
-        	followed_type: venue.class.name, followed_id: venue.id} 
-          }.to_json, {'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+        	followed_type: venue.class.name, followed_id: venue.id}, 
+          format: :json }
 
         expect(response.status).to eq(201)
       end
@@ -50,12 +60,14 @@ describe "relationships API", :type => :request do
     # end
   end
 
-  it 'DELETE /listings/:id.json' do
-    delete api_v1_relationship_path(following.id), { 
-      :relationship => {id: following.id} }.to_json, 
-      {'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
+  describe "POST #destroy " do
+    context "valid request" do
+      it 'deletes successfully' do
+        delete :destroy, { id: following.id, format: :json }
 
-	  expect(response.status).to eq(200)
+    	  expect(response.status).to eq(200)
+      end
+    end
   end
 
 end
