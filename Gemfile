@@ -18,8 +18,6 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'judge'
 gem 'judge-simple_form'
-# gem 'client_side_validations'
-# gem 'client_side_validations-simple_form'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -27,9 +25,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'kaminari', '0.16.2'
 # Friendly_id: https://github.com/norman/friendly_id
 gem 'friendly_id', '5.1.0'
-# Font-awesome: https://github.com/FortAwesome/font-awesome-sass
+
 gem 'font-awesome-sass', '4.2.2'
-# Bootstrap 3: https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass', '3.3.3'
 
 gem 'goldiloader'
@@ -55,17 +52,14 @@ end
 group :development, :test do
   gem 'byebug', '3.5.1'
   gem 'web-console', '2.0.0'
-
-  # Figaro: https://github.com/laserlemon/figaro
   gem 'figaro', '1.0.0'
-
-  # Spring: https://github.com/rails/spring
   gem 'spring', '1.2.0'
 end
 
 group :test, :development do
 	gem 'rspec-rails', '3.1.0'
 	gem 'capybara', '~> 2.2.0'
+  gem "shoulda-matchers"
 	gem 'factory_girl_rails', '4.5.0'
 	gem 'database_cleaner', '1.3.0'
   # gem 'faker', '~> 1.4.3'

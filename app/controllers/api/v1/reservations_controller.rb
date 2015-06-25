@@ -3,8 +3,8 @@ class API::V1::ReservationsController < API::V1::BaseController
                                          :destroy, :confirm]
 
   def index
-    # @reservations = @current_user.reservations
-    @reservations = Reservation.all
+    @reservations = @current_user.reservations
+    render json: @reservations#, meta: pagination(products, params[:per_page])
   end
 
   def show
@@ -18,7 +18,7 @@ class API::V1::ReservationsController < API::V1::BaseController
     @reservation.booker = @current_user
     
     if @reservation.save
-      render json: @reservation, status: 201, message: 'Reservasi berhasil dibuat'
+      render json: @reservation, status: 201, message: 'Reservasi berhasil dibuat', location: [:api, @reservation] 
     else
       render json: {error: "Reservasi tidak bisa dibuat"}, status: 422
     end
@@ -26,7 +26,7 @@ class API::V1::ReservationsController < API::V1::BaseController
 
   def update        
     if @reservation.update(reservation_params)
-      render json: @reservation, status: 200, message: 'Reservasi berhasil dikoreksi'
+      render json: @reservation, status: 200, message: 'Reservasi berhasil dikoreksi', location: [:api, @reservation] 
     else
       render json: {error: "Reservasi gagal dikoreksi"}, status: 422
     end

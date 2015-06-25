@@ -13,14 +13,19 @@ describe API::V1::ReservationsController do
   end
 
   describe "GET #index" do
-    context "when valid" do
-      it 'sends a list of reservations' do
-        get :index, format: :json
+    before(:each) { get :index, format: :json }
 
+    context "when valid" do
+
+      it 'sends a list of reservations' do
         expect(response).to be_success
-        # json = JSON.parse(response.body)
-        # expect(json['reservations'].length).to eq(1) 
       end
+
+      # it 'shows the right amount of reservations' do
+      #   json = JSON.parse(response.body)
+      #   expect(json['reservations'].length).to eq(1)
+      # end
+
     end
   end
 
@@ -30,8 +35,7 @@ describe API::V1::ReservationsController do
         get :show, { id: book_4.id, format: :json }
 
         expect(response).to be_success
-        # json = JSON.parse(response.body)
-       
+        # json = JSON.parse(response.body)       
         # expect(json['state']).to eq(book_4.state) 
       end
     end
@@ -93,7 +97,7 @@ describe API::V1::ReservationsController do
       it 'DELETE /listings/:id.json' do
         delete :destroy, { id: book_4.id, format: :json }
 
-    	# expect(Reservation.where(id: book_4.id)).to be_empty
+    	expect(Reservation.where(id: book_4.id)).to be_empty
     	expect(response.status).to eq(200)
       end
     end
