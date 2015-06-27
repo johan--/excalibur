@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
   before_create :set_auth_token!
   before_save :up_full_name
 
+  scope :players, -> { where(category: 1) }
+  scope :operators, -> { where(category: 2) }
 
   def operator?
     return true if self.category == 2

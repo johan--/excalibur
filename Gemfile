@@ -18,8 +18,6 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'judge'
 gem 'judge-simple_form'
-# gem 'client_side_validations'
-# gem 'client_side_validations-simple_form'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -65,6 +63,7 @@ end
 
 group :test, :development do
 	gem 'rspec-rails', '3.1.0'
+  gem "shoulda-matchers"
 	gem 'capybara', '~> 2.2.0'
 	gem 'factory_girl_rails', '4.5.0'
 	gem 'database_cleaner', '1.3.0'

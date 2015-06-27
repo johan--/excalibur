@@ -1,9 +1,12 @@
 class API::V1::UsersController < API::V1::BaseController
   skip_before_action :authenticate_with_token!, only: [:create, :show]
 
+  def index
+    @users = User.players.all
+  end
+
   def show
 	  @user = User.find(params[:id])
-	  # respond_with User.find(params[:id])
   end
 
   def create
@@ -18,11 +21,11 @@ class API::V1::UsersController < API::V1::BaseController
   def update
     @user = User.find(params[:id])
 
-	if @user.update(user_params)
-	  render json: @user, status: 200, message: 'Pengguna berhasil dikoreksi'
-	else
-	  render json: { errors: 'Pengguna gagal dikoreksi' }, status: 422
-	end
+  	if @user.update(user_params)
+  	  render json: @user, status: 200, message: 'Pengguna berhasil dikoreksi'
+  	else
+  	  render json: { errors: 'Pengguna gagal dikoreksi' }, status: 422
+  	end
   end
 
   private
