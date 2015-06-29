@@ -1,6 +1,12 @@
 class API::V1::SessionsController < API::V1::BaseController
   skip_before_action :authenticate_with_token!, only: [:create]
 
+  api :POST, "/sessions", "Create a new session for user"
+  description "Log in user via the API and pass in the authentication token for request into header"
+  param :session, Hash do
+    param :email, String
+    param :password, String
+  end
   def create
     user_password = params[:session][:password]
     user_email = params[:session][:email]
@@ -16,6 +22,8 @@ class API::V1::SessionsController < API::V1::BaseController
     end
   end
 
+  api :DELETE, "/sessions/:id", "Regenerate an authentication token"
+  description "Instead of signing out, generate a new authentication token"
   def destroy
     user = User.find_by(auth_token: params[:id])
     user.set_auth_token!

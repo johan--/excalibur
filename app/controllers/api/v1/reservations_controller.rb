@@ -2,17 +2,25 @@ class API::V1::ReservationsController < API::V1::BaseController
   before_action :set_reservation, only: [:show, :edit, :update, 
                                          :destroy, :confirm]
 
+  api :GET, "/reservations", "List all reservations made by the current user"
+  description "List all the reservations made by the current user (the authenticated user)"
   def index
-    # @reservations = @current_user.reservations
-    @reservations = Reservation.all
+    @reservations = @current_user.reservations
   end
 
+  api :GET, "/reservations/:id", "Show a single reservation"
+  description "Show a single reservation made by current user and its attributes"
   def show
   end
 
-  def edit
+  api :POST, "/reservations", "Create a new reservation"
+  description "Create reservation by the current user"
+  param :reservation, Hash do
+    param :date_reserved, String, "Email of the user", required: true
+    param :start, String, "Password of the user", required: true
+    param :duration, Decimal, "Password confirmation of the user", required: true
+    param :court_id, Integer, "Name of the user", required: true
   end
-
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.booker = @current_user

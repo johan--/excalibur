@@ -79,6 +79,7 @@ gem 'pg'
 
 # Redcarpet: https://github.com/vmg/redcarpet
 gem 'redcarpet', '3.2.2'
+gem 'apipie-rails'
 
 # Veritrans
 gem 'veritrans'
