@@ -80,6 +80,9 @@ gem 'pg'
 # Redcarpet: https://github.com/vmg/redcarpet
 gem 'redcarpet', '3.2.2'
 
+# Veritrans
+gem 'veritrans'
+
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
