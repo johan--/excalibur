@@ -16,12 +16,6 @@ FactoryGirl.define do
       end
     end
 
-    # factory :firm_with_subscription do
-    #   after(:create) do |firm, evaluator|
-    #     FactoryGirl.create(:active_1_mo, firm: firm)
-    #   end            
-    # end    
-
     trait :with_subscription do
       after(:create) do |firm, evaluator|
         FactoryGirl.create(:active_1_mo, firm: firm)

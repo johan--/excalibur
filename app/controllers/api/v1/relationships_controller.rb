@@ -1,15 +1,15 @@
 class API::V1::RelationshipsController < API::V1::BaseController
 
   def index
-  	@relationships = current_user.relationships.by_user(current_user.id)
+  	@relationships = Relationships.by_user(@current_user.id)
   end
 
   def show
-  	@relationship = Relationship.find(params[:id])
+  	@relationship = @current_user.relationships.find(params[:id])
   end
 	
   def create
-	@relationship = Relationship.new(relationship_params)
+	  @relationship = Relationship.new(relationship_params)
 
     if @relationship.save
       render json: @relationship, status: 201, message: 'Hubungan berhasil dibuat'
@@ -19,8 +19,8 @@ class API::V1::RelationshipsController < API::V1::BaseController
   end
 
   def destroy
-	@relationship = Relationship.find(params[:id])
-	@relationship.destroy
+	  @relationship = Relationship.find(params[:id])
+	  @relationship.destroy
 
     if @relationship.destroy
       render json: {}, status: 200

@@ -14,8 +14,10 @@ Fustal::Application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :reservations, except: [:edit, :new]
       resources :relationships, only: [:index, :show, :create, :destroy]
-      resources :venues, except: [:new, :edit]
-      resources :courts, except: [:new, :edit]
+      resources :venues, except: [:new, :edit, :destroy]
+      resources :courts, except: [:new, :edit, :destroy]
+      resources :firms, except: [:new, :edit, :destroy]
+      resources :installments, except: [:index, :new, :edit, :destroy]
     end
   end 
 

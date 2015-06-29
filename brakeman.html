@@ -1,0 +1,682 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Brakeman Report</title>
+  <script>
+    function toggle(context) {
+      var elem = document.getElementById(context);
+
+      if (elem.style.display != "block")
+        elem.style.display = "block";
+      else
+        elem.style.display = "none";
+
+      elem.parentNode.scrollIntoView();
+    }
+  </script>
+  <style>
+    /* CSS style used for HTML reports */
+
+body {
+  font-family: sans-serif;
+  color: #161616;
+}
+
+a {
+  color: #161616;
+}
+
+p {
+  font-weight: bold;
+  font-size: 11pt;
+  color: #2D0200;
+ }
+
+ th {
+   background-color: #980905;
+   border-bottom: 5px solid #530200;
+   color: white;
+   font-size: 11pt;
+   padding: 1px 8px 1px 8px;
+ }
+
+ td {
+   border-bottom: 2px solid white;
+   font-family: monospace;
+   padding: 5px 8px 1px 8px;
+ }
+
+ table {
+   background-color: #FCF4D4;
+   border-collapse: collapse;
+ }
+
+ h1 {
+   color: #2D0200;
+   font-size: 14pt;
+ }
+
+ h2 {
+   color: #2D0200;
+   font-size: 12pt;
+ }
+
+ span.high-confidence {
+   font-weight:bold;
+   color: red;
+ }
+
+ span.med-confidence {
+ }
+
+ span.weak-confidence {
+   color:gray;
+ }
+
+ div.warning_message {
+   cursor: pointer;
+ }
+
+ div.warning_message:hover {
+   background-color: white;
+ }
+
+ table caption {
+   background-color: #FFE;
+   padding: 2px;
+ }
+
+ table.context {
+   margin-top: 5px;
+   margin-bottom: 5px;
+   border-left: 1px solid #90e960;
+   color: #212121;
+ }
+
+ tr.context {
+   background-color: white;
+ }
+
+ tr.first {
+   border-top: 1px solid #7ecc54;
+   padding-top: 2px;
+ }
+
+ tr.error {
+  background-color: #f4c1c1 !important
+ }
+
+ tr.near_error {
+  background-color: #f4d4d4 !important
+ }
+
+ tr.alt {
+   background-color: #e8f4d4;
+ }
+
+ td.context {
+   padding: 2px 10px 0px 6px;
+   border-bottom: none;
+ }
+
+ td.context_line {
+   padding: 2px 8px 0px 7px;
+   border-right: 1px solid #b3bda4;
+   border-bottom: none;
+   color: #6e7465;
+ }
+
+ pre.context {
+   margin-bottom: 1px;
+ }
+
+ .user_input {
+   background-color: #fcecab;
+ }
+
+ div.render_path {
+   display: none;
+   background-color: #ffe;
+   padding: 5px;
+   margin: 2px 0px 2px 0px;
+ }
+
+ div.template_name {
+   cursor: pointer;
+ }
+
+ div.template_name:hover {
+   background-color: white;
+ }
+
+  </style>
+</head>
+<body>
+
+<h1>Brakeman Report</h1>
+<table>
+  <tr>
+    <th>Application Path</th>
+    <th>Rails Version</th>
+    <th>Brakeman Version</th>
+    <th>Report Time</th>
+    <th>Checks Performed</th>
+  </tr>
+  <tr>
+    <td>c:/Users/Galliani/repos/fustal</td>
+    <td>4.2.0</td>
+    <td>3.0.5
+    <td>
+      2015-06-27 17:06:56 +0700<br><br>
+      14.431826 seconds
+    </td>
+    <td>BasicAuth, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing</td>
+  </tr>
+</table>
+<br>
+<h2 id='summary'>Summary</h2>
+<table>
+  <tr>
+    <th>Scanned/Reported</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>Controllers</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>Models</td>
+    <td>14</td>
+  </tr>
+  <tr>
+    <td>Templates</td>
+    <td>127</td>
+  </tr>
+  <tr>
+    <td>Errors</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Security Warnings</td>
+    <td>6 <span class='high-confidence'>(0)</span></td>
+  </tr>
+  
+  <tr>
+    <td>Ignored Warnings</td>
+    <td>0</td>
+  </tr>
+  
+</table>
+<br>
+<table>
+  <tr>
+    <th>Warning Type</th>
+    <th>Total</th>
+  </tr>
+  
+  <tr>
+    <td>Authentication</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Cross Site Scripting</td>
+    <td>3</td>
+  </tr>
+  
+  <tr>
+    <td>Cross-Site Request Forgery</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Denial of Service</td>
+    <td>1</td>
+  </tr>
+  
+</table>
+<br>
+<h2>Security Warnings</h2>  
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Class</th>
+    <th>Method</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/7VlB_pck3hU/3QZrGIaQW6cJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context1');toggle('message1');toggle('full_message1')" >Rails 4.2.0 does not encode JSON keys (CVE-2015-3226). Upgrade to Rails version 4.2.2 near line 174<table id='context1' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>169</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    polyamorous (1.2.0)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (&gt;= 3.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack (1.6.1)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.3)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>175</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>176</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>177</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionview (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>178</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activejob (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>179</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activemodel (= 4.2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/bahr2JLnxvk/x4EocXnHPp8J">Denial of Service</a></td>
+    <td><div class='warning_message' onClick="toggle('context2');toggle('message2');toggle('full_message2')" ><span id='message2' style='display:block' >Rails 4.2.0 is vulnerable to denial of service via XML parsing (CVE-2015-3227). Upgrade to Rails vers...</span><span id='full_message2' style='display:none'>Rails 4.2.0 is vulnerable to denial of service via XML parsing (CVE-2015-3227). Upgrade to Rails version 4.2.2 near line 174</span><table id='context2' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>169</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    polyamorous (1.2.0)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (&gt;= 3.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack (1.6.1)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.3)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>175</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>176</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>177</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionview (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>178</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activejob (= 4.2.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>179</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activemodel (= 4.2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+</table>
+<p>Controller Warnings</p>
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Controller</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>PagesController</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/authentication/">Authentication</a></td>
+    <td><div class='warning_message' onClick="toggle('context4');toggle('message4');toggle('full_message4')" ><span id='message4' style='display:block' >Use whitelist (:only =&gt; [..]) when skipping authentication near line 2: skip_before_action(:authentic...</span><span id='full_message4' style='display:none'>Use whitelist (:only =&gt; [..]) when skipping authentication near line 2: skip_before_action(:authenticate_user!, :except =&gt; ([:home, :contact]))</span><table id='context4' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/app/controllers/pages_controller.rb</caption>        <tr class='context first near_error'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>class PagesController &lt; ApplicationController</pre>
+          </td>
+        </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>2</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  skip_before_action :authenticate_user!, except: [</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>3</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    :home, :contact</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>4</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  ]</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_action :disable_nav, only: :landing</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_action :normal_nav, only: :posts</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_action :user_layout, only: [:home, :contact]</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>ApplicationController</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/">Cross-Site Request Forgery</a></td>
+    <td><div class='warning_message' onClick="toggle('context3');toggle('message3');toggle('full_message3')" ><span id='message3' style='display:block' >protect_from_forgery should be configured with &#39;with: :exception&#39; near line 4: protect_from_forgery(:...</span><span id='full_message3' style='display:none'>protect_from_forgery should be configured with &#39;with: :exception&#39; near line 4: protect_from_forgery(:with =&gt; :null_session, :if =&gt; (Proc.new { |c| c.request.format.json? }))</span><table id='context3' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/app/controllers/application_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>class ApplicationController &lt; ActionController::Base</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>2</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  # Prevent CSRF attacks by raising an exception.</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>3</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  # For APIs, you may want to use :null_session instead.</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>4</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_filter :configure_permitted_parameters, if: :devise_controller?</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_filter :reject_locked!, if: :devise_controller?</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  before_filter :authenticate_user!, unless: :devise_controller?  </pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+</table><p>View Warnings</p>
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Template</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>
+      
+        installments/edit (InstallmentsController#edit)
+      
+    </td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/link_to_href">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context5');toggle('message5');toggle('full_message5')" ><span id='message5' style='display:block' >Unsafe parameter value in link_to href near line 4: link_to(&quot;Show&quot;, current_user.installments.find(pa...</span><span id='full_message5' style='display:none'>Unsafe parameter value in link_to href near line 4: link_to(&quot;Show&quot;, current_user.installments.find(<span class="user_input">params</span>[:id]))</span><table id='context5' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/app/views/installments/edit.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>&lt;h1&gt;Editing Installment&lt;/h1&gt;</pre>
+          </td>
+        </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>3</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= render &#39;form&#39; %&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= link_to &#39;Show&#39;, @installment %&gt; |</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= link_to &#39;Back&#39;, installments_path %&gt;</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>
+      
+        reservations/edit (ReservationsController#edit)
+      
+    </td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/link_to_href">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context6');toggle('message6');toggle('full_message6')" ><span id='message6' style='display:block' >Unsafe parameter value in link_to href near line 4: link_to(&quot;Show&quot;, current_user.reservations.find(pa...</span><span id='full_message6' style='display:none'>Unsafe parameter value in link_to href near line 4: link_to(&quot;Show&quot;, current_user.reservations.find(<span class="user_input">params</span>[:id]))</span><table id='context6' class='context' style='display:none'><caption>c:/Users/Galliani/repos/fustal/app/views/reservations/edit.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>&lt;h1&gt;Editing Reservation&lt;/h1&gt;</pre>
+          </td>
+        </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>3</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= render &#39;form&#39; %&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= link_to &#39;Show&#39;, @reservation %&gt; |</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%= link_to &#39;Back&#39;, reservations_path %&gt;</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+</table>
+</body></html>

@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, except: [
-    :home, :contact
+  skip_before_action :authenticate_user!, only: [
+    :landing, :posts, :show_post, :email # :home, :contact 
   ]
   before_action :disable_nav, only: :landing
   before_action :normal_nav, only: :posts

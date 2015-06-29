@@ -1,20 +1,12 @@
 class API::V1::CourtsController < API::V1::BaseController
-  before_action :set_venue
-  before_action :set_court, only: [:show, :edit, :update, 
-                                         :destroy]
-
-  def index
-    @courts = @venue.courts
-  end
+  # before_action :set_venue, only: :create
+  before_action :set_court, only: [:show, :update]
 
   def show
   end
 
-  def edit
-  end
-
   def create
-    @court = @venue.courts.build(court_params)
+    @court = Court.new(court_params)
     
     if @court.save
       render json: @court, status: 201, message: 'Lapangan berhasil dibuat'
@@ -31,14 +23,14 @@ class API::V1::CourtsController < API::V1::BaseController
     end
   end
 
-  def destroy
-    @court.destroy
-    if @court.destroy
-      render json: {}, status: 200
-    else
-      render json: {error: "Lapangan gagal dihapus"}, status: 422
-    end          
-  end
+  # def destroy
+  #   @court.destroy
+  #   if @court.destroy
+  #     render json: {}, status: 200
+  #   else
+  #     render json: {error: "Lapangan gagal dihapus"}, status: 422
+  #   end          
+  # end
 
 
   private
@@ -47,7 +39,7 @@ class API::V1::CourtsController < API::V1::BaseController
     end
 
     def set_court
-      @court = @venue.courts.find(params[:id])
+      @court = Court.find(params[:id])
     end
 
     def court_params

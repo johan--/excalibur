@@ -1,15 +1,11 @@
 class API::V1::VenuesController < API::V1::BaseController
-  before_action :set_venue, only: [:show, :edit, :destroy]
-
+  before_action :set_venue, only: [:show, :update, :destroy]
 
   def index
     @venues = Venue.all.group_by { |v| v.province }
   end
 
   def show
-  end
-
-  def edit
   end
 
   def create
@@ -30,22 +26,21 @@ class API::V1::VenuesController < API::V1::BaseController
     end
   end
 
-  def destroy
-    @venue.destroy
-    if @venue.destroy
-      render json: {}, status: 200
-    else
-      render json: {error: "Arena gagal dihapus"}, status: 422
-    end     
-  end
+  # def destroy
+  #   @venue.destroy
+  #   if @venue.destroy
+  #     render json: {}, status: 200
+  #   else
+  #     render json: {error: "Arena gagal dihapus"}, status: 422
+  #   end     
+  # end
 
 
   private
     def set_venue
-      @venue = Venues.find(params[:id])
+      @venue = Venue.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def venue_params
       params.require(:venue).permit(
         :name, :address, :province, :city, :phone, :firm_id
