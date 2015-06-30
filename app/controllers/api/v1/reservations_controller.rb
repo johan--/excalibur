@@ -1,6 +1,14 @@
 class API::V1::ReservationsController < API::V1::BaseController
   before_action :set_reservation, only: [:show, :edit, :update, 
                                          :destroy, :confirm]
+  def_param_group :reservation do
+    param :reservation, Hash, required: true do
+      param :date_reserved, String, "Date of the booking", required: true
+      param :start, String, "Reservation start hour in format of 00:00-23:59", required: true
+      param :duration, Integer, "Duration of booking in hour(s): 1, 2, 3, 4", required: true
+      param :court_id, Integer, "Id of the court used", required: true    
+    end
+  end                                         
 
   api :GET, "/reservations", "List all reservations made by the current user"
   description "List all the reservations made by the current user (the authenticated user)"
@@ -15,12 +23,7 @@ class API::V1::ReservationsController < API::V1::BaseController
 
   api :POST, "/reservations", "Create a new reservation"
   description "Create reservation by the current user"
-  param :reservation, Hash do
-    param :date_reserved, String, "Email of the user", required: true
-    param :start, String, "Password of the user", required: true
-    param :duration, Decimal, "Password confirmation of the user", required: true
-    param :court_id, Integer, "Name of the user", required: true
-  end
+  param_group :reservation
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.booker = @current_user
@@ -32,6 +35,9 @@ class API::V1::ReservationsController < API::V1::BaseController
     end
   end
 
+  api :PUT, "/reservations/:id", "Update an existing reservation"
+  description "Update a reservation made by the current user"
+  param_group :reservation
   def update        
     if @reservation.update(reservation_params)
       render json: @reservation, status: 200, message: 'Reservasi berhasil dikoreksi'
@@ -40,6 +46,7 @@ class API::V1::ReservationsController < API::V1::BaseController
     end
   end
 
+  api!
   def destroy
     @reservation.destroy
     if @reservation.destroy
