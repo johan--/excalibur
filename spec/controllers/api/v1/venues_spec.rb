@@ -48,10 +48,13 @@ describe API::V1::VenuesController do
   end
 
   describe "PUT 'update' " do
+    let!(:firm_2) { FactoryGirl.create(:firm_with_team, :with_subscription) }
   	context "valid update" do
   	  it "updates successfully" do
   	    put :update, { id: venue.id, 
-          :venue => { phone: "0222222222222" }, format: :json }
+          :venue => { name: "Bekasi", address: "Jl. Satelit No. 90",
+          province: "Banten", city: "Bekasi", firm_id: firm_2.id, 
+          phone: "0222222222222" }, format: :json }
 
   	    expect(response.status).to eq(200)
   	  end

@@ -38,7 +38,8 @@ describe API::V1::CourtsController do
   	context "valid update" do
   	  it "updates successfully" do
   	    put :update, { id: court_5.id, 
-          :court => { price: "150000" }, format: :json }
+          :court => { name: "Lapangan 6", unit: "Jam", category: "1", 
+          venue_id: venue.id, price: "150000" }, format: :json }
 
   	    expect(response.status).to eq(200)
   	  end

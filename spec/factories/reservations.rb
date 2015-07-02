@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
 	factory :reservation do
-		date_reserved {  rand(1..20).days.from_now.to_date }
+		date_reserved {  rand(1..20).days.from_now.to_date.strftime("%d/%m/%Y") }
 		start {  "#{rand(1..24)}:00" }
 		duration 2
 		court

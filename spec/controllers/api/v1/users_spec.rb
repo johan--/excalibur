@@ -44,7 +44,7 @@ describe API::V1::UsersController do
     	it "renders the right response status" do
       	put :update, { id: user.id, :user => { 
           password: "qweqweqwe", password_confirmation: "qweqweqwe",
-          format: :json } }
+          current_password: user.password }, format: :json }
 
       	expect(response.status).to eq(200)
       end

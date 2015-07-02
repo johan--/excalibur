@@ -1,9 +1,10 @@
 class API::V1::RelationshipsController < API::V1::BaseController
 
-  api :GET, "/relationships/", "List of relationships made by current user"
+  api :GET, "/relationships", "List of relationships made by current user"
   description "Show all relationships where the current user is the follower"
   def index
-  	@relationships = Relationships.by_user(@current_user.id)
+  	# @relationships = Relationships.by_user(@current_user.id)
+    @relationships = @current_user.relationships
   end
 
   api :GET, "/relationships/:id", "Show a relationship"
@@ -30,9 +31,6 @@ class API::V1::RelationshipsController < API::V1::BaseController
 
   api :DELETE, "/relationships/:id", "Destroy a relationship (unfollow)"
   description "Destroy a relationship of the current user"
-  param :relationship, Hash, required: true do
-    param :id, Integer, "Id of the relationship", required: true
-  end
   def destroy
 	  @relationship = Relationship.find(params[:id])
 	  @relationship.destroy

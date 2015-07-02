@@ -4,14 +4,20 @@ u = User.new(
     email: "galih@gmail.com",
     password: "asdasdasd",
     password_confirmation: "asdasdasd",
-    # first_name: "Galih",
-    # last_name: "Muhammad",
     full_name: "Galih Muhammad",
-    # phone_number: "081399279500",
     category: 3,
     admin: true
 )
-# u.skip_confirmation!
+u.save!
+
+u = User.new(
+    email: "yusuf@gmail.com",
+    password: "asdasdasd",
+    password_confirmation: "asdasdasd",
+    full_name: "Yusuf Cahyo",
+    category: 3,
+    admin: true
+)
 u.save!
 
 # Test user accounts

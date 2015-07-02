@@ -44,8 +44,8 @@ describe API::V1::ReservationsController do
     context "valid reservation" do
       it "returns a successful json string with success message" do
         post :create, { :reservation => { 
-          date_reserved: book_1.date_reserved,
-        	start: book_1.start, duration: book_1.duration, 
+          date_reserved: "#{book_1.date_reserved}",
+        	start: "#{book_1.start}", duration: "#{book_1.duration}", 
         	court_id: court_5.id }, format: :json }
 
         expect(response.status).to eq(201)
@@ -67,10 +67,14 @@ describe API::V1::ReservationsController do
   end
 
   describe "PUT 'update' " do
+    let!(:court_5) { FactoryGirl.create(:court, venue: venue) }
+    let!(:book_1) { FactoryGirl.create(:user_booking, court: court_5) }    
   	context "valid update" do
   	  it "updates successfully" do
   	    put :update, { id: book_4.id, 
-          :reservation => { start: "18:00" }, format: :json }
+          :reservation => { date_reserved: "#{book_1.date_reserved}",
+          duration: "#{book_1.duration}", court_id: court_5.id, 
+          start: "18:00" }, format: :json }
 
   	    expect(response.status).to eq(200)
   	    # expect(response.message).to eq("Reservasi berhasil dibuat")

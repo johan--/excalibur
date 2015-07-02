@@ -5,7 +5,7 @@ class API::V1::ReservationsController < API::V1::BaseController
     param :reservation, Hash, required: true do
       param :date_reserved, String, "Date of the booking", required: true
       param :start, String, "Reservation start hour in format of 00:00-23:59", required: true
-      param :duration, Integer, "Duration of booking in hour(s): 1, 2, 3, 4", required: true
+      param :duration, String, "Duration of booking in decimal hour(s): 1.0, 1.5, 2.0, 2.5, etc", required: true
       param :court_id, Integer, "Id of the court used", required: true    
     end
   end                                         
