@@ -23,8 +23,11 @@ Fustal::Application.routes.draw do
   end 
 
   resources :reservations, except: [:new, :destroy]
-  resources :reservations, except: [:new, :destroy]
-  resources :installments, except: :destroy
+  resources :installments, except: :destroy do
+    member do
+      get "veritrans_checkout" => "installments#veritrans_checkout", as: :veritrans_checkout
+    end    
+  end
   
   resources :venues, only: [:index, :show] do
     member do
