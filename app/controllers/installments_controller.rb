@@ -13,16 +13,16 @@ class InstallmentsController < ApplicationController
     @installment = current_user.installments.build
   end
 
-  def veritrans_checkout
-    @result = Veritrans.charge(
-      payment_type: "VTWEB",
-      transaction_details: {
-        order_id: @installment.pay_code,
-        gross_amount: @installment.total
-      }
-    )
-    redirect_to @result.redirect_url    
-  end
+  # def veritrans_checkout
+  #   @result = Veritrans.charge(
+  #     payment_type: "VTWEB",
+  #     transaction_details: {
+  #       order_id: @installment.pay_code,
+  #       gross_amount: @installment.total
+  #     }
+  #   )
+  #   redirect_to @result.redirect_url    
+  # end
 
   def edit
   end

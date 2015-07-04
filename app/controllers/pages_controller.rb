@@ -28,7 +28,7 @@ class PagesController < ApplicationController
   def show_post
     @post = Post.friendly.find(params[:id])
   rescue
-    redirect_to posts_path
+    redirect_to root_path(subdomain: "blog")
   end
 
   def contact

@@ -28,7 +28,7 @@ class FirmsController < ApplicationController
     user: current_user, role: 2, state: "menunggu")
 
       if @member.save
-        redirect_to posts_path
+        redirect_to root_path(subdomain: "blog")
         flash[:notice] = 'Tunggu konfirmasi dari moderator bisnis ini'
       else
         render :new 

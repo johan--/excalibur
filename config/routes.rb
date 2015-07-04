@@ -22,6 +22,11 @@ Fustal::Application.routes.draw do
     end
   end 
 
+  constraints :subdomain => 'blog' do
+    get '' => "pages#posts"
+    get "posts/:id", to: "pages#show_post", as: "post"
+  end
+
   resources :reservations, except: [:new, :destroy]
   resources :installments, except: :destroy do
     member do
@@ -47,9 +52,6 @@ Fustal::Application.routes.draw do
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
   
-  get "posts", to: "pages#posts", as: "posts"
-  get "posts/:id", to: "pages#show_post", as: "post"
-
   namespace :admin do
     root "base#index"
     resources :users
@@ -60,37 +62,37 @@ Fustal::Application.routes.draw do
     resources :posts
   end
 
-  # namespace :biz do
-  #   root "base#show"
-  #   post "subscribes", to: "base#subscribes", as: :subscribes
-  #   get "management", to: "base#management", as: :management
-  #   get "settings", to: "base#settings", as: :settings
-  #   put "save_settings", to: "base#save_settings", as: :save_settings
+  namespace :biz do
+    root "base#show"
+    post "subscribes", to: "base#subscribes", as: :subscribes
+    get "management", to: "base#management", as: :management
+    get "settings", to: "base#settings", as: :settings
+    put "save_settings", to: "base#save_settings", as: :save_settings
     
-  #   get "view", to: "base#view", as: :view
-  #   put "confirm" => "base#confirm", as: :confirm
+    get "view", to: "base#view", as: :view
+    put "confirm" => "base#confirm", as: :confirm
     
-  #   get "edit_bio", to: "base#edit_bio", as: :edit_bio
-  #   put "update_bio", to: "base#update_bio", as: :update_bio
-  #   resources :rosters
+    get "edit_bio", to: "base#edit_bio", as: :edit_bio
+    put "update_bio", to: "base#update_bio", as: :update_bio
+    resources :rosters
 
-  #   get "subscription", to: "base#subscription", as: :subscription
-  #   get "expiration", to: "base#expiration", as: :expiration
+    get "subscription", to: "base#subscription", as: :subscription
+    get "expiration", to: "base#expiration", as: :expiration
     
-  #   get "contact", to: "base#contact", as: "contact"
+    get "contact", to: "base#contact", as: "contact"
 
-  #   resources :payments, except: :destroy
-  #   resources :venues, except: :destroy do
-  #     get "bookings", to: "venues#bookings", as: :bookings
+    resources :payments, except: :destroy
+    resources :venues, except: :destroy do
+      get "bookings", to: "venues#bookings", as: :bookings
 
-  #     resources :courts, except: :destroy do
-  #       member do
-  #         get 'preferences'=> "courts#preferences", as: :preferences
-  #         put "save_preferences", to: "courts#save_preferences", as: :save_preferences
-  #       end
-  #     end
-  #   end
+      resources :courts, except: :destroy do
+        member do
+          get 'preferences'=> "courts#preferences", as: :preferences
+          put "save_preferences", to: "courts#save_preferences", as: :save_preferences
+        end
+      end
+    end
 
-  # end
+  end
 
 end

@@ -21,7 +21,10 @@ feature "AuthenticationSteps", :type => :feature do
 				end				
 
 				describe "visiting the blog page" do
-					before { visit posts_path }
+					before do 
+						switch_to_subdomain("blog")
+						visit root_path 
+					end
 					it { should have_title('Blog') }
 				end
 
@@ -78,7 +81,10 @@ feature "AuthenticationSteps", :type => :feature do
 				end				
 
 				describe "visiting the blog page" do
-					before { visit posts_path }
+					before do 
+						switch_to_subdomain("blog")
+						visit root_path 
+					end					
 					it { should have_title('Blog') }
 				end
 
@@ -91,11 +97,6 @@ feature "AuthenticationSteps", :type => :feature do
 			describe "in the Posts Controller" do
 				describe "visiting dasboard" do
 					before { visit admin_posts_dashboard_path }
-					it { should have_title('Home') }
-				end
-
-				describe "visiting index" do
-					before { visit admin_posts_path }
 					it { should have_title('Home') }
 				end
 

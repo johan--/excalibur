@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
+  include UrlHelper 
   # Prevent CSRF attacks by raising an exception.
-  # protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
   protect_from_forgery with: :exception
-
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
@@ -96,7 +95,7 @@ class ApplicationController < ActionController::Base
     if !current_user.operator?
       redirect_to user_root_path
     elsif current_user.with_no_firm?
-      redirect_to posts_path
+      redirect_to root_path(subdomain: "blog")
     end
   end
   helper_method :require_operator!

@@ -15,6 +15,7 @@ require 'support/omniauth_macros'
 require 'support/features_helpers'
 require 'support/requests_helpers'
 require 'support/database_cleaner'
+require 'support/subdomains'
 OmniAuth.config.test_mode = true
 # Add additional requires below this line. Rails is not loaded until this point!
 

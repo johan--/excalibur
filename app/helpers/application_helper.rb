@@ -21,9 +21,6 @@ module ApplicationHelper
     end
   end
 
-
-
-
   def idr_money(number)
     number_to_currency(number, unit: "Rp ", separator: ",", 
                        delimiter: ".", negative_format: "(%u%n)",

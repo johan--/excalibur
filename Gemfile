@@ -82,7 +82,7 @@ gem 'redcarpet', '3.2.2'
 gem 'apipie-rails'
 
 # Veritrans
-gem 'veritrans'
+# gem 'veritrans'
 
 group :production do
   gem 'rails_12factor'
