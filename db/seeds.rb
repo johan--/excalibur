@@ -141,3 +141,17 @@ c = a.dup
 c.court_id = 1
 c.booker = User.third
 c.save!
+
+# dummy blog posts
+(1..25).each do |i|
+  p = Post.new(
+    title: "Post No.#{i}",
+    content_md: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.",
+    draft: false,
+    user: User.first
+  )
+  p.save!
+
+  puts "#{i} dummy posts created..." if (i % 5 == 0)
+
+end

@@ -22,7 +22,8 @@ class PagesController < ApplicationController
   end
 
   def posts
-    @posts = Post.published.page(params[:page]).per(10)
+    # @posts = Post.published.page(params[:page]).per(10)
+    @posts = Post.page(params[:page]).per(10)
   end
   
   def show_post
