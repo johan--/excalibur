@@ -3,18 +3,14 @@ class PagesController < ApplicationController
     :landing, :posts, :show_post, :email # :home, :contact 
   ]
   before_action :disable_nav, only: :landing
-  before_action :normal_nav, only: :posts
+  before_action :normal_nav, only: [:posts, :show_post]
+  before_action :blog_layout, only: [:posts, :show_post]
   before_action :user_layout, only: [:home, :contact]
   
   def landing
   end
 
   def home
-    @ven_search = Venue.search(search_params)
-    @ven_search.sorts = 'name' if @ven_search.sorts.empty?    
-    @venues = @ven_search.result
-    # @venues = Venue.all.page(params[:page]).per(20)
-
     respond_to do |format| 
       format.html
       format.js
@@ -23,7 +19,7 @@ class PagesController < ApplicationController
 
   def posts
     # @posts = Post.published.page(params[:page]).per(10)
-    @posts = Post.page(params[:page]).per(10)
+    @posts = Post.page(params[:page]).per(7)
   end
   
   def show_post

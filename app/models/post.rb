@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  # mount_uploader :header, HeaderUploader
+  has_attachment  :header
   # Markdown
   before_save { MarkdownWriter.update_html(self) }
 
@@ -17,6 +19,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   # Scopes
+  default_scope { order(created_at: :desc) }
   scope :published, lambda {
     where(draft: false)
     .order("updated_at DESC")
@@ -26,5 +29,7 @@ class Post < ActiveRecord::Base
     where(draft: true)
     .order("updated_at DESC")
   }
+  scope :recent, -> { order('created_at DESC').limit(5) }
+
 
 end

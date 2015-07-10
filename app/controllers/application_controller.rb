@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   def normal_nav
     @normal_nav = true
   end  
+  def blog_layout
+    @blog_layout = true
+    @recents = Post.recent
+  end
   def firm_layout
     @firm_layout = true
   end

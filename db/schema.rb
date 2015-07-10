@@ -11,10 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622102328) do
+ActiveRecord::Schema.define(version: 20150710071028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "tender_id"
+    t.integer  "bidder_id"
+    t.string   "bidder_type"
+    t.string   "barcode"
+    t.string   "state"
+    t.decimal  "total"
+    t.decimal  "maturity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
 
   create_table "courts", force: :cascade do |t|
     t.string   "name",       null: false
@@ -105,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150622102328) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "header"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -196,6 +227,19 @@ ActiveRecord::Schema.define(version: 20150622102328) do
   add_index "subscriptions", ["firm_id"], name: "index_subscriptions_on_firm_id", unique: true, using: :btree
   add_index "subscriptions", ["state"], name: "index_subscriptions_on_state", using: :btree
 
+  create_table "tenders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "barcode"
+    t.string   "category"
+    t.string   "state",       default: "belum diproses"
+    t.decimal  "total"
+    t.text     "description"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "tenders", ["user_id"], name: "index_tenders_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -240,7 +284,9 @@ ActiveRecord::Schema.define(version: 20150622102328) do
 
   add_index "venues", ["firm_id"], name: "index_venues_on_firm_id", using: :btree
 
+  add_foreign_key "bids", "tenders"
   add_foreign_key "courts", "venues"
   add_foreign_key "identities", "users"
+  add_foreign_key "tenders", "users"
   add_foreign_key "venues", "firms"
 end

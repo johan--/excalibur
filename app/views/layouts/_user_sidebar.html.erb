@@ -1,13 +1,24 @@
 
-    <li class="sidebar-brand">
-      <%= link_to app_name, root_path %>
-    </li>
-    <li><%= link_to "Home", user_root_path %></li>
-    <li><%= link_to "Arena", venues_path %></li>
-    <li><%= link_to "Riwayat Reservasi", reservations_path %></li>    
-    <li>
-        <%= link_to "Kontak", contact_path %>
-    </li>
-    <li>
-        <%= link_to "Blog", root_path(subdomain: "blog") %>
-    </li>
+<li class="mt">
+  <h5><%= link_fa_to("dashboard", " Utama", user_root_path) %></h5>
+</li>
+
+<li class="sub-menu">
+  <%= link_fa_to("user", " Identitas", '#') %>
+</li>
+
+
+<li class="sub-menu">
+  <%= link_fa_to("phone", " Kontak", contact_path) %>
+</li>
+
+<li class="sub-menu">
+  <%= link_fa_to("book", " Blog", root_path(subdomain: "blog")) %>
+</li>
+
+<!-- <li class="mt">
+<%= link_to user_root_path, class: "active" do %>
+  <i class="fa fa-dashboard"></i><span>Utama</span>
+<% end %>
+</li>
+ -->

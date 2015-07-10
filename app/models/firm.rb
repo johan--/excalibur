@@ -1,13 +1,11 @@
 class Firm < ActiveRecord::Base
-  has_many :venues
-  has_many :courts, through: :venues, :class_name => 'Court'
   has_one  :subscription
   has_many :payments, through: :subscription
   has_many :rosters, as: :rosterable
   has_many :users, through: :rosters,
 					 source: :rosterable, source_type: 'Firm'
 
-  accepts_nested_attributes_for :venues
+  # accepts_nested_attributes_for :venues
 
   has_settings do |s|
     s.key :down_payment, defaults: { state: "on", percentage: 0.5, 

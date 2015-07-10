@@ -1,33 +1,30 @@
 <% title("Blog") %>
 
-	<h1 class="text-center">Blog siKapiten</h1>
-	<h5 class="text-center" >Tentang keuangan syariah, kesuksesan, dan kebahagiaan</h5>
-	<%= render 'layouts/messages' %>
-
-
-<div class="col-sm-8">
-	<% @posts.each do |post| %>
-		<div class="title-box">
-		  <p>
-		    <%= link_to "#{post.title}", post_path(post.slug) %> <br/>
-		    <span><small><em><%= time_ago_in_words(post.updated_at) %> ago</em></small></span>
-		  </p>
-		</div>
-		<%= sanitize truncate(post.content_html, length: 200, escape: false )%>
-	<% end %>
-
-	<div class="pagination-control text-center">
-	  <%= paginate @posts %>
-	</div>	
-</div>
-<div class="col-sm-4">
-	<h5 class="text-center">Daftar Artikel</h5>
-	<hr>
-	<% @posts.each do |post| %>
-	<p>
-		<%= link_to "#{post.created_at.to_date} | #{post.title}", post_path(post.slug) %>
-	</p>
-	<% end %>
+<div>
+<% @posts.each do |post| %>
+  <% if post.header.present? %>
+  	<% if request.variant.include? :phone %>
+  	  <%= cl_image_tag(post.header.path, { :width => 300, :height => 150, :crop => :scale } ) %>
+  	<% else %>
+      <%= cl_image_tag(post.header.path, { :width => 750, :height => 350, :crop => :scale }) %>
+    <% end %>
+  <% end %>
+  <%= link_to post_path(post.slug) do %>
+	<h3 class="ctitle"><%= post.title %></h3>
+  <% end %>
+  <p>
+  	<csmall><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.full_name %></csmall2>
+  </p>
+  <p>
+	<%= sanitize truncate(post.content_html, length: 200, escape: false )%>
+  </p>
+  <p><%= link_to "Baca lebih lanjut", post_path(post.slug) %></p>
+  <div class="hline"></div>
+  <hr>	
+  <div class="spacing"></div>
+<% end %>
 </div>
 
-		
+<div class="pagination-control text-center">
+  <%= paginate @posts %>
+</div>	

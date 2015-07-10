@@ -1,0 +1,80 @@
+<!-- BLUE WRAP -->
+<div id="blue">
+    <div class="container">
+		<div class="row white centered">
+		  <h2>Blog siKapiten</h2>
+		  <h5>Tentang keuangan syariah, kesuksesan, dan kebahagiaan</h5>
+		  <% if !current_page?(root_path(subdomain: 'blog')) %>
+			<%= link_to root_path(subdomain: 'blog'), class: "white" do %>
+			  <i class="fa fa-newspaper-o fa-2x"></i> Halaman Utama Blog
+			<% end %>
+		  <% end %>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+ 
+<!-- BLOG CONTENT -->
+<div class="container mtb">
+  <div class="row">
+ 	<%= render 'layouts/messages' %>
+ 	<div class="col-lg-8">
+	  <%= yield %>	 		
+	</div>
+ 			
+    <!-- SIDEBAR -->
+ 	<div class="col-lg-4">
+	  <h4>Categories</h4>
+	  <hr class="coral"></hr>
+ 	  <p><a href="#">
+ 	  	<i class="fa fa-angle-right"></i> Wordpress</a> 
+ 	  	<span class="badge badge-theme pull-right">9</span>
+ 	  </p>
+	  <div class="spacing"></div>
+	 		
+	  <h4>Recent Posts</h4>
+	  <hr class="coral">
+	  <ul class="popular-posts">
+	    <% @recents.each do |post| %>
+        <li>
+          <%= link_to post_path(post.slug) do %>
+          <% if post.header.present? %>
+        	<%= cl_image_tag(post.header.path, { :width => 70, :height => 50, :crop => :scale } ) %>
+          <% end %>
+          <p><%= post.title %></p>
+          <em>Posted <%= time_ago_in_words(post.updated_at) %> ago</em>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+	            
+	  <div class="spacing"></div>
+ 	</div>
+
+  </div><!-- <! row  -->
+</div>
+
+
+<!-- FOOTER -->
+<div id="footerwrap" style="background-color: #FA396f">
+  <div class="container">
+	<div class="row">
+ 	  <div class="col-lg-4">
+		<h4>Tentang Kami</h4>
+		<hr></hr>
+		<p>siKapiten adalah usaha rintisan yang didirikan oleh sekelompok pemuda yang bertekad untuk mendorong pengembangan keuangan syariah di Indonesia</p>
+	</div>
+	<div class="col-lg-4">
+	</div>
+	<div class="col-lg-4">
+	  <h4>Korespondensi</h4>
+	  <hr></hr>
+	  <p>
+		Didirikan oleh Galih Muhammad, Pamungkas Hendra, Yusuf Cahyo, dan Diandra Setiabudi
+	  </p>
+	  <p>
+		<i class="fa fa-envelope"></i> business@sikapiten.com<br/>
+	  </p>
+ 	  </div> 	
+	</div>
+  </div>
+</div>

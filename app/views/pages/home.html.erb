@@ -1,18 +1,156 @@
-<% title("Home") %>
-  
-  <h3><i class="fa fa-home"></i> Home</h3>  
+<% title("Utama") %>
+
+<div class="container">
+  <h3><i class="fa fa-bolt"></i> Halaman Utama</h3>  
   
   <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
-  <p class="narrow text-center">
-    <%= current_user.current_reservations.count %> Reservasi
-  </p>
-
   <%= current_user.email if Rails.env.test? %>
 
+<div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge bg-theme">4</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 4 pending tasks</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">DashGum Admin Panel</div>
+                                        <div class="percent">40%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Database Update</div>
+                                        <div class="percent">60%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Product Development</div>
+                                        <div class="percent">80%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Payments Sent</div>
+                                        <div class="percent">70%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                            <span class="sr-only">70% Complete (Important)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="external">
+                                <a href="#">See All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-theme">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 5 new messages</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Zac Snider</span>
+                                    <span class="time">Just now</span>
+                                    </span>
+                                    <span class="message">
+                                        Hi mate, how is everything?
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Divya Manian</span>
+                                    <span class="time">40 mins.</span>
+                                    </span>
+                                    <span class="message">
+                                     Hi, I need your help with this.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Dan Rogers</span>
+                                    <span class="time">2 hrs.</span>
+                                    </span>
+                                    <span class="message">
+                                        Love your new Dashboard.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Dj Sherman</span>
+                                    <span class="time">4 hrs.</span>
+                                    </span>
+                                    <span class="message">
+                                        Please, answer asap.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">See all messages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+
   <p class="narrow text-center">
-    <span class="label label-success"><%= current_user.current_reservations.confirmed.count %> Terkonfirmasi</span> 
-    <span class="label label-info"><%= current_user.current_reservations.waiting.count %> Menunggu Konfirmasi</span>
-    <span class="label label-warning"><%= current_user.current_reservations.pending.count %> Pending</span>
+    Berkas <span class="label label-success"><%= current_user.current_reservations.confirmed.count %></span> 
+    Status <span class="label label-info"> Menunggu Konfirmasi</span>
+    Pengajuan <span class="label label-warning"><%= current_user.current_reservations.pending.count %> Pending</span>
   </p>
 
   <p class="text-center">
@@ -21,35 +159,37 @@
     </button>    
   </p>  
 
-  <%= render 'elements/test_modal' %>
-  <%= render 'elements/reservations_modal' %>
-  <%= render 'elements/arenas_modal' %>
 
   <div class="row stylish-panel">    
-  
-    <div class="col-md-6">
-      <div>
-        <i class="glyphicon glyphicon-pushpin fa-3x"></i>
-        <h3>Reservasi</h3>
-        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myReservations">
-          Lihat Reservasi Saya
-        </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div>
-        <i class="fa fa-flag fa-3x"></i>
-        <h3>Arena</h3>
-        <p>
-          <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myArenas">
-            Lihat Arena Favorit Saya
-          </button>
-        </p>
-        <p>
-          <%= link_to "Lihat Daftar Arena", venues_path, class: "btn btn-info btn-md" %>
-        </p>
-      </div>
-    </div>
-  
 
-  </div>
+    <div class="col-md-3">
+      <div>
+        <i class="fa fa-cab fa-3x"></i>
+        <h3>Kendaraan</h3>
+        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "kendaraan"), class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>  
+    <div class="col-md-3">
+      <div>
+        <i class="fa fa-home fa-3x"></i>
+        <h3>Rumah</h3>
+        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "rumah"), class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <i class="fa fa-laptop fa-3x"></i>
+        <h3>Elektronik</h3>
+        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "elektronik"), class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <i class="fa fa-mortar-board fa-3x"></i>
+        <h3>Pendidikan</h3>
+        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "pendidikan"), class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>  
+
+  </div>  
+</div>

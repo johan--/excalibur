@@ -27,7 +27,8 @@ class Admin::PostsController < Admin::BaseController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+
+    if @post.save 
       redirect_to admin_posts_dashboard_path, notice: "New post published."
     else
       flash[:alert] = "Post not published."
@@ -64,6 +65,7 @@ class Admin::PostsController < Admin::BaseController
     params.require(:post).permit(
     :title,
     :content_md,
+    :header,
     :draft,
     :updated_at
     )

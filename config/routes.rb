@@ -4,6 +4,7 @@ require 'subdomain'
 Fustal::Application.routes.draw do
   apipie
   mount Judge::Engine => '/judge'  
+  mount Attachinary::Engine => "/attachinary"
   
   devise_for :users, :controllers => { :registrations => "registrations", 
                             :omniauth_callbacks => "omniauth_callbacks" }
@@ -15,17 +16,18 @@ Fustal::Application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :reservations, except: [:edit, :new]
       resources :relationships, only: [:index, :show, :create, :destroy]
-      resources :venues, except: [:new, :edit, :destroy]
-      resources :courts, except: [:new, :edit, :destroy]
       resources :firms, except: [:new, :edit, :destroy]
       resources :installments, except: [:index, :new, :edit, :destroy]
     end
   end 
-
   constraints :subdomain => 'blog' do
     get '' => "pages#posts"
     get "posts/:id", to: "pages#show_post", as: "post"
   end
+
+# New App
+  resources :bids
+  resources :tenders
 
   resources :reservations, except: [:new, :destroy]
   resources :installments, except: :destroy do
@@ -34,11 +36,6 @@ Fustal::Application.routes.draw do
     end    
   end
   
-  resources :venues, only: [:index, :show] do
-    member do
-      get "bookings" => "venues#bookings", as: :bookings
-    end
-  end
 
   resources :firms, only: [:index, :new, :create] do
     member do
@@ -64,6 +61,7 @@ Fustal::Application.routes.draw do
 
   namespace :biz do
     root "base#show"
+    get "profile", to: "base#profile", as: :profile
     post "subscribes", to: "base#subscribes", as: :subscribes
     get "management", to: "base#management", as: :management
     get "settings", to: "base#settings", as: :settings
@@ -82,17 +80,6 @@ Fustal::Application.routes.draw do
     get "contact", to: "base#contact", as: "contact"
 
     resources :payments, except: :destroy
-    resources :venues, except: :destroy do
-      get "bookings", to: "venues#bookings", as: :bookings
-
-      resources :courts, except: :destroy do
-        member do
-          get 'preferences'=> "courts#preferences", as: :preferences
-          put "save_preferences", to: "courts#save_preferences", as: :save_preferences
-        end
-      end
-    end
-
   end
 
 end

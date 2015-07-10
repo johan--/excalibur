@@ -31,22 +31,33 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row row-offcanvas row-offcanvas-left">
+  <div class="container-fluid" style="padding-left: 0px;">
+    <aside>
+      <div id="sidebar" class="hidden-xs nav-collapse">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav nav-accordion">
+        
+          <h2 class="centered"><%= app_name %></h2>
+          <h5 class="centered">Marcel Newman</h5>
+          <%= render 'layouts/sidebar_options' %>
 
-        <div class="hidden-xs col-sm-2 sidebar-offcanvas" id="sidebar">
-          <ul class="nav sidebar-nav list-group panel-collapse collapse in" id="sidebar-first">
-            <%= render 'layouts/sidebar_options' %>        
-          </ul>
-        </div>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <section id="main-content">
+      <section class="wrapper">
 
-        <div class="col-xs-12 col-sm-10 main" style="left: 1%;">
+      <div class="container" style="">
+        <div class="row">
           <%= render 'layouts/messages' %>
           
           <%= yield %>
-        </div>
+        </div><! >        
+      </div>
 
-    </div>
+      </section>
+    </section>    
   </div>
 
 </div>

@@ -33,50 +33,50 @@ FactoryGirl.define do
     sequence(:address) { |n| "Jl. Satelit No. #{n}" } 
   end
 
-  factory :venue do
-    sequence(:name) { |n| "Arena #{n}" }
-    # sequence(:address) { |n| "Jl. Arena No. #{n}" } 
-    sequence(:phone) { |n| "08135555#{n}" } 
-    firm
+  # factory :venue do
+  #   sequence(:name) { |n| "Arena #{n}" }
+  #   # sequence(:address) { |n| "Jl. Arena No. #{n}" } 
+  #   sequence(:phone) { |n| "08135555#{n}" } 
+  #   firm
 
-    factory :capital_venue do
-      province "DKI Jakarta"
-      city "Jakarta Selatan"
-      sequence(:address) { |n| "Jl. Ibukota No. #{n}" }       
+  #   factory :capital_venue do
+  #     province "DKI Jakarta"
+  #     city "Jakarta Selatan"
+  #     sequence(:address) { |n| "Jl. Ibukota No. #{n}" }       
 
-      factory :cap_venue_with_firm do
-        before(:create) do |venue, evaluator|
-          FactoryGirl.create(:firm)
-        end
-      end
-    end
+  #     factory :cap_venue_with_firm do
+  #       before(:create) do |venue, evaluator|
+  #         FactoryGirl.create(:firm)
+  #       end
+  #     end
+  #   end
 
-    factory :satellite_venue do
-      province "Banten"
-      city "Bekasi"
-      sequence(:address) { |n| "Jl. Satelit No. #{n}" } 
+  #   factory :satellite_venue do
+  #     province "Banten"
+  #     city "Bekasi"
+  #     sequence(:address) { |n| "Jl. Satelit No. #{n}" } 
 
-      before(:create) do |venue, evaluator|
-        FactoryGirl.create(:firm)
-      end
-    end
+  #     before(:create) do |venue, evaluator|
+  #       FactoryGirl.create(:firm)
+  #     end
+  #   end
 
-    transient do
-      number_of_court 4
-    end   
+  #   transient do
+  #     number_of_court 4
+  #   end   
 
-    after(:create) do |venue, evaluator|
-      FactoryGirl.create_list(:court, evaluator.number_of_court, venue: venue)
-    end    
-  end
+  #   after(:create) do |venue, evaluator|
+  #     FactoryGirl.create_list(:court, evaluator.number_of_court, venue: venue)
+  #   end    
+  # end
 
 
-  factory :court do
-    sequence(:name) { |n| "Court #{n}" }
-    price 100000
-    unit "Jam"
-    category 1
-    venue
-  end
+  # factory :court do
+  #   sequence(:name) { |n| "Court #{n}" }
+  #   price 100000
+  #   unit "Jam"
+  #   category 1
+  #   venue
+  # end
 
 end

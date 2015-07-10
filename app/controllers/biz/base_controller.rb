@@ -2,36 +2,12 @@ class Biz::BaseController < ApplicationController
   before_action :require_operator!
   before_action :set_firm
   before_action :check_subscription, except: [:subscription, :expiration]
-  before_action :firm_layout
+  before_action :firm_layout 
   
   respond_to :html, :js
   
   def show
-    @firm.venues.each do |venue|
-  	  # @confirmed = Reservation.in_state(:confirmed).by_venue(venue).upcoming.group_by { |r| r.date_reserved }
-      @confirmed = Reservation.in_state(:confirmed).upcoming_with_states(venue)
-      @waiting = Reservation.in_state(:waiting).upcoming_with_states(venue)
-      @pending = Reservation.in_state(:pending).upcoming_with_states(venue)
-    end
-    @reservation = Reservation.find_by(id: params[:res_id])
-  end
-
-  def view
-    @reservation = Reservation.find_by(id: params[:res_id])
-  end
-
-  def confirm
-    @reservation = Reservation.find_by(id: params[:res_id])
-    if @reservation.state_machine.transition_to!(:confirmed)
-      flash[:notice] = "Berhasil dikonfirmasi"
-      redirect_to user_root_path
-    else
-      flash[:error] = "Gagal dikonfirmasi, coba lagi"
-      redirect_to user_root_path
-    end
-  end
-
-  def management
+    @tenders = Tender.all
   end
 
   def settings
@@ -84,18 +60,9 @@ class Biz::BaseController < ApplicationController
     flash[:notice] = 'Akun bisnis berhasil dikoreksi'
   end 
 
+  def profile
+  end
 
-  # def update
-  #   respond_to do |format|
-  #     if @firm.update(firm_params)
-  #       format.html { redirect_to @firm, notice: 'Akun bisnis berhasil dikoreksi' }
-  #       format.json { render :show, status: :ok, location: @firm }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @firm.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   def contact
   end
