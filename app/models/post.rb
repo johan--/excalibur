@@ -2,8 +2,8 @@ class Post < ActiveRecord::Base
   # Use friendly_id
   extend FriendlyId
   friendly_id :title, use: :slugged
+  acts_as_taggable
 
-  # mount_uploader :header, HeaderUploader
   has_attachment  :header
   # Markdown
   before_save { MarkdownWriter.update_html(self) }

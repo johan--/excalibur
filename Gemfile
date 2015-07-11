@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '3.3.3'
 gem 'goldiloader'
 gem "paranoia", "~> 2.0"
 gem 'ransack'
+gem 'acts-as-taggable-on'
 # gem 'siphon'
 
 gem 'ledermann-rails-settings'
