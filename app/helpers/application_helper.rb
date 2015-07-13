@@ -1,7 +1,8 @@
 module ApplicationHelper
+  
   def app_name
     # return "futsalHero"
-    return "Kapiten"
+    return "siKapiten"
   end
 
   def title(value)
@@ -50,38 +51,5 @@ module ApplicationHelper
 # => R$1234567890,50
   end
 
-  # Upload directly to Cloudinary with form tag
-  def cl_form_tag(callback_url, options={}, &block)
-    form_options = options.delete(:form) || {}
-    form_options[:method] = :post
-    form_options[:multipart] = true
-
-    options[:timestamp] = Time.now.to_i
-    options[:callback] = callback_url
-    if options[:transformation]
-      options[:transformation] = Cloudinary::Utils.
-        generate_transformation_string(options[:transformation])
-    end
-
-    options[:signature] = Cloudinary::Utils.
-      api_sign_request(options, Cloudinary.config.api_secret)
-
-    options[:api_key] = Cloudinary.config.api_key
-
-    url = "https://api.cloudinary.com/v1_1/"
-    url<< "#{Cloudinary.config.cloud_name}/image/upload"
-
-    form_tag(url, form_options) do
-      content = []
-
-      options.each do |name, value|
-        content<< hidden_field_tag(name, value)
-      end
-
-      content<< capture(&block)
-
-      content.join("\n").html_safe
-    end
-  end
 
 end

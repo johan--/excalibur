@@ -10,11 +10,15 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
+gem "select2-rails"
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'
 gem 'cloudinary', '~> 1.0.24'
 gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'ckeditor'
 
 gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'

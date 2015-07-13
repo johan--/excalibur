@@ -1,25 +1,16 @@
 
-    <li class="sidebar-brand">
-        <%= link_to app_name, root_path %>
-    </li>
-    <li>
-        <%= link_to "Admin Dashboard", admin_root_path %>
-    </li>
-    <li>
-        <%= link_to "Users", admin_users_path %>
-    </li>
-    <li>
-        <%= link_to "Businesses", admin_firms_path %>
-    </li>
-    <li>
-        <%= link_to "Reservations", admin_reservations_path %>
-    </li>
-    <li>
-        <%= link_to "User View", user_root_path %>
-    </li>            
-    <li>
-        <%= link_to "Posts", admin_posts_dashboard_path %>
-    </li>
-    <li>
-        <%= link_to "Blog", root_path(subdomain: "blog") %>
-    </li>
+<li class="mt">
+    <%= link_fa_to("dashboard", " Main Dash", admin_root_path) %>
+</li>
+<li class="sub-menu">
+    <%= link_fa_to("users", " Users", admin_users_path) %>
+</li>
+<li class="sub-menu">
+    <%= link_fa_to("plane", " User Mode", user_root_path) %>
+</li>            
+<li class="sub-menu">
+    <%= link_fa_to("book", " Posts", admin_posts_dashboard_path) %>
+</li>
+<li class="sub-menu">
+    <%= link_fa_to("newspaper-o", " Blog", root_path(subdomain: "blog")) %>
+</li>

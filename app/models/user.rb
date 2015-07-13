@@ -10,16 +10,14 @@ class User < ActiveRecord::Base
 
   has_many :friends, through: :relationships, 
                             source: :followed, source_type: 'User'
-  # has_many :venues, through: :relationships, 
-  #                           source: :followed, source_type: 'Venue'
-                            
+           
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name: "Relationship",
                                    dependent: :destroy
   has_many :followers,  through: :reverse_relationships,
                         source: :follower
 
-  has_many :reservations, as: :booker
+
   has_many :installments
   has_many :tenders
   has_many :bids, as: :bidder
@@ -60,10 +58,6 @@ class User < ActiveRecord::Base
 
   def firm_locator
     find_firm.first.rosterable
-  end
-
-  def current_reservations
-    self.reservations.upcoming
   end
 
   # relationship methods

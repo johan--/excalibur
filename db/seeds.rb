@@ -86,68 +86,14 @@ manager_array.each do |manager|
     )
   end
 end
-
-venue_array = []
-firm_array.each do |firm|
-  venue_array << Venue.create!(
-    name: "Arena 1",
-    address: "Example Address No. 1",
-    province: "DKI Jakarta",
-    city: "Jakarta Selatan",
-    phone: "08199999991",
-    firm_id: firm.id
-  )
-end
-
-court_array = []
-venue_array.each do |venue|
-  (1..4).each do |i|
-    court_array << Court.create!(
-      name: "Lapangan #{i}",
-      price: 100000,
-      unit: "Jam",
-      category: 1,
-      venue_id: venue.id
-    )
-  end
-end
-
-court_array.each do |court|
-  (1..3).each do |i|
-    Reservation.create!(
-      date_reserved: "10/05/2015",
-      start: "15:00",
-      duration: 2,
-      court: court,
-      booker: u
-    )
-  end
-end
   
-a = Reservation.create!(
-  date_reserved: 20.days.from_now.to_date,
-  start: "15:00",
-  duration: 2,
-  court: Court.first,
-  booker: User.first
-)
-
-b = a.dup 
-b.court_id = 1
-b.booker = User.second
-b.save!
-
-c = a.dup 
-c.court_id = 1
-c.booker = User.third
-c.save!
-
 # dummy blog posts
-(1..25).each do |i|
+(1..14).each do |i|
   p = Post.new(
     title: "Post No.#{i}",
     content_md: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.",
     draft: false,
+    topic: "dummy",
     user: User.first
   )
   p.save!

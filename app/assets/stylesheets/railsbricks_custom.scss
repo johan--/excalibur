@@ -17,16 +17,17 @@ $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
 // Typography
-@import url(http://fonts.googleapis.com/css?family=Anonymous+Pro:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Raleway:500,800);
 $font-family-sans-serif: Arial, Helvetica, sans-serif;
 $font-family-serif: Georgia, 'Times New Roman', Times, serif;
 $font-family-monospace: 'Anonymous Pro', Courier New, monospace;
-$font-family-base: $font-family-monospace;
+$font-family-raleway: 'Raleway', sans-serif;
+$font-family-base: $font-family-raleway;
 $font-size-base: 14px;
 
 // Headings
 $headings-font-family: $font-family-base;
-$headings-font-weight: 700;
+$headings-font-weight: 800;
 $headings-color: inherit;
 
 // Code blocks
@@ -161,7 +162,7 @@ $navbar-default-toggle-border-color: #dddddd;
 // -> Basics
 $navbar-inverse-color: #fff;
 $navbar-inverse-bg: $brand-primary;
-$navbar-inverse-border: darken($navbar-inverse-bg, 7%);
+$navbar-inverse-border: darken($navbar-inverse-bg, 0%);
 // -> Links
 $navbar-inverse-link-color: #fff;
 $navbar-inverse-link-hover-color: #ffffff;

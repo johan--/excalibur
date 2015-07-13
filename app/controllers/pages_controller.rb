@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   before_action :disable_nav, only: :landing
   before_action :normal_nav, only: [:posts, :show_post]
   before_action :blog_layout, only: [:posts, :show_post]
+  before_action :tag_cloud, only: [:posts, :show_post]
   before_action :user_layout, only: [:home, :contact]
   
   def landing
@@ -18,7 +19,6 @@ class PagesController < ApplicationController
   end
 
   def posts
-    # @posts = Post.published.page(params[:page]).per(10)
     @posts = Post.page(params[:page]).per(7)
   end
   
@@ -26,6 +26,10 @@ class PagesController < ApplicationController
     @post = Post.friendly.find(params[:id])
   rescue
     redirect_to root_path(subdomain: "blog")
+  end
+
+  def find_posts
+    @posts = Post.by_topic(params[:topic])
   end
 
   def contact
@@ -53,5 +57,13 @@ class PagesController < ApplicationController
       redirect_to root_path, notice: "Your message was sent. Thank you."
     end
   end
+
+private
+  def tag_cloud
+    @posts = Post.all
+    @topics = @posts.group_by{ |post| post.topic }
+    # @tags = Post.tag_counts_on(:tags)
+  end
+
 
 end

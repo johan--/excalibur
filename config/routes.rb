@@ -5,6 +5,7 @@ Fustal::Application.routes.draw do
   apipie
   mount Judge::Engine => '/judge'  
   mount Attachinary::Engine => "/attachinary"
+  mount Ckeditor::Engine => '/ckeditor'
   
   devise_for :users, :controllers => { :registrations => "registrations", 
                             :omniauth_callbacks => "omniauth_callbacks" }
@@ -23,6 +24,7 @@ Fustal::Application.routes.draw do
   constraints :subdomain => 'blog' do
     get '' => "pages#posts"
     get "posts/:id", to: "pages#show_post", as: "post"
+    get "posts/find", to: "pages#find_posts", as: "find_posts"
   end
 
 # New App

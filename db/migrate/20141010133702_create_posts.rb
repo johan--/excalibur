@@ -10,6 +10,11 @@ class CreatePosts < ActiveRecord::Migration
       # FriendlyId
       t.string :slug
 
+      # Image
+      t.string :header
+
+      # Tag
+      t.string :topic
       t.timestamps
     end
     add_index :posts, :user_id

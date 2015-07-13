@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711024720) do
+ActiveRecord::Schema.define(version: 20150712165140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,17 +46,21 @@ ActiveRecord::Schema.define(version: 20150711024720) do
 
   add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
 
-  create_table "courts", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "price",      null: false
-    t.string   "unit",       null: false
-    t.integer  "category",   null: false
-    t.integer  "venue_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "courts", ["venue_id"], name: "index_courts_on_venue_id", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "firms", force: :cascade do |t|
     t.string   "name",       null: false
@@ -94,24 +98,6 @@ ActiveRecord::Schema.define(version: 20150711024720) do
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "installments", force: :cascade do |t|
-    t.integer  "reservation_id", null: false
-    t.integer  "user_id",        null: false
-    t.string   "pay_code",       null: false
-    t.datetime "pay_day",        null: false
-    t.time     "pay_time",       null: false
-    t.integer  "total",          null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "installments", ["pay_code"], name: "index_installments_on_pay_code", using: :btree
-  add_index "installments", ["reservation_id", "pay_code"], name: "index_installments_on_reservation_id_and_pay_code", unique: true, using: :btree
-  add_index "installments", ["reservation_id", "pay_day", "pay_time"], name: "index_installments_on_reservation_id_and_pay_day_and_pay_time", unique: true, using: :btree
-  add_index "installments", ["reservation_id", "user_id"], name: "index_installments_on_reservation_id_and_user_id", using: :btree
-  add_index "installments", ["reservation_id"], name: "index_installments_on_reservation_id", using: :btree
-  add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
-
   create_table "payments", force: :cascade do |t|
     t.integer  "subscription_id", null: false
     t.string   "pay_code",        null: false
@@ -133,9 +119,10 @@ ActiveRecord::Schema.define(version: 20150711024720) do
     t.boolean  "draft",        default: false
     t.integer  "user_id"
     t.string   "slug"
+    t.string   "header"
+    t.string   "topic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "header"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -151,39 +138,6 @@ ActiveRecord::Schema.define(version: 20150711024720) do
   add_index "relationships", ["followed_id", "followed_type"], name: "index_relationships_on_followed_id_and_followed_type", using: :btree
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
-
-  create_table "reservation_transitions", force: :cascade do |t|
-    t.string   "to_state",                      null: false
-    t.text     "metadata",       default: "{}"
-    t.integer  "sort_key",                      null: false
-    t.integer  "reservation_id",                null: false
-    t.boolean  "most_recent",                   null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "reservation_transitions", ["reservation_id", "most_recent"], name: "index_reservation_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
-  add_index "reservation_transitions", ["reservation_id", "sort_key"], name: "index_reservation_transitions_parent_sort", unique: true, using: :btree
-
-  create_table "reservations", force: :cascade do |t|
-    t.date     "date_reserved", null: false
-    t.time     "start",         null: false
-    t.decimal  "duration",      null: false
-    t.time     "finish",        null: false
-    t.integer  "charge",        null: false
-    t.string   "state",         null: false
-    t.integer  "court_id",      null: false
-    t.integer  "booker_id",     null: false
-    t.string   "booker_type",   null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "reservations", ["booker_id", "booker_type", "court_id"], name: "index_reservations_on_booker_id_and_booker_type_and_court_id", using: :btree
-  add_index "reservations", ["booker_type", "booker_id"], name: "index_reservations_on_booker_type_and_booker_id", using: :btree
-  add_index "reservations", ["court_id", "date_reserved", "start"], name: "index_reservations_on_court_id_and_date_reserved_and_start", using: :btree
-  add_index "reservations", ["court_id"], name: "index_reservations_on_court_id", using: :btree
-  add_index "reservations", ["date_reserved", "start", "finish"], name: "index_reservations_on_date_reserved_and_start_and_finish", using: :btree
 
   create_table "rosters", force: :cascade do |t|
     t.integer  "rosterable_id",   null: false
@@ -290,23 +244,7 @@ ActiveRecord::Schema.define(version: 20150711024720) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "venues", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.string   "province",               null: false
-    t.string   "city",                   null: false
-    t.string   "address",                null: false
-    t.integer  "rating",     default: 0, null: false
-    t.string   "phone"
-    t.integer  "firm_id",                null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "venues", ["firm_id"], name: "index_venues_on_firm_id", using: :btree
-
   add_foreign_key "bids", "tenders"
-  add_foreign_key "courts", "venues"
   add_foreign_key "identities", "users"
   add_foreign_key "tenders", "users"
-  add_foreign_key "venues", "firms"
 end

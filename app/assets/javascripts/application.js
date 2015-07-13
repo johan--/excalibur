@@ -37,3 +37,5 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
 //= require datepicker
 //= require smoothscroll
+//= require select2
+//= require ckeditor/init

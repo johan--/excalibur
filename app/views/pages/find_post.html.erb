@@ -1,6 +1,6 @@
 <% title("Blog") %>
 
-<div id="posts-list">
+<div>
 <% @posts.each do |post| %>
   <%= render partial: 'elements/post', locals: { post: post, multiple: true } %>
   <div class="spacing"></div>

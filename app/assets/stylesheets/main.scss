@@ -12,7 +12,8 @@
 @import "styles/colorful-modal";
 @import "styles/style";
 @import "styles/style-responsive";
-
+@import "select2";
+@import "select2-bootstrap";
 
 /* Progress Bar */
 $nprogress-color: $brand-coral;
@@ -233,7 +234,7 @@ a:focus {
 #blue {
     background: $brand-coral;
     margin-top: 50px;
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
     padding-top: 25px;
     padding-bottom: 25px;
 }
@@ -241,6 +242,12 @@ a:focus {
 #blue h3 {
     color: white;
     margin-left: 15px;
+}
+
+#blog-body{
+  /*color: #797979;*/
+  background: #f2f2f2;
+  padding-top: 20px;
 }
 
 .ctitle {
@@ -273,7 +280,7 @@ csmall2 {
     
 .popular-posts li {
     list-style: none; 
-    margin-bottom: 20px; 
+    margin-bottom: 5px; 
     min-height: 70px;
 }
 .popular-posts li a, 
@@ -301,4 +308,11 @@ csmall2 {
 .share i {
     padding-right: 15px;
     font-size: 18px;
+}
+
+.post-box {
+    border: 1px solid #ddd;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
 }

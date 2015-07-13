@@ -3,6 +3,12 @@
   <h5><%= link_fa_to("dashboard", " Utama", user_root_path) %></h5>
 </li>
 
+<% if current_user.admin? %>
+<li class="sub-menu">
+  <%= link_fa_to("rocket", " Admin Dash", admin_root_path) %>
+</li>
+<% end %>
+
 <li class="sub-menu">
   <%= link_fa_to("user", " Identitas", '#') %>
 </li>
@@ -13,7 +19,7 @@
 </li>
 
 <li class="sub-menu">
-  <%= link_fa_to("book", " Blog", root_path(subdomain: "blog")) %>
+  <%= link_fa_to("newspaper-o", " Blog", root_path(subdomain: "blog")) %>
 </li>
 
 <!-- <li class="mt">

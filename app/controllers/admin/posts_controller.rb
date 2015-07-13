@@ -66,6 +66,9 @@ class Admin::PostsController < Admin::BaseController
     :title,
     :content_md,
     :header,
+    :topic,
+    :tags_list,
+    :topics_list,
     :draft,
     :updated_at
     )

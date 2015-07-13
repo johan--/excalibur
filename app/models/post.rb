@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   # Use friendly_id
   extend FriendlyId
   friendly_id :title, use: :slugged
-  acts_as_taggable
+  acts_as_taggable  
 
   has_attachment  :header
   # Markdown
