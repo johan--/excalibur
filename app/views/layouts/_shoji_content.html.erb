@@ -1,9 +1,6 @@
 <div class="content">
   <nav class="navbar navbar-inverse square navbar-fixed-top" role="navigation" id="navbar">
-    <div class="navbar-banner">
-      <%= link_to :back do %>
-        <i class="fa fa-chevron-left fa-2x"></i> 
-      <% end %>
+    <div class="navbar-banner">      
       <a href="#" class="navbar-brand">
         <strong><%= @title %></strong>
       </a>
@@ -38,7 +35,7 @@
         <ul class="sidebar-menu" id="nav nav-accordion">
         
           <h2 class="centered"><%= app_name %></h2>
-          <h5 class="centered">Marcel Newman</h5>
+          <h5 class="centered"><%= current_user.full_name %></h5>
           <%= render 'layouts/sidebar_options' %>
 
         </ul>

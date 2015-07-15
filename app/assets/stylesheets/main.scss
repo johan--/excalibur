@@ -22,6 +22,12 @@ $nprogress-zindex: 10100;
 @import 'nprogress';
 @import 'nprogress-bootstrap';
 
+#welcome-box{
+    border: 1px solid #ddd;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
 
 .red {
   color: #f75353 !important;

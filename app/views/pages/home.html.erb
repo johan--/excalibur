@@ -1,119 +1,57 @@
 <% title("Utama") %>
 
 <div class="container">
-  <h3><i class="fa fa-bolt"></i> Halaman Utama</h3>  
-  
-  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
-  <%= current_user.email if Rails.env.test? %>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<h3><i class="fa fa-bolt"></i> Halaman Utama</h3>
+		</div>
+		
+		<div class="col-md-8 col-md-offset-2 col-sm-8">		
+			<div id="welcome-box">
+			  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
+			  <p class="narrow text-center">
+			    Berkas <span class="label label-success">1 </span> 
+			     Status <span class="label label-info"> Menunggu Konfirmasi</span>
+			     Pengajuan <span class="label label-warning"> 1 Pending</span>
+			  </p>
+		    <div class="status-row" id="">
+		    	<%= render 'elements/statuses' %>
+		    </div>	
+			</div>		
+		 </div>
+		<div class="col-md-12 col-sm-8">
+		  <div class="stylish-panel">
+		    <div class="col-md-3 col-sm-6 col-xs-6">
+		      <div>
+		        <i class="fa fa-cab fa-3x"></i>
+		        <h3>Kendaraan</h3>
+		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "kendaraan"), class: "btn btn-primary btn-md" %>
+		      </div>
+		    </div>  
+		    <div class="col-md-3 col-sm-6 col-xs-6">
+		      <div>
+		        <i class="fa fa-home fa-3x"></i>
+		        <h3>Rumah</h3>
+		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "rumah"), class: "btn btn-primary btn-md" %>
+		      </div>
+		    </div>
+		    <div class="col-md-3 col-sm-6 col-xs-6">
+		      <div>
+		        <i class="fa fa-laptop fa-3x"></i>
+		        <h3>Elektronik</h3>
+		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "elektronik"), class: "btn btn-primary btn-md" %>
+		      </div>
+		    </div>
+		    <div class="col-md-3 col-sm-6 col-xs-6">
+		      <div>
+		        <i class="fa fa-mortar-board fa-3x"></i>
+		        <h3>Pendidikan</h3>
+		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "pendidikan"), class: "btn btn-primary btn-md" %>
+		      </div>
+		    </div>  
 
-  <p class="narrow text-center">
-	  <div class="notify-row centered" id="top_menu">
-	    <!--  notification start -->
-	    <ul class="nav top-menu">
-	      <!-- settings start -->
-	      <li class="dropdown">
-	        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-	          <i class="fa fa-tasks"></i>
-	          <span class="badge bg-theme">4</span>
-	        </a>
-	        <ul class="dropdown-menu extended tasks-bar">
-	          <div class="notify-arrow notify-arrow-green"></div>
-	          <li>
-	            <p class="green">You have 1 pending tasks</p>
-	          </li>
-	          <li>
-	            <a href="index.html#">
-	              <div class="task-info">
-	                  <div class="desc">DashGum Admin Panel</div>
-	                  <div class="percent">40%</div>
-	              </div>
-	              <div class="progress progress-striped">
-	                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-	                      <span class="sr-only">40% Complete (success)</span>
-	                  </div>
-	              </div>
-	            </a>
-	          </li>
-	          <li class="external">
-	              <a href="#">See All Tasks</a>
-	          </li>
-	        </ul>
-	      </li>
+		  </div>  
+		</div>
+	</div>
 
-	      <!-- inbox dropdown start-->
-	      <li id="header_inbox_bar" class="dropdown">
-	        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-	            <i class="fa fa-envelope-o"></i>
-	            <span class="badge bg-theme">5</span>
-	        </a>
-	        <ul class="dropdown-menu extended inbox">
-	          <div class="notify-arrow notify-arrow-green"></div>
-	          <li>
-	              <p class="green">You have 1 new messages</p>
-	          </li>
-	          <li>
-	            <a href="#">
-	            <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-	            <span class="subject">
-	            <span class="from">Zac Snider</span>
-	            <span class="time">Just now</span>
-	            </span>
-	            <span class="message">
-	                Hi mate, how is everything?
-	            </span>
-	            </a>
-	          </li>
-	          <li>
-	            <a href="#">See all messages</a>
-	          </li>
-	        </ul>
-	      </li>
-	      <!-- inbox dropdown end -->
-	    </ul>
-	    <!--  notification end -->
-	  </div>
-    Berkas <span class="label label-success">1 </span> 
-    Status <span class="label label-info"> Menunggu Konfirmasi</span>
-    Pengajuan <span class="label label-warning"> 1 Pending</span>
-  </p>
-
-<!--   <p class="text-center">
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Cari Arena
-    </button>    
-  </p>   -->
-
-
-  <div class="row stylish-panel">    
-
-    <div class="col-md-3">
-      <div>
-        <i class="fa fa-cab fa-3x"></i>
-        <h3>Kendaraan</h3>
-        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "kendaraan"), class: "btn btn-primary btn-lg" %>
-      </div>
-    </div>  
-    <div class="col-md-3">
-      <div>
-        <i class="fa fa-home fa-3x"></i>
-        <h3>Rumah</h3>
-        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "rumah"), class: "btn btn-primary btn-lg" %>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div>
-        <i class="fa fa-laptop fa-3x"></i>
-        <h3>Elektronik</h3>
-        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "elektronik"), class: "btn btn-primary btn-lg" %>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div>
-        <i class="fa fa-mortar-board fa-3x"></i>
-        <h3>Pendidikan</h3>
-        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "pendidikan"), class: "btn btn-primary btn-lg" %>
-      </div>
-    </div>  
-
-  </div>  
 </div>
