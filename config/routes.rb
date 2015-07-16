@@ -15,10 +15,8 @@ Fustal::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :users, only: [:index, :show, :create, :update]
       resources :sessions, only: [:create, :destroy]
-      resources :reservations, except: [:edit, :new]
       resources :relationships, only: [:index, :show, :create, :destroy]
       resources :firms, except: [:new, :edit, :destroy]
-      resources :installments, except: [:index, :new, :edit, :destroy]
     end
   end 
   constraints :subdomain => 'blog' do
