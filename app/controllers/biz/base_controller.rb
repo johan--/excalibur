@@ -1,7 +1,7 @@
 class Biz::BaseController < ApplicationController
   before_action :require_operator!
   before_action :set_firm
-  before_action :check_subscription, except: [:subscription, :expiration]
+  # before_action :check_subscription, except: [:subscription, :expiration]
   before_action :firm_layout 
   
   respond_to :html, :js
@@ -70,9 +70,9 @@ class Biz::BaseController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_firm
-      @firm = Firm.find(current_user.firm_locator.id)
+      @firm = Team.find(current_user.firm_locator.id)
       if @firm.nil?
-        redirect_to posts_path
+        redirect_to root_path(subdomain: "blog")
       end
     end
 
@@ -91,10 +91,10 @@ class Biz::BaseController < ApplicationController
       )
     end
 
-    def check_subscription
-      if @firm.subscription.state != 'aktif'
-        redirect_to biz_expiration_path  
-      end
-    end
+    # def check_subscription
+    #   if @firm.subscription.state != 'aktif'
+    #     redirect_to biz_expiration_path  
+    #   end
+    # end
 
 end

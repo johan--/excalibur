@@ -8,11 +8,11 @@
         <p>
           Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
         </p>
-        <% if @firm.subscription.nil? %>
+
           <%= link_to "Berlangganan", biz_subscribes_path, method: :post, class: "btn btn-danger" %>
-        <% else %>
+
           <%= link_to "Ke Halaman Langganan »", biz_subscription_path, class: "btn btn-primary" %>
-        <% end %>
+
       </div>
     </div>
     <div class="col-md-4">

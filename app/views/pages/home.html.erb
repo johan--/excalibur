@@ -1,13 +1,14 @@
-<% title("Utama") %>
+<% title("Beranda") %>
 
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<h3><i class="fa fa-bolt"></i> Halaman Utama</h3>
+			<h3><i class="fa fa-bolt"></i> Halaman Beranda</h3>
 		</div>
 		
 		<div class="col-md-8 col-md-offset-2 col-sm-8">		
 			<div id="welcome-box">
+				<%= image_tag("box-avatar", alt: "def-avatar") %>
 			  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
 			  <p class="narrow text-center">
 			    Berkas <span class="label label-success">1 </span> 

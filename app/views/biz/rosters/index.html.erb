@@ -1,19 +1,19 @@
 <% title("Laman Tim") %>
 
 
-	<h3 class="text-center">Daftar Anggota Tim</h3>
+	<h3 class="text-center">Anggota Tim</h3>
 
 	<p class="narrow text-center">
-		<small>Tambah Anggota Tim</small>
-		<%= link_to "+ Pengguna Yang Terdaftar", new_biz_roster_path, class: "btn btn-md btn-primary" %> 
+		<small>Tambah</small>
+		<%= link_to "+ Yang Terdaftar", new_biz_roster_path, class: "btn btn-sm btn-primary" %> 
 
-		<%= link_to "+ Anggota Yang Belum Mendaftar", new_biz_roster_path(register: true), class: "btn btn-md btn-info" %> 		
+		<%= link_to "+ Yang Belum Mendaftar", new_biz_roster_path(register: true), class: "btn btn-sm btn-info" %> 		
 	</p>
 
  	<br>
-	<div class="row">
+	
         <div id="no-more-tables">
-            <table class="col-md-12 table-bordered table-striped table-condensed cf text-center">
+            <table class="col-md-9 table-bordered table-striped table-condensed cf text-center">
         		<thead class="cf">
         			<tr>
         				<th class="text-center">#</th>
@@ -25,10 +25,10 @@
         			</tr>
         		</thead>
         		<tbody>
-        		<% @rosters.each_with_index do |member, index| %>
+        		<% @members.each_with_index do |member, index| %>
         			<tr>
         				<td data-title="#"><%= index + 1 %>.</td>
-        				<td data-title="Nama"><%= member.user.full_name %></td>
+        				<td data-title="Nama"><%= member.rosterable.full_name %></td>
         				<td data-title="Peran"><%= role_translated(member.role) %></td>
         				<td data-title="Bergabung" class="numeric"><%= member.created_at.to_date %></td>
         				<td data-title="Koreksi">
@@ -52,7 +52,7 @@
         		</tbody>
         	</table>
         </div>
-    </div>
+    
 
 
   </div>

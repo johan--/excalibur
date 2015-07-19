@@ -2,7 +2,7 @@ class Biz::RostersController < Biz::BaseController
   before_action :set_roster, only: [:edit, :update, :destroy]
 
   def index
-    @rosters = @firm.rosters
+    @members = @firm.rosters.users
   end
 
   def new
@@ -14,8 +14,8 @@ class Biz::RostersController < Biz::BaseController
 
   def create
     @roster = Roster.new(roster_params)
-    @roster.rosterable = @firm
-    @roster.state = 'aktif'
+    @roster.team = @firm
+    @roster.rosterable = current_user
 
       if @roster.save
         redirect_to biz_rosters_path
@@ -53,8 +53,9 @@ class Biz::RostersController < Biz::BaseController
 
   def roster_params
     params.require(:roster).permit(
-      :role, :state, :user_email, :user_phone, :user_id, :firm_id,
-      :password, :password_confirmation, :full_name
+      :role, :state, :rosterable_type, :rosterable_id, :team,
+      :password, :password_confirmation, 
+      :full_name, :user_email, :user_phone
     )
   end
 

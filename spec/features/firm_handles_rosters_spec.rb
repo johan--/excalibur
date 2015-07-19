@@ -3,12 +3,8 @@ require 'rails_helper'
 feature "FirmHandlesRosters", :type => :feature do
   subject { page }
 
-  let!(:user) { FactoryGirl.create(:manager) }
+  let!(:user) { FactoryGirl.create(:manager, :with_team) }
   let!(:user_2) { FactoryGirl.create(:manager) }
-  let!(:firm_1) { FactoryGirl.create(:firm, :with_subscription) }
-  let!(:as_manager) { FactoryGirl.create(:active_manager, 
-  									user: user, rosterable: firm_1) }  
-  let!(:venue_1) { FactoryGirl.create(:capital_venue, firm: firm_1) }
 
   before do 
   	sign_in user 
@@ -23,7 +19,7 @@ feature "FirmHandlesRosters", :type => :feature do
 
   describe "adding a non-registered user" do
   	before do
-  		click_link "+ Anggota Yang Belum Mendaftar"
+  		click_link "+ Yang Belum Mendaftar"
       fill_in("roster[user_email]", with: "galliani@example.com")
       # fill_in("roster[user_phone]", with: "0811199194")
       fill_in("roster[password]", with: "foobarbaz")
@@ -45,13 +41,13 @@ feature "FirmHandlesRosters", :type => :feature do
         click_button  "Masuk"
       end
 
-      it { should have_content(firm_1.name) }
+      it { should have_content(user.firm_locator.name) }
     end            
   end
 
   describe "adding a registered user" do
     before do
-      click_link "+ Pengguna Yang Terdaftar"
+      click_link "+ Yang Terdaftar"
       fill_in("roster[user_email]", with: user_2.email)
       fill_in("roster[full_name]", with: user_2.full_name)
       # fill_in("roster[user_phone]", with: user_2.phone_number)
@@ -71,7 +67,7 @@ feature "FirmHandlesRosters", :type => :feature do
         click_button  "Masuk"
       end
 
-      it { should have_content(firm_1.name) }
+      it { should have_content(user.firm_locator.name) }
     end                
   end
 

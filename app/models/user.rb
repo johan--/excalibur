@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 # Relations
-  has_one :identity
+  has_one  :identity
   has_many :posts
-  has_many :rosters
+  has_many :rosters, as: :rosterable
+  has_many :teams, through: :rosters,
+            source: :rosterable, source_type: 'User'
   has_many :relationships,  foreign_key: "follower_id", 
                             dependent: :destroy
 
@@ -49,15 +51,15 @@ class User < ActiveRecord::Base
   end
 
   def with_no_firm?
-    return true if find_firm.active.first.nil?
+    return true if find_firm.nil?
   end
 
   def find_firm
-    self.rosters.firm_team
+    self.rosters.first
   end
 
   def firm_locator
-    find_firm.first.rosterable
+    find_firm.team
   end
 
   # relationship methods

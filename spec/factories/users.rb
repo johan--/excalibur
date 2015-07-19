@@ -17,6 +17,13 @@ FactoryGirl.define do
 
     factory :manager do
       category 2
+
+      trait :with_team do
+        after(:create) do |user, evaluator|
+          firm = FactoryGirl.create(:firm, starter_email: user.email)
+          FactoryGirl.create(:active_manager, rosterable: user, team: firm)
+        end
+      end
     end
 
     factory :facebook_user do

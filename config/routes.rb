@@ -16,7 +16,6 @@ Fustal::Application.routes.draw do
       resources :users, only: [:index, :show, :create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :relationships, only: [:index, :show, :create, :destroy]
-      resources :firms, except: [:new, :edit, :destroy]
     end
   end 
   constraints :subdomain => 'blog' do
@@ -26,24 +25,22 @@ Fustal::Application.routes.draw do
   end
 
 # New App
+  resources :teams do
+    member do
+      post "join" => "teams#join", as: :join
+    end
+  end
+  resources :profiles do
+    resources :addresses
+  end
+  resources :businessess, controller: 'teams', type: 'Business' 
+  resources :backers, controller: 'teams', type: 'Agency' 
   resources :bids
   resources :tenders
 
-  resources :reservations, except: [:new, :destroy]
-  resources :installments, except: :destroy do
-    member do
-      get "veritrans_checkout" => "installments#veritrans_checkout", as: :veritrans_checkout
-    end    
-  end
-  
-
-  resources :firms, only: [:index, :new, :create] do
-    member do
-      post "join" => "firms#join", as: :join
-    end
-  end
-
   resources :relationships, only: [:create, :destroy]
+
+  # Static Pages
   root "pages#landing"
   get "home", to: "pages#home", as: :user_root
   get "/contact", to: "pages#contact", as: "contact"
@@ -78,8 +75,6 @@ Fustal::Application.routes.draw do
     get "expiration", to: "base#expiration", as: :expiration
     
     get "contact", to: "base#contact", as: "contact"
-
-    resources :payments, except: :destroy
   end
 
 end

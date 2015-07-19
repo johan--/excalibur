@@ -1,36 +1,19 @@
 FactoryGirl.define do
 
-  factory :firm do
-    sequence(:name) { |n| "Firm #{n}" }
-    sequence(:phone) { |n| "0111111#{n}" }
-    sequence(:address) { |n| "Jl. Example No. #{n}" } 
-    city "DKI Jakarta"
-
-    factory :firm_with_team do
-      transient do
-        manager { FactoryGirl.create(:manager) }
-      end
-
-      after(:create) do |firm, evaluator|
-        FactoryGirl.create(:active_manager, user: evaluator.manager, rosterable: firm)
-      end
+  factory :team do
+    factory :firm do
+      type "Firm"
+      sequence(:name) { |n| "Firm #{n}" }
     end
 
-    trait :with_subscription do
-      after(:create) do |firm, evaluator|
-        FactoryGirl.create(:active_1_mo, firm: firm)
-      end            
-    end        
-  end
-
-  trait :capital do
-    city "DKI Jakarta"
-    sequence(:address) { |n| "Jl. Ibukota No. #{n}" } 
-  end
-
-  trait :satellite do
-    city "Bekasi"
-    sequence(:address) { |n| "Jl. Satelit No. #{n}" } 
+    trait :starter_email do
+      starter_email
+    end
+    # trait :with_subscription do
+    #   after(:create) do |firm, evaluator|
+    #     FactoryGirl.create(:active_1_mo, firm: firm)
+    #   end            
+    # end        
   end
 
   # factory :venue do
@@ -70,13 +53,5 @@ FactoryGirl.define do
   #   end    
   # end
 
-
-  # factory :court do
-  #   sequence(:name) { |n| "Court #{n}" }
-  #   price 100000
-  #   unit "Jam"
-  #   category 1
-  #   venue
-  # end
 
 end

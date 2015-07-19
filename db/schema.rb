@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712165140) do
+ActiveRecord::Schema.define(version: 20150719100512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "profile_id",                null: false
+    t.string   "name"
+    t.json     "full_address", default: {}, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "addresses", ["created_at", "profile_id"], name: "index_addresses_on_created_at_and_profile_id", using: :btree
+  add_index "addresses", ["profile_id"], name: "index_addresses_on_profile_id", using: :btree
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -62,18 +74,6 @@ ActiveRecord::Schema.define(version: 20150712165140) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
-  create_table "firms", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "city",       null: false
-    t.string   "address",    null: false
-    t.string   "phone",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "firms", ["city"], name: "index_firms_on_city", using: :btree
-  add_index "firms", ["name"], name: "index_firms_on_name", using: :btree
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -98,20 +98,6 @@ ActiveRecord::Schema.define(version: 20150712165140) do
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "payments", force: :cascade do |t|
-    t.integer  "subscription_id", null: false
-    t.string   "pay_code",        null: false
-    t.date     "pay_day",         null: false
-    t.time     "pay_time",        null: false
-    t.integer  "total",           null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "payments", ["subscription_id", "pay_code"], name: "index_payments_on_subscription_id_and_pay_code", unique: true, using: :btree
-  add_index "payments", ["subscription_id", "pay_day"], name: "index_payments_on_subscription_id_and_pay_day", unique: true, using: :btree
-  add_index "payments", ["subscription_id"], name: "index_payments_on_subscription_id", using: :btree
-
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content_md"
@@ -127,6 +113,19 @@ ActiveRecord::Schema.define(version: 20150712165140) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "profileable_id",                null: false
+    t.string   "profileable_type",              null: false
+    t.string   "about"
+    t.json     "details",          default: {}
+    t.datetime "deleted_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "profiles", ["deleted_at"], name: "index_profiles_on_deleted_at", using: :btree
+  add_index "profiles", ["profileable_id", "profileable_type"], name: "index_profiles_on_profileable_id_and_profileable_type", using: :btree
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id",   null: false
     t.string   "followed_type", null: false
@@ -140,20 +139,20 @@ ActiveRecord::Schema.define(version: 20150712165140) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "rosters", force: :cascade do |t|
-    t.integer  "rosterable_id",   null: false
-    t.string   "rosterable_type", null: false
-    t.integer  "user_id",         null: false
-    t.integer  "role",            null: false
-    t.string   "state",           null: false
+    t.integer  "rosterable_id",                     null: false
+    t.string   "rosterable_type",                   null: false
+    t.integer  "team_id",                           null: false
+    t.integer  "role",                              null: false
+    t.string   "state",           default: "aktif", null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "rosters", ["deleted_at"], name: "index_rosters_on_deleted_at", using: :btree
-  add_index "rosters", ["rosterable_type", "rosterable_id", "user_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id_and_user_id", using: :btree
+  add_index "rosters", ["rosterable_type", "rosterable_id", "team_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id_and_team_id", using: :btree
   add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
-  add_index "rosters", ["user_id"], name: "index_rosters_on_user_id", using: :btree
+  add_index "rosters", ["team_id"], name: "index_rosters_on_team_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",         null: false
@@ -201,6 +200,17 @@ ActiveRecord::Schema.define(version: 20150712165140) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "teams", force: :cascade do |t|
+    t.string "type",          null: false
+    t.string "name"
+    t.string "starter_email", null: false
+    t.string "starter_phone"
+  end
+
+  add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
+  add_index "teams", ["starter_email"], name: "index_teams_on_starter_email", using: :btree
+  add_index "teams", ["type"], name: "index_teams_on_type", using: :btree
+
   create_table "tenders", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "barcode"
@@ -234,7 +244,9 @@ ActiveRecord::Schema.define(version: 20150712165140) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name",                              null: false
+    t.string   "phone_number"
     t.datetime "deleted_at"
+    t.string   "avatar"
     t.integer  "category",               default: 1,     null: false
     t.string   "auth_token",             default: ""
   end

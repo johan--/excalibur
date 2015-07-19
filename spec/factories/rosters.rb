@@ -1,20 +1,23 @@
 FactoryGirl.define do
 
   factory :roster do
-    user
+    team
 
-    factory :active_manager do
-      state "aktif"
-      role 1
-      association :rosterable, factory: :firm
+    factory :member do
+      association :rosterable, factory: :user
+
+      factory :active_manager do
+        state "aktif"
+        role 1
+      end
+
+      factory :pending_member do
+        state "menunggu konfirmasi"
+        role 2
+      end
     end
 
-    factory :pending_member do
-      state "menunggu konfirmasi"
-      role 2
-      association :rosterable, factory: :firm
-    end
-    # factory :user do
+    # factory :document do
     #   role 1
     #   association :rosterable, factory: :team
     # end

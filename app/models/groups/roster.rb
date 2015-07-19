@@ -1,20 +1,20 @@
 class Roster < ActiveRecord::Base
   belongs_to :rosterable, polymorphic: true
-  belongs_to :user
+  belongs_to :team
 
-  validates_associated :user
+  validates_associated :team
   validates_presence_of :rosterable_type, :rosterable_id, :role
 
   attr_accessor :user_email, :user_name, :password, 
                 :password_confirmation, :full_name
 
   before_create :check_attributes!
-  scope :by_user, ->(user_id) { where(user_id: user_id) }
-  scope :firm_team, -> { where(rosterable_type: 'Firm') }
+  scope :by_id, ->(id) { where(rosterable_id: id) }
+  scope :users, -> { where(rosterable_type: 'User') }
   scope :active, -> { where(state: 'aktif') }
 
   def starter?
-  	if self.firm.starter_email == self.user.email || self.firm.starter_phone == self.user.phone_number
+  	if self.team.starter_email == self.user.email || self.team.starter_phone == self.user.phone_number
   		return true
   	end
   end
@@ -38,17 +38,17 @@ private
 
   def check_attributes!
   	if password && password_confirmation && full_name
-  	  a = User.new(
+  	  new_user = User.new(
   			email: user_email, #phone_number: user_phone,
   			password: password, password_confirmation: password_confirmation,
   			full_name: full_name, category: 2
   			)
-  	  a.save!
-  	  self.user_id = a.id
+  	  new_user.save!
+  	  self.rosterable = new_user
   	else
   	  if user_email && full_name
-  		b =  User.find_by(email: user_email, full_name: full_name)
-  			self.user_id = b.id
+  		user =  User.find_by(email: user_email, full_name: full_name)
+  			self.rosterable = user
   	  end
   	end
   end

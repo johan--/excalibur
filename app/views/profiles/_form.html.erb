@@ -1,0 +1,20 @@
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.text_field :about, label: "Biografi Singkat" %>
+    <%= f.text_area :summary,  label: "Biografi Singkat", placeholder: "cerita singkat tentang profil kamu, maksimal 200 karakter" %>
+
+      <%= f.fields_for :addresses do |builder| %>
+        <%= render 'address_fields', f: builder %>
+      <% end %>
+
+    <%= f.hidden_field :profileable_type, value: number_type, readonly: true %>
+    <%= f.hidden_field :profileable_id, value: number, readonly: true %>
+
+    <div class="actions">
+      <%= f.submit "Simpan", class: "btn btn-primary" %>
+    </div>    
+  </div>
+
+<% end %>

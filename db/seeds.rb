@@ -54,38 +54,26 @@ manager_array = []
 
 end
 
+t = Team.create!(
+  type: "Firm",
+  name: "Bisnis 1",
+  starter_email: manager_array.first.email
+)
 
-firm_array = []
-(1..5).each do |i|
-  firm_array << Firm.create!(
-    name: "Bisnis #{i}",
-    city: "Jakarta Selatan",
-    address: "Example Address No. #{i}",
-    phone: "0819999999#{i}",
-  )
-    puts "#{i} test firms created..." if (i % 5 == 0)
+t.rosters.create!(
+  rosterable: manager_array.first,
+  team: t,
+  state: "aktif",
+  role: 0
+)
 
-end
 
-firm_array.each do |firm|
-  Subscription.create!(
-    category: 1,
-    start_date: Date.today,
-    state: "aktif",
-    firm: firm
-  )
-end
-
-manager_array.each do |manager|
-  firm_array.each do |firm|
-    firm.rosters.create!(
-      user: manager,
-      # rosterable: firm,
-      state: "aktif",
-      role: 0
-    )
-  end
-end
+# t.subscription.create!(
+#   category: 1,
+#   start_date: Date.today,
+#   state: "aktif",
+#   firm: firm
+# )
   
 # dummy blog posts
 (1..14).each do |i|

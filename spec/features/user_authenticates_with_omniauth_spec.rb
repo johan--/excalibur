@@ -16,9 +16,8 @@ feature "UserAuthenticatesWithOmniauth", :type => :feature do
 	  click_link 'Facebook'
 	end
 
-	it { should have_content('Home') }
-	it { should have_content('Hai, Facebooker') }
-	it { should have_content('facebooker@example.com') }
+	  it { should have_content('Beranda') }
+	  it { should have_content('Hai, Facebooker') }
   end
 
   describe "login with google" do
@@ -27,8 +26,8 @@ feature "UserAuthenticatesWithOmniauth", :type => :feature do
 	  click_link 'Google'
 	end
 
-	it { should have_content('Home') }
-	it { should have_content('Hai, Googler') }
+	  it { should have_content('Beranda') }
+	  it { should have_content('Hai, Googler') }
   end
 
 
