@@ -1,8 +1,8 @@
 <% title("Buat Profil") %>
 
 <h1>Buat Profil dan Alamat</h1>
-<% if @profile_type == 'Firm' %>	
-	<%= render partial: 'form', locals: {firm: true, number_type: 'Firm', number: params[:currently]} %>
-<% else %>
-	<%= render partial: 'form', locals: {number_type: 'User', number: current_user.id} %>
-<% end %>
+	<% if @profile_type == 'team' %>	
+	  <%= render partial: 'profiles/form', locals: { team: true } %>
+	<% elsif @profile_type == 'user' %>
+	  <%= render partial: 'profiles/form', locals: { user: true } %>
+	<% end %>    

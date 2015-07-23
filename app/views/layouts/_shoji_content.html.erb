@@ -30,7 +30,7 @@
 
   <div class="container-fluid" style="padding-left: 0px;">
     <aside>
-      <div id="sidebar" class="hidden-xs nav-collapse">
+      <div id="sidebar" class="hidden-sm hidden-xs nav-collapse">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav nav-accordion">
         
@@ -41,12 +41,19 @@
         </ul>
         <!-- sidebar menu end-->
       </div>
+      <div id="sidebar" class="visible-sm hidden-xs nav-collapse">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav nav-accordion">
+          <%= render 'layouts/sidebar_options' %>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>      
     </aside>
     <section id="main-content">
       <section class="wrapper">
 
-      <div class="container" style="padding-left: 35px;">
-        <div class="row">
+      <div class="container">
+        <div class="row" id="main-content-row">
           <%= render 'layouts/messages' %>
           
           <%= yield %>

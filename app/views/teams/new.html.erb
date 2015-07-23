@@ -1,13 +1,9 @@
 <% title("Daftarkan Bisnismu") %>
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
-    <h1>Buat Grup Baru</h1>
+    <h1>Buat <%= type_translated(@type) %> Baru</h1>
 
     <%= render 'form' %>
     <br>
-    <hr>
-    <p>Grup kamu sudah terdaftar? <%= link_to "Klik di sini", firms_path, id: "join-firm-prompt" %> untuk bergabung dengan akun grup tersebut</p>    
-
-    
   </div>
 </div

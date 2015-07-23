@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20150719100512) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
+    t.string   "category",                      null: false
     t.integer  "profileable_id",                null: false
     t.string   "profileable_type",              null: false
     t.string   "about"
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150719100512) do
     t.datetime "updated_at",                    null: false
   end
 
+  add_index "profiles", ["category"], name: "index_profiles_on_category", using: :btree
   add_index "profiles", ["deleted_at"], name: "index_profiles_on_deleted_at", using: :btree
   add_index "profiles", ["profileable_id", "profileable_type"], name: "index_profiles_on_profileable_id_and_profileable_type", using: :btree
 

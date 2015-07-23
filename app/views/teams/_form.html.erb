@@ -2,15 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-
-	<%= f.input :type, as: :select, Team.types.map {|r| [r.humanize, r.camelcase]}, {}, disabled: @type != "Team" %> 
-    <%= f.input :name %>
-
-    <%= f.input :starter_email %>
-
+    <%= f.input :name, label: "Nama #{type_translated(@type)}" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Daftarkan Tim", class: "btn btn-primary" %>
   </div>
 <% end %>

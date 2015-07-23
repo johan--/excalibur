@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 feature "FirmCreatesProfile", :type => :feature do
-  subject { page }
-  let!(:player) { FactoryGirl.create(:player) }
+  # subject { page }
+  # let!(:player) { FactoryGirl.create(:player) }
   # let!(:firm) { FactoryGirl.create(:firm_with_reports) }  
   # let!(:as_owner) { FactoryGirl.create(:active_owner, user: user, rosterable_id: firm.id) }  
 
-  before { sign_in user }
+  # before { sign_in user }
 
-  describe "create user profile" do
-  	click_link "Buat Profil Pengguna"
-  end
+  # describe "create user profile" do
+  # 	click_link "Buat Profil Pengguna"
+  # end
 
   # describe "profile form field for firm" do
   # 	before { click_link "Buat Profil Usaha" }

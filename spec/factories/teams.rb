@@ -6,14 +6,14 @@ FactoryGirl.define do
       sequence(:name) { |n| "Firm #{n}" }
     end
 
+    factory :business do
+      type "Business"
+      sequence(:name) { |n| "Biz #{n}" }
+    end
+
     trait :starter_email do
       starter_email
     end
-    # trait :with_subscription do
-    #   after(:create) do |firm, evaluator|
-    #     FactoryGirl.create(:active_1_mo, firm: firm)
-    #   end            
-    # end        
   end
 
   # factory :venue do
@@ -21,18 +21,6 @@ FactoryGirl.define do
   #   # sequence(:address) { |n| "Jl. Arena No. #{n}" } 
   #   sequence(:phone) { |n| "08135555#{n}" } 
   #   firm
-
-  #   factory :capital_venue do
-  #     province "DKI Jakarta"
-  #     city "Jakarta Selatan"
-  #     sequence(:address) { |n| "Jl. Ibukota No. #{n}" }       
-
-  #     factory :cap_venue_with_firm do
-  #       before(:create) do |venue, evaluator|
-  #         FactoryGirl.create(:firm)
-  #       end
-  #     end
-  #   end
 
   #   factory :satellite_venue do
   #     province "Banten"

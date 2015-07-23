@@ -1,33 +1,31 @@
 class TeamsController < ApplicationController
+  include TeamSti
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :set_type
   before_action :user_layout
   
-  # GET /teams
-  # GET /teams.json
   def index
     @teams = type_class.all
     @team_search = Team.search(search_params)
   end
 
-  # GET /teams/1
-  # GET /teams/1.json
   def show
   end
 
-  # GET /teams/new
   def new
     @team = type_class.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
-  # GET /teams/1/edit
   def edit
   end
 
-  # POST /teams
-  # POST /teams.json
   def create
     @team = Team.new(team_params)
+    @team.starter_email = current_user.email
 
     respond_to do |format|
       if @team.save
@@ -40,8 +38,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /teams/1
-  # PATCH/PUT /teams/1.json
   def update
     respond_to do |format|
       if @team.update(team_params)
@@ -54,8 +50,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
   def destroy
     @team.destroy
     respond_to do |format|
@@ -80,18 +74,6 @@ class TeamsController < ApplicationController
 
 
   private
-    def type 
-        Team.types.include?(params[:type]) ? params[:type] : "Team"
-    end
-
-    def type_class 
-        type.constantize 
-    end
-
-    def set_type
-       @type = type 
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = type_class.find(params[:id])
@@ -101,7 +83,9 @@ class TeamsController < ApplicationController
     def team_params
       # params.require(:team).permit(:type, :name, :starter_email)
       params.require(type.underscore.to_sym).permit(
-        :type, :name, :starter_email
+        :type, :name, :starter_email, 
+        details: [:public, :last_education, :marital_status, 
+          :industry_experience, :work_experience]
       )
     end
 end

@@ -5,13 +5,18 @@ class ProfilesController < ApplicationController
   end
 
   def new
-  	@profile_type = params[:profile_for]
-	  @profile = Profile.new
+  	@profile_type = params[:for]
+	  @profile = UserProfile.new
 	  @profile.addresses.build
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end
 
   def edit
-  	@profile_type = params[:profile_for]
+  	@profile_type = params[:for]
   end
 
   def create
@@ -59,7 +64,9 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(
-        :about, :details, :profileable_type, :profileable_id,
+        :profileable_type, :profileable_id, :about, 
+        :details => [:last_education, :marital_status, 
+          industry_experience: [], work_experience: []], 
         addresses_attributes: [:id, :_destroy, :profile_id, :name, 
         	:province, :full_address]
       )

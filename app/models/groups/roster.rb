@@ -10,7 +10,7 @@ class Roster < ActiveRecord::Base
 
   before_create :check_attributes!
   scope :by_id, ->(id) { where(rosterable_id: id) }
-  scope :users, -> { where(rosterable_type: 'User') }
+  scope :members, -> { where(rosterable_type: 'User') }
   scope :active, -> { where(state: 'aktif') }
 
   def starter?

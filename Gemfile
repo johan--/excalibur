@@ -45,6 +45,7 @@ gem 'ransack'
 gem 'acts-as-taggable-on'
 # gem 'siphon'
 
+gem 'activerecord-typedstore'
 gem 'ledermann-rails-settings'
 gem 'statesman', '~> 1.2.3'
 

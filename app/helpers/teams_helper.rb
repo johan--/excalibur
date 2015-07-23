@@ -10,4 +10,12 @@ module TeamsHelper
 	def format_action(action)
 	  action ? "#{action}_" : ""
 	end
+
+	def type_translated(type)
+		if type == "Business"
+			return "Bisnis"
+		elsif type == "Agency"
+			return "Lembaga Pembiayaan"			
+		end
+	end
 end

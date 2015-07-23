@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  include TeamSti
   skip_before_action :authenticate_user!, only: [
     :landing, :posts, :show_post, :email # :home, :contact 
   ]
@@ -7,7 +8,8 @@ class PagesController < ApplicationController
   before_action :blog_layout, only: [:posts, :show_post]
   before_action :tag_cloud, only: [:posts, :show_post]
   before_action :user_layout, only: [:home, :contact]
-  
+  before_action :set_type, only: :home
+
   def landing
   end
 

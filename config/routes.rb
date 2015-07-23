@@ -25,16 +25,12 @@ Fustal::Application.routes.draw do
   end
 
 # New App
-  resources :teams do
-    member do
-      post "join" => "teams#join", as: :join
-    end
-  end
-  resources :profiles do
-    resources :addresses
-  end
-  resources :businessess, controller: 'teams', type: 'Business' 
-  resources :backers, controller: 'teams', type: 'Agency' 
+  resources :teams
+  resources :businesses, controller: 'teams', type: 'Business' 
+  resources :financiers, controller: 'teams', type: 'Agency' 
+  resources :profiles
+  resources :user_profiles, controller: 'profiles', type: 'UserProfile' 
+  resources :company_profiles, controller: 'profiles', type: 'CompanyProfile'
   resources :bids
   resources :tenders
 

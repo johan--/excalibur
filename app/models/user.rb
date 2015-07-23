@@ -19,8 +19,7 @@ class User < ActiveRecord::Base
   has_many :followers,  through: :reverse_relationships,
                         source: :follower
 
-
-  has_many :installments
+  has_one :profile, as: :profileable
   has_many :tenders
   has_many :bids, as: :bidder
 

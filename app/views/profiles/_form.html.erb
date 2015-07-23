@@ -2,18 +2,26 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.text_field :about, label: "Biografi Singkat" %>
-    <%= f.text_area :summary,  label: "Biografi Singkat", placeholder: "cerita singkat tentang profil kamu, maksimal 200 karakter" %>
-
-      <%= f.fields_for :addresses do |builder| %>
-        <%= render 'address_fields', f: builder %>
+    <%= f.input :about, label: "Biografi Singkat" %>
+    <% if defined?(team) && team %>
+      <%= f.simple_fields_for :details do |d| %>
+        <%= d.input :anno, label: "Didirikan Pada Tahun" %>
+        <%= d.input :founding_size, label: "Jumlah Pendiri" %>
+        <%= d.input :offline_presence_types, label: "Infrastruktur Nyata Bisnis" %>
+        <%= d.input :online_presence_types, label: "Pengalaman Kerja" %>
+      <% end %>      
+    <% elsif defined?(user) && user %>
+      <%= f.simple_fields_for :details do |d| %>
+        <%= d.input :last_education, label: "Pendidikan Terakhir" %>
+        <%= d.input :marital_status, label: "Status Pernikahan" %>
+        <%= d.input :work_experience, label: "Pengalaman Kerja" %>
+        <%= d.input :industy_experience, label: "Pengalaman Industri/Bidang" %>
       <% end %>
+    <% end %>
 
-    <%= f.hidden_field :profileable_type, value: number_type, readonly: true %>
-    <%= f.hidden_field :profileable_id, value: number, readonly: true %>
 
     <div class="actions">
-      <%= f.submit "Simpan", class: "btn btn-primary" %>
+      <%= f.button :submit, "Simpan", class: "btn btn-primary" %>
     </div>    
   </div>
 

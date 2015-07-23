@@ -1,51 +1,63 @@
 <% title("Beranda") %>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
-			<h3><i class="fa fa-bolt"></i> Halaman Beranda</h3>
-		</div>
-		
-		<div class="col-md-8 col-md-offset-2 col-sm-8">		
-			<div id="welcome-box">
-				<%= image_tag("box-avatar", alt: "def-avatar") %>
-			  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
-			  <p class="narrow text-center">
-			    Berkas <span class="label label-success">1 </span> 
-			     Status <span class="label label-info"> Menunggu Konfirmasi</span>
-			     Pengajuan <span class="label label-warning"> 1 Pending</span>
-			  </p>
-		    <div class="status-row" id="">
-		    	<%= render 'elements/statuses' %>
-		    </div>	
-			</div>		
-		 </div>
-		<div class="col-md-12 col-sm-8">
-		  <div class="stylish-panel">
-		    <div class="col-md-4 col-sm-12">
-		      <div>
-		        <i class="fa fa-cab fa-3x"></i>
-		        <h3>Kendaraan</h3>
-		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "kendaraan"), class: "btn btn-primary btn-md" %>
-		      </div>
-		    </div>  
-		    <div class="col-md-4 col-sm-12">
-		      <div>
-		        <i class="fa fa-laptop fa-3x"></i>
-		        <h3>Elektronik</h3>
-		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "elektronik"), class: "btn btn-primary btn-md" %>
-		      </div>
-		    </div>
-		    <div class="col-md-4 col-sm-12">
-		      <div>
-		        <i class="fa fa-mortar-board fa-3x"></i>
-		        <h3>Pendidikan</h3>
-		        <%= link_to "Buat Pengajuan »", new_tender_path(cat: "pendidikan"), class: "btn btn-primary btn-md" %>
-		      </div>
-		    </div>  
+<div id="home-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner-home-modal" class="modal-content">
+    </div>
+  </div>
+</div>
 
-		  </div>  
+<div class="col-md-4 col-sm-12 col-xs-12">
+	<div id="welcome-box">
+		<center>
+		  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
+		  <%= image_tag("box-avatar", alt: "def-avatar", class: "img-responsive") %>
+		  <br>
+	    <div class="status-row" id="">
+	    	<%= render 'elements/statuses' %>
+	    </div>
+	    <%= link_to 'Buat Profil Pengguna', new_profile_path(for: "user"), class: "btn btn-primary", remote: true  %>
+		</center>
+	</div>		
+</div>
+
+<div class="col-md-7 col-sm-12 col-xs-12">
+	<div class="blankslate">
+		<div class="spacious">
+			<h3>Belum Ada Akun Bisnis</h3>
+			<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
+			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-primary", :remote => true  %>
 		</div>
 	</div>
 
+	<div class="portlet portlet-bordered">
+		<div class="portlet-title">
+			<div class="caption caption-red">
+				<i class="glyphicon glyphicon-cog"></i>
+				<span class="caption-subject text-uppercase"> Akun</span>
+				<span class="caption-helper">Bisnis</span>
+			</div>
+			<div class="actions">
+				<a href="javascript:;" class="btn btn-red btn-circle active">
+					<i class="glyphicon glyphicon-paperclip"></i>
+				</a>
+				<a href="javascript:;" class="btn btn-red btn-circle">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</a>
+				<a href="javascript:;" class="btn btn-red btn-circle">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+				<a href="javascript:;" class="btn btn-red btn-circle">
+					<i class="glyphicon glyphicon-search"></i>
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<h4>Selamat Bergabung!</h4>
+			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+
+			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-primary", :remote => true  %>
+		</div>
+	</div>
 </div>
+<div class="col-md-1 col-sm-12 col-xs-12"></div>
