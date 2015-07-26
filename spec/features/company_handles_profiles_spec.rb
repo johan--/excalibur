@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "FirmCreatesProfile", :type => :feature do
+feature "CompanyHandlesProfile", :type => :feature do
   # subject { page }
   # let!(:player) { FactoryGirl.create(:player) }
   # let!(:firm) { FactoryGirl.create(:firm_with_reports) }  

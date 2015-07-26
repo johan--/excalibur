@@ -1,33 +1,22 @@
 class User < ActiveRecord::Base  
+  include UserRelationship
+  include UserChecking
+  include UserAdmin
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 # Relations
   has_one  :identity
   has_many :posts
   has_many :rosters, as: :rosterable
-  has_many :teams, through: :rosters,
-            source: :rosterable, source_type: 'User'
-  has_many :relationships,  foreign_key: "follower_id", 
-                            dependent: :destroy
-
-  has_many :friends, through: :relationships, 
-                            source: :followed, source_type: 'User'
-           
-  has_many :reverse_relationships, foreign_key: "followed_id",
-                                   class_name: "Relationship",
-                                   dependent: :destroy
-  has_many :followers,  through: :reverse_relationships,
-                        source: :follower
-
+  has_many :teams, through: :rosters #Dont have to use source & source type
   has_one :profile, as: :profileable
   has_many :tenders
   has_many :bids, as: :bidder
-
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable#, :confirmable
-  
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   # Pagination
@@ -44,74 +33,6 @@ class User < ActiveRecord::Base
 
   scope :players, -> { where(category: 1) }
   scope :operators, -> { where(category: 2) }
-
-  def operator?
-    return true if self.category == 2
-  end
-
-  def with_no_firm?
-    return true if find_firm.nil?
-  end
-
-  def find_firm
-    self.rosters.first
-  end
-
-  def firm_locator
-    find_firm.team
-  end
-
-  # relationship methods
-    def following?(followed)
-      return true if following(followed)
-    end
-
-    def following(followed)
-      self.relationships.find_by(
-        followed_id: followed.id, followed_type: followed.class.name)
-    end
-
-    def follow!(followed)
-      self.relationships.create!(
-        followed_id: followed.id, followed_type: followed.class.name)
-    end
-
-    def unfollow!(followed)
-      following(followed).destroy
-    end  
-
-    def favorite_venues
-      self.relationships.venues.map{ |rel| rel.followed }.to_a
-    end
-
-  # admin methods
-    def self.paged(page_number)
-      order(admin: :desc, email: :asc).page page_number
-    end
-
-    def self.search_and_order(search, page_number)
-      if search
-        where("email LIKE ?", "%#{search.downcase}%").order(
-        admin: :desc, email: :asc
-        ).page page_number
-      else
-        order(admin: :desc, email: :asc).page page_number
-      end
-    end
-
-    def self.last_signups(count)
-      order(created_at: :desc).limit(count).select("id","email","created_at")
-    end
-
-    def self.last_signins(count)
-      order(last_sign_in_at:
-      :desc).limit(count).select("id","email","last_sign_in_at")
-    end
-
-    def self.users_count
-      where("admin = ? AND locked = ?",false,false).count
-    end
-
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
@@ -151,10 +72,6 @@ class User < ActiveRecord::Base
     end
     user
   end
-
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
-  end
  
 
 # private
@@ -170,7 +87,6 @@ class User < ActiveRecord::Base
   end
 
   def generate_auth_token!
-    # SecureRandom.base64.tr('+/=', 'Qrt')
     SecureRandom.uuid.gsub(/\-/,'')
   end
 

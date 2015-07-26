@@ -11,33 +11,46 @@
 	<div id="welcome-box">
 		<center>
 		  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
-		  <%= image_tag("box-avatar", alt: "def-avatar", class: "img-responsive") %>
+		  <%= image_tag("box-avatar", alt: "def-avatar") %>
 		  <br>
 	    <div class="status-row" id="">
 	    	<%= render 'elements/statuses' %>
 	    </div>
-	    <%= link_to 'Buat Profil Pengguna', new_profile_path(for: "user"), class: "btn btn-primary", remote: true  %>
+	    <% if Rails.env.test? %>
+	    	<%= link_to 'Lihat Profil', profile_path(current_user.profile), class: "btn btn-primary" unless current_user.profile.nil? %>
+	    	<%= link_to 'Buat Profil Pengguna', new_profile_path(category: "UserProfile"), class: "btn btn-success" %>
+	    <% else %>
+	    	<% if current_user.profile.present? %>
+	    		<%= link_to 'Lihat Profil', profile_path(current_user.profile), class: "btn btn-primary" %>
+	    	<% else %>
+	    		<%= link_to 'Buat Profil Pengguna', new_profile_path(category: "UserProfile"), class: "btn btn-success", remote: true  %>
+	    	<% end %>
+	    <% end %>
 		</center>
 	</div>		
 </div>
 
 <div class="col-md-7 col-sm-12 col-xs-12">
+
+	<% unless current_user.has_biz? %>
 	<div class="blankslate">
 		<div class="spacious">
 			<h3>Belum Ada Akun Bisnis</h3>
 			<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
-			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-primary", :remote => true  %>
+			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-success", :remote => true  %>
 		</div>
 	</div>
+	<% end %>
 
+<% @businesses.each do |biz| %>
 	<div class="portlet portlet-bordered">
 		<div class="portlet-title">
 			<div class="caption caption-red">
 				<i class="glyphicon glyphicon-cog"></i>
-				<span class="caption-subject text-uppercase"> Akun</span>
-				<span class="caption-helper">Bisnis</span>
+				<span class="caption-subject text-uppercase"><%= biz.name %> </span>
+				<span class="caption-helper">Akun Bisnis</span>
 			</div>
-			<div class="actions">
+			<div class="toolbars">
 				<a href="javascript:;" class="btn btn-red btn-circle active">
 					<i class="glyphicon glyphicon-paperclip"></i>
 				</a>
@@ -54,10 +67,16 @@
 		</div>
 		<div class="portlet-body">
 			<h4>Selamat Bergabung!</h4>
-			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-
-			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-primary", :remote => true  %>
+			<% if biz.find_profile %>
+				<p><%= biz.find_profile.about %></p>
+				<%= link_to 'Lihat Profil Bisnis', profile_path(biz.find_profile), class: "btn btn-primary"  %>
+			<% else %>
+				<p>Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.</p>
+				<%= link_to 'Buat Profil Bisnis', new_profile_path(category: "CompanyProfile", team: biz.id), class: "btn btn-success", :remote => true  %>
+			<% end %>
+			<%= link_to 'Buat Pengajuan Pembiayaan', new_tender_path(category: "CompanyProfile"), class: "btn btn-success", :remote => true  %>
 		</div>
 	</div>
+<% end %>
 </div>
 <div class="col-md-1 col-sm-12 col-xs-12"></div>

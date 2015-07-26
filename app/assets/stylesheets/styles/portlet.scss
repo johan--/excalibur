@@ -2,6 +2,7 @@
 .portlet {
 	background: #fff;
 	padding: 20px;
+	margin-bottom: 10px;
 }
 
 .portlet.portlet-gray {
@@ -9,8 +10,8 @@
 }
 
 .portlet.portlet-bordered {
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	border: 1px solid #eee;
+	/*border-bottom: 1px solid #eee;*/
 }
 
 /* Portlet Title */
@@ -69,16 +70,16 @@
 }
 
 /* Actions */
-.actions {
+.toolbars {
 	float: right;
   	display: inline-block;
 }
 
-.actions a {
+.toolbars a {
 	margin-left: 3px;
 }
 
-.actions .btn {
+.toolbars .btn {
 	color: #666;
 	padding: 3px 9px;
 	font-size: 13px;
@@ -88,11 +89,11 @@
   	border-radius: 50px;
 }
 
-.actions .btn i {
+.toolbars .btn i {
 	font-size: 12px;
 }
 
-.actions .btn:hover {
+.toolbars .btn:hover {
 	background: #f2f2f2;
 }
 
@@ -172,40 +173,40 @@
 }
 
 /* Btn Circle */
-.actions .btn.btn-circle {
+.toolbars .btn.btn-circle {
 	width: 28px;
 	height: 28px;
 	padding: 3px 7px;
 	text-align: center;
 }
 
-.actions .btn.btn-circle i {
+.toolbars .btn.btn-circle i {
 	font-size: 11px;
 }
 
 /* Btn Grey Salsa */
-.actions .btn.grey-salsa {
+.toolbars .btn.grey-salsa {
 	border: none;
 	margin-left: 3px;
 	box-shadow: none;
 	border-radius: 50px !important;
 }
 
-.actions .btn.grey-salsa.active {
+.toolbars .btn.grey-salsa.active {
 	color: #fafcfb;
 	background: #8e9bae;
 }
-  .actions .grey-salsa.btn:hover,
-  .actions .grey-salsa.btn:focus,
-  .actions .grey-salsa.btn:active,
-  .actions .grey-salsa.btn.active {
+  .toolbars .grey-salsa.btn:hover,
+  .toolbars .grey-salsa.btn:focus,
+  .toolbars .grey-salsa.btn:active,
+  .toolbars .grey-salsa.btn.active {
 	color: #fafcfb;
 	background: #97a3b4;
 }
 
 /* Btn Red */
-.actions .btn.btn-red.active,
-.actions .btn.btn-red:hover {
+.toolbars .btn.btn-red.active,
+.toolbars .btn.btn-red:hover {
 	color: #fff;
 	box-shadow: none;
 	background: #e26a6a;
@@ -213,8 +214,8 @@
 }
 
 /* Btn Red */
-.actions .btn.btn-purple.active,
-.actions .btn.btn-purple:hover {
+.toolbars .btn.btn-purple.active,
+.toolbars .btn.btn-purple:hover {
 	color: #fff;
 	box-shadow: none;
 	background: #8775a7;

@@ -1,14 +1,16 @@
 class ProfilesController < ApplicationController
+  include ProfileSti
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_category
+  before_action :user_layout
 
   def show
   end
 
   def new
-  	@profile_type = params[:for]
-	  @profile = UserProfile.new
-	  @profile.addresses.build
-    
+    @profile = category_class.new
+    @company = Team.find_by(id: params[:team]) if params[:team]
+
     respond_to do |format|
       format.html
       format.js
@@ -16,20 +18,16 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-  	@profile_type = params[:for]
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @profile = category_class.new(profile_params)
+    @profile.category = @category
+    @profile.profileable = current_user if @category == 'UserProfile'
 
     if @profile.save
-      if @profile.profileable_type == 'Firm'
-        flash[:notice] = 'Profil Usaha berhasil dibuat'
-        redirect_to user_root_path
-      else
-        flash[:notice] = 'Profil Pengguna berhasil dibuat'
-        redirect_to view_account_path
-      end
+      flash[:notice] = 'Profil berhasil dibuat'
+      redirect_to user_root_path
     else
       flash[:warning] = 'Profil gagal dibuat'
       return render 'new'
@@ -58,15 +56,17 @@ class ProfilesController < ApplicationController
 
   private
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = category_class.find(params[:id])
     end
 
 
     def profile_params
-      params.require(:profile).permit(
-        :profileable_type, :profileable_id, :about, 
+      params.require(category.underscore.to_sym).permit(
+        :profileable, :profileable_type, :profileable_id, 
+        :category, :about, 
         :details => [:last_education, :marital_status, 
-          industry_experience: [], work_experience: []], 
+          :industry_experience, :work_experience, :anno, :founding_size, 
+          :online_presence_types => [], :offline_presence_types => []], 
         addresses_attributes: [:id, :_destroy, :profile_id, :name, 
         	:province, :full_address]
       )

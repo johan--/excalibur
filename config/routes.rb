@@ -3,7 +3,6 @@ require 'subdomain'
 
 Fustal::Application.routes.draw do
   apipie
-  mount Judge::Engine => '/judge'  
   mount Attachinary::Engine => "/attachinary"
   mount Ckeditor::Engine => '/ckeditor'
   
@@ -29,8 +28,8 @@ Fustal::Application.routes.draw do
   resources :businesses, controller: 'teams', type: 'Business' 
   resources :financiers, controller: 'teams', type: 'Agency' 
   resources :profiles
-  resources :user_profiles, controller: 'profiles', type: 'UserProfile' 
-  resources :company_profiles, controller: 'profiles', type: 'CompanyProfile'
+  resources :user_profiles, controller: 'profiles', category: 'UserProfile' 
+  resources :company_profiles, controller: 'profiles', category: 'CompanyProfile'
   resources :bids
   resources :tenders
 

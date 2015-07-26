@@ -4,14 +4,14 @@
 <div class="modal-body">
   <center>
     <h3 class="media-heading"><%= "Buat Profil Pengguna" %></h3>
-	<% if @profile_type == 'team' %>	
+	<% if @category == 'CompanyProfile' %>	
 	  <%= render partial: 'profiles/form', locals: { team: true } %>
-	<% elsif @profile_type == 'user' %>
+	<% elsif @category == 'UserProfile' %>
 	  <%= render partial: 'profiles/form', locals: { user: true } %>
 	<% end %>    
   </center>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Tutup</button>
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
 </div>
 

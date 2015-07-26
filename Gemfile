@@ -10,7 +10,6 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
-gem "select2-rails"
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'
@@ -25,8 +24,6 @@ gem 'bcrypt', '3.1.9'
 
 gem 'simple_form'
 gem 'cocoon'
-gem 'judge'
-gem 'judge-simple_form'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

@@ -4,9 +4,8 @@ class Team < ActiveRecord::Base
   scope :backer, -> { where(type: 'Firm') } 
   has_many :rosters
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
-  has_one  :profile
   has_many :addresses, through: :profile
-
+  has_one  :profile, as: :profileable
   validates :name, :presence => true
   validates :type, :presence => true
   validates :starter_email, :presence => true
@@ -28,10 +27,16 @@ class Team < ActiveRecord::Base
   end
 
   def has_as_member?(user)
-    true if self.rosters.find_by(rosterable_id: user.id)
+    if self.rosters.find_by(rosterable_id: user.id)
+      return true
+    else 
+      return false
+    end
   end
 
-
+  def find_profile
+    Profile.find_by(profileable_type: self.class.name, profileable_id: id)
+  end
 
 private
   def starting_up

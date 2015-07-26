@@ -1,4 +1,3 @@
 class Business < Team
-
-
+  
 end

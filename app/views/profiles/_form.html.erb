@@ -7,21 +7,23 @@
       <%= f.simple_fields_for :details do |d| %>
         <%= d.input :anno, label: "Didirikan Pada Tahun" %>
         <%= d.input :founding_size, label: "Jumlah Pendiri" %>
-        <%= d.input :offline_presence_types, label: "Infrastruktur Nyata Bisnis" %>
-        <%= d.input :online_presence_types, label: "Pengalaman Kerja" %>
-      <% end %>      
+        <%= d.input :offline_presence_types, as: :check_boxes, collection: offline_presence_options, label: "Infrastruktur Nyata Bisnis" %>
+        <%= d.input :online_presence_types, as: :check_boxes, collection: online_presence_options, label: "Infrastruktur Online Bisnis" %>
+      <% end %>
+    <%= f.hidden_field :profileable_id, :value => @company.id  %> 
+    <%= f.hidden_field :profileable_type, :value => @company.class.name  %> 
     <% elsif defined?(user) && user %>
       <%= f.simple_fields_for :details do |d| %>
-        <%= d.input :last_education, label: "Pendidikan Terakhir" %>
-        <%= d.input :marital_status, label: "Status Pernikahan" %>
-        <%= d.input :work_experience, label: "Pengalaman Kerja" %>
-        <%= d.input :industy_experience, label: "Pengalaman Industri/Bidang" %>
+        <%= d.input :last_education, collection: last_education_options, label: "Pendidikan Terakhir" %>
+        <%= d.input :marital_status, collection: marital_status_options, label: "Status Pernikahan" %>
+        <%= d.input :work_experience, label: "Pengalaman Kerja", required: false %>
+        <%= d.input :industy_experience, label: "Pengalaman Industri/Bidang", required: false %>
       <% end %>
     <% end %>
 
 
     <div class="actions">
-      <%= f.button :submit, "Simpan", class: "btn btn-primary" %>
+      <%= f.submit "Simpan", class: "btn btn-success" %>
     </div>    
   </div>
 

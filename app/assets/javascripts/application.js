@@ -23,9 +23,6 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
-//= require underscore
-//= require json2
-//= require judge
 //= require searchForm
 //= require shojiLayout
 //= require cocoon
@@ -36,6 +33,4 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
 //= require datepicker
-//= require smoothscroll
-//= require select2
 //= require ckeditor/init

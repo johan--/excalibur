@@ -58,4 +58,20 @@ module FormOptionsHelper
 		[ ['Pemain', 1], ['Pengelola Arena', 2] ]
 	end
 
+	def offline_presence_options
+		[ "Kantor Utama", "Kantor Cabang", "Toko", "Gerai" ]
+	end
+
+	def online_presence_options
+		[ "Jaringan Sosial", "Messaging/Chatting App", "Email" ]
+	end
+
+	def last_education_options
+		[ "Di bawah SMP", "SMA", "D3/Sarjana", "S2", "Doktoral dan seterusnya" ]
+	end
+
+	def marital_status_options
+		["Menikah", "Belum Menikah"]
+	end
+
 end

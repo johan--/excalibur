@@ -5,7 +5,7 @@ RSpec.describe Team, :type => :model do
 
   describe "business team" do
   	before do
-  		@biz = Team.new(type: "Business", name: "Foobar Ltd", 
+  		@biz = Team.create!(type: "Business", name: "Foobar Ltd", 
   						starter_email: user.email)
   	end
   	subject { @biz }
@@ -23,7 +23,7 @@ RSpec.describe Team, :type => :model do
 	end
 
 	describe ".has_as_member?" do
-	  before { not_member = FactoryGirl.create(:player)  }
+	  let!(:not_member) { FactoryGirl.create(:player)  }
 	  
 	  it 'returns true if the user is member of the team' do
 	    result = @biz.has_as_member?(user)
