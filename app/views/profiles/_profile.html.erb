@@ -1,0 +1,30 @@
+<center>
+  <div class="basic-info">
+    <% if defined?(category) && category == 'CompanyProfile' %>
+      <h3 class="profileable-name"><%= profile.profileable.name %> <small>USA</small></h3>
+      <span><strong>Info: </strong></span>
+      <span class="label label-warning" id="established"><%= profile.anno %></span>
+      <span class="label label-info" id="founders"><%= profile.founding_size %></span>
+      <span class="label label-info">Microsoft Office</span>
+      <span class="label label-success">Windows XP, Vista, 7</span>
+    <% elsif defined?(category) && category == 'UserProfile' %>
+      <h3 class="profileable-name"><%= profile.profileable.full_name %> <small>USA</small></h3>
+      <span><strong>Info: </strong></span>
+      <span class="label label-warning" id="education"><%= profile.last_education %></span>
+      <span class="label label-info" id="marital"><%= profile.marital_status %></span>
+      <span class="label label-info">Microsoft Office</span>
+      <span class="label label-success">Windows XP, Vista, 7</span>
+    <% end %>
+  </div>
+</center>
+
+<hr>
+
+<center>
+  <div class="bio">
+    <p class="text-left"><strong>Bio: </strong><br>
+      <%= profile.about %>
+    </p>  
+  </div>
+  <br>
+</center>

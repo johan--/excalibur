@@ -4,18 +4,18 @@
   <div class="form-inputs">
     <%= f.input :about, label: "Biografi Singkat" %>
     <% if defined?(team) && team %>
+      <%= f.hidden_field :profileable_id, :value => @company.id  %> 
+      <%= f.hidden_field :profileable_type, :value => @company.class.name  %>    
       <%= f.simple_fields_for :details do |d| %>
-        <%= d.input :anno, label: "Didirikan Pada Tahun" %>
-        <%= d.input :founding_size, label: "Jumlah Pendiri" %>
-        <%= d.input :offline_presence_types, as: :check_boxes, collection: offline_presence_options, label: "Infrastruktur Nyata Bisnis" %>
-        <%= d.input :online_presence_types, as: :check_boxes, collection: online_presence_options, label: "Infrastruktur Online Bisnis" %>
-      <% end %>
-    <%= f.hidden_field :profileable_id, :value => @company.id  %> 
-    <%= f.hidden_field :profileable_type, :value => @company.class.name  %> 
+        <%= d.input :anno, label: "Didirikan Pada Tahun", input_html: {value: @profile.anno } %>
+        <%= d.input :founding_size, label: "Jumlah Pendiri", input_html: {value: @profile.founding_size } %>
+        <%= d.input :offline_presence_types, as: :check_boxes, collection: offline_presence_options, checked: @profile.offline_presence_types, label: "Infrastruktur Nyata Bisnis" %>
+        <%= d.input :online_presence_types, as: :check_boxes, collection: online_presence_options, checked: @profile.online_presence_types, label: "Infrastruktur Online Bisnis" %>
+      <% end %> 
     <% elsif defined?(user) && user %>
       <%= f.simple_fields_for :details do |d| %>
-        <%= d.input :last_education, collection: last_education_options, label: "Pendidikan Terakhir" %>
-        <%= d.input :marital_status, collection: marital_status_options, label: "Status Pernikahan" %>
+        <%= d.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @profile.last_education, label: "Pendidikan Terakhir" %>
+        <%= d.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @profile.marital_status, label: "Status Pernikahan" %>
         <%= d.input :work_experience, label: "Pengalaman Kerja", required: false %>
         <%= d.input :industy_experience, label: "Pengalaman Industri/Bidang", required: false %>
       <% end %>

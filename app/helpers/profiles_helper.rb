@@ -12,4 +12,20 @@ module ProfilesHelper
 	  action ? "#{action}_" : ""
 	end
 
+	def profile_action_heading
+		if current_page?(new_company_profile_path) || current_page?(new_user_profile_path)
+			return "Buat Profil"
+		else
+			return "Edit Profil"
+		end
+	end
+
+	def profil_type(category)
+		if category == 'CompanyProfile'
+			return "Bisnis"
+		elsif category == 'UserProfile'
+			return "Pengguna"
+		end
+	end
+
 end

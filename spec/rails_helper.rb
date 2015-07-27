@@ -10,7 +10,10 @@ Capybara.javascript_driver = :poltergeist
 Capybara.server do |app, port|
   require 'rack/handler/thin'
   Rack::Handler::Thin.run(app, :Port => port)
-  Capybara::Poltergeist::Driver.new(app, timeout: 10000)
+end
+options = { :js_errors => false, :timeout => 1000 }
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, options)
 end
 require 'support/omniauth_macros'
 require 'support/features_helpers'

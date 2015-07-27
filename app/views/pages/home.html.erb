@@ -16,16 +16,12 @@
 	    <div class="status-row" id="">
 	    	<%= render 'elements/statuses' %>
 	    </div>
-	    <% if Rails.env.test? %>
-	    	<%= link_to 'Lihat Profil', profile_path(current_user.profile), class: "btn btn-primary" unless current_user.profile.nil? %>
-	    	<%= link_to 'Buat Profil Pengguna', new_profile_path(category: "UserProfile"), class: "btn btn-success" %>
-	    <% else %>
 	    	<% if current_user.profile.present? %>
-	    		<%= link_to 'Lihat Profil', profile_path(current_user.profile), class: "btn btn-primary" %>
+	    		<%= link_to 'Lihat Profilku', sti_profile_path('UserProfile', current_user.profile), class: "btn btn-primary", remote: true %>
+					<%= link_to 'Edit Profilku', sti_profile_path('UserProfile', current_user.profile, :edit), class: "btn btn-primary", remote: true  %>
 	    	<% else %>
 	    		<%= link_to 'Buat Profil Pengguna', new_profile_path(category: "UserProfile"), class: "btn btn-success", remote: true  %>
 	    	<% end %>
-	    <% end %>
 		</center>
 	</div>		
 </div>
@@ -37,7 +33,7 @@
 		<div class="spacious">
 			<h3>Belum Ada Akun Bisnis</h3>
 			<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
-			<%= link_to 'Daftarkan Bisnismu', new_team_path(type: "Business"), class: "btn btn-success", :remote => true  %>
+			<%= link_to 'Daftarkan Bisnis', new_team_path(type: "Business"), class: "btn btn-success", :remote => true  %>
 		</div>
 	</div>
 	<% end %>
@@ -69,10 +65,11 @@
 			<h4>Selamat Bergabung!</h4>
 			<% if biz.find_profile %>
 				<p><%= biz.find_profile.about %></p>
-				<%= link_to 'Lihat Profil Bisnis', profile_path(biz.find_profile), class: "btn btn-primary"  %>
+				<%= link_to 'Lihat Profil Bisnis', sti_profile_path('CompanyProfile', biz.find_profile), class: "btn btn-primary", remote: true  %>
+				<%= link_to 'Edit Profil Bisnis', sti_profile_path('CompanyProfile', biz.find_profile, :edit), class: "btn btn-primary", remote: true  %>
 			<% else %>
-				<p>Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.</p>
-				<%= link_to 'Buat Profil Bisnis', new_profile_path(category: "CompanyProfile", team: biz.id), class: "btn btn-success", :remote => true  %>
+				<p class="starting-suggestion">Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.</p>
+				<%= link_to 'Buat Profil Bisnis', new_profile_path(category: "CompanyProfile", team: biz.id), class: "btn btn-success", remote: true  %>
 			<% end %>
 			<%= link_to 'Buat Pengajuan Pembiayaan', new_tender_path(category: "CompanyProfile"), class: "btn btn-success", :remote => true  %>
 		</div>

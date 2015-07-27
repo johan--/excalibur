@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_action :set_category
   before_action :user_layout
 
-  def show
+  def show       
   end
 
   def new
@@ -18,6 +18,12 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @company = @profile.profileable
+
+    respond_to do |format|
+      format.html
+      format.js
+    end        
   end
 
   def create
@@ -37,7 +43,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to view_account_path, notice: 'Profil berhasil dikoreksi' }
+        format.html { redirect_to user_root_path, notice: 'Profil berhasil dikoreksi' }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit }
@@ -49,7 +55,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to user_root_path, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

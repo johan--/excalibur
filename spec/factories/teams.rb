@@ -9,6 +9,12 @@ FactoryGirl.define do
     factory :business do
       type "Business"
       sequence(:name) { |n| "Biz #{n}" }
+
+      # factory :business_with_profile do
+      #   after(:create) do |business, evaluator|
+      #     FactoryGirl.create(:company_profile, profileable: business)
+      #   end           
+      # end
     end
 
     trait :starter_email do
