@@ -6,7 +6,7 @@ RSpec.describe Tender, :type => :model do
 
   describe "Business Partnership" do
   	before do
-  	  @tender = Tender.create(
+  	  @tender = Tender.new(
   	  		category: "BizPartnership", aqad: "musharakah",
   			# tenderable: biz, target_cents: 1000000000, 
   			tenderable: biz, target: 10000000,

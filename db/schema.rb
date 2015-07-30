@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728103646) do
+ActiveRecord::Schema.define(version: 20150730044923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 20150728103646) do
   end
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "bidder_id",                             null: false
+    t.string   "bidder_type",                           null: false
+    t.integer  "tender_id",                             null: false
+    t.string   "state",                                 null: false
+    t.integer  "contribution_cents",    default: 0,     null: false
+    t.string   "contribution_currency", default: "USD", null: false
+    t.jsonb    "properties",            default: {},    null: false
+    t.jsonb    "details",               default: {}
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "bids", ["bidder_type", "bidder_id"], name: "index_bids_on_bidder_type_and_bidder_id", using: :btree
+  add_index "bids", ["properties"], name: "index_bids_on_properties", using: :gin
+  add_index "bids", ["state"], name: "index_bids_on_state", using: :btree
+  add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
 
   create_table "businesses", force: :cascade do |t|
     t.string   "name"

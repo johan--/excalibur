@@ -1,6 +1,6 @@
 class Tender < ActiveRecord::Base
   belongs_to :tenderable, polymorphic: true  
-  # has_many :bids
+  has_many :bids
 
   monetize :target_cents
   monetize :contributed_cents
