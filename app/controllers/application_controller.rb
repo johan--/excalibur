@@ -36,8 +36,7 @@ class ApplicationController < ActionController::Base
       :email,
       :password,
       :password_confirmation,
-      # :phone_number,
-      :full_name
+      :name
       )
     }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(
@@ -60,15 +59,7 @@ class ApplicationController < ActionController::Base
 
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    if resource.operator?
-      if resource.with_no_firm?
-        new_firm_path
-      else
-        biz_root_path
-      end
-    else
-      user_root_path
-    end
+    user_root_path
   end
 
   # Auto-sign out locked users

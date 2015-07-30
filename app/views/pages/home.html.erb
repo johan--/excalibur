@@ -71,7 +71,11 @@
 				<p class="starting-suggestion">Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.</p>
 				<%= link_to 'Buat Profil Bisnis', new_profile_path(category: "CompanyProfile", team: biz.id), class: "btn btn-success", remote: true  %>
 			<% end %>
-			<%= link_to 'Buat Pengajuan Pembiayaan', new_tender_path(category: "CompanyProfile"), class: "btn btn-success", :remote => true  %>
+			<%= link_to 'Buat Pengajuan Pembiayaan', new_tender_path(category: "BizPartnership", team: biz.id), class: "btn btn-success" %>
+
+			<% biz.tenders.each do |tender| %>
+				<span class="target"><%= tender.target %></span>
+			<% end %>
 		</div>
 	</div>
 <% end %>

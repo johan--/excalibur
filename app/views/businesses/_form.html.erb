@@ -1,0 +1,17 @@
+<%= simple_form_for(@business) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.input :name, label: "Nama Bisnis" %>
+    <%= f.simple_fields_for :details do |d| %>
+      <%= d.input :anno, label: "Didirikan Pada Tahun", input_html: {value: @profile.anno } %>
+      <%= d.input :founding_size, label: "Jumlah Pendiri", input_html: {value: @profile.founding_size } %>
+      <%= d.input :offline_presence_types, as: :check_boxes, collection: offline_presence_options, checked: @profile.offline_presence_types, label: "Infrastruktur Nyata Bisnis" %>
+      <%= d.input :online_presence_types, as: :check_boxes, collection: online_presence_options, checked: @profile.online_presence_types, label: "Infrastruktur Online Bisnis" %>
+    <% end %>   	
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

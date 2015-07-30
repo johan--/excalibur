@@ -15,6 +15,7 @@ class PagesController < ApplicationController
 
   def home
     @businesses = current_user.teams.biz
+
     respond_to do |format| 
       format.html
       format.js

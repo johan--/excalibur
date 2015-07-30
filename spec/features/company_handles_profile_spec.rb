@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "CompanyHandlesProfile", :type => :feature do
   subject { page }
   let!(:user) { FactoryGirl.create(:player) }
-  let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }  
+  let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
 
   before { sign_in user }
 

@@ -2,11 +2,29 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.input :category, input_html: { class: 'form-control', value: params[:cat], readonly: true }, label: "Jenis Pembiayaan", required: true %>
-	<%= f.input :total, label: "Besaran (Rp)", required: true %>
+	<%= f.input :target, label: "Besaran (Rp)" %>
+
+	<% if defined?(business) && business %>
+      <%= f.hidden_field :tenderable_id, :value => @company.id  %> 
+  	  <%= f.hidden_field :tenderable_type, :value => @company.class.name  %>
+  	<% end %>
+	
+	<%= f.simple_fields_for :properties do |d| %>
+	  <%= d.input :aqad, label: "Jenis Akad" %>
+	  <%= d.input :summary, as: :text, label: "Penjelasan Singkat", input_html: {rows: 5, cols: 10} %>
+	<% end %>
+
+	<%= f.simple_fields_for :details do |e| %>
+	  <% if defined?(business) && business %>
+	    <%= e.input :intent_type, label: "Jenis Tujuan" %>
+	    <%= e.input :intent_assets, as: :check_boxes, collection: intent_assets_options, checked: @tender.intent_assets, label: "Aset Yang Dicari" %>
+
+	    <% elsif defined?(consumer) && consumer %>
+		<% end %>
+	<% end %>	
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Ajukan", class: "btn btn-primary" %>
+    <%= f.submit "Ajukan", class: "btn btn-success" %>
   </div>
 <% end %>

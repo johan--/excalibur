@@ -24,15 +24,16 @@ Fustal::Application.routes.draw do
   end
 
 # New App
+  resources :users, only: [:show] do
+    get 'new_profile', on: :member
+    post 'create_profile', on: :member
+  end
   resources :teams
-  resources :businesses, controller: 'teams', type: 'Business' 
-  resources :financiers, controller: 'teams', type: 'Agency' 
-  resources :profiles
-  resources :user_profiles, controller: 'profiles', category: 'UserProfile' 
-  resources :company_profiles, controller: 'profiles', category: 'CompanyProfile'
+  resources :businesses
   resources :bids
   resources :tenders
-
+  resources :biz_partnerships, controller: 'tenders', category: 'BizPartnership' 
+  resources :consumer_financing, controller: 'tenders', category: 'ConsumerFinancing'
   resources :relationships, only: [:create, :destroy]
 
   # Static Pages
@@ -44,8 +45,7 @@ Fustal::Application.routes.draw do
   namespace :admin do
     root "base#index"
     resources :users
-    resources :firms, only: [:index]
-    resources :reservations, only: [:index]
+    resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     get "posts/dashboard", to: "posts#dashboard", as: "posts_dashboard"
     resources :posts
@@ -53,23 +53,23 @@ Fustal::Application.routes.draw do
 
   namespace :biz do
     root "base#show"
-    get "profile", to: "base#profile", as: :profile
-    post "subscribes", to: "base#subscribes", as: :subscribes
-    get "management", to: "base#management", as: :management
-    get "settings", to: "base#settings", as: :settings
-    put "save_settings", to: "base#save_settings", as: :save_settings
+    # get "profile", to: "base#profile", as: :profile
+    # post "subscribes", to: "base#subscribes", as: :subscribes
+    # get "management", to: "base#management", as: :management
+    # get "settings", to: "base#settings", as: :settings
+    # put "save_settings", to: "base#save_settings", as: :save_settings
     
-    get "view", to: "base#view", as: :view
-    put "confirm" => "base#confirm", as: :confirm
+    # get "view", to: "base#view", as: :view
+    # put "confirm" => "base#confirm", as: :confirm
     
-    get "edit_bio", to: "base#edit_bio", as: :edit_bio
-    put "update_bio", to: "base#update_bio", as: :update_bio
-    resources :rosters
+    # get "edit_bio", to: "base#edit_bio", as: :edit_bio
+    # put "update_bio", to: "base#update_bio", as: :update_bio
+    # resources :rosters
 
-    get "subscription", to: "base#subscription", as: :subscription
-    get "expiration", to: "base#expiration", as: :expiration
+    # get "subscription", to: "base#subscription", as: :subscription
+    # get "expiration", to: "base#expiration", as: :expiration
     
-    get "contact", to: "base#contact", as: "contact"
+    # get "contact", to: "base#contact", as: "contact"
   end
 
 end

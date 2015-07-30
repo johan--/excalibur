@@ -1,24 +1,20 @@
 class Team < ActiveRecord::Base
-  self.inheritance_column = :type  
-  scope :biz, -> { where(type: 'Business') }
-  scope :backer, -> { where(type: 'Firm') } 
+  scope :biz, -> { where(category: 'Business') }
+  scope :backer, -> { where(category: 'Firm') } 
   has_many :rosters
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
-  has_many :addresses, through: :profile
-  has_one  :profile, as: :profileable
+  belongs_to :teamable, polymorphic: true
+
+  serialize :data, HashSerializer
+  store_accessor :data, 
+              :name, :starter_email, :starter_phone, :starter_name
+
   validates :name, :presence => true
-  validates :type, :presence => true
-  validates :starter_email, :presence => true
-  # has_settings do |s|
-  #   s.key :down_payment, defaults: { state: "on", percentage: 0.5, 
-  #   								 deadline: "off" }
-  #   s.key :auto_confirmation, defaults: { state: "off" }
-  #   s.key :auto_promo, defaults: { state: "off" }
-  # end
+  validates :category, :presence => true
 
   after_create :starting_up
 
-  def self.types
+  def self.categories
     %w(Business Firm)
   end
 
@@ -34,18 +30,26 @@ class Team < ActiveRecord::Base
     end
   end
 
-  def find_profile
-    Profile.find_by(profileable_type: self.class.name, profileable_id: id)
+  def find_tenders
+    check = Tender.where(tenderable_type: self.class.name, tenderable_id: id)
+    if check.nil? || check.count == 0
+      return nil
+    else
+      return check
+    end
   end
 
+
 private
+
   def starting_up
-    starter
-    roster = self.rosters.build(rosterable: starter, 
+    unless starter.nil?
+      starter_name = starter.name
+      starter_phone = starter.phone_number    
+      roster = self.rosters.build(rosterable: starter, 
                                 role: 0, state: "aktif")
-    # subs = self.build_subscription(category: 1, start_date: Date.today, state: "aktif")
-    roster.save!
-    # subs.save!
+      roster.save!
+    end
   end
 
 end

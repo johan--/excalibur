@@ -1,0 +1,16 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  <%= f.simple_fields_for :profile do |d| %>
+	<%= d.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @profile.last_education, label: "Pendidikan Terakhir" %>
+	<%= d.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @profile.marital_status, label: "Status Pernikahan" %>
+	<%= d.input :work_experience, label: "Pengalaman Kerja", required: false %>
+	<%= d.input :industy_experience, label: "Pengalaman Industri/Bidang", required: false %>
+  <% end %>
+  </div>
+
+  <div class="form-actions">
+  	<%= f.button :submit, "Daftarkan Tim", class: "btn btn-primary" %>
+  </div>
+<% end %>

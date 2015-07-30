@@ -1,29 +1,25 @@
 FactoryGirl.define do
   factory :user do
   	sequence(:email) { |n| "Person_#{n}@example.com" }
-    # sequence(:phone_number) { |n| "00700800#{n}" }
     password "foobarbaz"
     password_confirmation "foobarbaz"
-    sequence(:full_name) { |n| "Person #{n}" }
+    sequence(:name) { |n| "Person #{n}" }
     
-		factory :player do
-      category 1
+    factory :consumer do
+      profile { { business: false, investor: false } }
+    end
+
+		factory :entrepreneur do
+      profile { { business: true, investor: false } }
     end
 
     factory :admin do
 			admin true
-      category 3
+      profile { { business: true, investor: true } }
 		end
 
-    factory :manager do
-      category 2
-
-      trait :with_team do
-        after(:create) do |user, evaluator|
-          firm = FactoryGirl.create(:firm, starter_email: user.email)
-          FactoryGirl.create(:active_manager, rosterable: user, team: firm)
-        end
-      end
+    factory :investor do
+      profile { { business: false, investor: true } }
     end
 
     factory :facebook_user do

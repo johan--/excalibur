@@ -9,30 +9,38 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :rosters, as: :rosterable
   has_many :teams, through: :rosters #Dont have to use source & source type
-  has_one :profile, as: :profileable
-  has_many :tenders
-  has_many :bids, as: :bidder
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable#, :confirmable
+  :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   # Pagination
   paginates_per 100
 
   # Validations
-  # validates_presence_of :category, :email, :password, :password_confirmation
   validates :email, :presence => true
-  validates :full_name, :presence => true
+  validates :name, :presence => true
   validates :auth_token, uniqueness: true
 
-  before_create :set_auth_token!
-  before_save :up_full_name
+  before_create :set_auth_token!, :set_default_values!
+  before_save :up_name
+  
+  serialize :preferences, HashSerializer
+  store_accessor :preferences, :language, :currency
 
-  scope :players, -> { where(category: 1) }
-  scope :operators, -> { where(category: 2) }
+  serialize :profile, HashSerializer
+  store_accessor :profile, 
+    :open, :business, :investor, :phone_number, :about, :last_education,
+    :marital_status, :work_experience, :industry_experience
+  
+  scope :investors, -> { 
+    where("users.profile->>'investor' = :true", true: "true") 
+  }
+  scope :owners, -> { 
+    where("users.profile->>'business' = :true", true: "true") 
+  }    
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
@@ -57,8 +65,8 @@ class User < ActiveRecord::Base
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
-          # full_name: auth.extra.raw_info.name,
-          full_name: auth.info.name,
+          # name: auth.extra.raw_info.name,
+          name: auth.info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
@@ -76,14 +84,20 @@ class User < ActiveRecord::Base
 
 # private
 
-  def up_full_name
-    self.full_name = full_name.titleize
+  def up_name
+    self.name = name.titleize
   end
 
   def set_auth_token!
     begin
       self.auth_token = generate_auth_token!
     end while self.class.exists?(auth_token: auth_token)    
+  end
+
+  def set_default_values!
+    self.open = true
+    self.language = 'bahasa'
+    self.currency = 'idr'
   end
 
   def generate_auth_token!

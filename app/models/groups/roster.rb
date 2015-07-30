@@ -6,18 +6,13 @@ class Roster < ActiveRecord::Base
   validates_presence_of :rosterable_type, :rosterable_id, :role
 
   attr_accessor :user_email, :user_name, :password, 
-                :password_confirmation, :full_name
+                :password_confirmation
 
   before_create :check_attributes!
   scope :by_id, ->(id) { where(rosterable_id: id) }
   scope :members, -> { where(rosterable_type: 'User') }
   scope :active, -> { where(state: 'aktif') }
 
-  def starter?
-  	if self.team.starter_email == self.user.email || self.team.starter_phone == self.user.phone_number
-  		return true
-  	end
-  end
 
   def board?
   	return true if role == 0
@@ -37,19 +32,17 @@ class Roster < ActiveRecord::Base
 private
 
   def check_attributes!
-  	if password && password_confirmation && full_name
-  	  new_user = User.new(
+  	if password && password_confirmation && user_name
+  	  user = User.new(
   			email: user_email, #phone_number: user_phone,
   			password: password, password_confirmation: password_confirmation,
-  			full_name: full_name, category: 2
+  			name: user_name, category: 2
   			)
-  	  new_user.save!
-  	  self.rosterable = new_user
-  	else
-  	  if user_email && full_name
-  		user =  User.find_by(email: user_email, full_name: full_name)
-  			self.rosterable = user
-  	  end
+  	  user.save!
+  	  self.rosterable = user
+  	elsif user_email && user_name
+  		user =  User.find_by(email: user_email, name: user_name)
+  		self.rosterable = user
   	end
   end
 

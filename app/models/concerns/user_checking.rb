@@ -6,13 +6,13 @@ module UserChecking
       self.email && self.email !~ TEMP_EMAIL_REGEX
     end
     
-    def operator?
-      return true if self.category == 2
-    end
+    # def operator?
+    #   return true if self.category == 2
+    # end
 
-    def player?
-      return true if self.category == 1
-    end
+    # def player?
+    #   return true if self.category == 1
+    # end
 
     def has_biz?
       true unless self.teams.biz.count == 0

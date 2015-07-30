@@ -1,7 +1,8 @@
-<% title("Pengajuan Pembiayaan #{@type.upcase}") %>
+<% title("Pengajuan Pembiayaan") %>
 
-<h1>Buat Pengajuan <small>Pembiayaan Kendaraan</small></h1>
-
-<div class="col-md-8">
-  <%= render 'form' %>	
-</div>
+<h1>Buat Pengajuan</h1>
+<% if @category == 'BizPartnership' %>	
+  <%= render partial: 'tenders/form', locals: { business: true } %>
+<% elsif @category == 'ConsumerFinancing' %>
+  <%= render partial: 'tenders/form', locals: { consumer: true } %>
+<% end %>  

@@ -2,7 +2,6 @@ class Post < ActiveRecord::Base
   # Use friendly_id
   extend FriendlyId
   friendly_id :title, use: :slugged
-  acts_as_taggable  
 
   has_attachment  :header
   # Markdown
@@ -18,6 +17,9 @@ class Post < ActiveRecord::Base
   # Relations
   belongs_to :user
 
+  serialize :keywords, HashSerializer
+  store_accessor :keywords, :topic, :tags
+
   # Scopes
   default_scope { order(created_at: :desc) }
   scope :published, lambda {
@@ -30,6 +32,8 @@ class Post < ActiveRecord::Base
     .order("updated_at DESC")
   }
   scope :recent, -> { order('created_at DESC').limit(5) }
-
+  scope :subject, ->(subject) { 
+    where("posts.keywords->>'topic' = :words", words: "#{subject}") 
+  }
 
 end

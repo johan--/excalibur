@@ -10,6 +10,7 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
+gem 'money-rails'
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'
@@ -39,11 +40,8 @@ gem 'bootstrap-sass', '3.3.3'
 gem 'goldiloader'
 gem "paranoia", "~> 2.0"
 gem 'ransack'
-gem 'acts-as-taggable-on'
 # gem 'siphon'
 
-gem 'activerecord-typedstore'
-gem 'ledermann-rails-settings'
 gem 'statesman', '~> 1.2.3'
 
 gem 'bootstrap-datepicker-rails'
@@ -61,10 +59,8 @@ end
 group :development, :test do
   gem 'byebug', '3.5.1'
   gem 'web-console', '2.0.0'
-
   # Figaro: https://github.com/laserlemon/figaro
   gem 'figaro', '1.0.0'
-
   # Spring: https://github.com/rails/spring
   gem 'spring', '1.2.0'
 end
