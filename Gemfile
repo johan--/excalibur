@@ -90,5 +90,6 @@ gem 'apipie-rails'
 
 group :production do
   gem 'rails_12factor'
-  gem 'unicorn'
+  gem "passenger"
+  # gem 'unicorn'
 end
