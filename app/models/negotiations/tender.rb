@@ -31,7 +31,7 @@ class Tender < ActiveRecord::Base
 private
 
   def set_default_values!
-    self.barcode = "#{created_at}/#{id}"
+    self.barcode = "Proposal ##{SecureRandom.hex(3)}"
     self.open = true
   end
 

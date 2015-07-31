@@ -1,4 +1,73 @@
-<p id="notice"><%= notice %></p>
+<% title("Proposal Pembiayaan #{@tender.barcode}") %>
 
-<%= link_to 'Edit', edit_tender_path(@tender) %> |
-<%= link_to 'Back', tenders_path %>
+<%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
+
+<div class="col-md-7 col-sm-12 col-xs-12">
+	<div class="portlet">
+		<div class="portlet-title">
+			<div class="caption caption-red">
+				<i class="fa fa-file-text"></i> 
+				<span class="caption-subject bold font-yellow-crusta uppercase">
+					Proposal <%= @tender.barcode %>
+				</span>
+				<span class="caption-helper"><%= @tender.category %></span>
+			</div>
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#portlet_tab1" data-toggle="tab">
+						<i class="fa fa-lg fa-info"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#portlet_tab2" data-toggle="tab">
+						<i class="fa fa-lg fa-inbox"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#portlet_tab3" data-toggle="tab">
+						<i class="fa fa-lg fa-flash"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="portlet-body">
+			<div class="tab-content">
+				<div class="tab-pane active" id="portlet_tab1">
+					<h4>Informasi</h4>
+					<%= render 'info_accordion' %>
+				</div>
+
+				<div class="tab-pane" id="portlet_tab2">
+					<div class="text">
+						<h4>Selamat Bergabung!</h4>
+						<p class="starting-suggestion">
+							Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.
+						</p>					
+					</div>
+				</div>
+				<div class="tab-pane" id="portlet_tab3">
+					<div class="weather-3 pn centered">
+						<i class="fa fa-institution"></i>
+						<h3>PEMBIAYAAN</h3>
+						<div class="">
+							<div class="row">
+								<h5 class="centered">Pengajuan</h5>
+								<div class="col-sm-12 col-xs-12">
+									<p class="centered">
+										<%= link_to 'Koreksi Proposal', edit_business_tender_path(@tenderable, @tender), class: "btn btn-outlined btn-theme", remote: true %>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="col-md-4 col-sm-12 col-xs-12">
+	<%= render 'elements/userbox' %>
+</div>

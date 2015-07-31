@@ -13,7 +13,7 @@ feature "BusinessOpensATender", :type => :feature do
 
     context "creating a tender", js: true do
       before do
-        click_link "Buat Pengajuan"
+        click_link "Buat"
         fill_in "tender_target", with: 123456
         fill_in "tender_summary", with: "Lorem Ipsum Dolor Casuss"
         fill_in "tender_aqad", with: "Musharakah"
@@ -23,12 +23,24 @@ feature "BusinessOpensATender", :type => :feature do
       end
       
       it { should have_content('Pengajuan pembiayaan berhasil dibuat') }
-      it { should have_css('.target', text: 123456) }
+      it { should have_css('.target', text: "Rp 123.456") }
     end
   end
 
-  # describe "when there is a tender yet" do
-  #   it { should have_content('Pengajuan pembiayaan berhasil dilakukan') }
-  # end
+  describe "when there is a tender yet" do
+    let!(:tender) { FactoryGirl.create(:retail, :musharakah, tenderable: biz) }
+
+    describe "editing the tender", js: true do
+      before do
+        visit user_root_path
+        click_link "Koreksi" 
+        fill_in "tender_target", with: 654321
+        click_button "Ajukan"
+      end
+
+      it { should have_content('Pengajuan berhasil dikoreksi') }
+      it { should have_css('.target', text: "Rp 654.321") }
+    end
+  end
 
 end

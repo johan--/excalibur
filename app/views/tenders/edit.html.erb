@@ -1,7 +1,0 @@
-<h1>Editing Tender</h1>
-
-<% if @category == 'BizPartnership' %>	
-  <%= render partial: 'tenders/form', locals: { business: true } %>
-<% elsif @category == 'ConsumerFinancing' %>
-  <%= render partial: 'tenders/form', locals: { consumer: true } %>
-<% end %>  

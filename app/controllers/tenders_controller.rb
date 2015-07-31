@@ -2,11 +2,12 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [
     :show, :edit, :update, :destroy
   ]
-  before_action :find_tenderable, only: [ :new, :create ]
+  before_action :find_tenderable
   before_action :user_layout
 
-  # def index
-  # end
+  def index
+    @tenders = @tenderable.tenders
+  end
 
   def show
   end
@@ -40,7 +41,7 @@ class TendersController < ApplicationController
   def update
     respond_to do |format|
       if @tender.update(tender_params)
-        format.html { redirect_to user_root_path, notice: 'Pengajuan pembiayaan berhasil dikoreksi' }
+        format.html { redirect_to user_root_path, notice: 'Pengajuan berhasil dikoreksi' }
       else
         format.html { render :edit }
       end

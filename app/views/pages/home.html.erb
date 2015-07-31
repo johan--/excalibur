@@ -1,40 +1,8 @@
 <% title("Beranda") %>
 
-<div id="home-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div id="inner-home-modal" class="modal-content">
-    </div>
-  </div>
-</div>
-
-<div class="col-md-4 col-sm-12 col-xs-12">
-	<div class="white-panel pn">
-		<div class="white-header">
-	    <div class="status-row" id="">
-	    	<%= render 'elements/statuses' %>
-	    </div>
-		</div>
-		<center>
-			<%= image_tag("box-avatar", alt: "def-avatar") %>
-		</center>
-		<h3><b><%= current_user.name %></b></h3>
-		<div class="user-option">
-			<div class="row">
-				<h4 class="centered">PROFIL</h4>
-				<div class="col-sm-6 col-xs-6 ">
-					<%= link_to 'Lihat', user_path(current_user), class: "btn btn-xs btn-outlined btn-theme", remote: true %>
-				</div>
-				<div class="col-sm-6 col-xs-6 ">
-					<%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>			
-</div>
+<%= render partial: 'elements/modal_placeholder', locals: { modal_name: "home" } %>
 
 <div class="col-md-7 col-sm-12 col-xs-12">
-
 	<% if @businesses.nil? %>
 		<div class="blankslate">
 			<div class="spacious">
@@ -68,7 +36,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="row">
+			
 
 			<div class="portlet-body">
 				<div class="text">
@@ -81,16 +49,16 @@
 					<div class="weather-3 pn centered">
 						<i class="fa fa-briefcase"></i>
 						<h3>BISNIS</h3>
-						<div class="info">
+						<div class="">
 							<div class="row">
 									<h5 class="centered">PROFIL</h5>
 								<div class="col-sm-6 col-xs-6 pull-left">
-									<p class="goleft">
+									<p>
 										<%= link_to 'Lihat', business_path(biz), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
 									</p>
 								</div>
 								<div class="col-sm-6 col-xs-6 pull-right">
-									<p class="goright">
+									<p>
 										<%= link_to 'Edit', edit_business_path(biz), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>										
 									</p>
 								</div>
@@ -102,12 +70,13 @@
 					<div class="weather-3 pn centered">
 						<i class="fa fa-institution"></i>
 						<h3>PEMBIAYAAN</h3>
-						<div class="info">
+						<div class="">
 							<div class="row">
 								<h5 class="centered">Pengajuan</h5>
 								<div class="col-sm-12 col-xs-12">
 									<p class="centered">
-										<%= link_to 'Buat Pengajuan', new_business_tender_path(biz), class: "btn btn-outlined btn-theme", remote: true %>
+										<%= link_to 'Buat', new_business_tender_path(biz), class: "btn btn-outlined btn-theme", remote: true %>
+										<%= link_to 'Daftar', business_tenders_path(biz), class: "btn btn-outlined btn-theme", remote: true %>
 									</p>
 								</div>
 							</div>
@@ -115,12 +84,19 @@
 					</div>				
 				</div>
 			</div>
-				<% biz.tenders.each do |tender| %>
-					<span class="target"><%= tender.target %></span>
-				<% end %>
-			</div>
+			<% biz.tenders.each do |tender| %>		    
+	      <strong><span class="badge">Proposal #<%= tender.barcode %></span></strong> 
+				<span class="badge target"><%= idr_money(tender.target) %></span>
+				<span><%= link_to 'Lihat', business_tender_path(biz, tender), class: "btn btn-xs btn-outlined btn-theme" %></span>					
+				<span><%= link_to 'Koreksi', edit_business_tender_path(biz, tender), class: "btn btn-xs btn-outlined btn-theme", remote: true %></span>
+			<% end %>
+			
 		</div>
 	<% end %>
 
+</div>
+
+<div class="col-md-4 col-sm-12 col-xs-12">
+	<%= render 'elements/userbox' %>
 </div>
 <div class="col-md-1 col-sm-12 col-xs-12"></div>

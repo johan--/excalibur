@@ -23,9 +23,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
-//= require searchForm
 //= require shojiLayout
-//= require cocoon
 //= require biz
 //= require tooltip
 //= require clickablePanel
