@@ -1,0 +1,338 @@
+/* *************************************************************************************
+PANELS CONFIGURATIONS
+*************************************************************************************** */
+/* from dashgum theme */
+/*Panel Size*/
+
+.pn {
+	height: 250px;
+	/*box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);*/
+}
+
+.pn:hover {
+	box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+	
+}
+
+/*Grey Panel*/
+
+.grey-panel {
+	text-align: center;
+	background: #dfdfe1;
+}
+.grey-panel .grey-header {
+	background: #ccd1d9;
+	padding: 3px;
+	margin-bottom: 15px;
+}
+.grey-panel h5 {
+	font-weight: 200;
+	margin-top: 10px;
+}
+.grey-panel p {
+	margin-left: 5px;
+}
+/* Specific Conf for Donut Charts*/
+.donut-chart p {
+	margin-top: 5px;
+	font-weight: 700;
+	margin-left: 15px;
+}
+.donut-chart h2 {
+	font-weight: 900;
+	color: #FF6B6B;
+	font-size: 38px;
+}
+
+/* Dark Blue*/
+
+.darkblue-panel {
+	text-align: center;
+	background: #444c57;
+}
+.darkblue-panel .darkblue-header {
+	background: transparent;
+	padding: 3px;
+	margin-bottom: 15px;
+}
+.darkblue-panel h1 {
+	color: #f2f2f2;
+}
+.darkblue-panel h5 {
+	font-weight: 200;
+	margin-top: 10px;
+	color: white;
+}
+.darkblue-panel footer {
+	color: white;
+}
+.darkblue-panel footer h5 {
+	margin-left:10px; 
+	margin-right: 10px;
+	font-weight: 700;
+}
+
+/*Green Panel*/
+.green-panel {
+	text-align: center;
+	background: #68dff0;
+}
+.green-panel .green-header {
+	background: #43b1a9;
+	padding: 3px;
+	margin-bottom: 15px;
+}
+.green-panel h5 {
+	color: white;
+	font-weight: 200;
+	margin-top: 10px;
+}
+.green-panel h3 {
+	color: white;
+	font-weight: 100;
+}
+.green-panel p {
+	color: white;
+}
+
+/*White Panel */
+.white-panel {
+	text-align: center;
+	background: #ffffff;
+	color: #ccd1d9;
+}
+
+.white-panel p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-weight: 700;
+	margin-left: 15px;
+}
+.white-panel .white-header {
+	/*background: #f4f4f4;*/
+	padding: 3px;
+	margin-bottom: 15px;
+	color: #c6c6c6;
+	border: 1px solid #eee;
+}
+.white-panel .small {
+	font-size: 10px;
+	color: #ccd1d9;
+}
+
+.white-panel i {
+	color: #68dff0;
+	padding-right: 4px;
+	font-size: 14px;
+}
+.white-panel .user-option {
+	background: #f4f4f4;
+	padding: 15px;
+	margin-bottom: 15px;
+	color: #c6c6c6;
+}
+
+
+/*Content Panel*/
+.content-panel {
+	background: #ffffff;
+	box-shadow: 0px 3px 2px #aab2bd;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+.content-panel h4 {
+	margin-left: 10px;
+}
+
+
+
+/*Twitter Panel*/
+.twitter-panel {
+	background: #4fc1e9;
+	text-align: center;
+}
+.twitter-panel i {
+	color: white;
+	margin-top: 40px;
+}
+.twitter-panel p {
+	color: #f5f5f5;
+	margin: 10px;
+}
+.twitter-panel .user {
+	color: white;
+	font-weight: 900;
+}
+
+
+/* Instagram Panel*/
+.instagram-panel {
+	background: url(../img/instagram.jpg) no-repeat center top;
+	text-align: center;
+	background-position: center center;
+}
+.instagram-panel i {
+	color: white;
+	margin-top: 35px;
+}
+.instagram-panel p {
+	margin: 5px;
+	color: white;
+}
+
+/* Product Panel */
+.product-panel {
+	background: #dadad2;
+	text-align: center;
+	padding-top: 50px;
+	height: 100%;
+}
+
+/* Product Panel 2*/
+.product-panel-2 {
+	background: #dadad2;
+	text-align: center;
+}
+.product-panel-2 .badge {
+	position: absolute;
+	top: 20px;
+	left: 35px;
+}
+.badge-hot {
+	background: #ed5565;
+	width: 70px;
+	height: 70px;
+	line-height: 70px;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	border-radius: 100%;
+}
+
+
+
+/* Weather 3 */
+.weather-3 {
+    /*background: #ffcf00;*/
+    margin-bottom: 10px;
+}
+
+.weather-3 i {
+    color: $brand-coral;
+    margin-top: 30px;
+    font-size: 70px;
+}
+.weather-3 h3 {
+    margin-top: 10px;
+    color: $brand-coral;
+    font-weight: 900;
+}
+.weather-3 .info {
+    background: #f2f2f2;
+}
+.weather-3 .info i {
+    font-size: 15px;
+    color: #c2c2c2;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.weather-3 .info h5 {
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.weather-3 .info p {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 16px;
+    color: #c2c2c2;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* PROFILE PANELS */
+/* Profile 01*/
+#profile-01 {
+	background: url(../img/profile-01.jpg) no-repeat center top;
+	margin-top: -15px;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 150px;
+	width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#profile-01 h3 {
+	color: white;
+	padding-top: 50px;
+	margin: 0px;
+	text-align: center;
+}
+#profile-01 h6 {
+	color: white;
+	text-align: center;
+	margin-bottom: 0px;
+	font-weight: 900;
+}
+.profile-01 {
+	background: #68dff0;
+	height: 50px;
+}
+.profile-01:hover {
+	background: #2f2f2f;
+  -webkit-transition: background-color 0.6s;
+  -moz-transition: background-color 0.6s;
+  -o-transition: background-color 0.6s;
+  transition: background-color 0.6s;
+  cursor: pointer;
+}
+.profile-01 p {
+	color: white;
+	padding-top: 15px;
+	font-weight: 400;
+	font-size: 15px;
+}
+
+/* Profile 02*/
+#profile-02 {
+	background: url(../img/profile-02.jpg) no-repeat center top;
+	margin-top: -15px;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 200px;
+	width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#profile-02 .user {
+	padding-top: 40px;
+	text-align: center;
+}
+#profile-02 h4 {
+	color: white;
+	margin:0px;
+	padding-top: 8px;
+}
+.pr2-social a {
+	color: #cdcdcd;
+}
+.pr2-social a:hover {
+	color: #68dff0;
+}
+.pr2-social i {
+	margin-top: 15px;
+	margin-right: 12px;
+	font-size: 20px;
+}

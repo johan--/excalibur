@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
-  scope :biz, -> { where(category: 'Business') }
-  scope :backer, -> { where(category: 'Firm') } 
+  scope :biz, -> { where(teamable_type: 'Business') }
+  # scope :backer, -> { where(teamable_type: 'Firm') } 
   has_many :rosters
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
   belongs_to :teamable, polymorphic: true

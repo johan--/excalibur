@@ -1,8 +1,0 @@
-<% title("Edit Profil") %>
-
-<h1>Edit Profil dan Informasi</h1>
-<% if @category == 'CompanyProfile' %>	
-  <%= render partial: 'profiles/form', locals: { team: true } %>
-<% elsif @category == 'UserProfile' %>
-  <%= render partial: 'profiles/form', locals: { user: true } %>
-<% end %>  

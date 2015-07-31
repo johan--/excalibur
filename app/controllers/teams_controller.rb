@@ -1,11 +1,9 @@
 class TeamsController < ApplicationController
-  include TeamSti
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :set_type
   before_action :user_layout
   
   def index
-    @teams = type_class.all
+    @teams = Team.all
     @team_search = Team.search(search_params)
   end
 
@@ -13,7 +11,7 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @team = type_class.new
+    @team = Team.new
     respond_to do |format|
       format.html
       format.js
@@ -24,8 +22,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = type_class.new(team_params)
-    @team.starter_email = current_user.email
+    @team = Team.new(team_params)
 
     respond_to do |format|
       if @team.save
@@ -76,15 +73,14 @@ class TeamsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      @team = type_class.find(params[:id])
+      @team = Team.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(type.underscore.to_sym).permit(
-        :type, :name, :starter_email, 
-        details: [:public, :last_education, :marital_status, 
-          :industry_experience, :work_experience]
+      params.require(:team).permit(
+        :category, :teamable, 
+        data: [:name, :starter_email, :starter_phone]
       )
     end
 end

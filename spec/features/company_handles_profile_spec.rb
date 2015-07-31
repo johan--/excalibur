@@ -2,22 +2,20 @@ require 'rails_helper'
 
 feature "CompanyHandlesProfile", :type => :feature do
   subject { page }
-  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user) { FactoryGirl.create(:entrepreneur) }
   let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
 
   before { sign_in user }
 
   describe "when the biz has no profile yet" do
-    it { should have_css('p.starting-suggestion') }
-    it { should have_link('Buat Profil Bisnis') }
-    it { should have_link('Buat Pengajuan Pembiayaan') }
+    it { should have_link("Lihat Profil Bisnis") }
 
-  	context "create biz profile", js: true do
+  	context "fill biz profile", js: true do
       before do
-        click_link "Buat Profil Bisnis"
-        fill_in "company_profile_about", with: "Lorem Ipsum Dolor Casuss"
-        fill_in "company_profile_details_anno", with: "2015"
-        fill_in "company_profile_details_founding_size", with: "4"
+        click_link "Edit Profil Bisnis"
+        fill_in "business_about", with: "Lorem Ipsum Dolor Casuss"
+        fill_in "business_anno", with: "2015"
+        fill_in "business_founding_size", with: "4"
         check "Kantor Utama"
         check "Gerai"
         check "Jaringan Sosial"
@@ -25,8 +23,7 @@ feature "CompanyHandlesProfile", :type => :feature do
         click_button "Simpan"
       end
 
-      it { should have_content("Profil berhasil dibuat") }
-      it { should have_link("Lihat Profil Bisnis") }
+      it { should have_content("Profil bisnis berhasil diperbaharui") }
 
       context "looking into the profile" do
         before { click_link "Lihat Profil Bisnis" }
@@ -40,13 +37,13 @@ feature "CompanyHandlesProfile", :type => :feature do
         before do
           visit user_root_path 
           click_link "Edit Profil Bisnis" 
-          fill_in "company_profile_about", with: "Blabla galih blabla"
-          # fill_in "company_profile_details_anno", with: "2015"
-          # fill_in "company_profile_details_founding_size", with: "4"
+          fill_in "business_about", with: "Blabla galih blabla"
+          # fill_in "business_anno", with: "2015"
+          # fill_in "business_founding_size", with: "4"
           click_button "Simpan"
         end
 
-        it { should have_content("Profil berhasil dikoreksi") }
+        it { should have_content("Profil bisnis berhasil diperbaharui") }
 
         it "shows changes on the show profile page" do
           click_link "Lihat Profil Bisnis"

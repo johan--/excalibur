@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe API::V1::UsersController do
-  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user) { FactoryGirl.create(:entrepreneur) }
 
   before(:each) do 
   	api_authorization_header(user.auth_token)
@@ -19,7 +19,7 @@ describe API::V1::UsersController do
       	post :create, { :user => { 
           email: "momo@example.com", password: user.password,
           password_confirmation: user.password_confirmation,
-          full_name: "momo user", category: user.category }, 
+          name: "momo user" }, 
           format: :json }
 
       	expect(response.status).to eq(201)
@@ -31,7 +31,7 @@ describe API::V1::UsersController do
       	post :create, { :user => { 
           email: user.email, password: user.password,
           password_confirmation: user.password_confirmation,
-          full_name: user.full_name, category: user.category },
+          name: user.name },
           format: :json }        
 
       	expect(response.status).to eq(422)
@@ -55,7 +55,7 @@ describe API::V1::UsersController do
     #   	post api_v1_users_path, { 
     #     :user => { email: user.email, password: user.password,
     #     password_confirmation: user.password_confirmation,
-    #     full_name: user.full_name, category: user.category } }.to_json, 
+    #     name: user.name } }.to_json, 
     #     {'CONTENT_TYPE' => "application/json", 'ACCEPT' => 'application/json'}
 
     #   	expect(response.status).to eq(422)

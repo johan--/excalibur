@@ -1,8 +1,8 @@
 <% title("Pengajuan Pembiayaan") %>
 
 <h1>Buat Pengajuan</h1>
-<% if @category == 'BizPartnership' %>	
+<% if @tenderable.class.name == 'Business' %>	
   <%= render partial: 'tenders/form', locals: { business: true } %>
-<% elsif @category == 'ConsumerFinancing' %>
+<% elsif tenderable.class.name == 'User' %>
   <%= render partial: 'tenders/form', locals: { consumer: true } %>
 <% end %>  

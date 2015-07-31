@@ -19,7 +19,7 @@
 	padding: 0;
   	min-height: 40px;
   	border-bottom: 1px solid #eee;
-  	margin-bottom: 18px;
+  	margin-bottom: 5px;
 }
 
 .caption {
@@ -67,6 +67,12 @@
 	color: #9eacb4;
 	font-size: 13px;
 	font-weight: 400;
+}
+
+/* Portlet Body */
+.portlet-body .text {
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /* Actions */
@@ -176,7 +182,8 @@
 .toolbars .btn.btn-circle {
 	width: 28px;
 	height: 28px;
-	padding: 3px 7px;
+	padding: 4px 7px;
+	border: 0px solid;
 	text-align: center;
 }
 

@@ -1,8 +1,0 @@
-<% title("Buat Profil") %>
-
-<h1>Buat Profil dan Alamat</h1>
-<% if @category == 'CompanyProfile' %>	
-  <%= render partial: 'profiles/form', locals: { team: true } %>
-<% elsif @category == 'UserProfile' %>
-  <%= render partial: 'profiles/form', locals: { user: true } %>
-<% end %>  

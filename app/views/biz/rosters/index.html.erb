@@ -28,7 +28,7 @@
         		<% @members.each_with_index do |member, index| %>
         			<tr>
         				<td data-title="#"><%= index + 1 %>.</td>
-        				<td data-title="Nama"><%= member.rosterable.full_name %></td>
+        				<td data-title="Nama"><%= member.rosterable.name %></td>
         				<td data-title="Peran"><%= role_translated(member.role) %></td>
         				<td data-title="Bergabung" class="numeric"><%= member.created_at.to_date %></td>
         				<td data-title="Koreksi">

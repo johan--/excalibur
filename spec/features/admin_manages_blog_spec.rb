@@ -4,7 +4,7 @@ feature "AdminManagesBlog", :type => :feature do
   subject { page }
 
   let!(:admin) { FactoryGirl.create(:admin) }
-  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user) { FactoryGirl.create(:entrepreneur) }
   let!(:post1) { FactoryGirl.create(:post, user: admin) }
 
   describe "viewing blog index" do

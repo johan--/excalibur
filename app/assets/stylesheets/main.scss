@@ -8,9 +8,9 @@
 @import "styles/v-card";
 @import "styles/stylish-panel";
 @import "styles/tab-panel";
-@import "styles/ticket-styles";
 @import "styles/colorful-modal";
 @import "styles/style";
+@import "styles/custom-panels";
 @import "styles/portlet";
 
 /* Progress Bar */
@@ -34,8 +34,6 @@ $nprogress-zindex: 10100;
   }
 }
 
-
-
 #welcome-box{
     /*border: 1px solid #ddd;*/
     padding-left: 20px;
@@ -52,16 +50,18 @@ $nprogress-zindex: 10100;
 	color: white;
 }
 
-div.reservation {
-    padding: 0px;
-}
-
 .danger-link {
 	color: #BE371F;
 }
 
 .coral {
 	color: $brand-coral;
+}
+.coral-background {
+  background-color: $brand-coral;
+}
+.primary-background {
+  background-color: $brand-primary;
 }
 
 /* Main format */

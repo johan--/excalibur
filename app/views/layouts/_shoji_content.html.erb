@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle small-font" data-toggle="dropdown">
-            <%= current_user.full_name %>
+            <%= current_user.name %>
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
         <ul class="sidebar-menu" id="nav nav-accordion">
         
           <h2 class="centered"><%= app_name %></h2>
-          <h5 class="centered"><%= current_user.full_name %></h5>
+          <h5 class="centered"><%= current_user.name %></h5>
           <%= render 'layouts/sidebar_options' %>
 
         </ul>

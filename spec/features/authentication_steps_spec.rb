@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "AuthenticationSteps", :type => :feature do
-	let!(:user_1) { FactoryGirl.create(:player) }
+	let!(:user_1) { FactoryGirl.create(:entrepreneur) }
 	let!(:admin) { FactoryGirl.create(:admin) }
 	let!(:post1) { FactoryGirl.create(:post, user: admin) }
 	subject { page }

@@ -2,15 +2,15 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  <%= f.simple_fields_for :profile do |d| %>
-	<%= d.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @profile.last_education, label: "Pendidikan Terakhir" %>
-	<%= d.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @profile.marital_status, label: "Status Pernikahan" %>
-	<%= d.input :work_experience, label: "Pengalaman Kerja", required: false %>
-	<%= d.input :industy_experience, label: "Pengalaman Industri/Bidang", required: false %>
-  <% end %>
+    <%= f.input :phone_number, label: "Nomor Telepon (HP)", required: true %>
+	  <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @user.last_education, label: "Pendidikan Terakhir", required: true %>
+	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @user.marital_status, label: "Status Pernikahan", required: true %>
+    <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Kamu"  %>
+	  <%= f.input :work_experience, label: "Pengalaman Kerja", required: false %>
+	  <%= f.input :industry_experience, label: "Pengalaman Industri/Bidang", required: false %>
   </div>
 
   <div class="form-actions">
-  	<%= f.button :submit, "Daftarkan Tim", class: "btn btn-primary" %>
+  	<%= f.button :submit, "Simpan", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -12,6 +12,10 @@ FactoryGirl.define do
       starter_email { user.email }
     end
 
+    trait :starter do
+      starter
+    end
+
     # trait :with_musharakah_tenders do
     #   after :create do |biz|
     #     FactoryGirl.create_list :biz_tender, 3, :tenderable => biz, :musharakah

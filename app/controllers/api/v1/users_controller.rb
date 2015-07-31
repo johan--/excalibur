@@ -20,7 +20,7 @@ class API::V1::UsersController < API::V1::BaseController
     param :email, String, "Email of the user", required: true
     param :password, String, "Password of the user", required: true
     param :password_confirmation, String, "Password confirmation of the user", required: true
-    param :full_name, String, "Name of the user", required: true
+    param :name, String, "Name of the user", required: true
     param :category, Integer, "Category of the user, 1=player; 2=operator", required: true
   end
   def create
@@ -39,7 +39,7 @@ class API::V1::UsersController < API::V1::BaseController
     param :current_password, String, "Current password of the user", required: true
     param :password, String, "New Password of the user"
     param :password_confirmation, String, "New Password confirmation of the user"
-    param :full_name, String, "Name of the user"
+    param :name, String, "Name of the user"
     param :category, Integer, "Category of the user, 1=player; 2=operator"
   end
   def update
@@ -57,7 +57,7 @@ class API::V1::UsersController < API::V1::BaseController
     def user_params
       params.require(:user).permit(
       	:email, :password, :password_confirmation, 
-      	:full_name, :category
+      	:name, :category
       )
     end
 

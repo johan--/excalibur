@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "BusinessOpensATender", :type => :feature do
   subject { page }
-  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user) { FactoryGirl.create(:entrepreneur) }
   let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
 
   before { sign_in user }
@@ -11,19 +11,19 @@ feature "BusinessOpensATender", :type => :feature do
     context "on the home page" do  	  
     end
 
-    context "creating a tender" do
+    context "creating a tender", js: true do
       before do
-        click_link "Buat Pengajuan Pembiayaan"
-        fill_in "biz_partnership_target", with: 123456
-        fill_in "biz_partnership_properties_aqad", with: "Musharakah"
-        fill_in "biz_partnership_properties_summary", with: "Lorem Ipsum Dolor Casuss"
-        fill_in "biz_partnership_details_intent_type", with: "Ekspansi"
+        click_link "Buat Pengajuan"
+        fill_in "tender_target", with: 123456
+        fill_in "tender_summary", with: "Lorem Ipsum Dolor Casuss"
+        fill_in "tender_aqad", with: "Musharakah"
+        fill_in "tender_intent_type", with: "Ekspansi"
         check "Mesin"
         click_button "Ajukan"
       end
       
-      it { should have_content('Pengajuan pembiayaan berhasil dilakukan') }
-      it { should have_css('.target', text: 'Pengajuan pembiayaan berhasil dilakukan') }
+      it { should have_content('Pengajuan pembiayaan berhasil dibuat') }
+      it { should have_css('.target', text: 123456) }
     end
   end
 

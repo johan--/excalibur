@@ -25,7 +25,7 @@ User.create(
     password: "1234567",
     password_confirmation: "1234567",
     name: "Example #{i}",
-    business: true
+    investor: true
   )
 
   puts "#{i} test users created..." if (i % 5 == 0)

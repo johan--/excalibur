@@ -1,13 +1,12 @@
 <div class="modal-header modal-header-success">
-  <h3>Profil Pengguna</h3>
+  <h3>Profil <%= @business.name %></h3>
 </div>
 <div class="modal-body">
   <center>
-    <h3 class="media-heading">Buat Profil</h3>
-	  <%= render 'users/profile_form' %>
+    <h3 class="media-heading">Edit Profil</h3>
+	  <%= render 'form' %>
   </center>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
 </div>
-

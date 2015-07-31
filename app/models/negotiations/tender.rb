@@ -17,7 +17,7 @@ class Tender < ActiveRecord::Base
   before_create :set_default_values!
 
   def self.categories
-    %w(BizPartnership ConsumerFinancing)
+    %w(Bisnis Konsumsi)
   end
 
   scope :open, -> { 

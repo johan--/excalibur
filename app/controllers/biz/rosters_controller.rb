@@ -55,7 +55,7 @@ class Biz::RostersController < Biz::BaseController
     params.require(:roster).permit(
       :role, :state, :rosterable_type, :rosterable_id, :team,
       :password, :password_confirmation, 
-      :full_name, :user_email, :user_phone
+      :name, :user_email, :user_phone
     )
   end
 

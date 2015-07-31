@@ -10,7 +10,8 @@ FactoryGirl.define do
     end
 
 		factory :entrepreneur do
-      profile { { business: true, investor: false } }
+      business true
+      investor false
     end
 
     factory :admin do
@@ -32,6 +33,13 @@ FactoryGirl.define do
       after(:create) do |user|
         create(:identity, :google, user: user)
       end
+    end
+
+    trait :with_full_profile do
+      phone_number "081398979879" 
+      about "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor" 
+      last_education "D3/Sarjana"
+      marital_status "Menikah"
     end    
   end
 

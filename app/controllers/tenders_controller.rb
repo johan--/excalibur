@@ -1,35 +1,30 @@
 class TendersController < ApplicationController
-  before_action :set_category
-  before_action :set_tender, only: [:show, :edit, :update, :destroy]
+  before_action :set_tender, only: [
+    :show, :edit, :update, :destroy
+  ]
+  before_action :find_tenderable, only: [ :new, :create ]
   before_action :user_layout
 
-  def index
-    # @tenders = current_user.tenders.all
-  end
+  # def index
+  # end
 
   def show
   end
 
   def new
-    @tender = category_class.new
-    if params[:team]
-      @company = Team.find_by(id: params[:team])
-      # @tender
-    end
+    @tender = @tenderable.tenders.build
   end
 
   def edit
-    @company = @tender.tenderable
   end
 
   def create
-    @tender = category_class.new(tender_params)
-    @tender.category = @category
-    @tender.tenderable = current_user if @category == 'ConsumerFinancing'
+    @tender = @tenderable.tenders.build(tender_params)
+    @tender.category = @tenderable.class.name
 
     respond_to do |format|
       if @tender.save
-        format.html { redirect_to user_root_path, notice: 'Pengajuan pembiayaan berhasil dilakukan' }
+        format.html { redirect_to user_root_path, notice: 'Pengajuan pembiayaan berhasil dibuat' }
       else
         format.html do 
           render :new 
@@ -60,30 +55,30 @@ class TendersController < ApplicationController
     end
   end
 
+
 private
-
-  def category 
-    Tender.categories.include?(params[:category]) ? params[:category] : "Tender"
-  end
-
-  def category_class 
-    category.constantize 
-  end
-
-  def set_category
-    @category = category 
-  end
-
   def set_tender
-    @tender = category_class.find(params[:id])
+    find_tenderable
+    @tender = @tenderable.tenders.find(params[:id])
+  end
+
+  def find_tenderable
+    if params[:business_id]
+      @tenderable = Business.friendly.find(params[:business_id])
+    elsif params[:user_id]
+      @tenderable = User.find(params[:user_id])
+    end
   end
 
   def tender_params
-    params.require(category.underscore.to_sym).permit(
+    params.require(:tender).permit(
       :tenderable, :tenderable_type, :tenderable_id, 
       :category, :target, :target_cents,
-      :properties => [:aqad, :aqad_code, :summary], 
-      :details => [:intent_type, :intent_assets => []]
+      # properties
+      :summary, 
+      # details
+      :aqad, :aqad_code, 
+      :intent_type, :intent_assets => []
     )
   end
 

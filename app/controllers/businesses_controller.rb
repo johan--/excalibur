@@ -21,7 +21,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.save
-        format.html { redirect_to @business, notice: 'Business was successfully created.' }
+        format.html { redirect_to user_root_path, notice: 'Bisnis berhasil didaftarkan' }
         # format.json { render :show, status: :created, location: @business }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
   def update
     respond_to do |format|
       if @business.update(business_params)
-        format.html { redirect_to @business, notice: 'Business was successfully updated.' }
+        format.html { redirect_to user_root_path, notice: 'Profil bisnis berhasil diperbaharui' }
         format.json { render :show, status: :ok, location: @business }
       else
         format.html { render :edit }
@@ -53,16 +53,15 @@ class BusinessesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_business
-      @business = Business.find(params[:id])
+      @business = Business.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
       params.require(:business).permit(
-        :name, :slug, profile: [
-          :anno, :founding_size, 
+        :name, :slug,
+          :anno, :founding_size, :about,
           :online_presence_types => [], :offline_presence_types => []
-        ]
       )
     end
 end

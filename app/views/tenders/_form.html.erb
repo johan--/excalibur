@@ -1,30 +1,15 @@
-<%= simple_form_for(@tender) do |f| %>
+<%= simple_form_for([@tenderable, @tender]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
 	<%= f.input :target, label: "Besaran (Rp)" %>
-
-	<% if defined?(business) && business %>
-      <%= f.hidden_field :tenderable_id, :value => @company.id  %> 
-  	  <%= f.hidden_field :tenderable_type, :value => @company.class.name  %>
-  	<% end %>
-	
-	<%= f.simple_fields_for :properties do |d| %>
-	  <%= d.input :aqad, label: "Jenis Akad" %>
-	  <%= d.input :summary, as: :text, label: "Penjelasan Singkat", input_html: {rows: 5, cols: 10} %>
-	<% end %>
-
-	<%= f.simple_fields_for :details do |e| %>
-	  <% if defined?(business) && business %>
-	    <%= e.input :intent_type, label: "Jenis Tujuan" %>
-	    <%= e.input :intent_assets, as: :check_boxes, collection: intent_assets_options, checked: @tender.intent_assets, label: "Aset Yang Dicari" %>
-
-	    <% elsif defined?(consumer) && consumer %>
-		<% end %>
-	<% end %>	
+	<%= f.input :summary, as: :text, label: "Penjelasan Singkat", input_html: {rows: 5, cols: 10} %>
+	<%= f.input :aqad, label: "Jenis Akad" %>
+    <%= f.input :intent_type, label: "Jenis Tujuan" %>
+    <%= f.input :intent_assets, as: :check_boxes, collection: intent_assets_options, checked: @tender.intent_assets, label: "Aset Yang Dicari" %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Ajukan", class: "btn btn-success" %>
+    <%= f.submit "Ajukan", class: "btn btn-outlined btn-black" %>
   </div>
 <% end %>

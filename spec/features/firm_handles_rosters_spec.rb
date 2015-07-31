@@ -3,8 +3,8 @@ require 'rails_helper'
 feature "FirmHandlesRosters", :type => :feature do
   subject { page }
 
-  let!(:user) { FactoryGirl.create(:manager, :with_team) }
-  let!(:user_2) { FactoryGirl.create(:manager) }
+  let!(:user) { FactoryGirl.create(:entrepreneur, :with_team) }
+  let!(:user_2) { FactoryGirl.create(:entrepreneur) }
 
   before do 
   	sign_in user 
@@ -13,7 +13,7 @@ feature "FirmHandlesRosters", :type => :feature do
   end
 
   # describe "rosters list" do
-  # 	it { should have_content(user.full_name) }
+  # 	it { should have_content(user.name) }
   # 	it { should have_content('Pengelola') }
   # end
 
@@ -24,7 +24,7 @@ feature "FirmHandlesRosters", :type => :feature do
   #     # fill_in("roster[user_phone]", with: "0811199194")
   #     fill_in("roster[password]", with: "foobarbaz")
   #     fill_in("roster[password_confirmation]", with: "foobarbaz")
-  #     fill_in("roster[full_name]", with: "alex galliani")
+  #     fill_in("roster[name]", with: "alex galliani")
   #     select 'Staff', from: 'roster_role'
   #     click_button "Simpan"  		
   # 	end
@@ -49,14 +49,14 @@ feature "FirmHandlesRosters", :type => :feature do
   #   before do
   #     click_link "+ Yang Terdaftar"
   #     fill_in("roster[user_email]", with: user_2.email)
-  #     fill_in("roster[full_name]", with: user_2.full_name)
+  #     fill_in("roster[name]", with: user_2.name)
   #     # fill_in("roster[user_phone]", with: user_2.phone_number)
   #     select 'Staff', from: 'roster_role'
   #     click_button "Simpan"     
   #   end
 
   #   it { should have_content('Pengguna berhasil ditambah ke dalam tim') }
-  #   it { should have_content(user_2.full_name) }
+  #   it { should have_content(user_2.name) }
 
   #   describe "signing in as team member" do
   #     before do

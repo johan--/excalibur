@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :rosters, as: :rosterable
   has_many :teams, through: :rosters #Dont have to use source & source type
-  
+  has_many :businesses, through: :teams, 
+                        source: :teamable, source_type: "Business"
+  has_many :tenders, as: :tenderable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

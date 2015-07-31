@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
     sequence(:title) { |n| "Blog Post No.#{n}"}
-    content_md "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor"
+    content_md "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor"
     user
 
     trait :draft do

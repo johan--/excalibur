@@ -8,76 +8,119 @@
 </div>
 
 <div class="col-md-4 col-sm-12 col-xs-12">
-	<div id="welcome-box">
-		<center>
-		  <h3 class="head text-center">Hai, <%= current_user.full_name %></h3>
-		  <%= image_tag("box-avatar", alt: "def-avatar") %>
-		  <br>
+	<div class="white-panel pn">
+		<div class="white-header">
 	    <div class="status-row" id="">
 	    	<%= render 'elements/statuses' %>
 	    </div>
-	    	<% if current_user.profile.present? %>
-	    		<%= link_to 'Lihat Profilku', sti_profile_path('UserProfile', current_user.profile), class: "btn btn-primary", remote: true %>
-					<%= link_to 'Edit Profilku', sti_profile_path('UserProfile', current_user.profile, :edit), class: "btn btn-primary", remote: true  %>
-	    	<% else %>
-	    		<%= link_to 'Buat Profil Pengguna', new_profile_path(category: "UserProfile"), class: "btn btn-success", remote: true  %>
-	    	<% end %>
+		</div>
+		<center>
+			<%= image_tag("box-avatar", alt: "def-avatar") %>
 		</center>
-	</div>		
+		<h3><b><%= current_user.name %></b></h3>
+		<div class="user-option">
+			<div class="row">
+				<h4 class="centered">PROFIL</h4>
+				<div class="col-sm-6 col-xs-6 ">
+					<%= link_to 'Lihat', user_path(current_user), class: "btn btn-xs btn-outlined btn-theme", remote: true %>
+				</div>
+				<div class="col-sm-6 col-xs-6 ">
+					<%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>			
 </div>
 
 <div class="col-md-7 col-sm-12 col-xs-12">
 
-	<% unless current_user.has_biz? %>
-	<div class="blankslate">
-		<div class="spacious">
-			<h3>Belum Ada Akun Bisnis</h3>
-			<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
-			<%= link_to 'Daftarkan Bisnis', new_team_path(type: "Business"), class: "btn btn-success", :remote => true  %>
+	<% if @businesses.nil? %>
+		<div class="blankslate">
+			<div class="spacious">
+				<h3>Belum Ada Akun Bisnis</h3>
+				<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
+				<%= link_to 'Daftarkan Bisnis', new_team_path, class: "btn btn-outlined btn-theme", :remote => true  %>
+			</div>
 		</div>
-	</div>
+	<% end %>
+	
+	<% @businesses.each do |biz| %>
+		<div class="portlet portlet-bordered">
+			<div class="portlet-title">
+				<div class="caption caption-red">
+					<i class="glyphicon glyphicon-cog"></i>
+					<span class="caption-subject text-uppercase"><%= biz.name %> </span>
+					<span class="caption-helper">Akun Bisnis</span>
+				</div>
+				<div class="toolbars">
+					<a href="javascript:;" class="btn btn-red btn-circle active">
+						<i class="glyphicon glyphicon-paperclip"></i>
+					</a>
+					<a href="javascript:;" class="btn btn-red btn-circle">
+						<i class="glyphicon glyphicon-pencil"></i>
+					</a>
+					<a href="javascript:;" class="btn btn-red btn-circle">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
+					<a href="javascript:;" class="btn btn-red btn-circle">
+						<i class="glyphicon glyphicon-search"></i>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+
+			<div class="portlet-body">
+				<div class="text">
+					<h4>Selamat Bergabung!</h4>
+					<p class="starting-suggestion">
+						Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.
+					</p>					
+				</div>
+				<div class="col-md-6">
+					<div class="weather-3 pn centered">
+						<i class="fa fa-briefcase"></i>
+						<h3>BISNIS</h3>
+						<div class="info">
+							<div class="row">
+									<h5 class="centered">PROFIL</h5>
+								<div class="col-sm-6 col-xs-6 pull-left">
+									<p class="goleft">
+										<%= link_to 'Lihat', business_path(biz), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+									</p>
+								</div>
+								<div class="col-sm-6 col-xs-6 pull-right">
+									<p class="goright">
+										<%= link_to 'Edit', edit_business_path(biz), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>										
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>					
+				</div>
+				<div class="col-md-6">
+					<div class="weather-3 pn centered">
+						<i class="fa fa-institution"></i>
+						<h3>PEMBIAYAAN</h3>
+						<div class="info">
+							<div class="row">
+								<h5 class="centered">Pengajuan</h5>
+								<div class="col-sm-12 col-xs-12">
+									<p class="centered">
+										<%= link_to 'Buat Pengajuan', new_business_tender_path(biz), class: "btn btn-outlined btn-theme", remote: true %>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>
+			</div>
+				<% biz.tenders.each do |tender| %>
+					<span class="target"><%= tender.target %></span>
+				<% end %>
+			</div>
+		</div>
 	<% end %>
 
-<% @businesses.each do |biz| %>
-	<div class="portlet portlet-bordered">
-		<div class="portlet-title">
-			<div class="caption caption-red">
-				<i class="glyphicon glyphicon-cog"></i>
-				<span class="caption-subject text-uppercase"><%= biz.name %> </span>
-				<span class="caption-helper">Akun Bisnis</span>
-			</div>
-			<div class="toolbars">
-				<a href="javascript:;" class="btn btn-red btn-circle active">
-					<i class="glyphicon glyphicon-paperclip"></i>
-				</a>
-				<a href="javascript:;" class="btn btn-red btn-circle">
-					<i class="glyphicon glyphicon-pencil"></i>
-				</a>
-				<a href="javascript:;" class="btn btn-red btn-circle">
-					<i class="glyphicon glyphicon-trash"></i>
-				</a>
-				<a href="javascript:;" class="btn btn-red btn-circle">
-					<i class="glyphicon glyphicon-search"></i>
-				</a>
-			</div>
-		</div>
-		<div class="portlet-body">
-			<h4>Selamat Bergabung!</h4>
-			<% if biz.find_profile %>
-				<p><%= biz.find_profile.about %></p>
-				<%= link_to 'Lihat Profil Bisnis', sti_profile_path('CompanyProfile', biz.find_profile), class: "btn btn-primary", remote: true  %>
-				<%= link_to 'Edit Profil Bisnis', sti_profile_path('CompanyProfile', biz.find_profile, :edit), class: "btn btn-primary", remote: true  %>
-			<% else %>
-				<p class="starting-suggestion">Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.</p>
-				<%= link_to 'Buat Profil Bisnis', new_profile_path(category: "CompanyProfile", team: biz.id), class: "btn btn-success", remote: true  %>
-			<% end %>
-			<%= link_to 'Buat Pengajuan Pembiayaan', new_tender_path(category: "BizPartnership", team: biz.id), class: "btn btn-success" %>
-
-			<% biz.tenders.each do |tender| %>
-				<span class="target"><%= tender.target %></span>
-			<% end %>
-		</div>
-	</div>
-<% end %>
 </div>
 <div class="col-md-1 col-sm-12 col-xs-12"></div>

@@ -11,7 +11,7 @@
 	  <h3 class="ctitle"><%= post.title %> <small><%= post.topic %></small></h3>
   	<% end %>
   
-	<p><csmall><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.full_name %></csmall2></p>
+	<p><csmall><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
   
   <% if defined?(multiple) && multiple %>
 	<p><%= sanitize truncate(post.content_html, length: 200, escape: false )%></p>

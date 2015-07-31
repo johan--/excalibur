@@ -24,16 +24,17 @@ Fustal::Application.routes.draw do
   end
 
 # New App
-  resources :users, only: [:show] do
-    get 'new_profile', on: :member
-    post 'create_profile', on: :member
+  resources :users, only: [:show, :edit, :update] do
+    resources :tenders
+    # get 'edit_profile', on: :member
+    # put 'update_profile', on: :member
   end
   resources :teams
-  resources :businesses
+  resources :businesses do
+    resources :tenders
+  end
+
   resources :bids
-  resources :tenders
-  resources :biz_partnerships, controller: 'tenders', category: 'BizPartnership' 
-  resources :consumer_financing, controller: 'tenders', category: 'ConsumerFinancing'
   resources :relationships, only: [:create, :destroy]
 
   # Static Pages

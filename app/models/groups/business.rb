@@ -9,7 +9,7 @@ class Business < ActiveRecord::Base
 
   serialize :profile, HashSerializer
   store_accessor :profile, 
-  		:open, :anno, :founding_size, 
+  		:open, :about, :anno, :founding_size, 
     	:online_presence_types, :offline_presence_types
   
 
