@@ -26,8 +26,7 @@ class Roster < ActiveRecord::Base
   	return true if role == 2
   end
 
-  def not_active_member
-  end
+
 
 private
 

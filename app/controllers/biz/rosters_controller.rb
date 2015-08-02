@@ -48,7 +48,7 @@ class Biz::RostersController < Biz::BaseController
   private
 
   def set_roster
-    @roster = @firm.rosters.find(params[:id])
+    @roster = @firm.rosters.where(:sequential_id => params[:id]).first
   end
 
   def roster_params

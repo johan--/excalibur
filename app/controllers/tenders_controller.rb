@@ -1,7 +1,8 @@
 class TendersController < ApplicationController
   before_action :set_tender, only: [
-    :show, :edit, :update, :destroy
+    :edit, :update, :destroy
   ]
+  before_action :find_tender, only: :show
   before_action :find_tenderable
   before_action :user_layout
 
@@ -10,6 +11,7 @@ class TendersController < ApplicationController
   end
 
   def show
+    @bids = @tender.bids
   end
 
   def new
@@ -25,7 +27,7 @@ class TendersController < ApplicationController
 
     respond_to do |format|
       if @tender.save
-        format.html { redirect_to user_root_path, notice: 'Pengajuan pembiayaan berhasil dibuat' }
+        format.html { redirect_to user_root_path, notice: 'Proposal berhasil dibuat' }
       else
         format.html do 
           render :new 
@@ -41,7 +43,7 @@ class TendersController < ApplicationController
   def update
     respond_to do |format|
       if @tender.update(tender_params)
-        format.html { redirect_to user_root_path, notice: 'Pengajuan berhasil dikoreksi' }
+        format.html { redirect_to user_root_path, notice: 'Proposal berhasil dikoreksi' }
       else
         format.html { render :edit }
       end
@@ -51,23 +53,30 @@ class TendersController < ApplicationController
   def destroy
     @tender.destroy
     respond_to do |format|
-      format.html { redirect_to user_root_path, notice: 'Pengajuan pembiayaan berhasil dihapuskan' }
+      format.html { redirect_to user_root_path, notice: 'Proposal berhasil dihapuskan' }
       format.json { head :no_content }
     end
   end
 
 
 private
+  def find_tender
+    @tender = Tender.friendly.find(params[:id])
+  end
+
   def set_tender
     find_tenderable
-    @tender = @tenderable.tenders.find(params[:id])
+    @tender = @tenderable.tenders.friendly.find(params[:id])
   end
 
   def find_tenderable
     if params[:business_id]
       @tenderable = Business.friendly.find(params[:business_id])
     elsif params[:user_id]
-      @tenderable = User.find(params[:user_id])
+      @tenderable = User.friendly.find(params[:user_id])
+    else
+      find_tender
+      @tenderable = @tender.tenderable
     end
   end
 

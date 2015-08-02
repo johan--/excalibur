@@ -30,8 +30,8 @@
 
   <div class="container-fluid" style="padding-left: 0px;">
     <aside>
+      <!-- Normal sidebar -->
       <div id="sidebar" class="hidden-sm hidden-xs nav-collapse">
-        <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav nav-accordion">
         
           <h2 class="centered"><%= app_name %></h2>
@@ -39,14 +39,14 @@
           <%= render 'layouts/sidebar_options' %>
 
         </ul>
-        <!-- sidebar menu end-->
       </div>
+      
+      <!-- Concise sidebar -->
       <div id="sidebar" class="visible-sm hidden-xs nav-collapse">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav nav-accordion">
           <%= render 'layouts/sidebar_options' %>
         </ul>
-        <!-- sidebar menu end-->
       </div>      
     </aside>
     <section id="main-content">
@@ -57,7 +57,16 @@
           <%= render 'layouts/messages' %>
           
           <%= yield %>
-        </div><! >        
+          
+          <div class="col-md-4">
+            <div class="hidden-sm hidden-xs">
+              <%= render 'elements/userbox' %>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-sm hidden-xs">
+            <!-- Stopgap column for proper zooming -->
+          </div>
+        </div>      
       </div>
 
       </section>

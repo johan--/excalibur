@@ -22,8 +22,7 @@ FactoryGirl.define do
 
   	factory :consumer_tender do
   	  category "ConsumerFinancing"
-  	  target "250000000"
-      association :tenderable, factory: :user
+  	  target "5000000"
 
       factory :con_tender do
         transient do

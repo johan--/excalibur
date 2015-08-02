@@ -8,9 +8,12 @@
   <% end %>
   
   	<%= link_to post_path(post.slug) do %>
-	  <h3 class="ctitle"><%= post.title %> <small><%= post.topic %></small></h3>
+	  <h3 class="ctitle">
+	  	<%= post.title %>
+	  	<small><%= post.topic %></small>
+	  </h3>
   	<% end %>
-  
+
 	<p><csmall><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
   
   <% if defined?(multiple) && multiple %>
@@ -19,12 +22,25 @@
 	<div class="spacing"></div>
   <% else %>
 	<p><%= post.content_html.html_safe %></p>
-	<!-- <h6>SHARE:</h6>
-	<p class="share"> -->
-	<!-- 	<a href="#"><i class="fa fa-twitter"></i></a>
+	<h6>SHARE:</h6>
+	<p class="share">
+		<a href="#"><i class="fa fa-twitter"></i></a>
 		<a href="#"><i class="fa fa-facebook"></i></a>
 		<a href="#"><i class="fa fa-tumblr"></i></a>
-		<a href="#"><i class="fa fa-google-plus"></i></a> -->
-	<!-- </p> -->	
+		<a href="#"><i class="fa fa-google-plus"></i></a>
+	</p>	
   <% end %>
+
+  <div class="post-footer">
+  	<p>
+  	  <i class="fa fa-tags"></i> Kata Kunci: 
+  	  <% unless post.tags.nil? %>
+	  	<% post.tags.each do |tag| %>
+	  	  <%= link_to find_posts_path(tag: tag) do %>
+	  	  	<span class="badge badge-info"><%= tag %></span>
+	  	  <% end %>
+	  	<% end %>
+	  <% end %>
+  	</p>
+  </div>
 </div>

@@ -16,7 +16,7 @@ class CreateGroups < ActiveRecord::Migration
       t.references  :rosterable, polymorphic: true, index: true, null: false
       t.references  :team, index: true, null: false
       t.integer     :role, null: false
-      t.string      :state, null: false, default: "aktif"
+      t.string      :state, null: false
       t.datetime    :deleted_at, index: true
 
       t.timestamps null: false

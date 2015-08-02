@@ -2,8 +2,12 @@ class User < ActiveRecord::Base
   include UserRelationship
   include UserChecking
   include UserAdmin
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
+
 # Relations
   has_one  :identity
   has_many :posts
@@ -12,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :businesses, through: :teams, 
                         source: :teamable, source_type: "Business"
   has_many :tenders, as: :tenderable
+  has_many :bids, as: :bidder
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -106,4 +111,10 @@ class User < ActiveRecord::Base
     SecureRandom.uuid.gsub(/\-/,'')
   end
 
+  def slug_candidates
+    [
+      :name,
+      [:name, :email]
+    ]
+  end
 end

@@ -12,6 +12,8 @@
 .portlet.portlet-bordered {
 	border: 1px solid #eee;
 	/*border-bottom: 1px solid #eee;*/
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /* Portlet Title */
@@ -157,13 +159,14 @@
 .portlet-title > .nav-tabs > li > a {
 	background: none;
 	border: 0;
-	padding: 2px 10px 13px;
+  	padding: 5px 15px 5px 15px;
+  	/*top right bottom left*/
 	color: #444;
 }
 
 .portlet-title > .nav-tabs > li.active,
 .portlet-title > .nav-tabs > li.active:hover {
-  	border-bottom: 4px solid #f3565d;
+  	border-bottom: 4px solid $brand-coral;
   	position: relative;
   }
 

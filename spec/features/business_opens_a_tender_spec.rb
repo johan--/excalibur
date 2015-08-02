@@ -13,7 +13,8 @@ feature "BusinessOpensATender", :type => :feature do
 
     context "creating a tender", js: true do
       before do
-        click_link "Buat"
+        visit user_root_path
+        click_link("Buat", href: new_business_tender_path(biz))
         fill_in "tender_target", with: 123456
         fill_in "tender_summary", with: "Lorem Ipsum Dolor Casuss"
         fill_in "tender_aqad", with: "Musharakah"
@@ -22,8 +23,8 @@ feature "BusinessOpensATender", :type => :feature do
         click_button "Ajukan"
       end
       
-      it { should have_content('Pengajuan pembiayaan berhasil dibuat') }
-      it { should have_css('.target', text: "Rp 123.456") }
+      it { should have_content('Proposal berhasil dibuat') }
+      it { should have_content("Rp 123.456") }
     end
   end
 
@@ -33,13 +34,14 @@ feature "BusinessOpensATender", :type => :feature do
     describe "editing the tender", js: true do
       before do
         visit user_root_path
-        click_link "Koreksi" 
-        fill_in "tender_target", with: 654321
+        click_link("Koreksi", href: edit_business_tender_path(biz, tender))
+        # fill_in "tender_target", with: 654321
+        fill_in "tender_aqad", with: "Murabahah"
         click_button "Ajukan"
       end
 
-      it { should have_content('Pengajuan berhasil dikoreksi') }
-      it { should have_css('.target', text: "Rp 654.321") }
+      it { should have_content('Proposal berhasil dikoreksi') }
+      # it { should have_css('.price', text: "Rp 654.321") }
     end
   end
 

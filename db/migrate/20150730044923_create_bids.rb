@@ -12,7 +12,6 @@ class CreateBids < ActiveRecord::Migration
     end
     add_index :bids, [:bidder_type, :bidder_id]
     add_index :bids, :tender_id
-    add_index :bids, :state
     add_index :bids, :properties, using: :gin    
   end
 end

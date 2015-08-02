@@ -18,8 +18,6 @@ feature "UserSignsUp", :type => :feature do
 				fill_in("user[password]", with: "foobarbaz")
 				fill_in("user[password_confirmation]", with: "foobarbaz")
 				fill_in("user[name]", with: "foobar baz")
-				# fill_in("user[phone_number]", with: "009008007")
-				choose 'Pemain'
 				click_button "Daftar"
 			end
 

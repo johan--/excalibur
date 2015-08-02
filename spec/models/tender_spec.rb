@@ -7,7 +7,7 @@ RSpec.describe Tender, :type => :model do
   describe "Business Partnership" do
   	before do
   	  @tender = Tender.new(
-  	  		category: "BizPartnership", aqad: "musharakah",
+  	  		category: "Bisnis", aqad: "musharakah",
   			# tenderable: biz, target_cents: 1000000000, 
   			tenderable: biz, target: 10000000,
   			summary: "Lorem ipsum dolor cassus")
@@ -45,7 +45,7 @@ RSpec.describe Tender, :type => :model do
 	  	end
 
 	  	it "sets status" do
-	  	  @tender.state.should == 'belum diproses'
+	  	  @tender.state.should == 'menunggu tawaran'
 	  	end	  	
 	  end
 

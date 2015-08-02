@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe API::V1::SessionsController do
-  let!(:user) { FactoryGirl.create(:player) }
+  let!(:user) { FactoryGirl.create(:admin) }
 
   describe "POST #create" do
     context "when the credentials are correct" do

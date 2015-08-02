@@ -9,16 +9,17 @@ feature "UserHandlesProfile", :type => :feature do
 
     context "creating one", js: true do
     	before do
-    	  click_link "Edit Profilku"
-        fill_in "user_phone_number", with: "08139898989"
+    	  visit user_root_path
+    	  click_link("Edit", href: edit_user_path(user_1))
+          fill_in "user_phone_number", with: "08139898989"
     	  fill_in "user_about", with: "Lorem Ipsum Dolor Casuss"
-        select "D3/Sarjana", :from => 'user_last_education'
+          select "D3/Sarjana", :from => 'user_last_education'
     	  select "Belum Menikah", :from => 'user_marital_status'
     	  click_button "Simpan"
     	end
 
     	it { should have_content("Profil berhasil diperbaharui") }
-      it { should have_link("Lihat Profilku") }
+      it { should have_link("Lihat") }
     end
   end
 
@@ -31,7 +32,7 @@ feature "UserHandlesProfile", :type => :feature do
     end
 
     context "viewing the profile modal", js: true do
-      before { click_link "Lihat Profilku" }
+      before { click_link("Lihat", href: user_path(user_2)) }
 
       it { should have_css('.name', text: user_2.name) }
       it { should have_css('#education', text: user_2.last_education) }
@@ -40,7 +41,7 @@ feature "UserHandlesProfile", :type => :feature do
 
     context "editing the profile", js: true do
       before do 
-        click_link "Edit Profilku" 
+        click_link("Edit", href: edit_user_path(user_2)) 
         fill_in "user_about", with: "Blabla galih blabla"
         click_button "Simpan"
       end
@@ -48,7 +49,7 @@ feature "UserHandlesProfile", :type => :feature do
       it { should have_content("Profil berhasil diperbaharui") }
 
       it "shows changes on the show profile page", js: true do
-        click_link "Lihat Profilku"
+        click_link("Lihat", href: user_path(user_2))
 
         expect(page).to have_css('.bio', text: "Blabla galih blabla") 
       end

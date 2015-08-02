@@ -1,18 +1,18 @@
-<% title("Proposal Pembiayaan #{@tender.barcode}") %>
+<% title("#{@tender.barcode}") %>
 
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
 
 <div class="col-md-7 col-sm-12 col-xs-12">
 	<div class="portlet">
-		<div class="portlet-title">
+		<div class="portlet-title tab-row">
 			<div class="caption caption-red">
 				<i class="fa fa-file-text"></i> 
 				<span class="caption-subject bold font-yellow-crusta uppercase">
-					Proposal <%= @tender.barcode %>
+					<%= @tender.barcode %>
 				</span>
 				<span class="caption-helper"><%= @tender.category %></span>
 			</div>
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-tabs top-menu">
 				<li class="active">
 					<a href="#portlet_tab1" data-toggle="tab">
 						<i class="fa fa-lg fa-info"></i>
@@ -21,53 +21,68 @@
 				<li>
 					<a href="#portlet_tab2" data-toggle="tab">
 						<i class="fa fa-lg fa-inbox"></i>
+						<span class="badge"><%= @bids.count %></span>
 					</a>
 				</li>
-				<li>
-					<a href="#portlet_tab3" data-toggle="tab">
-						<i class="fa fa-lg fa-flash"></i>
-					</a>
-				</li>
+
+					<li>
+						<a href="#portlet_tab3" data-toggle="tab">
+							<i class="fa fa-lg fa-flash"></i>
+						</a>
+					</li>
+
 			</ul>
 		</div>
 		
 		<div class="portlet-body">
 			<div class="tab-content">
 				<div class="tab-pane active" id="portlet_tab1">
+					<% unless @tenderable.team.has_as_member?(current_user) %>
+						<%= link_to "Buat Tawaran", new_tender_bid_path(@tender),
+							class: "btn btn-outlined btn-theme" %>
+					<% end %>
 					<h4>Informasi</h4>
 					<%= render 'info_accordion' %>
 				</div>
 
 				<div class="tab-pane" id="portlet_tab2">
 					<div class="text">
-						<h4>Selamat Bergabung!</h4>
-						<p class="starting-suggestion">
-							Buat profil dan unggah berbagai berkas untuk meningkatkan kredibilitas bisnis kamu sebelum mengajukan pembiayaan. Ini juga akan memperbesar kemungkinan mendapatkan pembiayaan.
-						</p>					
+						<h4>Tawaran</h4>
+						<% if @bids.count == 0 %>
+							<p class="starting-suggestion">
+								Belum ada tawaran
+							</p>
+						<% end %>
+						<% @bids.find_each do |bid| %>
+							<div class="msg msg-info"> 
+								<span class="glyphicon glyphicon-info-sign"></span> 
+								<strong><%= bid.bidder.name %></strong>
+								<span class="label label-success"><%= idr_money(bid.contribution) %></span>
+							</div>
+						<% end %>
 					</div>
 				</div>
 				<div class="tab-pane" id="portlet_tab3">
-					<div class="weather-3 pn centered">
-						<i class="fa fa-institution"></i>
-						<h3>PEMBIAYAAN</h3>
-						<div class="">
-							<div class="row">
-								<h5 class="centered">Pengajuan</h5>
-								<div class="col-sm-12 col-xs-12">
-									<p class="centered">
-										<%= link_to 'Koreksi Proposal', edit_business_tender_path(@tenderable, @tender), class: "btn btn-outlined btn-theme", remote: true %>
-									</p>
+					<% if @tenderable.team.has_as_member?(current_user) %>
+						<div class="weather-3 pn centered">
+							<i class="fa fa-institution"></i>
+							<h3>PEMBIAYAAN</h3>
+							<div class="">
+								<div class="row">
+									<h5 class="centered">Pengajuan</h5>
+									<div class="col-sm-12 col-xs-12">
+										<p class="centered">
+											<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>	
+					<% end %>
+					
 				</div>
 			</div>
 		</div>
 
 	</div>
-</div>
-
-<div class="col-md-4 col-sm-12 col-xs-12">
-	<%= render 'elements/userbox' %>
 </div>

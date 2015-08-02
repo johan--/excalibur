@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730044923) do
+ActiveRecord::Schema.define(version: 20150801034144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150730044923) do
     t.integer  "height"
     t.string   "format"
     t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
@@ -43,20 +43,20 @@ ActiveRecord::Schema.define(version: 20150730044923) do
     t.jsonb    "details",               default: {}
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "slug",                                  null: false
   end
 
   add_index "bids", ["bidder_type", "bidder_id"], name: "index_bids_on_bidder_type_and_bidder_id", using: :btree
   add_index "bids", ["properties"], name: "index_bids_on_properties", using: :gin
-  add_index "bids", ["state"], name: "index_bids_on_state", using: :btree
   add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
 
   create_table "businesses", force: :cascade do |t|
-    t.string   "name"
-    t.string   "slug"
+    t.string   "name",                    null: false
     t.jsonb    "profile",    default: {}, null: false
     t.datetime "deleted_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "slug",                    null: false
   end
 
   add_index "businesses", ["deleted_at"], name: "index_businesses_on_deleted_at", using: :btree
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20150730044923) do
     t.string   "type",              limit: 30
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20150730044923) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,27 +119,15 @@ ActiveRecord::Schema.define(version: 20150730044923) do
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "follower_id",   null: false
-    t.string   "followed_type", null: false
-    t.integer  "followed_id",   null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "relationships", ["followed_id", "followed_type"], name: "index_relationships_on_followed_id_and_followed_type", using: :btree
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", using: :btree
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
-
   create_table "rosters", force: :cascade do |t|
-    t.integer  "rosterable_id",                     null: false
-    t.string   "rosterable_type",                   null: false
-    t.integer  "team_id",                           null: false
-    t.integer  "role",                              null: false
-    t.string   "state",           default: "aktif", null: false
+    t.integer  "rosterable_id",   null: false
+    t.string   "rosterable_type", null: false
+    t.integer  "team_id",         null: false
+    t.integer  "role",            null: false
+    t.string   "state",           null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "rosters", ["deleted_at"], name: "index_rosters_on_deleted_at", using: :btree
@@ -163,24 +151,22 @@ ActiveRecord::Schema.define(version: 20150730044923) do
   add_index "teams", ["teamable_type", "teamable_id"], name: "index_teams_on_teamable_type_and_teamable_id", using: :btree
 
   create_table "tenders", force: :cascade do |t|
-    t.integer  "tenderable_id",                                   null: false
-    t.string   "tenderable_type",                                 null: false
-    t.string   "category",                                        null: false
-    t.string   "state",                default: "belum diproses", null: false
-    t.integer  "target_cents",         default: 0,                null: false
-    t.string   "target_currency",      default: "USD",            null: false
-    t.integer  "contributed_cents",    default: 0,                null: false
-    t.string   "contributed_currency", default: "USD",            null: false
-    t.jsonb    "properties",           default: {},               null: false
-    t.jsonb    "details",              default: {},               null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.integer  "tenderable_id",                        null: false
+    t.string   "tenderable_type",                      null: false
+    t.string   "state",                                null: false
+    t.integer  "target_cents",         default: 0,     null: false
+    t.string   "target_currency",      default: "USD", null: false
+    t.integer  "contributed_cents",    default: 0,     null: false
+    t.string   "contributed_currency", default: "USD", null: false
+    t.jsonb    "properties",           default: {},    null: false
+    t.jsonb    "details",              default: {},    null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "slug",                                 null: false
   end
 
-  add_index "tenders", ["category"], name: "index_tenders_on_category", using: :btree
   add_index "tenders", ["details"], name: "index_tenders_on_details", using: :gin
   add_index "tenders", ["properties"], name: "index_tenders_on_properties", using: :gin
-  add_index "tenders", ["state"], name: "index_tenders_on_state", using: :btree
   add_index "tenders", ["tenderable_type", "tenderable_id"], name: "index_tenders_on_tenderable_type_and_tenderable_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -207,7 +193,8 @@ ActiveRecord::Schema.define(version: 20150730044923) do
     t.string   "avatar"
     t.jsonb    "profile",                default: {}
     t.jsonb    "preferences",            default: {},    null: false
-    t.string   "auth_token",             default: ""
+    t.string   "auth_token",             default: "",    null: false
+    t.string   "slug",                                   null: false
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

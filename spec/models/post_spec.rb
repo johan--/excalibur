@@ -49,29 +49,37 @@ RSpec.describe Post, :type => :model do
     let!(:post_2) { FactoryGirl.create(:post, :draft, user: user) }
     let!(:post_3) { FactoryGirl.create(:post_with_user, :draft, :dummy_keywords) }
 
-	describe "Post.published" do
-	  let!(:result) { Post.published }
+  	describe "Post.published" do
+  	  let!(:result) { Post.published }
 
-	  it "returns post that has draft attribute set to false" do
-	  	result.count.should == 1
-	  end
-	end
+  	  it "returns post that has draft attribute set to false" do
+  	  	result.count.should == 1
+  	  end
+  	end
 
-	describe "Post.draft" do
-	  let!(:result) { Post.drafted }
+  	describe "Post.draft" do
+  	  let!(:result) { Post.drafted }
 
-	  it "returns post that has draft attribute set to true" do
-	  	result.count.should == 2
-	  end
-	end	
+  	  it "returns post that has draft attribute set to true" do
+  	  	result.count.should == 2
+  	  end
+  	end	
 
-	describe "Post.subject" do
-	  let!(:result) { Post.subject('test dummy') }
+  	describe "Post.by_topic" do
+  	  let!(:result) { Post.by_topic('test dummy') }
 
-	  it "returns post that has 'test dummy' as its topic" do
-	  	result.count.should == 2
-	  end
-	end	
+  	  it "returns post that has 'test dummy' as its topic" do
+  	  	result.count.should == 2
+  	  end
+  	end
+
+    describe "Post.by_tag" do
+      let!(:result) { Post.by_tag('lorem') }
+
+      it "returns post that has 'test dummy' as its topic" do
+        result.count.should == 2
+      end
+    end     	
   end
 
 

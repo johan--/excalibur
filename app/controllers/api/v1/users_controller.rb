@@ -21,7 +21,6 @@ class API::V1::UsersController < API::V1::BaseController
     param :password, String, "Password of the user", required: true
     param :password_confirmation, String, "Password confirmation of the user", required: true
     param :name, String, "Name of the user", required: true
-    param :category, Integer, "Category of the user, 1=player; 2=operator", required: true
   end
   def create
     @user = User.new(user_params)
@@ -40,7 +39,6 @@ class API::V1::UsersController < API::V1::BaseController
     param :password, String, "New Password of the user"
     param :password_confirmation, String, "New Password confirmation of the user"
     param :name, String, "Name of the user"
-    param :category, Integer, "Category of the user, 1=player; 2=operator"
   end
   def update
     @user = User.find(params[:id])
@@ -57,7 +55,7 @@ class API::V1::UsersController < API::V1::BaseController
     def user_params
       params.require(:user).permit(
       	:email, :password, :password_confirmation, 
-      	:name, :category
+      	:name
       )
     end
 

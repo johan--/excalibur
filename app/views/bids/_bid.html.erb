@@ -1,0 +1,9 @@
+<div class="msg msg-info" id="<%= bid.barcode %>"> 
+	<span class="glyphicon glyphicon-info-sign"></span> 
+	<span class="tenderable-name">
+		<strong><%= bid.tender.tenderable.name %></strong>
+	</span>
+	<span class="label label-success contribution">
+		<%= idr_money(bid.contribution) %>
+	</span>
+</div>

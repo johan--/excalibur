@@ -30,8 +30,6 @@ module ApplicationHelper
   def into_hub(user)
     if user.admin?
       admin_root_path
-    elsif user.operator?
-      biz_root_path
     else
       user_root_path
     end

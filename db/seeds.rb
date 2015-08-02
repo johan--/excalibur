@@ -32,33 +32,11 @@ User.create(
 
 end
 
-# manager_array = []
-# (1..5).each do |i|
-#   manager_array << User.create!(
-#     email: "manager#{i}@example.com",
-#     password: "1234567",
-#     password_confirmation: "1234567",
-#     name: "Manager #{i}",
-#   )
-#   # u.skip_confirmation!
-#   # z.save!
-
-#   puts "#{i} test managers created..." if (i % 5 == 0)
-
-# end
-
 b = Business.create!(
   name: "Bisnis 1",
   anno: 2015,
   starter_email: User.first.email
 )
-
-# t.subscription.create!(
-#   category: 1,
-#   start_date: Date.today,
-#   state: "aktif",
-#   firm: firm
-# )
   
 # dummy blog posts
 (1..10).each do |i|
@@ -74,3 +52,17 @@ b = Business.create!(
   puts "#{i} dummy posts created..." if (i % 5 == 0)
 
 end
+
+t = Tender.create(category: "Bisnis", aqad: "musharakah",
+          tenderable: b, target: 15000000,
+          intent_type: "Modal Kerja", intent_assets: "Persediaan/Stok",
+          summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
+
+t.bids.create(tender: t, bidder: User.second, contribution: 5000000)
+t.bids.create(tender: t, bidder: User.third, contribution: 5000000)
+t.bids.create(tender: t, bidder: User.fourth, contribution: 5000000)
+
+z = Tender.create(category: "Individu", aqad: "murabahah",
+          tenderable: User.last, target: 8000000,
+          intent_type: "Konsumsi", intent_assets: "Kendaraan Bermotor",
+          summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")

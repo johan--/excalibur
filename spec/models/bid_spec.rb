@@ -4,7 +4,7 @@ RSpec.describe Bid, :type => :model do
   let!(:user) { FactoryGirl.create(:entrepreneur) }
   let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
   let!(:tender) { FactoryGirl.create(:retail, :musharakah, tenderable: biz) }
-  let!(:bidder) { FactoryGirl.create(:entrepreneur) }
+  let!(:bidder) { FactoryGirl.create(:investor) }
 
   before(:each) do
   	@bid = Bid.new(
@@ -26,7 +26,7 @@ RSpec.describe Bid, :type => :model do
 
   	describe "default values set by callback or database" do
   	  it "should sets properties of open to false" do
-  	  	@bid.open.should == false
+  	  	@bid.open.should == true
   	  end
 
   	  it "should sets default state" do

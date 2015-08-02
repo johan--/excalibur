@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "FirmHandlesRosters", :type => :feature do
+feature "BusinessHandlesRosters", :type => :feature do
   subject { page }
 
   let!(:user) { FactoryGirl.create(:entrepreneur, :with_team) }

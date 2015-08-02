@@ -1,6 +1,6 @@
 class Business < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   has_one  :team, as: :teamable
   has_many :rosters, through: :teams
@@ -10,6 +10,7 @@ class Business < ActiveRecord::Base
   serialize :profile, HashSerializer
   store_accessor :profile, 
   		:open, :about, :anno, :founding_size, 
+      :city, :province, :addresses,
     	:online_presence_types, :offline_presence_types
   
 
@@ -35,4 +36,11 @@ private
   		starter_email: starter_email)
   end
 
+  def slug_candidates
+    [
+      :name,
+      [:name, :anno],
+      [:name, :anno, :city]
+    ]
+  end
 end

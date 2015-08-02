@@ -1,8 +1,7 @@
 class CreateBusinesses < ActiveRecord::Migration
   def change
     create_table :businesses do |t|
-      t.string	 	  :name
-      t.string      :slug
+      t.string	 	  :name, null: false
       t.jsonb       :profile, null: false, default: {}
       t.datetime    :deleted_at, index: true
       

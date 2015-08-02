@@ -5,7 +5,7 @@ feature "AdminManagesBlog", :type => :feature do
 
   let!(:admin) { FactoryGirl.create(:admin) }
   let!(:user) { FactoryGirl.create(:entrepreneur) }
-  let!(:post1) { FactoryGirl.create(:post, user: admin) }
+  let!(:post1) { FactoryGirl.create(:post, :dummy_keywords, user: admin) }
 
   describe "viewing blog index" do
   	before do

@@ -14,11 +14,11 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    if resource.operator?
-      new_firm_path
-    else
+    # if resource.operator?
+    #   new_firm_path
+    # else
       user_root_path
-    end
+    # end
   end
 
 end

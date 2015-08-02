@@ -15,27 +15,31 @@ Fustal::Application.routes.draw do
       resources :users, only: [:index, :show, :create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :relationships, only: [:index, :show, :create, :destroy]
+      resources :businesses, only: [:index, :show, :create, :update, :destroy]
+      resources :tenders, only: [:index, :show, :create, :update, :destroy]
+      resources :bids, only: [:index, :show, :create, :update, :destroy]
+      resources :rosters, only: [:show, :create, :update, :destroy]
     end
-  end 
+  end
+
   constraints :subdomain => 'blog' do
     get '' => "pages#posts"
     get "posts/:id", to: "pages#show_post", as: "post"
-    get "posts/find", to: "pages#find_posts", as: "find_posts"
+    get "find", to: "pages#find_posts", as: "find_posts"
   end
 
 # New App
   resources :users, only: [:show, :edit, :update] do
-    resources :tenders
-    # get 'edit_profile', on: :member
-    # put 'update_profile', on: :member
+    resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
   resources :teams
   resources :businesses do
-    resources :tenders
+    resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
-
-  resources :bids
-  resources :relationships, only: [:create, :destroy]
+  resources :tenders, only: [:show] do
+    resources :bids
+  end
+  # resources :relationships, only: [:create, :destroy]
 
   # Static Pages
   root "pages#landing"

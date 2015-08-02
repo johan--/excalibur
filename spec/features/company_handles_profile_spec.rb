@@ -8,11 +8,12 @@ feature "CompanyHandlesProfile", :type => :feature do
   before { sign_in user }
 
   describe "when the biz has no profile yet" do
-    it { should have_link("Lihat Profil Bisnis") }
+    it { should have_link("Lihat", href: business_path(biz)) }
 
   	context "fill biz profile", js: true do
       before do
-        click_link "Edit Profil Bisnis"
+      	visit user_root_path
+        click_link("Edit", href: edit_business_path(biz))
         fill_in "business_about", with: "Lorem Ipsum Dolor Casuss"
         fill_in "business_anno", with: "2015"
         fill_in "business_founding_size", with: "4"
@@ -26,7 +27,7 @@ feature "CompanyHandlesProfile", :type => :feature do
       it { should have_content("Profil bisnis berhasil diperbaharui") }
 
       context "looking into the profile" do
-        before { click_link "Lihat Profil Bisnis" }
+        before { click_link("Lihat", href: business_path(biz)) }
 
         it { should have_css('.bio', text: "Lorem Ipsum Dolor Casuss") }
         it { should have_css('#established', text: "2015") }
@@ -36,7 +37,7 @@ feature "CompanyHandlesProfile", :type => :feature do
       context "editing the profile" do
         before do
           visit user_root_path 
-          click_link "Edit Profil Bisnis" 
+          click_link("Edit", href: edit_business_path(biz))
           fill_in "business_about", with: "Blabla galih blabla"
           # fill_in "business_anno", with: "2015"
           # fill_in "business_founding_size", with: "4"
@@ -46,7 +47,7 @@ feature "CompanyHandlesProfile", :type => :feature do
         it { should have_content("Profil bisnis berhasil diperbaharui") }
 
         it "shows changes on the show profile page" do
-          click_link "Lihat Profil Bisnis"
+          click_link("Lihat", href: business_path(biz))
 
           expect(page).to have_css('.bio', text: "Blabla galih blabla") 
         end

@@ -1,5 +1,8 @@
 class Tender < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
   belongs_to :tenderable, polymorphic: true  
+  
   has_many :bids
 
   monetize :target_cents
@@ -7,7 +10,8 @@ class Tender < ActiveRecord::Base
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
-                 :open, :summary, :barcode
+                 :open, :category, 
+                 :summary, :barcode, :tenderable_name
 
   serialize :details, HashSerializer
   store_accessor :details, 
@@ -17,7 +21,7 @@ class Tender < ActiveRecord::Base
   before_create :set_default_values!
 
   def self.categories
-    %w(Bisnis Konsumsi)
+    %w(Institusi Bisnis Individu)
   end
 
   scope :open, -> { 
@@ -29,10 +33,17 @@ class Tender < ActiveRecord::Base
 
 
 private
-
   def set_default_values!
+    self.state = "menunggu tawaran"
     self.barcode = "Proposal ##{SecureRandom.hex(3)}"
+    self.tenderable_name = self.tenderable.name
     self.open = true
   end
 
+  def slug_candidates
+    [ 
+      :barcode,
+      [:tenderable_name, :aqad, :barcode]
+    ]
+  end
 end

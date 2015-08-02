@@ -1,6 +1,4 @@
 class Team < ActiveRecord::Base
-  scope :biz, -> { where(teamable_type: 'Business') }
-  # scope :backer, -> { where(teamable_type: 'Firm') } 
   has_many :rosters
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
   belongs_to :teamable, polymorphic: true
@@ -13,7 +11,9 @@ class Team < ActiveRecord::Base
   validates :category, :presence => true
 
   after_create :starting_up
-
+  
+  scope :biz, -> { where(teamable_type: 'Business') }
+  
   def self.categories
     %w(Business Firm)
   end
@@ -38,6 +38,7 @@ class Team < ActiveRecord::Base
       return check
     end
   end
+
 
 
 private

@@ -1,11 +1,43 @@
-<li>
-  <div class="task-title">
-    <span class="task-title-sp">Dashgum - Admin Panel Theme</span>
-    <span class="badge bg-theme">Done</span>
-    <div class="pull-right hidden-phone">
-      <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-    </div>
+<div class="wp-block property list">
+  <div class="ribbon base"><span><%= tender.state %></span></div>
+  <div class="wp-block-title">
+    <h3 class="tender-title">
+      <%= link_to tender.barcode, show_tender_link(tender) %>
+    </h3>
   </div>
-</li>
+  <div class="wp-block-body">
+    <div class="wp-block-img">
+      <a href="#">
+        <%= image_tag("box-avatar", alt: "def-avatar") %>
+      </a>
+    </div>
+    <div class="wp-block-content">
+      <h4 class="content-title"><%= tender.aqad.titleize %></h4>
+      <p class="description">
+        <%= tender.summary %>
+      </p>
+      <span class="pull-left">
+        <span class="price"><%= idr_money(tender.target) %></span> 
+        <span class="period">(<%= idr_money(tender.contributed) %>)</span>
+      </span>
+      <span class="pull-right">
+        <span class="capacity">
+          <i class="fa fa-user"></i>
+          <i class="fa fa-user"></i>
+        </span>
+    	</span>
+  	</div>
+  </div>
+  <div class="wp-block-footer">
+    <ul class="aux-info">
+      <li><i class="fa fa-building"></i> <%= tender.tenderable.name %></li>
+      <li><i class="glyphicon glyphicon-road"></i> <%= tender.intent_type %></li>
+      <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
+      <li>
+        <a href="#" class="btn btn-outline btn-theme btn-xs" title="Share">
+          <i class="glyphicon glyphicon-share"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>		

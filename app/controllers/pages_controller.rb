@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :posts, :show_post, :email # :home, :contact 
+    :landing, :posts, :show_post, :find_posts, :email # :home, :contact 
   ]
   before_action :disable_nav, only: :landing
-  before_action :normal_nav, only: [:posts, :show_post]
-  before_action :blog_layout, only: [:posts, :show_post]
-  before_action :tag_cloud, only: [:posts, :show_post]
+  before_action :normal_nav, only: [:posts, :show_post, :find_posts]
+  before_action :blog_layout, only: [:posts, :show_post, :find_posts]
+  before_action :tag_cloud, only: [:posts, :show_post, :find_posts]
   before_action :user_layout, only: [:home, :contact]
 
   def landing
@@ -13,6 +13,8 @@ class PagesController < ApplicationController
 
   def home
     @businesses = current_user.businesses
+    @tenders = Tender.all
+    @bids = current_user.bids
 
     respond_to do |format| 
       format.html
@@ -31,7 +33,11 @@ class PagesController < ApplicationController
   end
 
   def find_posts
-    @posts = Post.by_topic(params[:topic])
+    if params[:topic]
+      @posts = Post.by_topic(params[:topic]).page(params[:page]).per(7)
+    elsif params[:tag]
+      @posts = Post.by_tag(params[:tag]).page(params[:page]).per(7)
+    end
   end
 
   def contact
@@ -62,9 +68,8 @@ class PagesController < ApplicationController
 
 private
   def tag_cloud
-    @posts = Post.all
-    @topics = @posts.group_by{ |post| post.topic }
-    # @tags = Post.tag_counts_on(:tags)
+    @all_posts = Post.all
+    @topics = @all_posts.group_by{ |post| post.topic }
   end
 
 

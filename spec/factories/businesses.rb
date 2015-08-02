@@ -4,6 +4,14 @@ FactoryGirl.define do
     sequence(:name) { |n| "Biz #{n}" }
     profile { {anno: 2015, founding_size: 4} }
 
+    factory :business_with_founder do
+      before(:create) do |business|
+        founder { FactoryGirl.create(:entrepreneur) }
+      end
+
+      starter_email { founder.email }
+    end
+
     trait :with_starter do
       transient do
         user { FactoryGirl.create(:entrepreneur) }

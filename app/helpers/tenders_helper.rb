@@ -1,16 +1,22 @@
 module TendersHelper
 
-	def sti_profile_path(category = "profile", profile = nil, action = nil)
-	  send "#{format_sti(action, category, profile)}_path", profile
+	def type(tender)
+		tender.tenderable_type.downcase
+		# send "#{type(tender)}_tender_path", tender
 	end
 
-	def format_sti(action, category, profile)
-	  action || profile ? "#{format_action(action)}#{category.underscore}" : "#{category.underscore.pluralize}"
+	def show_tender_link(tender)
+		send "tender_path", tender
 	end
 
-	def format_action(action)
-	  action ? "#{action}_" : ""
+	def edit_tender_link(tender)
+		send "edit_#{type(tender)}_tender_path", tender.tenderable, tender
 	end
+
+	# def bid_tender_link(tender)
+	# 	tenderable = tender.tenderable_type.downcase
+	# 	link_to "Buat Tawaran", new_tender_bid_path(tender)
+	# end
 
 	# def tender_action_heading
 	# 	if current_page?(new_company_profile_path) || current_page?(new_user_profile_path)

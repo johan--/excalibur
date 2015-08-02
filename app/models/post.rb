@@ -32,8 +32,17 @@ class Post < ActiveRecord::Base
     .order("updated_at DESC")
   }
   scope :recent, -> { order('created_at DESC').limit(5) }
-  scope :subject, ->(subject) { 
+  scope :by_topic, ->(subject) { 
     where("posts.keywords->>'topic' = :words", words: "#{subject}") 
   }
+  scope :by_tag, ->(words) { 
+    #Not working, presummably because of the function
+    # where("posts.keywords->>'tags' = :words", words: "#{words}") 
+
+    # These one works
+    where("keywords -> 'tags' ? :word", word: words)
+    # where("keywords -> 'tags' ? :word", word: "#{words}")
+  }  
+
 
 end
