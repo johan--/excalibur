@@ -33,9 +33,8 @@ private
   def check_attributes!
   	if password && password_confirmation && user_name
   	  user = User.new(
-  			email: user_email, #phone_number: user_phone,
-  			password: password, password_confirmation: password_confirmation,
-  			name: user_name, category: 2
+  			email: user_email, name: user_name,
+  			password: password, password_confirmation: password_confirmation
   			)
   	  user.save!
   	  self.rosterable = user
@@ -43,6 +42,10 @@ private
   		user =  User.find_by(email: user_email, name: user_name)
   		self.rosterable = user
   	end
+
+    if self.state == nil
+      self.state = 'aktif'
+    end
   end
 
 end

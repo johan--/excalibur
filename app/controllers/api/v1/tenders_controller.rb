@@ -53,7 +53,7 @@ class API::V1::TendersController < API::V1::BaseController
 
   def destroy
     @tender.destroy
-    render json: {error: "Proposal berhasil dihapus"}, status: 422
+    render json: {error: "Proposal berhasil dihapus"}, status: 204
   end
 
 

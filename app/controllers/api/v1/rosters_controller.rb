@@ -6,7 +6,7 @@ class API::V1::RostersController < API::V1::BaseController
       param :role, Integer, "the level of role, from 0-3, with 0 having the biggest authority", required: true
       param :rosterable_id, Integer, "Id of the object as the roster, can be User or Document", required: true
       param :rosterable_type, String, "Type of the object as the roster, can be User or Document", required: true
-      param :state, String, "State of the membership; aktif, skors, berhenti", required: true
+      param :state, String, "State of the membership; aktif, skors, berhenti"
       param :team_id, Integer, "Id of the team, which also belongs to group models, such as Business", required: true
     end
   end
@@ -32,8 +32,8 @@ class API::V1::RostersController < API::V1::BaseController
   description "Update a membership of a team"
   param_group :roster
   def update
-    if @bid.update(bid_params)
-      render json: @bid, status: 200, message: 'Tawaran berhasil diperbaharui'
+    if @roster.update(roster_params)
+      render json: @roster, status: 200, message: 'Tawaran berhasil diperbaharui'
     else
       render json: {error: 'Tawaran gagal diperbaharui'}, status: 422
     end
@@ -41,13 +41,13 @@ class API::V1::RostersController < API::V1::BaseController
 
   def destroy
     @roster.destroy
-    render json: {error: "Keanggotaan berhasil dihapus"}, status: 422  	
+    render json: {error: "Keanggotaan berhasil dihapus"}, status: 204  	
   end
 
 
 private
   def set_roster
-	@roster = Roster.find(params[:id])
+	  @roster = Roster.find(params[:id])
   end
 
   def roster_params

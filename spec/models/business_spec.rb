@@ -26,17 +26,20 @@ RSpec.describe Business, :type => :model do
     describe ".profile" do
       let!(:profile)  { @biz.profile }
 
-	  it 'returns default values of open booelan' do
-	    profile[:open].should == true 
-	  end
+  	  it 'returns default values of open booelan' do
+  	    profile[:open].should == true 
+  	  end
 
-	  it 'returns the value of business anno' do
-	  	profile[:anno].should == 2015
-	  end
+  	  it 'returns the value of business anno' do
+  	  	profile[:anno].should == 2015
+  	  end
 
-	  it 'returns empty array of online presence types' do
-	  	profile[:online_presence_types].should == []
-	  end
+  	  it 'returns empty array of online presence types' do
+  	  	profile[:online_presence_types].should == []
+  	  end
+
+      it { should respond_to(:roster) }
+      it { should respond_to(:user) }
     end
 
     describe ".team" do

@@ -3,7 +3,7 @@ class Business < ActiveRecord::Base
   friendly_id :slug_candidates, use: :slugged
 
   has_one  :team, as: :teamable
-  has_many :rosters, through: :teams
+  has_many :rosters, through: :team
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
   has_many :tenders, as: :tenderable
 
@@ -13,6 +13,7 @@ class Business < ActiveRecord::Base
       :city, :province, :addresses,
     	:online_presence_types, :offline_presence_types
   
+  paginates_per 5
 
   attr_accessor :starter_email
 

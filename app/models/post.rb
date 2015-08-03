@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   validates :content_md, presence: true
 
   # Pagination
-  paginates_per 30
+  paginates_per 7
 
   # Relations
   belongs_to :user

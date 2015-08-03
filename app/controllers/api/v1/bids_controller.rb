@@ -11,9 +11,9 @@ class API::V1::BidsController < API::V1::BaseController
   end
 
   api :GET, "/bids", "Show a bunch of bids"
-  description "Show a bunch of bids"
+  description "Show a bunch of bids made by current_user or indirectly made by a group related to current_user"
   def index
-    @bids = Bid.all
+    @bids = current_user.bids
   end
 
   api :GET, "/bids/:id", "Show attributes of a single bid"
@@ -48,7 +48,7 @@ class API::V1::BidsController < API::V1::BaseController
 
   def destroy
     @bid.destroy
-    render json: {error: "Tawaran berhasil dihapus"}, status: 422
+    render json: {error: "Tawaran berhasil dihapus"}, status: 204
   end
 
 
