@@ -23,6 +23,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
+//= require landingScrollAnimation
 //= require shojiLayout
 //= require biz
 //= require tooltip

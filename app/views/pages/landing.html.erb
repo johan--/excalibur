@@ -1,57 +1,62 @@
 <% title("Hai!") %>
 
-<%= render 'layouts/navigation' %>
-
 <section id="home" name="home"></section>
 <div id="headerwrap">
+	<%= render 'layouts/navigation' %>
     <div class="container">
     	<div class="row centered">
     		<%= render 'layouts/messages' %>
-    		<div class="col-lg-12">
-				<h1>siKapiten Syariah</h1>
-				<h3>Membantumu memilih pembiayaan syariah yang tepat</h3>
-				<br>
+    		<div class="col-md-10 col-md-offset-1 intro-section">
+				<h1 class="intro">
+					Platform Pembiayaan <span class="colored-text"><strong>Syariah</strong></span> Untuk Usahamu
+				</h1>
+				<h3 class="sub-heading">
+					Tak perlu lagi bingung lagi untuk mencari modal yang berbasis syariah bagi usahamu, kami bantu kamu memilih aqad syariah,  membuat pengajuannya, dan mengurus kontraknya.
+				</h3>
     		</div>
+			<div class="col-md-6 col-md-offset-3" id="subcribe-prompt">
+				<h3 class="sub-heading">Masih dalam pengembangan!</h3>
+				<p class="white">Simpan email kamu dengan mengisi kotak di bawah ini dan kami akan kabari ketika kamu sudah bisa mengakses siKapiten</p>
+				<br>			
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<%= render 'elements/subscribe_form' %>
+					</div>
+				</div>
+			</div>    		
     		<br>
-    		<div class="col-lg-2">
-    			<h5>Tampilan Yang Ramah</h5>
-    			<p>Tidak perlu pusing melihat banyak pilihan</p>
-    			<%= image_tag("arrow1.png", class: "hidden-xs hidden-sm hidden-md") %>
-    		</div>
-    		<div class="col-lg-8">
-    			<%= image_tag("utama.png", class: "img-responsive") %>
-    		</div>
-    		<div class="col-lg-2">
-    			<br>
-    			<%= image_tag("arrow2.png", class: "hidden-xs hidden-sm hidden-md") %>
-    			<h5>Bantuan di setiap tahap</h5>
-    			<p>Kami akan bantuk kamu mendapatkan pembiayaan dari awal  hingga proses telah seleasi demi kemudahan kamu</p>
-    		</div>
     	</div>
     </div> <!--/ .container -->
-</div><!--/ #headerwrap -->
+</div><!--/ #headerwrap -->	
+
 
 <section class="section" id="desc" name="desc">
 	<div id="intro">
 		<div class="container">
 			<div class="row centered">
-				<h1>Membantu Kamu Dalam</h1>
+				<h3 class="landing">Manfaat</h3>
+				<p>Gunakan modal yang didapatkan untuk tujuan-tujuan berikut ini</p>
 				<br>
-				<br>
-				<div class="col-lg-4">
-					<%= image_tag("intro03.png", alt: "", class: "center-block") %>
-					<h3>Monitoring</h3>
-					<p>Membantu kamu dalam mengurus pengajuan dan memenuhi persyaratan yang ada.</p>
-				</div>						
-				<div class="col-lg-4">
-					<%= image_tag("intro01.png", alt: "", class: "center-block") %>
-					<h3>Konsultasi</h3>
-					<p>Memberikan konsultasi secara langsung melalui live chat atas masalah yang dihadapi atau pertanyaan yang dimiliki.</p>
+				<div class="col-md-4 serv-grids">
+					<div class="primary-border">
+						<i class="fa fa-cubes fa-3x primary" aria-hidden="true"> </i>
+						<h4 class="primary">Menambah Stok</h4>
+						<p>Butuh modal untuk meningkatkan persediaan dagangan kamu? Maka pembiayaan dengan akad murabahah tepat untuk kamu. Toko online atau offline bukan masalah.</p>
+				   </div>
 				</div>
-				<div class="col-lg-4">
-					<%= image_tag("intro02.png", alt: "", class: "center-block") %>
-					<h3>Pengelolaan</h3>
-					<p>Bantu kamu kelola kewajiban-kewajiban yang harus kamu penuhi sesudah mendapatkan pembiayaan.</p>
+				<div class="col-md-4 serv-grids">
+					<div class="primary-border">
+						<i class="fa fa-life-ring fa-3x primary" aria-hidden="true"> </i>
+						<h4 class="primary">Meningkatkan Produksi</h4>
+						<p>Butuh beli mesin, peralatan, dan sebagainya untuk menambah produksi? Banyak akad yang cocok untuk kebutuhan ini.</p>
+				  </div>
+				</div>
+				<div class="col-md-4 serv-grids">
+					<div class="primary-border">
+						<i class="fa fa-truck fa-3x primary" aria-hidden="true"> </i>
+						<h4 class="primary">Ekspansi Pasar</h4>
+						<p>Ingin menjual di lebih banyak tempat? Atau mau menjamah pasar impor/ekspor? Jangan khawatir, tetap ada pembiayaan syariah yang tepat untuk kamu.</p>
+				  </div>
 				</div>
 			</div>
 			<br>
@@ -60,23 +65,8 @@
 
 	<!-- FEATURES WRAP -->
 	<%= render 'pages/features' %>
-</section>
-
-<section id="showcase" name="showcase">
-	<div class="container">
-		<div class="row narrow text-center">
-			<div class="col-md-6 col-md-offset-3">
-			<h3>Masih dalam pengembangan!</h3>
-			<h5 class="white">Simpan email kamu dengan mengisi kotak di bawah ini dan kami akan kabari ketika kamu sudah bisa mengakses siKapiten</h5>
-			<br>			
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<%= render 'elements/subscribe_form' %>
-				</div>
-			</div>
-			</div>
-		</div>
-	</div>
+	<!-- FAQ -->
+	<%= render 'elements/faq' %>
 </section>
 
 <section id="footerwrap">
@@ -92,4 +82,4 @@
     <br>
 	<small>© Copyright 2015. Co-founded by: <a href="#">Galih Muhammad, Pamungkas Hendra, Yusuf Cahyo, Diandra Setiabudi</a></small>        
   </div>
-</section>		
+</section>

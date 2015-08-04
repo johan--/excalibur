@@ -10,13 +10,6 @@ Image placeholders: placemi.com
     background-color: #eee;
 }
 
-.mt-100 {
-    margin-top: 50px; 
-}
-.mb-100 {
-    margin-bottom: 50px;
-}
-
 .icon {
     width: 32px;
     height: 32px;
@@ -125,24 +118,68 @@ a:after {
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
-
 #headerwrap {
-    /*background-color: #34495e;*/
-    background-color: $brand-primary;
-    padding-top: 120px;
+    padding-top: 6%;
+    padding-bottom: 10%;
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    background: url(image_path('3.jpg')) no-repeat center center scroll;
+    background-size: cover;
+}
+h3.sub-heading{
+  font-weight: 100;
 }
 
 #headerwrap h1 {
-    margin-top: 30px;
     color: white;
-    font-size: 70px;
-    
+    font-size: 260%;
+    line-height: 3.75rem;
+    font-weight: 500;
+    margin: .67em 0;
+    margin-bottom: 0;
+    margin-top: 0;    
+}
+#headerwrap nav{
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;  
+  background: transparent;
+  border-color: transparent;
+  height: 70px;
+  font-size: 15px;
+}
+#headerwrap nav .navbar-brand {
+  font-size: 160%;
+  font-weight: 200px;
+}
+
+#headerwrap nav.shrink {
+  background: rgba(0,255,255,0.8);
+  background: rgb (0,0,0);
+  height: 7%;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;  
+}
+
+.colored-text {
+    color: $brand-primary !important;
+}
+.intro-section {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 #headerwrap h3 {
-    color: white;
-    font-size: 30px;
-    margin-bottom: 55px;
+    font-size: 150%;
+    font-weight: 150;
+    padding-right: 10%;
+    padding-left: 10%;
+    color: #ffffff;
 }
 
 #headerwrap h5 {
@@ -152,41 +189,96 @@ a:after {
 }
 
 #headerwrap p {
-    text-align: left;
     color: white
+}
+#subscribe-prompt h3{
+    font-size: 100%;
+    margin-bottom: 5%;
+}
+
+@media(max-width:767px){
+    #headerwrap {
+        padding-top: 12%;
+        padding-bottom: 15%;
+        height: 140%;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;    
+        background: url(image_path('3-mobile.jpg')) no-repeat center center scroll;
+        background-size: cover;
+    }
+    #headerwrap h1 {
+        color: white;
+        font-size: 24px;
+        font-weight: 500;
+        margin: .67em 0;
+    }       
+    #headerwrap h3 {
+        color: white;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #headerwrap p {
+        font-size: 7px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }    
 }
 
 /* intro Wrap */
+h3.landing {
+  color: $brand-primary;
+  font-size: 2.5em;
+  font-weight: 400;
+  text-align: center;
+}
 
 #intro {
-    padding-top: 50px;
-    /*border-top: #bdc3c7 solid 5px;*/
+    padding-top: 5%;
 }
 
 #features {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 5%;
+    padding-bottom: 3%;
 }
 
 #features .ac a{
     font-size: 20px;
 }
-
-/* Showcase Wrap */
-
-#showcase {
-    display: block;
-    background-color: #34495e;
-    padding-top: 50px;
-    padding-bottom: 50px;
+.serv-grids {
+  text-align: center;
+}
+.serv-grids h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #000;
+  margin: 0.4em 0em 0.4em 0em;
+}
+.serv-grids p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #7C7C7C;
+  line-height: 1.6em;
+}
+.primary-border {
+  border: 1px solid $brand-primary;
+  padding: 1em 1em 1em 1em;
 }
 
-#showcase h1 {
-    color: white;
+/* Showcase Wrap */
+#showcase {
+    display: block;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+#showcase .panel-title {
+    color: $brand-primary;
 }
 
 #footerwrap {
-    background-color: #2f2f2f;
+    background-color: $brand-primary;
     color: white;
     padding-top: 40px;
     padding-bottom: 60px;
