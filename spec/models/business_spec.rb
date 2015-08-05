@@ -23,6 +23,9 @@ RSpec.describe Business, :type => :model do
   describe "when saved" do
   	before(:each) { @biz.save }
 
+    it { should respond_to(:rosters) }
+    it { should respond_to(:users) }
+    
     describe ".profile" do
       let!(:profile)  { @biz.profile }
 
@@ -37,33 +40,30 @@ RSpec.describe Business, :type => :model do
   	  it 'returns empty array of online presence types' do
   	  	profile[:online_presence_types].should == []
   	  end
-
-      it { should respond_to(:roster) }
-      it { should respond_to(:user) }
     end
 
     describe ".team" do
       let!(:team) { @biz.team }
 
-	  it 'returns the associated team created after save' do  
-	    team.name.should_not == nil 
-	  end
+  	  it 'returns the associated team created after save' do  
+  	    team.name.should_not == nil 
+  	  end
 
-	  it 'has a category associated with the model' do  
-	    team.category.should == 'Bisnis'
-	  end
+  	  it 'has a category associated with the model' do  
+  	    team.category.should == 'Bisnis'
+  	  end
 
-	  it 'has a name associated with the model' do  
-	    team.name.should == "Tim #{@biz.name}"
-	  end
+  	  it 'has a name associated with the model' do  
+  	    team.name.should == "Tim #{@biz.name}"
+  	  end
 
-	  it 'has starter as a roster' do  
-	    team.starter.should == user
-	  end
+  	  it 'has starter as a roster' do  
+  	    team.starter.should == user
+  	  end
 
-	  it '.has_as_member?(user)' do  
-	    team.has_as_member?(user).should == true
-	  end	  
+  	  it '.has_as_member?(user)' do  
+  	    team.has_as_member?(user).should == true
+  	  end	  
     end
 
     describe "scoping businesses" do

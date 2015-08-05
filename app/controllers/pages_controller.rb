@@ -1,14 +1,12 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :posts, :show_post, :find_posts, :email # :home, :contact 
+    :landing, :email, :subscribe
   ]
   before_action :disable_nav, only: :landing
-  before_action :normal_nav, only: [:posts, :show_post, :find_posts]
-  before_action :blog_layout, only: [:posts, :show_post, :find_posts]
-  before_action :tag_cloud, only: [:posts, :show_post, :find_posts]
   before_action :user_layout, only: [:home, :contact]
 
   def landing
+    @category = "landing"
   end
 
   def home
@@ -22,24 +20,6 @@ class PagesController < ApplicationController
     end
   end
 
-  def posts
-    @posts = Post.page(params[:page]).per(7)
-  end
-  
-  def show_post
-    @post = Post.friendly.find(params[:id])
-  rescue
-    redirect_to root_path(subdomain: "blog")
-  end
-
-  def find_posts
-    if params[:topic]
-      @posts = Post.by_topic(params[:topic]).page(params[:page]).per(7)
-    elsif params[:tag]
-      @posts = Post.by_tag(params[:tag]).page(params[:page]).per(7)
-    end
-  end
-
   def contact
   end
   
@@ -49,28 +29,37 @@ class PagesController < ApplicationController
     @message = params[:message]
     
     if @name.blank?
-      flash[:alert] = "Please enter your name before sending your message. Thank you."
+      flash[:alert] = "Tolong isi namamu sebelum mengirimkan pesan. Terima kasih."
       render :contact
     elsif @email.blank? || @email.scan(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i).size < 1
-      flash[:alert] = "You must provide a valid email address before sending your message. Thank you."
+      flash[:alert] = "Kamu harus menuliskan alamat email yang betul dan valid. Terima kasih."
       render :contact
     elsif @message.blank? || @message.length < 10
-      flash[:alert] = "Your message is empty. Requires at least 10 characters. Nothing to send."
+      flash[:alert] = "Isi pesanmu kosong. Sedikitnya, pesanmu harus mempunyai 10 karakter."
       render :contact
     elsif @message.scan(/<a href=/).size > 0 || @message.scan(/\[url=/).size > 0 || @message.scan(/\[link=/).size > 0 || @message.scan(/http:\/\//).size > 0
-      flash[:alert] = "You can't send links. Thank you for your understanding."
+      flash[:alert] = "Kamu tidak bisa mengirim tautan atau link website. Mohon pengertiannya."
       render :contact
     else    
       ContactMailer.contact_message(@name,@email,@message).deliver_now
-      redirect_to root_path, notice: "Your message was sent. Thank you."
+      redirect_to root_path, notice: "Pesanmu telah dikirim. Terima kasih."
     end
   end
 
-private
-  def tag_cloud
-    @all_posts = Post.all
-    @topics = @all_posts.group_by{ |post| post.topic }
+  def subscribe
+    @subscriber = Subscriber.new(email: params[:email], category: params[:category])
+    
+    if @subscriber.valid?
+      # SubscriberMailer.welcome(@subscriber).deliver
+      flash[:info] = "Terima kasih, kami akan kabari kamu"
+      redirect_to root_path
+    else
+      flash.now.alert = "Tolong tulis alamat email yang valid, terima kasih."
+      redirect_to root_path
+    end    
   end
 
+
+private
 
 end

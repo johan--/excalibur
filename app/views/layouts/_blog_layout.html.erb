@@ -19,19 +19,21 @@
 <div class="container mtb">
   <div class="row">
  	<%= render 'layouts/messages' %>
- 	<div class="col-lg-8">
+ 	<div class="col-md-8">
+ 	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "blog" } %>
 	  <%= yield %>	 		
 		<div class="spacing"></div>
 	</div>
 	
     <!-- SIDEBAR -->
- 	<div class="col-lg-4">
+    
+ 	<div class="col-md-4">
  		<div class="post-box">
 		  <h4>Categories</h4>
 		  <hr class="coral"></hr>
 			<% @topics.each do |topic, posts| %>
 		 	  <p>
-		 	  	<%= link_to find_posts_path(topic: topic) do %>
+		 	  	<%= link_to blog_find_posts_path(topic: topic) do %>
 			 	  	<i class="fa fa-angle-right"></i> <%= topic.titleize %>
 		 	  	<% end %>
 		 	  	<span class="badge badge-theme pull-right"><%= posts.count %></span>
@@ -40,13 +42,14 @@
  		</div>
 	  <div class="spacing"></div>
 	
+	  <% unless Rails.env.test? %>
 		<div class="post-box">
 		  <h4>Recent Posts</h4>
 		  <hr class="coral">
 		  <ul class="popular-posts">
 		    <% @recents.each do |post| %>
 	        <li>
-	          <%= link_to post_path(post.slug) do %>
+	          <%= link_to blog_post_path(post.slug) do %>
 	          <% if post.header.present? %>
 	        	<%= cl_image_tag(post.header.path, { :width => 70, :height => 50, :crop => :scale } ) %>
 	          <% end %>
@@ -57,9 +60,10 @@
 	        <% end %>
 	      </ul>
 		</div> 		 
+	  <% end %>
 	  <div class="spacing"></div>
-
  	</div>
+ 	
 
   </div><!-- <! row  -->
 </div>

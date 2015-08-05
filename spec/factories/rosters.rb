@@ -1,10 +1,8 @@
 FactoryGirl.define do
 
   factory :roster do
-    # team
-
     factory :member do
-      # association :rosterable, factory: :user
+      association :rosterable, factory: :user
 
       factory :active_manager do
         role 1
@@ -16,16 +14,11 @@ FactoryGirl.define do
       end
 
       trait :with_user do
-        before :create do |roster|
+        transient do
           user { FactoryGirl.create :entrepreneur }
         end
 
-        rosterable_type { user.class.name }
-        rosterable_id { user.id }
-      end
-
-      trait :team do
-        team
+        rosterable { user }
       end
     end
 
@@ -33,6 +26,10 @@ FactoryGirl.define do
     #   role 1
     #   association :rosterable, factory: :team
     # end
+
+    trait :team do
+      team
+    end
   end
 
 end

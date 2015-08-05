@@ -1,8 +1,9 @@
-<%= form_for(:subscriber) do |f| %>
+<%= form_tag subscribe_path, method: 'post', html: {role: "form"} do %>
   <div class="input-group">
-    <%= f.text_field :email, required: true, placeholder: "Alamat Email kamu", class: "form-control" %>
+    <%= text_field_tag :email, '', placeholder: "Alamat Email kamu", class: "form-control" %>
+    <%= hidden_field_tag :category, @category, readonly: true %>
     <span class="input-group-btn">
-    	<%= f.submit "Simpan Email", class: "btn btn-outlined btn-theme" %>
+    	<%= submit_tag "Simpan Email", class: "btn btn-outlined btn-theme" %>
     </span>
   </div>
 <% end %>  

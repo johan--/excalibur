@@ -13,7 +13,7 @@ class Business < ActiveRecord::Base
       :city, :province, :addresses,
     	:online_presence_types, :offline_presence_types
   
-  paginates_per 5
+  # paginates_per 5
 
   attr_accessor :starter_email
 

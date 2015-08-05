@@ -41,12 +41,10 @@ class TendersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @tender.update(tender_params)
-        format.html { redirect_to user_root_path, notice: 'Proposal berhasil dikoreksi' }
-      else
-        format.html { render :edit }
-      end
+    if @tender.update(tender_params)
+      format.html { redirect_to user_root_path, notice: 'Proposal berhasil dikoreksi' }
+    else
+      format.html { render :edit }
     end
   end
 

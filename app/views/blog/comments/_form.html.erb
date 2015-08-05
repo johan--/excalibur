@@ -1,0 +1,10 @@
+<%= form_for([:blog, @post, @comment]) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, cols: 20, rows: 7, required: true, placeholder: "Tulis komentar kamu di sini", class: "form-control" %>
+
+    <%= f.hidden_field :parent_id, value: @parent.id if @parent.present? %>
+  </div>
+  <div class="">
+    <%= f.submit "Simpan", class: "btn btn-outlined btn-theme" %>
+  </div>
+<% end %>  

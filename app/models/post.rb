@@ -1,9 +1,11 @@
 class Post < ActiveRecord::Base
-  # Use friendly_id
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  acts_as_commentable #for comments and nested comments
+  has_many :comments, as: :commentable
   has_attachment  :header
+
   # Markdown
   before_save { MarkdownWriter.update_html(self) }
 

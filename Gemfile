@@ -25,6 +25,7 @@ gem 'mini_magick'
 
 # Blog
 gem 'ckeditor'
+gem 'acts_as_commentable_with_threading'
 
 # Necessities
   # Necessary for Windows OS (won't install on *nix systems)

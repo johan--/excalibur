@@ -22,10 +22,12 @@ Fustal::Application.routes.draw do
     end
   end
 
-  constraints :subdomain => 'blog' do
-    get '' => "pages#posts"
-    get "posts/:id", to: "pages#show_post", as: "post"
-    get "find", to: "pages#find_posts", as: "find_posts"
+  namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
+    get "find", to: "posts#find_posts", as: "find_posts"
+    resources :posts do
+      resources :comments, only: [:new, :edit, :create, :update, :destroy]
+    end
+    get '' => "posts#index"
   end
 
 # New App
@@ -39,13 +41,13 @@ Fustal::Application.routes.draw do
   resources :tenders, only: [:show] do
     resources :bids
   end
-  # resources :relationships, only: [:create, :destroy]
 
   # Static Pages
   root "pages#landing"
   get "home", to: "pages#home", as: :user_root
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
+  post "/subscribe", to: "pages#subscribe", as: "subscribe"
   
   namespace :admin do
     root "base#index"

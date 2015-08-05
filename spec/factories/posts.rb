@@ -13,11 +13,11 @@ FactoryGirl.define do
     end
 
     factory :post_with_user do
-	  transient do
-	  	author { FactoryGirl.create(:entrepreneur) }
-	  end
+  	  transient do
+  	  	author { FactoryGirl.create(:entrepreneur) }
+  	  end
 
-	  user { author }
+  	  user { author }
     end
   end
 

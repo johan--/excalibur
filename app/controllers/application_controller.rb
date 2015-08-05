@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include UrlHelper 
+  include LayoutSelector
+  include GuestsHelper
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :exception
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
@@ -8,27 +10,20 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, unless: :devise_controller?  
   before_filter :normal_nav, if: :devise_controller?
   
-
-  def disable_nav
-    @disable_nav = true
+  def current_or_guest_user
+    if current_user
+      if session[:guest_user_id] && session[:guest_user_id] != current_user.id
+        logging_in
+        guest_user(with_retry = false).try(:destroy)
+        session[:guest_user_id] = nil
+      end
+      current_user
+    else
+      guest_user
+    end
   end
-  def normal_nav
-    @normal_nav = true
-  end  
-  def blog_layout
-    @blog_layout = true
-    @recents = Post.recent
-  end
-  def firm_layout
-    @firm_layout = true
-  end
-  def user_layout
-    @user_layout = true
-  end
-  def admin_layout
-    @admin_layout = true
-  end
-
+  helper_method :current_or_guest_user
+  
   # Devise permitted params
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(
@@ -48,7 +43,7 @@ class ApplicationController < ActionController::Base
     }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(
       :email,
-      :phone_number,
+      :name,
       :password,
       :password_confirmation,
       :current_password
@@ -84,24 +79,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :require_admin!
 
-  # Only permits operator users
-  def require_operator!
-    if !current_user.operator?
-      redirect_to user_root_path
-    elsif current_user.with_no_firm?
-      redirect_to root_path(subdomain: "blog")
-    end
-  end
-  helper_method :require_operator!
-
-  def search_params
-    params[:q]
-  end
-
-  def search_params_exist?
-    return true if params[:q]
-  end
-  helper_method :search_params_exist?
 
   def clear_search_index
     if params[:search_cancel]
@@ -116,6 +93,17 @@ class ApplicationController < ActionController::Base
 
 
 private
+  # # called (once) when the user logs in, insert any code your application needs
+  # # to hand off from guest_user to current_user.
+  def logging_in
+    # For example:
+    # guest_comments = guest_user.comments.all
+    # guest_comments.each do |comment|
+      # comment.user_id = current_user.id
+      # comment.save!
+    # end
+  end
+
   def detect_device_format
     case request.user_agent
     when /iPad/i

@@ -30,13 +30,14 @@ RSpec.describe Roster, :type => :model do
 
   describe "scoping roster" do
   	let!(:roster_1) { FactoryGirl.create(:active_manager, :with_user, team: biz.team) }
-	let!(:roster_2) { FactoryGirl.create(:pending_member, :with_user, team: biz.team) }
+	let!(:member_2) { FactoryGirl.create(:entrepreneur) }
+	let!(:roster_2) { FactoryGirl.create(:pending_member, team: biz.team, rosterable: member_2) }
 
 	describe "Roster.members" do
 	  let!(:result) { Roster.members }
 
 	  it "returns rosters that are of User class" do
-	  	result.count.should == 2
+	  	result.count.should == 3  # + 1 from the biz with starter
 	  end
 	end
 
@@ -44,7 +45,7 @@ RSpec.describe Roster, :type => :model do
 	  let!(:result) { Roster.active }
 
 	  it "returns rosters that has aktif as a state" do
-	  	result.count.should == 1
+	  	result.count.should == 2
 	  end
 	end	
   end
