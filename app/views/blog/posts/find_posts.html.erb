@@ -1,5 +1,6 @@
-<% title("Blog") %>
+<% title("Pencarian Artikel") %>
 
+<h3>Hasil Pencarian Artikel</h3>
 <div>
 <% @posts.each do |post| %>
   <%= render partial: 'elements/post', locals: { post: post, multiple: true } %>

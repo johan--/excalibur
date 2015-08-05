@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "GuestUserCommentsOnPosts", :type => :feature do
+feature "GuestUserVisitsBlog", :type => :feature do
   subject { page }
   let!(:post1) { FactoryGirl.create(:post_with_user, :dummy_keywords) }
   let!(:comment_body) { "In the land of gods and monsters, I was an angel" }
@@ -8,6 +8,13 @@ feature "GuestUserCommentsOnPosts", :type => :feature do
   before(:each) do
     switch_to_subdomain('blog')
     visit root_path
+  end
+
+  describe "clicking a tag" do
+    before { click_link "test" } # one of the post1's tag
+
+    it { should have_content('Hasil Pencarian Artikel') }
+    it { should have_content(post1.title) }
   end
 
   describe "visit a single post page" do

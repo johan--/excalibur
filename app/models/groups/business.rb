@@ -26,6 +26,7 @@ class Business < ActiveRecord::Base
 
 private
   def set_default_values!
+    self.state = 'aktif'
     self.open = true
     self.online_presence_types = []
     self.offline_presence_types = []

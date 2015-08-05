@@ -27,21 +27,23 @@ class PagesController < ApplicationController
     @name = params[:name]
     @email = params[:email]
     @message = params[:message]
+    # Contact.new(name: @name, email: @email, message: @message)
     
     if @name.blank?
       flash[:alert] = "Tolong isi namamu sebelum mengirimkan pesan. Terima kasih."
-      render :contact
+      redirect_to root_path
     elsif @email.blank? || @email.scan(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i).size < 1
       flash[:alert] = "Kamu harus menuliskan alamat email yang betul dan valid. Terima kasih."
-      render :contact
+      redirect_to root_path
     elsif @message.blank? || @message.length < 10
       flash[:alert] = "Isi pesanmu kosong. Sedikitnya, pesanmu harus mempunyai 10 karakter."
-      render :contact
+      redirect_to root_path
     elsif @message.scan(/<a href=/).size > 0 || @message.scan(/\[url=/).size > 0 || @message.scan(/\[link=/).size > 0 || @message.scan(/http:\/\//).size > 0
       flash[:alert] = "Kamu tidak bisa mengirim tautan atau link website. Mohon pengertiannya."
-      render :contact
+      redirect_to root_path
     else    
-      ContactMailer.contact_message(@name,@email,@message).deliver_now
+      # ContactMailer.contact_message(@name,@email,@message).deliver_now
+      Contact.create(name: @name, email: @email, message: @message)
       redirect_to root_path, notice: "Pesanmu telah dikirim. Terima kasih."
     end
   end

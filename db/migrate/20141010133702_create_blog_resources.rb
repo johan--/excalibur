@@ -1,4 +1,4 @@
-class CreatePosts < ActiveRecord::Migration
+class CreateBlogResources < ActiveRecord::Migration
   def change
     create_table :posts do |t|
       t.string :title, null: false
@@ -20,5 +20,13 @@ class CreatePosts < ActiveRecord::Migration
     add_index :posts, :user_id
     add_index :posts, :slug, unique: true
     add_index :posts, :keywords, using: :gin
+
+    create_table :subscribers do |t|
+      t.string :email, null: false, index: true
+      t.string :name
+      t.string :category, null: false, index: true
+
+      t.timestamps null: false
+    end    
   end
 end

@@ -1,4 +1,4 @@
-class CreateGroups < ActiveRecord::Migration
+class CreateTeamMembers < ActiveRecord::Migration
   def change
     create_table :teams do |t|
       t.references  :teamable, polymorphic: true, null: false

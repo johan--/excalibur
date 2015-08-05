@@ -4,9 +4,9 @@ feature "UserVisitsLandingPages", :type => :feature do
   subject { page }
 
   describe "visiting landing page" do
-  	before { visit root_path }
+  	before(:each) { visit root_path }
 
-	it { should have_content('Platform Pembiayaan Syariah Untuk Usahamu') }
+	  it { should have_content('Platform Pembiayaan Syariah Untuk Usahamu') }
 
   	context "subscribing through subscribe form" do
   	  before do
@@ -18,6 +18,19 @@ feature "UserVisitsLandingPages", :type => :feature do
 
   	  it { should have_content('Terima kasih, kami akan kabari kamu') }
   	end
+
+    context "reaching in through contact form" do
+      before do
+        within(:div, '#contact-form') do
+          fill_in "name", with: "Foobar"
+          fill_in "email", with: "foobar@example.com"
+          fill_in "message", with: "lorem ipsum dolor cassus lorem polo"
+          click_button "Kirim"
+        end
+      end
+
+      it { should have_content('Pesanmu telah dikirim. Terima kasih.') }
+    end    
   end
 
 end
