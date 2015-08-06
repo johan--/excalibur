@@ -78,9 +78,9 @@ group :test, :development do
   # gem 'selenium-webdriver', '~> 2.45.0'
 end
 
-
+gem "passenger", '4.0.59'
 group :production do
   gem 'rails_12factor'
-  gem "passenger"
+  gem 'rails_stdout_logging'
   # gem 'unicorn'
 end

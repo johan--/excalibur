@@ -1,7 +1,3 @@
-class Firm < Team
+class Firm < ActiveRecord::Base
   
-
-  def firm_locator  	
-  end
-
 end
