@@ -22,8 +22,8 @@ class Team < ActiveRecord::Base
     starter = User.find_by(email: starter_email)
   end
 
-  def has_as_member?(user)
-    if self.rosters.find_by(rosterable_id: user.id)
+  def has_as_member?(roster)
+    if self.rosters.find_by(rosterable_id: roster.id, rosterable_type: roster.class.name)
       return true
     else 
       return false

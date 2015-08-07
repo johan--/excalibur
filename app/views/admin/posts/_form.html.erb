@@ -20,19 +20,19 @@
 </div>
 
 <div class="form-group">
-  <%= f.label :content_md, "Content" %>
+  <%= f.label :topics, "Topic" %>
   <div class="row">
     <div class="col-xs-12">
-      <%= f.cktext_area :content_md, rows: 15, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
+      <%= f.text_field :topic, class: "form-control monospaced-control", placeholder: "Topic of the post" %>
     </div>
   </div>
 </div>
 
 <div class="form-group">
-  <%= f.label :topics, "Topik" %>
+  <%= f.label :tags_text, "Tags Text" %>
   <div class="row">
     <div class="col-xs-12">
-      <%= f.text_field :topic, class: "form-control monospaced-control", placeholder: "Topic of the post" %>
+      <%= f.text_field :tags_text, class: "form-control monospaced-control", placeholder: "separated by comma" %>
     </div>
   </div>
 </div>
@@ -63,12 +63,20 @@
   </div>
 </div>
 
+<div class="form-group">
+  <%= f.label :content_md, "Content" %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.cktext_area :content_md, rows: 40, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-xs-12 padded">
     <button class='btn btn-outlined btn-black'>
       <i class='fa fa-plus-square'></i> Simpan
-    </button> - <%= link_to "Cancel", admin_posts_dashboard_path %>
+    </button> - <%= link_to "Cancel", admin_posts_path %>
   </div>
 </div>
 

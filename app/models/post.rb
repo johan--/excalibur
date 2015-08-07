@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_attachment  :header
 
   # Markdown
-  before_save { MarkdownWriter.update_html(self) }
+  before_save :mark_it_down!, :tags_as_array!
 
   # Validations
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: true
@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   serialize :keywords, HashSerializer
-  store_accessor :keywords, :topic, :tags
+  store_accessor :keywords, :topic, :tags, :tags_text
 
   # Scopes
   default_scope { order(created_at: :desc) }
@@ -40,11 +40,19 @@ class Post < ActiveRecord::Base
   scope :by_tag, ->(words) { 
     #Not working, presummably because of the function
     # where("posts.keywords->>'tags' = :words", words: "#{words}") 
-
     # These one works
     where("keywords -> 'tags' ? :word", word: words)
-    # where("keywords -> 'tags' ? :word", word: "#{words}")
   }  
 
+
+
+private
+  def mark_it_down!
+    MarkdownWriter.update_html(self)
+  end
+
+  def tags_as_array!
+    self.tags = self.tags_text.split(", ")
+  end
 
 end

@@ -36,6 +36,7 @@
 
     </div>
   <% else %>
+    <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
     <%= render 'layouts/shoji_layout' %>
   <% end %>
   

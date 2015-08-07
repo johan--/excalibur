@@ -50,11 +50,8 @@
 		    <% @recents.each do |post| %>
 	        <li>
 	          <%= link_to blog_post_path(post.slug) do %>
-	          <% if post.header.present? %>
-	        	<%= cl_image_tag(post.header.path, { :width => 70, :height => 50, :crop => :scale } ) %>
-	          <% end %>
-	          <p><%= post.title %></p>
-	          <em>Posted <%= time_ago_in_words(post.updated_at) %> ago</em>
+	            <p><%= post.title %></p>
+	            <em>Posted <%= time_ago_in_words(post.updated_at) %> ago</em>
 	          <% end %>
 	        </li>
 	        <% end %>

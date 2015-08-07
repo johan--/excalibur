@@ -1,0 +1,101 @@
+<% title("Laman Usaha") %>
+
+
+<div class="portlet portlet-bordered">
+  <div class="portlet-title">
+    <div class="caption caption-red">
+      <i class="fa fa-file-text"></i> 
+      <span class="caption-subject bold font-yellow-crusta uppercase">
+        Panel Usaha
+      </span>
+      <span class="caption-helper"><%= @business.name %></span>
+    </div>
+    <ul class="nav nav-tabs top-menu">
+      <li class="active">
+        <a href="#portlet_tab1" data-toggle="tab">
+          <i class="fa fa-info"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#portlet_tab2" data-toggle="tab">
+          <i class="glyphicon glyphicon-pushpin"></i>
+          <span class="badge"><%=  %></span>
+        </a>
+      </li>
+      <li>
+        <a href="#portlet_tab3" data-toggle="tab">
+          <i class="fa fa-lg fa-flash"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+  <div class="portlet-body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="portlet_tab1">
+
+				<div class="row">
+
+	        <div class="profile-container">
+	          <div class="profile-header row">
+	            <div class="col-md-4 col-sm-12 text-center">
+	            	<%= image_tag("box-avatar", alt: "def-avatar", class: "header-avatar") %>
+	            </div>
+	            <div class="col-md-8 col-sm-12 profile-info">
+	              <div class="header-fullname">Profil <%= @business.name %></div>
+	              <%= link_to edit_business_path(@business), class: "btn btn-outlined btn-theme btn-sm btn-follow", remote: true do %>
+	                <i class="fa fa-pencil-square-o"></i> Edit
+	              <% end %>
+	              <div class="header-information">
+					<%= render 'profile_infos' %>
+	              </div>
+	            </div>
+	            <div class="col-md-12 col-sm-12 col-xs-12 profile-stats">
+	              <div class="row">
+	                <div class="col-md-5 col-sm-4 col-xs-12 stats-col">
+	                  <div class="stats-value pink"><%= @business.team.starter.name %></div>
+	                  <div class="stats-title">PENDAFTAR</div>
+	                </div>
+	                <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+	                    <div class="stats-value pink"><%= @business.tenders.count %> Proposal</div>
+	                    <div class="stats-title">PEMBIAYAAN</div>
+	                </div>
+	                <div class="col-md-3 col-sm-4 col-xs-12 stats-col">
+	                  <div class="stats-value pink"><%= @business.industry %></div>
+	                  <div class="stats-title">INDUSTRI</div>
+	                </div>
+	              </div>
+	              <div class="row">
+	                <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+	                    <i class="glyphicon glyphicon-map-marker"></i> Boston
+	                </div>
+	                <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+	                    Rate: <strong>$250</strong>
+	                </div>
+	                <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+	                    Age: <strong>24</strong>
+	                </div>
+	              </div>
+	            </div>
+	          </div>   
+	        </div>
+					
+				</div>
+      </div>
+
+      <div class="tab-pane" id="portlet_tab2">
+      	<h4>Proposal Terkait</h4>	
+      	<%= render @tenders %>
+      </div>
+
+      <div class="tab-pane" id="portlet_tab3">
+		<h4>Lini Aktifitas</h4>
+		<%= render 'elements/blankslate' %>      	
+      </div>
+
+    </div>
+  </div>
+
+  
+</div>

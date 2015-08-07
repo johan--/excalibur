@@ -1,0 +1,53 @@
+<div class="portlet">
+	<div class="portlet-title tab-row">
+		<div class="caption caption-red">
+			<i class="fa fa-file-text"></i> 
+			<span class="caption-subject bold font-yellow-crusta uppercase">
+				<%= "Panel Investor" %>
+			</span>
+			<span class="caption-helper"><%=  %></span>
+		</div>
+		<ul class="nav nav-tabs top-menu">
+			<li>
+				<a href="#portlet_tab2" data-toggle="tab">
+					<i class="glyphicon glyphicon-pushpin"></i>
+					<span class="badge"><%=  %></span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#portlet_tab1" data-toggle="tab">
+					<i class="glyphicon glyphicon-th-list"></i>
+				</a>
+			</li>			
+			<li>
+				<a href="#portlet_tab3" data-toggle="tab">
+					<i class="fa fa-lg fa-flash"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="portlet-body">
+		<div class="tab-content">
+			<div class="tab-pane active" id="portlet_tab1">
+				<h4 class="text-center"><%= "Lini Proposal" %></h4>
+				<% @tenders.find_each do |tender| %>
+					<%= render tender %>
+				<% end %>
+			</div>
+
+			<div class="tab-pane" id="portlet_tab2">
+				<h4 class="text-center"><%= "Bilah Proposal" %></h4>
+				<% @bids.find_each do |bid| %>
+					<%= render bid.tender %>
+					<%= render bid %>
+				<% end %>						
+			</div>
+			<div class="tab-pane" id="portlet_tab3">
+				<h4>Lini Aktifitas</h4>
+				<%= render 'elements/blankslate' %>
+			</div>
+		</div>
+	</div>
+
+</div>	

@@ -35,6 +35,11 @@ end
 b = Business.create!(
   name: "Bisnis 1",
   anno: 2015,
+  about: "cloth dress jeans shirt jacket sock shoe",
+  founding_size: 3,
+  industry: "fesyen",
+  city: "Jakarta Selatan",
+  province: "DKI Jakarta",
   starter_email: User.first.email
 )
   
@@ -45,7 +50,7 @@ b = Business.create!(
     content_md: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.",
     draft: false,
     topic: "dummy",
-    tags: ['test', 'lorem'],
+    tags_text: "test, lorem",
     user: User.first
   )
   p.save!

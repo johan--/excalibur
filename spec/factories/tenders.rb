@@ -11,13 +11,13 @@ FactoryGirl.define do
       #   tenderable
       # end
 
-      # factory :tender_with_biz do
-      #   transient do
-      #     applicant { FactoryGirl.create(:business) }
-      #   end
+      trait :with_biz do
+        transient do
+          business { FactoryGirl.create(:business) }
+        end
 
-      #   tenderable { applicant }
-      # end
+        tenderable { business }
+      end
   	end
 
   	factory :consumer_tender do
@@ -26,10 +26,10 @@ FactoryGirl.define do
 
       factory :con_tender do
         transient do
-          applicant { FactoryGirl.create(:consumer) }
+          consumer { FactoryGirl.create(:consumer) }
         end
 
-        tenderable { applicant }
+        tenderable { consumer }
       end      
   	end
 

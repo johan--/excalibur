@@ -1,0 +1,27 @@
+<li class="ticket-item" id="<%= business.slug %>">
+  <div class="row">
+    <div class="ticket-user col-md-2 col-sm-12">
+      <span class="user-name"><%= business.name %></span>
+      <span class="user-company">
+      </span>
+    </div>
+    <div class="ticket-time  col-md-5 col-sm-6 col-xs-12">
+      <div class="divider hidden-md hidden-sm hidden-xs"></div>
+      <span class="time">
+        <%= link_to 'Edit', edit_business_path(business), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>      
+        <%= link_to 'Lihat', business_path(business), class: "btn btn-xs btn-outlined btn-theme"  %>        
+      </span>
+    </div>
+    <div class="ticket-type  col-md-5 col-sm-6 col-xs-12">
+      <span class="divider hidden-xs"></span>
+      <span class="type">
+        <%= link_to 'Buat Pengajuan', new_business_tender_path(business), class: "btn btn-xs btn-outlined btn-theme", remote: true %>
+      </span>
+    </div>
+    <div class="ticket-state bg-palegreen">
+        <i class="fa fa-check"></i>
+    </div>
+
+
+</div>
+</li>

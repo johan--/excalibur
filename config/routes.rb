@@ -54,7 +54,6 @@ Fustal::Application.routes.draw do
     resources :users
     resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
-    get "posts/dashboard", to: "posts#dashboard", as: "posts_dashboard"
     resources :posts
   end
 

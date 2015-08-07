@@ -7,12 +7,21 @@
 	<% end %>	
   <% end %>
   
+  <% if defined?(admin_list) && admin_list %>
+	<%= link_to admin_post_path(post.slug) do %>
+	  <h3 class="ctitle">
+	  	<%= post.title %>
+	  	<small><%= post.topic %> <%= link_to " | Edit", edit_admin_post_path(post) %></small>
+	  </h3>
+  	<% end %>
+  <% else %>
   	<%= link_to blog_post_path(post.slug) do %>
 	  <h3 class="ctitle">
 	  	<%= post.title %>
 	  	<small><%= post.topic %></small>
 	  </h3>
-  	<% end %>
+  	<% end %>  	
+  <% end %>
 
 	<p><csmall><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
   

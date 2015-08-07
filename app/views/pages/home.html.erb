@@ -2,73 +2,17 @@
 
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "home" } %>
 
-<div class="col-md-7 col-sm-12 col-xs-12">
-	<% if @businesses.nil? %>
-		<div class="blankslate">
-			<div class="spacious">
-				<h3>Belum Ada Akun Bisnis</h3>
-				<p>Wikis provide a place in your repository to lay out the roadmap of your project, show the current status, and document software better, together.</p>
-				<%= link_to 'Daftarkan Bisnis', new_team_path, class: "btn btn-outlined btn-theme", :remote => true  %>
-			</div>
-		</div>
+<div class="col-md-8 col-sm-12 col-xs-12">
+	<% if current_user.founder? %>	
+		<%= render 'founder_home' %>
+	<% elsif current_user.investor? %>
+		<%= render 'investor_home' %>
 	<% end %>
-	
-	<% @businesses.find_each do |biz| %>
-		<%= render partial: 'business_portlet', locals: { biz: biz } %>
-	<% end %>
-
-	<% if current_user.investor? %>
-		<div class="portlet">
-			<div class="portlet-title tab-row">
-				<div class="caption caption-red">
-					<i class="fa fa-file-text"></i> 
-					<span class="caption-subject bold font-yellow-crusta uppercase">
-						<%= "Panel Investor" %>
-					</span>
-					<span class="caption-helper"><%=  %></span>
-				</div>
-				<ul class="nav nav-tabs top-menu">
-					<li class="active">
-						<a href="#portlet_tab1" data-toggle="tab">
-							<i class="glyphicon glyphicon-th-list"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#portlet_tab2" data-toggle="tab">
-							<i class="glyphicon glyphicon-pushpin"></i>
-							<span class="badge"><%=  %></span>
-						</a>
-					</li>
-					<li>
-						<a href="#portlet_tab3" data-toggle="tab">
-							<i class="fa fa-lg fa-flash"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-			
-			<div class="portlet-body">
-				<div class="tab-content">
-					<div class="tab-pane active" id="portlet_tab1">
-						<h4 class="text-center"><%= "Daftar Proposal" %></h4>
-						<% @tenders.find_each do |tender| %>
-							<%= render tender %>
-						<% end %>
-					</div>
-
-					<div class="tab-pane" id="portlet_tab2">
-						<h4 class="text-center"><%= "Daftar Tawaran" %></h4>
-						<% @bids.find_each do |bid| %>
-							<%= render bid %>
-						<% end %>						
-					</div>
-					<div class="tab-pane" id="portlet_tab3">
-
-					</div>
-				</div>
-			</div>
-
-		</div>	
-	<% end %>
-
 </div>
+
+<div class="col-md-4 col-sm-12">
+  <div class="hidden-xs">
+ 	<%= render 'elements/userbox' %>
+  </div>
+</div>
+

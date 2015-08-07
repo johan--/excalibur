@@ -31,6 +31,29 @@ class Tender < ActiveRecord::Base
     where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
   }
 
+  def access_granted?(user)
+    if tenderable_type == 'User'
+      tender_owner?(user)
+    else
+      member_of_tenderable?(user)
+    end
+  end
+
+  def tender_owner?(user)
+    if tenderable == user
+      return true
+    else
+      return false
+    end      
+  end
+
+  def member_of_tenderable?(user)
+    if tenderable.team.has_as_member?(user)
+      return true
+    else
+      return false
+    end
+  end
 
 private
   def set_default_values!

@@ -55,6 +55,23 @@ RSpec.describe Tender, :type => :model do
 		  result.should == 1000000000 #plus two zero digits as cents added
 		end
 	  end
+
+	  describe "determining access and authorization for a tender" do
+	  	describe ".tender_owner?(user)" do
+	  	  it "determines whether a user is a tender owner" do
+	  	  	result = @tender.tender_owner?(user)
+	  	  	result.should == false
+	  	  end
+	  	end
+
+	  	describe ".tender_owner?(user)" do
+	  	  it "determines whether a user is a member of tender creator" do
+	  	  	result = @tender.member_of_tenderable?(user)
+	  	  	result.should == true
+	  	  end
+	  	end
+	  end
+
 	end
   end
 

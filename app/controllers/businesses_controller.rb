@@ -1,12 +1,15 @@
 class BusinessesController < ApplicationController
+  before_action :user_layout
   before_action :set_business, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :json
+  respond_to :html, :js
   
   def index
     @businesses = Business.all
   end
 
   def show
+    @page = 'business'
+    @tenders = @business.tenders
   end
 
   def new
@@ -19,35 +22,27 @@ class BusinessesController < ApplicationController
   def create
     @business = Business.new(business_params)
 
-    respond_to do |format|
-      if @business.save
-        format.html { redirect_to user_root_path, notice: 'Bisnis berhasil didaftarkan' }
-        # format.json { render :show, status: :created, location: @business }
-      else
-        format.html { render :new }
-        format.json { render json: @business.errors, status: :unprocessable_entity }
-      end
+    if @business.save
+      flash[:notice] = 'Bisnis berhasil didaftarkan' 
+      redirect_to user_root_path
+    else
+      render :new 
     end
   end
 
   def update
-    respond_to do |format|
-      if @business.update(business_params)
-        format.html { redirect_to user_root_path, notice: 'Profil bisnis berhasil diperbaharui' }
-        format.json { render :show, status: :ok, location: @business }
-      else
-        format.html { render :edit }
-        # format.json { render json: @business.errors, status: :unprocessable_entity }
-      end
+    if @business.update(business_params)
+      flash[:notice] = 'Profil bisnis berhasil diperbaharui' 
+      redirect_to business_path(@business)
+    else
+      render :edit
     end
   end
 
   def destroy
     @business.destroy
-    respond_to do |format|
-      format.html { redirect_to businesses_url, notice: 'Business was successfully destroyed.' }
-      # format.json { head :no_content }
-    end
+    flash[:notice] =  'Business was successfully destroyed.' 
+    redirect_to user_root_path
   end
 
   private
@@ -58,7 +53,9 @@ class BusinessesController < ApplicationController
     def business_params
       params.require(:business).permit(
         :name, :slug,
-          :anno, :founding_size, :about,
+          :anno, :founding_size, :about, :industry,
+          :logo, :images,
+          :city, :province, :address, 
           :online_presence_types => [], :offline_presence_types => []
       )
     end

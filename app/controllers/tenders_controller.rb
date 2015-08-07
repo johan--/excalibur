@@ -25,35 +25,28 @@ class TendersController < ApplicationController
     @tender = @tenderable.tenders.build(tender_params)
     @tender.category = @tenderable.class.name
 
-    respond_to do |format|
-      if @tender.save
-        format.html { redirect_to user_root_path, notice: 'Proposal berhasil dibuat' }
-      else
-        format.html do 
-          render :new 
-          if params[:rosterable_type] && params[:rosterable_id]
-            @company = Team.find_by(rosterable_type: params[:rosterable_type], 
-                       rosterable_id: params[:rosterable_id])
-          end
-        end
-      end
+    if @tender.save
+      flash[:notice] = 'Proposal berhasil dibuat'
+      redirect_to user_root_path 
+    else
+      render :new 
+      find_tenderable
     end
   end
 
   def update
     if @tender.update(tender_params)
-      format.html { redirect_to user_root_path, notice: 'Proposal berhasil dikoreksi' }
+      flash[:notice] = 'Proposal berhasil dikoreksi'
+      redirect_to user_root_path 
     else
-      format.html { render :edit }
+      render :edit
     end
   end
 
   def destroy
     @tender.destroy
-    respond_to do |format|
-      format.html { redirect_to user_root_path, notice: 'Proposal berhasil dihapuskan' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Proposal berhasil dihapuskan'
+    redirect_to user_root_path
   end
 
 

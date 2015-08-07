@@ -7,6 +7,7 @@
 @import "styles/style";
 @import "styles/custom-panels";
 @import "styles/portlet";
+@import "styles/biz-list";
 @import "styles/tender-list";
 @import "styles/tender";
 @import "styles/mockups";
@@ -19,6 +20,10 @@ $nprogress-height: 10px;
 $nprogress-zindex: 10100;
 @import 'nprogress';
 @import 'nprogress-bootstrap';
+
+.pop-helper {
+  cursor: pointer;
+}
 
 .blankslate {
   position: relative;
@@ -94,4 +99,42 @@ hr.coral {
 a:hover,
 a:focus {
     color: #eb3812;
+}
+
+/*Helpers*/
+
+.centered {
+  text-align: center;
+}
+
+.goleft {
+  text-align: left;
+}
+
+.goright {
+  text-align: right;
+}
+
+.mt {
+  margin-top: 25px;
+}
+
+.mb {
+  margin-bottom: 25px;
+}
+
+.ml {
+  margin-left: 5px;
+  }
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.home-prompt {
+  margin-top: 50px;
 }

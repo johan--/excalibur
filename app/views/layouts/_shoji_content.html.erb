@@ -56,16 +56,13 @@
         <div class="row" id="main-content-row">
           <%= render 'layouts/messages' %>
           
-          <%= yield %>
-          
-          <div class="col-md-4">
-            <div class="hidden-sm hidden-xs">
-              <%= render 'elements/userbox' %>
-            </div>
+          <div class="col-md-11 col-sm-12 col-xs-12">
+            <%= yield %>
           </div>
-          <div class="col-md-1 hidden-sm hidden-xs">
-            <!-- Stopgap column for proper zooming -->
-          </div>
+
+<div class="col-md-1 hidden-sm hidden-xs">
+  <!-- Stopgap column for proper zooming -->
+</div>          
         </div>      
       </div>
 

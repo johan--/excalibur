@@ -1,19 +1,22 @@
 class Admin::PostsController < Admin::BaseController
 
   before_action :set_post, only: [
+    :show,
     :edit,
     :update,
     :destroy
   ]
 
 
-  def dashboard
+  def index
     @published_post_count = Post.published.count
     @draft_post_count = Post.drafted.count
+    @posts = Post.published.page(params[:page]).per(50)
   end
 
-  def index
-    @posts = Post.published.page(params[:page]).per(50)
+  def show
+    @root_comments = @post.root_comments
+    @comment =  Comment.new
   end
 
   def drafts
@@ -29,7 +32,7 @@ class Admin::PostsController < Admin::BaseController
     @post.user_id = current_user.id
 
     if @post.save 
-      redirect_to admin_posts_dashboard_path, notice: "New post published."
+      redirect_to admin_posts_path, notice: "New post published."
     else
       flash[:alert] = "Post not published."
       render :new
@@ -42,7 +45,7 @@ class Admin::PostsController < Admin::BaseController
   def update
     @post.slug = nil
     if @post.update(post_params)
-      redirect_to admin_posts_dashboard_path, notice: "Post successfully edited."
+      redirect_to admin_posts_path, notice: "Post successfully edited."
     else
       flash[:alert] = "The post was not edited."
       render :edit
@@ -67,8 +70,7 @@ class Admin::PostsController < Admin::BaseController
     :content_md,
     :header,
     :topic,
-    :tags_list,
-    :topics_list,
+    :tags_text,
     :draft,
     :updated_at
     )

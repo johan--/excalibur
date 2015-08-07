@@ -2,7 +2,8 @@ FactoryGirl.define do
 
   factory :business do
     sequence(:name) { |n| "Biz #{n}" }
-    profile { {anno: 2015, founding_size: 4} }
+    anno 2015 
+    founding_size 4
 
     factory :business_with_founder do
       before(:create) do |business|
@@ -10,6 +11,13 @@ FactoryGirl.define do
       end
 
       starter_email { founder.email }
+    end
+
+    trait :with_profile do
+      industry "Fesyen"
+      about "cech almunia lehmann seaman fabianski wojciech"
+      city "Jakarta Selatan"
+      province "DKI Jakarta"
     end
 
     trait :with_starter do

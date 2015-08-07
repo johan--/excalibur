@@ -6,7 +6,7 @@ RSpec.describe Post, :type => :model do
   before(:each) do
   	@post = Post.new(title: "Test Post Numero Uno", draft: true, user: user,
   		content_md: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor",
-  		topic: "Dummy", tags: ['lorem', 'indonesia'])
+  		topic: "Dummy", tags_text: "lorem, indonesia")
   end
 
   subject { @post }
@@ -39,7 +39,7 @@ RSpec.describe Post, :type => :model do
   	  end
 
   	  it "returns the tags of the post" do
-  	  	keywords[:tags].should == ['lorem', 'indonesia']
+  	  	keywords[:tags].should == ["lorem", "indonesia"]
   	  end  	  
   	end
   end
@@ -69,7 +69,7 @@ RSpec.describe Post, :type => :model do
   	  let!(:result) { Post.by_topic('test dummy') }
 
   	  it "returns post that has 'test dummy' as its topic" do
-  	  	result.count.should == 2
+  	  	result.count.should == 3
   	  end
   	end
 
@@ -77,7 +77,7 @@ RSpec.describe Post, :type => :model do
       let!(:result) { Post.by_tag('lorem') }
 
       it "returns post that has 'test dummy' as its topic" do
-        result.count.should == 2
+        result.count.should == 3
       end
     end     	
   end

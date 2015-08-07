@@ -2,10 +2,11 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  	<%= f.input :name, label: "Nama Bisnis" %>
-    <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Bisnis"  %>
-    <%= f.input :anno, label: "Didirikan Pada Tahun", input_html: {value: @business.anno } %>
-    <%= f.input :founding_size, label: "Jumlah Pendiri", input_html: {value: @business.founding_size } %>
+  	<%= f.input :name, label: "Nama Bisnis", required: true %>
+    <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Bisnis", required: true  %>
+    <%= f.input :industry, label: "Industri", required: true  %>
+    <%= f.input :anno, label: "Didirikan Pada Tahun",  required: true %>
+    <%= f.input :founding_size, label: "Jumlah Pendiri", required: true %>
     <%= f.input :offline_presence_types, as: :check_boxes, collection: offline_presence_options, checked: @business.offline_presence_types, label: "Infrastruktur Nyata Bisnis" %>
     <%= f.input :online_presence_types, as: :check_boxes, collection: online_presence_options, checked: @business.online_presence_types, label: "Infrastruktur Online Bisnis" %>
   </div>

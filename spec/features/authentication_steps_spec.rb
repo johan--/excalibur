@@ -32,7 +32,7 @@ feature "AuthenticationSteps", :type => :feature do
 
 			describe "in the Posts Controller (Admin)" do
 				describe "visiting dasboard" do
-					before { visit admin_posts_dashboard_path }
+					before { visit admin_posts_path }
 					it { should have_title('Masuk') }
 				end
 
@@ -96,7 +96,7 @@ feature "AuthenticationSteps", :type => :feature do
 
 			describe "in the Posts Controller" do
 				describe "visiting dasboard" do
-					before { visit admin_posts_dashboard_path }
+					before { visit admin_posts_path }
 					it { should have_title('Beranda') }
 				end
 

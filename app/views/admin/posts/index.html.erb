@@ -1,23 +1,22 @@
 <% title("Published posts") %>
 <h3 class="page-title">Posts <small>Published</small></h3>
-<p><%= link_to "Back to dashboard", admin_posts_dashboard_path %></p>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
 <hr/>
-
+<div class="row">
+  <div class="col-sm-4">Published: <%= link_to "#{pluralize(@published_post_count, 'post')}", admin_posts_path %></div>
+  <div class="col-sm-4">Drafts: <%= link_to "#{pluralize(@draft_post_count, 'draft')}", admin_posts_drafts_path %></div>
+  <div class="col-sm-4"><%= link_to "New post", new_admin_post_path %></div>
+</div>
 <p class="pagination-summary"><%= page_entries_info @posts %></p>
-<%= paginate @posts %>
-
 <hr/>
 
-<ul class="fa-ul">
-  <% @posts.each do |post| %>
-  <li class="margin-md-down">
-    <i class="fa fa-arrow-circle-o-right small"></i>&nbsp;&nbsp;
-    <%= link_to post.title, edit_admin_post_path(post.slug) %> <br/>
-    <small class="x-small-text">about <%= time_ago_in_words(post.updated_at) %> ago</small>
-  </li>
-  <% end %>
-</ul>
+<div id="posts-list">
+<% @posts.each do |post| %>
+  <%= render partial: 'elements/post', locals: { post: post, multiple: true, admin_list: true } %>
+  <div class="spacing"></div>
+<% end %>
+</div>
 
-<hr/>
-
-<%= paginate @posts %>
+<div class="pagination-control text-center">
+  <%= paginate @posts %>
+</div>	
