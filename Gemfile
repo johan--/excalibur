@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '3.3.3'
 gem 'goldiloader'
 gem 'simple_form'
 gem 'pg'
+gem 'public_activity'
 
 
 # Complementary

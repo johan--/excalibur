@@ -49,15 +49,20 @@ Fustal::Application.routes.draw do
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
   post "/subscribe", to: "pages#subscribe", as: "subscribe"
   
+  get "/404" => "errors#not_found"
+  get "/422" => "errors#unprocessable"
+  get "/500" => "errors#internal_server_error"
+
   namespace :admin do
     root "base#index"
+    get 'inbox', to: "base#inbox", as: :inbox
     resources :users
     resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     resources :posts
   end
 
-  namespace :biz do
+  namespace :enterprise do
     root "base#show"
     # get "profile", to: "base#profile", as: :profile
     # post "subscribes", to: "base#subscribes", as: :subscribes

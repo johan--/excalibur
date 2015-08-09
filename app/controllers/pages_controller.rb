@@ -13,6 +13,8 @@ class PagesController < ApplicationController
     @businesses = current_user.businesses
     @tenders = Tender.all
     @bids = current_user.bids
+    @activities = PublicActivity::Activity.order('created_at DESC').limit(12)
+
 
     respond_to do |format| 
       format.html

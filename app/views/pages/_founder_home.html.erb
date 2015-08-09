@@ -72,13 +72,23 @@
       </div>
 
       <div class="tab-pane" id="portlet_tab2">
-      	<h4>Bilah Proposal</h4>
-      	<%= render @tenders %>
+        <div class="row">
+          <div class="col-sm-12">
+      	    <h4>Bilah Proposal</h4>
+      	    <%= render @tenders %>
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane" id="portlet_tab3">
-				<h4>Lini Aktifitas</h4>
-				<%= render 'elements/blankslate' %>
+        <div class="row">
+          <div class="col-sm-12">      
+				    <h4>Lini Aktifitas</h4>
+              <ul class="list-group">
+                <%= @activities.inspect %>
+              </ul>				    
+          </div>
+        </div>
       </div>
 
     </div>

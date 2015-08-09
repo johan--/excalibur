@@ -1,6 +1,9 @@
 class Tender < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  include PublicActivity::Model
+  tracked
+
   belongs_to :tenderable, polymorphic: true  
   
   has_many :bids

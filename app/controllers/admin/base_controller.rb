@@ -9,6 +9,9 @@ class Admin::BaseController < ApplicationController
     @post_count = Post.count
   end
 
+  def inbox
+  end
+
 private
 
 
