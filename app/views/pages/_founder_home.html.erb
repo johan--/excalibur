@@ -30,64 +30,58 @@
 
   <div class="portlet-body">
     <div class="tab-content">
-      <div class="tab-pane active" id="portlet_tab1">
-
-				<div class="row">
-					<div class="col-md-12">
-				    <div class="text">
-				      <h4>Bilah Aksi
-				      <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= welcome_popover_text %>" data-original-title=""></i></h4>
-				    </div>						
-					</div>
-					<div class="col-md-6 col-sm-6">
-	          <div class="weather-3 pn centered">
-	            <i class="fa fa-legal fa-4x"></i>
-	            <h3>
-	            	Kredibilitas
-<i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
-	            </h3>
-	            <div class="home-prompt">
-	            <%= link_to 'Buat', '#', class: "btn btn-block btn-outlined btn-theme", :remote => true  %>
-	            <%= link_to 'Lihat', '#', class: "btn btn-block btn-outlined btn-theme", remote: true  %>
-	            </div>
-	          </div>
-					</div>										
-					<div class="col-md-6 col-sm-6">
-	          <div class="weather-3 pn centered">
-	            <i class="fa fa-briefcase fa-4x"></i>
-	            <h3>
-	            	BISNIS
-								<i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
-	            </h3>
-	            <div class="home-prompt">
-	              <%= link_to 'Daftarkan', new_business_path, class: "btn btn-block btn-outlined btn-theme mt", :remote => true  %>
-	            </div>
-	          </div>						
-					</div>
-					<div class="col-md-12 col-sm-12">
-            <hr>
-						<%= render partial: 'businesses/biz_list', locals: {businesses: @businesses} %>		
-					</div>	
-				</div>
-      </div>
 
       <div class="tab-pane" id="portlet_tab2">
-        <div class="row">
-          <div class="col-sm-12">
-      	    <h4>Bilah Proposal</h4>
-      	    <%= render @tenders %>
-          </div>
+        <div class="col-xs-12">
+          <h4>Bilah Proposal</h4>
+          <%= render @tenders %>            
         </div>
       </div>
 
-      <div class="tab-pane" id="portlet_tab3">
-        <div class="row">
-          <div class="col-sm-12">      
-				    <h4>Lini Aktifitas</h4>
-              <ul class="list-group">
-                <%= @activities.inspect %>
-              </ul>				    
+      <div class="tab-pane active" id="portlet_tab1">
+          <div class="col-md-12">
+            <div class="text">
+              <h4>Bilah Aksi
+              <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= welcome_popover_text %>" data-original-title=""></i></h4>
+            </div>            
           </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="weather-3 pn centered">
+              <i class="fa fa-legal fa-4x"></i>
+              <h3>
+                Kredibilitas
+<i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
+              </h3>
+              <div class="home-prompt">
+              <%= link_to 'Buat', '#', class: "btn btn-block btn-outlined btn-theme", :remote => true  %>
+              <%= link_to 'Lihat', '#', class: "btn btn-block btn-outlined btn-theme", remote: true  %>
+              </div>
+            </div>
+          </div>                    
+          <div class="col-md-6 col-sm-6">
+            <div class="weather-3 pn centered">
+              <i class="fa fa-briefcase fa-4x"></i>
+              <h3>
+                BISNIS
+                <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
+              </h3>
+              <div class="home-prompt">
+                <%= link_to 'Daftarkan', new_business_path, class: "btn btn-block btn-outlined btn-theme mt", :remote => true  %>
+              </div>
+            </div>            
+          </div>
+          <div class="col-md-12 col-sm-12">
+            <hr>
+            <%= render partial: 'businesses/biz_list', locals: {businesses: @businesses} %>   
+          </div>  
+      </div>
+
+      <div class="tab-pane" id="portlet_tab3">
+        <div class="col-sm-12">      
+			    <h4>Lini Aktifitas</h4>
+            <ul class="list-group">
+              <%= @activities.inspect %>
+            </ul>				    
         </div>
       </div>
 

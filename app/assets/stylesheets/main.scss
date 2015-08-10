@@ -13,6 +13,8 @@
 @import "styles/mockups";
 @import "styles/sidebar-nav";
 @import "styles/blog";
+@import "social-share-button";
+
 
 /* Progress Bar */
 $nprogress-color: $brand-coral;
@@ -20,6 +22,7 @@ $nprogress-height: 10px;
 $nprogress-zindex: 10100;
 @import 'nprogress';
 @import 'nprogress-bootstrap';
+
 
 .pop-helper {
   cursor: pointer;

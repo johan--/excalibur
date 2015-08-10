@@ -15,7 +15,7 @@ gem 'devise', '3.4.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
-
+# gem 'ahoy_matey'
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'
@@ -26,6 +26,7 @@ gem 'mini_magick'
 # Blog
 gem 'ckeditor'
 gem 'acts_as_commentable_with_threading'
+gem 'social-share-button', '~> 0.1.6'
 
 # Necessities
   # Necessary for Windows OS (won't install on *nix systems)

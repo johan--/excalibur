@@ -17,7 +17,7 @@ RSpec.describe Bid, :type => :model do
 
   it { should respond_to(:tender) }
   it { should respond_to(:bidder) }
-  it { should respond_to(:contribution_cents) }
+  it { should respond_to(:contribution_sens) }
   it { should respond_to(:properties) }
   it { should respond_to(:details) }
 
@@ -33,8 +33,8 @@ RSpec.describe Bid, :type => :model do
   	  	@bid.state.should == "belum diproses"
   	  end
 
-  	  it "should have contribution as contribution_cents" do
-  	  	@bid.contribution_cents.should == 500000000 #plus two zero in the back
+  	  it "should have contribution as contribution_sens" do
+  	  	@bid.contribution_sens.should == 500000000 #plus two zero in the back
   	  end  	    	  
   	end
   end

@@ -285,6 +285,9 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.6.0)
+    social-share-button (0.1.8)
+      coffee-rails
+      sass-rails
     spring (1.2.0)
     sprockets (3.1.0)
       rack (~> 1.0)
@@ -371,6 +374,7 @@ DEPENDENCIES
   sass-rails (= 5.0.2)
   shoulda-matchers
   simple_form
+  social-share-button (~> 0.1.6)
   spring (= 1.2.0)
   statesman (~> 1.2.3)
   thin (= 1.5.1)

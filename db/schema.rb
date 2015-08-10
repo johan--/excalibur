@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20150809002030) do
     t.string   "bidder_type",                           null: false
     t.integer  "tender_id",                             null: false
     t.string   "state",                                 null: false
-    t.integer  "contribution_cents",    default: 0,     null: false
-    t.string   "contribution_currency", default: "USD", null: false
+    t.integer  "contribution_sens",     default: 0,     null: false
+    t.string   "contribution_currency", default: "IDR", null: false
     t.jsonb    "properties",            default: {},    null: false
     t.jsonb    "details",               default: {}
     t.datetime "created_at",                            null: false
@@ -226,10 +226,10 @@ ActiveRecord::Schema.define(version: 20150809002030) do
     t.integer  "tenderable_id",                        null: false
     t.string   "tenderable_type",                      null: false
     t.string   "state",                                null: false
-    t.integer  "target_cents",         default: 0,     null: false
-    t.string   "target_currency",      default: "USD", null: false
-    t.integer  "contributed_cents",    default: 0,     null: false
-    t.string   "contributed_currency", default: "USD", null: false
+    t.integer  "target_sens",          default: 0,     null: false
+    t.string   "target_currency",      default: "IDR", null: false
+    t.integer  "contributed_sens",     default: 0,     null: false
+    t.string   "contributed_currency", default: "IDR", null: false
     t.jsonb    "properties",           default: {},    null: false
     t.jsonb    "details",              default: {},    null: false
     t.datetime "created_at",                           null: false

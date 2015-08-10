@@ -4,7 +4,7 @@ class Bid < ActiveRecord::Base
   belongs_to :bidder, polymorphic: true
   belongs_to :tender
 
-  monetize :contribution_cents
+  monetize :contribution_sens
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
@@ -15,8 +15,9 @@ class Bid < ActiveRecord::Base
                  :intent_type, :intent_assets
 
   validates_presence_of :contribution#, :target, :contributed
-  before_create :set_default_values!
 
+  before_create :set_default_values!
+  after_create  :touch_tender!
 
   
 private
@@ -33,4 +34,9 @@ private
       [:bidder_name, :barcode]
     ]
   end
+
+  def touch_tender!
+    self.tender.touch
+  end
+
 end

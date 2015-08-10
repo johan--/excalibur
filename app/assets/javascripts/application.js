@@ -32,4 +32,5 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
 //= require datepicker
+//= require social-share-button
 //= require ckeditor/init

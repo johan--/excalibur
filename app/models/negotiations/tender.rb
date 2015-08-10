@@ -8,8 +8,8 @@ class Tender < ActiveRecord::Base
   
   has_many :bids
 
-  monetize :target_cents
-  monetize :contributed_cents
+  monetize :target_sens
+  monetize :contributed_sens
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
@@ -21,7 +21,9 @@ class Tender < ActiveRecord::Base
                  :intent_type, :intent_assets, :aqad, :aqad_code
 
   validates_presence_of :aqad, :summary#, :target, :contributed
+
   before_create :set_default_values!
+  after_touch :update_contribution!
 
   def self.categories
     %w(Institusi Bisnis Individu)
@@ -72,4 +74,14 @@ private
       [:tenderable_name, :aqad, :barcode]
     ]
   end
+
+  def update_contribution!
+    update(contributed: check_contribution)
+  end
+
+  def check_contribution
+    value = self.bids.map{ |bid| bid.contribution }.compact.sum
+    return value
+  end
+
 end

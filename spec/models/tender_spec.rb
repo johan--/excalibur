@@ -8,7 +8,7 @@ RSpec.describe Tender, :type => :model do
   	before do
   	  @tender = Tender.new(
   	  		category: "Bisnis", aqad: "musharakah",
-  			# tenderable: biz, target_cents: 1000000000, 
+  			# tenderable: biz, target_sens: 1000000sens
   			tenderable: biz, target: 10000000,
   			summary: "Lorem ipsum dolor cassus")
   	end
@@ -18,7 +18,7 @@ RSpec.describe Tender, :type => :model do
 	it { should respond_to(:category) }
 	it { should respond_to(:tenderable) }
 	it { should respond_to(:target) }
-	it { should respond_to(:target_cents) }
+	it { should respond_to(:target_sens) }
 	it { should respond_to(:properties) }
 	it { should respond_to(:open) }
 	it { should respond_to(:summary) }
@@ -50,9 +50,9 @@ RSpec.describe Tender, :type => :model do
 	  end
 
 	  describe ".target" do
-		it 'returns the target money cents value of target' do
-		  result = @tender.target_cents
-		  result.should == 1000000000 #plus two zero digits as cents added
+		it 'returns the target money sens value of target' do
+		  result = @tender.target_sens
+		  result.should == 1000000000 #plus two zero digits as sens added
 		end
 	  end
 

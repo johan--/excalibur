@@ -74,7 +74,7 @@ private
   def tender_params
     params.require(:tender).permit(
       :tenderable, :tenderable_type, :tenderable_id, 
-      :category, :target, :target_cents,
+      :category, :target, :target_sens,
       # properties
       :summary, 
       # details
