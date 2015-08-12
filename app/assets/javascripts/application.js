@@ -23,15 +23,11 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
-//= require landingScrollAnimation
-//= require shojiLayout
-//= require biz
-//= require tooltip
-//= require clickablePanel
 //= require bootstrap 
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
-//= require datepicker
+//= require ./pages/landing
+//= require_tree ./sitewide
 //= require social-share-button
 //= require ahoy
 //= require ckeditor/init
