@@ -17,7 +17,7 @@ class Blog::PostsController < ApplicationController
     @comment =  Comment.new
 
     ahoy.track "Visit a Blog Post", title: "#{current_or_guest_user.id} visited #{@post.title}"
-  rescue
+  rescue  
     redirect_to root_path(subdomain: "blog")
   end
 
