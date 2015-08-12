@@ -15,7 +15,11 @@ gem 'devise', '3.4.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
-# gem 'ahoy_matey'
+
+# Analytics
+gem 'ahoy_matey'
+gem "chartkick"
+gem 'groupdate'
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'

@@ -1,0 +1,7 @@
+<% title("Analytics") %>
+
+<%= line_chart Visit.group_by_day(:started_at).count %>
+
+
+
+<%= pie_chart @admin %>

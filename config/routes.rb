@@ -55,6 +55,7 @@ Fustal::Application.routes.draw do
 
   namespace :admin do
     root "base#index"
+    get 'analytics', to: "base#analytics", as: :analytics
     get 'inbox', to: "base#inbox", as: :inbox
     resources :users
     resources :teams, only: [:index, :show, :destroy]

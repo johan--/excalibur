@@ -22,6 +22,7 @@ class Blog::CommentsController < ApplicationController
     @comment.commentable = @post
 
     if @comment.save
+      ahoy.track "Posting Comment", title: "#{@comment.user} posted blog comments"
       redirect_to blog_post_path(@post)
       flash[:notice] = 'Komentar berhasil dibuat'
     else
@@ -34,6 +35,7 @@ class Blog::CommentsController < ApplicationController
     @comment = Comment.friendly.find(params[:id])
 
     if @comment.update(comment_params)
+      ahoy.track "Updating Comment", title: "Comment no.#{@comment.id} was edited"
       redirect_to blog_post_path(@post)
       flash[:notice] =  'Komentar berhasil dikoreksi'
     else

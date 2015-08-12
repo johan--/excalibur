@@ -33,4 +33,5 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
 //= require datepicker
 //= require social-share-button
+//= require ahoy
 //= require ckeditor/init

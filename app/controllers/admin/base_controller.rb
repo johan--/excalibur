@@ -9,6 +9,10 @@ class Admin::BaseController < ApplicationController
     @post_count = Post.count
   end
 
+  def analytics
+    @admin = User.group(:admin).count
+  end
+
   def inbox
   end
 

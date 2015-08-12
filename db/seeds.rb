@@ -1,22 +1,7 @@
 # Temporary admin account
-User.create(
-    email: "galih@gmail.com",
-    password: "asdasdasd",
-    password_confirmation: "asdasdasd",
-    name: "Galih Muhammad",
-    business: true,
-    investor: true,
-    admin: true
-)
+User.create(email: "galih@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Galih Muhammad", business: true, investor: true, admin: true)
 
-User.create(
-    email: "yusuf@gmail.com",
-    password: "asdasdasd",
-    password_confirmation: "asdasdasd",
-    name: "Yusuf Cahyo",
-    business: true,
-    admin: true
-)
+User.create(email: "yusuf@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Yusuf Cahyo", business: true, admin: true)
 
 # Test user accounts
 (1..25).each do |i|
