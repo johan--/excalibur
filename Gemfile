@@ -24,11 +24,11 @@ gem 'groupdate'
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'
 gem 'cloudinary', '~> 1.0.24'
-gem 'carrierwave'
-gem 'mini_magick'
+# gem 'carrierwave'
+# gem 'mini_magick'
 
 # Blog
-gem 'ckeditor'
+# gem 'ckeditor'
 gem 'acts_as_commentable_with_threading'
 gem 'social-share-button', '~> 0.1.6'
 
