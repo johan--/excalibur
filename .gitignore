@@ -28,5 +28,4 @@ doc/
 # Ignore application configuration
 /config/application.yml
 /config/veritrans.yml
-/config/cloudinary.yml
 .secret

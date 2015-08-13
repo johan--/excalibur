@@ -4,7 +4,6 @@ require 'subdomain'
 Fustal::Application.routes.draw do
   apipie
   mount Attachinary::Engine => "/attachinary"
-  mount Ckeditor::Engine => '/ckeditor'
   
   devise_for :users, :controllers => { :registrations => "registrations", 
                             :omniauth_callbacks => "omniauth_callbacks" }

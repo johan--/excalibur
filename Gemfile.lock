@@ -88,23 +88,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     chartkick (1.3.2)
-    ckeditor (4.1.2)
-      cocaine
-      orm_adapter (~> 0.5.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
     cliver (0.3.2)
     cloudinary (1.0.85)
       aws_cf_signer
       rest-client
-    cocaine (0.5.7)
-      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -113,7 +101,6 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
-    daemon_controller (1.2.0)
     daemons (1.2.2)
     database_cleaner (1.3.0)
     debug_inspector (0.0.2)
@@ -178,7 +165,6 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.5)
-    mini_magick (4.2.7)
     mini_portile (0.6.2)
     minitest (5.6.1)
     monetize (1.1.0)
@@ -217,10 +203,6 @@ GEM
     orm_adapter (0.5.0)
     paranoia (2.1.2)
       activerecord (~> 4.0)
-    passenger (4.0.59)
-      daemon_controller (>= 1.2.0)
-      rack
-      rake (>= 0.8.1)
     pg (0.18.2-x86-mingw32)
     poltergeist (1.6.0)
       capybara (~> 2.1)
@@ -232,6 +214,7 @@ GEM
       activerecord (>= 3.0)
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
+    puma (2.12.3)
     rack (1.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -363,9 +346,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.3)
   byebug (= 3.5.1)
   capybara (~> 2.2.0)
-  carrierwave
   chartkick
-  ckeditor
   cloudinary (~> 1.0.24)
   coffee-rails (= 4.1.0)
   database_cleaner (= 1.3.0)
@@ -380,17 +361,16 @@ DEPENDENCIES
   jquery-rails (= 4.0.3)
   jquery-turbolinks
   kaminari (= 0.16.2)
-  mini_magick
   money-rails
   nprogress-rails
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
   paranoia (~> 2.0)
-  passenger (= 4.0.59)
   pg
   poltergeist
   public_activity
+  puma
   rails (= 4.2.0)
   rails_12factor
   redcarpet (= 3.2.2)

@@ -30,4 +30,3 @@
 //= require_tree ./sitewide
 //= require social-share-button
 //= require ahoy
-//= require ckeditor/init
