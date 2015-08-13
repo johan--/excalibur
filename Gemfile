@@ -87,6 +87,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem "passenger", '4.0.59'
-  # gem 'unicorn'
+  # gem "passenger", '4.0.59'
+  gem 'puma'
 end
