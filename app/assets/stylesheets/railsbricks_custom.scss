@@ -320,7 +320,7 @@ $text-muted: #bbbbbb; // Text muted color
 $abbr-border-color: #cccccc; // Abbreviations and acronyms border color
 $headings-small-color: #cccccc; // Headings small color
 $blockquote-small-color: #cccccc; // Blockquote small color
-$blockquote-border-color: #fff; // Blockquote border color
+$blockquote-border-color: $brand-primary; // Blockquote border color
 $page-header-border-color: #fff; // Page header border color
 
 // Other

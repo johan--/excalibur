@@ -85,6 +85,21 @@ csmall2 {
     background-color: white;
 }
 
+.post-content {
+    p {
+      line-height: 28px;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+    img {
+        margin-left: auto;
+        margin-right: auto        
+    }
+    li {
+        list-style: inherit;
+    }
+}
+
 .comment-item{
     background-color: white;
     border: 1px solid #e3e3e3;

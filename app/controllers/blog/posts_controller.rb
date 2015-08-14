@@ -8,15 +8,18 @@ class Blog::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(7)
-    ahoy.track "Visit Blog Root", title: "#{current_or_guest_user.id} visited blog"
+    unless current_user.present? && current_user.admin?
+      ahoy.track "Visit Blog Root", title: "#{current_or_guest_user.id} visited blog"
+    end
   end
   
   def show
     @post = Post.friendly.find(params[:id])
     @root_comments = @post.root_comments
     @comment =  Comment.new
-
-    ahoy.track "Visit a Blog Post", title: "#{current_or_guest_user.id} visited #{@post.title}"
+    unless current_user.present? && current_user.admin?
+      ahoy.track "Visit a Blog Post", title: "#{current_or_guest_user.id} visited #{@post.title}"
+    end
   rescue  
     redirect_to root_path(subdomain: "blog")
   end

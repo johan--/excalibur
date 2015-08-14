@@ -83,6 +83,7 @@ $nprogress-zindex: 10100;
 }
 
 /* Main format */
+
 hr {
     /*max-width: 50px;*/
     border-color: $brand-primary;
@@ -140,4 +141,13 @@ a:focus {
 
 .home-prompt {
   margin-top: 50px;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

@@ -28,9 +28,9 @@ module ApplicationHelper
 
   def into_hub(user)
     if user.admin?
-      admin_root_path
+      admin_root_url(subdomain: "")
     else
-      user_root_path
+      user_root_url(subdomain: "")
     end
   end
 
