@@ -33,6 +33,8 @@ module Fustal
     # autoload lib path
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Model folders
     config.autoload_paths += %W(#{config.root}/app/models/groups)
     config.autoload_paths += %W(#{config.root}/app/models/infos)
     config.autoload_paths += %W(#{config.root}/app/models/negotiations)

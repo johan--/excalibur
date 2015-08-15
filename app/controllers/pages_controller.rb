@@ -44,8 +44,8 @@ class PagesController < ApplicationController
       flash[:alert] = "Kamu tidak bisa mengirim tautan atau link website. Mohon pengertiannya."
       redirect_to root_path
     else    
-      # ContactMailer.contact_message(@name,@email,@message).deliver_now
-      Contact.create(name: @name, email: @email, message: @message)
+      ContactMailer.contact_message(@name,@email,@message).deliver_later
+      # Contact.create(name: @name, email: @email, message: @message)
       redirect_to root_path, notice: "Pesanmu telah dikirim. Terima kasih."
     end
   end

@@ -28,6 +28,8 @@ gem 'cloudinary', '~> 1.0.24'
 # Email
 gem 'griddler'
 gem 'griddler-mandrill'
+# gem 'roadie', '2.4'
+
 
 # Blog
 gem 'acts_as_commentable_with_threading'

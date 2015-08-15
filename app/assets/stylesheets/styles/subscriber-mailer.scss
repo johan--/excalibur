@@ -44,4 +44,53 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
 }
 .table_width_100 {
 	width: 680px;
+	max-width: 680px; 
+	min-width: 300px;	
+}
+
+#mailsub {
+  	text-align:center; 
+    margin-left:auto; 
+    margin-right:auto; 
+}
+
+table {
+	width: 100%;
+	border: 0;
+	border-spacing: 0; /*cellspacing: 0;*/
+	min-width: 320px;
+	th{
+		padding: 0; /*cellpading: 0;*/
+	}
+	td {
+		padding: 0; /*cellpading: 0;*/
+		text-align: center;
+		#backdrop {
+		  background-color: #eff3f8;
+		}
+		#header {
+		  background-color: #ffffff;
+		  	
+		}
+	}
+	.outer-pad {
+		height: 80px; line-height: 80px; font-size: 10px;		
+	}
+	.inner-pad {
+		height: 30px; line-height: 30px; font-size: 10px;
+	}	
+	#inner-table {
+		width: 90%;
+		td {
+			text-align: left;
+		}
+	}
+	.mob_center_b1 #left-top {
+		float: left; display: inline-block; width: 115px;
+	}
+	.mob_center{
+		width: 115px;
+		text-align: left;
+		border-collapse: collapse;
+	}
 }
