@@ -4,7 +4,10 @@ require 'subdomain'
 Fustal::Application.routes.draw do
   apipie
   mount Attachinary::Engine => "/attachinary"
-  
+  mount_griddler  
+  # only for temporary, for passing mandrill route test
+  get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
+
   devise_for :users, :controllers => { :registrations => "registrations", 
                             :omniauth_callbacks => "omniauth_callbacks" }
 
@@ -63,23 +66,7 @@ Fustal::Application.routes.draw do
   end
 
   namespace :enterprise do
-    root "base#show"
-    # get "profile", to: "base#profile", as: :profile
-    # post "subscribes", to: "base#subscribes", as: :subscribes
-    # get "management", to: "base#management", as: :management
-    # get "settings", to: "base#settings", as: :settings
-    # put "save_settings", to: "base#save_settings", as: :save_settings
-    
-    # get "view", to: "base#view", as: :view
-    # put "confirm" => "base#confirm", as: :confirm
-    
-    # get "edit_bio", to: "base#edit_bio", as: :edit_bio
-    # put "update_bio", to: "base#update_bio", as: :update_bio
-    # resources :rosters
-
-    # get "subscription", to: "base#subscription", as: :subscription
-    # get "expiration", to: "base#expiration", as: :expiration
-    
+    root "base#show"    
     # get "contact", to: "base#contact", as: "contact"
   end
 
