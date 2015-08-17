@@ -20,6 +20,14 @@ path {
   height: 3em;	
 }
 
+.plain path{
+  fill: white;
+}
+
+.asphalt path {
+  fill: #b3b3b3;
+}
+
 .blue-image {
 	background-color: $brand-primary;
 }

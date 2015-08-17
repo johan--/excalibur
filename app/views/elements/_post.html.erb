@@ -23,7 +23,7 @@
   	<% end %>  	
   <% end %>
 
-	<p><csmall><%= inline_svg "0084-calendar.svg", class: 'small-icons' %>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
+	<p><csmall><%= inline_svg "0084-calendar.svg", class: 'small-icons asphalt' %>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
   
   <% if defined?(multiple) && multiple %>
 	<div class="post-truncate">
@@ -44,7 +44,7 @@
 
   <div class="post-footer">
   	<p>
-  	  <%= inline_svg "0055-price-tags.svg", class: 'small-icons' %> Kata Kunci: 
+  	  <%= inline_svg "0055-price-tags.svg", class: 'small-icons asphalt' %> Kata Kunci: 
   	  <% unless post.tags.nil? %>
 	  	<% post.tags.each do |tag| %>
 	  	  <%= link_to blog_find_posts_path(tag: tag) do %>

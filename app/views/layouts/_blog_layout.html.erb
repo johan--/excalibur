@@ -33,7 +33,7 @@
 			<% @topics.each do |topic, posts| %>
 		 	  <p>
 		 	  	<%= link_to blog_find_posts_path(topic: topic) do %>
-			 	  	<i class="fa fa-angle-right"></i> <%= topic.titleize %>
+			 	  	<%= inline_svg "0323-circle-right.svg", class: 'small-icons' %> <%= topic.titleize %>
 		 	  	<% end %>
 		 	  	<span class="badge badge-theme pull-right"><%= posts.count %></span>
 		 	  </p>
@@ -83,7 +83,7 @@
 		Didirikan oleh Galih Muhammad, Pamungkas Hendra, Yusuf Cahyo, dan Diandra Setiabudi
 	  </p>
 	  <p>
-		<i class="fa fa-envelope"></i> info@sikapiten.com<br/>
+		<%= inline_svg "0070-envelop.svg", class: 'small-icons plain' %> management@sikapiten.com<br/>
 	  </p>
  	  </div> 	
 	</div>
