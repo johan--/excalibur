@@ -48,6 +48,7 @@ gem 'simple_form'
 gem 'pg'
 gem 'public_activity'
 gem 'metamagic'
+gem 'inline_svg'
 
 
 # Complementary

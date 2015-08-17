@@ -151,6 +151,10 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    inline_svg (0.6.1)
+      activesupport (>= 4.0.4)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -367,6 +371,7 @@ DEPENDENCIES
   griddler
   griddler-mandrill
   groupdate
+  inline_svg
   jbuilder (= 2.2.6)
   jquery-rails (= 4.0.3)
   jquery-turbolinks

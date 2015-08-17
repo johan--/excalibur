@@ -120,17 +120,19 @@ a:after {
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
+@media(min-width:767px){
 #headerwrap {
     padding-top: 6%;
     padding-bottom: 10%;
     width: 100%;
     height: 100%;
+    background: url('http://res.cloudinary.com/instilla/image/upload/v1439793483/3-dark_aeddps.jpg') no-repeat center center scroll;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;    
-    background: url(image_path('3-dark.jpg')) no-repeat center center scroll;
-    background-size: cover;
+
 }
 h3.sub-heading{
   font-weight: 100;
@@ -197,18 +199,18 @@ h3.sub-heading{
     font-size: 100%;
     margin-bottom: 5%;
 }
+}
 
 @media(max-width:767px){
     #headerwrap {
         padding-top: 15%;
         padding-bottom: 15%;
         height: 100%;
+        background: url('http://res.cloudinary.com/instilla/image/upload/v1439794070/3-dark-mobile_iobcyn.jpg') no-repeat center center scroll;
+        background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;    
-        background: url(image_path('3-dark-mobile.jpg')) no-repeat center center scroll;
-        background-size: cover;
+        -o-background-size: cover;            
         nav {
             background: rgba(0,255,255,0.8);
             background: rgb (0,0,0);
@@ -246,6 +248,19 @@ h3.sub-heading{
         padding-left: 10px;
         padding-right: 10px;
     }    
+}
+    /*Opera-mini wrap*/
+#opera-mini-wrap{
+    max-height: 600px;
+    max-width: 400px;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    background: url('http://res.cloudinary.com/instilla/image/upload/v1439794070/3-dark-mobile_iobcyn.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: white;
 }
 
 /* intro Wrap */

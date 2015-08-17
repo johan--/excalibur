@@ -24,8 +24,6 @@
 //= require nprogress-turbolinks
 //= require nprogress-ajax
 //= require bootstrap 
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.id.js
 //= require ./pages/landing
 //= require_tree ./sitewide
 //= require social-share-button

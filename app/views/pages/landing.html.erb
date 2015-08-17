@@ -4,36 +4,27 @@
      keywords: %w(pembiayaan keuangan syariah islam)
 %>
 
+<%= render 'layouts/navigation' %>
 <section id="home" name="home"></section>
+<% if is_opera_mini? %>
+<div id="opera-mini-wrap">
+	<div class="container">
+		<div class="row centered">
+			<%= render 'value_prompt' %>  		
+    		<br>			
+		</div>
+	</div>
+</div>
+<% else %>
 <div id="headerwrap">
-	<%= render 'layouts/navigation' %>
     <div class="container">
     	<div class="row centered">
-    		<%= render 'layouts/messages' %>
-    		<div class="col-md-10 col-md-offset-1 intro-section">
-				<h1 class="intro">
-					Platform Pembiayaan <span class="colored-text"><strong>Syariah</strong></span> Untuk Bisnis Online-mu
-				</h1>
-				<h3 class="sub-heading">
-					Tak perlu lagi bingung lagi untuk mencari modal yang berbasis syariah bagi usahamu, kami bantu kamu memilih aqad syariah,  membuat pengajuannya, dan mengurus kontraknya.
-				</h3>
-				<%= link_to "Kunjungi Blog Kami", root_url(subdomain: "blog"), class: "btn btn-outlined btn-white" %>
-    		</div>
-			<div class="col-md-6 col-md-offset-3" id="subcribe-prompt">
-				<h3 class="sub-heading">Masih dalam pengembangan!</h3>
-				<p class="white">Simpan email kamu dengan mengisi kotak di bawah ini dan kami akan kabari ketika kamu sudah bisa mengakses siKapiten</p>
-				<br>			
-				<div class="panel panel-primary">
-					<div class="panel-body" id="landing-subscriber">
-						<%= render 'elements/subscribe_form' %>
-					</div>
-				</div>
-			</div>    		
+			<%= render 'value_prompt' %>  		
     		<br>
     	</div>
     </div> <!--/ .container -->
 </div><!--/ #headerwrap -->	
-
+<% end %>
 
 <section class="section" id="desc" name="desc">
 	<div id="intro">
@@ -44,27 +35,21 @@
 				<br>
 				<div class="col-md-4 serv-grids">
 					<div class="primary-border">
-						<% unless is_opera_mini? %>
-						<i class="fa fa-cubes fa-3x primary" aria-hidden="true"> </i>
-						<% end %>
+						<%= inline_svg "0059-cart.svg", class: 'mid-icons' %>
 						<h4 class="primary">Menambah Stok</h4>
 						<p>Butuh modal untuk meningkatkan persediaan dagangan kamu? Maka pembiayaan dengan akad murabahah tepat untuk kamu. Toko online atau offline bukan masalah.</p>
 				   </div>
 				</div>
 				<div class="col-md-4 serv-grids">
 					<div class="primary-border">
-					<% unless is_opera_mini? %>
-						<i class="fa fa-life-ring fa-3x primary" aria-hidden="true"> </i>
-					<% end %>
+						<%= inline_svg "0066-lifebuoy.svg", class: 'mid-icons' %>
 						<h4 class="primary">Meningkatkan Produksi</h4>
 						<p>Butuh beli mesin, peralatan, dan sebagainya untuk menambah produksi? Banyak akad yang cocok untuk kebutuhan ini.</p>
 				  </div>
 				</div>
 				<div class="col-md-4 serv-grids">
 					<div class="primary-border">
-					<% unless is_opera_mini? %>
-						<i class="fa fa-truck fa-3x primary" aria-hidden="true"> </i>
-					<% end %>
+						<%= inline_svg "0177-truck.svg", class: 'mid-icons' %>
 						<h4 class="primary">Ekspansi Pasar</h4>
 						<p>Ingin menjual di lebih banyak tempat? Atau mau menjamah pasar impor/ekspor? Jangan khawatir, tetap ada pembiayaan syariah yang tepat untuk kamu.</p>
 				  </div>
