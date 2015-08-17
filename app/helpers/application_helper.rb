@@ -48,5 +48,15 @@ module ApplicationHelper
 # => R$1234567890,50
   end
 
+  def is_opera_mini?
+    agent_strings = /Opera Mini|Opera Mobi/
+    if request.env['HTTP_USER_AGENT']
+      if request.env['HTTP_USER_AGENT'] =~ agent_strings
+        true
+      else
+        false
+      end
+    end
+  end
 
 end

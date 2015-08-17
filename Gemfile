@@ -47,6 +47,7 @@ gem 'goldiloader'
 gem 'simple_form'
 gem 'pg'
 gem 'public_activity'
+gem 'metamagic'
 
 
 # Complementary

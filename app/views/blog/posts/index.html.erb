@@ -1,4 +1,8 @@
-<% title("Halaman Utama Blog") %>
+<%
+meta title: "Blog",
+     description: "Blog yang membahas ekonomi & keuangan syariah serta kesuksesan dunia & akhirat",
+     keywords: %w(ekonomi keuangan syariah islam kesuksesan kebahagiaan)
+%>
 
 <div id="posts-list">
 <% @posts.each do |post| %>

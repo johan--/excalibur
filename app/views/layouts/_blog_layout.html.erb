@@ -3,11 +3,10 @@
     <div class="container">
 		<div class="row white centered">
 		  <h2>Blog siKapiten</h2>
-		  <h5>Tentang keuangan syariah, kesuksesan, dan kebahagiaan</h5>
-		  <% if !current_page?(root_path(subdomain: 'blog')) %>
-			<%= link_to root_path(subdomain: 'blog'), class: "white" do %>
-			  <i class="fa fa-newspaper-o fa-2x"></i> Halaman Utama Blog
-			<% end %>
+		  <h5>Tentang ekonomi & keuangan syariah, kesuksesan dan kebahagiaan dunia + akhirat</h5>
+		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-outlined btn-white" %>
+		  <% if !current_page?(root_url(subdomain: 'blog')) %>
+			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-outlined btn-white" %>
 		  <% end %>
 		</div><!-- /row -->
     </div> <!-- /container -->

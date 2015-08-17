@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title><%= @title || app_name %></title>
+  <% metamagic site: "siKapiten", title: [:title, :site], separator: " | " %>
+  <%= metamagic %>  
   <%= favicon_link_tag '2-loo-sm.ico' %>
   <%= favicon_link_tag '2-loo-sm.png', rel: 'logo', type: 'image/png' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -11,7 +12,7 @@
   <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
 </head>
-<body id="<%= @title %>" data-spy="scroll" data-target="sidebar">
+<body>
   <% if @disable_nav  %>
     <%= yield %>
   <% elsif @normal_nav  %>

@@ -200,15 +200,34 @@ h3.sub-heading{
 
 @media(max-width:767px){
     #headerwrap {
-        padding-top: 12%;
+        padding-top: 15%;
         padding-bottom: 15%;
-        height: 140%;
+        height: 100%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
         -o-background-size: cover;    
         background: url(image_path('3-dark-mobile.jpg')) no-repeat center center scroll;
         background-size: cover;
+        nav {
+            background: rgba(0,255,255,0.8);
+            background: rgb (0,0,0);
+            height: 7%;            
+        }
+        ul.nav {
+            margin-top: 0px;
+            background: rgba(0,255,255,0.8);
+            background: rgb (0,0,0);
+            cursor: hand;
+        }
+        #landing-subscriber {
+            .input-group input {
+                padding-right: 5px;
+            }
+            .btn {
+                font-size: 10px;
+            }        
+        }
     }
     #headerwrap h1 {
         color: white;

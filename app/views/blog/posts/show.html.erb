@@ -1,3 +1,7 @@
-<% title(@post.title) %>
+<%
+	meta title: @post.title,
+     description: @post.meta_description,
+     keywords: @post.tags
+%>
 
 <%= render partial: 'elements/post', locals: { post: @post, comments: @root_comments } %>
