@@ -70,6 +70,7 @@ class Admin::PostsController < Admin::BaseController
     :content_md,
     :header,
     :meta_description,
+    :meta_image,
     :topic,
     :tags_text,
     :draft,

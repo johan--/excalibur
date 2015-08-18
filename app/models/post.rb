@@ -20,7 +20,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   serialize :keywords, HashSerializer
-  store_accessor :keywords, :topic, :tags, :tags_text, :meta_description
+  store_accessor :keywords, 
+        :topic, :tags, :tags_text, :meta_description, :meta_image
 
   # Scopes
   default_scope { order(created_at: :desc) }
