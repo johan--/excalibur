@@ -69,6 +69,7 @@ class Admin::PostsController < Admin::BaseController
     :title,
     :content_md,
     :header,
+    :delete_image,
     :meta_description,
     :meta_image,
     :topic,

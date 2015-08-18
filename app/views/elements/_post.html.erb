@@ -1,10 +1,11 @@
 <div class="post-box" id="post-<%= post.id %>">
-  <% if post.header.present? %>
+  <% if post.meta_image.present? %>
 	<% if request.variant.include? :phone %>
-	  <%= cl_image_tag(post.header.path, { :width => 300, :height => 150, :crop => :scale } ) %>
+	  <%= cl_image_tag(post.meta_image, { :width => 300, :height => 150, :crop => :scale } ) %>
 	<% else %>
-	  <%= cl_image_tag(post.header.path, { :width => 750, :height => 350, :crop => :scale }) %>
-	<% end %>	
+	  <%= cl_image_tag(post.meta_image, { :width => 750, :height => 350, :crop => :scale }) %>
+	<% end %>
+
   <% end %>
   
   <% if defined?(admin_list) && admin_list %>
@@ -15,7 +16,7 @@
 	  </h3>
   	<% end %>
   <% else %>
-  	<%= link_to blog_post_path(post.slug) do %>
+  	<%= link_to blog_post_url(post.slug) do %>
 	  <h3 class="ctitle">
 	  	<%= post.title %>
 	  	<small><%= post.topic %></small>

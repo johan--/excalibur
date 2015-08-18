@@ -23,6 +23,9 @@ class Post < ActiveRecord::Base
   store_accessor :keywords, 
         :topic, :tags, :tags_text, :meta_description, :meta_image
 
+  attr_accessor :delete_image
+  before_validation :remove_attached_image
+
   # Scopes
   default_scope { order(created_at: :desc) }
   scope :published, lambda {
@@ -45,7 +48,9 @@ class Post < ActiveRecord::Base
     where("keywords -> 'tags' ? :word", word: words)
   }  
 
-
+  def remove_attached_image
+    self.header.delete if delete_image == '1'
+  end
 
 private
   def mark_it_down!
