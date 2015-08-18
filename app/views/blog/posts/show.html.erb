@@ -1,7 +1,16 @@
-<%
-	meta title: @post.title,
-     description: @post.meta_description,
-     keywords: @post.tags
+<% meta title: @post.title, description: @post.meta_description,
+     keywords: @post.tags %>
+
+<% twitter card: 'summary_large_image', description: @post.meta_description,
+          image: @post.header, title: @post.title %>
+
+<% meta og: { 
+        image: @post.header, title: @post.title, 
+        description: @post.meta_description, locale: 'id_ID', 
+        rich_attachment: true,
+        url: "http://#{request.host + url_for(:page => params[:page]) }" 
+        },
+        fb: ENV["FB_APP_ID"] 
 %>
 
 <%= render partial: 'elements/post', locals: { post: @post, comments: @root_comments } %>

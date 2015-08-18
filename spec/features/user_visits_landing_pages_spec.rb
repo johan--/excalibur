@@ -12,7 +12,7 @@ feature "UserVisitsLandingPages", :type => :feature do
   	  before do
   	  	within(:div, '#landing-subscriber') do
   	  	  fill_in "email", with: "foobar@example.com"
-  	  	  click_button "Simpan Email"
+  	  	  click_button "Simpan"
   	  	end
   	  end
 

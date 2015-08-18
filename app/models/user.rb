@@ -80,7 +80,8 @@ class User < ActiveRecord::Base
           # name: auth.extra.raw_info.name,
           name: auth.info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0,20]
+          password: Devise.friendly_token[0,20], 
+          business: true
         )
         user.save!
       end
