@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <% metamagic site: "siKapiten", title: [:title, :site], separator: " | " %>
-  <% twitter site: '@kapiten' %>  
-  <% meta og: { site_name: 'siKapiten' } %>
+  <% metamagic site: ENV["SITE_NAME"], title: [:title, :site], separator: " | " %>
+  <% twitter site: ENV["TWTR_HANDLER"] %>  
+  <% meta og: { site_name: ENV["SITE_NAME"] } %>
   <%= metamagic %>  
   <%= favicon_link_tag 'kapiten-logo.ico' %>
   <%= favicon_link_tag 'kapiten-logo.png', rel: 'logo', type: 'image/png' %>
