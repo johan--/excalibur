@@ -8,6 +8,9 @@
 		  <% if !current_page?(root_url(subdomain: 'blog')) %>
 			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-outlined btn-white" %>
 		  <% end %>
+		  <% if current_user.present? %>
+			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-outlined btn-white" %>
+		  <% end %>		  
 		</div><!-- /row -->
     </div> <!-- /container -->
 </div><!-- /blue -->

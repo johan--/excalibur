@@ -2,10 +2,10 @@
      keywords: @post.tags %>
 
 <% twitter card: 'summary_large_image', description: @post.meta_description,
-          image: @post.header, title: @post.title %>
+          image: cl_image_path(@post.header.path), title: @post.title %>
 
 <% meta og: { 
-        image: @post.header, title: @post.title, 
+        image: cl_image_path(@post.header.path), title: @post.title, 
         description: @post.meta_description, locale: 'id_ID', 
         rich_attachment: true,
         url: "http://#{request.host + url_for(:page => params[:page]) }" 
