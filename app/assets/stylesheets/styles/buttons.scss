@@ -3,7 +3,7 @@
 .btn {
     letter-spacing: 1px;
     text-decoration: none;
-    background: none;
+    /*background: none;*/
     -moz-user-select: none;
     background-image: none;
     border: 1px solid transparent;
@@ -39,6 +39,19 @@
     color: #FFF;
     background: $brand-primary;
     border-color: $brand-primary;
+}
+
+.btn-outlined.btn-danger {
+    background: none;
+    color: red;
+    border-color: red;
+}
+
+.btn-outlined.btn-danger:hover,
+.btn-outlined.btn-danger:active {
+    color: #FFF;
+    background: red;
+    border-color: red;
 }
 
 .btn-outlined.btn-black {

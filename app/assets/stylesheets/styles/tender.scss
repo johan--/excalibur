@@ -22,7 +22,10 @@
 }
 .panel-heading {
     border: none;
-    background-color: #eee;
+    background-color: $brand-primary;
+    h3.panel-title{
+        color: white;
+    }
 
 }
 .panel-body {
