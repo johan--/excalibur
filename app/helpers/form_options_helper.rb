@@ -25,18 +25,8 @@ module FormOptionsHelper
 		(1..4).map{ |h| ["#{h} Jam", h] }
 	end
 
-	def courts_of_venue(venue_id)
-		Venue.find_by_id(venue_id).courts.all.map do |court| 
-			[court.name, court.id] 
-		end
-	end
-
 	def role_options
 		[ ['Pemilik', 0], ['Pengelola', 1], ['Staff', 2] ]
-	end
-
-	def user_categories
-		[ ['Pemain', 1], ['Pengelola Arena', 2] ]
 	end
 
 # Profile form options
@@ -57,8 +47,20 @@ module FormOptionsHelper
 	end
 
 # Tender form options
-	def intent_assets_options
-		[ "Mesin", "Persediaan/Stok", "Bangunan", "Komoditi" ]
+	def case_options
+		["Pembelian", "Pembangunan", "Perbaikan/Renovasi", "Pelunasan"]
+	end
+
+	def intent_options
+		[ "Tempat Tinggal", "Investasi"]
+	end
+
+	def tangible_options
+		[ "Rumah Tunggal", "Rumah Koppel/Gandeng", "Rumah Town House", "Rumah Susun/Flat", "Tanah Kosong" ]
+	end
+
+	def own_capital_options
+		["10%", "20%", "30%", "40%", "50%", "60%"]
 	end
 
 end

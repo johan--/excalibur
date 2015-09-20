@@ -78,8 +78,8 @@ private
       # properties
       :summary, 
       # details
-      :aqad, :aqad_code, 
-      :intent_type, :intent_assets => []
+      :aqad, :aqad_code, :use_case,
+      :intent, :tangible, :address, :price
     )
   end
 

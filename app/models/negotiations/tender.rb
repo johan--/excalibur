@@ -18,7 +18,8 @@ class Tender < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :intent_type, :intent_assets, :aqad, :aqad_code
+                 :tangible, :use_case, :intent, :aqad, :aqad_code,
+                 :address, :price, :own_capital
 
   validates_presence_of :aqad, :summary#, :target, :contributed
 

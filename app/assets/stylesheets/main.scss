@@ -2,7 +2,6 @@
 @import "styles/buttons";
 @import "styles/login";
 @import "styles/new-landing";
-@import "styles/shoji-layout";
 @import "styles/colorful-modal";
 @import "styles/style";
 @import "styles/custom-panels";
@@ -11,9 +10,9 @@
 @import "styles/tender-list";
 @import "styles/tender";
 @import "styles/mockups";
-@import "styles/sidebar-nav";
 @import "styles/blog";
 @import "styles/svg-styling";
+@import "styles/mobile-navbar";
 @import "social-share-button";
 
 /* Progress Bar */
@@ -26,6 +25,8 @@ $nprogress-zindex: 10100;
 
 .pop-helper {
   cursor: pointer;
+  font-size: 30px;
+  margin-top: 10px;
 }
 
 .blankslate {

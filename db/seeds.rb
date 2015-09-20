@@ -1,7 +1,7 @@
 # Temporary admin account
-User.create(email: "galih@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Galih Muhammad", business: true, investor: true, admin: true)
+User.create(email: "galih@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Galih Muhammad", client: true, financier: true, admin: true)
 
-User.create(email: "yusuf@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Yusuf Cahyo", business: true, admin: true)
+User.create(email: "pampam@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Pampam", client: true, admin: true)
 
 # Test user accounts
 (1..25).each do |i|
@@ -10,23 +10,23 @@ User.create(email: "yusuf@gmail.com", password: "asdasdasd", password_confirmati
     password: "1234567",
     password_confirmation: "1234567",
     name: "Example #{i}",
-    investor: true
+    financier: true
   )
 
   puts "#{i} test users created..." if (i % 5 == 0)
 
 end
 
-b = Business.create!(
-  name: "Bisnis 1",
-  anno: 2015,
-  about: "cloth dress jeans shirt jacket sock shoe",
-  founding_size: 3,
-  industry: "fesyen",
-  city: "Jakarta Selatan",
-  province: "DKI Jakarta",
-  starter_email: User.first.email
-)
+# b = Business.create!(
+#   name: "Bisnis 1",
+#   anno: 2015,
+#   about: "cloth dress jeans shirt jacket sock shoe",
+#   founding_size: 3,
+#   industry: "fesyen",
+#   city: "Jakarta Selatan",
+#   province: "DKI Jakarta",
+#   starter_email: User.first.email
+# )
   
 # dummy blog posts
 (1..10).each do |i|
@@ -44,16 +44,18 @@ b = Business.create!(
 
 end
 
-t = Tender.create(category: "Bisnis", aqad: "musharakah",
-          tenderable: b, target: 15000000,
-          intent_type: "Modal Kerja", intent_assets: "Persediaan/Stok",
-          summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
+# t = Tender.create(category: "Bisnis", aqad: "musharakah",
+#           tenderable: b, target: 15000000,
+#           intent_type: "Modal Kerja", intent_assets: "Persediaan/Stok",
+#           summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
 
-t.bids.create(tender: t, bidder: User.second, contribution: 5000000)
-t.bids.create(tender: t, bidder: User.third, contribution: 5000000)
-t.bids.create(tender: t, bidder: User.fourth, contribution: 5000000)
+# t.bids.create(tender: t, bidder: User.second, contribution: 5000000)
+# t.bids.create(tender: t, bidder: User.third, contribution: 5000000)
+# t.bids.create(tender: t, bidder: User.fourth, contribution: 5000000)
 
-z = Tender.create(category: "Individu", aqad: "murabahah",
-          tenderable: User.last, target: 8000000,
-          intent_type: "Konsumsi", intent_assets: "Kendaraan Bermotor",
-          summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
+# z = Tender.create(category: "Individu", aqad: "Musyarakah Mutanaqishah",
+#           tenderable: User.last, target: 30000000, use_case: 'Pembelian',
+#           tangible: "Rumah Tunggal", intent: "Tempat Tinggal",
+#           price: 90000000,
+#           address: "Jl. Cipete III No. 99 RT 01 RW 05 Cilandak, Jakarta Selatan",
+#           summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")

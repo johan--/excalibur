@@ -44,8 +44,9 @@ class User < ActiveRecord::Base
 
   serialize :profile, HashSerializer
   store_accessor :profile, 
-    :open, :business, :investor, :phone_number, :about, :last_education,
-    :marital_status, :work_experience, :industry_experience
+    :open, :client, :financier, :phone_number, :about, :last_education,
+    :marital_status, :work_experience, :number_dependents, :occupation,
+    :monthly_income, :monthly_expense, :address
   
   scope :investors, -> { 
     where("users.profile->>'investor' = :true", true: "true") 
@@ -81,7 +82,7 @@ class User < ActiveRecord::Base
           name: auth.info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20], 
-          business: true
+          client: true
         )
         user.save!
       end

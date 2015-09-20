@@ -6,12 +6,12 @@ module UserChecking
       self.email && self.email !~ TEMP_EMAIL_REGEX
     end
     
-    def investor?
-      return true if self.investor == true
+    def financier?
+      return true if self.financier == true
     end
 
     def founder?
-      return true if self.business == true
+      return true if self.client == true
     end
     
     def has_biz?

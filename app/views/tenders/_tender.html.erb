@@ -1,19 +1,27 @@
 
 <div class="wp-block property list">
   
-    <div class="ribbon base"><span><%= tender.state %></span></div>
-    <div class="wp-block-title">
-      <h4 class="tender-title">
-        <%= link_to tender.barcode, show_tender_link(tender) %>
-      </h4>
-      <hr>
-    </div>    
+  <div class="ribbon base"><span><%= tender.state %></span></div>
+  <div class="wp-block-title">
+    <h4 class="tender-title">
+      <%= link_to tender.barcode, show_tender_link(tender) %>
+    </h4>      
+    <hr>
+  </div>    
   
   <div class="wp-block-body">
-    
+    <p>
+      <csmall>
+        <%= inline_svg "0084-calendar.svg", class: 'small-icons  asphalt' %>&nbsp;&nbsp;<%= tender.created_at.strftime("%Y, %B %-d") %>
+      </csmall> | 
+      <csmall>Oleh: <%= link_to tender.tenderable.name, user_path(tender.tenderable) %>
+      </csmall> |
+      <csmall>
+        <%= tender.case %>
+      </csmall>  
+    </p>
 
     <div class="wp-block-content">
-      <h4 class="content-title"><%= tender.aqad.titleize %></h4>
       <p class="description">
         <%= tender.summary %>
       </p>
@@ -27,24 +35,7 @@
           <i class="fa fa-user"></i>
         </span>
       </span>
-    </div>
-
-    <div class="col-sm-4">
-      <%= link_to tender.tenderable.name, '#' %>
-    </div>
-    <div class="col-sm-4">
-      <% if tender.access_granted?(current_user) %>
-        <%= link_to edit_business_tender_path(tender.tenderable, tender), class: "btn btn-xs btn-outlined btn-theme", remote: true do %>
-          <i class="fa fa-pencil-square-o"></i> Edit
-        <% end %>
-      <% end %>      
-    </div>
-    <div class="col-sm-4">
-      <%= link_to business_tender_path(tender.tenderable, tender), class: "btn btn-xs btn-outlined btn-theme", remote: true do %>
-        <i class="fa fa-search-plus"></i> Lihat
-      <% end %>      
-    </div>      
-    
+    </div>    
   </div>
 
   
