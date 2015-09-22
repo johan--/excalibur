@@ -59,8 +59,8 @@
               <div class="col-md-6">
                 <div class="home-prompt">
                   <%= link_to 'Ubah Profil', edit_user_path(current_user), class: "btn btn-block btn-outlined btn-theme", :remote => true  %>
-                  <%= link_to 'Lihat', user_path(current_user), class: "btn btn-block btn-outlined btn-theme", remote: true  %>
-                  <%= link_to 'Unggah Berkas', '#', class: "btn btn-block btn-outlined btn-theme"  %>                  
+                  <%= link_to 'Lihat', user_path(current_user), class: "btn btn-block btn-outlined btn-theme" %>
+                  <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-block btn-outlined btn-theme"  %>                  
                 </div>
               </div>
             </div>

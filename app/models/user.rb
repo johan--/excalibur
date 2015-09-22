@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 
+  has_many  :documents, as: :owner
+
 # Relations
   has_one  :identity
   has_many :posts

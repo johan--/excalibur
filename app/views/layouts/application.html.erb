@@ -41,8 +41,18 @@
     </div>
   <% else %>
     <div class="main-content">
+      <div class="container">
+        
+        <div class="row" style="margin-top: 50px;">
+          <%= render 'layouts/messages' %>
+          <div class="col-sm-12">
       <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
       <%= render 'layouts/mobile_navbar' %>      
+          </div>
+        </div>
+        
+      </div>      
+
     </div>
   <% end %>
   

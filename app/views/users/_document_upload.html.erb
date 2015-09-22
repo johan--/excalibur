@@ -1,0 +1,25 @@
+<%= form_for @user, role: "form" do |f| %>
+
+<div class="form-group">
+  <%= f.label :documents, "Upload Header Image" %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.attachinary_file_field :documents, :cloudinary => { :transformation => {:resource_type => 'raw', :raw_convert => 'aspose'} }  %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :delete_image, "Klik Box Untuk Menghapus" %>
+  <div class="row">
+    <div class="col-xs-12">
+      <% @user.documents.each do |doc| %>
+      	<%= cl_image_tag(doc.path) %>
+      	<%= f.check_box :delete_image, checked: false %>
+      <% end %>
+    </div>
+  </div>
+</div>
+ 
+
+  <%= f.submit "Simpan", class: "btn btn-primary" %>
+<% end %>

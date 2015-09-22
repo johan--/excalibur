@@ -1,0 +1,24 @@
+<!-- Ok for jpg and png, but not for pdf -->
+
+<%= form_for @document, role: "form" do |f| %>
+
+  <%= f.label :name, label: "Nama Dokumen" %>
+  <%= f.text_field :name  %>
+  
+  <%= f.attachinary_file_field :proofs %>  
+  <%= f.label :category, label: "Jenis Dokumen" %>
+  <%= f.text_field :category %>
+  <%= f.submit "Simpan", class: "btn btn-primary" %>
+    <button class='btn btn-outlined btn-black'>
+      <i class='fa fa-plus-square'></i> Simpan
+    </button>
+<% end %>
+
+<script type="text/javascript">  
+  document.getElementById("upload_widget_opener").addEventListener("click", function() {
+
+    cloudinary.openUploadWidget({ cloud_name: 'instilla', upload_preset: 'o9z2o3rl'}, 
+      function(error, result) { console.log(error, result) });
+
+  }, false);
+</script>

@@ -21,7 +21,7 @@ module ApplicationHelper
   def link_fa_to(icon_name, text, link)
     active = "active" if current_page?(link)
     link_to link, class: active do
-      content_tag(:i, ' ', class: "fa fa-#{icon_name}") +
+      content_tag(:i, ' ', class: "menu-icon fa fa-#{icon_name}") +
       content_tag(:span, text)
     end
   end

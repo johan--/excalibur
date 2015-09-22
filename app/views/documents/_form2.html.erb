@@ -1,0 +1,22 @@
+<!-- Success!! uploading pdf but converted to png right away, stored in location -->
+
+<%= form_for @document, role: "form" do |f| %>
+
+  <%= f.label :nama_dokumen %>
+  <%= f.text_field :name  %>
+  
+  <%= f.label :lokasi %>
+  <%= f.text_field :location, class: "image_public_id"  %>
+  
+  <%= cl_image_upload_tag(:image_id, format: :png) %>
+
+  <div class="preview">
+  </div>
+
+
+  <%= f.label :category, label: "Jenis Dokumen" %>
+  <%= f.text_field :category %>
+  <%= f.submit "Simpan", class: "btn btn-primary" %>
+          
+
+<% end %>

@@ -43,6 +43,7 @@ Fustal::Application.routes.draw do
   resources :tenders, only: [:show] do
     resources :bids
   end
+  resources :documents
 
   # Static Pages
   root "pages#landing"

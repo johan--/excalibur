@@ -1,0 +1,6 @@
+
+
+
+<% @user.documents.each do |doc| %>
+	<%= cl_image_tag(doc.public_id, { :width => 200, :height => 106, quality: 50, :crop => :pad, :gravity => :north, format: :jpg } ) %>
+<% end %>
