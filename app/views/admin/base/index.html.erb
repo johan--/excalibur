@@ -5,6 +5,8 @@
     <h3>Menu</h3>
     <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{pluralize(@count, 'user')}" %></small></h4>
     <h4><%= link_to "Articles", admin_posts_path %> <small>- <%= "#{pluralize(@post_count, 'post')}" %></small></h4>
+    <h4><%= link_to "Documents", admin_documents_path %> <small>- <%= "#{pluralize(@doc_count, 'docs')}" %></small></h4>
+    <h4><%= link_to "Proposals", admin_tenders_path %> <small>- <%= "#{pluralize(@tender_count, 'tender')}" %></small></h4>
     <h4><%= link_to "Analytics", admin_analytics_path %></h4>
     <hr/>
   </div>

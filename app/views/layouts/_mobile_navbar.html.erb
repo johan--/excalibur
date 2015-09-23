@@ -13,16 +13,10 @@
 		</form>
 		<ul class="nav navbar-nav">
 			<li>
-				<a href="#">
-					<span class="menu-icon fa fa-picture-o"></span>
-					Photos
-				</a>
-			</li>
+				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
+			</li>			
 			<li>
-				<a href="#">
-					<span class="menu-icon fa fa-bell-o"></span>
-					Reservations
-				</a>
+				<%= link_fa_to('phone', 'Kontak', contact_url(subdomain: '')) %>
 			</li>
 		</ul>
 	</div>
@@ -32,19 +26,29 @@
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
+			<% if user_signed_in? %>
 			<li>
 				<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
 			</li>
-			<li class="hidden-xs">
-				<%= link_fa_to('newspaper', 'Blog', root_url(subdomain: 'blog')) %>
-			</li>
 			<li>
+				<%= link_fa_to('cogs', "Akun", edit_user_registration_url(subdomain: '')) %>
+			</li>
+			<% end %>
+			<% if current_user.admin? %>
+				<li>
+					<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
+				</li>			
+			<% end %>
+			<li class="hidden-xs">
+				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
+			</li>			
+			<li class="hidden-xs">
 				<%= link_fa_to('phone', 'Kontak', contact_url(subdomain: '')) %>
 			</li>
 			<% if user_signed_in? %>
 				<li>
 					<%= link_to destroy_user_session_url(subdomain: ''), data:{method: :delete} do %>
-						<i class="menu-icon fa fa-info"></i>
+						<i class="menu-icon fa fa-sign-out"></i>
 						<span><strong>Keluar</strong></span>
 					<% end %>
 				</li>

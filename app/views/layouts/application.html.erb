@@ -17,34 +17,16 @@
 <body>
   <% if @disable_nav  %>
     <%= yield %>
-  <% elsif @normal_nav  %>
-    <div id="wrap">
-      <header>
-        <%= render 'layouts/navigation' %>
-      </header>
-
-      <% if @blog_layout %>
-        <%= render 'layouts/blog_layout' %>    
-      <% else %>
-      <div class="container">
-        
-        <div class="row" style="margin-top: 50px;">
-          <%= render 'layouts/messages' %>
-          <div class="col-sm-12">
-            <%= yield %>    
-          </div>
-        </div>
-        
-      </div>  
-      <% end %>
-
-    </div>
   <% else %>
     <%= render 'layouts/mobile_navbar' %>
     <% if @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
     <% else %>
+      <% if @disable_background %>
+      <div class="wrap">
+      <% else %>
       <div class="wrap main-content">
+      <% end %>
         <div class="container">
           
           <div class="row" style="margin-top: 10px;">
@@ -54,7 +36,7 @@
 
               
               <section class="container" style="padding-top: 10px;">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
                   <%= yield %>
                 </div>
               </section>

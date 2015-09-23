@@ -1,8 +1,8 @@
-class Admin::ReservationsController < Admin::BaseController
-  before_action :set_reservaton, only: :show
+class Admin::DocumentsController < Admin::BaseController
+  before_action :set_document, only: [:show, :edit, :verify]
 
   def index
-    @reservations = Reservation.all
+    @documents = Document.all
   end
 
   def show
@@ -11,11 +11,13 @@ class Admin::ReservationsController < Admin::BaseController
   def edit
   end
 
+  def verify
+  end
 
   private
 
   def set_reservaton
-    @reservation = Reservation.find(params[:id])
+    @document = Document.find(params[:id])
   end
 
   # def user_params

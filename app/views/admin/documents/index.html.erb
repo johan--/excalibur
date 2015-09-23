@@ -1,0 +1,12 @@
+<div class="text">      
+  <h4>Document Index</h4>
+</div>
+<% if @documents.count != 0 %>
+  <% @documents.each do |document| %>
+    <div class="col-xs-6 col-sm-4">
+	    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+    </div>
+  <% end %>
+<% else %>
+  <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Sabar ya hahahaha", anchor: "Kembali ke Dashboard", destination: admin_root_path } %>
+<% end %>

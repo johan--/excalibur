@@ -46,6 +46,7 @@ Fustal::Application.routes.draw do
   resources :documents do
     member do
       get "delete"
+      put "verify"
     end
   end
 
@@ -68,6 +69,12 @@ Fustal::Application.routes.draw do
     resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     resources :posts
+    resources :documents do
+      member do
+        get "delete"
+      end
+    end
+    resources :tenders
   end
 
   namespace :enterprise do

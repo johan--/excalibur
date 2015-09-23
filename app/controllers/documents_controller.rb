@@ -14,7 +14,7 @@ class DocumentsController < ApplicationController
 
   	if @document.save
 	    redirect_to user_root_path
-	    flash[:notice] = 'Berkas berhasil disimpan'
+	    flash[:notice] = 'Dokumen berhasil disimpan'
 	  else
 		  render :new
 	  end

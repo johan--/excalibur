@@ -14,12 +14,12 @@ feature "ClientUploadsDocuments", :type => :feature do
   	before do 
   		click_link('Unggah Berkas') 
   		fill_in "document_name", with: "KTP Galih"
-  		attach_file("Unggah", file_upload_fixture)
-  		select "Identifikasi" from: "document_category"
+  		attach_file('file', file_upload_fixture)
+  		select "Identifikasi", from: "document_category"
   		click_button "Simpan"
   	end
 
-	it { should have_content("Dokumen berhasil diunggah") }
+	it { should have_content("Dokumen berhasil disimpan") }
   end
 
 end

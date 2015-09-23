@@ -1,7 +1,7 @@
 module LayoutSelector
 
-  def disable_nav
-    @disable_nav = true
+  def disable_background
+    @disable_background = true
   end
   def normal_nav
     @normal_nav = true

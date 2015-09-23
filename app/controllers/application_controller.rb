@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
   before_filter :authenticate_user!, unless: :devise_controller?  
-  before_filter :normal_nav, if: :devise_controller?
+  before_filter :disable_background, if: :devise_controller?
   
   def current_or_guest_user
     if current_user
