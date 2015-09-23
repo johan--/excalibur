@@ -63,4 +63,12 @@ module FormOptionsHelper
 		["10%", "20%", "30%", "40%", "50%", "60%"]
 	end
 
+
+# Document options
+	def document_categories
+		["Identifikasi", "Sertifikat Pencapaian", "Bukti Kepemilikan", 
+		 "Bukti Penghasilan", "Bukti Pengeluaran", "Lain-lain"]
+	end
+
+
 end

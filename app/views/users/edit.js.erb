@@ -1,2 +1,3 @@
-$("#inner-home-modal").html("<%= j (render 'users/edit_profile') %>")
-$("#home-modal").modal("show")
+$("#inner-main-modal").html("<%= j (render partial: 'users/edit_profile', 
+	locals: { user: @user }) %>")
+$("#main-modal").modal("show")

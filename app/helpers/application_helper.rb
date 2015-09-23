@@ -22,7 +22,7 @@ module ApplicationHelper
     active = "active" if current_page?(link)
     link_to link, class: active do
       content_tag(:i, ' ', class: "menu-icon fa fa-#{icon_name}") +
-      content_tag(:span, text)
+      content_tag(:span, " #{text}")
     end
   end
 

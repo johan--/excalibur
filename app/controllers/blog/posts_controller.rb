@@ -2,7 +2,6 @@ class Blog::PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [
     :index, :show, :find_posts
   ]
-  before_action :normal_nav
   before_action :blog_layout
   before_action :tag_cloud#, only: [:posts, :show_post, :find_posts]
 

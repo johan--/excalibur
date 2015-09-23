@@ -122,15 +122,17 @@ ActiveRecord::Schema.define(version: 20150920004310) do
   end
 
   create_table "documents", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "category"
-    t.string   "location"
+    t.string   "slug",       null: false
     t.jsonb    "details"
     t.integer  "owner_id",   null: false
     t.string   "owner_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "documents", ["slug"], name: "index_documents_on_slug", unique: true, using: :btree
 
   create_table "firms", force: :cascade do |t|
     t.string   "name",                     null: false

@@ -40,20 +40,32 @@
 
     </div>
   <% else %>
-    <div class="main-content">
-      <div class="container">
-        
-        <div class="row" style="margin-top: 50px;">
-          <%= render 'layouts/messages' %>
-          <div class="col-sm-12">
-      <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
-      <%= render 'layouts/mobile_navbar' %>      
-          </div>
-        </div>
-        
-      </div>      
+    <%= render 'layouts/mobile_navbar' %>
+    <% if @blog_layout %>
+      <%= render 'layouts/blog_layout' %>    
+    <% else %>
+      <div class="wrap main-content">
+        <div class="container">
+          
+          <div class="row" style="margin-top: 10px;">
+            <%= render 'layouts/messages' %>
+            <div class="col-sm-12">
+              <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
 
-    </div>
+              
+              <section class="container" style="padding-top: 10px;">
+                <div class="col-xs-12 col-sm-12">
+                  <%= yield %>
+                </div>
+              </section>
+                         
+            </div>
+          </div>
+          
+        </div>      
+
+      </div>
+    <% end %> 
   <% end %>
   
 </body>

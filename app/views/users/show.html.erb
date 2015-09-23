@@ -1,6 +1,75 @@
+<% title("Profil") %>
+<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 
+<div class="portlet portlet-bordered">
+  <div class="portlet-title">
+    <div class="caption caption-red">
+      <i class="fa fa-file-text"></i> 
+      <span class="caption-subject bold font-yellow-crusta uppercase">
+        Profil <%= @user.name %>
+      </span>
+      <span class="caption-helper"><%=  %></span>
+    </div>
+    <ul class="nav nav-tabs top-menu">
+      <li class="active">
+        <a href="#portlet_tab1" data-toggle="tab">
+          <%= inline_svg "0114-user.svg", class: "portlet-icons" %>
+        </a>
+      </li>
+      <li>
+        <a href="#portlet_tab2" data-toggle="tab">
+          <%= inline_svg "0049-folder-open.svg", class: "portlet-icons" %>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
 
+  <div class="portlet-body">
+    <div class="tab-content">
 
-<% @user.documents.each do |doc| %>
-	<%= cl_image_tag(doc.public_id, { :width => 200, :height => 106, quality: 50, :crop => :pad, :gravity => :north, format: :jpg } ) %>
-<% end %>
+      <div class="tab-pane active" id="portlet_tab1">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="text">
+              <h4>Bilah Biodata
+              <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= welcome_popover_text %>" data-original-title=""></i></h4>
+
+			        <%= render partial: 'profile', locals: { user: @user } %>
+            </div>            
+          </div>
+          <div class="col-md-12">
+          </div>                    
+          <div class="col-md-12">
+
+          </div>
+          <div class="col-md-12 col-sm-12">
+          </div>
+        </div>  
+      </div>
+
+      <div class="tab-pane" id="portlet_tab2">
+        <div class="col-sm-12">
+          <div class="text">      
+			      <h4>Bilah Dokumen</h4>
+		      </div>
+          <% if @user.documents.present? %>
+      		  <% @user.documents.each do |document| %>
+              <div class="col-xs-6 col-sm-4">
+      			    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+              </div>
+      		  <% end %>
+          <% else %>
+            <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+</div>
+
+</div>

@@ -6,31 +6,30 @@ FactoryGirl.define do
     sequence(:name) { |n| "Person #{n}" }
     
     factory :consumer do
-      business false
-      investor false
+      client true
+      financier false
     end
 
-		factory :entrepreneur do
-      business true
-      investor false
-
-      factory :entrepreneur_with_team do
-        after(:create) do |user|
-          FactoryGirl.create(:business, starter_email: user.email)
-        end
-      end
+    factory :financier do
+      client false
+      financier true
     end
+		# factory :entrepreneur do
+  #     business true
+  #     financier false
+
+  #     factory :entrepreneur_with_team do
+  #       after(:create) do |user|
+  #         FactoryGirl.create(:business, starter_email: user.email)
+  #       end
+  #     end
+  #   end
 
     factory :admin do
 			admin true
       business true
-      investor true
+      financier true
 		end
-
-    factory :investor do
-      business false
-      investor true
-    end
 
     factory :facebook_user do
       after(:create) do |user|

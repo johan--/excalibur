@@ -1,4 +1,8 @@
 class DocumentsController < ApplicationController
+  before_action :set_document, only: [:show, :delete, :destroy]
+
+  def show
+  end
 
   def new
   	@document = Document.new
@@ -11,20 +15,33 @@ class DocumentsController < ApplicationController
   	if @document.save
 	    redirect_to user_root_path
 	    flash[:notice] = 'Berkas berhasil disimpan'
-	else
-		render :new
-	end
+	  else
+		  render :new
+	  end
   end
 
+  def destroy
+    Cloudinary::Api.delete_resources(@document.public_id)
+  	@document.destroy
 
+    flash[:notice] = 'Dokumen berhasil dihapuskan'
+    redirect_to user_root_path
+  end
+
+  def delete
+  end
 
 private
+  def set_document
+  	@document = Document.friendly.find(params[:id])
+  	# @document = Document.find(params[:id])
+  end
 
   def document_params
   	params.require(:document).permit(
-  	  :name, :category, :location, :image_id,
+  	  :name, :category, :slug, :image_id,
   	  :bytes, :public_id,
-  	  :owner_type, :owner_id, :owner, :proofs => []
+  	  :owner_type, :owner_id, :owner
   	)
   end
 end

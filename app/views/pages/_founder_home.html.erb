@@ -1,7 +1,7 @@
 <div class="portlet portlet-bordered">
   <div class="portlet-title">
     <div class="caption caption-red">
-      <i class="fa fa-file-text"></i> 
+      <i class="fa fa-home"></i> 
       <span class="caption-subject bold font-yellow-crusta uppercase">
         <%= "Beranda" %>
       </span>
@@ -10,18 +10,17 @@
     <ul class="nav nav-tabs top-menu">
       <li>
         <a href="#portlet_tab2" data-toggle="tab">
-          <i class="glyphicon glyphicon-pushpin"></i>
-          <span class="badge"><%=  %></span>
+          <%= inline_svg "0071-pushpin.svg", class: "portlet-icons" %>
         </a>
       </li>    
       <li class="active">
         <a href="#portlet_tab1" data-toggle="tab">
-          <i class="glyphicon glyphicon-th-list"></i>
+          <%= inline_svg "0182-power.svg", class: "portlet-icons" %>
         </a>
       </li>
       <li>
         <a href="#portlet_tab3" data-toggle="tab">
-          <i class="fa fa-lg fa-flash"></i>
+          <%= inline_svg "0023-pacman.svg", class: "portlet-icons" %>
         </a>
       </li>
     </ul>
@@ -33,8 +32,8 @@
 
       <div class="tab-pane" id="portlet_tab2">
         <div class="col-xs-12">
-          <h4>Bilah Proposal</h4>
-          <%= render @tenders %>            
+          <h4>Bilah Info</h4>
+          <%= render 'elements/userbox' %>
         </div>
       </div>
 
@@ -52,13 +51,13 @@
               <div class="col-md-6">
                 <i class="fa fa-legal centerpiece"></i>
                 <h3>
-                  KREDIBILITAS
+                  PROFIL
   <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
                 </h3>
               </div>
               <div class="col-md-6">
                 <div class="home-prompt">
-                  <%= link_to 'Ubah Profil', edit_user_path(current_user), class: "btn btn-block btn-outlined btn-theme", :remote => true  %>
+                  <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-block btn-outlined btn-theme", :remote => true %>
                   <%= link_to 'Lihat', user_path(current_user), class: "btn btn-block btn-outlined btn-theme" %>
                   <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-block btn-outlined btn-theme"  %>                  
                 </div>

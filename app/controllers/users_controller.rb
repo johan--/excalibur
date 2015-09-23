@@ -36,8 +36,10 @@ private
 
   def profile_params
   	params.require(:user).permit(
-  	  :phone_number, :about, :last_education, :marital_status, 
-  	  	:work_experience, :industry_experience
+  	  :phone_number, :about, :last_education, :marital_status, :address,
+  	  	:work_experience, :occupation,
+        :monthly_income, :monthly_expense,
+        :number_dependents
   	)
   end
 

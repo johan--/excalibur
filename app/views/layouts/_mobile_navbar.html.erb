@@ -28,45 +28,33 @@
 	</div>
 	<div class="container">
 		<div class="navbar-header hidden-xs">
-			<a class="navbar-brand" href="#"><%= app_name %></a>
+			<%= link_to app_name, root_url(subdomain: ''), class: "navbar-brand" %>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
 			<li>
-				<%= link_fa_to('home', 'Beranda', user_root_path) %>
-			</li>
-			<li>
-				<a href="#">
-					<span class="menu-icon fa fa-info"></span>
-					<span class="hidden-xs">About the Boat</span>
-					<span class="visible-xs">About</span>
-				</a>
+				<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
 			</li>
 			<li class="hidden-xs">
-				<a href="#">
-					<span class="menu-icon fa fa-bell-o"></span>
-					Reservations
-				</a>
+				<%= link_fa_to('newspaper', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>
 			<li>
-				<a href="#">
-					<span class="menu-icon fa fa-phone"></span>						
-					<span class="hidden-xs">Kontak Kami</span>
-					<span class="visible-xs">Kontak</span>
-				</a>
+				<%= link_fa_to('phone', 'Kontak', contact_url(subdomain: '')) %>
 			</li>
+			<% if user_signed_in? %>
+				<li>
+					<%= link_to destroy_user_session_url(subdomain: ''), data:{method: :delete} do %>
+						<i class="menu-icon fa fa-info"></i>
+						<span><strong>Keluar</strong></span>
+					<% end %>
+				</li>
+			<% end %>
 			<li class="visible-xs">
 				<a href="#navbar-more-show">
-					<span class="menu-icon fa fa-bars"></span>
+					<i class="menu-icon fa fa-bars"></i>
 					More
 				</a>
 			</li>
 		</ul>
 	</div>
 </nav>
-
-<section class="container" style="padding-top: 75px;">
-	<div class="col-xs-12 col-sm-12">
-		<%= yield %>
-	</div>
-</section>

@@ -1,0 +1,3 @@
+$("#inner-main-modal").html("<%= j (render partial: 'elements/delete_prompt', 
+		locals: { object: @document, category: 'dokumen' }) %>")
+$("#main-modal").modal("show")

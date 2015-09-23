@@ -69,7 +69,7 @@ body.navbar-more-show  {
 }
 
 
-.navbar-nav.mobile-bar > li > a > span.menu-icon {
+.navbar-nav.mobile-bar > li > a > i.menu-icon {
 	display: block;
 	font-size: 1.8em;
 }
@@ -84,7 +84,7 @@ body.navbar-more-show  {
 .navbar-more .navbar-nav > li > a {
     color: rgb(64, 64, 64);   
 }
-.navbar-more > .navbar-nav > li > a > span.menu-icon {
+.navbar-more > .navbar-nav > li > a > i.menu-icon {
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -100,7 +100,7 @@ body.navbar-more-show  {
 		max-height: 64px;
 		margin: 0px -15px;
 	}
-	.navbar-nav.mobile-bar > li > a > span.menu-icon {
+	.navbar-nav.mobile-bar > li > a > i.menu-icon {
 		display: none;
 	}
 }

@@ -1,0 +1,29 @@
+<% if defined?(zoomed) && zoomed %>
+<div class="panel panel-default zoomed" id="panel-image">
+<% else %>
+<div class="panel panel-default" id="panel-image">
+<% end %>
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= document.name %></h3>
+    </div>
+    <div class="panel-image hide-panel-body">
+        <% if defined?(thumbnail) && thumbnail %>
+		    <%= cl_image_tag(document.public_id, { :width => 300, :height => 300, quality: 50, :crop => :pad, :gravity => :north, format: :jpg, class: "panel-image-preview" } ) %>
+        <% elsif defined?(zoomed) && zoomed %>
+            <%= cl_image_tag(document.public_id, { :width => 700, :height => 700, quality: 100, :crop => :pad, :gravity => :north, format: :jpg, class: "panel-image-preview" } ) %>
+        <% end %>
+    </div>
+    <div class="panel-footer text-center">
+        <% if current_user.admin? %>
+            <%= link_to cl_private_download_url("my_private_image", :jpg, :attachment => true) do %>
+                <span class="glyphicon glyphicon-download"></span>
+            <% end %>
+        <% end %>
+        <%= link_to document_path(document), remote: true do %>
+            <span class="glyphicon glyphicon-zoom-in"></span>
+        <% end %>
+        <%= link_to delete_document_path(document), remote: true do %>
+            <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+    </div>
+</div>
