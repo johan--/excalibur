@@ -16,8 +16,8 @@ class Admin::DocumentsController < Admin::BaseController
 
   private
 
-  def set_reservaton
-    @document = Document.find(params[:id])
+  def set_document
+    @document = Document.friendly.find(params[:id])
   end
 
   # def user_params

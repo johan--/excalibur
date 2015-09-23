@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920004310) do
+ActiveRecord::Schema.define(version: 20150923101200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,19 @@ ActiveRecord::Schema.define(version: 20150920004310) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "document_transitions", force: :cascade do |t|
+    t.string   "to_state",                 null: false
+    t.json     "metadata",    default: {}
+    t.integer  "sort_key",                 null: false
+    t.integer  "document_id",              null: false
+    t.boolean  "most_recent",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "document_transitions", ["document_id", "most_recent"], name: "index_document_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "document_transitions", ["document_id", "sort_key"], name: "index_document_transitions_parent_sort", unique: true, using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "name",       null: false

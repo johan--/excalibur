@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Tender, :type => :model do
-  let!(:user) { FactoryGirl.create(:entrepreneur) }
+  let!(:user) { FactoryGirl.create(:client) }
   let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
 
   describe "Business Partnership" do

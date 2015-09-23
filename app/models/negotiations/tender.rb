@@ -8,12 +8,24 @@ class Tender < ActiveRecord::Base
   
   has_many :bids
 
+# Statesman stuffs
+  has_many :tender_transitions
+  # Initialize the state machine
+  def state_machine
+    @state_machine ||= TenderStateMachine.new(
+      self, transition_class: TenderTransition)
+  end
+  # Optionally delegate some methods
+  delegate :can_transition_to?, :transition_to!, :transition_to, 
+         :current_state, to: :state_machine
+# ##################################
+
   monetize :target_sens
   monetize :contributed_sens
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
-                 :open, :category, 
+                 :open, :category, :status_quo,
                  :summary, :barcode, :tenderable_name
 
   serialize :details, HashSerializer
@@ -61,6 +73,20 @@ class Tender < ActiveRecord::Base
     end
   end
 
+# Transitions
+  def processing
+    self.transition_to!(:processing)
+  end
+
+  def qualifying
+    self.transition_to!(:qualified)
+  end
+
+  def completing
+    self.transition_to!(:complete)
+  end  
+####
+
 private
   def set_default_values!
     self.state = "menunggu tawaran"
@@ -83,6 +109,14 @@ private
   def check_contribution
     value = self.bids.map{ |bid| bid.contribution }.compact.sum
     return value
+  end
+
+  def self.transition_class
+    TenderTransition
+  end
+
+  def self.initial_state
+    :fresh
   end
 
 end
