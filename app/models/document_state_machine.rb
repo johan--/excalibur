@@ -7,28 +7,28 @@ class DocumentStateMachine
   state :dropped
 
   transition from: :uploaded, to: [:verified, :flagged]
-  transition from: :verified, to: [:flagged]
-  transition from: :flagged,  to: [:verified, :dropped]
+  transition from: :verified, to: [:flagged, :uploaded, :dropped]
+  transition from: :flagged,  to: [:verified, :dropped, :uploaded]
   # transition from: :dropped
 
   guard_transition(from: :uploaded, to: :verified) do |document|
     document.checked?
   end
 
-  guard_transition(from: :uploaded, to: :flagged) do |document|
+  guard_transition(to: :flagged) do |document|
     document.flagged?
   end
 
-  guard_transition(from: :flagged, to: :dropped) do |document|
+  guard_transition(to: :dropped) do |document|
     document.flagged? && document.checked?
   end
 
-  guard_transition(from: :flagged, to: :verified) do |document|
-    document.checked?
+  guard_transition(to: :uploaded) do |document|
+    !document.flagged? && !document.checked?
   end
 
   after_transition do |document, transition|
-    document.status_quo = transition.to_state
+    document.state = transition.to_state
     document.save!
   end
 

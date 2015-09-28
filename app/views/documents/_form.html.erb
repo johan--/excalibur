@@ -9,22 +9,24 @@
         <%= f.text_field :name %>
       </div>
     </div>
+    <% unless defined?(edit) && edit %>
     <div class="form_line">
       <%= f.label :image_id, "Dokumen:" %>
       <div class="form_controls">
         <div class="upload_button_holder">
           <%= link_to("Unggah", "#", :class => "upload_button") %>
-          <%= f.cl_image_upload :image_id, upload_preset: "wxnisga1", :return_delete_token=>true, class: "cloudinary-fileupload" %>
+          <%= f.cl_image_upload :image_id, :return_delete_token=>true, class: "cloudinary-fileupload" %>
         </div>
         <span class="status"></span>
       </div>
     </div>
+    <% end %>
     <div class="form_line">
       <%= f.label :category, "Jenis Dokumen:" %>
       <div class="form_controls">
         <%= f.select :category, document_categories, selected: @document.category, prompt: "Pilih", required: true %>
       </div>
-    </div>    
+    </div>
     <div class="form_line">
       <div class="form_controls">
         <div class="preview"></div>

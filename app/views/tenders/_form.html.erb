@@ -2,14 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	  <%= f.input :target, label: "Besaran (Rp)" %>
-	  <%= f.input :summary, as: :text, label: "Penjelasan Singkat", input_html: {rows: 5, cols: 10} %>
-	  <%= f.input :aqad, label: "Jenis Akad" %>
+    <%= f.input :target, label: "Besaran (Rp)" %>
+	  <%= f.input :aqad, collection: aqad_options, selected: @tender.aqad, label: "Jenis Akad" %>
     <%= f.input :use_case, collection: case_options, selected: @tender.use_case, label: "Tujuan Pembiayaan" %>
-    <%= f.input :intent, label: "Fungsi", value: "Tempat Tinggal Baru" %>
-    <%= f.input :tangible, as: :radio_buttons, collection: tangible_options, checked: @tender.tangible, label: "Bentuk Rumah" %>
+    <%= f.input :intent, collection: intent_options, selected: @tender.intent, label: "Fungsi" %>
+    <%= f.input :price, label: "Harga Aset" %>
     <%= f.input :address, label: "Alamat" %>
-    <%= f.input :price, label: "Harga" %>
+    <%= f.input :tangible, as: :radio_buttons, collection: tangible_options, checked: @tender.tangible, label: "Bentuk Rumah" %>
+    <%= f.input :summary, as: :text, label: "Penjelasan Singkat", input_html: {rows: 5, cols: 10} %>
   </div>
 
   <div class="form-actions">

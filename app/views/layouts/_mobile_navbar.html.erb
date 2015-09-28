@@ -33,11 +33,11 @@
 			<li>
 				<%= link_fa_to('cogs', "Akun", edit_user_registration_url(subdomain: '')) %>
 			</li>
-			<% end %>
-			<% if current_user.admin? %>
-				<li>
-					<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
-				</li>			
+				<% if current_user.admin? %>
+					<li>
+						<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
+					</li>			
+				<% end %>			
 			<% end %>
 			<li class="hidden-xs">
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>

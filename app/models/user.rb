@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base  
-  include UserRelationship
+  include WannabeBool::Attributes
   include UserChecking
   include UserAdmin
   extend FriendlyId
@@ -8,10 +8,20 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 
-  has_many  :documents, as: :owner
+  serialize :preferences, HashSerializer
+  store_accessor :preferences, :language, :currency
+
+  serialize :profile, HashSerializer
+  store_accessor :profile, 
+    :open, :client, :financier, :phone_number, :about, :last_education,
+    :marital_status, :work_experience, :number_dependents, :occupation,
+    :monthly_income, :monthly_expense, :address
+  
+  attr_wannabe_bool :financier, :client, :open
 
 # Relations
   has_one  :identity
+  has_many :documents, as: :owner
   has_many :posts
   has_many :comments
   has_many :rosters, as: :rosterable
@@ -20,7 +30,6 @@ class User < ActiveRecord::Base
                         source: :teamable, source_type: "Business"
   has_many :tenders, as: :tenderable
   has_many :bids, as: :bidder
-
   # analytics
   has_many :visits
 
@@ -40,21 +49,12 @@ class User < ActiveRecord::Base
 
   before_create :set_auth_token!, :set_default_values!
   before_save :up_name
-  
-  serialize :preferences, HashSerializer
-  store_accessor :preferences, :language, :currency
-
-  serialize :profile, HashSerializer
-  store_accessor :profile, 
-    :open, :client, :financier, :phone_number, :about, :last_education,
-    :marital_status, :work_experience, :number_dependents, :occupation,
-    :monthly_income, :monthly_expense, :address
-  
-  scope :investors, -> { 
-    where("users.profile->>'investor' = :true", true: "true") 
+    
+  scope :financiers, -> { 
+    where("users.profile->>'financier' = :true", true: "true") 
   }
-  scope :owners, -> { 
-    where("users.profile->>'business' = :true", true: "true") 
+  scope :clients, -> { 
+    where("users.profile->>'client' = :true", true: "true") 
   }    
 
   def self.find_for_oauth(auth, signed_in_resource = nil)

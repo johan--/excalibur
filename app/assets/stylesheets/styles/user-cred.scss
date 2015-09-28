@@ -107,8 +107,11 @@
     display: block;
     margin: 0 auto;
     text-align: center;
-    font-size: 30px;
-    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
+    font-size: 20px;
+    /*font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;*/
+}
+.profile-stats .stats-col .stats-value .proposal-info {
+  font-size: 20px;
 }
 .pink {
     color: #e75b8d!important;
@@ -123,6 +126,16 @@
 .profile-stats {
     min-height: 100px;
     border-right: 1px solid #eee;
+}
+.profile-stats .inlinestats-col:not(:last-child) {
+    border-right: 1px solid #eee;
+}
+.profile-stats .inlinestats-col {
+    padding-top: 15px;
+    text-align: center;
+    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
+    border-top: 1px solid #eee;
+    min-height: 55px;
 }
 
 ul.top-menu {

@@ -49,7 +49,7 @@ gem 'pg'
 gem 'public_activity'
 gem 'metamagic'
 gem 'inline_svg'
-
+gem 'wannabe_bool'
 
 # Complementary
 gem 'nprogress-rails'

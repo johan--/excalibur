@@ -7,20 +7,20 @@
       </span>
       <span class="caption-helper"><%=  %></span>
     </div>
-    <ul class="nav nav-tabs top-menu">
+    <ul class="nav nav-tabs">
       <li>
         <a href="#portlet_tab2" data-toggle="tab">
-          <%= inline_svg "0071-pushpin.svg", class: "portlet-icons" %>
+          Info
         </a>
       </li>    
       <li class="active">
         <a href="#portlet_tab1" data-toggle="tab">
-          <%= inline_svg "0182-power.svg", class: "portlet-icons" %>
+          Proposal
         </a>
       </li>
       <li>
         <a href="#portlet_tab3" data-toggle="tab">
-          <%= inline_svg "0023-pacman.svg", class: "portlet-icons" %>
+          Help
         </a>
       </li>
     </ul>
@@ -31,39 +31,15 @@
     <div class="tab-content">
 
       <div class="tab-pane" id="portlet_tab2">
-        <div class="col-xs-12">
-          <h4>Bilah Info</h4>
-          <%= render 'elements/userbox' %>
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'elements/userbox' %>
+          </div>
         </div>
       </div>
 
       <div class="tab-pane active" id="portlet_tab1">
-        <div class="row">
-
-          <div class="col-md-12">
-            <div class="text">
-              <h4>Bilah Aksi
-              <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= welcome_popover_text %>" data-original-title=""></i></h4>
-            </div>            
-          </div>
-          <div class="col-md-12">
-            <div class="weather-3 pn centered">
-              <div class="col-md-6">
-                <i class="fa fa-legal centerpiece"></i>
-                <h3>
-                  PROFIL
-  <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
-                </h3>
-              </div>
-              <div class="col-md-6">
-                <div class="home-prompt">
-                  <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-block btn-outlined btn-theme", :remote => true %>
-                  <%= link_to 'Lihat', user_path(current_user), class: "btn btn-block btn-outlined btn-theme" %>
-                  <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-block btn-outlined btn-theme"  %>                  
-                </div>
-              </div>
-            </div>
-          </div>                    
+        <div class="row">               
           <div class="col-md-12">
             <div class="weather-3 pn centered">
               <div class="col-md-6">
@@ -75,23 +51,25 @@
               </div>
               <div class="col-md-6">
                 <div class="home-prompt">
-                  <%= link_to 'Buat Pengajuan', new_user_tender_path(current_user), class: "btn btn-block btn-outlined btn-theme mt", :remote => true  %>
+                  <%= link_to 'Buat Pengajuan', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt", :remote => true  %>                
+                  
                 </div>
               </div>
             </div>            
           </div>
           <div class="col-md-12 col-sm-12">
+            <div class="tickets-container">
+              <ul class="tickets-list">
+
+              <%= render current_user.tenders %>
+
+              </ul>
+            </div>            
           </div>
         </div>  
       </div>
 
       <div class="tab-pane" id="portlet_tab3">
-        <div class="col-sm-12">      
-			    <h4>Lini Aktifitas</h4>
-            <ul class="list-group">
-              <%= @activities.inspect %>
-            </ul>				    
-        </div>
       </div>
 
     </div>

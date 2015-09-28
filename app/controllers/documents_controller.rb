@@ -2,6 +2,7 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :delete, :destroy]
 
   def show
+    # @pic = Cloudinary::Api.resource(@document.public_id)
   end
 
   def new
@@ -25,7 +26,7 @@ class DocumentsController < ApplicationController
   	@document.destroy
 
     flash[:notice] = 'Dokumen berhasil dihapuskan'
-    redirect_to user_root_path
+    redirect_to user_path(current_user)
   end
 
   def delete

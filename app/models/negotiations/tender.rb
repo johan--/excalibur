@@ -31,11 +31,12 @@ class Tender < ActiveRecord::Base
   serialize :details, HashSerializer
   store_accessor :details, 
                  :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :price, :own_capital
+                 :address, :price
 
   validates_presence_of :aqad, :summary#, :target, :contributed
 
   before_create :set_default_values!
+  # before_save :calculate_owner_capital!
   after_touch :update_contribution!
 
   def self.categories
@@ -50,15 +51,15 @@ class Tender < ActiveRecord::Base
   }
 
   def access_granted?(user)
-    if tenderable_type == 'User'
-      tender_owner?(user)
+    if self.tenderable_type == 'User'
+      self.tender_owner?(user)
     else
-      member_of_tenderable?(user)
+      self.member_of_tenderable?(user)
     end
   end
 
   def tender_owner?(user)
-    if tenderable == user
+    if self.tenderable == user
       return true
     else
       return false
@@ -84,13 +85,13 @@ class Tender < ActiveRecord::Base
 
   def completing
     self.transition_to!(:complete)
-  end  
+  end
 ####
 
 private
   def set_default_values!
-    self.state = "menunggu tawaran"
-    self.barcode = "Proposal ##{SecureRandom.hex(3)}"
+    self.state = 'fresh'
+    self.barcode = "##{SecureRandom.hex(3)}"
     self.tenderable_name = self.tenderable.name
     self.open = true
   end
@@ -98,7 +99,7 @@ private
   def slug_candidates
     [ 
       :barcode,
-      [:tenderable_name, :aqad, :barcode]
+      [:tenderable_name, :barcode]
     ]
   end
 
@@ -119,4 +120,7 @@ private
     :fresh
   end
 
+  def calculate_owner_capital!
+    self.own_capital = self.price - self.target 
+  end
 end

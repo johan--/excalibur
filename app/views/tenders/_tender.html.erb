@@ -1,42 +1,27 @@
-
-<div class="wp-block property list">
-  
-  <div class="ribbon base"><span><%= tender.state %></span></div>
-  <div class="wp-block-title">
-    <h4 class="tender-title">
-      <%= link_to tender.barcode, show_tender_link(tender) %>
-    </h4>      
-    <hr>
-  </div>    
-  
-  <div class="wp-block-body">
-    <p>
-      <csmall>
-        <%= inline_svg "0084-calendar.svg", class: 'small-icons  asphalt' %>&nbsp;&nbsp;<%= tender.created_at.strftime("%Y, %B %-d") %>
-      </csmall> | 
-      <csmall>Oleh: <%= link_to tender.tenderable.name, user_path(tender.tenderable) %>
-      </csmall> |
-      <csmall>
-        <%= tender.case %>
-      </csmall>  
-    </p>
-
-    <div class="wp-block-content">
-      <p class="description">
-        <%= tender.summary %>
-      </p>
-      <span class="pull-left">
-        <span class="price"><%= idr_money(tender.target) %></span> 
-        <span class="period">(<%= idr_money(tender.contributed) %>)</span>
+<li class="ticket-item" id="<%= tender.barcode %>">
+  <div class="row">
+    <div class="ticket-user col-md-5 col-sm-12">
+      <span class="user-name">
+        <strong><%= tender.barcode %></strong>Oleh: <%= link_to tender.tenderable.name, user_path(tender.tenderable) %>
       </span>
-      <span class="pull-right">
-        <span class="capacity">
-          <i class="fa fa-user"></i>
-          <i class="fa fa-user"></i>
-        </span>
+      <span class="user-company">
       </span>
-    </div>    
-  </div>
-
-  
+    </div>
+    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
+      <div class="divider hidden-md hidden-sm hidden-xs"></div>
+      <span class="time">
+        <%= link_to 'Edit', '#', class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+        <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>        
+      </span>
+    </div>
+    <div class="ticket-type  col-md-3 col-sm-6 col-xs-12">
+      <span class="divider hidden-xs"></span>
+      <span class="type">
+        <%= tender.state %>
+      </span>
+    </div>
+    <div class="ticket-state bg-palegreen">
+        <i class="fa fa-check"></i>
+    </div>
 </div>
+</li>

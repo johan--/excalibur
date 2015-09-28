@@ -15,19 +15,19 @@ FactoryGirl.define do
       financier true
     end
 		# factory :entrepreneur do
-  #     business true
+  #     client true
   #     financier false
 
   #     factory :entrepreneur_with_team do
   #       after(:create) do |user|
-  #         FactoryGirl.create(:business, starter_email: user.email)
+  #         FactoryGirl.create(:client, starter_email: user.email)
   #       end
   #     end
   #   end
 
     factory :admin do
 			admin true
-      business true
+      client true
       financier true
 		end
 

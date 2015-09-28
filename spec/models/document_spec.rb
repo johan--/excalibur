@@ -14,7 +14,7 @@ RSpec.describe Document, :type => :model do
   it { should respond_to(:checked) }
   it { should respond_to(:flagged) }
   it { should respond_to(:owner) }
-  it { should respond_to(:status_quo) }
+  it { should respond_to(:state) }
 
   it { should respond_to(:can_transition_to?) }
   it { should respond_to(:transition_to!) }
@@ -27,7 +27,7 @@ RSpec.describe Document, :type => :model do
   	before(:each) { @document.save }
 
   	it "has current_state of 'uploaded'" do
-  		@document.status_quo == 'uploaded'
+  		@document.state == 'uploaded'
   	end
 
   	it "has association with correct user as owner" do
@@ -41,33 +41,47 @@ RSpec.describe Document, :type => :model do
   	end
 
   	describe "verifying an upload" do
-  		before { @document.verifying }
+  		before do 
+        @document.checked = true
+        @document.transitioning!
+      end
 
-		it "transitions the document into verified state" do
-  			@document.status_quo.should == 'verified'
+		  it "transitions the document into verified state" do
+  			@document.state.should == 'verified'
   		end
   	end
 
   	describe "flagging an upload" do
-  		before { @document.flagging }
+  		before do 
+        @document.flagged = true
+        @document.transitioning!
+      end
 
   		it "transitions the document into flagged state" do
-  			@document.status_quo.should == 'flagged'
+  			@document.state.should == 'flagged'
   		end
 
   		describe "then later verifying it" do
-  			before { @document.verifying }
+  			before do 
+          @document.checked = true
+          @document.flagged = false
+          @document.transitioning!
+        end
 
-			it "transitions the document into verified state" do
-	  			@document.status_quo.should == 'verified'
+			  it "transitions the document into verified state" do
+	  			@document.state.should == 'verified'
 	  		end  			
   		end
 
   		describe "then later dropping the document" do
-  			before { @document.dropping }
+  			before do 
+          @document.checked = true
+          @document.flagged = true
+          @document.transitioning!
+        end
   			
 			it "transitions the document into verified state" do
-	  			@document.status_quo.should == 'dropped'
+	  			@document.state.should == 'dropped'
 	  		end  			
   		end  		
   	end

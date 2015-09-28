@@ -332,6 +332,7 @@ GEM
     unf_ext (0.0.7.1-x86-mingw32)
     user_agent_parser (2.2.0)
     uuidtools (2.1.5)
+    wannabe_bool (0.1.1)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.0.0)
@@ -402,6 +403,7 @@ DEPENDENCIES
   turbolinks (= 2.5.3)
   tzinfo-data
   uglifier (= 2.6.0)
+  wannabe_bool
   web-console (= 2.0.0)
 
 BUNDLED WITH

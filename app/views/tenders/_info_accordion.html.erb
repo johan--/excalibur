@@ -23,8 +23,8 @@
 
 		      <strong>Penggunaan</strong> 
 		      <p class="text">
-						<span><strong>Tujuan</strong> <%= @tender.intent_type.titleize unless @tender.intent_type.nil? %></span>      
-		      	<span><strong>Aset Yang Diincar</strong> <%= @tender.intent_assets %></span>
+						<span><strong>Tujuan</strong> <%= @tender.intent.titleize unless @tender.intent.nil? %></span>      
+		      	<span><strong>Aset Yang Diincar</strong> <%= @tender.tangible %></span>
 		      </p>      
 		    </div>                
 

@@ -46,7 +46,6 @@ Fustal::Application.routes.draw do
   resources :documents do
     member do
       get "delete"
-      put "verify"
     end
   end
 

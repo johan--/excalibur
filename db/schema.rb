@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923101200) do
+ActiveRecord::Schema.define(version: 20150928095747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,17 +62,17 @@ ActiveRecord::Schema.define(version: 20150923101200) do
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "bidder_id",                             null: false
-    t.string   "bidder_type",                           null: false
-    t.integer  "tender_id",                             null: false
-    t.string   "state",                                 null: false
-    t.integer  "contribution_sens",     default: 0,     null: false
-    t.string   "contribution_currency", default: "IDR", null: false
-    t.jsonb    "properties",            default: {},    null: false
-    t.jsonb    "details",               default: {}
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "slug",                                  null: false
+    t.integer  "bidder_id",                                       null: false
+    t.string   "bidder_type",                                     null: false
+    t.integer  "tender_id",                                       null: false
+    t.string   "state",                                           null: false
+    t.integer  "contribution_sens",     limit: 8, default: 0,     null: false
+    t.string   "contribution_currency",           default: "IDR", null: false
+    t.jsonb    "properties",                      default: {},    null: false
+    t.jsonb    "details",                         default: {}
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "slug",                                            null: false
   end
 
   add_index "bids", ["bidder_type", "bidder_id"], name: "index_bids_on_bidder_type_and_bidder_id", using: :btree
@@ -244,19 +244,32 @@ ActiveRecord::Schema.define(version: 20150923101200) do
   add_index "teams", ["deleted_at"], name: "index_teams_on_deleted_at", using: :btree
   add_index "teams", ["teamable_type", "teamable_id"], name: "index_teams_on_teamable_type_and_teamable_id", using: :btree
 
+  create_table "tender_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "tender_id",                  null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "tender_transitions", ["tender_id", "most_recent"], name: "index_tender_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "tender_transitions", ["tender_id", "sort_key"], name: "index_tender_transitions_parent_sort", unique: true, using: :btree
+
   create_table "tenders", force: :cascade do |t|
-    t.integer  "tenderable_id",                        null: false
-    t.string   "tenderable_type",                      null: false
-    t.string   "state",                                null: false
-    t.integer  "target_sens",          default: 0,     null: false
-    t.string   "target_currency",      default: "IDR", null: false
-    t.integer  "contributed_sens",     default: 0,     null: false
-    t.string   "contributed_currency", default: "IDR", null: false
-    t.jsonb    "properties",           default: {},    null: false
-    t.jsonb    "details",              default: {},    null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.string   "slug",                                 null: false
+    t.integer  "tenderable_id",                                  null: false
+    t.string   "tenderable_type",                                null: false
+    t.string   "state",                                          null: false
+    t.integer  "target_sens",          limit: 8, default: 0,     null: false
+    t.string   "target_currency",                default: "IDR", null: false
+    t.integer  "contributed_sens",     limit: 8, default: 0,     null: false
+    t.string   "contributed_currency",           default: "IDR", null: false
+    t.jsonb    "properties",                     default: {},    null: false
+    t.jsonb    "details",                        default: {},    null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "slug",                                           null: false
   end
 
   add_index "tenders", ["details"], name: "index_tenders_on_details", using: :gin

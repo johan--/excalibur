@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   before(:each) do
   	@user = User.new(email: "galih@example.com", password: "foobarbaz",
-  		password_confirmation: "foobarbaz", name: "galih muhammad", business: true)
+  		password_confirmation: "foobarbaz", name: "galih muhammad", client: true)
   end
 
   subject { @user }
@@ -15,7 +15,10 @@ RSpec.describe User, :type => :model do
   it { should respond_to(:last_education) }
   it { should respond_to(:marital_status) }
   it { should respond_to(:work_experience) }
-  it { should respond_to(:industry_experience) }
+  it { should respond_to(:occupation) }
+  it { should respond_to(:number_dependents) }
+  it { should respond_to(:monthly_income) }
+  it { should respond_to(:monthly_expense) }
   it { should respond_to(:avatar) }
   it { should respond_to(:auth_token) }
 
@@ -31,12 +34,12 @@ RSpec.describe User, :type => :model do
   	    profile[:open].should == true 
   	  end
 
-  	  it 'returns default value of business boolean' do
-  	  	profile[:business].should == true 
+  	  it 'returns default value of client boolean' do
+  	  	profile[:client].should == true 
   	  end
 
-  	  it 'returns default value of investor boolean' do
-  	  	profile[:investor].should == nil
+  	  it 'returns default value of financier boolean' do
+  	  	profile[:financier].should == nil
   	  end
     end
 
@@ -59,22 +62,22 @@ RSpec.describe User, :type => :model do
     end
 
     describe "scoping users" do
-      let!(:user_2) { FactoryGirl.create(:entrepreneur) }
-      let!(:user_3) { FactoryGirl.create(:entrepreneur) }
-      let!(:user_4) { FactoryGirl.create(:investor) }
+      let!(:user_2) { FactoryGirl.create(:client) }
+      let!(:user_3) { FactoryGirl.create(:client) }
+      let!(:user_4) { FactoryGirl.create(:financier) }
       
-      describe "User.owners" do
-        let!(:result) { User.owners }
+      describe "All users which are clients" do
+        let!(:result) { User.clients }
 
-        it "returns user that has boolean business set to true" do
+        it "returns user that has boolean client set to true" do
           result.count.should == 3
         end
       end
 
-      describe "User.owners" do
-        let!(:result) { User.investors }
+      describe "All users which are financiers" do
+        let!(:result) { User.financiers }
 
-        it "returns user that has investor business set to true" do
+        it "returns user that has financier client set to true" do
           result.count.should == 1
         end
       end      

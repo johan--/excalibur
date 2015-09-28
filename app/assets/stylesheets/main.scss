@@ -6,7 +6,7 @@
 @import "styles/colorful-modal";
 @import "styles/custom-panels";
 @import "styles/portlet";
-@import "styles/tender-list";
+@import "styles/biz-list";
 @import "styles/tender";
 @import "styles/blog";
 @import "styles/svg-styling";
@@ -141,9 +141,6 @@ a:focus {
   margin: 0 !important;
 }
 
-.home-prompt {
-  margin-top: 50px;
-}
 
 .no-select {
     -webkit-touch-callout: none;

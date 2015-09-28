@@ -1,17 +1,24 @@
 class Admin::DocumentsController < Admin::BaseController
-  before_action :set_document, only: [:show, :edit, :verify]
+  before_action :set_document, only: [:show, :edit, :update]
 
   def index
+    @admin = true
     @documents = Document.all
   end
 
   def show
+    @admin = true
   end
 
-  def edit
-  end
-
-  def verify
+  def update
+    if @document.update(document_params)
+      @document.transitioning!
+      flash[:notice] = 'Dokumen berhasil dikoreksi'
+      redirect_to admin_documents_path 
+    else
+      flash[:warning] = 'Dokumen gagal dikoreksi'
+      render :index
+    end    
   end
 
   private
@@ -20,13 +27,12 @@ class Admin::DocumentsController < Admin::BaseController
     @document = Document.friendly.find(params[:id])
   end
 
-  # def user_params
-  #   params.require(:user).permit(
-  #   :email,
-  #   :password,
-  #   :admin,
-  #   :locked
-  #   )
-  # end
+  def document_params
+    params.require(:document).permit(
+    :checked,
+    :flagged,
+    :public_id
+    )
+  end
 
 end

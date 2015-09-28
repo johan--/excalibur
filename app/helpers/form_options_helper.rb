@@ -1,4 +1,7 @@
 module FormOptionsHelper
+  def boolean_options
+  	[ ["True", true], ["False", false] ]
+  end
 
   def days_list
 	[ [ "Senin", "Monday"], ["Selasa", "Tuesday"], ["Rabu", "Wednesday"],
@@ -47,12 +50,16 @@ module FormOptionsHelper
 	end
 
 # Tender form options
+	def aqad_options
+		["Murabahah lil Amri bil Shira", "Musyarakah Mutanaqishah"]
+	end
+
 	def case_options
 		["Pembelian", "Pembangunan", "Perbaikan/Renovasi", "Pelunasan"]
 	end
 
 	def intent_options
-		[ "Tempat Tinggal", "Investasi"]
+		["Tempat Tinggal", "Investasi"]
 	end
 
 	def tangible_options

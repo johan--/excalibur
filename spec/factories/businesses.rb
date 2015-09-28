@@ -7,7 +7,7 @@ FactoryGirl.define do
 
     factory :business_with_founder do
       before(:create) do |business|
-        founder { FactoryGirl.create(:entrepreneur) }
+        founder { FactoryGirl.create(:client) }
       end
 
       starter_email { founder.email }
@@ -22,7 +22,7 @@ FactoryGirl.define do
 
     trait :with_starter do
       transient do
-        user { FactoryGirl.create(:entrepreneur) }
+        user { FactoryGirl.create(:client) }
       end
 
       starter_email { user.email }
