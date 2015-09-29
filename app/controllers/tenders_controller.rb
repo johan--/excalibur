@@ -27,7 +27,7 @@ class TendersController < ApplicationController
 
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
-      redirect_to user_root_path 
+      redirect_to @tender
     else
       render :new 
       find_tenderable
@@ -37,7 +37,7 @@ class TendersController < ApplicationController
   def update
     if @tender.update(tender_params)
       flash[:notice] = 'Proposal berhasil dikoreksi'
-      redirect_to user_root_path 
+      redirect_to @tender
     else
       render :edit
     end
@@ -76,7 +76,7 @@ private
       :tenderable, :tenderable_type, :tenderable_id, 
       :category, :target, :target_sens,
       # properties
-      :summary, 
+      :summary, :published,
       # details
       :aqad, :aqad_code, :use_case,
       :intent, :tangible, :address, :price

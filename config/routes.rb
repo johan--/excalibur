@@ -73,7 +73,7 @@ Fustal::Application.routes.draw do
         get "delete"
       end
     end
-    resources :tenders
+    resources :tenders, only: [:index, :update]
   end
 
   namespace :enterprise do

@@ -28,18 +28,18 @@ RSpec.describe User, :type => :model do
   	before(:each) { @user.save }
     
     describe ".profile" do
-      let!(:profile)  { @user.profile }
+      let!(:preferences)  { @user.preferences }
 
   	  it 'returns default values of open booelan' do
-  	    profile[:open].should == true 
+  	    preferences[:open].should == true 
   	  end
 
   	  it 'returns default value of client boolean' do
-  	  	profile[:client].should == true 
+  	  	preferences[:client].should == true 
   	  end
 
   	  it 'returns default value of financier boolean' do
-  	  	profile[:financier].should == nil
+  	  	preferences[:financier].should == nil
   	  end
     end
 

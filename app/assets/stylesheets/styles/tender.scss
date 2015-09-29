@@ -22,14 +22,10 @@
 }
 .panel-heading {
     border: none;
-    background-color: $brand-primary;
-    h3.panel-title{
-        color: white;
-    }
-
+    background-color: #eee;
 }
-.panel-body {
-    /*background-color: #f5f5f5;*/
+.panel-body #tender-item {
+    background-color: #f5f5f5;
 }
 .panel-title {
     font-weight: 400;

@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\Achange_me/
 
   serialize :preferences, HashSerializer
-  store_accessor :preferences, :language, :currency
-
+  store_accessor :preferences, 
+          :language, :currency, :open, :client, :financier
   serialize :profile, HashSerializer
   store_accessor :profile, 
-    :open, :client, :financier, :phone_number, :about, :last_education,
+    :phone_number, :about, :last_education,
     :marital_status, :work_experience, :number_dependents, :occupation,
-    :monthly_income, :monthly_expense, :address
+    :monthly_income, :monthly_expense, :address, :facebook_id, :google_id, :twitter_id
   
   attr_wannabe_bool :financier, :client, :open
 
@@ -51,10 +51,10 @@ class User < ActiveRecord::Base
   before_save :up_name
     
   scope :financiers, -> { 
-    where("users.profile->>'financier' = :true", true: "true") 
+    where("users.preferences->>'financier' = :true", true: "true") 
   }
   scope :clients, -> { 
-    where("users.profile->>'client' = :true", true: "true") 
+    where("users.preferences->>'client' = :true", true: "true") 
   }    
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -84,7 +84,8 @@ class User < ActiveRecord::Base
           name: auth.info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20], 
-          client: true
+          avatar: auth.info.image
+          # client: true
         )
         user.save!
       end

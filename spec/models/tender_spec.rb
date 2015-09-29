@@ -25,7 +25,7 @@ RSpec.describe Tender, :type => :model do
 	it { should respond_to(:tangible) }
 	it { should respond_to(:intent) }
 	it { should respond_to(:use_case) }
-	it { should respond_to(:own_capital) }
+	it { should respond_to(:published) }
 	it { should respond_to(:aqad) }
 	it { should respond_to(:aqad_code) }
 	it { should be_valid }
@@ -78,7 +78,7 @@ RSpec.describe Tender, :type => :model do
   describe "scoping tender" do
   	let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, tenderable: user) }
   	let!(:tender_2) { FactoryGirl.create(:retail, :musharakah, tenderable: user) }
-  	let!(:tender_3) { FactoryGirl.create(:retail, :murabahah, tenderable: user) }
+  	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
 
   	describe "Tender.open" do
 	  let!(:result) { Tender.open }
@@ -89,10 +89,10 @@ RSpec.describe Tender, :type => :model do
   	end
 
   	describe "Tender.with_aqad(aqad)" do
-	  let!(:musharakah) { Tender.with_aqad('musharakah') }
+	  let!(:murabahah) { Tender.with_aqad('Murabahah') }
 
-	  it "returns tender that has musharakah as aqad" do
-	  	musharakah.count.should == 2
+	  it "returns tender that has murabahah as aqad" do
+	  	murabahah.count.should == 1
 	  end
   	end
 

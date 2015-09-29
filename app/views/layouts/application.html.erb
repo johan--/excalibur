@@ -15,10 +15,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/mobile_navbar' %>
   <% if @disable_nav  %>
     <%= yield %>
   <% else %>
-    <%= render 'layouts/mobile_navbar' %>
     <% if @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
     <% else %>

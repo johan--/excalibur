@@ -8,19 +8,19 @@
       <span class="caption-helper"><%=  %></span>
     </div>
     <ul class="nav nav-tabs">
-      <li>
+      <li class="active">
         <a href="#portlet_tab2" data-toggle="tab">
           Info
         </a>
       </li>    
-      <li class="active">
+      <li>
         <a href="#portlet_tab1" data-toggle="tab">
-          Proposal
+          Pembiayaan
         </a>
       </li>
       <li>
         <a href="#portlet_tab3" data-toggle="tab">
-          Help
+          Bantuan
         </a>
       </li>
     </ul>
@@ -30,46 +30,41 @@
   <div class="portlet-body">
     <div class="tab-content">
 
-      <div class="tab-pane" id="portlet_tab2">
+      <div class="tab-pane active" id="portlet_tab2">
         <div class="row">
           <div class="col-md-12">
-            <%= render 'elements/userbox' %>
+            <%= render 'pages/userbox' %>
           </div>
         </div>
       </div>
 
-      <div class="tab-pane active" id="portlet_tab1">
+      <div class="tab-pane" id="portlet_tab1">
         <div class="row">               
           <div class="col-md-12">
             <div class="weather-3 pn centered">
-              <div class="col-md-6">
-                <i class="fa fa-briefcase centerpiece"></i>
+              <div class="col-md-4">
+                <i class="fa fa-bank centerpiece"></i>
                 <h3>
-                  PROPOSAL
+                  PEMBIAYAAN
                   <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
                 </h3>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <div class="home-prompt">
-                  <%= link_to 'Buat Pengajuan', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt", :remote => true  %>                
-                  
+                  <%= link_to 'Buat Proposal', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt", :remote => true  %>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
           <div class="col-md-12 col-sm-12">
-            <div class="tickets-container">
-              <ul class="tickets-list">
+            <%= render current_user.tenders  %>
 
-              <%= render current_user.tenders %>
-
-              </ul>
-            </div>            
           </div>
         </div>  
       </div>
 
       <div class="tab-pane" id="portlet_tab3">
+        <%= render 'pages/help' %>
       </div>
 
     </div>

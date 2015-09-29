@@ -1,0 +1,88 @@
+<div class="weather-3 pn centered">
+  <div class="col-md-4">
+    <i class="fa fa-info centerpiece"></i>
+    <h3>
+      BANTUAN
+      <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
+    </h3>
+  </div>
+  <div class="col-md-8">
+    <div class="home-prompt">
+       <%= link_to 'Kontak Kami', contact_path, class: "btn btn-outlined btn-theme mt", remote: true  %> 
+    </div>
+  </div>
+</div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">                
+  <!-- panel 1 -->
+  <div class="panel panel-default">
+    <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false"> 
+      <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">  
+        <h4 class="panel-title">Tahapan</h4>
+      </div>
+    </span>
+    
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <p>1. Unggah dokumen-dokumen yang relevan untuk meningkatkan kredibilitas kamu. Apabila dokumen yang kamu sediakan belum memadai, proposalmu tidak akan diproses. </p>
+        <p>2. Buat proposal. Dalam proposal ini kamu menyebutkan informasi-informasi mengenai rumah yang kamu inginkan. Proposal ini hanya berfungsi sebagai pernyataan tertulis tentang barang tersebut dan tidak ada kewajiban hukum apapun yang muncul dari itu.</p>
+        <p>3. Apabila berkas dokumenmu telah cukup lengkap, tunggu kabar dari tim kami untuk menjadwalkan wawancara tatap muka dan juga survey ke rumah yang kamu sebutkan di proposal.</p>
+        <p>4. Setelah wawancara dan survei selesai, proposal kamu akan diteruskan kepada semua mitra pendana kami.</p>
+        <p>5. Apabila ada mitra pendana yang tertarik dan target dana telah tercapai, maka lanjut ke tahap pembuatan kontrak dan eksekusi.</p>
+        <p>6. Kontrak dijalani dan masing-masing pihak memenuhi kewajibannya dan mendapatkan haknya.</p>
+      </div>
+    </div>
+  </div> 
+  <!-- / panel 1 -->
+  
+  <!-- panel 2 -->
+  <div class="panel panel-default">
+    <!--wrap panel heading in span to trigger image change as well as collapse -->
+    <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+      <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <h4 class="panel-title collapsed">Dokumen</h4>
+      </div>
+    </span>
+
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <p>Dokumen-dokumen yang relevan diunggah dengan format PDF (untuk yang memiliki banyak halaman) atau PNG atau JPG. Berikut ini daftar dokumen yang relevan: 
+        <p>Dokumen identifikasi - KTP, SIM, Kartu Keluarga, Nomor Pokok Wajib Pajak, Pas Foto (4x6)</p>
+        <p>Bukti penghasilan - untuk pegawai: Slip gaji & surat keterangan masa kerja; - untuk pengusaha: Laporan Keuangan Bisnis, akte perusahaan, SIUP, TDP; - untuk profesional: surat izin praktek profesi, sertifikat profesi</p>
+        <p>Bukti pengeluaran - Rekening tabungan, bukti bayar listrik, telepon, dan tagihan lainnya</p>
+      </div>
+    </div>
+  </div>
+  <!-- / panel 2 -->
+  
+  <!--  panel 3 -->
+  <div class="panel panel-default">
+    <!--wrap panel heading in span to trigger image change as well as collapse -->
+    <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+      <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <h4 class="panel-title">Murabahah </h4>
+      </div>
+    </span>
+
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <p>Murabahah sederhananya adalah akad jual-beli barang yang boleh dilakukan secara angsuran atau tunai selama mematuhi rambu-rambu syariah Islam. Salah satu rambu yang penting adalah barang harus telah dimiliki secara fisik oleh penjual sebelum akad jual-beli dilakukan. Dalam hal dimana penjual belum memiliki barangnya, maka pemesanan boleh dilakukan namun tidak boleh ada kontrak jual-beli yang mengikat si pemesan/pembeli, dengan kata lain apabila pembeli ingin membatalkan pesanan atau transaksi, tidak ada konsekuensi baginya.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--  panel 4 -->
+  <div class="panel panel-default">
+    <!--wrap panel heading in span to trigger image change as well as collapse -->
+    <span class="side-tab" data-target="#tab4" data-toggle="tab" role="tab" aria-expanded="false">
+      <div class="panel-heading" role="tab" id="headingFour"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          <h4 class="panel-title">Musyarakah Mutanaqishah </h4>
+      </div>
+    </span>
+
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        <p>Berbeda dengan murabahah, musyarakah mutanaqishah (MMQ) adalah akad syirkah (berkerja sama) salah satunya untuk kepemilikan bersama atas suatu barang. Barang tersebut kemudian disewakan kepada rekan syirkah yang mau memakainya atau kepada pihak ketiga. Rekan syirkah atau pihak ketiga dapat membeli porsi kepemilikan rekan yang lain selama ada persetujuan dari rekan tersebut. Ketika barang dimiliki penuh (100%) oleh satu rekan, maka syirkah disebut selesai.</p>
+      </div>
+    </div>
+  </div>
+</div> <!-- / panel-group -->

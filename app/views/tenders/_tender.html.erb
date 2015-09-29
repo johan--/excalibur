@@ -1,27 +1,92 @@
-<li class="ticket-item" id="<%= tender.barcode %>">
+<div class="panel-body inf-content">
   <div class="row">
-    <div class="ticket-user col-md-5 col-sm-12">
-      <span class="user-name">
-        <strong><%= tender.barcode %></strong>Oleh: <%= link_to tender.tenderable.name, user_path(tender.tenderable) %>
-      </span>
-      <span class="user-company">
-      </span>
+    <div class="col-md-4 text-center">
+      <i class="fa fa-file-text fa-4x" style="display: block;"></i>
+      <h3>Proposal <%= tender.barcode %></h3>
+      <h5>Klien: <%= tender.tenderable.name %></h5>
+      <ul title="Ratings" class="list-inline ratings">
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+      </ul>
+        <%= link_to 'Edit', edit_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+        <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>      
     </div>
-    <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
-      <div class="divider hidden-md hidden-sm hidden-xs"></div>
-      <span class="time">
-        <%= link_to 'Edit', '#', class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
-        <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>        
-      </span>
+    <div class="col-md-6">
+      <div class="table-responsive">
+        <table class="table table-condensed table-responsive table-user-information">
+          <tbody>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-briefcase text-primary"></span> Akad
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= tender.aqad %>
+              </td>
+            </tr>
+            <tr>    
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-cloud text-primary"></span> Status
+                </strong>
+              </td>
+              <td class="text-primary"><%= tender.state %></td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                    <span class="glyphicon glyphicon-bookmark text-primary"></span> Kategori
+                </strong>
+              </td>
+              <td class="text-primary"><%= tender.category %> </td>
+            </tr>
+            <tr>        
+                <td>
+                  <strong>
+                    <span class="glyphicon glyphicon-piggy-bank text-primary"></span> Target 
+                  </strong>
+                </td>
+                <td class="text-primary">
+                    <%= idr_money(tender.target) %> (0%)
+                </td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-eye-open text-primary"></span> Tawaran
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= tender.bids.count %> tawaran
+              </td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-send text-primary"></span> Dibuat   
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= tender.created_at %>
+              </td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-pencil text-primary"></span> Dikoreksi
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= tender.updated_at %>
+              </td>
+            </tr>                                    
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="ticket-type  col-md-3 col-sm-6 col-xs-12">
-      <span class="divider hidden-xs"></span>
-      <span class="type">
-        <%= tender.state %>
-      </span>
-    </div>
-    <div class="ticket-state bg-palegreen">
-        <i class="fa fa-check"></i>
-    </div>
-</div>
-</li>
+  </div>
+</div>              

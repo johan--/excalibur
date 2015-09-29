@@ -2,11 +2,11 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
     :landing, :email, :subscribe
   ]
-  before_action :disable_nav, only: :landing
   before_action :user_layout, only: [:home, :contact]
 
   def landing
     @category = "landing"
+    @disable_nav = true
   end
 
   def home

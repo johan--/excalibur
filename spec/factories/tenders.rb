@@ -21,8 +21,14 @@ FactoryGirl.define do
   	end
 
   	factory :consumer_tender do
-  	  category "ConsumerFinancing"
-  	  target "5000000"
+  	  category "Individu"
+  	  target 400000000
+      price 500000000
+      address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak, Jakarta Selatan"
+      intent "Tempat Tinggal"
+      tangible "Rumah Tunggal"
+      use_case "Pembelian"
+      published true
 
       factory :con_tender do
         transient do
@@ -33,16 +39,16 @@ FactoryGirl.define do
       end      
   	end
 
-    trait :musharakah do
-      aqad "musharakah"
+    trait :draft do
+      published false
     end
 
-    trait :mudharabah do
-      aqad "mudharabah"
+    trait :musharakah do
+      aqad "Musyarakah Mutanaqishah"
     end
 
     trait :murabahah do
-      aqad "murabahah"
+      aqad "Murabahah"
     end
 
     trait :tenderable do

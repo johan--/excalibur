@@ -1,0 +1,40 @@
+<% title("Proposal | Admin Dashboard") %>
+<h1>Users <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <%= paginate @tenders %>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Klien</th>
+    <th>Akad</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Status</th>
+    <th>Target</th>
+    <th></th>
+  </tr>
+
+  <% @tenders.each do |tender| %>
+
+  <tr>
+    <td><%= link_to tender.barcode, show_tender_link(tender) %></td>
+    <td><%= tender.tenderable.name %></td>
+    <td><%= tender.aqad %></td>
+    <td><%= time_ago_in_words(tender.created_at) %></td>
+    <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
+    <td><%= tender.state %></td>
+    <td><%= money_without_cents_and_with_symbol(tender.target) %></td>
+    <td><%= link_to "Proses", '#' %></td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+<div class="text-center">
+  <%= paginate @tenders %>
+</div>

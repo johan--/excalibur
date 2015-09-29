@@ -1,6 +1,6 @@
 <% title("Masuk") %>
 
-<div class="container-fluid">
+
       
     <div class="omb_login">
       <h3 class="omb_authTitle">Masuk via</h3>
@@ -31,19 +31,19 @@
 
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <span class="input-group-addon"><i class="fa fa-envelope fa-1x"></i></span>
           <%= f.text_field :email, placeholder: "email kamu", class: "form-control", required: true %>
           </div>
           <br>
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <span class="input-group-addon"><i class="fa fa-lock fa-1x"></i></span>
             <%= f.password_field :password, class: "form-control", placeholder: "masukkan password kamu, minimal 8 karakter", required: true %>
           </div>
           <br>
           <% if devise_mapping.rememberable? -%>
             <p class="small"  style="margin-bottom: 0px;">*Jangan klik kotak 'Ingat saya' kalau kamu tidak menggunakan perangkat pribadi</p>    
-            <%= f.check_box :remember_me %>   
             <%= f.label :remember_me, 'Ingat saya' %>
+            <%= f.check_box :remember_me %>   
           <% end -%>
           <br>
           <%= f.submit "Masuk", class: "btn btn-lg btn-block btn btn-outlined btn-theme", data: {disable_with: "Memasuki sesi...."} %>
@@ -57,5 +57,3 @@
     </div>
        
   </div>
-
-</div>

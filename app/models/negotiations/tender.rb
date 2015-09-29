@@ -25,19 +25,22 @@ class Tender < ActiveRecord::Base
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
-                 :open, :category, :status_quo,
+                 :open, :category, 
                  :summary, :barcode, :tenderable_name
 
   serialize :details, HashSerializer
   store_accessor :details, 
                  :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :price
+                 :address, :price, :published
 
   validates_presence_of :aqad, :summary#, :target, :contributed
 
   before_create :set_default_values!
   # before_save :calculate_owner_capital!
   after_touch :update_contribution!
+
+  # Pagination
+  paginates_per 30
 
   def self.categories
     %w(Institusi Bisnis Individu)
@@ -94,12 +97,13 @@ private
     self.barcode = "##{SecureRandom.hex(3)}"
     self.tenderable_name = self.tenderable.name
     self.open = true
+    # self.published = false if self.published.nil?
   end
 
   def slug_candidates
     [ 
       :barcode,
-      [:tenderable_name, :barcode]
+      [:barcode, :tenderable_name, ]
     ]
   end
 

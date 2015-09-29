@@ -51,7 +51,7 @@ module FormOptionsHelper
 
 # Tender form options
 	def aqad_options
-		["Murabahah lil Amri bil Shira", "Musyarakah Mutanaqishah"]
+		["Murabahah", "Musyarakah Mutanaqishah"]
 	end
 
 	def case_options
@@ -70,7 +70,9 @@ module FormOptionsHelper
 		["10%", "20%", "30%", "40%", "50%", "60%"]
 	end
 
-
+  def published_options
+  	[ ["Ya", true], ["Tidak", false] ]
+  end
 # Document options
 	def document_categories
 		["Identifikasi", "Sertifikat Pencapaian", "Bukti Kepemilikan", 

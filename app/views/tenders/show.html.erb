@@ -24,13 +24,6 @@
 					<span class="badge"><%= @bids.count %></span>
 				</a>
 			</li>
-
-				<li>
-					<a href="#portlet_tab3" data-toggle="tab">
-						<i class="fa fa-lg fa-flash"></i>
-					</a>
-				</li>
-
 		</ul>
 	</div>
 	
@@ -58,22 +51,22 @@
 	            </div>				
 				<div class="profile-stats">
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink"><%= @tender.tenderable.name %></div>
+				      <div class="stats-value pink" id="tender-client"><%= @tender.tenderable.name %></div>
 				      <div class="stats-title">KLIEN</div>
 				  </div>
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink"><%= idr_money(@tender.target) %></div>
+				      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %></div>
 				      <div class="stats-title">TARGET</div>
 				  </div>
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink"><%= idr_money(@tender.contributed) %></div>
+				      <div class="stats-value pink" id="tender-contributed"><%= idr_money(@tender.contributed) %></div>
 				      <div class="stats-title">KONTRIBUSI</div>
 				  </div>
 				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
 				        Kredibilitas: 
 				    </div>
 				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        Harga: <strong><%= idr_money(@tender.price) %></strong>
+				        Harga: <strong><span id="tender-price"><%= idr_money(@tender.price) %></span></strong>
 				    </div>
 				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
 				        Tawaran: <strong><%= @tender.bids.count %></strong>
@@ -82,14 +75,18 @@
 				</div>					
 				<h4>Tentang Aset</h4>
 			    <div class="notice notice-info">
-			      <strong>Penggunaan</strong> 
+			      <strong>Tujuan</strong> 
 			      <p class="text">
 					<span>Aset akan difungsikan sebagai <strong><%= @tender.intent unless @tender.intent.nil? %></strong></span>.
 					<span>Dana yang terkumpul akan digunakan untuk <strong> <%= @tender.use_case %></strong></span>.
 			      	<span>Aset bertipe <strong><%= @tender.tangible %></strong></span> dan terletak di <strong><%= @tender.address %></strong>
 			      </p>
-			      <strong>Rangkuman</strong> 
-			      <p><%= @tender.summary %></p>
+			      <strong>Penilaian</strong> 
+			      <% if @tender.summary.nil? %>
+			      	<p>Belum ada penilaian</p>
+			      <% else %>
+			      	<p><%= @tender.summary %></p>
+			      <% end %>
 			    </div>			    
 			</div>
 
@@ -97,9 +94,11 @@
 				<div class="text">
 					<h4>Tawaran</h4>
 					<% if @bids.count == 0 %>
-						<p class="starting-suggestion">
-							Belum ada tawaran
-						</p>
+						<div class="blankslate">
+							<div class="spacious">
+								<h3><%= "Belum Ada Tawaran" %></h3>
+							</div>
+						</div>
 					<% end %>
 					<% @bids.find_each do |bid| %>
 						<div class="msg msg-info"> 
@@ -109,9 +108,6 @@
 						</div>
 					<% end %>
 				</div>
-			</div>
-			<div class="tab-pane" id="portlet_tab3">
-				
 			</div>
 		</div>
 	</div>

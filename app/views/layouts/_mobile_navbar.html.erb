@@ -1,17 +1,12 @@
 <div class="navbar-more-overlay"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top animate">
 	<div class="container navbar-more visible-xs">
-		<form class="navbar-form navbar-left" role="search">
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for...">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="submit">Submit</button>
-					</span>
-				</div>
-			</div>
-		</form>
+		<br>
+		<br>
 		<ul class="nav navbar-nav">
+			<li>
+				<%= link_fa_to('anchor', 'Utama', root_url(subdomain: '')) %>
+			</li>		
 			<li>
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>			
@@ -56,7 +51,7 @@
 			<li class="visible-xs">
 				<a href="#navbar-more-show">
 					<i class="menu-icon fa fa-bars"></i>
-					More
+					Opsi
 				</a>
 			</li>
 		</ul>
