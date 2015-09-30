@@ -34,6 +34,9 @@ Fustal::Application.routes.draw do
 
 # New App
   resources :users, only: [:show, :edit, :update] do
+    member do
+      get "avatar"
+    end    
     resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
   resources :teams

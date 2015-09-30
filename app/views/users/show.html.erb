@@ -1,4 +1,4 @@
-<% title("Profil") %>
+<% meta title: "Profil #{@user.name}" %>
 
 
 <div class="portlet portlet-bordered">
@@ -50,22 +50,23 @@
       </div>
 
       <div class="tab-pane" id="portlet_tab2">
-        <div class="col-sm-12">
-          <div class="text">      
-			      <h4>Bilah Dokumen</h4>
-		      </div>
-          <% if @documents.present? %>
-      		  <% @documents.each do |document| %>
-              <div class="col-xs-6 col-sm-4">
-      			    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
-              </div>
-      		  <% end %>
-          <% else %>
-            <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
-          <% end %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="text">      
+  			      <h4>Bilah Dokumen</h4>
+  		      </div>
+            <% if @documents.present? %>
+        		  <% @documents.each do |document| %>
+                <div class="col-xs-6 col-sm-4">
+        			    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+                </div>
+        		  <% end %>
+            <% else %>
+              <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
+            <% end %>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 

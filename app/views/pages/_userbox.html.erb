@@ -18,9 +18,11 @@
 </div>  
 <div class="profile-userpic">
   <% if current_user.avatar.nil? %>
-    <%= image_tag('default-avatar', class: "img-responsive") %>
+    <%= link_to avatar_user_path(current_user), remote: true do %>
+      <%= image_tag('default-avatar', class: "img-responsive") %>
+    <% end %>
   <% else %>
-    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+    <%= cl_image_tag(current_user.avatar, cloudinary_thumbnail_options ) %>
   <% end %>
 </div>
 <div class="profile-usertitle">

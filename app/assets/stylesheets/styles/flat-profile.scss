@@ -1,8 +1,11 @@
-.profile 
-{
+.profile {
     min-height: 355px;
     display: inline-block;
+    figure > img {
+        width: 50%;
+        height: 50%;
     }
+}
 figcaption.ratings
 {
     margin-top:20px;

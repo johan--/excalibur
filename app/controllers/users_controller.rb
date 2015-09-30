@@ -13,8 +13,12 @@ class UsersController < ApplicationController
       flash[:notice] = 'Profil berhasil diperbaharui'
       redirect_to user_root_path 
     else
+      Rails.logger.info(@user.errors.inspect) 
       render :edit
     end   
+  end
+
+  def avatar
   end
 
   # def edit_profile
@@ -37,7 +41,8 @@ private
 
   def profile_params
   	params.require(:user).permit(
-  	  :phone_number, :about, :last_education, :marital_status, :address,
+  	  :avatar, :image_id,
+      :phone_number, :about, :last_education, :marital_status, :address,
   	  	:work_experience, :occupation,
         :monthly_income, :monthly_expense,
         :number_dependents

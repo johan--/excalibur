@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     :monthly_income, :monthly_expense, :address, :facebook, :google, :twitter
   
   attr_wannabe_bool :financier, :client, :open
+  attr_accessor :image_id
 
 # Relations
   has_one  :identity
@@ -45,7 +46,6 @@ class User < ActiveRecord::Base
   # Validations
   validates :email, :presence => true
   validates :name, :presence => true
-  validates :understanding, :presence => true
   validates :auth_token, uniqueness: true
 
   before_create :set_auth_token!, :set_default_values!
