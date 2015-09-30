@@ -77,6 +77,10 @@ class Tender < ActiveRecord::Base
     end
   end
 
+  def funding_progress
+    contributed / target
+  end
+
 # Transitions
   def processing
     self.transition_to!(:processing)

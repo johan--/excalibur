@@ -5,11 +5,7 @@
 <div class="row">
 	
 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-	<% if current_user.client? %>	
-		<%= render 'founder_home' %>
-	<% elsif current_user.financier? %>
-		<%= render 'investor_home' %>
-	<% end %>
+	<%= render 'founder_home' %>
 </div>
 
 

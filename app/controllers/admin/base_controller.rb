@@ -5,6 +5,8 @@ class Admin::BaseController < ApplicationController
   def index
     @last_signups = User.last_signups(10)
     @last_signins = User.last_signins(10)
+    @last_subscribers = Subscriber.last_subscribes(10)
+    @subs_count = Subscriber.count
     @user_count = User.count
     @post_count = Post.count
     @doc_count = Document.count

@@ -1,7 +1,11 @@
 # Temporary admin account
-User.create(email: "galih@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Galih Muhammad", client: true, financier: true, admin: true)
+User.create(email: "galih@gmail.com", password: "asdasdasd", 
+  password_confirmation: "asdasdasd", name: "Galih Muhammad", 
+  client: true, financier: true, admin: true, understanding: true)
 
-User.create(email: "pampam@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Pampam", client: true, admin: true)
+User.create(email: "pampam@gmail.com", password: "asdasdasd", 
+  password_confirmation: "asdasdasd", name: "Pampam", client: true, 
+  admin: true, understanding: true)
 
 # Test user accounts
 (1..10).each do |i|
@@ -10,7 +14,8 @@ User.create(email: "pampam@gmail.com", password: "asdasdasd", password_confirmat
     password: "1234567",
     password_confirmation: "1234567",
     name: "Example #{i}",
-    financier: true
+    financier: true,
+    understanding: true
   )
 
   puts "#{i} test users created..." if (i % 5 == 0)

@@ -46,7 +46,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   rescue
     flash[:alert] = "The user with an id of #{params[:id]} doesn't exist."
     redirect_to admin_users_path

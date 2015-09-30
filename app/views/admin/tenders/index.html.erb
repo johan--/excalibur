@@ -1,6 +1,6 @@
 <% title("Proposal | Admin Dashboard") %>
-<h1>Users <small>Admin</small></h1>
-<p><%= link_to "Back to Admin", admin_root_path %></p>
+<h1>Proposal <small>Admin Dashboard</small></h1>
+<p><%= link_to "Back to Admin Root", admin_root_path %></p>
 
 <div class="text-center">
   <%= paginate @tenders %>
@@ -22,9 +22,9 @@
 
   <tr>
     <td><%= link_to tender.barcode, show_tender_link(tender) %></td>
-    <td><%= tender.tenderable.name %></td>
+    <td><%= link_to tender.tenderable.name, user_path(tender.tenderable) %></td>
     <td><%= tender.aqad %></td>
-    <td><%= time_ago_in_words(tender.created_at) %></td>
+    <td><%= tender.created_at.strftime("%Y/%m/%-d") %></td>
     <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
     <td><%= tender.state %></td>
     <td><%= money_without_cents_and_with_symbol(tender.target) %></td>

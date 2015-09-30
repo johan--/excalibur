@@ -1,9 +1,9 @@
 <% title("Admin Dashboard") %>
 <h1>Admin <small>Dashboard</small></h1>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-3 col-xs-6">
     <h3>Menu</h3>
-    <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{pluralize(@count, 'user')}" %></small></h4>
+    <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{pluralize(@user_count, 'user')}" %></small></h4>
     <h4><%= link_to "Articles", admin_posts_path %> <small>- <%= "#{pluralize(@post_count, 'post')}" %></small></h4>
     <h4><%= link_to "Documents", admin_documents_path %> <small>- <%= "#{pluralize(@doc_count, 'docs')}" %></small></h4>
     <h4><%= link_to "Proposals", admin_tenders_path %> <small>- <%= "#{pluralize(@tender_count, 'tender')}" %></small></h4>
@@ -11,7 +11,21 @@
     <hr/>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3 col-xs-6">
+    <h3>Recent Subscribers</h3>
+    <ul class="list-unstyled">
+      <% @last_subscribers.each do |subs| %>
+      <li class="list-padded-bottom">
+        <%= subs.email %><br/>
+        <small>
+          <%= time_ago_in_words(subs.created_at)%> ago
+        </small>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-sm-3 col-xs-6">
     <h3>Last Sign Ups</h3>
     <ul class="list-unstyled">
       <% @last_signups.each do |user| %>
@@ -23,7 +37,7 @@
     </ul>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3 col-xs-6">
     <h3>Last Sign Ins</h3>
     <ul class="list-unstyled">
       <% @last_signins.each do |user| %>

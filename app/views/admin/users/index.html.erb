@@ -17,11 +17,11 @@
 
 <table class="table table-striped">
   <tr>
-    <th>User ID</th>
+    <th>#</th>
+    <th>Email</th>
+    <th>Name</th>
     <th>Admin</th>
     <th>Locked</th>
-    <th>Email</th>
-    <th>Sign In Count</th>
     <th>Created At</th>
     <th>Last Sign In</th>
     <th>Last Sign In IP</th>
@@ -32,10 +32,10 @@
   <tr>
     <td><%= user.id %></td>
     <td><%= link_to user.email, admin_user_path(user) %></td>
+    <td><%= user.name %></td>
     <td><%= user.admin? ? "<b>yes</b>".html_safe : "no" %></td>
     <td><%= user.locked? ? "<b>yes</b>".html_safe : "no" %></td>
-    <td><%= user.sign_in_count %></td>
-    <td><%= time_ago_in_words(user.created_at) %></td>
+    <td><%= user.created_at.strftime("%Y/%m/%-d") %></td>
     <% unless user.last_sign_in_at.nil? %>
     <td><%= time_ago_in_words(user.last_sign_in_at)%> ago</td>
     <% else %>

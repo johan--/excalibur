@@ -1,4 +1,4 @@
-<% title("#{@tender.barcode}") %>
+<% meta title: "Proposal #{@tender.barcode}" %>
 
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
 
@@ -51,7 +51,7 @@
 	            </div>				
 				<div class="profile-stats">
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink" id="tender-client"><%= @tender.tenderable.name %></div>
+				      <div class="stats-value pink" id="tender-client"><%= link_to @tender.tenderable.name, user_path(@tender.tenderable) %></div>
 				      <div class="stats-title">KLIEN</div>
 				  </div>
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
@@ -72,8 +72,9 @@
 				        Tawaran: <strong><%= @tender.bids.count %></strong>
 				    </div>
 				    
-				</div>					
-				<h4>Tentang Aset</h4>
+				</div>
+				<br>
+				<br>					
 			    <div class="notice notice-info">
 			      <strong>Tujuan</strong> 
 			      <p class="text">
