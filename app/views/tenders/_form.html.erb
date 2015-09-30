@@ -1,14 +1,14 @@
-<%= simple_form_for([@tenderable, @tender]) do |f| %>
+<%= simple_form_for([@tenderable, @tender], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :target, label: "Besaran (Rp)", required: true %>
-	  <%= f.input :aqad, collection: aqad_options, selected: @tender.aqad, label: "Jenis Akad", required: true %>
-    <%= f.input :use_case, collection: case_options, selected: @tender.use_case, label: "Tujuan Pembiayaan", required: true %>
-    <%= f.input :intent, collection: intent_options, selected: @tender.intent, label: "Fungsi", required: true %>
+	  <%= f.input :aqad, collection: aqad_options, prompt: "Pilih", selected: @tender.aqad, label: "Jenis Akad", required: true %>
+    <%= f.input :use_case, collection: case_options, prompt: "Pilih", selected: @tender.use_case, label: "Tujuan Pembiayaan", required: true %>
+    <%= f.input :intent, collection: intent_options, prompt: "Pilih", selected: @tender.intent, label: "Fungsi", required: true %>
     <%= f.input :price, label: "Harga Aset", required: true %>
     <%= f.input :address, label: "Alamat", required: true %>
-    <%= f.input :tangible, collection: tangible_options, selected: @tender.tangible, label: "Bentuk Rumah", required: true %>
+    <%= f.input :tangible, collection: tangible_options, prompt: "Pilih", selected: @tender.tangible, label: "Bentuk Rumah", required: true %>
     <%= f.input :published, as: :radio_buttons, collection: published_options, label: "Langsung Publikasikan?", required: true %>
 
   </div>

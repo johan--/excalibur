@@ -10,35 +10,15 @@
 			<p><strong>Penghasilan Bulanan: </strong> <%= idr_money(user.monthly_income) %> </p>
 			<p><strong>Pengeluaran Bulanan: </strong> <%= idr_money(user.monthly_expense) %> </p>
 			<p><strong>Pekerjaan: </strong> <%= user.occupation %> </p>
-      <p><strong>Pengalaman Kerja: </strong> <br>
-            <span class="tags">html5</span> 
-            <span class="tags">css3</span>
-            <span class="tags">jquery</span>
-            <span class="tags">bootstrap3</span>
-      </p>
+      <p><strong>Pengalaman Kerja: </strong> <br> <%= user_career(user) %></p>
     </div>             
     <div class="col-xs-12 col-sm-6">
       <figure>
-        <%= image_tag("box-avatar", alt: "def-avatar", class: "img-circle img-responsive") %>
-        <figcaption class="ratings">
-            <p>Ratings
-            <a href="#">
-                <span class="fa fa-star"></span>
-            </a>
-            <a href="#">
-                <span class="fa fa-star"></span>
-            </a>
-            <a href="#">
-                <span class="fa fa-star"></span>
-            </a>
-            <a href="#">
-                <span class="fa fa-star"></span>
-            </a>
-            <a href="#">
-                 <span class="fa fa-star-o"></span>
-            </a> 
-            </p>
-        </figcaption>
+        <% if current_user.avatar.nil? %>
+          <%= image_tag('default-avatar', size: "150x150", class: "img-circle img-responsive") %>
+        <% else %>
+          <%= cl_image_tag(current_user.avatar, class: "img-circle img-responsive") %>
+        <% end %>
       </figure>
       <p><strong>Biografi: </strong><br> <span id="bio"><%= user.about %></span>  </p>
       <p><strong>Alamat: </strong><span id="address"> <%= user.address %> </p>
@@ -46,33 +26,16 @@
   </div>            
   <div class="col-xs-12 divider text-center">
     <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong> 20,7K </strong></h2>                    
-      <p><small>Followers</small></p>
-      <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
+      <h2><strong><%= user.credibility %></strong></h2>                    
+      <p>Kredibilitas</p>
     </div>
     <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong>245</strong></h2>                    
-      <p><small>Following</small></p>
-      <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
+      <h2><strong><%= documents.count %></strong></h2>                    
+      <p><small>Dokumen</small></p>
     </div>
     <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong>43</strong></h2>                    
-      <p><small>Snippets</small></p>
-      <div class="btn-group dropup btn-block">
-        <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu text-left" role="menu">
-          <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email </a></li>
-          <li><a href="#"><span class="fa fa-list pull-right"></span> Add or remove from a list  </a></li>
-          <li class="divider"></li>
-          <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
-          <li class="divider"></li>
-          <li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>
-        </ul>
-      </div>
+      <h2><strong>0</strong></h2>                    
+      <p><small>Respon</small></p>
     </div>
   </div>
 </div>                 

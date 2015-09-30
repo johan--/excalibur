@@ -10,7 +10,7 @@ FactoryGirl.define do
 
   	trait :with_user do
       transient do
-        author { FactoryGirl.create :entrepreneur }
+        author { FactoryGirl.create :client }
       end
 
       user { author }

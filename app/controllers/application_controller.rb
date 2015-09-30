@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
       :email,
       :password,
       :password_confirmation,
-      :name
+      :name,
+      :understanding
       )
     }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(

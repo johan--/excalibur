@@ -4,7 +4,7 @@ User.create(email: "galih@gmail.com", password: "asdasdasd", password_confirmati
 User.create(email: "pampam@gmail.com", password: "asdasdasd", password_confirmation: "asdasdasd", name: "Pampam", client: true, admin: true)
 
 # Test user accounts
-(1..25).each do |i|
+(1..10).each do |i|
   User.create(
     email: "user#{i}@example.com",
     password: "1234567",
@@ -17,8 +17,8 @@ User.create(email: "pampam@gmail.com", password: "asdasdasd", password_confirmat
 
 end
 
-# b = Business.create!(
-#   name: "Bisnis 1",
+# b = Firm.create!(
+#   name: "Bank 1",
 #   anno: 2015,
 #   about: "cloth dress jeans shirt jacket sock shoe",
 #   founding_size: 3,

@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :email, :subscribe
+    :landing, :tos, :email, :subscribe
   ]
-  before_action :user_layout, only: [:home, :contact]
+  before_filter :disable_background, only: :tos
 
   def landing
     @category = "landing"
@@ -10,16 +10,16 @@ class PagesController < ApplicationController
   end
 
   def home
-    @businesses = current_user.businesses
+    @documents = current_user.documents
     @tenders = Tender.all
-    @bids = current_user.bids
-    @activities = PublicActivity::Activity.order('created_at DESC').limit(12)
-
 
     respond_to do |format| 
       format.html
       format.js
     end
+  end
+
+  def tos
   end
 
   def contact
@@ -29,7 +29,6 @@ class PagesController < ApplicationController
     @name = params[:name]
     @email = params[:email]
     @message = params[:message]
-    # Contact.new(name: @name, email: @email, message: @message)
     
     if @name.blank?
       flash[:alert] = "Tolong isi namamu sebelum mengirimkan pesan. Terima kasih."

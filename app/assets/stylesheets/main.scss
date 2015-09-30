@@ -6,7 +6,6 @@
 @import "styles/colorful-modal";
 @import "styles/custom-panels";
 @import "styles/portlet";
-@import "styles/biz-list";
 @import "styles/tender";
 @import "styles/blog";
 @import "styles/svg-styling";
@@ -159,7 +158,7 @@ Licensed under MIT
 ***/
 
 body {
-  background: #F1F3FA;
+  background: $brand-grey;
 }
 
 .inf-content{

@@ -1,27 +1,20 @@
 <%= simple_form_for(resource, :as => resource_name,
 :url => registration_path(resource_name),
-:html => { :role => "form" }) do |f| %>
-
-	<div class="form-group col-lg-12">            
+:html => { :class => "form-horizontal" }, wrapper: :horizontal_form) do |f| %>
+	
 	  <%= devise_error_messages! %>
+
+	<div class="form-inputs">
+		<%= f.input :email, placeholder: "ini akan digunakan untuk kontak dan login" %>
+		<%= f.input :password, input_html: { maxlength: 20, minlength: 6 }, placeholder: "panjang minimal 6 karakter, huruf, angka, atau campurannya" %>
+		<%= f.input :password_confirmation, label: 'Konfirmasi Password', placeholder: "masukkan kata kunci yang sama untuk memastikan"%>
+		<%= f.input :name, label: "Nama Lengkap", help: "Jika tidak ada nama belakang," %>
+		<p>
+			Untuk mendaftar, kamu harus menyetujui syarat dan ketentuan pelayanan siKapiten dengan mengklik kotak "Saya setuju" di bawah ini. Syarat dan ketentuan yang dimaksud dapat dilihat di <%= link_to "di sini", service_terms_path %>
+		</p>
+		<%= f.input :understanding, as: :boolean, checked_value: true, unchecked_value: false, inline_label: 'Saya setuju', wrapper: :horizontal_boolean, required: true %>
 	</div>
 
-	<div class="form-group col-lg-12">
-	<%= f.input :email, validate: true, placeholder: "ini akan digunakan untuk kontak dan login" %>
-	</div>
-
-	<div class="form-group col-lg-12">
-	<%= f.input :password, class: "form-control", input_html: { maxlength: 20, minlength: 6 }, label: 'Kata Kunci', placeholder: "panjang minimal 8 karakter, huruf, angka, atau campurannya", validate: true %>
-	</div>
-
-	<div class="form-group col-lg-12">
-	<%= f.input :password_confirmation, class: "form-control", label: 'Konfirmasi Kata Kunci', placeholder: "masukkan kata kunci yang sama untuk memastikan", validate: true %>
-	</div>
-
-	<div class="form-group col-lg-12">
-	<%= f.input :name, label: "Nama Lengkap", class: "form-control", help: "Jika tidak ada nama belakang,", validate: true %>
-	</div>
-
-	<%= f.button :submit, "Daftar", class: "btn btn-block btn btn-outlined btn-black" %>
+	<%= f.button :submit, "Daftar", class: "btn btn-block btn btn-outlined btn-theme" %>
 
 <% end %>

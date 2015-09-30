@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
 
   serialize :preferences, HashSerializer
   store_accessor :preferences, 
-          :language, :currency, :open, :client, :financier
+          :language, :currency, :open, :client, :financier, :understanding
   serialize :profile, HashSerializer
   store_accessor :profile, 
-    :phone_number, :about, :last_education,
+    :phone_number, :about, :last_education, :credibility,
     :marital_status, :work_experience, :number_dependents, :occupation,
-    :monthly_income, :monthly_expense, :address, :facebook_id, :google_id, :twitter_id
+    :monthly_income, :monthly_expense, :address, :facebook, :google, :twitter
   
   attr_wannabe_bool :financier, :client, :open
 
@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   # Validations
   validates :email, :presence => true
   validates :name, :presence => true
+  validates :understanding, :presence => true
   validates :auth_token, uniqueness: true
 
   before_create :set_auth_token!, :set_default_values!
@@ -115,6 +116,7 @@ class User < ActiveRecord::Base
     self.open = true
     self.language = 'bahasa'
     self.currency = 'idr'
+    self.credibility = 'C'
   end
 
   def generate_auth_token!

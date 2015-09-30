@@ -1,56 +1,17 @@
 <% title("Daftar") %>
-
-<div class="container-fluid" style="margin-top: 50px;">
-  
-  <div class="container-page">
-
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
       
-      <div class="tabbable-panel" style="margin-top: 50px;">
-        <div class="tabbable-line">
+<div class="tabbable-panel" style="margin-top: 20px;">
+  <div class="tabbable-line">
 
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab_default_1">
-              
-              <h3 class="text-center">Masuk dengan akun</h3>
-              <div class="omb_login">
-                <div class="row omb_row-sm-offset-3 omb_socialButtons">
-                  <div class="col-xs-6 col-sm-3">
-                    <%= link_to user_omniauth_authorize_path(:facebook), class: "btn btn-lg btn-block omb_btn-facebook" do %>
-                      <i class="fa fa-facebook visible-xs"></i>
-                      <span class="hidden-xs">Facebook</span>
-                    <% end %>
-                  </div>
-                  <div class="col-xs-6 col-sm-3">
-                    <%= link_to user_omniauth_authorize_path(:google_oauth2), class: "btn btn-lg btn-block omb_btn-google" do %>
-                      <i class="fa fa-google-plus visible-xs"></i>
-                      <span class="hidden-xs">Google+</span>
-                    <% end %>
-                  </div>  
-                </div>
-                <div class="row omb_row-sm-offset-3 omb_loginOr">
-                  <div class="col-xs-12 col-sm-6">
-                    <hr class="omb_hrOr">
-                    <span class="omb_spanOr">atau</span>
-                  </div>
-                </div>                
-              </div>            
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_default_1">
+        
+        <h3 class="text-center">Buat akun baru</h3>
 
-              <h3 class="text-center">Buat akun baru</h3>
-
-              <%= render 'form' %>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
+        <%= render 'form' %>
 
       </div>
+
     </div>
-
-
   </div>
-  
 </div>

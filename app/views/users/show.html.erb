@@ -36,7 +36,7 @@
               <h4>Bilah Biodata
               <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= welcome_popover_text %>" data-original-title=""></i></h4>
 
-			        <%= render partial: 'profile', locals: { user: @user } %>
+			        <%= render partial: 'profile', locals: { user: @user, documents: @documents } %>
             </div>            
           </div>
           <div class="col-md-12">
@@ -54,8 +54,8 @@
           <div class="text">      
 			      <h4>Bilah Dokumen</h4>
 		      </div>
-          <% if @user.documents.present? %>
-      		  <% @user.documents.each do |document| %>
+          <% if @documents.present? %>
+      		  <% @documents.each do |document| %>
               <div class="col-xs-6 col-sm-4">
       			    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
               </div>

@@ -31,6 +31,7 @@ class TendersController < ApplicationController
     else
       render :new 
       find_tenderable
+      Rails.logger.info(@tender.errors.inspect) 
     end
   end
 
@@ -40,6 +41,7 @@ class TendersController < ApplicationController
       redirect_to @tender
     else
       render :edit
+      Rails.logger.info(@tender.errors.inspect) 
     end
   end
 

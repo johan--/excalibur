@@ -43,7 +43,7 @@
           <div class="col-md-12">
             <div class="weather-3 pn centered">
               <div class="col-md-4">
-                <i class="fa fa-bank centerpiece"></i>
+                <i class="fa fa-bank centerpiece mt"></i>
                 <h3>
                   PEMBIAYAAN
                   <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
@@ -51,14 +51,21 @@
               </div>
               <div class="col-md-8">
                 <div class="home-prompt">
-                  <%= link_to 'Buat Proposal', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt", :remote => true  %>
+                  <%= link_to 'Buat Proposal', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt"  %>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-12 col-sm-12">
-            <%= render current_user.tenders  %>
-
+            <% if current_user.tenders.empty? %>
+              <div class="blankslate">
+                <div class="spacious">
+                  <h3><%= "Belum Ada Proposal" %></h3>
+                </div>
+              </div>
+            <% else %>
+              <%= render current_user.tenders  %>
+            <% end %>
           </div>
         </div>  
       </div>

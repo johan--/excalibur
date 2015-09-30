@@ -1,24 +1,19 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :user_layout, only: [:edit]
 
-	# def create
-	# 	super
-	# 	if resource.save
-	# 		if resource.business
-	# 			redirect_to new_firm
-	# 		elsif resource.investor
-	# 		end
-	# 	end
-	# end
+  def create
+    unless Subscriber.exists?(:email => params[:user][:email])
+      redirect_to new_user_registration_path
+      flash[:alert] = "Maaf, emailmu tidak masuk dalam daftar pengguna Beta"
+    else
+      super  
+    end
+  end
 
   protected
 
   def after_sign_up_path_for(resource)
-    # if resource.operator?
-    #   new_firm_path
-    # else
-      user_root_path
-    # end
+    user_root_path
   end
 
 end
