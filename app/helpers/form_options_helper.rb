@@ -51,23 +51,23 @@ module FormOptionsHelper
 
 # Tender form options
 	def aqad_options
-		["Murabahah", "Musyarakah Mutanaqishah"]
+		["murabahah", "musyarakah mutanaqishah"]
 	end
 
 	def case_options
-		["Pembelian", "Pembangunan", "Perbaikan/Renovasi", "Pelunasan"]
+		["pembelian", "pembangunan", "perbaikan/renovasi", "pelunasan"]
 	end
 
 	def intent_options
-		["Tempat Tinggal", "Investasi"]
+		["tempat tinggal", "investasi"]
 	end
 
 	def tangible_options
-		[ "Rumah Tunggal", "Rumah Koppel/Gandeng", "Rumah Town House", "Rumah Susun/Flat", "Tanah Kosong" ]
+		[ "rumah tunggal", "rumah koppel/gandeng", "town house", "rumah susun/flat", "tanah kosong" ]
 	end
 
 	def own_capital_options
-		["10%", "20%", "30%", "40%", "50%", "60%"]
+		["10%", "20%", "30%", "40%", "50%", "60%", "80%", "90%"]
 	end
 
   def published_options

@@ -25,6 +25,9 @@ class Document < ActiveRecord::Base
 ###############################
   before_create :set_default
 
+  scope :verifieds, -> { 
+    where("documents.details->>'state' = :state", state: "verified") 
+  }    
 
   def transitioning!
     if self.checked? &&  self.flagged?

@@ -1,17 +1,22 @@
-<div class="col-md-12">
+<div class="col-sm-12">
   <div class="weather-3 pn centered">
-    <div class="col-md-4">
+    <div class="col-sm-3">
       <i class="fa fa-smile-o centerpiece mt"></i>
       <h3>
         PROFIL
         <i class="fa fa-question-circle fa-lg pop-helper" data-container="body" data-toggle="popover" data-placement="top" title="Other Prep" data-content="<%= credibility_popover_text %>" data-original-title=""></i>
       </h3>
     </div>
-    <div class="col-md-8">
+    <div class="col-sm-9">
       <div class="home-prompt">
-        <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-outlined btn-theme mt", :remote => true %>
-        <%= link_to 'Lihat', user_path(current_user), class: "btn btn-outlined btn-theme mt" %>
-        <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-outlined btn-theme mt"  %>                  
+        <div class="row">
+          <div class="mt col-sm-6 col-xs-12">
+            <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-outlined btn-theme btn-md", :remote => true %>
+            <%= link_to 'Lihat', user_path(current_user), class: "btn btn-outlined btn-theme btn-md" %>
+          </div>
+          <div class="mt col-sm-6 col-xs-12">
+          <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-outlined btn-theme btn-block"  %></div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +40,7 @@
 </div>
 <div class="profile-stats">
   <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-      <div class="stats-value pink">85</div>
+      <div class="stats-value pink"><%= current_user.credibility %></div>
       <div class="stats-title">KREDIBILITAS</div>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
@@ -43,7 +48,7 @@
       <div class="stats-title">DOKUMEN</div>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-      <div class="stats-value pink">0</div>
-      <div class="stats-title">RESPON</div>
+      <div class="stats-value pink"><%= @documents.verifieds.count %></div>
+      <div class="stats-title">TERVERIFIKASI</div>
   </div>  
 </div>

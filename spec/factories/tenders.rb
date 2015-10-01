@@ -7,10 +7,6 @@ FactoryGirl.define do
   	  category "BizPartnership"
   	  target "15000000"
 
-      # factory :biz_tender do
-      #   tenderable
-      # end
-
       trait :with_biz do
         transient do
           business { FactoryGirl.create(:business) }
@@ -22,7 +18,6 @@ FactoryGirl.define do
 
   	factory :consumer_tender do
   	  category "Individu"
-  	  target 400000000
       price 500000000
       address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak, Jakarta Selatan"
       intent "Tempat Tinggal"
@@ -44,11 +39,12 @@ FactoryGirl.define do
     end
 
     trait :musharakah do
-      aqad "Musyarakah Mutanaqishah"
+      aqad "musyarakah mutanaqishah"
+      target 400000000
     end
 
     trait :murabahah do
-      aqad "Murabahah"
+      aqad "murabahah"
     end
 
     trait :tenderable do

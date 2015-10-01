@@ -33,10 +33,10 @@ class Tender < ActiveRecord::Base
                  :tangible, :use_case, :intent, :aqad, :aqad_code,
                  :address, :price, :published
 
-  validates_presence_of :aqad, :target
+  validates_presence_of :aqad, :target, :price, :address
 
   before_create :set_default_values!
-  # before_save :calculate_owner_capital!
+  before_save :set_target!
   after_touch :update_contribution!
 
   # Pagination
@@ -101,7 +101,12 @@ private
     self.barcode = "##{SecureRandom.hex(3)}"
     self.tenderable_name = self.tenderable.name
     self.open = true
-    # self.published = false if self.published.nil?
+  end
+
+  def set_target!
+    if self.aqad == 'murabahah'
+      self.target = self.price
+    end
   end
 
   def slug_candidates

@@ -15,10 +15,12 @@ class TendersController < ApplicationController
   end
 
   def new
+    @aqad = params[:aqad]
     @tender = @tenderable.tenders.build
   end
 
   def edit
+    @aqad = @tender.aqad
   end
 
   def create

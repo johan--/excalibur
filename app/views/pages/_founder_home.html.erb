@@ -51,7 +51,12 @@
               </div>
               <div class="col-md-8">
                 <div class="home-prompt">
-                  <%= link_to 'Buat Proposal', new_user_tender_path(current_user), class: "btn btn-outlined btn-theme mt"  %>
+                  <div class="row">
+                  <div class="mt col-xs-6">
+                  <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme btn-sm", remote: true  %></div>
+                  <div class="mt col-xs-6">
+                  <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah mutanaqishah'), class: "btn btn-outlined btn-theme btn-sm", remote: true  %></div>
+                  </div>
                 </div>
               </div>
             </div>

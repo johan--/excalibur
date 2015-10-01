@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe Tender, :type => :model do
   let!(:user) { FactoryGirl.create(:client) }
 
-  describe "Consumer financing" do
+  describe "Murabahah financing" do
   	before do
-  	  @tender = Tender.new(
-  	  		category: "Individu", aqad: "murabahah",
-  			tenderable: user, target: 10000000,
-  			summary: "Lorem ipsum dolor cassus")
+  	  @tender = user.tenders.build(
+  	  		category: "User", aqad: "murabahah", use_case: "pembelian",
+  			intent: "tempat tinggal", price: 10000000, 
+  			tangible: "rumah tunggal", address: "Lorem ipsum dolor cassus")
   	end
 
 	subject { @tender }
@@ -76,8 +76,8 @@ RSpec.describe Tender, :type => :model do
   end
 
   describe "scoping tender" do
-  	let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, tenderable: user) }
-  	let!(:tender_2) { FactoryGirl.create(:retail, :musharakah, tenderable: user) }
+  	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
+  	let!(:tender_2) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
   	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
 
   	describe "Tender.open" do
@@ -89,7 +89,7 @@ RSpec.describe Tender, :type => :model do
   	end
 
   	describe "Tender.with_aqad(aqad)" do
-	  let!(:murabahah) { Tender.with_aqad('Murabahah') }
+	  let!(:murabahah) { Tender.with_aqad('murabahah') }
 
 	  it "returns tender that has murabahah as aqad" do
 	  	murabahah.count.should == 1

@@ -19,7 +19,16 @@ feature "ClientUploadsDocuments", :type => :feature do
   		click_button "Simpan"
   	end
 
-	it { should have_content("Dokumen berhasil disimpan") }
+	  it { should have_content("Dokumen berhasil disimpan") }
+
+    describe "looking into the profile page" do
+      before do
+        click_link "Lihat"
+        click_link("", href: '#portlet_tab2')
+      end
+      
+      it { should have_content("KTP Galih") }
+    end
   end
 
 end
