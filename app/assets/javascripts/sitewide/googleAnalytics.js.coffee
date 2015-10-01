@@ -38,6 +38,6 @@ class @GoogleAnalytics
 
   @analyticsId: ->
     # your google analytics ID(s) here...
-    "#{ENV["GO_ANL_ID"]}"
+    'UA-62249034-1'
 
 GoogleAnalytics.load()

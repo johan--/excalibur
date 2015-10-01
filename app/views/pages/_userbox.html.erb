@@ -23,12 +23,15 @@
 </div>  
 <div class="profile-userpic">
   <% if current_user.avatar.nil? %>
-    <%= link_to avatar_user_path(current_user), remote: true do %>
-      <%= image_tag('default-avatar', class: "img-responsive") %>
-    <% end %>
+    <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+    <p class="text-center">
+    <%= link_to "Unggah Gambar Profil", avatar_user_path(current_user), remote: true, class: "btn btn-outlined btn-theme btn-xs" %></p>
   <% else %>
-    <%= cl_image_tag(current_user.avatar, cloudinary_thumbnail_options ) %>
+    <p class="text-center">
+    <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('private')) %>
+    <%= link_to "Hapus foto", remove_avatar_user_path(current_user), method: :put, class: 'reset-link btn btn-danger btn-xs' %></p>
   <% end %>
+
 </div>
 <div class="profile-usertitle">
   <div class="profile-usertitle-name">

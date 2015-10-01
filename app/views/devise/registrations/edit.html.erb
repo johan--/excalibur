@@ -18,15 +18,17 @@
     </div>
     <% end %>
 
-    <%= f.input :password, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti' %>
+    <%= f.input :phone_number, label: "Nomor Telp (HP)", placeholder: "nomor telepon genggam utama", required: true %>
 
-    <%= f.input :password_confirmation, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', label: "Konfirmasi Password" %>
+    <%= f.input :password, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', placeholder: "panjang minimal 6 karakter", label: "Password Baru" %>
 
-    <%= f.input :current_password, as: :password, :autocomplete => "off", hint: 'masukkan password untuk konfirmasi perubahan data', label: "Password Sekarang", required: true  %>
+    <%= f.input :password_confirmation, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', label: "Konfirmasi Password Baru" %>
+
+    <%= f.input :current_password, as: :password, :autocomplete => "off", hint: 'masukkan password untuk konfirmasi perubahan data', label: "Password Sekarang", placeholder: "password saat ini", required: true  %>
 
     <div class="row">
       <div class="col-sm-6">
-        <%= f.submit "Simpan", class: "btn btn-primary" %>
+        <%= f.submit "Simpan", class: "btn btn-outlined btn-theme" %>
       </div>
       <div class="col-sm-6">
       </div>

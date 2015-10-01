@@ -22,7 +22,8 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    Cloudinary::Api.delete_resources(@document.public_id)
+    # Cloudinary::Api.delete_resources([@document.public_id], type: :private)
+    Cloudinary::Uploader.destroy(@document.public_id, type: :private)
   	@document.destroy
 
     flash[:notice] = 'Dokumen berhasil dihapuskan'

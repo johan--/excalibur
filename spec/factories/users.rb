@@ -4,6 +4,7 @@ FactoryGirl.define do
     password "foobarbaz"
     password_confirmation "foobarbaz"
     sequence(:name) { |n| "Person #{n}" }
+    sequence(:phone_number) { |n| "05392421#{n}" }
     understanding true
 
     factory :client do

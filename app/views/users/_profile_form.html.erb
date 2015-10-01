@@ -2,7 +2,6 @@
         wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
-    <%= f.input :phone_number, label: "Nomor Telepon (HP)", required: true %>
     <%= f.input :address, as: :text, input_html: { rows: 3 }, label: "Alamat"  %>    
 	  <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @user.last_education, label: "Pendidikan Terakhir", required: true %>
 	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @user.marital_status, label: "Status Pernikahan", required: true %>

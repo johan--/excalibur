@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
   <center>
-    <h3 class="media-heading">Unggah Foto Profil</h3>
+    <h3 class="media-heading">Unggah Gambar Profil</h3>
 
     <div id="direct_upload">
       <p>Format yang diterima adalah .jpg atau .png maksimal 1 MB. Bisa dengan mengklik tombol 'Unggah' atau dengan drag dan drop ke dalam area bergaris</p>
@@ -14,7 +14,7 @@
           <div class="form_controls">
             <div class="upload_button_holder">
               <%= link_to("Unggah", "#", :class => "upload_button") %>
-              <%= f.cl_image_upload :image_id, :return_delete_token=>true, class: "cloudinary-fileupload" %>
+              <%= f.cl_image_upload :image_id, upload_preset: "fdh747hl", :return_delete_token=>true, class: "cloudinary-fileupload" %>
             </div>
             <span class="status"></span>
           </div>

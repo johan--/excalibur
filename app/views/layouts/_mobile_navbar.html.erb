@@ -11,7 +11,9 @@
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>			
 			<li>
-				<%= link_fa_to('phone', 'Kontak', contact_url(subdomain: '')) %>
+				<%= link_to contact_url(subdomain: ''), remote: true do %>
+					<i class="menu-icon fa fa-phone"></i><span>Kontak</span>
+				<% end %>
 			</li>
 		</ul>
 	</div>
@@ -38,7 +40,9 @@
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>			
 			<li class="hidden-xs">
-				<%= link_fa_to('phone', 'Kontak', contact_url(subdomain: '')) %>
+				<%= link_to contact_url(subdomain: ''), remote: true do %>
+					<i class="menu-icon fa fa-phone"></i><span>Kontak</span>
+				<% end %>				
 			</li>
 			<% if user_signed_in? %>
 				<li>

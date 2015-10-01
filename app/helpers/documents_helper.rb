@@ -12,4 +12,17 @@ module DocumentsHelper
 			 class: "panel-image-preview" }
 	end
 
+	def cloudinary_photo_options(type)
+	  if type == 'private'
+		{ :type => :private, :width => 175, :height => 175, quality: 100, 
+			:crop => :scale, format: :jpg, 
+			class: "panel-image-preview" }
+	  else
+		{ :type => :upload, :width => 175, :height => 175, quality: 100, 
+			:crop => :scale, format: :jpg, 
+			class: "panel-image-preview" }	  	
+	  end
+	end
+
+
 end

@@ -21,17 +21,16 @@ class UsersController < ApplicationController
   def avatar
   end
 
-  # def edit_profile
-  # end
-
-  # def update_profile
-  #   if @user.update(profil_params)
-  #     flash[:notice] = 'Profil berhasil diperbaharui'
-  #     redirect_to user_root_path 
-  #   else
-  #     render :edit
-  #   end  	
-  # end
+  def remove_avatar
+    # if Cloudinary::Uploader.destroy(@user.avatar)
+    if Cloudinary::Uploader.destroy(@user.avatar, type: :private)
+      @user.update_column(:avatar, nil)
+      flash[:notice] = 'Foto berhasil dihapuskan'
+    else
+      flash[:warning] = 'Foto gagal dihapuskan'
+    end
+    redirect_to user_root_path
+  end
 
 
 private
@@ -42,7 +41,8 @@ private
   def profile_params
   	params.require(:user).permit(
   	  :avatar, :image_id,
-      :phone_number, :about, :last_education, :marital_status, :address,
+      :phone_number, :about, :last_education, :marital_status, 
+      :address,
   	  	:work_experience, :occupation,
         :monthly_income, :monthly_expense,
         :number_dependents

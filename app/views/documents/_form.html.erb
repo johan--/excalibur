@@ -15,7 +15,7 @@
       <div class="form_controls">
         <div class="upload_button_holder">
           <%= link_to("Unggah", "#", :class => "upload_button") %>
-          <%= f.cl_image_upload :image_id, :return_delete_token=>true, class: "cloudinary-fileupload" %>
+          <%= f.cl_image_upload :image_id, upload_preset: "ftisnjlh", :return_delete_token=>true, class: "cloudinary-fileupload" %>
         </div>
         <span class="status"></span>
       </div>

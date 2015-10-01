@@ -36,6 +36,7 @@ Fustal::Application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     member do
       get "avatar"
+      put "remove_avatar"
     end    
     resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
