@@ -12,6 +12,9 @@ class Document < ActiveRecord::Base
   
   attr_wannabe_bool :checked, :flagged
 
+  # Pagination
+  paginates_per 30
+
 # Statesman stuffs
   has_many :document_transitions
   # Initialize the state machine
@@ -60,7 +63,9 @@ private
   end
 
   def set_default
-    [self.checked, self.flagged].each{ |a| a = false }
+    self.checked = false
+    self.flagged = false
+    self.state = DocumentStateMachine.initial_state
   end
 
 end

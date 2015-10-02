@@ -32,8 +32,8 @@
                 <span class="glyphicon glyphicon-pencil"></span>
             <% end %>
         <% end %>
-        <%= link_to delete_document_path(document), remote: true do %>
-            <span class="glyphicon glyphicon-trash"></span>
+        <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'} do %>
+            <span class="glyphicon glyphicon-trash reset-link"></span>
         <% end %>
     </div>
 </div>

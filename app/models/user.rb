@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   # Pagination
-  paginates_per 100
+  paginates_per 30
 
   # Validations
   validates :email, :presence => true

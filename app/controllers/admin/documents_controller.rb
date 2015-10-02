@@ -3,7 +3,7 @@ class Admin::DocumentsController < Admin::BaseController
 
   def index
     @admin = true
-    @documents = Document.all
+    @documents = Document.order(:created_at).page params[:page]
   end
 
   def show

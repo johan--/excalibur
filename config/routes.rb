@@ -48,9 +48,6 @@ Fustal::Application.routes.draw do
     resources :bids
   end
   resources :documents do
-    member do
-      get "delete"
-    end
   end
 
   # Static Pages

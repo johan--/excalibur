@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Document, :type => :model do
   let!(:user) { FactoryGirl.create(:client) }
   before(:each) do
-  	@document = Document.new(name: 'KTP Jimmy', category: 'Identitas', 
-  		public_id: 'default-avatar_q1ts3i', owner: user)
+  	@document = Document.create(name: 'KTP Jimmy', category: 'Identitas', 
+  		public_id: 'asset/default-avatar-sm', owner: user)
   end
 
   subject { @document }
@@ -24,14 +24,22 @@ RSpec.describe Document, :type => :model do
   it { should be_valid }
 
   describe "when saved" do
-  	before(:each) { @document.save }
+  	# before(:each) { @document.save }
 
   	it "has current_state of 'uploaded'" do
-  		@document.state == 'uploaded'
+      expect(@document.state).to eq 'uploaded'
   	end
 
+    it "has checked att set to false" do
+      expect(@document.checked).to eq false
+    end
+
+    it "has flagged att set to false" do
+      expect(@document.flagged).to eq false
+    end
+
   	it "has association with correct user as owner" do
-  		@document.owner.should == user
+      expect(@document.owner).to eq user
   	end
   end
 
@@ -47,7 +55,7 @@ RSpec.describe Document, :type => :model do
       end
 
 		  it "transitions the document into verified state" do
-  			@document.state.should == 'verified'
+        expect(@document.state).to eq 'verified'
   		end
   	end
 
@@ -58,7 +66,7 @@ RSpec.describe Document, :type => :model do
       end
 
   		it "transitions the document into flagged state" do
-  			@document.state.should == 'flagged'
+  			expect(@document.state).to eq 'flagged'
   		end
 
   		describe "then later verifying it" do
@@ -69,7 +77,7 @@ RSpec.describe Document, :type => :model do
         end
 
 			  it "transitions the document into verified state" do
-	  			@document.state.should == 'verified'
+	  			expect(@document.state).to eq 'verified'
 	  		end  			
   		end
 
@@ -80,8 +88,8 @@ RSpec.describe Document, :type => :model do
           @document.transitioning!
         end
   			
-			it "transitions the document into verified state" do
-	  			@document.state.should == 'dropped'
+			it "transitions the document into dropped state" do
+	  			expect(@document.state).to eq 'dropped'
 	  		end  			
   		end  		
   	end

@@ -22,14 +22,14 @@ RSpec.describe Comment, :type => :model do
   	before(:each) { @comment.save }
 
   	describe "it should be valid" do
-  	  it { should be_valid }
+  	  it { should be_valid } 
   	end
 
   	describe ".slug" do
   	  let!(:slug) { @comment.slug }
 
   	  it "has a slug of the title" do
-  	  	slug.should_not == nil
+  	  	expect(slug).to_not eq nil
   	  end
   	end
 
@@ -37,7 +37,7 @@ RSpec.describe Comment, :type => :model do
   	  let!(:result) { @comment.has_children? }
 
   	  it "should return false if it has no children" do
-  	  	result.should == false
+  	  	expect(result).to eq false
   	  end
   	end
 

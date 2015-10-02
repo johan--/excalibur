@@ -34,25 +34,22 @@ RSpec.describe Tender, :type => :model do
 	  before(:each) { @tender.save }
 
 	  describe "default values set by callback or database" do
-	  	let!(:properties) { @tender.properties }
-
 	  	it "sets properties of open to true" do
-	  	  properties[:open].should == true
+	  	  expect(@tender.open).to eq true
 	  	end
 
 	  	it "sets barcode" do
-	  	  properties[:barcode].should_not == nil
+	  	  expect(@tender.barcode).to_not eq nil
 	  	end
 
 	  	it "sets status" do
-	  	  @tender.state.should == 'fresh'
+	  	  expect(@tender.state).to eq 'fresh'
 	  	end	  	
 	  end
 
 	  describe ".target" do
 		it 'returns the target money sens value of target' do
-		  result = @tender.target_sens
-		  result.should == 1000000000 #plus two zero digits as sens added
+		  expect(@tender.target_sens).to eq 1000000000 #plus two zero digits as sens added
 		end
 	  end
 
@@ -60,14 +57,14 @@ RSpec.describe Tender, :type => :model do
 	  	describe ".access_granted?(user)" do
 	  	  it "determines whether a user is has permission to alter proposal" do
 	  	  	result = @tender.access_granted?(user)
-	  	  	result.should == true
+	  	  	expect(result).to eq true
 	  	  end
 	  	end
 	  	
 	  	describe ".tender_owner?(user)" do
 	  	  it "determines whether a user is a tender owner" do
 	  	  	result = @tender.tender_owner?(user)
-	  	  	result.should == true
+	  	  	expect(result).to eq true
 	  	  end
 	  	end
 	  end
@@ -84,15 +81,15 @@ RSpec.describe Tender, :type => :model do
 	  let!(:result) { Tender.open }
 
 	  it "returns tender that has open attribute set to true" do
-	  	result.count.should == 3
+	  	expect(result.count).to eq 3
 	  end
   	end
 
   	describe "Tender.with_aqad(aqad)" do
-	  let!(:murabahah) { Tender.with_aqad('murabahah') }
+	  let!(:result) { Tender.with_aqad('murabahah') }
 
 	  it "returns tender that has murabahah as aqad" do
-	  	murabahah.count.should == 1
+	  	expect(result.count).to eq 1
 	  end
   	end
 

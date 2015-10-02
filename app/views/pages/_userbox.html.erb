@@ -29,7 +29,7 @@
   <% else %>
     <p class="text-center">
     <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('private')) %>
-    <%= link_to "Hapus foto", remove_avatar_user_path(current_user), method: :put, class: 'reset-link btn btn-danger btn-xs' %></p>
+    <%= link_to "Hapus foto", remove_avatar_user_path(current_user), method: :put, data: {:confirm => 'Kamu yakin mau melanjutkan?', object: 'Penghapusan gambar profil'}, class: 'reset-link btn btn-danger btn-xs' %></p>
   <% end %>
 
 </div>

@@ -28,36 +28,34 @@ RSpec.describe User, :type => :model do
   	before(:each) { @user.save }
     
     describe ".profile" do
-      let!(:preferences)  { @user.preferences }
-
   	  it 'returns default values of open booelan' do
-  	    preferences[:open].should == true 
+        expect(@user.open).to eq true
   	  end
 
   	  it 'returns default value of client boolean' do
-  	  	preferences[:client].should == true 
+        expect(@user.client).to eq true
   	  end
 
   	  it 'returns default value of financier boolean' do
-  	  	preferences[:financier].should == nil
+        expect(@user.financier).to eq nil
   	  end
     end
 
     describe "after create callback" do
       it "has a titleized name attribute" do
-      	@user.name.should == 'Galih Muhammad'
+      	expect(@user.name).to eq 'Galih Muhammad'
       end
 
       it "has a random authentication token" do
-      	@user.auth_token.should_not == nil
+      	expect(@user.auth_token).to_not eq nil
       end
 
       it "has a default language" do
-        @user.language.should == 'bahasa'
+        expect(@user.language).to eq 'bahasa'
       end
 
       it "has a default currency" do
-        @user.currency.should == 'idr'
+        expect(@user.currency).to eq 'idr'
       end      
     end
 
@@ -70,7 +68,7 @@ RSpec.describe User, :type => :model do
         let!(:result) { User.clients }
 
         it "returns user that has boolean client set to true" do
-          result.count.should == 3
+          expect(result.count).to eq 3
         end
       end
 
@@ -78,7 +76,7 @@ RSpec.describe User, :type => :model do
         let!(:result) { User.financiers }
 
         it "returns user that has financier client set to true" do
-          result.count.should == 1
+          expect(result.count).to eq 1
         end
       end      
     end    

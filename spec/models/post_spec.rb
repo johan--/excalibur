@@ -27,19 +27,17 @@ RSpec.describe Post, :type => :model do
   	  let!(:slug) { @post.slug }
 
   	  it "has a slug of the title" do
-  	  	slug.should_not == nil
+  	  	expect(slug).to_not eq nil
   	  end
   	end
 
   	describe ".keywords" do
-  	  let!(:keywords) { @post.keywords }
-
   	  it "returns the topic of the post" do
-  	  	keywords[:topic].should == "Dummy"
+        expect(@post.topic).to eq "Dummy"
   	  end
 
   	  it "returns the tags of the post" do
-  	  	keywords[:tags].should == ["lorem", "indonesia"]
+        expect(@post.tags).to eq ["lorem", "indonesia"]
   	  end  	  
   	end
   end
@@ -53,7 +51,7 @@ RSpec.describe Post, :type => :model do
   	  let!(:result) { Post.published }
 
   	  it "returns post that has draft attribute set to false" do
-  	  	result.count.should == 1
+  	  	expect(result.count).to eq 1
   	  end
   	end
 
@@ -61,7 +59,7 @@ RSpec.describe Post, :type => :model do
   	  let!(:result) { Post.drafted }
 
   	  it "returns post that has draft attribute set to true" do
-  	  	result.count.should == 2
+  	  	expect(result.count).to eq 2
   	  end
   	end	
 
@@ -69,7 +67,7 @@ RSpec.describe Post, :type => :model do
   	  let!(:result) { Post.by_topic('test dummy') }
 
   	  it "returns post that has 'test dummy' as its topic" do
-  	  	result.count.should == 3
+  	  	expect(result.count).to eq 3
   	  end
   	end
 
@@ -77,7 +75,7 @@ RSpec.describe Post, :type => :model do
       let!(:result) { Post.by_tag('lorem') }
 
       it "returns post that has 'test dummy' as its topic" do
-        result.count.should == 3
+        expect(result.count).to eq 3
       end
     end     	
   end

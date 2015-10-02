@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @documents = @user.documents
+    @verifieds = @documents.verifieds
   end
 
   def edit

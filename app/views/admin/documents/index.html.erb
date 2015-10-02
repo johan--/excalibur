@@ -1,12 +1,46 @@
 <div class="text">      
   <h4>Document Index</h4>
 </div>
+
+<% title("Dokumen | Admin Dashboard") %>
+<h1>Dokumen <small>Admin Dashboard</small></h1>
+<p><%= link_to "Back to Admin Root", admin_root_path %></p>
+
+<div class="text-center">
+  <%= paginate @documents %>
+</div>
+
 <% if @documents.count != 0 %>
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Pemilik</th>
+    <th>Kategori</th>
+    <th>Judul</th>
+    <th>Updated At</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+  </tr>
+
   <% @documents.each do |document| %>
-    <div class="col-xs-6 col-sm-4">
-	    <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
-    </div>
+  <tr>
+    <td><%= link_to document.id, admin_document_path(document), remote: true %></td>
+    <td><%= link_to document.owner.name, user_path(document.owner) %></td>
+    <td><%= document.category %></td>
+    <td><%= document.name %></td>
+    <td><%= time_ago_in_words(document.updated_at)%> ago</td>
+    <td><%= document.state || %></td>
+    <td><%= link_to "Lihat", '#'  %></td>
+    <td><%= link_to "Proses", '#' %></td>
+  </tr>
   <% end %>
+
+</table>
 <% else %>
   <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Sabar ya hahahaha", anchor: "Kembali ke Dashboard", destination: admin_root_path } %>
 <% end %>
+
+<div class="text-center">
+  <%= paginate @documents %>
+</div>
