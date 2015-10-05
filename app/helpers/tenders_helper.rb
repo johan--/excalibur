@@ -13,6 +13,14 @@ module TendersHelper
 		send "edit_#{type(tender)}_tender_path", tender.tenderable, tender
 	end
 
+	def draft_or_real?(tender)
+		if tender.published?
+			return "Telah dipublikasikan"
+		else
+			return "Belum dipublikasikan"
+		end
+	end
+
 	# def bid_tender_link(tender)
 	# 	tenderable = tender.tenderable_type.downcase
 	# 	link_to "Buat Tawaran", new_tender_bid_path(tender)

@@ -7,22 +7,10 @@
       </span>
       <span class="caption-helper"><%=  %></span>
     </div>
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#portlet_tab2" data-toggle="tab">
-          Info
-        </a>
-      </li>    
-      <li>
-        <a href="#portlet_tab1" data-toggle="tab">
-          Pembiayaan
-        </a>
-      </li>
-      <li>
-        <a href="#portlet_tab3" data-toggle="tab">
-          Bantuan
-        </a>
-      </li>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#portlet_tab2" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
+      <li role="presentation"><a href="#portlet_tab1" aria-controls="pembiayaan" role="tab" data-toggle="tab">Pembiayaan</a></li>
+      <li role="presentation"><a href="#portlet_tab3" aria-controls="bantuan" role="tab" data-toggle="tab">Bantuan</a></li>
     </ul>
   </div>
   
@@ -30,7 +18,7 @@
   <div class="portlet-body">
     <div class="tab-content">
 
-      <div class="tab-pane active" id="portlet_tab2">
+      <div role="tabpanel" class="tab-pane active" id="portlet_tab2">
         <div class="row">
           <div class="col-md-12">
             <%= render 'pages/userbox' %>
@@ -38,7 +26,7 @@
         </div>
       </div>
 
-      <div class="tab-pane" id="portlet_tab1">
+      <div role="tabpanel" class="tab-pane" id="portlet_tab1">
         <div class="row">               
           <div class="col-md-12">
             <div class="weather-3 pn centered">
@@ -53,9 +41,9 @@
                 <div class="home-prompt">
                   <div class="row">
                   <div class="mt col-xs-6">
-                  <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme btn-sm", remote: true  %></div>
+                  <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme btn-md", remote: true  %></div>
                   <div class="mt col-xs-6">
-                  <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah mutanaqishah'), class: "btn btn-outlined btn-theme btn-sm", remote: true  %></div>
+                  <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah'), class: "btn btn-outlined btn-theme btn-md", remote: true  %></div>
                   </div>
                 </div>
               </div>
@@ -75,7 +63,7 @@
         </div>  
       </div>
 
-      <div class="tab-pane" id="portlet_tab3">
+      <div role="tabpanel" class="tab-pane" id="portlet_tab3">
         <%= render 'pages/help' %>
       </div>
 

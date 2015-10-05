@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @documents = @user.documents
+    @groups = @documents.group_by { |doc| doc.category }
     @verifieds = @documents.verifieds
   end
 

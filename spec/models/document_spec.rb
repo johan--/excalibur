@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Document, :type => :model do
   let!(:user) { FactoryGirl.create(:client) }
   before(:each) do
-  	@document = Document.create(name: 'KTP Jimmy', category: 'Identitas', 
+  	@document = Document.create(category: 'identitas', 
+      doc_type: 'KTP',
   		public_id: 'asset/default-avatar-sm', owner: user)
   end
 
@@ -11,10 +12,12 @@ RSpec.describe Document, :type => :model do
 
   it { should respond_to(:bytes) }
   it { should respond_to(:image_id) }
+  it { should respond_to(:category) }
   it { should respond_to(:checked) }
   it { should respond_to(:flagged) }
   it { should respond_to(:owner) }
   it { should respond_to(:state) }
+  it { should respond_to(:doc_type) }
 
   it { should respond_to(:can_transition_to?) }
   it { should respond_to(:transition_to!) }
@@ -41,6 +44,11 @@ RSpec.describe Document, :type => :model do
   	it "has association with correct user as owner" do
       expect(@document.owner).to eq user
   	end
+
+    it "has the name set" do
+      expect(@document.name).to_not eq nil
+      expect(@document.name).to eq "KTP #{user.name}"
+    end    
   end
 
   describe "transitions" do

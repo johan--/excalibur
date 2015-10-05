@@ -1,88 +1,145 @@
-<h3 class="dark-grey">Terms and Conditions</h3>
+<h3 class="dark-grey">Peraturan</h3>
     
 <!-- Nav tabs category -->
 <ul class="nav nav-tabs faq-cat-tabs">
-    <li class="active"><a href="#faq-cat-1" data-toggle="tab">Klien</a></li>
-    <li><a href="#faq-cat-2" data-toggle="tab">Pendana</a></li>
+    <li class="active"><a href="#faq-cat-1" data-toggle="tab">Syarat & Ketentuan</a></li>
+    <li><a href="#faq-cat-3" data-toggle="tab">Murabahah</a></li>
+    <li><a href="#faq-cat-4" data-toggle="tab">Musyarakah</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content faq-cat-content">
   <div class="tab-pane active in fade" id="faq-cat-1">
-      <div class="panel-group" id="accordion-cat-1">
+    <%= render 'terms' %>
+  </div>
+  <div class="tab-pane fade" id="faq-cat-3">
+      <div class="panel-group" id="accordion-cat-3">
           <div class="panel panel-default panel-faq">
               <div class="panel-heading">
-                  <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                  <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-1">
                       <h4 class="panel-title">
-                          FAQ Item Category #1
+                          Inti
                           <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                       </h4>
                   </a>
               </div>
-              <div id="faq-cat-1-sub-1" class="panel-collapse">
-                  <div class="panel-body">
-<p>
-	While rare, prices are subject to change based on exchange rate fluctuations - 
-	should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
-</p>
-<p>
-	Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
-</p>
-<p>
-	Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
-</p>
-                  </div>
-              </div>
+              <div id="faq-cat-3-sub-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>- Dalam menjelaskan murabahah, biasanya terdapat dua transaksi terpisah, yaitu: 1)antara penjual pertama aset (pemilik aset sebenarnya) dan pendana/lembaga keuangan/bisnis/individu sebagai pembeli pertama; 2)antara pembeli pertama yang terlibat dalam transaksi 1, yang kemudian menjadi penjual kedua, dan pembeli kedua.</p>
+                  <p>- siKapiten berperan sebagai wakil dari pihak pembeli pertama (yang kemudian berubah menjadi pihak penjual kedua) dan terlibat dalam akad wakalah. Ini berarti semua risiko yang berkaitan dengan kepemilikan aset tetap ditanggung oleh  pihak pembeli pertama dan siKapiten  hanya berhak atas komisi dari transaksi yang terjadi. siKapiten mempunyai kewajiban untuk membeli aset sesuai dengan spesifikasi yang disetujui oleh pihak calon pembeli pertama dan calon pembeli kedua, sesuai dengan yang tertuang dalam proposal terkait di platform siKapiten.</p>
+                </div>
+            </div>
           </div>
           <div class="panel panel-default panel-faq">
               <div class="panel-heading">
-                  <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                  <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-2">
                       <h4 class="panel-title">
-                          FAQ Item Category #1
+                          Rambu
                           <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                       </h4>
                   </a>
               </div>
-              <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+              <div id="faq-cat-3-sub-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>-  Aset harus dimiliki terlebih dahulu oleh penjual kedua secara fisik dan ditanggung resikonya oleh penjual kedua. Tidak boleh penjual kedua menjual aset (terlibat dalam akad jual-beli) kepada pembeli sebelum dia membeli aset tersebut dari penjual pertama. Ini karena risiko dari aset tersebut harus dimiliki dulu oleh si penjual sebelum penjual tersebut menjualnya kembali.<br>
+                  - Segala macam informasi atas aset (seperti cacatnya) wajib diberitahukan kepada pihak pembeli, dan siKapiten akan membantu dalam hal komunikasi.<br>
+                  - Tidak boleh dilakukan pemisahan antara harga barang dengan  margin keuntungan yang terikat dengan waktu. Margin harus dimasukkan ke dalam harga barang atau paling tidak tidak terikat dengan waktu.<br>
+                  - Harga penjualan dari penjual kedua boleh memasukkan berbagai macam biaya yang ditanggung oleh penjual kedua.<br>
+                  - Tidak boleh penjualan dilakukan oleh pihak yang sama untuk aset yang sama atau penerapan buyback arrangement dalam kontrak, ini disebut dengan ba’i inah.<br>
+                  - Janji untuk membeli dari calon pembeli kedua (klien) tidak bersifat mengikat.<br>
+                  - Boleh ada booking fee untuk membuktikan keseriusan calon pembeli kedua, ini diminta di tahap kedua (ketika aset sudah di tangan pembeli pertama. Booking fee ini bersifat sebagai down payment pertama.<br>
+                  - Tidak ada denda yang boleh dikenakan terhadap pembeli yang terlambat membayar angsuran, gagal melunasi, atau macet dalam pelunasan.<br>
+                  - Untuk meminimalisir risiko pembeli pertama (mitra pendana & siKapiten) dapat melakukan khiyar syarat dengan penjual pertama bahwa apabila calon pembeli kedua tidak memenuhi janji pembelian, maka aset dapat dikembalikan dan begitu juga 100% uang yang telah dibayarkan.<br>
+                  - Pembatalan murabahah antara penjual kedua dan pembeli kedua dapat terjadi apabila memenuhi syarat-syarat yang ditentukan dalam kontrak.<br></p>
+                </div>
+              </div>
+          </div>          
+          <div class="panel panel-default panel-faq">
+              <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-3">
+                      <h4 class="panel-title">
+                          Tahapan
+                          <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                      </h4>
+                  </a>
+              </div>
+              <div id="faq-cat-3-sub-3" class="panel-collapse collapse">
                   <div class="panel-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <p>-  Pemesanan & janji oleh calon pembeli kedua. Tahap ini hanya sebatas janji, tidak ada kontrak yang perlu diresmikan, belum masuk akad murabahah. Harga aset, spesifikasi aset, cara pembelian dari penjual pertama(cicilan atau tunai), dan keuntungan yang didapatkan oleh pembeli pertama disetujui oleh kedua belah pihak. Tidak boleh juga meminta uang muka di tahap ini. Calon pembeli kedua juga disyaratkan tidak boleh terlibat dalam transaksi apapun dengan penjual pertama, atau memiliki keterkaitan lain dengan penjual pertama, seperti hubungan pemegang saham.<br>
+                    - Pembelian aset oleh pembeli pertama. Aset dibeli atas nama pembeli pertama, bukan atas nama calon pembeli kedua dan harus diterima langsung oleh pembeli pertama terlebih dahulu.<br>
+                    - Murabahah antara pembeli pertama dan pembeli kedua. Kontrak jual-beli dimana pembeli kedua wajib membayar pembeli pertama, berangsur atau tunai, sebesar harga aset yang telah disetujui. Di tahap ini kepemilikan aset pindah ke tangan pembeli kedua secara fisik dan hukum.<br>
+                    - Untuk kasus angsuran macet, solusinya adalah dengan memberi peringatan bahwa jumlah angsuran yang belum terbayarkan menjadi besaran tunai yang harus dibayarkan oleh pembeli. Pembeli kedua (bisa dibantu oleh siKapiten) kemudian dapat menjual aset tersebut (dan aset jaminan, apabila belum mencukupi) dan menggunakan hasil penjualan untuk membayar besaran tunai tersebut. Apabila hasil penjualan melebihi besaran tunai yang harus dibayarkan kepada pembeli pertama, maka menjadi hak dari pembeli kedua.                     
+                    </p>
                   </div>
               </div>
           </div>
       </div>
   </div>
-  <div class="tab-pane fade" id="faq-cat-2">
-      <div class="panel-group" id="accordion-cat-2">
+  <div class="tab-pane fade" id="faq-cat-4">
+      <div class="panel-group" id="accordion-cat-4">
           <div class="panel panel-default panel-faq">
               <div class="panel-heading">
-                  <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
+                  <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-1">
                       <h4 class="panel-title">
-                          FAQ Item Category #2
+                          Rambu Syirkah Kepemilikan
                           <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                       </h4>
                   </a>
               </div>
-              <div id="faq-cat-2-sub-1" class="panel-collapse collapse">
-                  <div class="panel-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
+              <div id="faq-cat-4-sub-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>-  Tidak boleh mengikat;  akad kepemilikan bersama, akad sewa, dan akad pembelian harus bebas dari satu sama lain dan diresmikan pada saat yang berbeda. Intinya, tidak ada kewajiban hukum bagi pihak mana pun untuk terlibat dalam dan melakukan akad-akad tersebut. Klien tidak wajib untuk menyewa bangunan setelah terlibat dalam syirkah dan tidak pula wajib membeli habis kepemilikan mitra pendana.<br>
+                  - Tidak boleh pula ada pencatuman semacam denda atau konsekuensi apabila satu pihak gagal membeli habis porsi kepemilikan pihak yang lain dalam syirkah.<br>
+                  - Sertifikat aset (rumah, apartemen, tanah, dsb) boleh langsung diatasnamakan kepada klien, langkah ini disebut dengan ‘menggadaikan sertifikat’ dan diperbolehkan dalam syariah. Ini juga bermanfaat untuk menghindari double-taxing. Kemudian untuk meminimalisir risiko pihak yang tidak ditulis dalam sertifikat, sertifikat tersebut dapat disimpan olehnya atau disimpan di tempat atau pada pihak yang dipilihnya.<br>
+                  - Janji pembelian kepemilikan tidak boleh dituliskan dalam kontrak, cukup sebatas lisan.<br>
+                  - Tidak boleh digabungkan dengan kontrak sewa.<br>
+                  - Untuk kasus dimana aset sudah menjadi milik klien, misalkan kasus dimana klien ingin terbebas dari hutang riba yang terlanjur dia terlibat di dalamnya, maka hutangnya ditebus terlebih dahulu sebelum masuk ke dalam kontrak syirkah.<br>
+                  - Jika aset ingin diasuransikan, harus dilakukan menggunakan asuransi yang sesuai syariah dan biaya ditanggung bersama sesuai porsi kepemilikan.<br>
+                  </p>
+                </div>
               </div>
           </div>
           <div class="panel panel-default panel-faq">
               <div class="panel-heading">
-                  <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-2">
-                      <h4 class="panel-title">
-                          FAQ Item Category #2
-                          <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                      </h4>
-                  </a>
+                <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-2">
+                  <h4 class="panel-title">
+                      Rambu Pembelian Porsi Kepemilikan
+                      <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </a>
               </div>
-              <div id="faq-cat-2-sub-2" class="panel-collapse collapse">
-                  <div class="panel-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
+              <div id="faq-cat-4-sub-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>-  Harga tidak boleh fixed dan tidak boleh ada jadwal harga pembelian kepemilikan yang ditentukan. Kalaupun ada pihak yang berjanji untuk membeli atau menjual porsi kepemilikan di harga dan waktu tertentu, janji tersebut tidak bersifat mengikat dan tidak punya konsekuensi apapun apabila tidak dipenuhi.<br>
+                  - Pembelian porsi kepemilikan dapat dilakukan kapan saja dan pada harga yang disetujui oleh kedua belah pihak pada saat tersebut.<br>
+                  - Porsi kepemilikan dapat dijual ke pihak ke-3 (pihak di luar syirkah). Untuk melindungi pihak di dalam syirkah, kontrak syirkah dapat memasukkan suf’ah (rights/hak pertama) untuk pihak dalam syirkah sehingga apabila satu pihak ingin menjual kepemilikannya, pihak lain dalam syirkah mempunyai opsi pertama untuk membeli kepemilikan tersebut.<br>
+                  - Perhitungan harga penjualan/pembelian porsi kepemilikan sebaiknya dilakukan secara cermat dan transparan untuk mengurangi gharar (ketidakpastian/spekulasi).<br>
+                  - Pembelian kepemilikan dapat dilakukan secara merata, dengan membagi rata porsi yang dibeli untuk masing-masih pihak yang berniat menjual, atau selektif, dengan membeli porsi satu pihak saja.<br>
+                  </p>
+                </div>
+              </div>
+          </div>          
+          <div class="panel panel-default panel-faq">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-3">
+                  <h4 class="panel-title">
+                    Rambu Penyewaan (Ijarah)
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </a>
+              </div>
+              <div id="faq-cat-4-sub-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>-  Tanggungan dan risiko aset berada di tangan pemilik aset, dalam hal ini pihak yang terlibat dalam syirkah, secara penuh kecuali ada bukti atas unsur-unsur kesengajaan dan kelalaian dari pihak penyewa.<br>
+                  - Apabila terjadi sesuatu yang merusak aset, bukan karena tindakan penyewa, yang membuat si penyewa tidak dapat mengambil manfaat dari aset, maka dia tidak wajib dan tidak boleh diminta membayar sewa.<br>
+                  - Boleh diterapkan beberapa tahap penyewaan yang dimana setiap tahap biaya sewa berubah. Juga boleh ditetapkan pengkajian ulang biaya sewa di waktu-waktu tertentu, misalkan di akhir tahun ke-2.<br>
+                  - Biaya sewa boleh diikat dengan beberapa variabel pasar yang disetujui, namun harus juga ditentukan tingkat dasar dan atas yang menjadi batasan. Kenaikan beberapa biaya dasar seperti pajak, asuransi, dan pemeliharaan juga dapat menjadi dasar kenaikan harga sewa. Kemudian biaya sewa juga dapat dikenakan kenaikan secara bertahap di awal kontrak sewa, misalkan naik 5% per tahun.<br>
+                  - Biaya sewa boleh dibayar di muka ketika ketersediaan aset sudah terjamin. Boleh juga meminta uang deposit sebagai bukti keseriusan calon penyewa, uang deposit ini nanti dapat dikembalikan ketika sewa dimulai atau dihitung sebagai pembayaran sewa di muka.<br>
+                  - Biaya pemeliharaan aset ditanggung oleh pemilik aset, kecuali untuk biaya operasional (listrik, telepon, bensin, dsb.).<br>
+                  </p>
+                </div>
               </div>
           </div>
       </div>
-  </div>
+  </div>      
 </div>

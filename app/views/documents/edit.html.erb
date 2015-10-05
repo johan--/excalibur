@@ -1,7 +1,7 @@
-<% title("Unggah Dokumen") %>
+<% title("Edit Dokumen") %>
 
   <div class="portlet portlet-bordered">
-  	<%= render 'form' %>
+  	<%= render partial: 'documents/form', locals: { category: @category, types: all_docs } %>
 
   	<strong>
   		<%= link_to "Kembali ke Profil", user_path(current_user) %> |

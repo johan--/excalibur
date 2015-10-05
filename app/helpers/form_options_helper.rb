@@ -75,9 +75,34 @@ module FormOptionsHelper
   end
 # Document options
 	def document_categories
-		["Identifikasi", "Sertifikat Pencapaian", "Bukti Kepemilikan", 
-		 "Bukti Penghasilan", "Bukti Pengeluaran", "Lain-lain"]
+		["identitas", "bukti penghasilan", "bukti pengeluaran", 
+			"bukti kepemilikan", "lain-lain"]
+	end
+	def identity_docs
+		["KTP", "SIM", "Passport", "NPWP", "Kartu Keluarga", "Pas Foto"]
+	end
+	def employee_docs
+		["Slip Gaji", "Surat Keterangan Masa Kerja"]
+	end
+	def entrepreneur_docs
+		["Laporan Keuangan Bisnis", "Akte Perusahaan", "SIUP", "TDP"]
+	end
+	def professional_docs
+		["Surat Izin Praktek", "Sertifikat Profesi"]
+	end
+	def earning_docs
+		[employee_docs, entrepreneur_docs, professional_docs].flatten
 	end
 
+	def expense_docs
+		["Buku Tabungan (4 Bulan Terakhir)", "Bukti Bayar Listrik", "Bukti Bayar Telepon",
+			"Lain-lain"]
+	end
+	def collateral_docs
+		["BPKB", "Girik", "SHGB", "SHGB", "SHM"]
+	end
+	def all_docs
+		[identity_docs, earning_docs, expense_docs, collateral_docs].flatten
+	end
 
 end

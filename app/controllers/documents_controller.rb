@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :delete, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :delete, :destroy]
 
   def show
     # @pic = Cloudinary::Api.resource(@document.public_id)
@@ -19,6 +19,13 @@ class DocumentsController < ApplicationController
 	  else
 		  render :new
 	  end
+  end
+
+  def edit
+    @category = @document.category
+  end
+
+  def update
   end
 
   def destroy
@@ -41,7 +48,7 @@ private
 
   def document_params
   	params.require(:document).permit(
-  	  :name, :category, :slug, :image_id,
+  	  :name, :category, :slug, :image_id, :doc_type,
   	  :bytes, :public_id,
   	  :owner_type, :owner_id, :owner
   	)

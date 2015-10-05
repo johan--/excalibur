@@ -7,13 +7,17 @@ class Document < ActiveRecord::Base
   
   attr_accessor :image_id
   store_accessor :details, 
-  					:public_id, :bytes, :state, 
+  					:public_id, :bytes, :state, :doc_type,
   					:checked, :flagged
   
   attr_wannabe_bool :checked, :flagged
 
   # Pagination
   paginates_per 30
+
+  def self.categories
+    %w(identitas penghasilan pengeluaran kepemilikan lain-lain)
+  end
 
 # Statesman stuffs
   has_many :document_transitions
@@ -31,7 +35,21 @@ class Document < ActiveRecord::Base
   scope :verifieds, -> { 
     where("documents.details->>'state' = :state", state: "verified") 
   }    
-
+  scope :by_types, ->(doc_type) { 
+    where("documents.details->>'doc_type' = :type", type: doc_type) 
+  }
+  scope :identities, -> { 
+    where("documents.details->>'doc_type' = :type", type: "identitas") 
+  }
+  scope :incomes, -> { 
+    where("documents.details->>'doc_type' = :type", type: "bukti penghasilan") 
+  }
+  scope :expenses, -> { 
+    where("documents.details->>'doc_type' = :type", type: "bukti pengeluaran") 
+  }
+  scope :collaterals, -> { 
+    where("documents.details->>'doc_type' = :type", type: "bukti kepemilikan") 
+  }
   def transitioning!
     if self.checked? &&  self.flagged?
       self.state_machine.transition_to!(:dropped)
@@ -66,6 +84,7 @@ private
     self.checked = false
     self.flagged = false
     self.state = DocumentStateMachine.initial_state
+    self.name = "#{self.doc_type} #{self.owner.name}"
   end
 
 end

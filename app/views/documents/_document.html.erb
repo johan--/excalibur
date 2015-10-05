@@ -4,7 +4,7 @@
 <div class="panel panel-default" id="panel-image">
 <% end %>
     <div class="panel-heading">
-        <h3 class="panel-title"><%= document.name %> | <%= document.state_machine.current_state %></h3>
+        <small><%= document.name %></small>
     </div>
     <div class="panel-image hide-panel-body">
         <% if defined?(thumbnail) && thumbnail %>
@@ -14,6 +14,7 @@
         <% end %>
     </div>
     <div class="panel-footer text-center">
+        <span class="badge"><%= document.state %></span>
         <% if @admin %>
             <%= link_to cl_private_download_url("my_private_image", :jpg, :attachment => true) do %>
                 <span class="glyphicon glyphicon-download"></span>
@@ -21,6 +22,9 @@
             <%= link_to admin_document_path(document), remote: true do %>
                 <span class="glyphicon glyphicon-zoom-in"></span>
             <% end %>
+            <%= link_to edit_document_path(document) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>            
             <% if defined?(checking) && checking %>
                 <%= render 'admin/documents/checking' %>
             <% end %>
@@ -28,9 +32,6 @@
             <%= link_to document_path(document), remote: true do %>
                 <span class="glyphicon glyphicon-zoom-in"></span>
             <% end %>        
-            <%= link_to edit_document_path(document) do %>
-                <span class="glyphicon glyphicon-pencil"></span>
-            <% end %>
         <% end %>
         <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'} do %>
             <span class="glyphicon glyphicon-trash reset-link"></span>

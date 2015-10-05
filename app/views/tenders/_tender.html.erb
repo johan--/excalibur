@@ -3,16 +3,9 @@
     <div class="col-md-4 text-center">
       <i class="fa fa-file-text fa-4x" style="display: block;"></i>
       <h3>Proposal <%= tender.barcode %></h3>
-      <h5><%= tender.state %> </h5>
-      <ul title="Ratings" class="list-inline ratings">
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-      </ul>
-        <%= link_to 'Edit', edit_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
-        <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>      
+      <h5><span class="label label-primary"><%= tender.state %></span></h5> 
+      <%= link_to 'Edit', edit_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+      <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>      
     </div>
     <div class="col-md-6">
       <div class="table-responsive">
@@ -25,7 +18,7 @@
                 </strong>
               </td>
               <td class="text-primary">
-                <%= tender.aqad %>
+                <strong><%= tender.aqad.titleize %></strong>
               </td>
             </tr>
             <tr>    
@@ -39,10 +32,10 @@
             <tr>        
               <td>
                 <strong>
-                    <span class="glyphicon glyphicon-bookmark text-primary"></span> Kategori
+                    <span class="glyphicon glyphicon-bookmark text-primary"></span> Dipublikasikan?
                 </strong>
               </td>
-              <td class="text-primary"><%= tender.category %> </td>
+              <td class="text-primary"><%= draft_or_real?(tender) %> </td>
             </tr>
             <tr>        
                 <td>
@@ -81,7 +74,7 @@
                 </strong>
               </td>
               <td class="text-primary">
-                <%= time_ago_in_words(tender.updated_at) %>
+                <%= time_ago_in_words(tender.updated_at) %> ago
               </td>
             </tr>                                    
           </tbody>

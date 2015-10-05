@@ -13,9 +13,10 @@ feature "ClientUploadsDocuments", :type => :feature do
   describe "uploading file", js: true do
   	before do 
   		click_link('Unggah Berkas') 
-  		fill_in "document_name", with: "KTP Galih"
+      click_link("", href: '#identity')
+  		# fill_in "document_name", with: "KTP Galih"
   		attach_file('file', file_upload_fixture)
-  		select "Identifikasi", from: "document_category"
+  		select "KTP", from: "document_doc_type"
   		click_button "Simpan"
   	end
 
@@ -27,7 +28,7 @@ feature "ClientUploadsDocuments", :type => :feature do
         click_link("", href: '#portlet_tab2')
       end
       
-      it { should have_content("KTP Galih") }
+      it { should have_content("KTP #{consumer.name}") }
     end
   end
 

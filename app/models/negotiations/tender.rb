@@ -1,12 +1,24 @@
 class Tender < ActiveRecord::Base
+  include WannabeBool::Attributes
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
-  include PublicActivity::Model
-  tracked
+  # include PublicActivity::Model
+  # tracked
 
   belongs_to :tenderable, polymorphic: true  
-  
   has_many :bids
+
+  serialize :properties, HashSerializer
+  store_accessor :properties, 
+                 :open, :category, 
+                 :summary, :barcode, :tenderable_name
+
+  serialize :details, HashSerializer
+  store_accessor :details, 
+                 :tangible, :use_case, :intent, :aqad, :aqad_code,
+                 :address, :price, :maturity,
+                 :published
+  attr_wannabe_bool :open, :published
 
 # Statesman stuffs
   has_many :tender_transitions
@@ -22,17 +34,7 @@ class Tender < ActiveRecord::Base
 
   monetize :target_sens
   monetize :contributed_sens
-
-  serialize :properties, HashSerializer
-  store_accessor :properties, 
-                 :open, :category, 
-                 :summary, :barcode, :tenderable_name
-
-  serialize :details, HashSerializer
-  store_accessor :details, 
-                 :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :price, :published
-
+  
   validates_presence_of :aqad, :target, :price, :address
 
   before_create :set_default_values!

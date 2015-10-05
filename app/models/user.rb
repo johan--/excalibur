@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   scope :clients, -> { 
     where("users.preferences->>'client' = :true", true: "true") 
   }    
-
+  
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
@@ -98,7 +98,14 @@ class User < ActiveRecord::Base
     end
     user
   end
- 
+
+  def has_documents?(doc)
+    if self.documents.by_types(doc).count != 0
+      return true
+    else
+      return false
+    end
+  end 
 
 # private
 

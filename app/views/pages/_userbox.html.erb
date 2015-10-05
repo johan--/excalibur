@@ -10,12 +10,18 @@
     <div class="col-sm-9">
       <div class="home-prompt">
         <div class="row">
-          <div class="mt col-sm-6 col-xs-12">
+          <div class="mt col-md-6 hidden-sm">
             <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-outlined btn-theme btn-md", :remote => true %>
             <%= link_to 'Lihat', user_path(current_user), class: "btn btn-outlined btn-theme btn-md" %>
           </div>
-          <div class="mt col-sm-6 col-xs-12">
-          <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-outlined btn-theme btn-block"  %></div>
+          <div class="mt col-md-6 hidden-sm">
+          <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-outlined btn-theme btn-block"  %>
+          </div>
+          <div class="mt col-sm-12 visible-sm">
+            <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-outlined btn-theme btn-sm", :remote => true %>
+            <%= link_to 'Lihat', user_path(current_user), class: "btn btn-outlined btn-theme btn-sm" %>
+            <%= link_to 'Unggah Berkas', new_document_path, class: "btn btn-outlined btn-theme btn-sm"  %>
+          </div>
         </div>
       </div>
     </div>

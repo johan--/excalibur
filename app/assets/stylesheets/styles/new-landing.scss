@@ -289,6 +289,7 @@ h3.landing {
 }
 .serv-grids {
   text-align: center;
+  min-height: 180px;
 }
 .serv-grids h4 {
   font-size: 1.2em;
@@ -305,6 +306,7 @@ h3.landing {
 .primary-border {
   border: 1px solid $brand-primary;
   padding: 1em 1em 1em 1em;
+  min-height: 180px;
 }
 
 /* Showcase Wrap */
@@ -347,3 +349,8 @@ h3.landing {
     color: white
 }
 
+#landing-subscriber {
+    background-color: $brand-grey;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}

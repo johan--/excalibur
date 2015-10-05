@@ -54,7 +54,7 @@ class PagesController < ApplicationController
     
     if @subscriber.valid?
       # SubscriberMailer.welcome(@subscriber).deliver
-      flash[:info] = "Terima kasih, kami akan kabari kamu"
+      flash[:notice] = "Terima kasih, kami akan kabari kamu"
       redirect_to root_path
     else
       flash.now.alert = "Tolong tulis alamat email yang valid, terima kasih."
