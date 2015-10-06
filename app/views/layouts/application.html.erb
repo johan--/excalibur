@@ -2,9 +2,11 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <% metamagic site: ENV["SITE_NAME"], title: [:title, :site], separator: " | " %>
-  <% twitter site: ENV["TWTR_HANDLER"] %>  
-  <% meta og: { site_name: ENV["SITE_NAME"] } %>
+  <% if ENV["APP_TYPE"] == 'live' %>
+    <% metamagic site: ENV["SITE_NAME"], title: [:title, :site], separator: " | " %>
+    <% twitter site: ENV["TWTR_HANDLER"] %>  
+    <% meta og: { site_name: ENV["SITE_NAME"] } %>
+  <% end %>
   <%= metamagic %>  
   <%= favicon_link_tag 'http://res.cloudinary.com/instilla/image/upload/v1443701042/asset/kapiten-logo.png' %>
   <%= favicon_link_tag 'http://res.cloudinary.com/instilla/image/upload/v1443701042/asset/kapiten-logo.png', rel: 'logo', type: 'image/png' %>

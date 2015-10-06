@@ -22,7 +22,7 @@
 	</div>
 	<div class="container">
 		<div class="navbar-header hidden-xs">
-			<%= link_to app_name, root_url(subdomain: ''), class: "navbar-brand" %>
+			<%= link_to ENV["SITE_NAME"], root_url(subdomain: ''), class: "navbar-brand" %>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
