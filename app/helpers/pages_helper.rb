@@ -11,7 +11,12 @@ module PagesHelper
   end
 
   def subscriber_slot(current_count)
-    50 - current_count - 5
+    slot_left = 50 - current_count - 5 
+    if slot_left == 0
+      return "Slot Waiting List tersisa"
+    else 
+      return "#{slot_left} slot tersisa"
+    end
   end
 
   
