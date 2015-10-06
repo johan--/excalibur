@@ -29,12 +29,16 @@
                 <%= render 'admin/documents/checking' %>
             <% end %>
         <% else %>
-            <%= link_to document_path(document), remote: true do %>
-                <span class="glyphicon glyphicon-zoom-in"></span>
-            <% end %>        
+            <% unless defined?(zoomed) && zoomed %>
+                <%= link_to document_path(document), remote: true do %>
+                    <span class="glyphicon glyphicon-zoom-in"></span>
+                <% end %>
+            <% end %>
         <% end %>
-        <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'} do %>
-            <span class="glyphicon glyphicon-trash reset-link"></span>
+        <% unless defined?(zoomed) && zoomed %>
+            <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'} do %>
+                <span class="glyphicon glyphicon-trash reset-link"></span>
+            <% end %>
         <% end %>
     </div>
 </div>
