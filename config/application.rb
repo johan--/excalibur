@@ -23,7 +23,6 @@ module Fustal
     # Handles error via routes
     config.exceptions_app = self.routes
 
-
     # turn off warnings triggered by friendly_id
     I18n.enforce_available_locales = false
 
