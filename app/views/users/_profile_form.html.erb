@@ -7,7 +7,7 @@
 	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @user.marital_status, label: "Status Pernikahan", required: true %>
     <%= f.input :number_dependents, label: "Jumlah Individu Tanggungan", required: true %>    
     <%= f.input :occupation, label: "Pekerjaan", required: true %>
-    <%= f.input :work_experience, as: :text, input_html: { rows: 5 }, label: "Pengalaman Kerja", required: false %>    
+    <%= f.input :work_experience, as: :text, input_html: { rows: 5 }, label: "Pengalaman Kerja", placeholder: "pisahkan tiap pengalaman dengan ';' (koma titik)", required: false %>    
     <%= f.input :monthly_income, label: "Penghasilan Bulanan", required: false %>
     <%= f.input :monthly_expense, label: "Pengeluaran Bulanan", required: false %>    
     <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Kamu"  %>    

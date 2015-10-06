@@ -33,8 +33,8 @@ feature "UserHandlesProfile", :type => :feature do
       visit user_root_path 
     end
 
-    context "viewing the profile modal", js: true do
-      before { click_link("Lihat") }
+    context "viewing the profile page" do
+      before { click_link("Lihat", match: :first) }
 
       it { should have_css('#name', text: user_2.name) }
       it { should have_css('#bio', text: user_2.about) }
