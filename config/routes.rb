@@ -5,8 +5,8 @@ Fustal::Application.routes.draw do
   apipie
   mount Attachinary::Engine => "/attachinary"
   mount_griddler  
-  # only for temporary, for passing mandrill route test
-  get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
+  # # only for temporary, for passing mandrill route test
+  # get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
   devise_for :users, :controllers => { 
             :registrations => "registrations", 
