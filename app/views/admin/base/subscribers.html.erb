@@ -30,7 +30,11 @@
     <td><%= subscriber.category %></td>
     <td><%= subscriber.created_at.strftime("%Y, %B %-d") %></td>
     <td><%= time_ago_in_words(subscriber.updated_at)%> ago</td>
-    <td><%= link_to "Whitelist", admin_whitelisting_path(id: subscriber.id), method: :put  %></td>
+    <% if subscriber.name == "whitelisted" %>
+      <td>Nothing to do</td>
+    <% else %>
+      <td><%= link_to "Whitelist", admin_whitelisting_path(id: subscriber.id), method: :put  %></td>
+    <% end %>
   </tr>
   <% end %>
 
