@@ -5,8 +5,9 @@ class PagesController < ApplicationController
   before_filter :disable_background, only: :tos
 
   def landing
-    @category = "landing"
+    @category = "registration"
     @disable_nav = true
+    @current_count = Subscriber.whitelist.count
   end
 
   def home
@@ -52,7 +53,7 @@ class PagesController < ApplicationController
   def subscribe
     @subscriber = Subscriber.new(email: params[:email], category: params[:category])
     
-    if @subscriber.valid?
+    if @subscriber.save
       # SubscriberMailer.welcome(@subscriber).deliver
       flash[:notice] = "Terima kasih, kami akan kabari kamu"
       redirect_to root_path
@@ -64,5 +65,10 @@ class PagesController < ApplicationController
 
 
 private
+  def subscriber_params
+    params.require(:subscriber).permit(
+      :email, :category, :from, :origin
+    )
+  end
 
 end

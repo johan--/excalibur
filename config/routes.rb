@@ -8,8 +8,13 @@ Fustal::Application.routes.draw do
   # only for temporary, for passing mandrill route test
   get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
-  devise_for :users, :controllers => { :registrations => "registrations", 
-                            :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => { 
+            :registrations => "registrations", 
+            :omniauth_callbacks => "omniauth_callbacks" }
+  devise_scope :user do
+    get "/daftarbeta" => "devise/registrations#new"
+    get "/masukbeta" => "devise/sessions#new"
+  end
 
   # namespace :api, :path => '/', constraints: { subdomain: 'api' },  defaults: { format: :json }  do  
   namespace :api,  defaults: { format: :json }  do  
@@ -65,6 +70,8 @@ Fustal::Application.routes.draw do
   namespace :admin do
     root "base#index"
     get 'analytics', to: "base#analytics", as: :analytics
+    get 'subscribers', to: "base#subscribers", as: :subscribers
+    put 'whitelisting', to: "base#whitelisting", as: :whitelisting
     get 'inbox', to: "base#inbox", as: :inbox
     resources :users
     resources :teams, only: [:index, :show, :destroy]

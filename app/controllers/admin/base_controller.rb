@@ -20,6 +20,21 @@ class Admin::BaseController < ApplicationController
   def inbox
   end
 
+  def subscribers
+    @subscribers = Subscriber.order(:created_at).page params[:page]
+  end
+
+  def whitelisting
+    @subscriber = Subscriber.find(params[:id])
+    if @subscriber.update(name: "whitelisted")
+      flash[:notice] = 'Subscriber berhasil dikoreksi'
+    else
+      flash[:info] = 'Subscriber gagal dikoreksi'
+      Rails.logger.info(@subscriber.errors.inspect) 
+    end    
+    redirect_to admin_subscribers_path
+  end
+
 private
 
 

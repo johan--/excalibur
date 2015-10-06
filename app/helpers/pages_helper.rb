@@ -10,7 +10,9 @@ module PagesHelper
   	"Indicates whether or not this product get other prep before shipment"
   end
 
-  # def popover_for(text, )
-  # end
+  def subscriber_slot(current_count)
+    50 - current_count - 5
+  end
+
   
 end

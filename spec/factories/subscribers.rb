@@ -1,12 +1,7 @@
 FactoryGirl.define do
 
   factory :subscriber do
-    # transient do
-    #   user { FactoryGirl.create(:client) }
-    # end
-
     email "foobarbaz@gmail.com"
-    # name { user.name }
 
     factory :beta_user do
       category "landing"
@@ -15,6 +10,10 @@ FactoryGirl.define do
     factory :blog_subscriber do
       category "blog"
     end    
+
+    trait :whitelisted do
+      name "whitelisted"
+    end
   end
 
 end

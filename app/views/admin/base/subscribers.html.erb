@@ -1,0 +1,44 @@
+<div class="text">      
+  <h4>Subscriber Index</h4>
+</div>
+
+<% meta title: "Subscriber | Admin Dashboard" %>
+<h1>Subscriber <small>Admin Dashboard</small></h1>
+<p><%= link_to "Back to Admin Root", admin_root_path %></p>
+
+<div class="text-center">
+  <%= paginate @subscribers %>
+</div>
+
+<% if @subscribers.count != 0 %>
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Kategori</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th></th>
+  </tr>
+
+  <% @subscribers.each do |subscriber| %>
+  <tr>
+    <td><%= subscriber.id %></td>
+    <td><%= subscriber.email %></td>
+    <td><%= subscriber.name %></td>
+    <td><%= subscriber.category %></td>
+    <td><%= subscriber.created_at.strftime("%Y, %B %-d") %></td>
+    <td><%= time_ago_in_words(subscriber.updated_at)%> ago</td>
+    <td><%= link_to "Whitelist", admin_whitelisting_path(id: subscriber.id), method: :put  %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% else %>
+  <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Subscriber", explanation: "Sabar ya hahahaha", anchor: "Kembali ke Dashboard", destination: admin_root_path } %>
+<% end %>
+
+<div class="text-center">
+  <%= paginate @subscribers %>
+</div>

@@ -13,7 +13,7 @@ feature "UserSignsUp", :type => :feature do
 		end
 
 		describe "as beta-listed client with valid information" do
-			let!(:subscriber) { FactoryGirl.create(:beta_user) }
+			let!(:subscriber) { FactoryGirl.create(:beta_user, :whitelisted) }
 
 			before do
 				fill_in("user[email]", with: subscriber.email)
