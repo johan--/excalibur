@@ -10,7 +10,7 @@
 	</li>
 	</br>
 	  <p>
-		<% if comment.author?(current_user) || current_user.present? && current_user.admin? || current_or_guest_user.present? && comment.author?(current_or_guest_user) %>
+		<% if comment.author?(current_user) || current_user.present? && current_user.admin? || current_user.present? && comment.author?(current_user) %>
 	  	  <span><%= link_to "Edit", edit_blog_post_comment_path(comment.commentable, comment.slug), remote: true %></span> |
 	  	<% end %>
 	  	<span><%= link_to "Balas", new_blog_post_comment_path(@post, parent_comment: comment.id), remote: true %></span>

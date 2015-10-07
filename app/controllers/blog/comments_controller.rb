@@ -17,7 +17,7 @@ class Blog::CommentsController < ApplicationController
 
   def create
 	  @comment = Comment.new(comment_params)
-	  @comment.user = current_or_guest_user
+	  @comment.user = current_user || "Tamu"
     @post = Post.friendly.find(params[:post_id])
     @comment.commentable = @post
 

@@ -57,18 +57,6 @@
   </div>
 
   <% unless defined?(multiple) && multiple %>
-	<div class="well">
-	  <h4>Daftar Komentar</h4>
-	  <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
-	    <% if comments.count == 0 %>
-		  <span>Belum ada Komentar</span>    
-		<% end %>
-	    <%= render comments %>
-	  </ul>	
-	  <hr data-brackets-id="12673">
-	  <h4>Mau berkomentar?</h4>
-	  <%= render 'blog/comments/form' %>
-	</div>
   <% end %>
 
 </div>

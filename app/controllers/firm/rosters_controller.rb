@@ -1,4 +1,4 @@
-class Biz::RostersController < Biz::BaseController
+class Firm::RostersController < Firm::BaseController
   before_action :set_roster, only: [:edit, :update, :destroy]
 
   def index

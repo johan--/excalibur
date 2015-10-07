@@ -8,7 +8,7 @@ class Blog::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).per(7)
     unless current_user.present? && current_user.admin?
-      ahoy.track "Visit Blog Root", title: "#{current_or_guest_user.id} visited blog"
+      ahoy.track "Visit Blog Root", title: "A guest user visited blog"
     end
   end
   
@@ -17,7 +17,7 @@ class Blog::PostsController < ApplicationController
     @root_comments = @post.root_comments
     @comment =  Comment.new
     unless current_user.present? && current_user.admin?
-      ahoy.track "Visit a Blog Post", title: "#{current_or_guest_user.id} visited #{@post.title}"
+      ahoy.track "Visit a Blog Post", title: "A guest user visited #{@post.title}"
     end
   rescue  
     redirect_to root_path(subdomain: "blog")

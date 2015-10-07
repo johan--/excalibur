@@ -132,13 +132,24 @@ a:after {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;    
-
+}
+#funderwrap {
+    padding-top: 6%;
+    padding-bottom: 10%;
+    width: 100%;
+    height: 100%;
+    background: url('http://res.cloudinary.com/instilla/image/upload/v1444194963/asset/wallpaper.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 h3.sub-heading{
   font-weight: 100;
 }
 
-#headerwrap h1 {
+.landing-header h1 {
     color: white;
     font-size: 260%;
     line-height: 3.75rem;
@@ -147,7 +158,7 @@ h3.sub-heading{
     margin-bottom: 0;
     margin-top: 0;    
 }
-#headerwrap nav{
+.landing-header nav{
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;  
@@ -156,12 +167,12 @@ h3.sub-heading{
   height: 70px;
   font-size: 15px;
 }
-#headerwrap nav .navbar-brand {
+.landing-header nav .navbar-brand {
   font-size: 160%;
   font-weight: 200px;
 }
 
-#headerwrap nav.shrink {
+.landing-header nav.shrink {
   background: rgba(0,255,255,0.8);
   background: rgb (0,0,0);
   height: 7%;
@@ -178,7 +189,7 @@ h3.sub-heading{
     margin-bottom: 5%;
 }
 
-#headerwrap h3 {
+.landing-header h3 {
     font-size: 150%;
     font-weight: 150;
     padding-right: 10%;
@@ -186,13 +197,13 @@ h3.sub-heading{
     color: #ffffff;
 }
 
-#headerwrap h5 {
+.landing-header h5 {
     color: white;
     font-weight: 700;
     text-align: left;
 }
 
-#headerwrap p {
+.landing-header p {
     color: white
 }
 #subscribe-prompt h3{
@@ -203,19 +214,28 @@ h3.sub-heading{
 
 @media(max-width:767px){
     #headerwrap {
-        padding-top: 15%;
-        padding-bottom: 15%;
-        height: 100%;
         background: url('http://res.cloudinary.com/instilla/image/upload/v1439794070/3-dark-mobile_iobcyn.jpg') no-repeat center center scroll;
         background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
-        -o-background-size: cover;            
+        -o-background-size: cover;                    
+    }
+    #funderwrap {
+        background: url('http://res.cloudinary.com/instilla/image/upload/c_scale,w_389/v1444194963/asset/wallpaper.jpg') no-repeat center center scroll;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;                    
+    }         
+    .landing-header {
+        padding-top: 15%;
+        padding-bottom: 15%;
+        height: 100%;
         nav {
             background: rgba(0,255,255,0.8);
             background: rgb (0,0,0);
             height: 7%;            
-        }
+        }       
         ul.nav {
             margin-top: 0px;
             background: rgba(0,255,255,0.8);
@@ -233,25 +253,26 @@ h3.sub-heading{
             }        
         }
     }
-    #headerwrap h1 {
+    .landing-header h1 {
         color: white;
         font-size: 24px;
         font-weight: 500;
         margin: .67em 0;
     }       
-    #headerwrap h3 {
+    .landing-header h3 {
         color: white;
         font-size: 14px;
         padding-left: 10px;
         padding-right: 10px;
     }
-    #headerwrap p {
+    .landing-header p {
         font-size: 7px;
         padding-left: 10px;
         padding-right: 10px;
-    }    
+    }
 }
-    /*Opera-mini wrap*/
+
+/*Opera-mini wrap*/
 #opera-mini-wrap{
     max-height: 600px;
     max-width: 400px;

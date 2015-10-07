@@ -37,16 +37,18 @@ Fustal::Application.routes.draw do
     get '' => "posts#index"
   end
 
+  namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
+    root "base#landing"
+    get 'dashboard', to: "base#dashboard", as: :dashboard
+    resources :bids
+  end
+
 # New App
   resources :users, only: [:show, :edit, :update] do
     member do
       get "avatar"
       put "remove_avatar"
     end    
-    resources :tenders, only: [:new, :edit, :create, :update, :destroy]
-  end
-  resources :teams
-  resources :businesses do
     resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
   resources :tenders, only: [:show] do
@@ -74,6 +76,7 @@ Fustal::Application.routes.draw do
     put 'whitelisting', to: "base#whitelisting", as: :whitelisting
     get 'inbox', to: "base#inbox", as: :inbox
     resources :users
+    resources :firms
     resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     resources :posts

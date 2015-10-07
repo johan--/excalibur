@@ -1,20 +1,19 @@
-	<%= render 'layouts/messages' %>
-	<div class="col-md-10 col-md-offset-1 intro-section">
-		<h1 class="intro">
-			Rumah Impian. Hidup Tenang. Tanpa Bunga.
-		</h1>
-		<h3 class="sub-heading">
-			Menggunakan akad-akad syariah, kamu tidak perlu terjerat hutang berbunga dan dirundung kekhawatiran setiap harinya. Kami bantu kamu di setiap tahapan. 
-		</h3>
-		<%= link_to "Kunjungi Blog Kami", root_url(subdomain: "blog"), class: "btn btn-outlined btn-white" %>
+<%= render 'layouts/messages' %>
+<div class="col-md-10 col-md-offset-1 intro-section">
+	<h1 class="intro">
+		Rumah Impian. Hidup Tenang. Tanpa Bunga.
+	</h1>
+	<h3 class="sub-heading">
+		Menggunakan akad-akad syariah, kamu tidak perlu terjerat hutang berbunga dan dirundung kekhawatiran setiap harinya. Kami bantu kamu di setiap tahapan. 
+	</h3>
+	<%= link_to "Kunjungi Blog Kami", root_url(subdomain: "blog"), class: "btn btn-outlined btn-white" %>
+</div>
+<div class="col-md-6 col-md-offset-3" id="subcribe-prompt">
+	<h3 class="sub-heading">Pendaftaran untuk versi Beta dibuka!<br> <small><%= subscriber_slot(@current_count) %></small></h3>
+	<p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
+	<br>			
+	
+	<div class="panel-body" id="landing-subscriber">
+		<%= render 'elements/subscribe_form' %>
 	</div>
-	<div class="col-md-6 col-md-offset-3" id="subcribe-prompt">
-		<h3 class="sub-heading">Pendaftaran untuk versi Beta dibuka!<br> <small><%= subscriber_slot(@current_count) %></small></h3>
-		<p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
-		<br>			
-		
-			<div class="panel-body" id="landing-subscriber">
-				<%= render 'elements/subscribe_form' %>
-			</div>
-		
-	</div>  
+</div>

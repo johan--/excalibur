@@ -1,10 +1,19 @@
 class Admin::FirmsController < Admin::BaseController
+  before_filter :set_firm, only: [:show, :new, :edit, :update, :destroy]
   
   def index
     @firms = Firm.all
   end
 
   def show
+  end
+
+  def new
+    @firm = Firm.new
+  end
+
+  def create
+    @firm = Firm.new(firm_params)
   end
 
   def edit
@@ -17,14 +26,10 @@ class Admin::FirmsController < Admin::BaseController
     @firm = Firm.find(params[:id])
   end
 
-  # def user_params
-  #   params.require(:user).permit(
-  #   :email,
-  #   :password,
-  #   :password_confirmation,
-  #   :admin,
-  #   :locked
-  #   )
-  # end
+  def firm_params
+    params.require(:firm).permit(
+      :name, :state, :profile, :preferences
+    )
+  end
 
 end

@@ -1,4 +1,4 @@
-class SubscriptionsController < Biz::BaseController
+class Firm::SubscriptionsController < Firm::BaseController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
   # GET /subscriptions/1
