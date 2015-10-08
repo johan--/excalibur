@@ -45,11 +45,6 @@
 			<li class="hidden-xs">
 				<%= link_fa_to('book', 'Peraturan', service_terms_url(subdomain: '')) %>
 			</li>						
-			<li class="hidden-xs">
-				<%= link_to contact_url(subdomain: ''), remote: true do %>
-					<i class="menu-icon fa fa-phone"></i><span>Kontak</span>
-				<% end %>				
-			</li>
 			<% if user_signed_in? %>
 				<li>
 					<%= link_to destroy_user_session_path, data:{method: :delete} do %>
@@ -57,6 +52,13 @@
 						<span><strong>Keluar</strong></span>
 					<% end %>
 				</li>
+			<% else %>
+				<li>
+					<%= link_to new_user_session_path do %>
+						<i class="menu-icon fa fa-sign-in"></i>
+						<span><strong>Masuk</strong></span>
+					<% end %>
+				</li>			
 			<% end %>
 			<li class="visible-xs">
 				<a href="#navbar-more-show">
