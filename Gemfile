@@ -32,7 +32,7 @@ gem 'griddler-mandrill'
 
 
 # Blog
-gem 'acts_as_commentable_with_threading'
+# gem 'acts_as_commentable_with_threading'
 gem 'social-share-button', '~> 0.1.6'
 
 

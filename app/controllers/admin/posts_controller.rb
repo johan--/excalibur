@@ -4,7 +4,7 @@ class Admin::PostsController < Admin::BaseController
     :show,
     :edit,
     :update,
-    :destroy
+    :destroy, :remove_header
   ]
 
 
@@ -15,8 +15,6 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def show
-    @root_comments = @post.root_comments
-    @comment =  Comment.new
   end
 
   def drafts
@@ -43,7 +41,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def update
-    @post.slug = nil
+    # @post.slug = nil
     if @post.update(post_params)
       redirect_to admin_posts_path, notice: "Post successfully edited."
     else
@@ -57,6 +55,15 @@ class Admin::PostsController < Admin::BaseController
     redirect_to admin_posts_path, notice: "The post has been deleted."
   end
 
+  def remove_header
+    if Cloudinary::Uploader.destroy(@post.header, type: :upload)
+      @post.update_column(:header, nil)
+      flash[:notice] = 'Header berhasil dihapuskan'
+    else
+      flash[:warning] = 'Header gagal dihapuskan'
+    end
+    redirect_to admin_posts_path
+  end
 
   private
 
@@ -72,6 +79,7 @@ class Admin::PostsController < Admin::BaseController
     :delete_image,
     :meta_description,
     :meta_image,
+    :image_id,
     :topic,
     :tags_text,
     :draft,

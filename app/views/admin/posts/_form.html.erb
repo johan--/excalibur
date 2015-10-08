@@ -1,116 +1,119 @@
-<% if @post.errors.any? %>
-<ul>
-  <% @post.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
 
+<div class="col-md-12">
+  <%= simple_form_for([:admin, @post], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
 
-<div class="col-md-9">
-<%= form_for [:admin, @post], role: "form" do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title, :autofocus => true, class: "form-control monospaced-control", placeholder: "Title (also used for URL slug)..." %>
+    <%= f.input :meta_description, class: "form-control monospaced-control", placeholder: "singkat, padat, jelas" %>
 
-<div class="form-group">
-  <%= f.label :title %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_field :title, :autofocus => true, class: "form-control monospaced-control", placeholder: "Title (also used for URL slug)..." %>
+    <div id="direct_upload">
+      <p>Format yang diterima adalah .jpg, .png, dan .pdf.</p>
+      <div class="form_line">
+        <%= f.label :header, "Gambar Header:" %>
+        <div class="form_controls">
+          <div class="upload_button_holder">
+            <%= link_to("Unggah", "#", :class => "upload_button") %>
+            <%= f.cl_image_upload :image_id, upload_preset: "d5vmq2xa", :return_delete_token=>true, class: "cloudinary-fileupload" %>
+            <%= f.hidden_field :header %>
+          </div>
+          <span class="status"></span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="form-group">
-  <%= f.label :meta_description, "Deskripsi Artikel" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_field :meta_description, class: "form-control monospaced-control", placeholder: "singkat, padat, jelas" %>
-    </div>
-  </div>
-</div>
+    <%= f.input :topic, class: "form-control monospaced-control", placeholder: "Topic of the post" %>
 
-<div class="form-group">
-  <%= f.label :meta_image, "Lokasi Online Gambar Header" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_field :meta_image, class: "form-control monospaced-control", placeholder: "url gambar", required: false %>
-    </div>
-  </div>
-</div>
+    <%= f.input :tags_text, class: "form-control monospaced-control", placeholder: "separated by comma" %>
 
-<div class="form-group">
-  <%= f.label :topic, "Topic" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_field :topic, class: "form-control monospaced-control", placeholder: "Topic of the post" %>
-    </div>
-  </div>
-</div>
+    <%= f.input :draft, as: :boolean %>
 
-<div class="form-group">
-  <%= f.label :tags_text, "Tags Text" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_field :tags_text, class: "form-control monospaced-control", placeholder: "separated by comma" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.check_box :draft %> <%= f.label :draft, "draft" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :updated_at, "Published date" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.datetime_select :updated_at, class: "form-control" %>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="form-group">
-  <%= f.label :header, "Upload Header Image" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.attachinary_file_field :header, :cloudinary => { :transformation => {:width=>750, :height=>563, :crop=>:limit } } %>
-    </div>
-  </div>
-</div>
- -->
-<!-- <div class="form-group">
-  <%= f.label :delete_image, "Klik Box Untuk Menghapus" %>
-  <div class="row">
-    <div class="col-xs-12">
     <% if @post.header.present? %>
-      <%= cl_image_tag(@post.header.path, { :width => 300, :height => 150, :crop => :scale } ) %>
-      <%= f.check_box :delete_image, checked: false %>
+      <p>Klik Box Untuk Menghapus</p>
+      <%= cl_image_tag(@post.header, { transformation: 'media_lib_thumb', format: :jpg} ) %>
+      <%= link_to "Hapus", remove_header_admin_post_path(@post), method: :put %>
     <% end %>
-    </div>
-  </div>
-</div>
- -->
-<div class="form-group">
-  <%= f.label :content_md, "Content" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= f.text_area :content_md, rows: 40, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-12 padded">
-    <button class='btn btn-outlined btn-black'>
-      <i class='fa fa-plus-square'></i> Simpan
-    </button> - <%= link_to "Cancel", admin_posts_path %>
+    <%= f.input :content_md, as: :text, input_html: {rows: 40}, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
   </div>
-</div>
+  <div class="form-actions">
+    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+  </div>
 
 
 <% end %>
   
 </div>
+<script>
+  $(document).ready(function() {
+    // Cloudinary jQuery integration library uses jQuery File Upload widget
+    // (see http://blueimp.github.io/jQuery-File-Upload/).
+    // Any file input field with cloudinary-fileupload class is automatically
+    // wrapped using the File Upload widget and configured for Cloudinary uploads.
+    // You can further customize the configuration using .fileupload method
+    // as we do below.
+    $(".cloudinary-fileupload")
+      .cloudinary_fileupload({ 
+        // Uncomment the following lines to enable client side image resizing and valiation.
+        // Make sure cloudinary/processing is included the js file
+        //disableImageResize: false,
+        //imageMaxWidth: 800,
+        //imageMaxHeight: 600,
+        //acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
+        //maxFileSize: 20000000, // 20MB
+        dropZone: "#direct_upload",
+        start: function (e) {
+          $(".status").text("Starting upload...");
+        },
+        progress: function (e, data) {
+          $(".status").text("Uploading... " + Math.round((data.loaded * 100.0) / data.total) + "%");
+        },
+        fail: function (e, data) {
+          $(".status").text("Upload failed");
+        }
+      })
+      .off("cloudinarydone").on("cloudinarydone", function (e, data) {
+        NProgress.done(true);
+        $("#post_header").val(data.result.public_id);
+        $(".status").text("");
+        var preview = $(".preview").html('');
+        $.cloudinary.image(data.result.public_id, {
+          format: 'jpg', width: 50, height: 50, crop: "fit"
+        }).appendTo(preview);
+
+        $('<a/>').
+          addClass('delete_by_token').
+          attr({href: '#'}).
+          data({delete_token: data.result.delete_token}).
+          html('&times;').
+          appendTo(preview).
+          click(function(e) {
+            e.preventDefault();
+            $.cloudinary.delete_by_token($(this).data('delete_token')).done(function(){
+              $('.preview').html('');
+              $('#info').html('');
+              $("#photo_bytes").val('');
+              $('input[name="post[meta_image]"]').remove();
+            }).fail(function() {
+              $('.status').text("Cannot delete image");
+          });
+        });
+        view_upload_details(data.result);
+      });
+    });
+    
+    function view_upload_details(upload) {
+      // Build an html table out of the upload object
+      var rows = [];
+      $.each(upload, function(k,v){
+        rows.push(
+          $("<tr>")
+            .append($("<td>").text(k))
+            .append($("<td>").text(JSON.stringify(v))));
+      });
+      $("#info").html(
+        $("<div class=\"upload_details\">")
+          .append("<h2>Upload metadata:</h2>")
+          .append($("<table>").append(rows)));
+    }
+</script>

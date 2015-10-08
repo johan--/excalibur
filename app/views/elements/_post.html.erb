@@ -5,7 +5,12 @@
 	<% else %>
 	  <%= cl_image_tag(post.meta_image, { :width => 750, :height => 350, :crop => :scale }) %>
 	<% end %>
-
+  <% elsif post.header.present? %>
+	<% if request.variant.include? :phone %>
+	  <%= cl_image_tag(post.header, cly_sm_header_options) %>
+	<% else %>
+	  <%= cl_image_tag(post.header, cly_lg_header_options) %>
+	<% end %>
   <% end %>
   
   <% if defined?(admin_list) && admin_list %>

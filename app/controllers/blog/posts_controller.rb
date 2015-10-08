@@ -14,8 +14,8 @@ class Blog::PostsController < ApplicationController
   
   def show
     @post = Post.friendly.find(params[:id])
-    @root_comments = @post.root_comments
-    @comment =  Comment.new
+    # @root_comments = @post.root_comments
+    # @comment =  Comment.new
     unless current_user.present? && current_user.admin?
       ahoy.track "Visit a Blog Post", title: "A guest user visited #{@post.title}"
     end
@@ -30,6 +30,8 @@ class Blog::PostsController < ApplicationController
       @posts = Post.by_tag(params[:tag]).page(params[:page]).per(7)
     end
   end
+
+
 
 private
   def tag_cloud

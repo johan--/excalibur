@@ -1,7 +1,7 @@
 class Blog::CommentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [
-    :new, :edit, :create, :update
-  ]
+  # skip_before_action :authenticate_user!, only: [
+  #   :new, :edit, :create, :update
+  # ]
   before_action :set_comment, only: [:edit]
 
   def new

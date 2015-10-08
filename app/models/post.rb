@@ -1,10 +1,15 @@
 class Post < ActiveRecord::Base
+  include WannabeBool::Attributes
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  acts_as_commentable #for comments and nested comments
+  store_accessor :keywords, 
+        :topic, :tags, :tags_text, :meta_description, :meta_image, :sticky
+  attr_wannabe_bool :sticky
+
+  # acts_as_commentable #for comments and nested comments
   has_many :comments, as: :commentable
-  has_attachment  :header
+  # has_attachment  :header
 
   # Markdown
   before_save :mark_it_down!, :tags_as_array!
@@ -20,11 +25,9 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   serialize :keywords, HashSerializer
-  store_accessor :keywords, 
-        :topic, :tags, :tags_text, :meta_description, :meta_image
 
-  attr_accessor :delete_image
-  before_validation :remove_attached_image
+  attr_accessor :delete_image, :image_id
+  # before_validation :remove_attached_image
 
   # Scopes
   default_scope { order(created_at: :desc) }

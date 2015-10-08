@@ -13,7 +13,7 @@ feature "AuthenticationSteps", :type => :feature do
 				describe "visiting the landing page" do
 					before { visit root_path }
 
-					it { should have_title('Platform pembiayaan syariah | siKapiten') }
+					it { should have_title('Platform pembiayaan syariah untuk rumah | siKapiten') }
 				end
 
 				describe "visiting the home page" do

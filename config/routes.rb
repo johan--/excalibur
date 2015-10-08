@@ -75,11 +75,15 @@ Fustal::Application.routes.draw do
     get 'subscribers', to: "base#subscribers", as: :subscribers
     put 'whitelisting', to: "base#whitelisting", as: :whitelisting
     get 'inbox', to: "base#inbox", as: :inbox
-    resources :users
+    resources :users, skip: [:destroy]
     resources :firms
     resources :teams, only: [:index, :show, :destroy]
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
-    resources :posts
+    resources :posts do
+      member do
+        put "remove_header"
+      end
+    end
     resources :documents do
       member do
         get "delete"
@@ -88,9 +92,5 @@ Fustal::Application.routes.draw do
     resources :tenders, only: [:index, :update]
   end
 
-  namespace :enterprise do
-    root "base#show"    
-    # get "contact", to: "base#contact", as: "contact"
-  end
 
 end
