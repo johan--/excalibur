@@ -15,27 +15,27 @@ feature "AdminManagesBlog", :type => :feature do
       visit root_path      
     end
 
-    describe "viewing a single blog post" do
-      before do 
-        click_link post1.title, match: :first
-      end
+    # describe "viewing a single blog post" do
+    #   before do 
+    #     click_link post1.title, match: :first
+    #   end
 
-      it { should have_link('Edit') }
-    end
+    #   it { should have_link('Edit') }
+    # end
 
-    describe "moderating a comment", js: true do
-      before do
-        find("a", text: post1.title).trigger("click")
-        click_link 'Edit'
-        within(:div, '.modal-body') do
-          fill_in 'comment_body', with: "Blablabla lorem"
-          click_button "Simpan", match: :prefer_exact
-        end
-      end
+    # describe "moderating a comment", js: true do
+    #   before do
+    #     find("a", text: post1.title).trigger("click")
+    #     click_link 'Edit'
+    #     within(:div, '.modal-body') do
+    #       fill_in 'comment_body', with: "Blablabla lorem"
+    #       click_button "Simpan", match: :prefer_exact
+    #     end
+    #   end
 
-      it { should have_content('Komentar berhasil dikoreksi') }
-      it { should have_content('Blablabla lorem') }
-    end
+    #   it { should have_content('Komentar berhasil dikoreksi') }
+    #   it { should have_content('Blablabla lorem') }
+    # end
 
     describe "create a post" do
       before(:each) do

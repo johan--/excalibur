@@ -43,9 +43,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.admin?
       admin_root_url(subdomain: '')
-    elsif resource.client? && !resource.client?
+    elsif resource.client? && !resource.financier?
       user_root_url(subdomain: '')
-    elsif !resource.client? && resource.client?
+    elsif !resource.client? && resource.financier?
       # firm_root_url(subdomain: '')
     end      
   end

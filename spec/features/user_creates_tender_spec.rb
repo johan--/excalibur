@@ -6,15 +6,15 @@ feature "UserCreatesTender", :type => :feature do
 
   before { sign_in user }
 
-  describe "when there is no tender yet" do
-	context "creating a murabahah tender", js: true do
+  describe "when there is no tender yet", js: true do
+	context "creating a murabahah tender" do
 	  before do
 	    visit user_root_path
 	    click_link("", href: '#portlet_tab1')
 	    click_link "Ajukan Murabahah"
+	    select "tempat tinggal", from: "tender_intent"
 	    fill_in "tender_price", with: 500000000
 	    fill_in "tender_address", with: "Jl. Lorem No. 99"
-	    select "tempat tinggal", from: "tender_intent"
 	    select "rumah tunggal", from: "tender_tangible"
 	    choose "Ya"
 	    click_button "Simpan"
@@ -29,17 +29,17 @@ feature "UserCreatesTender", :type => :feature do
 	  end
 	end
 
-	context "creating a musyarakah tender", js: true do
+	context "creating a musyarakah tender" do
 	  before do
 	    visit user_root_path
 	    click_link("", href: '#portlet_tab1')
 	    click_link "Ajukan Musyarakah"
 	    fill_in "tender_target", with: 400000000
+	    select "pembelian", from: "tender_use_case"
+	    select "tempat tinggal", from: "tender_intent"
 	    fill_in "tender_price", with: 500000000
 	    fill_in "tender_address", with: "Jl. Lorem No. 99"
-	    select "tempat tinggal", from: "tender_intent"
 	    select "rumah tunggal", from: "tender_tangible"
-	    select "pembelian", from: "tender_use_case"
 	    choose "Ya"
 	    click_button "Simpan"
 	  end

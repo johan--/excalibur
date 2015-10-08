@@ -35,6 +35,7 @@ gem 'griddler-mandrill'
 gem 'acts_as_commentable_with_threading'
 gem 'social-share-button', '~> 0.1.6'
 
+
 # Necessities
   # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
