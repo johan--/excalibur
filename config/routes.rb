@@ -31,8 +31,8 @@ Fustal::Application.routes.draw do
 
   namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
     get "find", to: "posts#find_posts", as: "find_posts"
+    get "diskusi", to: "posts#discussion_room", as: "discussion"
     resources :posts do
-      # resources :comments, only: [:new, :edit, :create, :update, :destroy]
     end
     get '' => "posts#index"
   end

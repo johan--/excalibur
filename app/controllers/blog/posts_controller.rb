@@ -1,6 +1,6 @@
 class Blog::PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :index, :show, :find_posts
+    :index, :show, :find_posts, :discussion_room
   ]
   before_action :blog_layout
   before_action :tag_cloud#, only: [:posts, :show_post, :find_posts]
@@ -31,6 +31,8 @@ class Blog::PostsController < ApplicationController
     end
   end
 
+  def discussion_room
+  end
 
 
 private

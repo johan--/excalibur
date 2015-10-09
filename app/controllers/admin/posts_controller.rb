@@ -23,6 +23,7 @@ class Admin::PostsController < Admin::BaseController
 
   def new
     @post = Post.new
+    @sticky = "false"
   end
 
   def create
@@ -38,6 +39,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def edit
+    @sticky = @post.sticky
   end
 
   def update
@@ -83,7 +85,8 @@ class Admin::PostsController < Admin::BaseController
     :topic,
     :tags_text,
     :draft,
-    :updated_at
+    :updated_at,
+    :sticky
     )
   end
 

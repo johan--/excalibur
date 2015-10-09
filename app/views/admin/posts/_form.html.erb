@@ -27,7 +27,7 @@
     <%= f.input :tags_text, class: "form-control monospaced-control", placeholder: "separated by comma" %>
 
     <%= f.input :draft, as: :boolean %>
-
+    
     <% if @post.header.present? %>
       <p>Klik Box Untuk Menghapus</p>
       <%= cl_image_tag(@post.header, { transformation: 'media_lib_thumb', format: :jpg} ) %>

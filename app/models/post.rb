@@ -7,9 +7,7 @@ class Post < ActiveRecord::Base
         :topic, :tags, :tags_text, :meta_description, :meta_image, :sticky
   attr_wannabe_bool :sticky
 
-  # acts_as_commentable #for comments and nested comments
   has_many :comments, as: :commentable
-  # has_attachment  :header
 
   # Markdown
   before_save :mark_it_down!, :tags_as_array!
