@@ -1,4 +1,5 @@
-<% title("Proposal | Admin Dashboard") %>
+<% meta title: "Proposal | Admin Dashboard" %>
+
 <h1>Proposal <small>Admin Dashboard</small></h1>
 <p><%= link_to "Back to Admin Root", admin_root_path %></p>
 
@@ -28,7 +29,7 @@
     <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
     <td><%= tender.state %></td>
     <td><%= money_without_cents_and_with_symbol(tender.target) %></td>
-    <td><%= link_to "Proses", '#' %></td>
+    <td><%= link_to "Proses", edit_admin_tender_path(tender), remote: true %></td>
   </tr>
 
   <% end %>

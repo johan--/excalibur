@@ -8,6 +8,8 @@
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
 		  <% if !current_page?(root_url(subdomain: 'blog')) %>
 			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-outlined btn-white" %>
+		  <% else %>
+		  	<%= link_to "Ke Ruang Diskusi", blog_discussion_path, class: "btn btn-sm btn-white btn-outlined" %>
 		  <% end %>
 		  <% if current_user.present? %>
 			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>

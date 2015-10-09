@@ -1,0 +1,3 @@
+$("#inner-main-modal").html("<%= j (render partial: 'admin/tenders/process_form', 
+		locals: { tender: @tender }) %>")
+$("#main-modal").modal("show")

@@ -89,7 +89,7 @@ Fustal::Application.routes.draw do
         get "delete"
       end
     end
-    resources :tenders, only: [:index, :update]
+    resources :tenders, only: [:index, :edit, :update]
   end
 
 

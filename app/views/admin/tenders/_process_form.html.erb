@@ -1,0 +1,24 @@
+<div class="modal-header modal-header-success">
+  <h3>Proses Proposal <%= tender.barcode %></h3>
+</div>
+<div class="modal-body">
+  <center>
+    <h3 class="media-heading"><%= "Proses" %></h3>
+
+<%= simple_form_for([:admin, tender], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :summary, as: :text, label: "Rangkuman", input_html: { rows: 20 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+  </div>
+<% end %>
+
+  </center>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+</div>

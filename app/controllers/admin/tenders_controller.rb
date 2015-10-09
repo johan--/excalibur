@@ -1,9 +1,12 @@
 class Admin::TendersController < Admin::BaseController
-  before_action :set_tender, only: [:update]
+  before_action :set_tender, only: [:edit, :update]
 
   def index
     @admin = true
     @tenders = Tender.order(:created_at).page params[:page]
+  end
+
+  def edit
   end
 
   def update
@@ -27,7 +30,8 @@ class Admin::TendersController < Admin::BaseController
     params.require(:tender).permit(
     :checked,
     :flagged,
-    :public_id
+    :public_id,
+    :summary
     )
   end
 
