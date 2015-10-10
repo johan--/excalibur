@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   before_filter :reject_locked!, if: :devise_controller?
   before_filter :authenticate_user!, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
-    
+  before_filter :switch_browser_prompt, if: :devise_controller?
+
   # Devise permitted params
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(
@@ -46,7 +47,7 @@ class ApplicationController < ActionController::Base
     elsif resource.client? && !resource.financier?
       user_root_url(subdomain: '')
     elsif !resource.client? && resource.financier?
-      # firm_root_url(subdomain: '')
+      firm_dashboard_url(subdomain: '')
     end      
   end
 
@@ -73,7 +74,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :require_admin!
 
-
   def clear_search_index
     if params[:search_cancel]
       params.delete(:search_cancel)
@@ -85,6 +85,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def switch_browser_prompt
+    redirect_to upgrade_path if is_opera_mini?
+  end
+
+  def is_opera_mini?
+    agent_strings = /Opera Mini|Opera Mobi|UBrowser/
+    if request.env['HTTP_USER_AGENT']
+      if request.env['HTTP_USER_AGENT'] =~ agent_strings
+        true
+      else
+        false
+      end
+    end
+  end
+  helper_method :is_opera_mini?
 
 private
 

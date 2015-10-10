@@ -58,33 +58,15 @@ $nprogress-zindex: 10100;
     background-color: white;
     margin-bottom: 10px;
 }
-
-.red {
-  color: #f75353 !important;
-}
-
-.white {
-	color: white;
-}
-
-.danger-link {
-	color: #BE371F;
-}
-.primary{
-  color: $brand-primary;
-}
-.grey{
-  color: $brand-grey;
-}
-.coral {
-	color: $brand-coral;
-}
-.coral-background {
-  background-color: $brand-coral;
-}
-.primary-background {
-  background-color: $brand-primary;
-}
+.red { color: #f75353 !important; }
+.black { color: black; }
+.white { color: white; }
+.danger-link { color: #BE371F; }
+.primary{ color: $brand-primary; }
+.grey{ color: $brand-grey; }
+.coral { color: $brand-coral; }
+.coral-background { background-color: $brand-coral; }
+.primary-background { background-color: $brand-primary; }
 
 /* Main format */
 

@@ -1,0 +1,34 @@
+<div class="portlet">
+	<div class="portlet-title tab-row">
+		<div class="caption caption-red">
+			<i class="fa fa-file-text"></i> 
+			<span class="caption-subject bold font-yellow-crusta uppercase">
+				<%= "Panel Pendana" %>
+			</span>
+			<span class="caption-helper"><%=  %></span>
+		</div>
+	    <ul class="nav nav-tabs" role="tablist">
+	      <li role="presentation"><a href="#portlet_tab1" aria-controls="pembiayaan" role="tab" data-toggle="tab">Penawaran</a></li>
+	      <li role="presentation" class="active"><a href="#portlet_tab2" aria-controls="info" role="tab" data-toggle="tab">Proposal</a></li>
+	      <li role="presentation"><a href="#portlet_tab3" aria-controls="bantuan" role="tab" data-toggle="tab">Bantuan</a></li>
+	    </ul>
+	</div>
+	
+	<div class="portlet-body">
+		<div class="tab-content">
+			<div class="tab-pane" id="portlet_tab1">
+				<% @bids.find_each do |bid| %>
+					<%= render partial: 'bids/bid', locals: { bid: bid } %>
+				<% end %>			
+			</div>
+			<div class="tab-pane active" id="portlet_tab2">
+				<% @tenders.find_each do |tender| %>
+					<%= render partial: 'tenders/tender', locals: { tender: tender } %>
+				<% end %>
+			</div>
+			<div class="tab-pane" id="portlet_tab3">
+			</div>
+		</div>
+	</div>
+
+</div>	

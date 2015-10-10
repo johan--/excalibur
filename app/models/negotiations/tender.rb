@@ -51,6 +51,7 @@ class Tender < ActiveRecord::Base
   scope :open, -> { 
     where("tenders.properties->>'open' = :true", true: "true") 
   }
+  scope :qualified, -> { where(state: "qualified") }
   scope :with_aqad, ->(aqad) { 
     where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
   }

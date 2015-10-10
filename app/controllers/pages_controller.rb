@@ -1,13 +1,13 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :tos, :email, :subscribe
+    :landing, :tos, :email, :subscribe, :upgrade
   ]
-  before_filter :disable_background, only: :tos
+  before_filter :disable_background, only: [:tos, :upgrade]
 
   def landing
     @category = "registration"
-    @disable_nav = true
     @current_count = Subscriber.whitelist.count
+    @no_layout = true
   end
 
   def home
@@ -21,6 +21,10 @@ class PagesController < ApplicationController
   end
 
   def tos
+  end
+
+  def upgrade
+    @no_layout = true
   end
 
   def contact

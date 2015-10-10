@@ -2,9 +2,8 @@ require 'api_constraints'
 require 'subdomain'
 
 Fustal::Application.routes.draw do
-  apipie
+  # apipie
   mount Attachinary::Engine => "/attachinary"
-  mount_griddler  
   # # only for temporary, for passing mandrill route test
   # get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
@@ -16,18 +15,17 @@ Fustal::Application.routes.draw do
     get "/masukbeta" => "devise/sessions#new"
   end
 
-  # namespace :api, :path => '/', constraints: { subdomain: 'api' },  defaults: { format: :json }  do  
-  namespace :api,  defaults: { format: :json }  do  
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :users, only: [:index, :show, :create, :update]
-      resources :sessions, only: [:create, :destroy]
-      resources :relationships, only: [:index, :show, :create, :destroy]
-      resources :businesses, only: [:index, :show, :create, :update, :destroy]
-      resources :tenders, only: [:index, :show, :create, :update, :destroy]
-      resources :bids, only: [:index, :show, :create, :update, :destroy]
-      resources :rosters, only: [:show, :create, :update, :destroy]
-    end
-  end
+  # namespace :api,  defaults: { format: :json }  do  
+  #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+  #     resources :users, only: [:index, :show, :create, :update]
+  #     resources :sessions, only: [:create, :destroy]
+  #     resources :relationships, only: [:index, :show, :create, :destroy]
+  #     resources :businesses, only: [:index, :show, :create, :update, :destroy]
+  #     resources :tenders, only: [:index, :show, :create, :update, :destroy]
+  #     resources :bids, only: [:index, :show, :create, :update, :destroy]
+  #     resources :rosters, only: [:show, :create, :update, :destroy]
+  #   end
+  # end
 
   namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
     get "find", to: "posts#find_posts", as: "find_posts"
@@ -59,6 +57,7 @@ Fustal::Application.routes.draw do
 
   # Static Pages
   root "pages#landing"
+  get "ganti", to: "pages#upgrade", as: :upgrade
   get "home", to: "pages#home", as: :user_root
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"

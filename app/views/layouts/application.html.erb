@@ -15,38 +15,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/mobile_navbar' %>
-  <% if @disable_nav  %>
+  <%= render 'layouts/mobile_navbar' unless !browser.modern? || is_opera_mini? %>
+  <%= render 'layouts/classic_navbar' if !browser.modern? || is_opera_mini? %>
+  <% if @no_layout  %>
     <%= yield %>
   <% else %>
     <% if @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
+    <% elsif @financier_layout %>
+      <%= render 'layouts/financier_layout' %>    
     <% else %>
+
       <% if @disable_background %>
-      <div class="wrap">
+        <div class="wrap">
       <% else %>
-      <div class="wrap main-content">
+        <div class="wrap main-content">
       <% end %>
-        <div class="container">
-          
-          <div class="row" style="margin-top: 10px;">
-            <%= render 'layouts/messages' %>
-            <div class="col-sm-12">
-              <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
+          <div class="container">
+            
+            <div class="row" style="margin-top: 10px;">
+              <%= render 'layouts/messages' %>
+              <div class="col-sm-12">
+                <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
 
-              
-              <section class="container" style="padding-top: 10px;">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-                  <%= yield %>
-                </div>
-              </section>
-                         
+                
+                <section class="container" style="padding-top: 10px;">
+                  <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <%= yield %>
+                  </div>
+                </section>
+                           
+              </div>
             </div>
+            
           </div>
-          
-        </div>      
 
-      </div>
+        </div>
     <% end %> 
   <% end %>
   

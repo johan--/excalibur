@@ -3,15 +3,13 @@ module LayoutSelector
   def disable_background
     @disable_background = true
   end
-  def normal_nav
-    @normal_nav = true
-  end  
   def blog_layout
     @blog_layout = true
     @recents = Post.recent
   end
-  def firm_layout
-    @firm_layout = true
+  def financier_layout
+    @financier_layout = true
+    @disable_nav = false
   end
   def user_layout
     @user_layout = true

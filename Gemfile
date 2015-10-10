@@ -26,8 +26,8 @@ gem 'attachinary', github: 'galliani/attachinary'
 gem 'cloudinary', '~> 1.0.24'
 
 # Email
-gem 'griddler'
-gem 'griddler-mandrill'
+# gem 'griddler'
+# gem 'griddler-mandrill'
 # gem 'roadie', '2.4'
 
 
@@ -51,6 +51,7 @@ gem 'public_activity'
 gem 'metamagic'
 gem 'inline_svg'
 gem 'wannabe_bool'
+gem 'browser'
 
 # Complementary
 gem 'nprogress-rails'
@@ -62,7 +63,7 @@ gem 'redcarpet', '3.2.2'
 
 
 # API
-gem 'apipie-rails'
+# gem 'apipie-rails'
 gem 'jbuilder', '2.2.6'
 
 

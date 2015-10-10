@@ -374,4 +374,7 @@ h3.landing {
     background-color: $brand-grey;
     padding-top: 0px;
     padding-bottom: 0px;
+    h3, p  {
+        color: black;
+    }
 }

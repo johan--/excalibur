@@ -1,0 +1,20 @@
+<div class="wrap">
+  <div class="container">	
+
+	<div class="row" style="margin-top: 10px;">
+	<%= render 'layouts/messages' %>
+	<div class="col-sm-12">
+	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
+
+	  
+	  <section class="container" style="padding-top: 10px;">
+	    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+	      <%= yield %>
+	    </div>
+	  </section>
+	             
+	</div>
+	</div>
+  
+  </div>
+</div>

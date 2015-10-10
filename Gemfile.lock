@@ -55,8 +55,6 @@ GEM
       request_store
       user_agent_parser
       uuidtools
-    apipie-rails (0.3.4)
-      json
     arel (6.0.0)
     autoprefixer-rails (5.1.11)
       execjs
@@ -133,15 +131,9 @@ GEM
     goldiloader (0.0.9)
       activerecord (>= 3.2, < 4.3)
       activesupport (>= 3.2, < 4.3)
-    griddler (1.2.1)
-      htmlentities
-      rails (>= 3.2.0)
-    griddler-mandrill (1.1.2)
-      griddler (>= 1.2.1)
     groupdate (2.4.0)
       activesupport (>= 3)
     hashie (3.4.2)
-    htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -345,11 +337,11 @@ PLATFORMS
 
 DEPENDENCIES
   ahoy_matey
-  apipie-rails
   attachinary!
   bcrypt (= 3.1.9)
   bootstrap-datepicker-rails
   bootstrap-sass (= 3.3.3)
+  browser
   byebug (= 3.5.1)
   capybara (~> 2.2.0)
   chartkick
@@ -362,8 +354,6 @@ DEPENDENCIES
   font-awesome-sass (= 4.2.2)
   friendly_id (= 5.1.0)
   goldiloader
-  griddler
-  griddler-mandrill
   groupdate
   inline_svg
   jbuilder (= 2.2.6)

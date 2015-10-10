@@ -4,15 +4,13 @@ class TenderStateMachine
   state :fresh, initial: true
   state :processing
   state :qualified
-  state :complete
   state :success
   state :denied
   state :dropped
 
   transition from: :fresh, to: [:processing, :dropped]
   transition from: :processing, to: [:qualified]
-  transition from: :qualified,  to: [:complete, :dropped]
-  transition from: :complete,  to: [:success, :denied]
+  transition from: :qualified,  to: [:success, :denied]
   transition from: :denied,  to: [:processing, :dropped]
   # transition from: :dropped
 
@@ -20,20 +18,16 @@ class TenderStateMachine
     # tender.checked?
   end
 
-  guard_transition(from: :qualified, to: :complete) do |tender|
-    # tender.flagged?
-  end
-
-  guard_transition(from: :complete, to: :success) do |tender|
+  guard_transition(from: :qualified, to: :success) do |tender|
     # 
   end
 
-  guard_transition(from: :complete, to: :denied) do |tender|
+  guard_transition(from: :qualified, to: :denied) do |tender|
     # 
   end
 
   after_transition do |tender, transition|
-    tender.status_quo = transition.to_state
+    tender.state = transition.to_state
     tender.save!
   end
 

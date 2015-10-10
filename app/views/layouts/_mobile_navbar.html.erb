@@ -27,18 +27,29 @@
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
 			<% if user_signed_in? %>
-			<li>
-				<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
-			</li>
-			<li>
+			  <% unless !current_user.client? %>
+				  <li>
+					<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
+				  </li>
+			  <% end %>
+			  <% unless !current_user.financier? %>
+				  <li>
+					
+					<%= link_fa_to('tachometer', 'Dashboard', firm_dashboard_url(subdomain: 'dana')) %>
+				  </li>
+			  <% end %>
+			  <li>
 				<%= link_fa_to('cogs', "Akun", edit_user_registration_url(subdomain: '')) %>
-			</li>
-				<% if current_user.admin? %>
+			  </li>
+			  <% if current_user.admin? %>
 					<li>
 						<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
 					</li>			
 				<% end %>			
 			<% end %>
+			<li class="hidden-xs">
+				<%= link_fa_to('suitcase', 'Pendana', root_url(subdomain: 'dana')) %>
+			</li>			
 			<li class="hidden-xs">
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>

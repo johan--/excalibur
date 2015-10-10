@@ -4,15 +4,15 @@
     Investasi Syariah. Gotong Royong. Bermanfaat.
   </h1>
   <h3 class="sub-heading">
-    Bergabung menjadi mitra pendana siKapiten dan berinvestasi dengan memilih pengajuan pembiayaan untuk rumah dari klien siKapiten yang ingin kamu biayai. Bersama, dapatkan manfaat keuntungan sekaligus membantu sesama untuk memiliki rumah tanpa perlu berurusan dengan suku bunga.
+    Dapatkan manfaat keuntungan bagi hasil sekaligus membantu sesama untuk memiliki rumah tanpa perlu berurusan dengan suku bunga.
   </h3>
-  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
+  <div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
+    <h3 class="sub-heading">Pendaftaran untuk mitra pendana dibuka!</h3>
+    <p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
+    <br>      
+    <div class="panel-body" id="landing-subscriber">
+      <%= render 'elements/subscribe_form' %>
+    </div>
+  </div>  
 </div>
-<div class="col-md-6 col-md-offset-3" id="subcribe-prompt">
-  <h3 class="sub-heading">Pendaftaran untuk mitra pendana dibuka!</h3>
-  <p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
-  <br>      
-  <div class="panel-body" id="landing-subscriber">
-    <%= render 'elements/subscribe_form' %>
-  </div>
-</div>  
+<%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>

@@ -5,7 +5,8 @@ feature "UserCreatesTender", :type => :feature do
   let!(:user) { FactoryGirl.create(:client) }
 
   before { sign_in user }
-
+  after { page.driver.reset! }
+  
   describe "when there is no tender yet", js: true do
 	context "creating a murabahah tender" do
 	  before do

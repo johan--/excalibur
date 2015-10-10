@@ -3,58 +3,30 @@ class Firm::BaseController < ApplicationController
     :landing
   ]
   before_action :require_financier!, unless: :landing
-  # before_action :set_firm
-  # before_action :check_subscription, except: [:subscription, :expiration]
-  # before_action :firm_layout 
+  before_action :financier_layout, unless: :landing
   
   respond_to :html, :js
   
   def landing
     @category = "pendana"
-    @disable_nav = true    
+    @no_layout = true
   end
 
   def dashboard
     @tenders = Tender.all
+    @bids = current_user.bids
   end
 
-  def subscribes
-    # a = @firm.build_subscription(
-    #       category: 1, state: "aktif", start_date: Date.today)
-    # if a.save
-    #   flash[:notice] = "Berhasil berlangganan"
-    # else
-    #   flash[:warning] = "Ada masalah, coba ulangi lagi"
-    # end
-    # redirect_to biz_root_path
-  end
-
-  def subscription
-    @subscription = @firm.subscription
-  end
-
-  def expiration
-  end
 
   def edit_bio
   end
 
   def update_bio
-    # @dp = @firm.update_attributes!(
-    #   name: firm_params[:name], city: firm_params[:city], 
-    #   phone: firm_params[:phone], address: firm_params[:address]
-    #   )
-
-    # redirect_to biz_root_path
-    # flash[:notice] = 'Akun bisnis berhasil dikoreksi'
   end 
 
   def profile
   end
 
-
-  def contact
-  end
 
 private
   # Only permits admin users
@@ -87,11 +59,5 @@ private
       :auto_promo, :auto_promo_state
     )
   end
-
-    # def check_subscription
-    #   if @firm.subscription.state != 'aktif'
-    #     redirect_to biz_expiration_path  
-    #   end
-    # end
 
 end
