@@ -20,6 +20,7 @@ gem "omniauth-google-oauth2"
 gem 'ahoy_matey'
 gem "chartkick"
 gem 'groupdate'
+gem 'device_detector'
 
 # File Upload
 gem 'attachinary', github: 'galliani/attachinary'

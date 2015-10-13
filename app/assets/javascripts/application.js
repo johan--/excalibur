@@ -27,3 +27,4 @@
 //= require ./pages/landing
 //= require_tree ./sitewide
 //= require social-share-button
+//= require ahoy
