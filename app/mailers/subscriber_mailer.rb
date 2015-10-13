@@ -3,8 +3,10 @@ class SubscriberMailer < ActionMailer::Base
   default from: ENV["BASE_EMAIL"]
 
   def welcome(email)
-    # @subscriber = subscriber
-    mail(to: email, subject: "Hai, salam kenal")
+    @landing = "siKapiten.com"
+    @video = "http://www.youtube.com/watch?v=PtjetoVwBPw"
+    @email = email
+    mail(to: email, subject: "Salam kenal dari siKapiten")
   end
 
 end

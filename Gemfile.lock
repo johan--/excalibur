@@ -160,6 +160,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mail_view (2.0.4)
+      tilt
     metamagic (3.1.7)
       rails (>= 3.0.0)
     mime-types (2.5)
@@ -360,6 +362,7 @@ DEPENDENCIES
   jquery-rails (= 4.0.3)
   jquery-turbolinks
   kaminari (= 0.16.2)
+  mail_view (~> 2.0.4)
   metamagic
   money-rails
   nprogress-rails

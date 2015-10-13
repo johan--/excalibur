@@ -3,9 +3,10 @@ require 'subdomain'
 
 Fustal::Application.routes.draw do
   # apipie
+  if Rails.env.development?
+    mount SubscriberPreview => 'subscriber_view'
+  end
   mount Attachinary::Engine => "/attachinary"
-  # # only for temporary, for passing mandrill route test
-  # get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
   devise_for :users, :controllers => { 
             :registrations => "registrations", 

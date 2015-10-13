@@ -27,9 +27,10 @@ class Admin::BaseController < ApplicationController
   def whitelisting
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.update(name: "whitelisted")
-      flash[:notice] = 'Subscriber berhasil dikoreksi'
+      flash[:notice] = 'Subscriber berhasil di whitelist'
+      SubscriberMailer.welcome(@subscriber.email).deliver
     else
-      flash[:info] = 'Subscriber gagal dikoreksi'
+      flash[:info] = 'Subscriber gagal di whitelist'
       Rails.logger.info(@subscriber.errors.inspect) 
     end    
     redirect_to admin_subscribers_path

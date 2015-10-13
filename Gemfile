@@ -66,6 +66,10 @@ gem 'redcarpet', '3.2.2'
 # gem 'apipie-rails'
 gem 'jbuilder', '2.2.6'
 
+group :development do
+  # gem "mail_view", "~> 1.0.3"
+  gem "mail_view", "~> 2.0.4"
+end
 
 group :development, :test do
   gem 'thin', '1.5.1'
