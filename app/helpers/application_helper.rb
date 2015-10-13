@@ -26,6 +26,11 @@ module ApplicationHelper
     end
   end
 
+  def youtube_embed(youtube_url)
+    youtube_id = youtube_url.split("=").last
+    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}")
+  end
+
   def into_hub(user)
     if user.admin?
       admin_root_url(subdomain: "")
