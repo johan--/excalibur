@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_opera_mini?
-    agent_strings = /Opera Mini|Opera Mobi|UBrowser/
+    agent_strings = /Opera Mini|Opera Mobi|UBrowser|UCBrowser/
     if request.env['HTTP_USER_AGENT']
       if request.env['HTTP_USER_AGENT'] =~ agent_strings
         true
@@ -100,6 +100,8 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :is_opera_mini?
+
+
 
 private
 
