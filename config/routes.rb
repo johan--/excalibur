@@ -74,6 +74,7 @@ Fustal::Application.routes.draw do
     get 'analytics', to: "base#analytics", as: :analytics
     get 'subscribers', to: "base#subscribers", as: :subscribers
     put 'whitelisting', to: "base#whitelisting", as: :whitelisting
+    post 'send_email', to: "base#send_email", as: :send_email
     get 'inbox', to: "base#inbox", as: :inbox
     resources :users, skip: [:destroy]
     resources :firms

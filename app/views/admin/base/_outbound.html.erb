@@ -1,0 +1,40 @@
+<h3>Kirim Email</h3>
+<%= form_tag admin_send_email_path, {multipart: true, method: 'post'} do %>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <%= text_field_tag :from, '', placeholder: "Email kamu", class: "form-control", required: true %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <%= text_field_tag :email, '', placeholder: "Alamat email tujuan", class: "form-control", required: true %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <%= text_field_tag :subject, '', placeholder: "Subject", class: "form-control", required: true %>
+    </div>        
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= text_area_tag :message, '', placeholder: "Isi pesan", rows: 10, class: "form-control", required: true %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <%= text_field_tag :file_url, '', placeholder: "Url File", class: "form-control" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 padded">
+    <%= submit_tag "Kirim", class: 'btn btn-outlined btn-theme' %>
+  </div>
+</div>
+<% end %>
+

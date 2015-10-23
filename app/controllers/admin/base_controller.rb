@@ -36,6 +36,31 @@ class Admin::BaseController < ApplicationController
     redirect_to admin_subscribers_path
   end
 
+  def send_email
+    @file = params[:file] || params[:file_url] || nil
+    @from = params[:from]
+    @subject = params[:subject]
+    @email = params[:email]
+    @message = params[:message]
+
+    if @from.blank?
+      flash[:alert] = "Tolong isi alamat email kamu. Terima kasih."
+    elsif @subject.blank?
+      flash[:alert] = "Tolong isi subyek email kamu. Terima kasih."      
+    elsif @email.blank? || @email.scan(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i).size < 1
+      flash[:alert] = "Kamu harus menuliskan alamat email yang betul dan valid. Terima kasih."
+    elsif @message.blank? || @message.length < 10
+      flash[:alert] = "Isi pesanmu kosong. Sedikitnya, pesanmu harus mempunyai 10 karakter."
+    elsif @message.scan(/<a href=/).size > 0 || @message.scan(/\[url=/).size > 0 || @message.scan(/\[link=/).size > 0 || @message.scan(/http:\/\//).size > 0
+      flash[:alert] = "Kamu tidak bisa mengirim tautan atau link website. Mohon pengertiannya."
+    else            
+      AdminMailer.admin_outbound(
+        @email, @from, @subject, @message, @file).deliver_now
+      flash[:notice] =  "Pesanmu telah dikirim. Terima kasih."
+    end
+    redirect_to admin_root_path
+  end
+
 private
 
 
