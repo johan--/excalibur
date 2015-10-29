@@ -67,7 +67,7 @@ Licensed under MIT
 	                <table class="button" style="width: 25%;">
 	                  <tr>
 	                    <td style="  display: block; width: auto !important; text-align: center; background: #00eef2;border: 1px solid #00eef2; color: #ffffff; padding: 8px 0;">
-	                      <%= link_to "Selesaikan Pendaftaran", {:controller => "registrations", :action => "new", email: @email, :only_path => false}, {style: "font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;"} %>
+	                      <%= link_to "Selesaikan Pendaftaran", {:controller => "registrations", :action => "new", email: @email, category: @category, :only_path => false}, {style: "font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;"} %>
 	                    </td>
 	                  </tr>
 	                </table>

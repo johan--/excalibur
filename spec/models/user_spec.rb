@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   before(:each) do
   	@user = User.new(email: "galih@example.com", password: "foobarbaz",
-  		password_confirmation: "foobarbaz", name: "galih muhammad", client: true)
+  		password_confirmation: "foobarbaz", name: "galih muhammad", 
+      category: "client", understanding: "true")
   end
 
   subject { @user }
@@ -33,11 +34,11 @@ RSpec.describe User, :type => :model do
   	  end
 
   	  it 'returns default value of client boolean' do
-        expect(@user.client).to eq true
+        expect(@user.client).to eq "true"
   	  end
 
   	  it 'returns default value of financier boolean' do
-        expect(@user.financier).to eq nil
+        expect(@user.financier).to eq "false"
   	  end
     end
 

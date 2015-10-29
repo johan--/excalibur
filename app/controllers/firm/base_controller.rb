@@ -8,7 +8,7 @@ class Firm::BaseController < ApplicationController
   respond_to :html, :js
   
   def landing
-    @category = "pendana"
+    @category = "investor"
     @no_layout = true
   end
 

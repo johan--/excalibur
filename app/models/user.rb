@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     :monthly_income, :monthly_expense, :address, :facebook, :google, :twitter
   
   attr_wannabe_bool :financier, :client, :open
-  attr_accessor :image_id
+  attr_accessor :image_id, :category
 
 # Relations
   has_one  :identity
@@ -48,7 +48,8 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :auth_token, uniqueness: true
 
-  before_create :set_auth_token!, :set_default_values!
+  before_create :set_auth_token!, :set_default_values!, 
+                :determine_category!
   before_save :up_name
     
   scope :financiers, -> { 
@@ -124,6 +125,18 @@ class User < ActiveRecord::Base
     self.language = 'bahasa'
     self.currency = 'idr'
     self.credibility = 'C'
+  end
+
+  def determine_category!
+    unless self.category.nil?
+      if self.category == 'client'
+        self.client = "true"
+        self.financier = "false"
+      elsif self.category == 'financier'
+        self.client = "false"
+        self.financier = "true"      
+      end
+    end
   end
 
   def generate_auth_token!

@@ -5,8 +5,10 @@ module UsersHelper
 			return "Klien"
 		elsif user.financier? && !user.client?
 			return "Pendana"
-		else
+		elsif user.client? && user.financier?
 			return "Klien & Pendana"
+		else
+			return "Ada masalah, tolong kontak admin"
 		end
 	end
 

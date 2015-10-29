@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       :password_confirmation,
       :name,
       :phone_number,
+      :client, :financier, :category,
       :understanding
       )
     }

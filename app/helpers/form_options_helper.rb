@@ -32,6 +32,14 @@ module FormOptionsHelper
 		[ ['Pemilik', 0], ['Pengelola', 1], ['Staff', 2] ]
 	end
 
+# User options
+	def user_category_options
+		[ 
+			["Klien - Membutuhkan pembiayaan", "client"], 
+			["Pendana - Ingin berinvestasi", "financier"] 
+		]
+	end
+
 # Profile form options
 	def offline_presence_options
 		[ "Kantor Utama", "Kantor Cabang", "Toko", "Gerai" ]
