@@ -4,7 +4,6 @@ feature "UserSignsUp", :type => :feature do
 	subject { page }
 	
 	describe "Signing_Up" do
-		let!(:subscriber) { FactoryGirl.create(:beta_user, :whitelisted) }
 		before { visit new_user_registration_path }
 
 		describe "with invalid information" do
@@ -14,7 +13,7 @@ feature "UserSignsUp", :type => :feature do
 		end
 
 		describe "as beta-listed client with valid information" do
-
+			let!(:subscriber) { FactoryGirl.create(:beta_user, :whitelisted) }
 			before do
 				fill_in("user[email]", with: subscriber.email)
 				fill_in("user[password]", with: "foobarbaz")
@@ -33,6 +32,7 @@ feature "UserSignsUp", :type => :feature do
 		end
 
 		describe "as beta-listed financier with valid information" do
+			let!(:subscriber) { FactoryGirl.create(:beta_financier, :whitelisted) }
 			before do
 				fill_in("user[email]", with: subscriber.email)
 				fill_in("user[password]", with: "foobarbaz")

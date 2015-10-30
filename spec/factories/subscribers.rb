@@ -4,7 +4,11 @@ FactoryGirl.define do
     email "foobarbaz@gmail.com"
 
     factory :beta_user do
-      category "landing"
+      category "registration"
+    end
+
+    factory :beta_financier do
+      category "investor"
     end
 
     factory :blog_subscriber do
