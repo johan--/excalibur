@@ -17,6 +17,7 @@
 <body>
   <%= render 'layouts/mobile_navbar' unless !browser.modern? || is_opera_mini? %>
   <%= render 'layouts/classic_navbar' if !browser.modern? || is_opera_mini? %>
+  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
   <% if @no_layout  %>
     <%= yield %>
   <% else %>
@@ -36,8 +37,6 @@
             <div class="row" style="margin-top: 10px;">
               <%= render 'layouts/messages' %>
               <div class="col-sm-12">
-                <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
-
                 
                 <section class="container" style="padding-top: 10px;">
                   <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">

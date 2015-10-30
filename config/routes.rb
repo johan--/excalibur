@@ -64,7 +64,9 @@ Fustal::Application.routes.draw do
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
   post "/subscribe", to: "pages#subscribe", as: "subscribe"
-  
+  get "/simulasi", to: "pages#simulation", as: "simulation"
+  # post "/simulasi", to: "pages#simulation", as: "simulation"
+
   get "/404" => "errors#not_found"
   get "/422" => "errors#unprocessable"
   get "/500" => "errors#internal_server_error"

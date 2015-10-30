@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :tos, :email, :subscribe, :upgrade
+    :landing, :tos, :email, :subscribe, :upgrade, :simulation
   ]
   before_filter :disable_background, only: [:tos, :upgrade]
 
@@ -8,6 +8,7 @@ class PagesController < ApplicationController
     @category = "registration"
     @current_count = Subscriber.whitelist.count
     @no_layout = true
+    @murabaha = MurabahaSimulation.new
   end
 
   def home
@@ -65,6 +66,12 @@ class PagesController < ApplicationController
       flash.now.alert = "Tolong tulis alamat email yang valid, terima kasih."
       redirect_to root_path
     end    
+  end
+
+  def simulation
+    @simulation = MurabahaSimulation.new(maturity: params[:maturity], 
+      price: params[:price], contribution_percent: params[:contribution_percent] )
+
   end
 
 
