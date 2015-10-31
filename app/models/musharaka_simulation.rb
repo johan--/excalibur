@@ -1,11 +1,12 @@
 class MusharakaSimulation
   include ActiveModel::Model
 
-  attr_accessor :maturity, :price, :contribution_percent, :type
+  attr_accessor :income, :maturity, :price, :contribution_percent, 
+  				:tangible
 
-  validates :type, presence: true,
+  validates :tangible, presence: true,
   		inclusion: { in: %w(Rumah Apartemen),
-	    message: "%{value} is not a valid type" }
+	    message: "%{value} is not a valid tangible" }
   
   validates :contribution_percent, presence: true
   validates :maturity, presence: true,
@@ -13,20 +14,40 @@ class MusharakaSimulation
   validates :price, presence: true, length: {in: 6..12}, 
   					numericality: { only_integer: true }
 
+  def initialize(attributes={})
+    super
+  	@income = income.to_i
+  	@price = price.to_i
+  	@maturity = maturity.to_i
+  	@contribution = contribution_percent.to_i
+  end
+
+  def total_months
+  	@maturity * 12
+  end
+
+  def first_payment
+  	(@contribution  * price / 100)
+  end
+
+  def maximum_mo_rental
+  	@income * 0.25
+  end    
+
   def capitalization_rate
-  	if type == 'Rumah'
-  		return 7,5
-  	elsif type == 'Apartemen'
-  		return 8,5
+  	if tangible == "Rumah"
+  		capitalization_rate = 7.5
+  	elsif tangible == "Apartemen"
+  		capitalization_rate = 8.5
   	end
   end
 
   def modifier
-  	return 0
+  	modifier = 0
   end
 
   def annual_rent
-  	price * capitalization_rate + modifier
+  	@price *  capitalization_rate / 100 # + modifier
   end
 
   def monthly_rent
@@ -34,15 +55,15 @@ class MusharakaSimulation
   end
 
   def other_party_ownership
-  	1 - contribution_percent / 100
+  	(100 - @contribution)
   end
 
   def rental_fee
-  	monthly_rent * other_party_ownership
+  	monthly_rent * other_party_ownership / 100
   end
 
   def unit_par_value
-  	price /  1000
+  	@price /  1000
   end
 
 end

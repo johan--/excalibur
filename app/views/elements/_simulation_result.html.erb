@@ -1,10 +1,18 @@
 <div class="modal-header modal-header-primary">
   <h3>Hasil Simulasi</h3>
 </div>
-<div class="modal-body primary-background">
+<div class="modal-body">
   <center>
-    <h3 class="white media-heading"><%= "Kirim pesan kepada kami" %></h3>
-	  Cicilan per bulan adalah sebesar <%= @simulation.calc_monthly_installment %>
+  	<% if params[:aqad] == 'murabaha' %>
+	    <h3 class="media-heading"><%= "Simulasi Murabahah" %></h3>
+		<p>Rumah tersebut akan kami jual kepada kamu dengan perkiraan harga <strong><%= idr_money(@simulation.marked_up_price) %></strong>. 
+			Pembayaran pertama yang kamu lakukan sebesar <strong><%= idr_money(@simulation.first_payment) %></strong>, sehingga Cicilan per bulan yang harus kamu bayar selama <%= @simulation.total_months %> bulan adalah sebesar <strong><%= idr_money(@simulation.calc_monthly_installment) %></strong></p>
+	<% elsif params[:aqad] == 'musharaka' %>
+	    <h3 class="media-heading"><%= "Simulasi Musyarakah" %></h3>
+		<p>Rumah tersebut akan dibeli bersama antara kamu dan siKapiten. 
+			Kamu membayar <strong><%= idr_money(@simulation.first_payment) %></strong> untuk <%= @simulation.contribution_percent %>% kepemilikan.</p>	
+		<p>Perkiraan Biaya sewa per bulan atas rumah itu adalah sebesar <%= idr_money(@simulation.monthly_rent) %>. Apabila kamu mau menempati rumah tersebut, kamu hanya perlu membayar <%= @simulation.other_party_ownership %>% biaya sewa yaitu sebesar <strong><%= idr_money(@simulation.rental_fee) %></strong></p>
+	<% end %>
   </center>
 </div>
 <div class="modal-footer">

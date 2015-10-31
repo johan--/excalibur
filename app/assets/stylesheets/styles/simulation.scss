@@ -1,0 +1,75 @@
+  .lead-big {
+    font-size: 20px;
+    line-height: 48px;
+    color: #999;
+}
+.form-inline input,
+.form-inline textarea,
+.form-inline select {
+    max-width: 235px;
+    height: 40px;
+    overflow: hidden;
+    line-height: 40px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px dotted;
+    vertical-align: text-bottom;
+    cursor: pointer;
+}
+.form-inline .form-group label {
+  width: inherit;
+}
+.form-inline .form-group label {
+    position: relative;
+}
+.form-inline .form-group label > span {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    font-size: 12px;
+    color: #bdc3c7; 
+    opacity: 1;
+}
+.submit.btn.btn-lg {
+    font-size: 28px;
+    color: #999;
+    border: 1px dotted;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.nav-tabs>li>a {
+  background-color: #FFF; 
+  border-color: #808080; /*50%*/
+  color:#808080;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: #00eef2;
+  border: 1px solid #00eef2;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #808080;
+  background-color: #C9DEAE;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+/* center tabs */
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+
+/* line below tabs */
+.nav-tabs {
+    border-bottom: 2px solid #999;
+}

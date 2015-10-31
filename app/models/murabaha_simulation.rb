@@ -1,32 +1,62 @@
 class MurabahaSimulation
   include ActiveModel::Model
 
-  attr_accessor :maturity, :price, :contribution_percent
+  attr_accessor :income, :maturity, :price, :contribution_percent
   
   validates :maturity, presence: true
   validates :price, presence: true, length: {in: 6..12}, 
   					numericality: { only_integer: true }
 
-
-
-  def calc_monthly_installment
+  def initialize(attributes={})
+    super
+  	@income = income.to_i
   	@price = price.to_i
   	@maturity = maturity.to_i
+  	@contribution = contribution_percent.to_i
+  end
 
+  def total_months
+  	@maturity * 12
+  end
+
+  def first_payment
+  	(@contribution  * price / 100)
+  end
+
+  def installment_left
+  	@price - first_payment
+  end
+
+  def maximum_mo_installment
+  	@income * 0.4
+  end
+
+  def possible_maturity_term
+  	installment_left / maximum_mo_installment
+  end
+
+  def capitalization_rate
   	base = 12
   	modifier = 2.5
   	diff_years = @maturity - 5
 
   	if diff_years <= 0
-  		cap_rate = base
+  		capitalization_rate = base
   	else
-  		cap_rate = (base + diff_years * 2.5)
-  	end
+  		capitalization_rate = (base + diff_years * 2.5)
+  	end  	
+  end
 
-  	profit = @price * cap_rate / 100
+  def profit
+	profit = @price * capitalization_rate / 100
+  end
+
+  def marked_up_price
   	marked_up_price = @price + profit
+  end
 
-  	monthly_installment = marked_up_price / @maturity * 12
+  def calc_monthly_installment
+  	monthly_installment = (marked_up_price - installment_left) / @maturity / 12
   end
 
 
