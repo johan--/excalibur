@@ -35,10 +35,15 @@ class MusharakaSimulation
   end    
 
   def capitalization_rate
+  	base_maturity = 4
+  	diff_maturity = @maturity - 4
+
   	if tangible == "Rumah"
-  		capitalization_rate = 7.5
+  		base_rate = 5
+  		capitalization_rate = 3
   	elsif tangible == "Apartemen"
-  		capitalization_rate = 8.5
+  		base_rate = 10
+  		capitalization_rate = 7
   	end
   end
 

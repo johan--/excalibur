@@ -2,6 +2,9 @@
   <div class="container">
     <div class="row" style="margin-top: 10px; margin-bottom: 50px;">
       <h3 class="landing">Simulasi Akad</h3>
+      <p class="centered">Kamu dapat mendapatkan prediksi kewajiban kamu apabila kamu mendapatkan pembiayaan </p>
+      <p class="centered">di siKapiten dengan mengisi formulir simulasi di bawah ini:</p>
+      <br>
       <div class="nav-center">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#tab1" data-toggle="tab">Murabahah</a></li>
@@ -57,7 +60,7 @@
 
               <div class="form-group">
                 <label for="company"> Saya berniat menyewanya selama <span>Lama sewa</span></label>
-                <%= number_field_tag :maturity, '', in: 5..15, step: 1, placeholder: " ", required: true %>
+                <%= number_field_tag :maturity, '', in: 4..15, step: 1, placeholder: " ", required: true %>
                 tahun.
               </div><br>
                 <%= hidden_field_tag :aqad, '', value: "musharaka", required: true %>
