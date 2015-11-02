@@ -6,7 +6,17 @@
 		<ul class="nav navbar-nav">
 			<li>
 				<%= link_fa_to('anchor', 'Utama', root_url(subdomain: '')) %>
-			</li>		
+			</li>
+		  	<% if user_signed_in? %>
+		  		<% if current_user.admin? %>
+				<li>
+					<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
+				</li>
+				<% end %>
+			  <li>
+				<%= link_fa_to('cogs', "Akun", edit_user_registration_url(subdomain: '')) %>
+			  </li>							
+			<% end %>
 			<li>
 				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
 			</li>
@@ -38,11 +48,11 @@
 					<%= link_fa_to('tachometer', 'Dashboard', firm_dashboard_url(subdomain: 'dana')) %>
 				  </li>
 			  <% end %>
-			  <li>
+			  <li class="hidden-xs">
 				<%= link_fa_to('cogs', "Akun", edit_user_registration_url(subdomain: '')) %>
 			  </li>
-			  <% if current_user.admin? %>
-					<li>
+			  	<% if current_user.admin? %>
+					<li class="hidden-xs">
 						<%= link_fa_to('sun-o', "Admin", admin_root_url(subdomain: '')) %>
 					</li>			
 				<% end %>			

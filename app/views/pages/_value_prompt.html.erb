@@ -1,19 +1,19 @@
 <%= render 'layouts/messages' %>
-<div class="col-md-10 col-md-offset-1 intro-section">
-	<h1 class="intro">
-		Rumah Impian. Hidup Tenang. Tanpa Bunga.
-	</h1>
+<div class="col-md-8 col-md-offset-2 intro-section">
 	<h3 class="sub-heading">
-		Menggunakan akad-akad syariah, kamu tidak perlu terjerat hutang berbunga dan dirundung kekhawatiran setiap harinya. Kami bantu kamu di setiap tahapan. 
-	</h3>
-	<div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
-		<h3 class="sub-heading">Pendaftaran untuk versi Beta dibuka!<br> <small><%= subscriber_slot(@current_count) %></small></h3>
-		<p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
-		<br>			
-		<div class="panel-body" id="landing-subscriber">
-			<%= render 'elements/subscribe_form' %>
-		</div>
-	</div>	
+		Platform siKapiten
+	</h3><hr>
+	<h1 class="intro">
+		Platform crowdfunding pembiayaan syariah untuk rumah.
+	</h1>
+
+</div>
+<div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
+		<% if user_signed_in? %>
+			<%= link_to "Keluar", destroy_user_session_path, data:{method: :delete}, class: "btn btn-lg btn-outlined btn-white" %>
+		<% else %>
+			<%= link_to "Masuk", new_user_session_url(subdomain: ''), class: "btn btn-lg btn-outlined btn-white" %>
+		<% end %>
+		<%= link_to "Daftar", new_user_registration_url(subdomain: ''), class: "btn btn-lg btn-outlined btn-theme" %>
 </div>
 
-<%= link_to "Ke Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-outlined btn-white" %>

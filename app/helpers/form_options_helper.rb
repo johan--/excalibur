@@ -35,8 +35,7 @@ module FormOptionsHelper
 # User options
 	def user_category_options
 		[ 
-			["Klien - Membutuhkan pembiayaan", "client"], 
-			["Pendana - Ingin berinvestasi", "financier"] 
+			["Klien - Membutuhkan pembiayaan", "client"]
 		]
 	end
 

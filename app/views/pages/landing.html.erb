@@ -25,32 +25,57 @@
     </div> <!--/ .container -->
 </div><!--/ #headerwrap -->	
 <% end %>
-
+<div>
+  <div class="container">
+    <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+    	<div class="col-md-3">
+    	</div>
+		<div class="col-md-3 col-xs-6">
+			<%= link_to "Kunjungi Blog Kami", root_url(subdomain: 'blog'), class: "btn btn-lg btn-outlined btn-black hidden-xs" %>
+			<%= link_to "Kunjungi Blog", root_url(subdomain: 'blog'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<%= link_to "Halaman Pendana", root_url(subdomain: 'dana'), class: "btn btn-lg btn-outlined btn-black hidden-xs" %>
+			<%= link_to "Pendana", root_url(subdomain: 'dana'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
+		</div>
+		<div class="col-md-3">
+		</div>
+    </div>
+</div>	
 <section class="section" id="desc" name="desc">
 	<div id="intro">
 		<div class="container">
 			<div class="row centered">
-				<h3 class="landing">Akad</h3>
-				<p>Kamu Dapat mengajukan pembiayaan di siKapiten dengan memilih akad:</p>
-				<br>
-				<div class="col-md-6 serv-grids">
-					<div class="primary-border">
-						<%= inline_svg "0055-price-tags.svg", class: 'mid-icons' %>
-						<h4 class="primary">Murabahah</h4>
-						<p>Akad jual beli tanpa bunga, bisa secara angsuran atau tunai. Rumah yang kamu inginkan harus belum dimiliki olehmu. Hanya untuk pembelian rumah.</p>
-				   </div>
+				<div class="col-md-8 col-md-offset-2">
+					<h3 class="landing">Manfaat</h3>
+					<p>Rumah Impian. Hidup Tenang. Tanpa Bunga. Menggunakan akad-akad syariah, kamu tidak perlu terjerat hutang berbunga dan dirundung kekhawatiran setiap harinya. Kami bantu kamu di setiap tahapan. </p>
+
+					<h3 class="landing">Crowdfunding?</h3>
+					<p>Crowdfunding secara sederhana adalah sistem pengumpulan dana gotong royong. Dalam kasus siKapiten, pengajuan pembiayaanmu akan didanai oleh para rekan pendana kami sebagai aktivitas investasi.</p>
 				</div>
-				<div class="col-md-6 serv-grids">
-					<div class="primary-border">
-						<%= inline_svg "0115-users.svg", class: 'mid-icons' %>
-						<h4 class="primary">Musyarakah</h4>
-						<p>Kepemilikan bersama untuk rumah dengan mitra pendana kami. Kamu dapat menyewa rumah tersebut untuk dipakai sendiri atau disewakan kepada pihak ketiga. Dapat dipilih untuk pembangunan, renovasi, pembelian rumah dan pengambilalihan hutang berbunga.</p>
-				  </div>
-				</div>
-				<div class="col-sm-8 col-sm-offset-2">
+				<div class="col-md-10 col-md-offset-1">
+					<h3 class="landing">Akad</h3>
+					<p>Kamu Dapat mengajukan pembiayaan di siKapiten dengan memilih akad:</p>
 					<br>
-					<div class="embed-container">  
-						<%= youtube_embed("PtjetoVwBPw") %>
+					<div class="col-md-6 serv-grids">
+						<div class="primary-border">
+							<%= inline_svg "0055-price-tags.svg", class: 'mid-icons' %>
+							<h4 class="primary">Murabahah</h4>
+							<p>Akad jual beli tanpa bunga, bisa secara angsuran atau tunai. Rumah yang kamu inginkan harus belum dimiliki olehmu. Hanya untuk pembelian rumah.</p>
+					   </div>
+					</div>
+					<div class="col-md-6 serv-grids">
+						<div class="primary-border">
+							<%= inline_svg "0115-users.svg", class: 'mid-icons' %>
+							<h4 class="primary">Musyarakah</h4>
+							<p>Kepemilikan bersama untuk rumah dengan mitra pendana kami. Kamu dapat menyewa rumah tersebut untuk dipakai sendiri atau disewakan kepada pihak ketiga. Dapat dipilih untuk pembangunan, renovasi, pembelian rumah dan pengambilalihan hutang berbunga.</p>
+					  </div>
+					</div>
+					<div class="col-sm-8 col-sm-offset-2">
+						<br>
+						<div class="embed-container">  
+							<%= youtube_embed("PtjetoVwBPw") %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -62,6 +87,7 @@
 	<%= render 'pages/features' %>
 	<!-- FAQ -->
 	<%= render 'pages/faq' %>
+
 </section>
 
 <section id="footerwrap">

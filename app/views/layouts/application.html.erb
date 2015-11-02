@@ -15,8 +15,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/mobile_navbar' unless !browser.modern? || is_opera_mini? %>
-  <%= render 'layouts/classic_navbar' if !browser.modern? || is_opera_mini? %>
+  <% if user_signed_in? %>
+    <%= render 'layouts/mobile_navbar' %>
+  <% else %>
+    <%= render 'layouts/classic_navbar' %>
+  <% end %>
   <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
   <% if @no_layout  %>
     <%= yield %>
@@ -34,7 +37,7 @@
       <% end %>
           <div class="container">
             
-            <div class="row" style="margin-top: 10px;">
+            <div class="row" style="margin-top: 50px;">
               <%= render 'layouts/messages' %>
               <div class="col-sm-12">
                 

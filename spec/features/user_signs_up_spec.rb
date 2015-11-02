@@ -31,24 +31,24 @@ feature "UserSignsUp", :type => :feature do
 			it { should_not have_link('Masuk', href: new_user_session_path) }
 		end
 
-		describe "as beta-listed financier with valid information" do
-			let!(:subscriber) { FactoryGirl.create(:beta_financier, :whitelisted) }
-			before do
-				fill_in("user[email]", with: subscriber.email)
-				fill_in("user[password]", with: "foobarbaz")
-				fill_in("user[password_confirmation]", with: "foobarbaz")
-				fill_in("user[name]", with: "foobar baz")
-				check "Saya setuju"
-				select "Pendana - Ingin berinvestasi"
-				click_button "Daftar"
-			end
+		# describe "as beta-listed financier with valid information" do
+		# 	let!(:subscriber) { FactoryGirl.create(:beta_financier, :whitelisted) }
+		# 	before do
+		# 		fill_in("user[email]", with: subscriber.email)
+		# 		fill_in("user[password]", with: "foobarbaz")
+		# 		fill_in("user[password_confirmation]", with: "foobarbaz")
+		# 		fill_in("user[name]", with: "foobar baz")
+		# 		check "Saya setuju"
+		# 		select "Pendana - Ingin berinvestasi"
+		# 		click_button "Daftar"
+		# 	end
 
-			it { should_not have_title('Beranda | siKapiten') }
-			it { should have_content('Welcome! You have signed up successfully') }
-			it { should have_css('.profile-usertitle-job', text: 'Pendana') }
-			it { should_not have_link('Masuk', href: new_user_session_path) }
+		# 	it { should_not have_title('Beranda | siKapiten') }
+		# 	it { should have_content('Welcome! You have signed up successfully') }
+		# 	it { should have_css('.profile-usertitle-job', text: 'Pendana') }
+		# 	it { should_not have_link('Masuk', href: new_user_session_path) }
 
-		end
+		# end
 	end
 
 end

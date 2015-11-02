@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row" style="margin-top: 10px; margin-bottom: 50px;">
       <h3 class="landing">Simulasi Akad</h3>
-      <p class="centered">Kamu dapat mendapatkan prediksi kewajiban kamu apabila kamu mendapatkan pembiayaan </p>
-      <p class="centered">di siKapiten dengan mengisi formulir simulasi di bawah ini:</p>
+      <p class="centered">Kamu dapat mengetahui prediksi kewajiban yang akan kamu tanggung apabila kamu mendapatkan pembiayaan <br>
+      di siKapiten dengan mengisi formulir simulasi di bawah ini:</p>
       <br>
       <div class="nav-center">
         <ul class="nav nav-tabs">
@@ -43,7 +43,7 @@
               <div class="form-group">
                 <label for="name">Saya ingin memilih Musyarakah dalam membeli <span>Jenis properti </span></label>
                 
-                <%= select_tag :tangible, options_for_select([ "Rumah", "Apartemen" ]), prompt: "pilih", required: true %>.
+                <%= select_tag :tangible, options_for_select([ "Rumah", "Apartemen" ]), prompt: "pilih", required: true %>
               </div>
 
               <div class="form-group">
@@ -76,14 +76,30 @@
 <style type="text/css">
 section {
 /*    padding: 100px 0;*/
-    text-align: center;
+    /*text-align: center;*/
 }
 
+.lead-big {
+  font-size: 20px;
+  line-height: 48px;
+  color: #999;
+}
+@media(max-width:767px){
   .lead-big {
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: 200;
     line-height: 48px;
     color: #999;
+  }
+  .submit.btn.btn-lg {
+      font-size: 21px;
+      color: #999;
+      border: 1px dotted;
+      background-color: transparent;
+      border-radius: 0;
+  }    
 }
+
 .form-inline input,
 .form-inline textarea,
 .form-inline select {
@@ -102,7 +118,10 @@ section {
   width: inherit;
 }
 .form-inline .form-group label {
-    position: relative;
+  position: relative;
+  float: none;
+  text-align: inherit;
+  display: initial;
 }
 .form-inline .form-group label > span {
     position: absolute;

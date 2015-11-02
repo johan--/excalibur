@@ -147,13 +147,15 @@ a:after {
 }
 h3.sub-heading{
   font-weight: 100;
+  margin-bottom: 20px;
 }
 
 .landing-header h1 {
     color: white;
-    font-size: 260%;
-    line-height: 3.75rem;
-    font-weight: 500;
+    /*font-size: 260%;*/
+    font-size: 50px;
+    line-height: 4.75rem;
+    font-weight: 400;
     margin: .67em 0;
     margin-bottom: 0;
     margin-top: 0;    
@@ -167,11 +169,11 @@ h3.sub-heading{
   height: 70px;
   font-size: 15px;
 }
-.landing-header nav .navbar-brand {
-  font-size: 160%;
+/*.landing-header nav .navbar-brand {
+  font-size: 25px;
   font-weight: 200px;
 }
-
+*/
 .landing-header nav.shrink {
   background: rgba(0,255,255,0.8);
   background: rgb (0,0,0);
@@ -190,7 +192,8 @@ h3.sub-heading{
 }
 
 .landing-header h3 {
-    font-size: 150%;
+    /*font-size: 150%;*/
+    font-size: 30px;
     font-weight: 150;
     padding-right: 10%;
     padding-left: 10%;
@@ -213,6 +216,9 @@ h3.sub-heading{
 }
 
 @media(max-width:767px){
+    nav#classic-navbar{
+        margin-top: -20px;
+    }
     #headerwrap {
         background: url('http://res.cloudinary.com/instilla/image/upload/v1439794070/3-dark-mobile_iobcyn.jpg') no-repeat center center scroll;
         background-size: cover;
@@ -234,7 +240,7 @@ h3.sub-heading{
         nav {
             background: rgba(0,255,255,0.8);
             background: rgb (0,0,0);
-            height: 7%;            
+            height: 7%;
         }       
         ul.nav {
             margin-top: 0px;
@@ -255,13 +261,15 @@ h3.sub-heading{
     }
     .landing-header h1 {
         color: white;
-        font-size: 24px;
+        font-size: 32px;
         font-weight: 500;
         margin: .67em 0;
+        padding-left: 15px;
+        padding-right: 15px;        
     }       
     .landing-header h3 {
         color: white;
-        font-size: 14px;
+        font-size: 21px;
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -325,7 +333,7 @@ h3.landing {
   line-height: 1.6em;
 }
 .primary-border {
-  border: 1px solid $brand-primary;
+/*  border: 1px solid $brand-primary;*/
   padding: 1em 1em 1em 1em;
   min-height: 180px;
 }
