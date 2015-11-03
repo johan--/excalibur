@@ -1,7 +1,8 @@
 <% title("Analytics") %>
 
-<%= line_chart Visit.group_by_day(:started_at).count %>
+<%= column_chart @daily_visits, library: {hAxis: {title: "Hari"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
+
+<%= line_chart @recent_visits, library: {hAxis: {title: "Minggu Ke"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
 
 
-
-<%= pie_chart @admin %>
+<%=  %>

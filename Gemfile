@@ -62,7 +62,6 @@ gem "paranoia", "~> 2.0"
 gem 'statesman', '~> 1.2.3'
 gem 'redcarpet', '3.2.2'
 
-
 # API
 # gem 'apipie-rails'
 gem 'jbuilder', '2.2.6'
