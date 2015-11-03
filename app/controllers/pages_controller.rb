@@ -5,10 +5,9 @@ class PagesController < ApplicationController
   before_filter :disable_background, only: [:tos, :upgrade]
 
   def landing
-    @category = "registration"
-    @current_count = Subscriber.whitelist.count
+    # @category = "registration"
+    # @current_count = Subscriber.whitelist.count
     @no_layout = true
-    @murabaha = MurabahaSimulation.new
   end
 
   def home

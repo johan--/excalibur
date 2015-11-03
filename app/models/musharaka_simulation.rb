@@ -1,5 +1,6 @@
 class MusharakaSimulation
   include ActiveModel::Model
+  include ProfitMargin #capitalization_rate
 
   attr_accessor :income, :maturity, :price, :contribution_percent, 
   				:tangible
@@ -34,25 +35,16 @@ class MusharakaSimulation
   	@income * 0.25
   end    
 
-  def capitalization_rate
-  	base_maturity = 4
-  	diff_maturity = @maturity - 4
-
-  	if tangible == "Rumah"
-  		base_rate = 5
-  		capitalization_rate = 3
-  	elsif tangible == "Apartemen"
-  		base_rate = 10
-  		capitalization_rate = 7
-  	end
-  end
-
   def modifier
   	modifier = 0
   end
 
+  def rate
+    capitalization_rate(@maturity, tangible)
+  end
+
   def annual_rent
-  	@price *  capitalization_rate / 100 # + modifier
+  	@price *  rate / 100 # + modifier
   end
 
   def monthly_rent
@@ -65,6 +57,10 @@ class MusharakaSimulation
 
   def rental_fee
   	monthly_rent * other_party_ownership / 100
+  end
+
+  def profit
+    "Rp #{monthly_rent}/bulan"
   end
 
   def unit_par_value

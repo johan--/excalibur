@@ -54,21 +54,21 @@
 				      <div class="stats-title">KLIEN</div>
 				  </div>
 				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+				      <div class="stats-value pink" id="tender-maturity"><%= @tender.maturity %> Tahun</div>
+				      <div class="stats-title">JANGKA WAKTU</div>
+				  </div>				  
+				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
 				      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %></div>
 				      <div class="stats-title">TARGET</div>
 				  </div>
-				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink" id="tender-contributed"><%= idr_money(@tender.contributed) %></div>
-				      <div class="stats-title">KONTRIBUSI</div>
-				  </div>
-				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        Kredibilitas: <strong><%= @tender.tenderable.credibility %></strong>
+				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col" id="gain_column">
+				        Gain: <strong><%= gain_amount(@tender, @simulation.profit) %></strong>
 				    </div>
 				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        Harga: <strong><span id="tender-price"><%= idr_money(@tender.price) %></span></strong>
+				        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
 				    </div>
 				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        Tawaran: <strong><%= @tender.bids.count %></strong>
+				        <strong><span id="tender-price">@ <%= idr_money(@tender.price.to_i/1000) %>/Saham</span></strong>
 				    </div>
 				    
 				</div>

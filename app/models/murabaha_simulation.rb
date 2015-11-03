@@ -1,5 +1,6 @@
 class MurabahaSimulation
   include ActiveModel::Model
+  include ProfitMargin #markup
 
   attr_accessor :income, :maturity, :price, :contribution_percent
   
@@ -35,20 +36,12 @@ class MurabahaSimulation
   	installment_left / maximum_mo_installment
   end
 
-  def capitalization_rate
-  	base = 12
-  	modifier = 2.5
-  	diff_years = @maturity - 5
-
-  	if diff_years <= 0
-  		capitalization_rate = base
-  	else
-  		capitalization_rate = (base + diff_years * 2.5)
-  	end  	
+  def mark_up
+    selling_margin(@maturity)
   end
 
   def profit
-	profit = @price * capitalization_rate / 100
+	  profit = @price * mark_up / 100
   end
 
   def marked_up_price

@@ -7,7 +7,8 @@ RSpec.describe Tender, :type => :model do
   	before do
   	  @tender = user.tenders.build(
   	  		category: "User", aqad: "murabahah", use_case: "pembelian",
-  			intent: "tempat tinggal", price: 10000000, 
+  			intent: "tempat tinggal", price: 10000000, own_capital: 30,
+  			maturity: 8,
   			tangible: "rumah tunggal", address: "Lorem ipsum dolor cassus")
   	end
 
@@ -23,6 +24,8 @@ RSpec.describe Tender, :type => :model do
 	it { should respond_to(:barcode) }
 	it { should respond_to(:details) }
 	it { should respond_to(:tangible) }
+	it { should respond_to(:maturity) }
+	it { should respond_to(:margin) }
 	it { should respond_to(:intent) }
 	it { should respond_to(:use_case) }
 	it { should respond_to(:published) }
@@ -44,6 +47,10 @@ RSpec.describe Tender, :type => :model do
 
 	  	it "sets status" do
 	  	  expect(@tender.state).to eq 'fresh'
+	  	end
+
+	  	it "sets margin" do
+	  	  expect(@tender.margin).to be > 0
 	  	end	  	
 	  end
 
@@ -71,6 +78,51 @@ RSpec.describe Tender, :type => :model do
 
 	end
   end
+
+  describe "Musyarakah financing" do
+  	before do
+  	  @tender = user.tenders.build(
+  	  		category: "User", aqad: "musyarakah", use_case: "pembelian",
+  			intent: "tempat tinggal", own_capital: 30, price: 10000000, 
+  			maturity: 8, tangible: "rumah tunggal", 
+  			address: "Lorem ipsum dolor cassus")
+  	end
+
+	subject { @tender }
+
+	it { should respond_to(:tangible) }
+	it { should respond_to(:maturity) }
+	it { should respond_to(:margin) }
+	it { should respond_to(:intent) }
+	it { should respond_to(:aqad) }
+	it { should respond_to(:aqad_code) }
+	it { should be_valid }
+
+	describe "after save" do
+	  before(:each) { @tender.save }
+
+	  describe "default values set by callback or database" do
+	  	it "sets margin" do
+	  	  # expect(@tender.margin).to be > 0
+	  	  expect(@tender.margin).to be_between(0, 10).inclusive
+	  	end	  	
+	  end
+
+	  describe ".price" do
+		it 'returns the price of the property' do
+		  expect(@tender.price).to eq 10000000
+		end
+	  end
+
+	  describe ".target" do
+		it 'returns the target money sens value of target' do
+		  expect(@tender.target_sens).to eq 700000000 #plus two zero digits as sens added
+		end
+	  end
+
+	end
+  end
+
 
   describe "scoping tender" do
   	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }

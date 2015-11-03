@@ -4,12 +4,14 @@
   <div class="form-inputs">
     <% if @aqad == 'murabahah' %>
       <%= f.input :use_case, as: :string, input_html: { value: 'pembelian'}, label: "Tujuan Pembiayaan", required: true, readonly: true %>
+      <%= f.input :maturity, as: :integer, input_html: { min: '5', max: '10', step: '1' }, label: "Lama Cicilan", placeholder: "Tahun", required: true %>       
     <% else %>
-      <%= f.input :target, label: "Target Dana (Rp)", required: true %>
       <%= f.input :use_case, collection: case_options, prompt: "Pilih", selected: @tender.use_case, label: "Tujuan Pembiayaan", required: true %>
+      <%= f.input :maturity, as: :integer, input_html: { min: '4', step: '1' }, label: "Lama Sewa", placeholder: "Tahun", required: true %>
     <% end %>
     <%= f.input :intent, collection: intent_options, prompt: "Pilih", selected: @tender.intent, label: "Fungsi", required: true %>
-    <%= f.input :price, label: "Harga Rumah", required: true %>
+    <%= f.input :own_capital, as: :integer, input_html: { min: '25', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari Harga Aset", required: true %>    
+    <%= f.input :price, as: :integer, input_html: { min: '50000000', max: '1000000000', step: '10000000' }, label: "Harga Rumah", required: true %>
     <%= f.input :address, label: "Lokasi", required: true %>
     <%= f.input :tangible, collection: tangible_options, prompt: "Pilih", selected: @tender.tangible, label: "Bentuk Rumah", required: true %>
     <%= f.input :published, as: :radio_buttons, collection: published_options, label: "Langsung Publikasikan?", required: true %>

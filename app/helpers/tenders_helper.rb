@@ -21,6 +21,22 @@ module TendersHelper
 		end
 	end
 
+	def gain_from(aqad)
+		if aqad == 'murabahah'
+			return "Margin Penjualan"
+		elsif aqad == 'musyarakah'
+			return "Sewa"
+		end
+	end
+
+	def gain_amount(tender, profit)
+		if tender.aqad == 'murabahah'
+			return idr_money(profit)
+		elsif tender.aqad == 'musyarakah'
+			return profit
+		end		
+	end
+
 	# def bid_tender_link(tender)
 	# 	tenderable = tender.tenderable_type.downcase
 	# 	link_to "Buat Tawaran", new_tender_bid_path(tender)

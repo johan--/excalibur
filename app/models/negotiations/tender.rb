@@ -1,9 +1,13 @@
 class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
+  include ProfitMargin
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   # include PublicActivity::Model
   # tracked
+
+  HOUSE = ["rumah tunggal", "rumah koppel/gandeng", "town house"]
+  APARTMENT = "rumah susun/flat"
 
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
@@ -16,7 +20,8 @@ class Tender < ActiveRecord::Base
   serialize :details, HashSerializer
   store_accessor :details, 
                  :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :price, :maturity,
+                 :address, :area, 
+                 :price, :maturity, :margin, :own_capital,
                  :published
   attr_wannabe_bool :open, :published
 
@@ -35,14 +40,22 @@ class Tender < ActiveRecord::Base
   monetize :target_sens
   monetize :contributed_sens
   
-  validates_presence_of :aqad, :target, :price, :address
+  validates_presence_of :aqad, :price, :address
 
   before_create :set_default_values!
-  before_save :set_target!
+  before_save :set_target!, :set_margin!
   after_touch :update_contribution!
 
   # Pagination
   paginates_per 30
+
+  def house?
+    true if tangible.in?(HOUSE)
+  end
+
+  def apartment?
+    true if tangible.in?(APARTMENT)
+  end
 
   def self.categories
     %w(Institusi Bisnis Individu)
@@ -98,6 +111,15 @@ class Tender < ActiveRecord::Base
   end
 ####
 
+  def set_tangible_type
+    if self.house?
+      return "Rumah"
+    elsif self.apartment?
+      return "Apartemen"
+    end
+  end
+
+
 private
   def set_default_values!
     self.state = 'fresh'
@@ -107,8 +129,25 @@ private
   end
 
   def set_target!
+    @price = self.price.to_i
+    @own_capital = self.own_capital.to_i
+
     if self.aqad == 'murabahah'
-      self.target = self.price
+      self.target = @price
+    elsif self.aqad == 'musyarakah'
+      capital = @price * @own_capital / 100
+      self.target = @price - capital
+    end
+  end
+
+  def set_margin!
+    if self.aqad == 'murabahah'
+      self.margin = selling_margin(maturity)
+    elsif self.aqad == 'musyarakah'
+      property = "Rumah" if self.house?
+      property = "Apartemen" if self.apartment?
+
+      self.margin = capitalization_rate(maturity, property)
     end
   end
 
@@ -136,7 +175,5 @@ private
     :fresh
   end
 
-  def calculate_owner_capital!
-    self.own_capital = self.price - self.target 
-  end
+
 end

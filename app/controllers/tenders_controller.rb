@@ -12,6 +12,14 @@ class TendersController < ApplicationController
 
   def show
     @bids = @tender.bids
+    if @tender.aqad == 'murabahah'
+      @simulation = MurabahaSimulation.new(maturity: @tender.maturity, 
+        price: @tender.target, contribution_percent: @tender.own_capital )
+    elsif @tender.aqad == 'musyarakah'
+      @simulation = MusharakaSimulation.new(maturity: @tender.maturity, 
+        price: @tender.target, contribution_percent: @tender.own_capital,
+        tangible: @tender.set_tangible_type)
+    end
   end
 
   def new
@@ -83,7 +91,7 @@ private
       :summary, :published,
       # details
       :aqad, :aqad_code, :use_case,
-      :intent, :tangible, :address, :price
+      :intent, :tangible, :address, :price, :maturity, :own_capital
     )
   end
 

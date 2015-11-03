@@ -23,6 +23,8 @@ FactoryGirl.define do
       intent "Tempat Tinggal"
       tangible "Rumah Tunggal"
       use_case "Pembelian"
+      own_capital 30
+      maturity 8
       published true
 
       factory :con_tender do
@@ -40,7 +42,6 @@ FactoryGirl.define do
 
     trait :musharakah do
       aqad "musyarakah mutanaqishah"
-      target 400000000
     end
 
     trait :murabahah do
