@@ -6,3 +6,54 @@
 
 
 <%=  %>
+
+<!-- <div class="nav-center">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Blog</a></li>
+    <li><a href="#tab2" data-toggle="tab">Landing</a></li>
+    <li><a href="#tab3" data-toggle="tab">User</a></li>
+    <li><a href="#tab4" data-toggle="tab">Proposal</a></li>
+    <li><a href="#tab5" data-toggle="tab">Document</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="tab1">
+ -->	  <table class="table table-striped">
+		<tr>
+		  <th>Name</th>
+		  <th>Title</th>
+		  <th>Created At</th>
+		  <th>Visit ID</th>
+		  <th></th>
+		</tr>
+
+		<% @blog_events.each do |event| %>
+
+		<tr>
+		  <td><%= event.name %></td>
+		  <td><%= event.title %></td>
+		  <td><%= event.time.strftime("%Y/%m/%-d") %></td>
+		  <td><%= event.visit_id %></td>
+		  <td><%= link_to "Edit", '#' %></td>
+		</tr>
+
+		<% end %>
+
+	  </table>
+
+	  <div class="text-center">
+	    <%= paginate @events %>
+	  </div>
+    </div>
+
+<!-- 	<div class="tab-pane fade" id="tab2">
+	</div>
+	<div class="tab-pane fade" id="tab3">
+	</div>
+	<div class="tab-pane fade" id="tab4">
+	</div>
+	<div class="tab-pane fade" id="tab5">
+	</div>			
+  </div>
+
+ -->

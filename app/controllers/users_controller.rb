@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @verifieds = @documents.verifieds
 
     unless current_user == @user || current_user.admin?
-      ahoy.track "Viewed user profile", title: "#{current_user.name} viewed #{@user.name}"
+      ahoy.track "Viewed user profile", 
+        title: "#{current_user.name} viewed #{@user.name}", 
+        category: "User", important: "profile"
     end    
   end
 
@@ -17,9 +19,12 @@ class UsersController < ApplicationController
   def update
     if @user.update(profile_params)
       if params[:avatar]
-        ahoy.track "Uploaded avatar", title: "#{@user.name}: #{@user.avatar}"
+        ahoy.track "Uploaded avatar", 
+          title: "#{@user.name}: #{@user.avatar}", 
+          category: "User", important: "avatar"
       else
-        ahoy.track "Edited user profile", title: "#{@user.name}"
+        ahoy.track "Edited user profile", title: "#{@user.name}", 
+          category: "User", important: "profile"
       end
       flash[:notice] = 'Profil berhasil diperbaharui'
       redirect_to user_root_path 
@@ -36,7 +41,8 @@ class UsersController < ApplicationController
     # if Cloudinary::Uploader.destroy(@user.avatar)
     if Cloudinary::Uploader.destroy(@user.avatar, type: :private)
       @user.update_column(:avatar, nil)
-      ahoy.track "Removed avatar", title: "#{@user.name}: #{@user.avatar}"
+      ahoy.track "Removed avatar", title: "#{@user.name}: #{@user.avatar}",
+        category: "User", important: "avatar"
       flash[:notice] = 'Foto berhasil dihapuskan'
     else
       flash[:warning] = 'Foto gagal dihapuskan'
