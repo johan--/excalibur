@@ -20,6 +20,10 @@ class TendersController < ApplicationController
         price: @tender.target, contribution_percent: @tender.own_capital,
         tangible: @tender.set_tangible_type)
     end
+
+    unless current_user == @tenderable || current_user.admin?
+      ahoy.track "Viewed proposal", title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|"
+    end
   end
 
   def new
@@ -36,6 +40,7 @@ class TendersController < ApplicationController
     @tender.category = @tenderable.class.name
 
     if @tender.save
+      ahoy.track "Created #{@tender.aqad} proposal", title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|"
       flash[:notice] = 'Proposal berhasil dibuat'
       redirect_to @tender
     else
@@ -47,6 +52,7 @@ class TendersController < ApplicationController
 
   def update
     if @tender.update(tender_params)
+      ahoy.track "Edited #{@tender.aqad} proposal", title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|"
       flash[:notice] = 'Proposal berhasil dikoreksi'
       redirect_to @tender
     else

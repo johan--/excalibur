@@ -70,11 +70,15 @@ class PagesController < ApplicationController
   def simulation
     if params[:aqad] == 'murabaha'
       @simulation = MurabahaSimulation.new(maturity: params[:maturity], 
-        price: params[:price], contribution_percent: params[:contribution_percent] )
+        price: params[:price], contribution_percent: params[:contribution_percent] 
+      )
+      ahoy.track "Simulated murabaha for #{@simulation.tangible}", title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal"
     elsif params[:aqad] == 'musharaka'
       @simulation = MusharakaSimulation.new(maturity: params[:maturity], 
         price: params[:price], contribution_percent: params[:contribution_percent],
-        tangible: params[:tangible] )
+        tangible: params[:tangible]
+      )
+      ahoy.track "Simulated musharaka for #{@simulation.tangible}", title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal"
     end
   end
 

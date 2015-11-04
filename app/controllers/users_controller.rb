@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @documents = @user.documents
     @groups = @documents.group_by { |doc| doc.category }
     @verifieds = @documents.verifieds
+
+    unless current_user == @user || current_user.admin?
+      ahoy.track "Viewed user profile", title: "#{current_user.name} viewed #{@user.name}"
+    end    
   end
 
   def edit
@@ -12,6 +16,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(profile_params)
+      if params[:avatar]
+        ahoy.track "Uploaded avatar", title: "#{@user.name}: #{@user.avatar}"
+      else
+        ahoy.track "Edited user profile", title: "#{@user.name}"
+      end
       flash[:notice] = 'Profil berhasil diperbaharui'
       redirect_to user_root_path 
     else
@@ -27,6 +36,7 @@ class UsersController < ApplicationController
     # if Cloudinary::Uploader.destroy(@user.avatar)
     if Cloudinary::Uploader.destroy(@user.avatar, type: :private)
       @user.update_column(:avatar, nil)
+      ahoy.track "Removed avatar", title: "#{@user.name}: #{@user.avatar}"
       flash[:notice] = 'Foto berhasil dihapuskan'
     else
       flash[:warning] = 'Foto gagal dihapuskan'

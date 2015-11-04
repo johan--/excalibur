@@ -2,7 +2,7 @@ class MurabahaSimulation
   include ActiveModel::Model
   include ProfitMargin #markup
 
-  attr_accessor :income, :maturity, :price, :contribution_percent
+  attr_accessor :income, :maturity, :price, :contribution_percent, :tangible
   
   validates :maturity, presence: true
   validates :price, presence: true, length: {in: 6..12}, 

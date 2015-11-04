@@ -16,7 +16,13 @@
             <%= form_tag simulation_path, method: 'get', remote: true, class: "form-inline lead-big", role: "form" do %>
 
               <div class="form-group">
-                <label for="name">Saya ingin membeli rumah dengan akad Murabaha seharga Rp <span>Harga rumahnya </span></label>
+                <label for="name">Saya ingin membeli <span>Jenis properti </span></label>
+                
+                <%= select_tag :tangible, options_for_select([ "Rumah", "Apartemen" ]), prompt: "pilih", required: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="name">dengan akad Murabaha seharga Rp <span>Harga properti </span></label>
                 
                 <%= number_field_tag :price, '', in: 50000000..1000000000, step: 10000000, placeholder: " ", required: true %>
               </div>
@@ -30,7 +36,7 @@
               <div class="form-group">
                 <label for="company"> Modal yang telah saya kumpulkan adalah sebesar <span>Modalmu</span></label>
                 <%= number_field_tag :contribution_percent, '', in: 30..90, step: 10, placeholder: " ", required: true %>
-                % dari harga rumah.
+                % dari harga properti.
               </div><br>
               <%= hidden_field_tag :aqad, '', value: "murabaha", required: true %>
               <button type="submit" class="btn btn-default btn-lg submit"> Hitung Cicilan Bulanan </button>
@@ -55,7 +61,7 @@
               <div class="form-group">
                 <label for="company"> Modal yang telah saya kumpulkan adalah sebesar <span>Modalmu</span></label>
                 <%= number_field_tag :contribution_percent, '', in: 30..90, step: 10, placeholder: " ", required: true %>
-                % dari harga rumah.
+                % dari harga properti.
               </div><br>
 
               <div class="form-group">

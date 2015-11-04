@@ -17,12 +17,12 @@ FactoryGirl.define do
   	end
 
   	factory :consumer_tender do
-  	  category "Individu"
+  	  category "User"
       price 500000000
       address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak, Jakarta Selatan"
-      intent "Tempat Tinggal"
-      tangible "Rumah Tunggal"
-      use_case "Pembelian"
+      intent "tempat tinggal"
+      tangible "rumah tunggal"
+      use_case "pembelian"
       own_capital 30
       maturity 8
       published true
@@ -41,7 +41,7 @@ FactoryGirl.define do
     end
 
     trait :musharakah do
-      aqad "musyarakah mutanaqishah"
+      aqad "musyarakah"
     end
 
     trait :murabahah do

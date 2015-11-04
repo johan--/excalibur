@@ -15,6 +15,7 @@ class Admin::BaseController < ApplicationController
 
   def analytics
     @visits = Visit.all
+    @events = Ahoy::Event.all
     @daily_visits = @visits.group_by_day_of_week(:started_at, format: "%a").count
     @recent_visits = @visits.group_by_week(:started_at, last: 8, format: "%y%W").count
     @users = User.all
