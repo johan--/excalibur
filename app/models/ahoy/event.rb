@@ -27,6 +27,6 @@ module Ahoy
     scope :simulation, -> { 
       where("ahoy_events.properties->>'category' = :category", category: "Simulation") 
     }        
-    scope(:not), ->(scope) { where(scope.where_values.reduce(:and).not) }
+    # scope(:not), ->(scope) { where(scope.where_values.reduce(:and).not) }
   end
 end

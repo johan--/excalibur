@@ -15,7 +15,7 @@ class Admin::AnalyticsController < Admin::BaseController
     @simulation_events = Ahoy::Event.simulation.order(:time).page params[:page]
     @simulation_events = Ahoy::Event.simulation.order(:time).page params[:page]
     @users = User.all
-    @misc_events = Ahoy::Event.all.not(blog).not(user).not(document).not(proposal).not(simulation)
+    # @misc_events = Ahoy::Event.all.not(blog).not(user).not(document).not(proposal).not(simulation)
     @admin_layout = true  	
   end
 
