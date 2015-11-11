@@ -1,0 +1,31 @@
+<% meta title: "Visits Analytics" %>
+<h1>Visits <small>Analytics</small></h1>
+
+ 	  <table class="table table-striped">
+		<tr>
+		  <th>Browser</th>
+		  <th>Started At</th>
+		  <th>Referrer</th>
+		  <th>Referring Dom</th>
+		  <th>User ID</th>
+		  <th></th>
+		</tr>
+
+		<% @visits.each do |visit| %>
+
+		<tr>
+		  <td><%= visit.browser %> | <%= visit.device_type %></td>
+		  <td><%= visit.started_at.strftime("%Y/%m/%-d") %></td>
+		  <td><%= visit.referrer %></td>
+		  <td><%= visit.referring_domain %></td>
+		  <td><%= visit.user_id %></td>
+		  <td><%= link_to "Edit", '#' %></td>
+		</tr>
+
+		<% end %>
+
+	  </table>
+
+	  <div class="text-center">
+	    <%= paginate @visits %>
+	  </div>

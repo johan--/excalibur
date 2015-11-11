@@ -5,9 +5,10 @@ class Ahoy::Store < Ahoy::Stores::ActiveRecordStore
   # customize here
   
   # def track_visit(options)
-  #   super do |visit|
-  #     visit.gclid = visit_properties.landing_params["gclid"]
-  #   end
+    # super do |visit|
+    #   visit.referring_domain = visit_properties.landing_params["gclid"]
+    #   visit.referral_code = 0
+    # end
   # end
 
   def track_event(name, properties, options)

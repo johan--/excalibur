@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @verifieds = @documents.verifieds
 
     unless current_user == @user || current_user.admin?
-      ahoy.track "Viewed user profile", 
-        title: "#{current_user.name} viewed #{@user.name}", 
-        category: "User", important: "profile"
+      # ahoy.track "Viewed user profile", 
+      #   title: "#{current_user.name} viewed #{@user.name}", 
+      #   category: "User", important: "profile"
     end    
   end
 
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     # if Cloudinary::Uploader.destroy(@user.avatar)
     if Cloudinary::Uploader.destroy(@user.avatar, type: :private)
       @user.update_column(:avatar, nil)
-      ahoy.track "Removed avatar", title: "#{@user.name}: #{@user.avatar}",
-        category: "User", important: "avatar"
+      # ahoy.track "Removed avatar", title: "#{@user.name}: #{@user.avatar}",
+      #   category: "User", important: "avatar"
       flash[:notice] = 'Foto berhasil dihapuskan'
     else
       flash[:warning] = 'Foto gagal dihapuskan'

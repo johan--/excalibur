@@ -7,18 +7,18 @@ class Blog::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(7)
-    unless current_user.present?# && current_user.admin?
-      ahoy.track "Visit Blog Root", 
-        title: "A guest user visited blog", 
-        category: "Blog", important: "Index"
-    end
+    # unless current_user.present? || current_user.admin?
+    #   ahoy.track "Visit Blog Root", 
+    #     title: "A guest user visited blog", 
+    #     category: "Blog", important: "Index"
+    # end
   end
   
   def show
     @post = Post.friendly.find(params[:id])
     # @root_comments = @post.root_comments
     # @comment =  Comment.new
-    unless current_user.present?# && current_user.admin?
+    unless current_user.present? || current_user.admin?
       ahoy.track "Visit a Blog Post", 
         title: "#{@post.title}", category: "Blog", important: "Show"
     end

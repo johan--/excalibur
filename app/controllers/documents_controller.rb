@@ -7,9 +7,9 @@ class DocumentsController < ApplicationController
 
   def new
   	@document = Document.new
-    ahoy.track "Attempting Document Upload", 
-      title: "#{current_user.name}", 
-      category: "Document", important: "Client"
+    # ahoy.track "Attempting Document Upload", 
+    #   title: "#{current_user.name}", 
+    #   category: "Document", important: "Client"
   end
 
   def create
@@ -40,9 +40,9 @@ class DocumentsController < ApplicationController
     Cloudinary::Uploader.destroy(@document.public_id, type: :private)
   	@document.destroy
     
-    ahoy.track "Document Destroyed", 
-      title: "#{@document.owner.name} - #{@document.doc_type}", 
-      category: "Document", important: "Client"
+    # ahoy.track "Document Destroyed", 
+    #   title: "#{@document.owner.name} - #{@document.doc_type}", 
+    #   category: "Document", important: "Client"
     
     flash[:notice] = 'Dokumen berhasil dihapuskan'
     redirect_to user_path(current_user)

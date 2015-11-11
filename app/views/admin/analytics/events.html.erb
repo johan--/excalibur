@@ -1,11 +1,5 @@
-<% title("Analytics") %>
-
-<%= column_chart @daily_visits, library: {hAxis: {title: "Hari"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
-
-<%= line_chart @recent_visits, library: {hAxis: {title: "Minggu Ke"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
-
-
-<%=  %>
+<% meta title: "Events Analytics" %>
+<h1>Events <small>Analytics</small></h1>
 
 <div class="nav-center">
   <ul class="nav nav-tabs">
@@ -14,6 +8,7 @@
     <li><a href="#tab3" data-toggle="tab">Document</a></li>
     <li><a href="#tab4" data-toggle="tab">Proposal</a></li>
     <li><a href="#tab5" data-toggle="tab">Landing</a></li>
+    <li><a href="#tab5" data-toggle="tab">Misc</a></li>
   </ul>
 
   <div class="tab-content">
@@ -23,7 +18,7 @@
 		  <th>Name</th>
 		  <th>Title</th>
 		  <th>Created At</th>
-		  <th>Visit ID</th>
+		  <th>Referring Domain</th>
 		  <th></th>
 		</tr>
 
@@ -160,6 +155,17 @@
 	  <div class="text-center">
 	    <%= paginate @simulation_events %>
 	  </div>			
-	</div>			
+	</div>
+
   </div>
 </div>
+
+
+
+<%= column_chart @daily_visits, library: {hAxis: {title: "Hari"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
+
+<%= line_chart @recent_visits, library: {hAxis: {title: "Minggu Ke"}, vAxis: {title: "Jumlah Pengunjung"} }  %>
+
+
+<%=  %>
+

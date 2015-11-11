@@ -23,7 +23,7 @@ class TendersController < ApplicationController
 
     unless current_user == @tenderable
       ahoy.track "Viewed proposal", 
-        title: "made by#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|", 
+        title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|", 
         category: "Tender", important: "#{@tender.aqad}"
     end
   end

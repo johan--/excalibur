@@ -1,11 +1,9 @@
 class Firm::BaseController < ApplicationController
-  skip_before_action :authenticate_user!, only: [
-    :landing
-  ]
-  before_action :require_financier!, unless: :landing
-  before_action :financier_layout, unless: :landing
+  skip_before_action :authenticate_user!, only: :landing
+  before_action :require_financier!, except: :landing
+  # before_filter :set_layout, unless: :landing
   
-  respond_to :html, :js
+  # respond_to :html, :js
   
   def landing
     @category = "investor"
@@ -13,8 +11,9 @@ class Firm::BaseController < ApplicationController
   end
 
   def dashboard
-    @tenders = Tender.all
+    @tenders = Tender.all.order(:created_at).page params[:page]
     @bids = current_user.bids
+    @financier_layout = true
   end
 
 
@@ -58,6 +57,9 @@ private
       :auto_confirmation, :auto_confirmation_state,
       :auto_promo, :auto_promo_state
     )
+  end
+  def set_layout
+    @financier_layout = true
   end
 
 end

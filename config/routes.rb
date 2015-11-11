@@ -73,11 +73,12 @@ Fustal::Application.routes.draw do
 
   namespace :admin do
     root "base#index"
-    get 'analytics', to: "base#analytics", as: :analytics
     get 'subscribers', to: "base#subscribers", as: :subscribers
     put 'whitelisting', to: "base#whitelisting", as: :whitelisting
     post 'send_email', to: "base#send_email", as: :send_email
     get 'inbox', to: "base#inbox", as: :inbox
+    get 'events', to: "analytics#events", as: :events_analytics
+    get 'visits', to: "analytics#visits", as: :visits_analytics
     resources :users, skip: [:destroy]
     resources :firms
     resources :teams, only: [:index, :show, :destroy]

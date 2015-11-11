@@ -7,10 +7,9 @@ module LayoutSelector
     @blog_layout = true
     @recents = Post.recent
   end
-  def financier_layout
-    @financier_layout = true
-    @disable_nav = false
-  end
+  # def financier_layout
+  #   @financier_layout = true
+  # end
   def user_layout
     @user_layout = true
   end

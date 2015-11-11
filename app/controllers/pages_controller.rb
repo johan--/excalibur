@@ -10,6 +10,12 @@ class PagesController < ApplicationController
     @no_layout = true
   end
 
+  def dashboard
+    @tenders = Tender.all.order(:created_at).page params[:page]
+    @bids = current_user.bids
+    @financier_layout = true
+  end
+
   def home
     @documents = current_user.documents
     @tenders = Tender.all
