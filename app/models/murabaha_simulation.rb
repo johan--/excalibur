@@ -21,11 +21,11 @@ class MurabahaSimulation
   end
 
   def first_payment
-  	(@contribution  * price / 100)
+  	(@contribution  * price) / 100
   end
 
   def installment_left
-  	@price - first_payment
+  	marked_up_price - first_payment
   end
 
   def maximum_mo_installment
@@ -41,7 +41,7 @@ class MurabahaSimulation
   end
 
   def profit
-	  profit = @price * mark_up / 100
+	  profit = (@price * mark_up) / 100
   end
 
   def marked_up_price
@@ -49,9 +49,11 @@ class MurabahaSimulation
   end
 
   def calc_monthly_installment
-  	monthly_installment = (marked_up_price - installment_left) / @maturity / 12
+  	monthly_installment = installment_left / total_months
   end
 
-
+  def monthly
+  	@maturity / 12
+  end
 
 end
