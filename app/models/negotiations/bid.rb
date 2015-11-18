@@ -12,11 +12,12 @@ class Bid < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :intent_type, :intent_assets
+                 :intent_type, :intent_assets, :shares
 
   validates_presence_of :contribution#, :target, :contributed
 
   before_create :set_default_values!
+  # before_save   :set_contribution!
   after_create  :touch_tender!
 
   
@@ -27,6 +28,10 @@ private
     self.bidder_name = self.bidder.name
     self.tenderable_name = self.tender.tenderable.name
     self.open = true
+  end
+
+  def set_contribution!
+    # self.contribution = self.
   end
 
   def slug_candidates

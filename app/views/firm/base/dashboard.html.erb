@@ -17,9 +17,15 @@
 	<div class="portlet-body">
 		<div class="tab-content">
 			<div class="tab-pane" id="portlet_tab1">
-				<% @bids.find_each do |bid| %>
-					<%= render partial: 'bids/bid', locals: { bid: bid } %>
-				<% end %>			
+				<div class="tickets-container">
+				  <ul class="tickets-list">
+
+					<% @bids.find_each do |bid| %>
+					  <%= render partial: 'bids/bid', locals: { bid: bid, funder: true } %>
+					<% end %>  
+
+				  </ul>
+				</div>			
 			</div>
 			<div class="tab-pane active" id="portlet_tab2">
 				<% @tenders.find_each do |tender| %>

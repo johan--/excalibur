@@ -1,17 +1,21 @@
 class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
+  include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   # include PublicActivity::Model
   # tracked
+  monetize :target_sens
+  monetize :contributed_sens
 
   HOUSE = ["rumah tunggal", "rumah koppel/gandeng", "town house"]
   APARTMENT = "rumah susun/flat"
 
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
-
+  has_many :tender_transitions
+  
   serialize :properties, HashSerializer
   store_accessor :properties, 
                  :open, :category, 
@@ -26,7 +30,6 @@ class Tender < ActiveRecord::Base
   attr_wannabe_bool :open, :published
 
 # Statesman stuffs
-  has_many :tender_transitions
   # Initialize the state machine
   def state_machine
     @state_machine ||= TenderStateMachine.new(
@@ -36,15 +39,12 @@ class Tender < ActiveRecord::Base
   delegate :can_transition_to?, :transition_to!, :transition_to, 
          :current_state, to: :state_machine
 # ##################################
-
-  monetize :target_sens
-  monetize :contributed_sens
   
   validates_presence_of :aqad, :price, :address
 
   before_create :set_default_values!
   before_save :set_target!, :set_margin!
-  after_touch :update_contribution!
+  after_touch :update_contribution!, :set_state!
 
   # Pagination
   paginates_per 30
@@ -55,6 +55,10 @@ class Tender < ActiveRecord::Base
 
   def apartment?
     true if tangible.in?(APARTMENT)
+  end
+
+  def fulfilled?
+    true if self.contributed == self.target
   end
 
   def self.categories
@@ -94,7 +98,7 @@ class Tender < ActiveRecord::Base
   end
 
   def funding_progress
-    contributed / target
+    (contributed / target) * 100
   end
 
 # Transitions
@@ -175,5 +179,10 @@ private
     :fresh
   end
 
+  def set_state!
+    if self.fulfilled?
+      self.qualifying
+    end
+  end
 
 end

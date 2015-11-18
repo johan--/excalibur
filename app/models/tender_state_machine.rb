@@ -8,14 +8,14 @@ class TenderStateMachine
   state :denied
   state :dropped
 
-  transition from: :fresh, to: [:processing, :dropped]
+  transition from: :fresh, to: [:processing, :dropped, :qualified]
   transition from: :processing, to: [:qualified]
   transition from: :qualified,  to: [:success, :denied]
   transition from: :denied,  to: [:processing, :dropped]
   # transition from: :dropped
 
-  guard_transition(from: :processing, to: :qualified) do |tender|
-    # tender.checked?
+  guard_transition(to: :qualified) do |tender|
+    tender.fulfilled?
   end
 
   guard_transition(from: :qualified, to: :success) do |tender|

@@ -30,64 +30,83 @@
 	<div class="portlet-body">
 		<div class="tab-content">
 			<div class="tab-pane active" id="portlet_tab1">
-	            <div class="weather-3 pn centered">
-	              <div class="col-md-6">
+				<div class="row">
+					<div class="col-xs-12">
+            <div class="weather-3 pn centered">
+	            	<div class="row">
+	              <div class="col-md-4 col-sm-12">
 	                <i class="fa fa-briefcase centerpiece"></i>
 	                <h3>
 	                  PROPOSAL <br> <%= @tender.aqad.titleize %>
 	                </h3>
 	              </div>
-	              <div class="col-md-6">
+	              <div class="col-md-2 col-sm-6">
+	                <h3 class="coral">
+	                  <%= @tender.funding_progress %>%
+	                </h3>
+	                <h4>Pengumpulan Tawaran</h4>
+	              </div>
+	              <div class="col-md-2 col-sm-6">
+	                <h3 class="coral">
+	                  <%= @tender.state.titleize %>
+	                </h3>
+	                <h4>Status</h4>
+	              </div>
+	              <div class="col-md-4 col-sm-12">
 	                <div class="home-prompt">
-	            		<% if  @tender.access_granted?(current_user) %>
-	            			<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
-	            		<% else %>
-	            			<%= link_to "Buat Tawaran", new_tender_bid_path(@tender),
-								class: "btn btn-outlined btn-theme" %>
-	            		<% end %>
+		            		<% if  @tender.access_granted?(current_user) %>
+		            			<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
+		            		<% else %>
+		            			<%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: "btn btn-outlined btn-theme", remote: true %>
+		            		<% end %>
 	                </div>
 	              </div>
-	            </div>				
-				<div class="profile-stats">
-				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink" id="tender-client"><%= link_to @tender.tenderable.name, user_path(@tender.tenderable) %></div>
-				      <div class="stats-title">KLIEN</div>
-				  </div>
-				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink" id="tender-maturity"><%= @tender.maturity %> Tahun</div>
-				      <div class="stats-title">JANGKA WAKTU</div>
-				  </div>				  
-				  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-				      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %></div>
-				      <div class="stats-title">TARGET</div>
-				  </div>
-				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col" id="gain_column">
-				        Gain: <strong><%= gain_amount(@tender, @simulation.profit) %></strong>
+              </div>
+            </div>
+	        </div>
+	        <div class="col-xs-12">			
+						<div class="profile-stats mt">
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-client"><%= link_to @tender.tenderable.name, user_path(@tender.tenderable) %></div>
+						      <div class="stats-title">KLIEN</div>
+						  </div>
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-maturity"><%= @tender.maturity %> Tahun</div>
+						      <div class="stats-title">JANGKA WAKTU</div>
+						  </div>				  
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %>
+						      </div>
+						      <div class="stats-title">TARGET</div>
+						  </div>
+						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col" id="gain_column">
+						        Gain: <strong><%= gain_amount(@tender, @simulation.profit) %></strong>
+						    </div>
+						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+						        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
+						    </div>
+						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+						        <strong><span id="tender-price">@ <%= idr_money(@tender.price.to_i/1000) %>/Saham</span></strong>
+						    </div>
+						    
+						</div>
+					</div>
+					<div class="col-xs-12">
+				    <div class="weather-3 pn mt">
+				      <p class="text">
+						<span>Aset akan difungsikan sebagai <strong><%= @tender.intent unless @tender.intent.nil? %></strong></span>.
+						<span>Dana yang terkumpul akan digunakan untuk <strong> <%= @tender.use_case %></strong></span>.
+				      	<span>Aset bertipe <strong><%= @tender.tangible %></strong></span> dan terletak di <strong><%= @tender.address %></strong>
+				      </p>
+				      <br>
+				      <% if @tender.summary.nil? %>
+				      	<p>Belum ada penilaian</p>
+				      <% else %>
+				      	<p><%= @tender.summary %></p>
+				      <% end %>
 				    </div>
-				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
-				    </div>
-				    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-				        <strong><span id="tender-price">@ <%= idr_money(@tender.price.to_i/1000) %>/Saham</span></strong>
-				    </div>
-				    
-				</div>
-				<br>
-				<br>					
-			    <div class="notice notice-info">
-			      <strong>Tujuan</strong> 
-			      <p class="text">
-					<span>Aset akan difungsikan sebagai <strong><%= @tender.intent unless @tender.intent.nil? %></strong></span>.
-					<span>Dana yang terkumpul akan digunakan untuk <strong> <%= @tender.use_case %></strong></span>.
-			      	<span>Aset bertipe <strong><%= @tender.tangible %></strong></span> dan terletak di <strong><%= @tender.address %></strong>
-			      </p>
-			      <strong>Penilaian</strong> 
-			      <% if @tender.summary.nil? %>
-			      	<p>Belum ada penilaian</p>
-			      <% else %>
-			      	<p><%= @tender.summary %></p>
-			      <% end %>
-			    </div>			    
+					</div>
+				</div>			    
 			</div>
 
 			<div class="tab-pane" id="portlet_tab2">
@@ -100,13 +119,18 @@
 							</div>
 						</div>
 					<% end %>
-					<% @bids.find_each do |bid| %>
-						<div class="msg msg-info"> 
-							<span class="glyphicon glyphicon-info-sign"></span> 
-							<strong><%= bid.bidder.name %></strong>
-							<span class="label label-success"><%= idr_money(bid.contribution) %></span>
-						</div>
-					<% end %>
+					<ul class="widget-products">
+						<% @bids.find_each do |bid| %>
+							<%= render bid %>
+						<% end %>
+          </ul>
+          <br>
+      		<% if  @tender.access_granted?(current_user) %>
+      			<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
+      		<% else %>
+      			<%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: "btn btn-outlined btn-theme", remote: true %>
+      		<% end %>          
+
 				</div>
 			</div>
 		</div>

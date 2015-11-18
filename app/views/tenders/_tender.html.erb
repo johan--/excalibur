@@ -4,7 +4,9 @@
       <i class="fa fa-file-text fa-4x" style="display: block;"></i>
       <h3>Proposal <%= tender.barcode %></h3>
       <h5><span class="label label-primary"><%= tender.state %></span></h5> 
-      <%= link_to 'Edit', edit_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+      <% if  tender.access_granted?(current_user) %>
+        <%= link_to 'Edit', edit_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme", remote: true  %>
+      <% end %>
       <%= link_to 'Lihat', show_tender_link(tender), class: "btn btn-xs btn-outlined btn-theme"  %>      
     </div>
     <div class="col-md-6">

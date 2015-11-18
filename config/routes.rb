@@ -36,7 +36,8 @@ Fustal::Application.routes.draw do
     get '' => "posts#index"
   end
 
-  namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
+  # namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
+  namespace :firm, path: '/dana' do
     root "base#landing"
     get 'dashboard', to: "base#dashboard", as: :dashboard
     resources :bids

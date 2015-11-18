@@ -1,27 +1,62 @@
-<div class="msg msg-info" id="<%= bid.barcode %>"> 
-	<div class="row">
+<% if defined?(funder) && funder %>
+<li class="ticket-item" id="<%=  %>">
+  <div class="row">
+    <div class="ticket-user col-md-5 col-sm-12">
+      <span class="user-name">
+        Proposal <strong><%= bid.tender.barcode %></strong>
+      </span>
+      <span class="user-company">
+        oleh <%= bid.tender.tenderable.name %>
+      </span>
+    </div>
+    <div class="ticket-time col-md-5 col-sm-6 col-xs-12">
+      <div class="divider hidden-md hidden-sm hidden-xs"></div>
+      <%= idr_money(bid.contribution) %> 
+      <span class="time">
+        <%= bid.created_at.strftime("%-d %B %Y") %>
+      </span>
+    </div>
+    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
+      <span class="divider hidden-xs"></span>
+      <span class="type">
+        <%= link_to 'Lihat', tender_path(bid.tender), class: "btn btn-xs btn-outlined btn-theme" %>
+      </span>
+    </div>
+    <div class="ticket-state bg-palegreen">
+        <i class="fa fa-check"></i>
+    </div>
+  </div>
+</li>
 
-	<div class="col-sm-6 col-xs-12">
-		<span class="fa fa-fax"></span> 
-		<span class="barcode">
-			<strong><%= bid.barcode %></strong>
-		</span>
-		<span class="fa fa-thumb-tack"></span> <span class="barcode"><strong><%= bid.tender.barcode %></strong></span>		
-	</div>
-	<div class="col-sm-2 col-xs-6">
-		<span class="label label-success contribution">
-			<%= idr_money(bid.contribution) %>
-		</span>			
-	</div>
-	<div class="col-sm-4 col-xs-6">
-		<span class="bidder-name">
-			<strong><%= bid.bidder.name %></strong>
-		</span>		
-		<i class="fa fa-arrow-right"></i>
-		<span class="tenderable-name">
-			<strong><%= bid.tender.tenderable.name %></strong>
-		</span>		
-	</div>
+<% else %>
+<li>
+  <a href="#">
+  <span class="img">
+    <% if bid.bidder.avatar.nil? %>
+      <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+    <% else %>
+      <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
+    <% end %>              	
+  </span>
+  <span class="product clearfix">
+    <span class="name"><%= bid.bidder.name %></span>
+    <span class="warranty">
+      <i class="fa fa-certificate"></i> <%= bid.state %>
+    </span>
+    <span class="price">
+      <%= idr_money(bid.contribution) %>
+    </span>
+    <span class="summary">
+      <p>
+        <% if bid.summary.nil? %>
+          tidak ada pesan
+        <% else %>
+          <%= bid.summary %>
+        <% end %>
+      </p>
+    </span>
+  </span>
+  </a>
+</li>
 
-	</div>
-</div>
+<% end %>

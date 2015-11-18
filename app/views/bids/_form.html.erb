@@ -1,9 +1,9 @@
-<%= simple_form_for([@tender, @bid]) do |f| %>
+<%= simple_form_for([@tender, @bid], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
 	<%= f.input :contribution, label: "Besaran (Rp)", required: true %>
-	<%= f.input :summary, label: "Rangkuman", required: false %>
+	<%= f.input :summary, label: "Pesan", required: false %>
   </div>
 
   <div class="form-actions">

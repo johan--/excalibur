@@ -54,6 +54,11 @@
     line-height: 20px;
     height: 50px;
     padding: 10px;
+    .time {
+        margin-left: 2px;
+        float: right;
+        color: #999;
+    }
 }
 .tickets-container .tickets-list .ticket-item .ticket-user .user-company {
     margin-left: 2px;
