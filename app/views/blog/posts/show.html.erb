@@ -14,3 +14,5 @@
 %>
 
 <%= render partial: 'elements/post', locals: { post: @post, comments: @root_comments } %>
+
+<%= render partial: 'elements/disqus_script', locals: { identifier: @post.title } %>

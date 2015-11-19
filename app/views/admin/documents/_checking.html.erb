@@ -1,14 +1,23 @@
-<%= form_for([:admin, @document]) do |f| %>
+<div class="modal-header modal-header-success">
+  <h3>Proses Dokumen</h3>
+</div>
+<div class="modal-body">
+  <center>
+    <h3 class="media-heading">Cek Dokumen <%= document.name %></h3>
+  </center>
+    <p>Diunggah oleh <strong><%= document.owner.name %></strong>, jenisnya adalah (<%= document.doc_type %>) dengan file public id <strong><%= document.public_id %></strong></p>
+
+<%= form_for([:admin, document]) do |f| %>
   <div class="form_line">
     <%= f.label :checked, "Diterima?" %>
     <div class="form_controls">
-      <%= f.select :checked, boolean_options, selected: @document.checked %>
+      <%= f.select :checked, boolean_options, selected: document.checked %>
     </div>
   </div>
   <div class="form_line">
     <%= f.label :flagged, "Bermasalah?" %>
     <div class="form_controls">
-      <%= f.select :flagged, boolean_options, selected: @document.flagged %>
+      <%= f.select :flagged, boolean_options, selected: document.flagged %>
     </div>
   </div>
   <div class="form_line">
@@ -17,3 +26,8 @@
     </div>
   </div>  
 <% end %>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+</div>

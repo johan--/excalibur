@@ -1,3 +1,3 @@
 $("#inner-main-modal").html("<%= j (render partial: 'bids/bid_modal',
-	locals: {heading: 'Buat Penawaran'} ) %>")
+	locals: {edit: true, heading: 'Koreksi Penawaran'} ) %>")
 $("#main-modal").modal("show")

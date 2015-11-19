@@ -29,34 +29,63 @@
 </li>
 
 <% else %>
-<li>
-  <a href="#">
-  <span class="img">
-    <% if bid.bidder.avatar.nil? %>
-      <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
-    <% else %>
-      <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
-    <% end %>              	
-  </span>
-  <span class="product clearfix">
-    <span class="name"><%= bid.bidder.name %></span>
-    <span class="warranty">
-      <i class="fa fa-certificate"></i> <%= bid.state %>
-    </span>
-    <span class="price">
-      <%= idr_money(bid.contribution) %>
-    </span>
-    <span class="summary">
-      <p>
-        <% if bid.summary.nil? %>
-          tidak ada pesan
-        <% else %>
-          <%= bid.summary %>
-        <% end %>
-      </p>
-    </span>
-  </span>
-  </a>
-</li>
+  <li class="media">
+    <a class="pull-left" href="#">
+    <figure class="media-object img-circle hidden-xs">
+      <% if bid.bidder.avatar.nil? %>
+        <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+      <% else %>
+        <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
+      <% end %>
+    </figure>
+    </a>
+    <div class="media-body">
+      <div class="well well-lg">
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="media-heading text-uppercase reviews" id="bidder-name"><%= bid.bidder.name %></h4>          
+          </div>
+          <div class="col-xs-3">
+            <ul class="media-date text-uppercase reviews list-inline">
+              <span class="warranty">
+                <i class="fa fa-certificate"></i> <%= bid.state %>
+              </span>    
+            </ul>          
+          </div>
+          <div class="col-xs-3">
+            <ul class="media-date text-uppercase reviews list-inline">
+              <span class="price" id="bidder-contribution">
+                <%= idr_money(bid.contribution) %>
+              </span>
+            </ul>
+          </div>
+          <div class="col-xs-12">
+            <p class="media-comment">
+              <% if bid.summary.nil? %>
+                tidak ada pesan
+              <% else %>
+                <%= bid.summary %>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-xs-12">
+            <% if bid.bidder?(current_user) %>
+              <%= link_to edit_tender_bid_path(bid.tender, bid), remote: true, class: "btn btn-info btn-circle" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              <% end %>
+              <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
+                <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
+              <% end %>
+            <% end %>
+            <% if current_user.admin? %>
+              <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
+                <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
+              <% end %>              
+            <% end %>
+          </div>
+        </div>
+      </div>              
+    </div>
+  </li>
 
 <% end %>

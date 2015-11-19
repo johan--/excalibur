@@ -1,8 +1,5 @@
-<div class="text">      
-  <h4>Document Index</h4>
-</div>
+<% meta title: "Dokumen | Admin Dashboard" %>
 
-<% title("Dokumen | Admin Dashboard") %>
 <h1>Dokumen <small>Admin Dashboard</small></h1>
 <p><%= link_to "Back to Admin Root", admin_root_path %></p>
 
@@ -30,9 +27,9 @@
     <td><%= document.category %></td>
     <td><%= document.name %></td>
     <td><%= time_ago_in_words(document.updated_at)%> ago</td>
-    <td><%= document.state || %></td>
-    <td><%= link_to "Lihat", '#'  %></td>
-    <td><%= link_to "Proses", '#' %></td>
+    <td><%= document.state %></td>
+    <td><%= link_to "Lihat", document_path(document), remote: true  %></td>
+    <td><%= link_to "Proses", edit_admin_document_path(document), remote: true %></td>
   </tr>
   <% end %>
 

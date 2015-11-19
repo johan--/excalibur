@@ -1,5 +1,5 @@
 class BidsController < ApplicationController
-  before_action :set_bid, only: [:show, :edit, :update, :destroy]
+  before_action :set_bid, only: [:show, :edit, :update, :destroy, :finalize]
   before_action :find_tender
   before_action :user_layout
 
@@ -43,12 +43,14 @@ class BidsController < ApplicationController
   def destroy
     @bid.destroy
     respond_to do |format|
-      format.html { redirect_to bids_url, notice: 'Tawaran berhasil ditarik' }
+      format.html { redirect_to firm_dashboard_url(subdomain: ''), notice: 'Tawaran berhasil ditarik' }
       format.json { head :no_content }
     end
   end
 
-
+  def finalize
+    @bid.transitioning!
+  end
 
 private
   def find_tender
@@ -62,7 +64,7 @@ private
 
   def bid_params
     params.require(:bid).permit(
-      :contribution, :bidder
+      :contribution, :summary, :shares
     )
   end
 

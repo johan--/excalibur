@@ -12,18 +12,26 @@ class Bid < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :intent_type, :intent_assets, :shares
+                 :intent_type, :intent_assets, :shares, :at_price
 
   validates_presence_of :contribution#, :target, :contributed
 
   before_create :set_default_values!
-  # before_save   :set_contribution!
-  after_create  :touch_tender!
+  before_save   :set_contribution!
+  after_save  :touch_tender!
 
+  def bidder?(user)
+    if self.bidder == user
+      return true
+    end
+  end
   
+
 private
   def set_default_values!
-	  self.state = "belum diproses"
+	  if self.state.nil?
+      self.state = "belum diproses" 
+    end
     self.barcode = "Tawaran ##{SecureRandom.hex(3)}"
     self.bidder_name = self.bidder.name
     self.tenderable_name = self.tender.tenderable.name
@@ -31,7 +39,8 @@ private
   end
 
   def set_contribution!
-    # self.contribution = self.
+    self.at_price = self.tender.price_per_share
+    self.contribution = self.shares.to_i * self.at_price
   end
 
   def slug_candidates

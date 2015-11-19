@@ -1,0 +1,27 @@
+<div class="modal-header modal-header-success">
+  <h3>Proses Tawaran</h3>
+</div>
+<div class="modal-body">
+  <center>
+    <h3 class="media-heading">Tawaran untuk proposal <%= bid.tender.barcode %></h3>
+  </center>
+    <p>Dibuat oleh <strong><%= bid.bidder_name %></strong> dengan nilai sebesar <strong><%= idr_money(bid.contribution) %></strong>, untuk proposal yang diajukan oleh <strong><%= bid.tenderable_name %></strong></p>
+
+<%= simple_form_for([:admin, bid], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :state, collection: bid_states, prompt: "Pilih", selected: bid.state, label: "Status Tawaran", required: true %>
+  </div>
+
+  <center>
+    <div class="form-actions">
+      <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+    </div>
+  </center>
+<% end %>
+  
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+</div>

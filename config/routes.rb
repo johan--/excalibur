@@ -95,6 +95,7 @@ Fustal::Application.routes.draw do
       end
     end
     resources :tenders, only: [:index, :edit, :update]
+    resources :bids, only: [:index, :edit, :update, :destroy]
   end
 
 

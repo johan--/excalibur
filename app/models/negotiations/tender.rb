@@ -101,6 +101,18 @@ class Tender < ActiveRecord::Base
     (contributed / target) * 100
   end
 
+  def shares_remaining
+    ((target - contributed) / price_per_share).round(0)
+  end
+
+  def price_per_share
+    target / total_share
+  end
+
+  def total_share
+    1000
+  end
+
 # Transitions
   def processing
     self.transition_to!(:processing)
@@ -180,8 +192,14 @@ private
   end
 
   def set_state!
-    if self.fulfilled?
-      self.qualifying
+    if self.fulfilled? 
+      if self.state_machine.current_state != "qualified"
+        self.qualifying
+      end
+    else  
+      if self.state_machine.current_state != "processing"
+        self.processing
+      end
     end
   end
 

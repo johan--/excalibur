@@ -191,85 +191,36 @@ body {
 
 
 
-.widget-products li>a:after {
-    content: "\f138";
-    font-family: FontAwesome;
-    font-size: 0.875em;
-    font-style: normal;
-    font-weight: normal;
-    margin-top: 32px;
-    position: absolute;
-    right: 10px;
-    text-decoration: inherit;
-    top: 0;
-    color: #cccccc;
-    font-size: 1.3em;
+.page-header { position: relative; }
+.reviews {
+    color: #555;    
+    font-weight: bold;
+    margin: 10px auto 20px;
 }
-.widget-products li .product>.warranty>i {
-    color: #f1c40f;
+.notes {
+    color: #999;
+    font-size: 12px;
 }
-.widget-products li .product>.warranty {
-    display: block;
-    text-decoration: none;
-    width: 33%;
-    float: left;
-    font-size: 0.875em;
+.media .media-object { max-width: 120px; }
+.media-body { position: relative; }
+/*.media-date { 
+    position: absolute; 
+    right: 25px;
+    top: 25px;
+}*/
+.media-date li { padding: 0; }
+.media-date li:first-child:before { content: ''; }
+.media-date li:before { 
+    content: '.'; 
+    margin-left: -2px; 
+    margin-right: 2px;
 }
-.widget-products li .product>.summary {
-    display: block;
-    text-decoration: none;
-    width: 100%;
-    float: left;
-    font-size: 0.875em;
+.media-comment { margin-bottom: 20px; }
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
 }
-.widget-products li .product>.price>i {
-    color: #2ecc71;
-}
-.widget-products li .product>.price {
-    display: block;
-    text-decoration: none;
-    width: 33%;
-    float: left;
-    font-size: 0.875em;
-    color: $brand-coral;
-}
-.widget-products li .product>.name {
-    display: block;
-    width: 33%;
-    float: left;
-    font-weight: 600;
-    padding-bottom: 7px;
-    color: $brand-primary;
-}
-.widget-products li .product {
-    display: block;
-    margin-left: 90px;
-    margin-top: 19px;
-}
-.widget-products li .img {
-    display: block;
-    float: left;
-    text-align: center;
-    width: 70px;
-    height: 68px;
-    overflow: hidden;
-    margin-top: 7px;
-}
-.widget-products li>a {
-    height: 88px;
-    display: block;
-    width: 100%;
-    color: #344644;
-    padding: 3px 10px;
-    position: relative;
-    -webkit-transition: border-color 0.1s ease-in-out 0s,background-color 0.1s ease-in-out 0s;
-    transition: border-color 0.1s ease-in-out 0s,background-color 0.1s ease-in-out 0s;
-}
-.widget-products li {
-    border-bottom: 1px solid #ebebeb;
-}
-.widget-products {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+.btn-circle span { padding-right: 6px; }
+.embed-responsive { margin-bottom: 20px; }

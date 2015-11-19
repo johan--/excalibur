@@ -13,10 +13,10 @@ class Admin::DocumentsController < Admin::BaseController
   def update
     if @document.update(document_params)
       @document.transitioning!
-      flash[:notice] = 'Dokumen berhasil dikoreksi'
+      flash[:notice] = 'Dokumen berhasil diproses'
       redirect_to admin_documents_path 
     else
-      flash[:warning] = 'Dokumen gagal dikoreksi'
+      flash[:warning] = 'Dokumen gagal diproses'
       render :index
     end    
   end

@@ -11,11 +11,11 @@ class Admin::TendersController < Admin::BaseController
 
   def update
     if @tender.update(tender_params)
-      @tender.transitioning!
-      flash[:notice] = 'Dokumen berhasil dikoreksi'
+      # @tender.transitioning!
+      flash[:notice] = 'Proposal berhasil diproses'
       redirect_to admin_tenders_path 
     else
-      flash[:warning] = 'Dokumen gagal dikoreksi'
+      flash[:warning] = 'Proposal gagal diproses'
       render :index
     end    
   end
@@ -28,10 +28,7 @@ class Admin::TendersController < Admin::BaseController
 
   def tender_params
     params.require(:tender).permit(
-    :checked,
-    :flagged,
-    :public_id,
-    :summary
+      :summary
     )
   end
 

@@ -144,6 +144,28 @@ RSpec.describe Tender, :type => :model do
 	  	expect(result.count).to eq 1
 	  end
   	end
+  end
+
+  describe "when there is a bid" do
+  	let!(:user_1) { FactoryGirl.create(:financier) }
+  	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+  	let!(:bid) { FactoryGirl.create(:bid, bidder: user_1, tender: tender) }
+	
+	# subject { tender }
+
+  	describe "tender.bids" do
+	  it "returns tender that has open attribute set to true" do
+	  	expect(tender.bids.count).to eq 1
+	  end
+  	end
+
+  	describe "tender.contribution" do
+	  let!(:result) { tender.contributed }
+
+	  it "returns tender that has open attribute set to true" do
+	  	expect(result).to eq bid.contribution
+	  end
+  	end
 
   end
 

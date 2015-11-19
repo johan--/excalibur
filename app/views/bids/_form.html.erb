@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.input :contribution, label: "Besaran (Rp)", required: true %>
+	<%= f.input :shares, as: :integer, input_html: { min: '1', max: '1000', step: '1' }, label: "Jumlah Saham", required: true, hint: "Maksimal = 1000 saham  |  Harga 1 saham = #{@tender.price_per_share}" %>
 	<%= f.input :summary, label: "Pesan", required: false %>
   </div>
 

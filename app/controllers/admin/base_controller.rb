@@ -11,6 +11,7 @@ class Admin::BaseController < ApplicationController
     @post_count = Post.count
     @doc_count = Document.count
     @tender_count = Tender.count
+    @bid_count = Bid.count
     @admin_layout = true
   end
 

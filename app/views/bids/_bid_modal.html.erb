@@ -1,9 +1,13 @@
 <div class="modal-header modal-header-success">
-  <h3>Pengajuan Penawaran</h3>
+  <% if defined?(edit) && edit %>
+  	<h3>Koreksi Penawaran</h3>
+  <% else %>
+  	<h3>Pengajuan Penawaran</h3>
+  <% end %>
 </div>
 <div class="modal-body">
   <center>
-    <h3 class="media-heading"><%= "Buat Proposal" %></h3>
+    <h3 class="media-heading"><%= heading %></h3>
 	  <%= render 'form' %>
   </center>
 </div>

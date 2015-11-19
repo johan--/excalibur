@@ -52,8 +52,5 @@ class MurabahaSimulation
   	monthly_installment = installment_left / total_months
   end
 
-  def monthly
-  	@maturity / 12
-  end
 
 end

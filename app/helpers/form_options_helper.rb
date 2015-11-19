@@ -112,4 +112,9 @@ module FormOptionsHelper
 		[identity_docs, earning_docs, expense_docs, collateral_docs].flatten
 	end
 
+# Bid options
+	def bid_states
+		["belum diproses", "tentatif", "pasti", "batal"]
+	end
+
 end

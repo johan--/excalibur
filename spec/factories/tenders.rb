@@ -27,13 +27,13 @@ FactoryGirl.define do
       maturity 8
       published true
 
-      factory :con_tender do
-        transient do
-          consumer { FactoryGirl.create(:consumer) }
-        end
+      # trait :with_bid do
+      #   transient do
+      #     consumer { FactoryGirl.create(:consumer) }
+      #   end
 
-        tenderable { consumer }
-      end      
+      #   tenderable { consumer }
+      # end      
   	end
 
     trait :draft do
