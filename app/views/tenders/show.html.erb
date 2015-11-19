@@ -45,7 +45,7 @@
 	                <h4>Saham Tersedia</h4>
 	              </div>
 	              <div class="col-md-3 col-sm-6">
-	                <h3 class="coral" id="tender-state">
+	                <h3 class="coral" id="tender-pps">
 	                  <%= idr_money(@tender.price_per_share) %>
 	                </h3>
 	                <h4>@ Harga/lembar</h4>
@@ -83,7 +83,7 @@
 						        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
 						    </div>
 						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-						        <strong><span id="tender-price">Status: <%= @tender.state %></span></strong>
+						        <strong><span id="tender-state">Status: <%= @tender.state %></span></strong>
 						    </div>
 						    
 						</div>

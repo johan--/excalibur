@@ -50,6 +50,10 @@ FactoryGirl.define do
 
     trait :tenderable do
       tenderable
+    end
+
+    trait :processing do
+      state "processing"
     end 
   end	
 

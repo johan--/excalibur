@@ -192,15 +192,13 @@ private
   end
 
   def set_state!
-    if self.fulfilled? 
-      if self.state_machine.current_state != "qualified"
-        self.qualifying
-      end
+    
+    unless self.state == "qualified"
+        self.qualifying if self.fulfilled? 
     else  
-      if self.state_machine.current_state != "processing"
-        self.processing
-      end
+      self.processing unless self.state == "processing"
     end
+
   end
 
 end

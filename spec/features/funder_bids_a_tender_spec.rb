@@ -19,12 +19,11 @@ feature "FunderBidsATender", :type => :feature do
 
   	it { should have_content('Tawaran berhasil diajukan') }
 
-	context "should have correct information on tender show page" do
-	  it { should have_css('#tender-progress', text: "100.0%") }
-	  it { should have_css('#tender-state', text: "Qualified") }
-	  it { should have_css('#bidder-name', text: user_1.name.titleize) }
-	  it { should have_css('#bidder-contribution', text: "RP 500.000.000") }
-	end  	
+  	context "should have correct information on tender show page" do
+  	  it { should have_css('#tender-progress', text: "0 lembar") }
+  	  it { should have_css('#bidder-name', text: user_1.name.upcase) }
+  	  it { should have_css('#bidder-contribution', text: "RP 500.000.000") }
+  	end  	
   end
 
   context "there is already a bid" do
@@ -40,11 +39,11 @@ feature "FunderBidsATender", :type => :feature do
 
   	  it { should have_content('Tawaran berhasil dikoreksi') }
 
-	  context "should have correct information on tender show page" do
-		it { should_not have_css('#tender-progress', text: "100.0%") }
-		# it { should_not have_css('#tender-state', text: "Qualified") }
-		it { should have_css('#bidder-contribution', text: "RP 300.000.000") }
-	  end
+  	  context "should have correct information on tender show page" do
+  		  it { should have_css('#tender-progress', text: "0 lembar") }
+  		  # it { should_not have_css('#tender-state', text: "Qualified") }
+  		  it { should have_css('#bidder-contribution', text: "RP 300.000.000") }
+  	  end
   	end
 
   	describe "pulling a bid" do
@@ -57,10 +56,10 @@ feature "FunderBidsATender", :type => :feature do
 	  context "should have correct information on tender show page" do
 	  	before { click_link "Lihat" }
 
-		it { should have_css('#tender-progress', text: "0.0%") }
-		# it { should_not have_css('#tender-state', text: "Qualified") }
-		it { should_not have_css('#bidder-contribution', text: "RP 500.000.000") }
-	  end
+  		it { should have_css('#tender-progress', text: "0 lembar") }
+  		# it { should_not have_css('#tender-state', text: "Qualified") }
+  		it { should_not have_css('#bidder-contribution', text: "RP 500.000.000") }
+  	  end
   	end
   end
 

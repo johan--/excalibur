@@ -10,7 +10,7 @@ class TenderStateMachine
 
   transition from: :fresh, to: [:processing, :dropped, :qualified]
   transition from: :processing, to: [:qualified]
-  transition from: :qualified,  to: [:success, :denied]
+  transition from: :qualified,  to: [:processing, :success, :denied]
   transition from: :denied,  to: [:processing, :dropped]
   # transition from: :dropped
 

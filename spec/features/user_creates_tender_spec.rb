@@ -52,7 +52,7 @@ feature "UserCreatesTender", :type => :feature do
 
 	  context "should have correct information on tender show page" do
 	    it { should have_css('#tender-target', text: "Rp 375.000.000") }
-	    it { should have_css('#tender-price', text: "@ Rp 500.000/Saham") }
+	    it { should have_css('#tender-pps', text: "Rp 500.000") }
 	  end
 	end	
   end
@@ -74,7 +74,7 @@ feature "UserCreatesTender", :type => :feature do
 		
 	  context "should have correct information on tender show page" do
 	    it { should have_css('#tender-target', text: "Rp 400.000.000") }
-	    it { should have_css('#tender-price', text: "@ Rp 400.000/Saham") }
+	    it { should have_css('#tender-pps', text: "Rp 400.000") }
 	  end
 	end
   end
