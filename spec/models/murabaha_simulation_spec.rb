@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MurabahaSimulation, :type => :model do
-  	# year = 8
+  	
   	before(:each) do
   	  @year =  8 
 	  @price =  500000000 
