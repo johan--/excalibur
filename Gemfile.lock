@@ -6,6 +6,14 @@ GIT
       cloudinary (~> 1.0.69)
       rails (>= 3.2)
 
+GIT
+  remote: git@github.com:assaf/vanity
+  revision: 15f5abd4860a60965f129c71d656c823002fb994
+  branch: master
+  specs:
+    vanity (2.0.0.beta9)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -391,6 +399,7 @@ DEPENDENCIES
   turbolinks (= 2.5.3)
   tzinfo-data
   uglifier (= 2.6.0)
+  vanity!
   wannabe_bool
   web-console (= 2.0.0)
   with_model

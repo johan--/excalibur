@@ -126,7 +126,13 @@ a:after {
     padding-bottom: 10%;
     width: 100%;
     height: 100%;
-    background: url('http://res.cloudinary.com/instilla/image/upload/v1439793483/3-dark_aeddps.jpg') no-repeat center center scroll;
+    /*background: url('http://res.cloudinary.com/instilla/image/upload/v1439793483/3-dark_aeddps.jpg') no-repeat center center scroll;*/
+    background: 
+        linear-gradient(
+          rgba(35, 116, 118, 0.46), 
+          rgba(35, 116, 118, 0.46)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/s--U_5YXY1B--/c_scale,w_1200/v1449580966/asset/semi-detached-house-1026384_1920.jpg') no-repeat center center scroll;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -153,8 +159,8 @@ h3.sub-heading{
 .landing-header h1 {
     color: white;
     /*font-size: 260%;*/
-    font-size: 50px;
-    line-height: 4.75rem;
+    /*font-size: 50px*/;
+    line-height: 5.75rem;
     font-weight: 400;
     margin: .67em 0;
     margin-bottom: 0;
@@ -220,7 +226,12 @@ h3.sub-heading{
         margin-top: -20px;
     }
     #headerwrap {
-        background: url('http://res.cloudinary.com/instilla/image/upload/v1439794070/3-dark-mobile_iobcyn.jpg') no-repeat center center scroll;
+        background: 
+        linear-gradient(
+          rgba(35, 116, 118, 0.46), 
+          rgba(35, 116, 118, 0.46)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/s--6cZNk0K---/c_scale,w_700/v1449580966/asset/semi-detached-house-1026384_1920.jpg') no-repeat center center scroll;
         background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;

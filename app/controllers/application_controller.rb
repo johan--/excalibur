@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
 
+  use_vanity# :current_user
+
   # Devise permitted params
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(

@@ -53,6 +53,8 @@ gem 'metamagic'
 gem 'inline_svg'
 gem 'wannabe_bool'
 gem 'browser'
+gem 'vanity', :git => 'git@github.com:assaf/vanity', :branch => 'master'
+
 
 # Complementary
 gem 'nprogress-rails'

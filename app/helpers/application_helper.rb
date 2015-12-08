@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def app_name
-    return "siKapiten"
+    return "Kapiten"
   end
 
   def title(value)

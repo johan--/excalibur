@@ -18,12 +18,11 @@ $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
 // Typography
-@import url(http://fonts.googleapis.com/css?family=Raleway:500,800);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:500,700,300);
 $font-family-sans-serif: Arial, Helvetica, sans-serif;
 $font-family-serif: Georgia, 'Times New Roman', Times, serif;
-$font-family-monospace: 'Anonymous Pro', Courier New, monospace;
-$font-family-raleway: 'Raleway', sans-serif;
-$font-family-base: $font-family-raleway;
+$font-family-ubuntu: 'Ubuntu', sans-serif;
+$font-family-base: $font-family-ubuntu;
 $font-size-base: 14px;
 
 // Headings
