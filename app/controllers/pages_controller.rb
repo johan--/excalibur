@@ -1,12 +1,26 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
-    :landing, :tos, :email, :subscribe, :upgrade, :simulation
+    :landing, :tos, :email, :subscribe, :upgrade, :simulation, 
+    :for_clients, :for_investors, :for_developers
   ]
-  before_filter :disable_background, only: [:tos, :upgrade]
+  before_filter :disable_background, only: [
+    :tos, :upgrade, :for_clients, :for_investors, :for_developers]
 
   def landing
     # @category = "registration"
     # @current_count = Subscriber.whitelist.count
+    @no_layout = true
+  end
+
+  def for_clients
+    @no_layout = true
+  end
+
+  def for_investors
+    @no_layout = true
+  end
+
+  def for_developers
     @no_layout = true
   end
 

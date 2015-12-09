@@ -28,17 +28,17 @@
 <div>
   <div class="container">
     <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
-    	<div class="col-md-3">
+    	<div class="col-md-2">
     	</div>
-		<div class="col-md-3 col-xs-6">
-			<%= link_to "Kunjungi Blog Kami", root_url(subdomain: 'blog'), class: "btn btn-lg btn-outlined btn-black hidden-xs" %>
+		<div class="col-md-4 col-xs-6">
+			<%= link_to "Daftar", new_user_registration_url(subdomain: ''), class: "btn btn-block btn-primary hidden-xs" %>
+			<%= link_to "Daftar", new_user_registration_url(subdomain: ''), class: "btn btn-sm btn-primary visible-xs" %>
+		</div>    	
+		<div class="col-md-4 col-xs-6">
+			<%= link_to "Kunjungi Blog Kami", root_url(subdomain: 'blog'), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
 			<%= link_to "Kunjungi Blog", root_url(subdomain: 'blog'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
 		</div>
-		<div class="col-md-3 col-xs-6">
-			<%= link_to "Halaman Pendana", root_url(subdomain: 'dana'), class: "btn btn-lg btn-outlined btn-black hidden-xs" %>
-			<%= link_to "Pendana", root_url(subdomain: 'dana'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
-		</div>
-		<div class="col-md-3">
+		<div class="col-md-2">
 		</div>
     </div>
 </div>	
@@ -47,15 +47,82 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-md-8 col-md-offset-2">
-					<h3 class="landing">Manfaat</h3>
-					<p>Rumah Impian. Hidup Tenang. Tanpa Bunga. Menggunakan akad-akad syariah, kamu tidak perlu terjerat hutang berbunga dan dirundung kekhawatiran setiap harinya. Kami bantu kamu di setiap tahapan. </p>
-
+					<h3 class="landing">Tujuan</h3>
+					<p>Tujuan kami sederhana, yaitu menyediakan pembiayaan rumah yang 100% syariah, lebih cepat dan lebih sederhana dari bank, dengan metode crowdfunding.</p>
+					<br>
 					<h3 class="landing">Crowdfunding?</h3>
-					<p>Crowdfunding secara sederhana adalah sistem pengumpulan dana gotong royong. Dalam kasus siKapiten, pengajuan pembiayaanmu akan didanai oleh para rekan pendana kami sebagai aktivitas investasi.</p>
+					<p>Crowdfunding secara sederhana adalah sistem pendanaan gotong royong. Alih-alih dikucurkan oleh bank, pengajuan pembiayaanmu di platform Kapiten akan didanai oleh para investor, yang dapat berupa orang-orang yang kamu kenal dan juga orang asing.</p>
 				</div>
+			</div>
+			<br>
+	    </div> <!--/ .container -->
+	</div><!--/ #introwrap -->
+</section>
+
+<section class="stripe stripe-partners ic-boxes" id="desc" name="desc">
+  <div class="container">
+  	<div class="row">
+  		<h3 class="text-center">Membangun masa depan yang tentram bersama, rumah demi rumah</h3>
+	    <div class="col-xs-12 col-sm-4">
+	    	<%= link_to for_clients_path do %>
+	        <div class="project">
+	            <figure class="img-responsive">
+	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/family-1003816_640.jpg">
+	                <figcaption>
+	                    <span class="project-details">Pembeli Rumah</span>
+	                    <span class="project-creator">pihak yang membutuhkan pembiayaan</span>
+	                </figcaption>
+	                <span class="hovered">
+	                    <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                </span>
+	            </figure>
+	        </div>
+	        <% end %>
+	    </div>
+	    <div class="col-xs-12 col-sm-4">
+	    	<%= link_to for_investors_path do %>
+	        <div class="project">
+	            <figure class="img-responsive">
+	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/telephone-586266_640.jpg">
+	                <figcaption>
+	                    <span class="project-details">Investor</span>
+	                    <span class="project-creator">pihak yang membantu membiayai</span>
+	                </figcaption>
+	                <span class="hovered">
+	                        <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                </span>
+	            </figure>
+	        </div>
+	        <% end %>
+	    </div>
+	    <div class="col-xs-12 col-sm-4">
+			<%= link_to for_developers_path do %>	    
+	        <div class="project">
+	            <figure class="img-responsive">
+	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,h_233,w_350/v1449582919/asset/signature-962355_640.jpg">
+	                <figcaption>
+	                    <span class="project-details">Developer</span>
+	                    <span class="project-creator">developer dan penjual rumah</span>
+	                </figcaption>
+	                <span class="hovered">
+	                        <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                </span>
+	            </figure>
+	        </div>
+	        <% end %>
+	    </div>        
+
+  	</div>
+  </div>
+</section>
+
+<section>
+	<div id="intro">
+		<div class="container">
+			<div class="row centered">
 				<div class="col-md-10 col-md-offset-1">
 					<h3 class="landing">Akad</h3>
-					<p>Kamu Dapat mengajukan pembiayaan di siKapiten dengan memilih akad:</p>
+					<p>Kamu Dapat mengajukan pembiayaan di platform Kapiten dengan memilih akad:</p>
 					<br>
 					<div class="col-md-6 serv-grids">
 						<div class="primary-border">
@@ -82,12 +149,10 @@
 			<br>
 	    </div> <!--/ .container -->
 	</div><!--/ #introwrap -->
-	<%= render 'elements/simulation' %>
-	<!-- FEATURES WRAP -->
-	<%= render 'pages/features' %>
-	<!-- FAQ -->
-	<%= render 'pages/faq' %>
 
+	<%= render 'elements/simulation' %>
+	<!-- FAQ -->
+	<%= render 'pages/faq' %>	
 </section>
 
 <section id="footerwrap">

@@ -67,6 +67,9 @@ Fustal::Application.routes.draw do
   post "/subscribe", to: "pages#subscribe", as: "subscribe"
   get "/simulasi", to: "pages#simulation", as: "simulation"
   # post "/simulasi", to: "pages#simulation", as: "simulation"
+  get "klien", to: "pages#for_clients", as: :for_clients
+  get "investor", to: "pages#for_investors", as: :for_investors
+  get "developer", to: "pages#for_developers", as: :for_developers
 
   get "/404" => "errors#not_found"
   get "/422" => "errors#unprocessable"

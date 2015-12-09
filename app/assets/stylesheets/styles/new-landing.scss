@@ -338,8 +338,6 @@ h3.landing {
   margin: 0.4em 0em 0.4em 0em;
 }
 .serv-grids p {
-  font-size: 0.9em;
-  font-weight: 400;
   color: #7C7C7C;
   line-height: 1.6em;
 }
@@ -396,4 +394,148 @@ h3.landing {
     h3, p  {
         color: black;
     }
+}
+
+#client-benefits{ 
+    width: 100%;
+    height: 50%;
+    padding: 3%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/v1449582605/asset/family-1003816_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.4em;
+    }    
+}
+#investor-benefits{ 
+    width: 100%;
+    height: 50%;
+    padding: 3%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/v1449582605/asset/telephone-586266_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.4em;
+    }    
+}
+#developer-benefits{ 
+    width: 100%;
+    height: 50%;
+    padding: 3%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/v1449582919/asset/signature-962355_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.4em;
+    }    
+}
+@media(max-width:767px){
+#client-benefits{ 
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/v1449582605/asset/family-1003816_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.6em;
+    }    
+  }
+#investor-benefits{ 
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/telephone-586266_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.6em;
+    }    
+  }
+#developer-benefits{ 
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background: 
+        linear-gradient(
+          rgba(36, 46, 46, 0.55), 
+          rgba(36, 46, 46, 0.55)
+        ),
+        url('http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582919/asset/signature-962355_640.jpg') no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;    
+    h3, p {
+        font-size: 1.6em;
+    }    
+  }    
+}
+
+.hero-container {
+    background: #eee;
+    padding: 40px 0;
+    border-top: 0;
+    border-bottom: none;
+    text-transform: none;
+    text-align: left;
+    background-repeat: repeat;
+    background-size: contain;
+    .hero-title {
+        font-size: 24px;
+        color: #3e3e3e;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+    .hero-text {
+        color: #757575;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .hero-aside {
+        text-align: right;
+        margin-right: -20px;
+    }    
 }
