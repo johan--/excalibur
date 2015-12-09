@@ -24,18 +24,18 @@
               <div class="form-group">
                 <label for="name">dengan akad Murabaha seharga Rp <span>Harga properti </span></label>
                 
-                <%= number_field_tag :price, '', in: 50000000..1000000000, step: 10000000, placeholder: " ", required: true %>
+                <%= number_field_tag :price, '', in: 100..500, step: 25, placeholder: " ", required: true %> juta.
               </div>
 
               <div class="form-group">
                 <label for="company"> dan berniat mencicilnya selama <span>Lama cicilan</span></label>
-                <%= number_field_tag :maturity, '', in: 5..10, step: 1, placeholder: " ", required: true %>
+                <%= number_field_tag :maturity, '', in: 3..8, step: 1, placeholder: " ", required: true %>
                 tahun.
               </div>
 
               <div class="form-group">
                 <label for="company"> Modal yang telah saya kumpulkan adalah sebesar <span>Modalmu</span></label>
-                <%= number_field_tag :contribution_percent, '', in: 30..90, step: 10, placeholder: " ", required: true %>
+                <%= number_field_tag :contribution_percent, '', in: 20..90, step: 10, placeholder: " ", required: true %>
                 % dari harga properti.
               </div><br>
               <%= hidden_field_tag :aqad, '', value: "murabaha", required: true %>
@@ -55,17 +55,17 @@
               <div class="form-group">
                 <label for="name">seharga Rp <span>Harga rumahnya </span></label>
                 
-                <%= number_field_tag :price, '', in: 50000000..1000000000, step: 10000000, placeholder: " ", required: true %>.
+                <%= number_field_tag :price, '', in: 100..500, step: 25, placeholder: " ", required: true %> juta.
               </div>
 
               <div class="form-group">
                 <label for="company"> Modal yang telah saya kumpulkan adalah sebesar <span>Modalmu</span></label>
-                <%= number_field_tag :contribution_percent, '', in: 30..90, step: 10, placeholder: " ", required: true %>
+                <%= number_field_tag :contribution_percent, '', in: 10..90, step: 10, placeholder: " ", required: true %>
                 % dari harga properti.
               </div><br>
 
               <div class="form-group">
-                <label for="company"> Saya berniat menyewanya selama <span>Lama sewa</span></label>
+                <label for="company"> Saya berniat menempatinya selama <span>Lama pemakaian</span></label>
                 <%= number_field_tag :maturity, '', in: 4..15, step: 1, placeholder: " ", required: true %>
                 tahun.
               </div><br>

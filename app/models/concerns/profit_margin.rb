@@ -4,14 +4,14 @@ module ProfitMargin
 
 	  def selling_margin(maturity)
 	  	@maturity = maturity.to_i
-	  	base = 12
-	  	modifier = 2.5
-	  	diff_years = @maturity - 5
+	  	base = 27
+	  	modifier = 11
+	  	diff_years = @maturity - 3
 
-	  	if diff_years <= 0
+	  	if diff_years == 0
 	  		capitalization_rate = base
 	  	else
-	  		capitalization_rate = (base + diff_years * 2.5)
+	  		capitalization_rate = base + (diff_years * modifier)
 	  	end  	
 	  end
 
@@ -22,10 +22,10 @@ module ProfitMargin
 
 	  	if tangible == "Rumah"
 	  		base_rate = 5
-	  		capitalization_rate = 3
+	  		capitalization_rate = 5
 	  	elsif tangible == "Apartemen"
 	  		base_rate = 10
-	  		capitalization_rate = 7
+	  		capitalization_rate = 8
 	  	end
 	  end
 
