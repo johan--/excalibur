@@ -4,7 +4,7 @@
 		Platform Crowdfunding Syariah Untuk Rumah
 	</h3><hr>
 	<h1 class="intro">
-	<% if ab_test(:big_signup_link) %>
+	<% if ab_test(:landing_headlines) %>
 		Dengan gotong royong, tanpa bunga dan penyitaan, atau tanpa hutang
 	<% else %>
 		Wujudkan impianmu memiliki rumah dan bantu yang lain untuk mewujudkan impiannya
@@ -13,10 +13,13 @@
 
 </div>
 <div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
-		<% if user_signed_in? %>
-			<%= link_to "Keluar", destroy_user_session_path, data:{method: :delete}, class: "btn btn-lg btn-outlined btn-white" %>
-		<% else %>
-			<%= link_to "Masuk", new_user_session_url(subdomain: ''), class: "btn btn-lg btn-outlined btn-white" %>
-		<% end %>
+  <% if ab_test(:registration_placement) %>
+	<%= link_to "Daftar", new_user_registration_url(subdomain: ''), class: "btn btn-lg btn-primary" %>
+  <% else %>
+	<% if user_signed_in? %>
+	  <%= link_to "Keluar", destroy_user_session_path, data:{method: :delete}, class: "btn btn-lg btn-outlined btn-white" %>
+	<% else %>
+	  <%= link_to "Masuk", new_user_session_url(subdomain: ''), class: "btn btn-lg btn-outlined btn-white" %>
+	<% end %>
+  <% end %>
 </div>
-
