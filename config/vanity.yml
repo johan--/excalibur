@@ -12,7 +12,7 @@ test:
   collecting: false
 production:
   adapter: active_record
-  active_record_adapter: postgresql
+  active_record_adapter: default
   <% unless ENV['DATABASE_URL'].nil? %>
   <% username, password, host, database = ENV['DATABASE_URL'].scan(%r{//(.*):(.*)@(.*)/(.*)}).first %>
   host:     <%= host %>

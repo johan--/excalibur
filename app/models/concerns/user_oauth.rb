@@ -1,4 +1,4 @@
-module UserChecking
+module UserOauth
   extend ActiveSupport::Concern
   included do
 
