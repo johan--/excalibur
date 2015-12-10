@@ -53,7 +53,7 @@ gem 'metamagic'
 gem 'inline_svg'
 gem 'wannabe_bool'
 gem 'browser'
-gem 'vanity', :git => 'git@github.com:assaf/vanity', :branch => 'master'
+gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
 
 
 # Complementary

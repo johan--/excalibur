@@ -7,7 +7,7 @@ GIT
       rails (>= 3.2)
 
 GIT
-  remote: git@github.com:assaf/vanity
+  remote: https://github.com/assaf/vanity
   revision: 15f5abd4860a60965f129c71d656c823002fb994
   branch: master
   specs:
