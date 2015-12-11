@@ -4,7 +4,8 @@ RSpec.describe MusharakaSimulation, :type => :model do
   	
   	before(:each) do
   	  @year =  8 
-	  @price =  500000000 
+	  @price =  500
+	  @denom = 1000000
 	  @contribution =  30 
 	  @tangible = "Rumah"
   	  @test_class = Struct.new(:maturity) { include ProfitMargin } 
@@ -15,8 +16,8 @@ RSpec.describe MusharakaSimulation, :type => :model do
   	  	 maturity: @year, price: @price, tangible: @tangible, 
          contribution_percent: @contribution)
 
-  	  @first = (@price * @contribution) / 100
-	  @annual_rent = (@price * @margin) / 100
+  	  @first = (@price * @contribution * @denom) / 100
+	  @annual_rent = (@price * @margin * @denom) / 100
 	  @monthly_rent = @annual_rent / 12
 	  @months = @year * 12
 	  @other_ownership = 100 - @contribution

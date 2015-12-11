@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-      # track! :signup #, resource.role_number # track successful sign up
+      # track! :signup
       
       # if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?

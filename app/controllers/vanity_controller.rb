@@ -4,6 +4,6 @@ class VanityController < ApplicationController
   skip_before_filter :authenticate_user!, only: 
   						[:add_participant, :image]
   before_filter :require_admin!, except: 
-  						[:add_participant, :image]  						
+  						[:add_participant, :image]
 
 end
