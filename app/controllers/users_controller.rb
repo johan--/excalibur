@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(profile_params)
+    if @user.update_attributes(profile_params)
       if params[:avatar]
         ahoy.track "Uploaded avatar", 
           title: "#{@user.name}: #{@user.avatar}", 
@@ -27,11 +27,11 @@ class UsersController < ApplicationController
           category: "User", important: "profile"
       end
       flash[:notice] = 'Profil berhasil diperbaharui'
-      redirect_to user_root_path 
     else
-      Rails.logger.info(@user.errors.inspect) 
-      render :edit
+      flash[:warning] = 'Profil gagal diperbaharui'
+      # Rails.logger.info(@user.errors.inspect) 
     end   
+    redirect_to user_root_path 
   end
 
   def avatar
@@ -58,12 +58,10 @@ private
 
   def profile_params
   	params.require(:user).permit(
-  	  :avatar, :image_id,
+      :id, :avatar, :image_id,
       :phone_number, :about, :last_education, :marital_status, 
-      :address,
-  	  	:work_experience, :occupation,
-        :monthly_income, :monthly_expense,
-        :number_dependents
+      :address, :work_experience, :occupation,
+      :monthly_income, :monthly_expense, :number_dependents
   	)
   end
 
