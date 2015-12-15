@@ -1,0 +1,112 @@
+<% meta title: "Persetujuan #{@deal.barcode}" %>
+
+<div class="portlet portlet-bordered">
+  <div class="portlet-title">
+    <div class="caption caption-red">
+      <i class="fa fa-home"></i> 
+      <span class="caption-subject bold font-yellow-crusta uppercase">
+        Persetujuan <%= @deal.barcode %>
+      </span>
+      <span class="caption-helper"><%=  %></span>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#portlet_tab2" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
+      <li role="presentation"><a href="#portlet_tab1" aria-controls="pembiayaan" role="tab" data-toggle="tab">Pihak</a></li>
+      <li role="presentation"><a href="#portlet_tab3" aria-controls="bantuan" role="tab" data-toggle="tab">Bantuan</a></li>
+    </ul>
+  </div>
+  
+
+  <div class="portlet-body">
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="portlet_tab2">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="weather-3 pn centered">
+	            <div class="row">
+	              <div class="col-md-4 col-sm-12">
+	                <i class="fa fa-briefcase centerpiece"></i>
+	                <h3><%= @deal.category %></h3>
+	              </div>
+	              <div class="col-md-4 hidden-sm">
+	              </div>
+	              <div class="col-md-4 col-sm-12">
+	                <div class="home-prompt">
+	            		<% if  current_user.admin? %>
+	            			<%= link_to 'Koreksi', edit_admin_deal_path(@deal), class: "btn btn-outlined btn-theme", remote: true  %>
+	            		<% end %>
+	                </div>
+	              </div>
+
+	        <div class="col-xs-12">			
+						<div class="profile-stats mt">
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-aqad">
+						      	<%= @deal.aqad.titleize %></div>
+						      <div class="stats-title">AKAD</div>
+						  </div>
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-maturity"><%= @deal.maturity %> Tahun</div>
+						      <div class="stats-title">JANGKA WAKTU</div>
+						  </div>				  
+						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
+						      <div class="stats-value pink" id="tender-target"><%= idr_money(@deal.amount) %>
+						      </div>
+						      <div class="stats-title">NILAI</div>
+						  </div>
+						</div>
+					</div>
+					<div class="col-xs-12 mt">
+					  <div class="tickets-container">
+					    <ul class="tickets-list">		              
+		                  <% @members.find_each do |roster| %>
+		              	    <%= render roster %>
+		                  <% end %>
+		              	</ul>
+		              </div>
+					</div>
+
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="portlet_tab1">
+        <div class="row">               
+          <div class="col-md-12">
+            <div class="weather-3 pn centered">
+              <div class="col-md-4">
+                <i class="fa fa-bank centerpiece mt"></i>
+                <h3>
+                  Pihak
+                </h3>
+              </div>
+              <div class="col-md-8">
+                <div class="home-prompt">
+                  <div class="row">
+                  <div class="mt col-xs-6">
+                  <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme btn-md", remote: true  %></div>
+                  <div class="mt col-xs-6">
+                  <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah'), class: "btn btn-outlined btn-theme btn-md", remote: true  %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+
+          </div>
+        </div>  
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="portlet_tab3">
+        <%= render 'pages/help' %>
+      </div>
+
+    </div>
+  </div>
+
+  
+</div>

@@ -1,0 +1,28 @@
+<li class="ticket-item" id="<%=  %>">
+  <div class="row">
+    <div class="ticket-user col-md-5 col-sm-12">
+      <span class="user-name">
+       <strong><%= member.rosterable.name %></strong>
+      </span>
+      <span class="user-company">
+        <%= member.rosterable_type %>
+      </span>
+    </div>
+    <div class="ticket-time col-md-5 col-sm-6 col-xs-12">
+      <div class="divider hidden-md hidden-sm hidden-xs"></div>
+      <%= member.role %> 
+      <span class="time">
+        <%= member.state %>
+      </span>
+    </div>
+    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
+      <span class="divider hidden-xs"></span>
+      <span class="type">
+        <%= link_to 'Lihat', '#', class: "btn btn-xs btn-outlined btn-theme" %>
+      </span>
+    </div>
+    <div class="ticket-state bg-palegreen">
+        <i class="fa fa-check"></i>
+    </div>
+  </div>
+</li>

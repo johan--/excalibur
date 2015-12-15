@@ -1,0 +1,42 @@
+<li class="media">
+  <a class="pull-left" href="#">
+  <figure class="media-object img-circle hidden-xs">
+    <% if roster.rosterable.avatar.nil? %>
+      <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+    <% else %>
+      <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
+    <% end %>
+  </figure>
+  </a>
+  <div class="media-body">
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-xs-6">
+          <h4 class="media-heading text-uppercase reviews" id="bidder-name"><%= roster.rosterable.name %></h4>          
+        </div>
+        <div class="col-xs-3">
+          <ul class="media-date text-uppercase reviews list-inline">
+            <span class="warranty">
+              <i class="fa fa-certificate"></i> <%= roster.state %>
+            </span>    
+          </ul>          
+        </div>
+        <div class="col-xs-3">
+          <ul class="media-date text-uppercase reviews list-inline">
+            <span class="price" id="bidder-contribution">
+              <%= roster.role_translated %> 
+            </span>
+          </ul>
+        </div>
+        <div class="col-xs-12">
+          <p class="media-comment">
+              tidak ada pesan
+          </p>
+        </div>
+        <div class="col-xs-12">
+
+        </div>
+      </div>
+    </div>              
+  </div>
+</li>

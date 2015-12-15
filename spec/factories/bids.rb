@@ -13,6 +13,16 @@ FactoryGirl.define do
   	trait :confirmed do
   	  state "confirmed"
   	end
+
+    trait :nameless do
+      before(:create) do |bid|
+        bid.bidder = FactoryGirl.create :financier
+      end      
+    end
+
+    trait :quarter do
+      shares 250
+    end
   end
 
 end

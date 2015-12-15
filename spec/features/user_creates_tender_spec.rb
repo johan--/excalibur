@@ -58,7 +58,7 @@ feature "UserCreatesTender", :type => :feature do
   end
 
   describe "when there is a murabahah tender" do
-	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+	let!(:tender) { FactoryGirl.create(:tender, :murabahah, tenderable: user) }
 
 	describe "editing the tender", js: true do
 	  before do

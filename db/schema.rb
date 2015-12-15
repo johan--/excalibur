@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208002156) do
+ActiveRecord::Schema.define(version: 20151215001725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20151208002156) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "slug",                     null: false
+    t.string   "category",                 null: false
   end
 
   add_index "businesses", ["deleted_at"], name: "index_businesses_on_deleted_at", using: :btree
@@ -120,6 +121,23 @@ ActiveRecord::Schema.define(version: 20151208002156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "deals", force: :cascade do |t|
+    t.string   "category"
+    t.string   "state"
+    t.integer  "amount_sens",     limit: 8, default: 0,     null: false
+    t.string   "amount_currency",           default: "IDR", null: false
+    t.string   "slug",                                      null: false
+    t.jsonb    "details"
+    t.integer  "tender_id",                                 null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "deals", ["category"], name: "index_deals_on_category", using: :btree
+  add_index "deals", ["details"], name: "index_deals_on_details", using: :gin
+  add_index "deals", ["slug"], name: "index_deals_on_slug", using: :btree
+  add_index "deals", ["tender_id"], name: "index_deals_on_tender_id", using: :btree
 
   create_table "document_transitions", force: :cascade do |t|
     t.string   "to_state",                 null: false
@@ -156,6 +174,7 @@ ActiveRecord::Schema.define(version: 20151208002156) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "slug",                     null: false
+    t.string   "category",                 null: false
   end
 
   add_index "firms", ["deleted_at"], name: "index_firms_on_deleted_at", using: :btree
@@ -205,18 +224,18 @@ ActiveRecord::Schema.define(version: 20151208002156) do
   create_table "rosters", force: :cascade do |t|
     t.integer  "rosterable_id",   null: false
     t.string   "rosterable_type", null: false
-    t.integer  "team_id",         null: false
     t.integer  "role",            null: false
     t.string   "state",           null: false
     t.datetime "deleted_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "teamable_id",     null: false
+    t.string   "teamable_type",   null: false
   end
 
   add_index "rosters", ["deleted_at"], name: "index_rosters_on_deleted_at", using: :btree
-  add_index "rosters", ["rosterable_type", "rosterable_id", "team_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id_and_team_id", unique: true, using: :btree
   add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
-  add_index "rosters", ["team_id"], name: "index_rosters_on_team_id", using: :btree
+  add_index "rosters", ["teamable_type", "teamable_id"], name: "index_rosters_on_teamable_type_and_teamable_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "email",      null: false
@@ -228,21 +247,6 @@ ActiveRecord::Schema.define(version: 20151208002156) do
 
   add_index "subscribers", ["category"], name: "index_subscribers_on_category", using: :btree
   add_index "subscribers", ["email"], name: "index_subscribers_on_email", using: :btree
-
-  create_table "teams", force: :cascade do |t|
-    t.integer  "teamable_id",                null: false
-    t.string   "teamable_type",              null: false
-    t.string   "category",                   null: false
-    t.jsonb    "data",          default: {}, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "teams", ["category"], name: "index_teams_on_category", using: :btree
-  add_index "teams", ["data"], name: "index_teams_on_data", using: :gin
-  add_index "teams", ["deleted_at"], name: "index_teams_on_deleted_at", using: :btree
-  add_index "teams", ["teamable_type", "teamable_id"], name: "index_teams_on_teamable_type_and_teamable_id", using: :btree
 
   create_table "tender_transitions", force: :cascade do |t|
     t.string   "to_state",                   null: false
@@ -275,6 +279,22 @@ ActiveRecord::Schema.define(version: 20151208002156) do
   add_index "tenders", ["details"], name: "index_tenders_on_details", using: :gin
   add_index "tenders", ["properties"], name: "index_tenders_on_properties", using: :gin
   add_index "tenders", ["tenderable_type", "tenderable_id"], name: "index_tenders_on_tenderable_type_and_tenderable_id", using: :btree
+
+  create_table "term_sheets", force: :cascade do |t|
+    t.string   "category",       null: false
+    t.string   "state"
+    t.jsonb    "details"
+    t.string   "slug",           null: false
+    t.integer  "deal_id",        null: false
+    t.integer  "recipient_id",   null: false
+    t.string   "recipient_type", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "term_sheets", ["deal_id"], name: "index_term_sheets_on_deal_id", using: :btree
+  add_index "term_sheets", ["recipient_type", "recipient_id"], name: "index_term_sheets_on_recipient_type_and_recipient_id", using: :btree
+  add_index "term_sheets", ["slug"], name: "index_term_sheets_on_slug", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

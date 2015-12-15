@@ -1,8 +1,8 @@
 class Roster < ActiveRecord::Base
   belongs_to :rosterable, polymorphic: true
-  belongs_to :team
+  belongs_to :teamable, polymorphic: true
 
-  validates_associated :team
+  validates_associated :teamable
   validates_presence_of :rosterable_type, :rosterable_id, :role
 
   attr_accessor :user_email, :user_name, :password, 
@@ -14,37 +14,46 @@ class Roster < ActiveRecord::Base
   scope :active, -> { where(state: 'aktif') }
 
 
-  def board?
+  def client?
   	return true if role == 0
   end
 
-  def manager?
+  def financier?
   	return true if role == 1
   end
 
-  def staff?
+  def manager?
   	return true if role == 2
   end
 
+  def role_translated
+    if client?
+      return "Klien"
+    elsif financier?
+      return "Pendana"
+    elsif manager?
+      return "Pengelola"
+    end
+  end
 
 
 private
 
   def check_attributes!
-  	if password && password_confirmation && user_name
-  	  user = User.new(
-  			email: user_email, name: user_name,
-  			password: password, password_confirmation: password_confirmation
-  			)
-  	  user.save!
-  	  self.rosterable = user
-  	elsif user_email && user_name
-  		user =  User.find_by(email: user_email, name: user_name)
-  		self.rosterable = user
-  	end
+  	# if password && password_confirmation && user_name
+  	#   user = User.new(
+  	# 		email: user_email, name: user_name,
+  	# 		password: password, password_confirmation: password_confirmation
+  	# 		)
+  	#   user.save!
+  	#   self.rosterable = user
+  	# elsif user_email && user_name
+  	# 	user =  User.find_by(email: user_email, name: user_name)
+  	# 	self.rosterable = user
+  	# end
 
     if self.state == nil
-      self.state = 'aktif'
+      self.state = 'pending'
     end
   end
 

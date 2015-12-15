@@ -4,13 +4,17 @@ FactoryGirl.define do
     factory :member do
       association :rosterable, factory: :user
 
-      factory :active_manager do
-        role 1
-      end
+      # factory :active_manager do
+      #   role 1
+      # end
 
-      factory :pending_member do
-        state "menunggu konfirmasi"
-        role 2
+      # factory :pending_member do
+      #   state "pending"
+      #   role 2
+      # end
+
+      factory :deal_client do
+        role 0
       end
 
       trait :with_user do
@@ -27,8 +31,8 @@ FactoryGirl.define do
     #   association :rosterable, factory: :team
     # end
 
-    trait :team do
-      team
+    trait :teamable do
+      teamable
     end
   end
 

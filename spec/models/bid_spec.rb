@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
   let!(:user_2) { FactoryGirl.create(:client) }
-  let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user_2) }
+  let!(:tender) { FactoryGirl.create(:tender, :murabahah, tenderable: user_2) }
 
   before(:each) do
   	@bid = Bid.new(

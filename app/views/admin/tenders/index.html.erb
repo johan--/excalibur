@@ -18,6 +18,7 @@
     <th>Penilaian?</th>
     <th>Tawaran</th>
     <th></th>
+    <th></th>
   </tr>
 
   <% @tenders.each do |tender| %>
@@ -31,7 +32,8 @@
     <td><%= idr_money(tender.target) %></td>
     <td><%= tender.summary.present? %></td>
     <td><%= link_to tender.bids.count, admin_bids_path(tender_id: tender.id) %></td>
-    <td><%= link_to "Proses", edit_admin_tender_path(tender), remote: true %></td>
+    <td><%= link_to "Nilai", edit_admin_tender_path(tender), remote: true %></td>
+    <td><%= link_to "Proses", admin_deals_path(tender_id: tender.id), method: :post if tender.fulfilled? %></td>
   </tr>
 
   <% end %>

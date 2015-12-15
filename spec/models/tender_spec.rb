@@ -125,9 +125,9 @@ RSpec.describe Tender, :type => :model do
 
 
   describe "scoping tender" do
-  	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
-  	let!(:tender_2) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
-  	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+  	let!(:tender_1) { FactoryGirl.create(:tender, :musharakah, tenderable: user) }
+  	let!(:tender_2) { FactoryGirl.create(:tender, :musharakah, tenderable: user) }
+  	let!(:tender_3) { FactoryGirl.create(:tender, :murabahah, tenderable: user) }
 
   	describe "Tender.open" do
 	  let!(:result) { Tender.open }
@@ -148,7 +148,7 @@ RSpec.describe Tender, :type => :model do
 
   describe "when there is a bid" do
   	let!(:user_1) { FactoryGirl.create(:financier) }
-  	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+  	let!(:tender) { FactoryGirl.create(:tender, :murabahah, tenderable: user) }
   	let!(:bid) { FactoryGirl.create(:bid, bidder: user_1, tender: tender) }
 	
 	# subject { tender }

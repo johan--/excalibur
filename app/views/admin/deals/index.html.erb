@@ -1,0 +1,43 @@
+<% meta title: "Persetujuan | Admin Dashboard" %>
+
+<h1>Persetujuan <small>Admin Dashboard</small></h1>
+<p><%= link_to "Back to Admin Root", admin_root_path %></p>
+
+<div class="text-center">
+  <%= paginate @deals %>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>Kode</th>
+    <th># Pihak</th>
+    <th>Updated At</th>
+    <th>Akad</th>
+    <th>Rp</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+  <% @deals.each do |deal| %>
+
+  <tr>
+    <td><%= link_to deal.barcode, deal %></td>
+    <td><%= deal.rosters.count %></td>
+    <td><%= time_ago_in_words(deal.updated_at)%> ago</td>
+    <td><%= deal.aqad %></td>
+    <% if Rails.env.test? %>
+      <td><%= deal.tender.target %></td>
+    <% else %>
+      <td><%= idr_money(deal.tender.target) %></td>
+    <% end %>
+    <td><%= deal.state %></td>
+    <td><%= link_to "Proses", edit_admin_deal_path(deal) %></td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+<div class="text-center">
+  <%= paginate @deals %>
+</div>

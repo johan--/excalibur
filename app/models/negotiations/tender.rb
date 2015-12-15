@@ -14,6 +14,7 @@ class Tender < ActiveRecord::Base
 
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
+  has_one  :deal
   has_many :tender_transitions
   
   serialize :properties, HashSerializer
@@ -170,7 +171,7 @@ private
   def slug_candidates
     [ 
       :barcode,
-      [:barcode, :tenderable_name, ]
+      [:barcode, :tenderable_name]
     ]
   end
 

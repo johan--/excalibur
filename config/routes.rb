@@ -56,6 +56,9 @@ Fustal::Application.routes.draw do
   end
   resources :documents do
   end
+  resources :deals, only: [:index, :show] do
+    resources :term_sheets, only: [:index, :show]
+  end
 
   # Static Pages
   root "pages#landing"
@@ -99,6 +102,9 @@ Fustal::Application.routes.draw do
     end
     resources :tenders, only: [:index, :edit, :update]
     resources :bids, only: [:index, :edit, :update, :destroy]
+    resources :deals, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    	resources :term_sheets, only: [:new, :create, :edit, :update, :destroy]
+    end
   end
 
   # Vanity AB TESTING FRAMEWORK

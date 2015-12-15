@@ -26,9 +26,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :rosters, as: :rosterable
-  has_many :teams, through: :rosters #Dont have to use source & source type
-  has_many :businesses, through: :teams, 
-                        source: :teamable, source_type: "Business"
+
   has_many :tenders, as: :tenderable
   has_many :bids, as: :bidder
   # analytics

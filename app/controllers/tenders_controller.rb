@@ -14,10 +14,10 @@ class TendersController < ApplicationController
     @bids = @tender.bids
     if @tender.aqad == 'murabahah'
       @simulation = MurabahaSimulation.new(maturity: @tender.maturity, 
-        price: @tender.target, contribution_percent: @tender.own_capital )
+        price: @tender.target / 1000000, contribution_percent: @tender.own_capital )
     elsif @tender.aqad == 'musyarakah'
       @simulation = MusharakaSimulation.new(maturity: @tender.maturity, 
-        price: @tender.target, contribution_percent: @tender.own_capital,
+        price: @tender.target / 1000000, contribution_percent: @tender.own_capital,
         tangible: @tender.set_tangible_type)
     end
 

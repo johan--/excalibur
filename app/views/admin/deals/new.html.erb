@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @deal], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= f.input :amount, as: :integer, input_html: { min: '1', max: '1000', step: '1' }, label: "Nilai", required: true, hint: "Samakan dengan nilai target proposal" %>
+	<%= f.input :summary, label: "Pesan", required: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+  </div>
+<% end %>
