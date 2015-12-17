@@ -5,12 +5,13 @@ class Deal < ActiveRecord::Base
   
   belongs_to :tender
   has_many :rosters, as: :teamable
-  has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
-  has_many   :term_sheets
+  accepts_nested_attributes_for :rosters, reject_if: :all_blank, allow_destroy: true
+  # has_many   :term_sheets
+  # has_many   :users, through: :term_sheets, source: :recepient, source_type: 'User'
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :barcode, :maturity, :aqad
+                 :title, :barcode, :maturity, :aqad
 
   before_create :set_default_values!
 

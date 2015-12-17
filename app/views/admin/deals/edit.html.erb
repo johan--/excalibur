@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-		<legend>Create Deal For Tender <%= link_to @tender.barcode, tender_path(@tender) %></legend>
+		<legend>Deal <%= @deal.barcode %> | Tender <%= link_to @deal.tender.barcode, tender_path(@deal.tender) %></legend>
 	</div>
 	<!-- panel preview -->
 	<div class="col-sm-5">
@@ -8,12 +8,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body form-horizontal payment-form">
 				<%= form_for @deal, html: {role: "form"} do |f| %>
-				<div class="form-group">
-					<%= f.label :title, 'Judul', class: "col-sm-3 control-label" %>
-					<div class="col-sm-9">
-						<%= f.text_field :title, class: "form-control", required: true %>
-					</div>
-				</div>
+
 				<div class="form-group">
 					<%= f.label :category, 'Category', class: "col-sm-3 control-label" %>
 					<div class="col-sm-9">
@@ -50,7 +45,7 @@
 	<div class="col-sm-7">
 		<h4>Proposal:</h4>
 		<div class="panel panel-default">
-			<%= render partial: 'tenders/tender', locals: {tender: @tender} %>
+			<%= render partial: 'tenders/tender', locals: {tender: @deal.tender} %>
 		</div>
 	</div>
 	<div class="col-sm-12">
@@ -87,10 +82,6 @@
 							</tr>
 						</thead>
 						<tbody>
-      <%= f.fields_for :rosters, @assembly.processings.build do |builder| %>
-          <%= f.select(:material_id, options_for_select(material_options(@firm)), prompt: 'Pilih', label: "Kelompok Bahan Baku") %>
-          <%= link_to_add_association 'Tambah Jenis Bahan Baku yang terpakai', f, :processings %>
-      <% end %>      						
 							<% @bids.find_each do |bid| %>
 							<tr>
 								<td><%= bid.bidder.name  %></td>

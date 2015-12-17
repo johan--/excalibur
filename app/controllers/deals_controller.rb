@@ -11,7 +11,6 @@ class DealsController < ApplicationController
   # GET /deals/1
   # GET /deals/1.json
   def show
-    @members = @deal.rosters
   end
 
   # GET /deals/new

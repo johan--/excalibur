@@ -14,7 +14,7 @@ class Tender < ActiveRecord::Base
 
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
-  has_one  :deal
+  has_many :deals
   has_many :tender_transitions
   
   serialize :properties, HashSerializer

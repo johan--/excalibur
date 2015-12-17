@@ -105,6 +105,7 @@ Fustal::Application.routes.draw do
     resources :deals, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     	resources :term_sheets, only: [:new, :create, :edit, :update, :destroy]
     end
+    resources :term_sheets, only: [:new, :create, :edit, :update, :destroy]
   end
 
   # Vanity AB TESTING FRAMEWORK

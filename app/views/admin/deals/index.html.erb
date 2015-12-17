@@ -22,7 +22,7 @@
 
   <tr>
     <td><%= link_to deal.barcode, deal %></td>
-    <td><%= deal.rosters.count %></td>
+    <td><%=  %></td>
     <td><%= time_ago_in_words(deal.updated_at)%> ago</td>
     <td><%= deal.aqad %></td>
     <% if Rails.env.test? %>

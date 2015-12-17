@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :rosters, as: :rosterable
+  has_many :term_sheets, as: :recipient
 
   has_many :tenders, as: :tenderable
   has_many :bids, as: :bidder
@@ -57,14 +58,16 @@ class User < ActiveRecord::Base
     where("users.preferences->>'client' = :true", true: "true") 
   }    
   
-  def role_number
-    if self.client?
-      if self.financier?
-        return 3
-      else
-        return 1
-      end
+  def has_been_offered_term_sheet?(deal)
+    if term_sheets_offered(deal) == 0
+      return false
+    else
+      return true
     end
+  end
+
+  def term_sheets_offered(deal)
+    TermSheet.where(recipient: self, deal: deal).count
   end
 
   def has_documents?(doc)

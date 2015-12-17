@@ -116,5 +116,29 @@ module FormOptionsHelper
 	def bid_states
 		["belum diproses", "tentatif", "pasti", "batal"]
 	end
+# Deal options
+	def deal_category_options
+	  ["jual-beli", "sewa", "investasi"]
+	end
 
+# TermSheet options
+	def contract_category_options
+	  ["Jual-beli", "Sewa", "Investasi"]
+	end
+
+	def contract_state_options
+	  ["draft", "accepted", "completed"]
+	end
+
+	def contract_aqad_options
+	  ["murabahah", "ijarah", "mudharabah", "musyarakah"]
+	end
+
+	def contract_return_options
+	  ["profit", "rent", "dividend"]
+	end
+
+	def legal_code_options
+		["01", "02", "03", "04"]
+	end
 end

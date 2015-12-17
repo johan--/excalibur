@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   before_filter :require_admin!
   before_action :disable_background
+  before_action :admin_layout
 
   def index
     @last_signups = User.last_signups(10)

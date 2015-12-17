@@ -1,0 +1,61 @@
+<div class="col-sm-7">
+	<h4>Buat Kontrak</h4>
+	<div class="panel panel-default">
+		<div class="panel-body form-horizontal payment-form">
+			<%= form_for [:admin, @term], html: {role: "form"} do |f| %>
+
+			<div class="form-group">
+				<%= f.label :title, 'Nama', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.select :title, class: "form-control", required: true %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :category, 'Category', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.select :category, contract_category_options,required: true %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :state, 'Status', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.select :state, contract_state_options, class: "form-control", required: true %>
+				</div>
+			</div> 
+			<div class="form-group">
+				<%= f.label :legal_code, 'Kontrak', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.select :legal_code, legal_code_options, class: "form-control", required: true %>
+				</div>				
+			</div> 
+			<div class="form-group">
+				<%= f.label :return_type, 'Jenis Imbal', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.select :return_type, contract_return_options, class: "form-control", required: true %>
+				</div>				
+			</div>
+			<div class="form-group">
+				<%= f.label :return, '% Nilai Imbal', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.number_field :return, class: "form-control", required: true, min: 0, step: 0.2 %>
+				</div>				
+			</div>
+			<div class="form-group">
+				<%= f.label :share, '% Porsi', class: "col-sm-3 control-label" %>
+				<div class="col-sm-9">
+					<%= f.text_field :share, class: "form-control", required: true %>
+				</div>				
+			</div>
+			<%= f.hidden_field :recipient_type, value: @recipient.class.name, required: true %>
+			<%= f.hidden_field :recipient_id, value: @recipient.id, required: true %>
+			<%= f.hidden_field :deal_id, value: params[:deal_id], required: true %>
+
+			<div class="form-group">
+				<div class="col-sm-12 text-right">
+					<%= f.submit "Simpan", class: 'btn btn-outlined btn-black' %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>            
+</div> <!-- / panel preview -->

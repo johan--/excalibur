@@ -12,7 +12,9 @@ class Admin::DealsController < Admin::BaseController
   def new
     @tender = Tender.friendly.find(params[:tender_id])
     @deal = Deal.new
-    @members = @deal.rosters.build
+    @client = @tender.tenderable
+    @bids = @tender.bids
+    # @members = @deal.rosters.build
   end
 
   def create
@@ -30,6 +32,8 @@ class Admin::DealsController < Admin::BaseController
   end
 
   def edit
+    @bids = @deal.tender.bids
+    @client = @deal.tender.tenderable
   end
 
   def update
@@ -48,10 +52,10 @@ class Admin::DealsController < Admin::BaseController
     @deal = Deal.friendly.find(params[:id])
   end
 
-  # def deal_params
-  #   params.require(:deal).permit(
-  #     :state, :category, :slug, :aqad, :barcode, :maturity
-  #   )
-  # end
+  def deal_params
+    params.require(:deal).permit(
+      :title, :state, :category, :slug, :aqad, :barcode, :maturity
+    )
+  end
 
 end
