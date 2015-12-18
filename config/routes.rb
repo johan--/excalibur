@@ -38,7 +38,7 @@ Fustal::Application.routes.draw do
 
   # namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
   namespace :firm, path: '/dana' do
-    root "base#landing"
+    # root "base#landing"
     get 'dashboard', to: "base#dashboard", as: :dashboard
     resources :bids
   end
