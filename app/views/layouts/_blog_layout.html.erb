@@ -38,7 +38,7 @@
 			<% @topics.each do |topic, posts| %>
 		 	  <p>
 		 	  	<%= link_to blog_find_posts_path(topic: topic) do %>
-			 	  	<%= inline_svg "0323-circle-right.svg", class: 'small-icons' %> <%= topic.titleize %>
+			 	  	<i class="fa fa-angle-double-down small-icons"></i> <%= topic.titleize %>
 		 	  	<% end %>
 		 	  	<span class="badge badge-theme pull-right"><%= posts.count %></span>
 		 	  </p>
