@@ -28,6 +28,7 @@ module Fustal
 
     # Test framework
     config.generators.test_framework false
+    config.assets.initialize_on_precompile = false
 
     # autoload lib path
     config.autoload_paths += %W(#{config.root}/lib)
