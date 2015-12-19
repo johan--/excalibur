@@ -1,6 +1,7 @@
 class ContactMailer < ActionMailer::Base
   add_template_helper(EmailHelper)
-  default from: ENV["BASE_EMAIL"]
+  # default from: ENV["BASE_EMAIL"]
+  default from: ENV["ZOHO_USERNAME"]
 
 
   def contact_message(name, email, message)

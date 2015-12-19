@@ -1,6 +1,6 @@
 class SubscriberMailer < ActionMailer::Base
   add_template_helper(EmailHelper)
-  default from: ENV["BASE_EMAIL"]
+  default from: ENV["ZOHO_USERNAME"]
 
   def welcome(email, category)
     @landing = "siKapiten.com"
