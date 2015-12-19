@@ -85,14 +85,27 @@ Fustal::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => ENV["DOMAIN"] }
   config.action_mailer.delivery_method = :smtp
+  # Mandrill
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV["SMTP_SERVER"],
+  #   openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+  #   port: ENV["SMTP_PORT"].to_i,
+  #   domain: ENV["MAILER_DOMAIN"],
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["SMTP_USER"],
+  #   password: ENV["SMTP_PWD"]
+  # }
+  # ZOHO
   config.action_mailer.smtp_settings = {
-    address: ENV["SMTP_SERVER"],
-    openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-    port: ENV["SMTP_PORT"].to_i,
+    address: ENV["ZOHO_SMTP_SERV"],
+    # openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+    port: ENV["ZOHO_SMTP_PORT"].to_i,
     domain: ENV["MAILER_DOMAIN"],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["SMTP_USER"],
-    password: ENV["SMTP_PWD"]
-  }
+    authentication: :plain,
+    user_name: ENV["ZOHO_USERNAME"],
+    password: ENV["ZOHO_PASS"],
+    ssl: true,
+    tls: true
+  }  
 end
