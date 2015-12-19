@@ -5,17 +5,18 @@
 	</h3><hr>
 	<h1 class="intro">
 	<% if ab_test(:big_signup_link) %>
-		Dengan gotong royong, tanpa bunga dan penyitaan, atau tanpa hutang
+		Dengan bergotong royong, tanpa bunga dan penyitaan, atau tanpa hutang
 	<% else %>
-		Wujudkan impianmu memiliki rumah dan bantu yang lain untuk mewujudkan impiannya
+		Investasimu beri mereka naungan untuk hidup dengan tenang
 	<% end %>
 	</h1>
 
 </div>
-<div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
-	<% if user_signed_in? %>
+<div class="col-md-10 col-md-offset-1 white" id="subcribe-prompt">
+<!-- 	<% if user_signed_in? %>
 	  <%= link_to "Keluar", destroy_user_session_path, data:{method: :delete}, class: "btn btn-lg btn-outlined btn-white" %>
 	<% else %>
 	  <%= link_to "Masuk", new_user_session_url(subdomain: ''), class: "btn btn-lg btn-outlined btn-white" %>
-	<% end %>
+	<% end %> -->
+	<%= render 'elements/subscribe_form' %>
 </div>

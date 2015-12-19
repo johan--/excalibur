@@ -1,14 +1,14 @@
 <section class="hero-container">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-4">
         <div class="hero-info">
           <h1 class="hero-title"><span>Untuk Pendana</span></h1>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div class="hero-aside">
-          <%= link_to "Daftar", new_user_registration_path, class: "btn btn-block btn-primary" %>
+          <%= render 'elements/subscribe_form' %>
         </div>
       </div>
     </div>
@@ -90,18 +90,6 @@
               <div class="timeline-body">
                 <p>Kapiten akan menjalankan kontrak pembiayaan dengan konsumen pembeli rumah sesuai dengan yang disebutkan dalam kontrak yang kamu teken.</p>
                 <hr>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
               </div>
             </div>
           </li>
@@ -119,4 +107,8 @@
       </ul>
   </div>
 </div>
+</section>
+
+<section>
+  <%= render 'elements/simulation' %>
 </section>

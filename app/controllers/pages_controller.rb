@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     :tos, :upgrade, :for_clients, :for_investors, :for_developers]
 
   def landing
-    # @category = "registration"
+    @category = "registration"
     # @current_count = Subscriber.whitelist.count
     @no_layout = true
   end
@@ -78,6 +78,7 @@ class PagesController < ApplicationController
     @subscriber = Subscriber.new(email: params[:email], category: params[:category])
     
     if @subscriber.save
+      track! :signup
       # SubscriberMailer.welcome(@subscriber).deliver
       flash[:notice] = "Terima kasih, kami akan kabari kamu"
       redirect_to root_path

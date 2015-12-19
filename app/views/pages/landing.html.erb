@@ -28,13 +28,13 @@
 <div>
   <div class="container">
     <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
-    	<div class="col-md-4 col-sm-3">
+    	<div class="col-md-6 col-sm-12">
+			<%= link_to "Ke Ruang Diskusi", blog_discussion_path(subdomain: ''), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
+			<%= link_to "Ke Ruang Diskusi", blog_discussion_path(subdomain: ''), class: "btn btn-sm btn-outlined btn-black visible-xs" %>    	
     	</div>
-		<div class="col-md-4 col-sm-6">
+		<div class="col-md-6 col-sm-12">
 			<%= link_to "Kunjungi Blog Kami", root_url(subdomain: 'blog'), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
 			<%= link_to "Kunjungi Blog", root_url(subdomain: 'blog'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
-		</div>
-		<div class="col-md-4 col-sm-3">
 		</div>
     </div>
 </div>	
@@ -43,11 +43,16 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-md-8 col-md-offset-2">
-					<h3 class="landing">Tujuan</h3>
-					<p>Tujuan kami sederhana, yaitu menyediakan pembiayaan rumah yang 100% syariah, lebih cepat dan lebih sederhana dari bank, dengan metode crowdfunding.</p>
+					<h3 class="landing">Alasan</h3>
+					<p>Alasan kami sederhana, yaitu meningkatkan kesejahteraan populasi unbankable dengan membantu mereka memiliki rumah</p>
 					<br>
+					<h3 class="landing">Caranya?</h3>
+					<p>Dengan platform crowdfunding ini, kami ingin membantu terjadinya transaksi investasi dan pembiayaan antara populasi unbankable dan para investor sebagai crowdfunder.</p>
+					<br>					
 					<h3 class="landing">Crowdfunding?</h3>
-					<p>Crowdfunding secara sederhana adalah sistem pendanaan gotong royong. Alih-alih dikucurkan oleh bank, pengajuan pembiayaanmu di platform Kapiten akan didanai oleh para investor, yang dapat berupa orang-orang yang kamu kenal dan juga orang asing.</p><br><br>
+					<p>Crowdfunding secara sederhana adalah sistem pendanaan gotong royong. Alih-alih dikucurkan oleh bank, pengajuan pembiayaanmu di platform Kapiten akan didanai oleh para investor, yang dapat berupa pihak yang dikenal dan juga pihak asing.</p><br><br>
+					<h3 class="landing">Unbankable?</h3>
+					<p>Segmen unbankable adalah orang-orang yang tidak dapat dilayani oleh industri perbankan karena kurangnya dokumen dan hal formalitas lainnya. Mereka mempunyai penghasilan yang biasanya tunai, namun bukan merupakan gaji tetap. Kami ingin membantu mereka mendapatkan layanan finansial berupa pembiayaan rumah.</p><br><br>
 				</div>
 			</div>
 			<br>
@@ -118,20 +123,26 @@
 			<div class="row centered">
 				<div class="col-md-10 col-md-offset-1">
 					<h3 class="landing">Akad</h3>
-					<p>Kamu Dapat mengajukan pembiayaan di platform Kapiten dengan memilih akad:</p>
+					<p>Akad-akad yang digunakan di platform ini adalah sebagai berikut:</p>
 					<br>
-					<div class="col-md-6 serv-grids">
+					<div class="col-md-4 serv-grids">
 						<div class="primary-border">
 							<h4 class="primary">Murabahah</h4>
-							<p>Akad jual beli tanpa bunga, bisa secara angsuran atau tunai. Rumah yang kamu inginkan harus belum dimiliki olehmu. Hanya untuk pembelian rumah.</p>
+							<p>Akad jual beli amanah, bisa secara angsuran atau tunai. </p>
 					   </div>
 					</div>
-					<div class="col-md-6 serv-grids">
+					<div class="col-md-4 serv-grids">
 						<div class="primary-border">
 							<h4 class="primary">Musyarakah</h4>
-							<p>Kepemilikan bersama untuk rumah dengan mitra pendana kami. Kamu dapat menyewa rumah tersebut untuk dipakai sendiri atau disewakan kepada pihak ketiga. Dapat dipilih untuk pembangunan, renovasi, pembelian rumah dan pengambilalihan hutang berbunga.</p>
+							<p>Kepemilikan bersama untuk rumah</p>
 					  </div>
 					</div>
+					<div class="col-md-4 serv-grids">
+						<div class="primary-border">
+							<h4 class="primary">Ijarah</h4>
+							<p>Sewa rumah secara syariah</p>
+					  </div>
+					</div>					
 					<div class="col-sm-8 col-sm-offset-2">
 						<br>
 						<div class="embed-container">  
@@ -144,7 +155,6 @@
 	    </div> <!--/ .container -->
 	</div><!--/ #introwrap -->
 
-	<%= render 'elements/simulation' %>
 	<!-- FAQ -->
 	<%= render 'pages/faq' %>	
 </section>
@@ -160,7 +170,7 @@
     </div>
     <%= render 'elements/form_contact' %>
     <br>
-	<small>© Copyright 2015. Co-founded by: <a href="#">Galih Muhammad, Pamungkas Hendra, Diandra Setiabudi</a></small>
+	<small>© 2015 by PT Kapiten Teknologi Indonesia
 	<%= render 'elements/authorship_credit' %>
   </div>
 </section>

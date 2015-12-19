@@ -1,14 +1,13 @@
-<div class="col-md-10 col-md-offset-1" id="subcribe-prompt">
-	<h3 class="sub-heading">Pendaftaran Pendana untuk versi Beta dibuka!<br> <small></h3>
-	<p class="white">Simpan email kamu di kotak bawah ini dan kami akan kabari kamu bagaimana cara mendaftar</p>
-	<br>			
+<div class="col-md-12" id="subcribe-prompt">
+	<p>Simpan email kamu di kotak bawah ini dan kami akan kabari kamu ketika platform sudah bisa diakses</p>
 	<div class="panel-body" id="landing-subscriber">
 		<%= form_tag subscribe_path, method: 'post', html: {role: "form"} do %>
 		  <div class="input-group">
-		    <%= text_field_tag :email, '', placeholder: "tulis email kamu di sini", class: "form-control" %>
+		    <%= text_field_tag :email, '', placeholder: "alamat emailmu", class: "form-control" %>
 		    <%= hidden_field_tag :category, @category, readonly: true %>
 		    <span class="input-group-btn">
-		    	<%= submit_tag "Simpan", class: "btn btn-primary" %>
+		    	<%= submit_tag "Ingatkan Saya", class: "btn btn-primary hidden-xs" %>
+		    	<%= submit_tag "Ingatkan Saya", class: "btn btn-xs btn-primary visible-xs" %>
 		    </span>
 		  </div>
 		<% end %> 		
