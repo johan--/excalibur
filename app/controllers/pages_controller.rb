@@ -1,10 +1,11 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
     :landing, :tos, :email, :subscribe, :upgrade, :simulation, 
-    :for_clients, :for_investors, :for_developers, :change_locale
+    :for_clients, :for_investors, :for_developers, :about_us, 
+    :change_locale
   ]
   before_filter :disable_background, only: [
-    :tos, :upgrade, :for_clients, :for_investors, :for_developers]
+    :tos, :upgrade, :for_clients, :for_investors, :for_developers, :about_us]
 
   def landing
     @category = "registration"
@@ -22,6 +23,9 @@ class PagesController < ApplicationController
 
   def for_developers
     @no_layout = true
+  end
+
+  def about_us
   end
 
   def dashboard

@@ -29,8 +29,8 @@
   <div class="container">
     <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
     	<div class="col-md-6 col-sm-12">
-			<%= link_to t("links.to_forum"), blog_discussion_path(subdomain: ''), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
-			<%= link_to t("links.to_forum"), blog_discussion_path(subdomain: ''), class: "btn btn-sm btn-outlined btn-black visible-xs" %>    	
+			<%= link_to "Tentang Kami", about_us_url(subdomain: ''), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
+			<%= link_to "Tentang Kami", about_us_url(subdomain: ''), class: "btn btn-sm btn-outlined btn-black visible-xs" %>    	
     	</div>
 		<div class="col-md-6 col-sm-12">
 			<%= link_to t("links.to_blog"), root_url(subdomain: 'blog'), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
@@ -170,7 +170,7 @@
     </div>
     <%= render 'elements/form_contact' %>
     <br>
-	<small>© 2015 by PT Kapiten Teknologi Indonesia
+	<!-- <small>© 2015 by PT Kapiten Teknologi Indonesia -->
 	<%= render 'elements/authorship_credit' %>
   </div>
 </section>
