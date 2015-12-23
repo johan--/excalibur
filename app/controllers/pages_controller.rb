@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [
     :landing, :tos, :email, :subscribe, :upgrade, :simulation, 
-    :for_clients, :for_investors, :for_developers
+    :for_clients, :for_investors, :for_developers, :change_locale
   ]
   before_filter :disable_background, only: [
     :tos, :upgrade, :for_clients, :for_investors, :for_developers]
@@ -108,6 +108,12 @@ class PagesController < ApplicationController
     end
   end
 
+  def change_locale
+    l = params[:locale].to_s.strip.to_sym
+    l = I18n.default_locale unless I18n.available_locales.include?(l)
+    cookies.permanent[:user_locale] = l
+    redirect_to request.referer || root_url
+  end
 
 private
   def subscriber_params

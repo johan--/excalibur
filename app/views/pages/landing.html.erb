@@ -29,12 +29,12 @@
   <div class="container">
     <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
     	<div class="col-md-6 col-sm-12">
-			<%= link_to "Ke Ruang Diskusi", blog_discussion_path(subdomain: ''), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
-			<%= link_to "Ke Ruang Diskusi", blog_discussion_path(subdomain: ''), class: "btn btn-sm btn-outlined btn-black visible-xs" %>    	
+			<%= link_to t("links.to_forum"), blog_discussion_path(subdomain: ''), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
+			<%= link_to t("links.to_forum"), blog_discussion_path(subdomain: ''), class: "btn btn-sm btn-outlined btn-black visible-xs" %>    	
     	</div>
 		<div class="col-md-6 col-sm-12">
-			<%= link_to "Kunjungi Blog Kami", root_url(subdomain: 'blog'), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
-			<%= link_to "Kunjungi Blog", root_url(subdomain: 'blog'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
+			<%= link_to t("links.to_blog"), root_url(subdomain: 'blog'), class: "btn btn-block btn-outlined btn-black hidden-xs" %>
+			<%= link_to t("links.to_blog"), root_url(subdomain: 'blog'), class: "btn btn-sm btn-outlined btn-black visible-xs" %>
 		</div>
     </div>
 </div>	
@@ -70,11 +70,11 @@
 	            <figure class="img-responsive">
 	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/family-1003816_640.jpg">
 	                <figcaption>
-	                    <span class="project-details">Pembeli Rumah</span>
+	                    <span class="project-details"><%= t("landing.client") %></span>
 	                    <span class="project-creator">pihak yang membutuhkan pembiayaan</span>
 	                </figcaption>
 	                <span class="hovered">
-	                    <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                    <button class="btn btn-info btn-action" type="submit" ><%= t("links.view") %></button>
 	                </span>
 	            </figure>
 	        </div>
@@ -86,11 +86,11 @@
 	            <figure class="img-responsive">
 	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/telephone-586266_640.jpg">
 	                <figcaption>
-	                    <span class="project-details">Investor</span>
+	                    <span class="project-details"><%= t("landing.financier") %></span>
 	                    <span class="project-creator">pihak yang membantu membiayai</span>
 	                </figcaption>
 	                <span class="hovered">
-	                        <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                        <button class="btn btn-info btn-action" type="submit" ><%= t("links.view") %></button>
 	                </span>
 	            </figure>
 	        </div>
@@ -102,11 +102,11 @@
 	            <figure class="img-responsive">
 	                <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,h_233,w_350/v1449582919/asset/signature-962355_640.jpg">
 	                <figcaption>
-	                    <span class="project-details">Developer</span>
+	                    <span class="project-details"><%= t("landing.developer") %></span>
 	                    <span class="project-creator">developer dan penjual rumah</span>
 	                </figcaption>
 	                <span class="hovered">
-	                        <button class="btn btn-info btn-action" type="submit" >Telusuri </button>
+	                        <button class="btn btn-info btn-action" type="submit" ><%= t("links.view") %></button>
 	                </span>
 	            </figure>
 	        </div>
@@ -156,7 +156,7 @@
 	</div><!--/ #introwrap -->
 
 	<!-- FAQ -->
-	<%= render 'pages/faq' %>	
+	<%= render 'pages/faq' unless I18n.locale == :en %>	
 </section>
 
 <section id="footerwrap">

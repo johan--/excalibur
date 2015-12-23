@@ -70,6 +70,8 @@ Fustal::Application.routes.draw do
   get "klien", to: "pages#for_clients", as: :for_clients
   get "investor", to: "pages#for_investors", as: :for_investors
   get "developer", to: "pages#for_developers", as: :for_developers
+  get '/change_locale/:locale', to: 'pages#change_locale', as: :change_locale
+
 
   get "/404" => "errors#not_found"
   get "/422" => "errors#unprocessable"

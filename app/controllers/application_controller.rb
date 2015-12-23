@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
+  before_filter :set_locale
 
   use_vanity :current_user
 
@@ -124,4 +125,17 @@ private
       request.variant = :desktop
     end
   end  
+
+  def set_locale
+    # I18n.locale = params[:locale] if params[:locale].present?
+    # I18n.locale = current_user.locale # alternative 1
+    # I18n.locale = request.subdomain  # alternative 2
+    if cookies[:user_locale] && I18n.available_locales.include?(cookies[:user_locale].to_sym)
+      l = cookies[:user_locale].to_sym
+    else
+      l = I18n.default_locale
+      cookies.permanent[:user_locale] = l
+    end
+    I18n.locale = l    
+  end
 end

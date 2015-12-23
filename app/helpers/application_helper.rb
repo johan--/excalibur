@@ -53,6 +53,12 @@ module ApplicationHelper
 # => R$1234567890,50
   end
 
-
+  def language_picker
+    if I18n.locale == :en
+      "English"
+    else
+      "Bahasa Indonesia"
+    end
+  end
 
 end

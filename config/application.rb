@@ -20,6 +20,10 @@ module Fustal
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.i18n.available_locales = [:id, :en]
+    # Default Locale
+    config.i18n.default_locale = :id
+    
     # Handles error via routes
     config.exceptions_app = self.routes
 

@@ -1,0 +1,27 @@
+id:
+  links:
+    to_forum: "Ke Ruang Diskusi"
+    to_blog: "Kunjungi Blog Kami"
+    view: "Telusuri"
+  forms:
+    hints:
+      subscribe: "email kamu"
+    buttons:
+      submit: "simpan"
+  menu:
+    languages:
+      lang: "Bahasa"
+      id: "Indonesia"
+      en: "Inggris"
+  landing:
+    heading: "Platform Crowdfunding Syariah Untuk Rumah"
+    headline_1: "Dengan bergotong royong, tanpa bunga dan penyitaan, atau tanpa hutang"
+    headline_2: "Investasimu beri mereka naungan untuk hidup dengan tenang"
+    subscribe_prompt: "Simpan email kamu di kotak bawah ini dan kami akan kabari kamu ketika platform sudah bisa diakses"
+    subscribe_button: "Ingatkan saya"
+    client: "Pembeli Rumah"
+    financier: "Pendana"
+    developer: "Developer Properti"
+  date:
+    formats:
+      default: "%d/%m/%Y"

@@ -20,7 +20,29 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  links:
+    to_forum: "To Discussion Room"
+    to_blog: "To Blog Page"
+    view: "View"
+  forms:
+    hints:
+      subscribe: "your email"
+    buttons:
+      submit: "submit"
+  menu:
+    languages:
+      lang: "Language"
+      id: "Bahasa"
+      en: "English"
+  landing:
+    heading: "Crowdfunding platform for Islamic House Financing"
+    headline_1: "Socially responsible, free of interest rate and foreclosure"
+    headline_2: "Your investment, a peaceful shelter to them"
+    subscribe_prompt: "We will contact you when the site is ready if you put your email address in the form below"
+    subscribe_button: "Remind me"
+    client: "Home Buyer"
+    financier: "Crowdfunder"
+    developer: "Property Developer"    
   date:
     formats:
       default: "%d/%m/%Y"

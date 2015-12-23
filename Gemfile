@@ -63,6 +63,8 @@ gem 'bootstrap-datepicker-rails'
 gem "paranoia", "~> 2.0"
 gem 'statesman', '~> 1.2.3'
 gem 'redcarpet', '3.2.2'
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
 
 # API
 # gem 'apipie-rails'
