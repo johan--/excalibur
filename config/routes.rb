@@ -60,7 +60,9 @@ Fustal::Application.routes.draw do
   # Static Pages
   root "pages#landing"
   get "ganti", to: "pages#upgrade", as: :upgrade
-  get "home", to: "pages#home", as: :user_root
+  # get "home", to: "pages#home", as: :user_root
+  get "home", to: "insides#home", as: :user_root
+
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"

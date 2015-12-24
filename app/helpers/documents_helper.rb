@@ -24,6 +24,18 @@ module DocumentsHelper
 	  end
 	end
 
+	def cloudinary_thumb_options(type)
+	  if type == 'private'
+		{ :type => :private, :width => 60, :height => 60, quality: 70, 
+			:crop => :scale, format: :jpg, 
+			class: "panel-image-preview" }
+	  else
+		{ :type => :upload, :width => 60, :height => 60, quality: 70, 
+			:crop => :scale, format: :jpg, 
+			class: "panel-image-preview" }	  	
+	  end
+	end
+
 	def document_checklist(doc)
 		if current_user.has_documents?(doc)
 			content_tag(:span, "v", class: "badge badge-success", 
