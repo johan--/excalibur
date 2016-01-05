@@ -32,60 +32,115 @@
 			<div class="tab-pane active" id="portlet_tab1">
 				<div class="row">
 					<div class="col-xs-12">
-            <div class="weather-3 pn centered">
+            <div class="weather-3">
 	            <div class="row">
-	              <div class="col-md-3 col-sm-12">
-	                <i class="fa fa-briefcase centerpiece"></i>
-	                <h3>Info Proposal</h3>
-	              </div>
-	              <div class="col-md-3 col-sm-6">
-	                <h3 class="coral" id="tender-progress">
-	                  <%= @tender.shares_remaining %> lembar
-	                </h3>
-	                <h4>Saham Tersedia</h4>
-	              </div>
-	              <div class="col-md-3 col-sm-6">
-	                <h3 class="coral" id="tender-pps">
-	                  <%= idr_money(@tender.price_per_share) %>
-	                </h3>
-	                <h4>@ Harga/lembar</h4>
-	              </div>
-	              <div class="col-md-3 col-sm-12">
-	                <div class="home-prompt">
-		            		<% if  @tender.access_granted?(current_user) %>
-		            			<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
-		            		<% else %>
-		            			<%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: "btn btn-outlined btn-theme", remote: true %>
-		            		<% end %>
-	                </div>
-	              </div>
 
+				<div class="col-xs-12">
+					<div class="panel-body inf-content">
+					  <div class="row">
+					    <div class="col-md-4 text-center">
+					      <i class="fa fa-file-text fa-4x" style="display: block;"></i>
+					      <h3>Proposal <%=@tender.barcode %></h3>
+					      <h5><span class="label label-primary"><%=@tender.state %></span></h5> 
+					      <% if @tender.access_granted?(current_user) %>
+					        <%= link_to 'Edit', edit_tender_link(@tender), class: "btn btn-block btn-outlined btn-theme", remote: true  %>
+					      <% else %>
+					        <%= link_to 'Danai', new_tender_bid_path(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
+					      <% end %>
+					    </div>
+					    <div class="col-md-8">
+					      <div class="table-responsive">
+					        <table class="table table-condensed table-responsive table-user-information">
+					          <tbody>
+					            <tr>        
+					              <td>
+					                <strong>
+					                  <span class="glyphicon glyphicon-briefcase text-primary"></span> Akad
+					                </strong>
+					              </td>
+					              <td class="text-primary">
+					                <strong><%=@tender.aqad.titleize %></strong>
+					              </td>
+					            </tr>
+					            <tr>    
+					              <td>
+					                <strong>
+					                  <span class="glyphicon glyphicon-user text-primary"></span> Lama & Margin
+					                </strong>
+					              </td>
+					              <td class="text-primary" id="maturity-margin"><%=@tender.maturity %> Tahun @ <%=@tender.margin %>%</td>
+					            </tr>
+					            <tr>        
+					              <td>
+					                <strong>
+					                    <span class="glyphicon glyphicon-bookmark text-primary"></span> Dipublikasikan?
+					                </strong>
+					              </td>
+					              <td class="text-primary"><%= draft_or_real?(@tender) %> </td>
+					            </tr>
+					            <tr>        
+					                <td>
+					                  <strong>
+					                    <span class="glyphicon glyphicon-piggy-bank text-primary"></span> Target 
+					                  </strong>
+					                </td>
+					                <td class="text-primary">
+					                    <%= idr_money(@tender.target) %> 
+					                </td>
+					            </tr>
+					            <tr>        
+					              <td>
+					                <strong>
+					                  <span class="glyphicon glyphicon-eye-open text-primary"></span> Tawaran
+					                </strong>
+					              </td>
+					              <td class="text-primary">
+					                <%=@tender.bids.count %> tawaran
+					              </td>
+					            </tr>
+					            <tr>        
+					              <td>
+					                <strong>
+					                  <span class="glyphicon glyphicon-send text-primary"></span> Dibuat   
+					                </strong>
+					              </td>
+					              <td class="text-primary">
+					                <%=@tender.created_at.strftime("%Y, %B %-d") %>
+					              </td>
+					            </tr>
+					            <tr>        
+					              <td>
+					                <strong>
+					                  <span class="glyphicon glyphicon-pencil text-primary"></span> Terakhir
+					                </strong>
+					              </td>
+					              <td class="text-primary">
+					                <%= time_ago_in_words(@tender.updated_at) %> ago
+					              </td>
+					            </tr>                                    
+					          </tbody>
+					        </table>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
 	        <div class="col-xs-12">			
 						<div class="profile-stats mt">
 						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
 						      <div class="stats-value pink" id="tender-aqad">
-						      	<%= @tender.aqad.titleize %></div>
-						      <div class="stats-title">AKAD</div>
+						      	<%= idr_money(@tender.price_per_share) %></div>
+						      <div class="stats-title">Harga per Saham</div>
 						  </div>
 						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-						      <div class="stats-value pink" id="tender-maturity"><%= @tender.maturity %> Tahun</div>
-						      <div class="stats-title">JANGKA WAKTU</div>
+						      <div class="stats-value pink" id="tender-maturity"><%= @tender.shares_remaining %> Tersisa</div>
+						      <div class="stats-title">Unit Saham</div>
 						  </div>				  
 						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-						      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %>
+						      <div class="stats-value pink" id="tender-target"><%= @tender.funding_progress %> %
 						      </div>
-						      <div class="stats-title">TARGET</div>
-						  </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col" id="gain_column">
-						        Gain: <strong><%= gain_amount(@tender, @simulation.profit) %></strong>
-						    </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-						        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
-						    </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-						        <strong><span id="tender-state">Status: <%= @tender.state %></span></strong>
-						    </div>
-						    
+						      <div class="stats-title">Progress</div>
+						  </div>						    
 						</div>
 					</div>
 					<div class="col-xs-12 mt">
@@ -97,9 +152,9 @@
 				    </p>
 				    <br>
 				    <% if @tender.summary.nil? %>
-				     	<p>Belum ada penilaian</p>
+				     	<p class="text">Belum ada penilaian</p>
 				    <% else %>
-				     	<p><%= @tender.summary %></p>
+				     	<p class="text"><%= @tender.summary %></p>
 				    <% end %>
 					</div>
 
@@ -108,23 +163,37 @@
 	        </div>
 
 					<div class="col-xs-12">
-				    <div class="weather-3 pn mt">
-							<h3>Penawar</h3>
+				    <div class="mt">
+
+        <div class="comment-wrapper">
+          <div class="panel panel-info">
+            <div class="panel-body">
+              <div class="clearfix"></div>
+              <h3>Pendana</h3>
+              <hr>
 							<% if @bids.empty? %>
 								<div class="blankslate">
 									<div class="spacious">
-										<h3><%= "Belum Ada Tawaran" %></h3>
+										<h3><%= "Belum Ada Pendana" %></h3>
 									</div>
 								</div>
-							<% end %>
-							<ul class="media-list">
-								<% @bids.find_each do |bid| %>
-									<%= render bid %>
-								<% end %>
-		          </ul>
+							<% else %>
+	              <ul class="media-list">
+									<%= render @bids %>
+	              </ul>
+	              <% end %>
+            </div>
+          </div>
+        </div>
+
 		          <br>
 				    </div>
-					</div>					
+					</div>
+
+          <ul class="media-list">
+
+          </ul>
+
 				</div>			    
 			</div>
 

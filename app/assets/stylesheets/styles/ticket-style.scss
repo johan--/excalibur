@@ -1,4 +1,3 @@
-/* For index, list item */
 .tickets-container .tickets-list .ticket-item .ticket-state i {
     font-size: 13px;
     color: #fff;
@@ -32,7 +31,7 @@
     text-transform: uppercase;
 }
 .tickets-container .tickets-list .ticket-item .ticket-type {
-    line-height: 20px;
+    line-height: 30px;
     height: 50px;
     padding: 10px;
 }
@@ -51,14 +50,9 @@
     display: inline-block;
 }
 .tickets-container .tickets-list .ticket-item .ticket-time {
-    line-height: 20px;
+    line-height: 30px;
     height: 50px;
     padding: 10px;
-    .time {
-        margin-left: 2px;
-        float: right;
-        color: #999;
-    }
 }
 .tickets-container .tickets-list .ticket-item .ticket-user .user-company {
     margin-left: 2px;
@@ -85,7 +79,7 @@
 }
 .tickets-container .tickets-list .ticket-item .ticket-user {
     height: 50px;
-    padding: 15px;
+    padding: 10px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -100,7 +94,6 @@
     -webkit-background-clip: padding-box;
     -moz-border-radius: 3px;
     -moz-background-clip: padding;
-    border: 1px solid $brand-primary;
     border-radius: 3px;
     background-clip: padding-box;
     margin-bottom: 8px;
@@ -114,8 +107,8 @@
 }
 .tickets-container {
     position: relative;
-    /*padding: 25px 25px;*/
-    /*background-color: #f5f5f5;*/
+    padding: 10px 10px;
+    background-color: #f5f5f5;
 }
 .widget-main.no-padding {
     padding: 0;
@@ -181,87 +174,3 @@
     box-shadow: none;
     margin: 3px 0 30px 0;
 }                    
-
-/* For profile, show page */
-.profile-container .profile-header .profile-stats .inlinestats-col:not(:last-child) {
-    border-right: 1px solid #eee;
-}
-.profile-container .profile-header .profile-stats .inlinestats-col {
-    padding-top: 15px;
-    text-align: center;
-    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
-    border-top: 1px solid #eee;
-    min-height: 55px;
-}
-.profile-container .profile-header .profile-stats .stats-col .stats-value {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
-}
-.pink {
-    color: #e75b8d!important;
-}
-.profile-container .profile-header .profile-stats .stats-col:not(:last-child) {
-    border-right: 1px solid #eee;
-}
-.profile-container .profile-header .profile-stats .stats-col {
-    margin: 30px 0;
-    text-align: center;
-}
-.profile-container .profile-header .profile-stats {
-    min-height: 175px;
-    border-right: 1px solid #eee;
-}
-.profile-container .profile-header .profile-info .header-information {
-    line-height: 23px;
-    margin-top: 15px;
-    text-align: justify;
-    p {
-        /*margin-bottom: 0px;*/
-    }
-}
-.profile-container .profile-header .profile-info .btn-follow {
-    position: absolute;
-    top: 45px;
-    right: 40px;
-}
-.btn-palegreen, .btn-palegreen:focus {
-    background-color: #a0d468!important;
-    border-color: #a0d468;
-    color: #fff;
-}
-.profile-container .profile-header .profile-info .header-fullname {
-    font: 21px 'Lucida Sans','trebuchet MS',Arial,Helvetica;
-    margin-top: 27px;
-    display: inline-block;
-}
-.profile-container .profile-header .profile-info {
-    min-height: 175px;
-    border-right: 1px solid #eee;
-    padding: 15px 40px 35px 0;
-}
-.profile-container .profile-header .header-avatar {
-    width: 125px;
-    height: 125px;
-    -webkit-border-radius: 50%;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 50%;
-    -moz-background-clip: padding;
-    border-radius: 50%;
-    background-clip: padding-box;
-    border: 5px solid #f5f5f5;
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.15);
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.15);
-    box-shadow: 0 0 10px rgba(0,0,0,.15);
-    margin: 25px auto;
-}
-.profile-container .profile-header {
-    min-height: 175px;
-    margin: 15px 15px 0;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.35);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.35);
-    box-shadow: 0 1px 2px rgba(0,0,0,.35);
-    background-color: #fbfbfb;
-}               
