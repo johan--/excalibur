@@ -616,9 +616,12 @@ figcaption .project-creator {
 }
 
 /*Sidebar*/
+#main-layout {
+    right: -40px;
+}
 .side-menu-advanced{
     position: inherit;
-    left: 180px;
+    left: 240px;
 /*    position: fixed;
     left: 0;*/
     top: 0;
@@ -810,9 +813,7 @@ figcaption .project-creator {
     }
 }
 
-@media (max-width: 840px){
-}
-@media(max-width:768px){
+@media (max-width: 911px){
     .side-menu-advanced{
         position: fixed;
         left: 0;
@@ -834,14 +835,15 @@ figcaption .project-creator {
         -webkit-transform: translateX(-350px);
         transform:translateX(-350px);
     }
+    #main-layout {
+        right: 0px;
+    }    
 }
-
 @media (max-height: 840px){
     .side-menu-advanced .side-menu-logo{
         display: none;
     }
 }
-
 ul.navigation {
     list-style: none;
     border-bottom: 1px solid #EAEAEA;
@@ -885,50 +887,23 @@ ul.navigation li{
 
 
 @media (max-width: 1000px) {
-
-
     header h1{
         float: none;
     }
-
     header a{
         margin-top: 25px;
         float: none;
     }
-
-}
-
-.main-content{
-    margin-bottom: 75px;
 }
 
 /* Styling the buttons for showing the dialogs. You can ignore and remove these styles */
 
 .menu-toggle{
-    text-align: center;
-    display: block;
-    box-sizing: border-box;
-    background-color: #9480E6;
-    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font: bold 20px sans-serif;
-    color: #ffffff;
-    max-width: 330px;
-    padding: 18px 0;
-    margin: 20px auto;
-    z-index: 1;
-    border-radius: 3px;
-}
-
-.menu-toggle:first-of-type{
-    margin-top:10%;
-}
-
-.menu-toggle:hover{
-    opacity:0.96;
-}
-
-.menu-toggle:active{
-    position:relative;
-    bottom:-1px;
+    &:hover{
+        opacity:0.96;    
+    }
+    &:active {
+        position:relative;
+        bottom:-1px;
+    }
 }

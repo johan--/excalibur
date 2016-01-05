@@ -6,7 +6,7 @@
   <% twitter site: ENV["TWTR_HANDLER"] %>  
   <% meta og: { site_name: ENV["SITE_NAME"] } %>
   <%= metamagic %>  
-  <%= favicon_link_tag '//res.cloudinary.com/instilla/image/upload/v1443701042/asset/kapiten-logo.png' %>
+  <%= favicon_link_tag 'newlogo.ico' %>
   <%= favicon_link_tag '//res.cloudinary.com/instilla/image/upload/v1443701042/asset/kapiten-logo.png', rel: 'logo', type: 'image/png' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= cloudinary_js_config %>
@@ -44,7 +44,7 @@
               <div class="col-sm-12">
                 
                 <section class="container" style="padding-top: 10px;">
-                  <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
                     <%= yield %>
                   </div>
                 </section>
