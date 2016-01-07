@@ -10,19 +10,20 @@ class User < ActiveRecord::Base
 
   serialize :preferences, HashSerializer
   store_accessor :preferences, 
-          :language, :currency, :open, :client, :financier, :understanding
+          :language, :currency, :open, :understanding, :developer
   serialize :profile, HashSerializer
   store_accessor :profile, 
-    :phone_number, :about, :last_education, :credibility,
+    :phone_number, :about, :last_education, 
     :marital_status, :work_experience, :number_dependents, :occupation,
     :monthly_income, :monthly_expense, :address, :facebook, :google, :twitter
   
-  attr_wannabe_bool :financier, :client, :open
+  attr_wannabe_bool :open, :understanding, :developer
   attr_accessor :image_id, :category
 
 # Relations
   has_one  :identity
   has_many :documents, as: :owner
+  has_many :houses, as: :publisher
   has_many :posts
   has_many :comments
   has_many :rosters, as: :rosterable
@@ -48,26 +49,14 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :auth_token, uniqueness: true
 
-  before_create :set_auth_token!, :set_default_values!, 
-                :determine_category!
+  before_create :set_auth_token!, :set_default_values!
   before_save :up_name
     
-  scope :financiers, -> { 
-    where("users.preferences->>'financier' = :true", true: "true") 
+  scope :developers, -> { 
+    where("users.preferences->>'developer' = :true", true: "true") 
   }
-  scope :clients, -> { 
-    where("users.preferences->>'client' = :true", true: "true") 
-  }    
+  scope :admins, -> { where(admin: true) }    
   
-  def role_number
-    if self.client?
-      if self.financier?
-        return 3
-      else
-        return 1
-      end
-    end
-  end
 
   def has_documents?(doc)
     if self.documents.by_types(doc).count != 0
@@ -93,19 +82,6 @@ class User < ActiveRecord::Base
     self.open = true
     self.language = 'bahasa'
     self.currency = 'idr'
-    self.credibility = 'C'
-  end
-
-  def determine_category!
-    unless self.category.nil?
-      if self.category == 'client'
-        self.client = "true"
-        self.financier = "false"
-      elsif self.category == 'financier'
-        self.client = "false"
-        self.financier = "true"      
-      end
-    end
   end
 
   def generate_auth_token!

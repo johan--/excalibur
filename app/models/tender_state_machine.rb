@@ -1,29 +1,17 @@
 class TenderStateMachine
   include Statesman::Machine
 
-  state :fresh, initial: true
-  state :processing
-  state :qualified
+  state :open, initial: true
+  state :closed
   state :success
-  state :denied
   state :dropped
 
-  transition from: :fresh, to: [:processing, :dropped, :qualified]
-  transition from: :processing, to: [:qualified]
-  transition from: :qualified,  to: [:processing, :success, :denied]
-  transition from: :denied,  to: [:processing, :dropped]
+  transition from: :open, to: :closed
+  transition from: :closed, to: [:success, :dropped]
   # transition from: :dropped
 
-  guard_transition(to: :qualified) do |tender|
+  guard_transition(to: :closed) do |tender|
     tender.fulfilled?
-  end
-
-  guard_transition(from: :qualified, to: :success) do |tender|
-    # 
-  end
-
-  guard_transition(from: :qualified, to: :denied) do |tender|
-    # 
   end
 
   after_transition do |tender, transition|

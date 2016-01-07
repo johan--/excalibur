@@ -7,27 +7,22 @@ class Tender < ActiveRecord::Base
   # include PublicActivity::Model
   # tracked
   monetize :target_sens
-  monetize :contributed_sens
 
-  HOUSE = ["rumah tunggal", "rumah koppel/gandeng", "town house"]
-  APARTMENT = "rumah susun/flat"
-
+  belongs_to :house
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   
   serialize :properties, HashSerializer
   store_accessor :properties, 
-                 :open, :category, 
+                 :broadcast, :draft,
                  :summary, :barcode, :tenderable_name
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :area, 
-                 :price, :maturity, :margin, :own_capital,
-                 :published
-  attr_wannabe_bool :open, :published
+                 :shares, :use_case, :intent, :aqad, :aqad_code,
+                 :margin, :own_capital
+  attr_wannabe_bool :broadcast, :draft
 
 # Statesman stuffs
   # Initialize the state machine
@@ -40,29 +35,22 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  validates_presence_of :aqad, :price, :address
+  # validates_presence_of :aqad, :price, :address
 
   before_create :set_default_values!
-  before_save :set_target!, :set_margin!
-  after_touch :update_contribution!, :set_state!
+  # before_save :set_target!, :set_margin!
+  after_touch :set_state!
 
   # Pagination
   paginates_per 30
 
-  def house?
-    true if tangible.in?(HOUSE)
-  end
-
-  def apartment?
-    true if tangible.in?(APARTMENT)
-  end
 
   def fulfilled?
-    true if self.contributed == self.target
+    true if check_contribution == self.target
   end
 
   def self.categories
-    %w(Institusi Bisnis Individu)
+    %w(Penggalangan Penjualan)
   end
 
   scope :open, -> { 
@@ -98,15 +86,15 @@ class Tender < ActiveRecord::Base
   end
 
   def funding_progress
-    (contributed / target) * 100
+    (check_contribution / target) * 100
   end
 
   def shares_remaining
-    ((target - contributed) / price_per_share).round(0)
+    ((target - check_contribution) / price_per_share).round(0)
   end
 
   def price_per_share
-    target / total_share
+    target / shares
   end
 
   def total_share
@@ -114,57 +102,54 @@ class Tender < ActiveRecord::Base
   end
 
 # Transitions
-  def processing
-    self.transition_to!(:processing)
+  def reopen
+    self.transition_to!(:open)
   end
 
-  def qualifying
-    self.transition_to!(:qualified)
+  def closing
+    self.transition_to!(:closed)
   end
 
   def completing
-    self.transition_to!(:complete)
+    self.transition_to!(:success)
   end
+  def dropping
+    self.transition_to!(:dropped)
+  end  
 ####
 
-  def set_tangible_type
-    if self.house?
-      return "Rumah"
-    elsif self.apartment?
-      return "Apartemen"
-    end
-  end
 
 
 private
   def set_default_values!
-    self.state = 'fresh'
+    self.state = 'open'
     self.barcode = "##{SecureRandom.hex(3)}"
     self.tenderable_name = self.tenderable.name
-    self.open = true
+    self.broadcast = 'true'
+    self.shares = total_share
   end
 
   def set_target!
-    @price = self.price.to_i
-    @own_capital = self.own_capital.to_i
+    # @price = self.price.to_i
+    # @own_capital = self.own_capital.to_i
 
-    if self.aqad == 'murabahah'
-      self.target = @price
-    elsif self.aqad == 'musyarakah'
-      capital = @price * @own_capital / 100
-      self.target = @price - capital
-    end
+    # if self.aqad == 'murabahah'
+    #   self.target = @price
+    # elsif self.aqad == 'musyarakah'
+    #   capital = @price * @own_capital / 100
+    #   self.target = @price - capital
+    # end
   end
 
   def set_margin!
-    if self.aqad == 'murabahah'
-      self.margin = selling_margin(maturity)
-    elsif self.aqad == 'musyarakah'
-      property = "Rumah" if self.house?
-      property = "Apartemen" if self.apartment?
+    # if self.aqad == 'murabahah'
+    #   self.margin = selling_margin(maturity)
+    # elsif self.aqad == 'musyarakah'
+    #   property = "Rumah" if self.house.category == 'Rumah'
+    #   property = "Apartemen" if self.category == 'Apartemen'
 
-      self.margin = capitalization_rate(maturity, property)
-    end
+    #   self.margin = capitalization_rate(maturity, property)
+    # end
   end
 
   def slug_candidates
@@ -172,10 +157,6 @@ private
       :barcode,
       [:barcode, :tenderable_name, ]
     ]
-  end
-
-  def update_contribution!
-    update(contributed: check_contribution)
   end
 
   def check_contribution
@@ -188,7 +169,7 @@ private
   end
 
   def self.initial_state
-    :fresh
+    :open
   end
 
   def set_state!

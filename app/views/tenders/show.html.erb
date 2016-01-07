@@ -2,7 +2,6 @@
 
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
 
-
 <div class="portlet portlet-bordered">
 	<div class="portlet-title tab-row">
 		<div class="caption caption-red">
@@ -165,34 +164,33 @@
 					<div class="col-xs-12">
 				    <div class="mt">
 
-        <div class="comment-wrapper">
-          <div class="panel panel-info">
-            <div class="panel-body">
-              <div class="clearfix"></div>
-              <h3>Pendana</h3>
-              <hr>
-							<% if @bids.empty? %>
-								<div class="blankslate">
-									<div class="spacious">
-										<h3><%= "Belum Ada Pendana" %></h3>
-									</div>
-								</div>
-							<% else %>
-	              <ul class="media-list">
-									<%= render @bids %>
-	              </ul>
-	              <% end %>
+          <div class="widget-box">
+            <div class="widget-header bordered-bottom bordered-themesecondary">
+              <i class="widget-icon fa fa-tags themesecondary"></i>
+              <h5 class="widget-caption themesecondary">Pendana</h5>
+            </div><!--Widget Header-->
+            <div class="widget-body">
+              <div class="widget-main no-padding">
+                <div class="tickets-container">
+                <% if @bids.empty? %>
+	              <div class="blankslate">
+	                <div class="spacious">
+	                  <h3><%= "Belum Ada Pendana" %></h3>
+	                </div>
+	              </div>                
+                <% else %>
+                  <ul class="tickets-list">
+                    <%= render @bids  %>
+                  </ul>
+                <% end %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
 		          <br>
 				    </div>
 					</div>
-
-          <ul class="media-list">
-
-          </ul>
 
 				</div>			    
 			</div>

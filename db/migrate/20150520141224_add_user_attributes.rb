@@ -8,5 +8,6 @@ class AddUserAttributes < ActiveRecord::Migration
     add_column :users, :auth_token, :string, null: false, default: ""
 	add_index  :users, :profile, using: :gin
     add_index  :users, :auth_token, unique: true	
+    add_column :users, :slug, :string, null: false, index: true, unique: true
   end
 end

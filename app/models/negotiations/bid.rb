@@ -1,5 +1,6 @@
 class Bid < ActiveRecord::Base
   extend FriendlyId
+  include WannabeBool::Attributes
   friendly_id :slug_candidates, use: :slugged
   belongs_to :bidder, polymorphic: true
   belongs_to :tender
@@ -8,17 +9,18 @@ class Bid < ActiveRecord::Base
 
   serialize :properties, HashSerializer
   store_accessor :properties, 
-                 :open, :summary, :barcode, :bidder_name, :tenderable_name
+                 :broadcast, :summary, :barcode, :bidder_name, :tenderable_name
 
   serialize :details, HashSerializer
   store_accessor :details, 
                  :intent_type, :intent_assets, :shares, :at_price
 
+  attr_wannabe_bool :broadcast
   validates_presence_of :contribution#, :target, :contributed
 
   before_create :set_default_values!
   before_save   :set_contribution!
-  after_save  :touch_tender!
+  # after_save  :touch_tender!
 
   def bidder?(user)
     if self.bidder == user
@@ -30,12 +32,12 @@ class Bid < ActiveRecord::Base
 private
   def set_default_values!
 	  if self.state.nil?
-      self.state = "belum diproses" 
+      self.state = "pending" 
     end
     self.barcode = "Tawaran ##{SecureRandom.hex(3)}"
     self.bidder_name = self.bidder.name
     self.tenderable_name = self.tender.tenderable.name
-    self.open = true
+    self.broadcast = true
   end
 
   def set_contribution!
@@ -45,7 +47,7 @@ private
 
   def slug_candidates
     [
-      [:bidder_name, :barcode]
+      [:barcode]
     ]
   end
 

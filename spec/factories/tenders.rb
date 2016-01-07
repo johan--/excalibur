@@ -3,41 +3,42 @@ FactoryGirl.define do
   factory :tender do
     summary "Lorem ipsum dolor cassus"
 
-  	factory :retail do
-  	  category "BizPartnership"
-  	  target "15000000"
+    target 300000000
+    category "Penggalangan"
+    intent "pembelian rumah"
+    # tangible "rumah tunggal"
+    own_capital 30
+    maturity 8
+    broadcast "true"
+    draft "false"
+    state "open"
+    association :house, factory: :house
+    association :tenderable, factory: :user
 
-      trait :with_biz do
-        transient do
-          business { FactoryGirl.create(:business) }
-        end
+    trait :success do
+      state "success"
 
-        tenderable { business }
+      transient do
+        count 4
       end
-  	end
 
-  	factory :consumer_tender do
-  	  category "User"
-      price 500000000
-      address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak, Jakarta Selatan"
-      intent "tempat tinggal"
-      tangible "rumah tunggal"
-      use_case "pembelian"
-      own_capital 30
-      maturity 8
-      published true
+      after(:build) do |tender|
+        FactoryGirl.create(:bid, :nameless, :confirmed, :tender => tender, shares: 1000)
+      end
+    end      
 
-      # trait :with_bid do
-      #   transient do
-      #     consumer { FactoryGirl.create(:consumer) }
-      #   end
+    trait :with_tenderable do 
+      association :tenderable, factory: :user
+    end 
 
-      #   tenderable { consumer }
-      # end      
-  	end
+    trait :with_house do 
+      after(:build) do |tender|
+        tender.house = FactoryGirl.create(:house, :with_developer)
+      end
+    end 
 
     trait :draft do
-      published false
+      draft "true"
     end
 
     trait :musharakah do
@@ -51,10 +52,6 @@ FactoryGirl.define do
     trait :tenderable do
       tenderable
     end
-
-    trait :processing do
-      state "processing"
-    end 
-  end	
+  end 
 
 end

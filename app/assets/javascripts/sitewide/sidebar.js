@@ -12,20 +12,20 @@ $(document).ready(function() {
         $('.side-menu-advanced').removeClass('side-menu-shown');
     });
 
-    $('.side-menu-option').on('click', function (e) {
-        e.preventDefault();
+    // $('.side-menu-option').on('click', function (e) {
+    //     e.preventDefault();
 
-        var option = $(this).data('id');
+    //     var option = $(this).data('id');
 
-        alert('You chose option ' + option);
-    });
+    //     alert('You chose option ' + option);
+    // });
 
-    $('.side-menu-button').on('click', function (e) {
-        e.preventDefault();
+    // $('.side-menu-button').on('click', function (e) {
+    //     e.preventDefault();
 
-        var buttonFunction = $(this).data('function');
+    //     var buttonFunction = $(this).data('function');
 
-        alert('You clicked the ' + buttonFunction + ' button.');
-    })
+    //     alert('You clicked the ' + buttonFunction + ' button.');
+    // })
 
 });

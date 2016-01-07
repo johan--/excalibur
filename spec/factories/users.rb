@@ -5,32 +5,16 @@ FactoryGirl.define do
     password_confirmation "foobarbaz"
     sequence(:name) { |n| "Person #{n}" }
     sequence(:phone_number) { |n| "05392421#{n}" }
-    understanding true
+    understanding "true"
+    developer "false"
 
-    factory :client do
-      client true
-      financier false
+    factory :developer do
+      developer "true"
     end
-
-    factory :financier do
-      client false
-      financier true
-    end
-		# factory :entrepreneur do
-  #     client true
-  #     financier false
-
-  #     factory :entrepreneur_with_team do
-  #       after(:create) do |user|
-  #         FactoryGirl.create(:client, starter_email: user.email)
-  #       end
-  #     end
-  #   end
 
     factory :admin do
 			admin true
-      client true
-      financier true
+      developer "true"
 		end
 
     factory :facebook_user do

@@ -32,27 +32,19 @@
 	            <p class="side-menu-section-title"> Actions </p>
 
 	            <p class="side-menu-row">
-	                <a href="#" class="side-menu-option" data-id="1">Profil</a><i class="fa fa-comments"></i>
+					<%= link_to "Profil", user_url(current_user, subdomain: ''), class: "side-menu-option" %><i class="fa fa-user"></i>	            
 	            </p>
 
 	            <p class="side-menu-row">
-	                <a href="#" class="side-menu-option" data-id="2">Dokumen</a><i class="fa fa-group"></i>
-	            </p>
-
-	            <p class="side-menu-row">
-	                <a href="#" class="side-menu-option" data-id="3">Penawaran</a><i class="fa fa-list"></i>
-	            </p>
-
-	            <p class="side-menu-row">
-	                <%= link_to "Peraturan", service_terms_url(subdomain: ''), class: "side-menu-option", data: { id: "4" } %><i class="fa fa-list"></i>
+	                <%= link_to "Peraturan", service_terms_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-list"></i>
 	            </p>
 
 		  	<% if user_signed_in? %>
 		  	  <p class="side-menu-row">
-				<%= link_to "Admin", admin_root_url(subdomain: ''), class: "side-menu-option", data: { id: "5" } if current_user.admin? %><i class="fa fa-sun-o"></i>
+				<%= link_to "Admin", admin_root_url(subdomain: ''), class: "side-menu-option" if current_user.admin? %><i class="fa fa-sun-o"></i>
 		  	  </p>
 			  <p class="side-menu-row">
-			  	<%= link_to "Akun", edit_user_registration_url(subdomain: ''), class: "side-menu-option", data: { id: "6" } %><i class="fa fa-cogs"></i>
+			  	<%= link_to "Akun", edit_user_registration_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-cogs"></i>
 			  </p>
 			<% end %>	            
 	        </div>

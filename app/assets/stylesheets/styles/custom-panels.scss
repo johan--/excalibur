@@ -248,89 +248,48 @@ PANELS CONFIGURATIONS
 	}	
 }
 
-/* PROFILE PANELS */
-/* Profile 01*/
-#profile-01 {
-	background: url(../img/profile-01.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 150px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-#profile-01 h3 {
-	color: white;
-	padding-top: 50px;
-	margin: 0px;
-	text-align: center;
-}
-#profile-01 h6 {
-	color: white;
-	text-align: center;
-	/*margin-bottom: 0px;*/
-	font-weight: 900;
-}
-.profile-01 {
-	background: #68dff0;
-	height: 50px;
-}
-.profile-01:hover {
-	background: #2f2f2f;
-  -webkit-transition: background-color 0.6s;
-  -moz-transition: background-color 0.6s;
-  -o-transition: background-color 0.6s;
-  transition: background-color 0.6s;
-  cursor: pointer;
-}
-.profile-01 p {
-	color: white;
-	padding-top: 15px;
-	font-weight: 400;
-	font-size: 15px;
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
 }
 
-/* Profile 02*/
-#profile-02 {
-	background: url(../img/profile-02.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 200px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
 }
-#profile-02 .user {
-	padding-top: 40px;
-	text-align: center;
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
 }
-#profile-02 h4 {
-	color: white;
-	margin:0px;
-	padding-top: 8px;
+
+
+.stylish-panel {
+    padding: 10px 0;
+    text-align: center;
 }
-.pr2-social a {
-	color: #cdcdcd;
+.stylish-panel > div > div{
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: 0.2s;
 }
-.pr2-social a:hover {
-	color: #68dff0;
+.stylish-panel > div:hover > div{
+    margin-top: -10px;
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
+    background: rgba(200, 200, 200, 0.1);
+    transition: 0.5s;
 }
-.pr2-social i {
-	margin-top: 15px;
-	margin-right: 12px;
-	font-size: 20px;
+
+
+.stylish-panel > div:hover img {
+    border-radius: 50%;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
 }

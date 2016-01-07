@@ -19,7 +19,7 @@ class Business < ActiveRecord::Base
   attr_accessor :starter_email
 
   before_create :set_default_values!
-  after_create :set_team_up
+  # after_create :set_team_up
 
   scope :established_at, ->(year) { 
     where("businesses.profile->>'anno' = :year", year: "#{year}") 
@@ -33,11 +33,11 @@ private
     self.offline_presence_types = []
   end
 
-  def set_team_up
-  	self.create_team(
-  		category: "Bisnis", name: "Tim #{self.name}", 
-  		starter_email: starter_email)
-  end
+  # def set_team_up
+  # 	self.create_team(
+  # 		category: "Bisnis", name: "Tim #{self.name}", 
+  # 		starter_email: starter_email)
+  # end
 
   def slug_candidates
     [

@@ -1,39 +1,30 @@
-<li class="media">
-  <a href="#" class="pull-left">
-    <% if bid.bidder.avatar.nil? %>
-      <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
-    <% else %>
-      <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
-    <% end %>                     
-  </a>
-  <div class="media-body">
-    <span class="text-muted pull-right">
-      <small class="text-muted">
-        <%= idr_money(bid.contribution) %>
-      </small>
-    </span>
-    <strong class="text-success"><%= bid.bidder.name %></strong>
-    <p>
-      <% if bid.summary.nil? %>
-        tidak ada pesan
-      <% else %>
-        <%= bid.summary %>
-      <% end %>
-    </p>
-  </div>
-  <div class="media-footer">
-    <% if bid.bidder?(current_user) %>
+<li class="ticket-item">
+  <div class="row">
+      <div class="ticket-user col-md-4 col-sm-12 col-xs-12">
+        <span class="user-name"><%= bid.bidder.name %></span>
+        <span class="user-company"><%= 3 %></span>
+      </div>
+      <div class="ticket-time  col-md-4 col-sm-6 col-xs-12">
+          <div class="divider hidden-md hidden-sm hidden-xs"></div>
+          <span class="time">@ <%= idr_money(bid.contribution) %></span>
+      </div>
+      <div class="ticket-user col-md-2 col-sm-6 col-xs-6">
+    <% if bid.bidder?(current_user) || current_user.admin? %>
       <%= link_to edit_tender_bid_path(bid.tender, bid), remote: true, class: "btn btn-info btn-circle" do %>
         <span class="glyphicon glyphicon-pencil"></span> Edit
       <% end %>
       <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
         <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
       <% end %>
-    <% end %>
-    <% if current_user.admin? %>
-      <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
-        <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
-      <% end %>              
-    <% end %>
-  </div>                    
+    <% end %>      
+        <span class="user-at"><%= link_to "lihat", '#' %></span>        
+      </div>
+      <div class="ticket-type  col-md-2 col-sm-6 col-xs-6">
+          <span class="divider hidden-xs"></span>
+          <span class="type"><%= bid.state %></span>
+      </div>
+      <div class="ticket-state bg-palegreen">
+          <i class="fa fa-check"></i>
+      </div>
+  </div>
 </li>
