@@ -13,9 +13,13 @@
     <%= f.input :level, as: :integer, input_html: { min: '1', step: '1' }, label: "Tingkat", placeholder: "jumlah", required: true %>
     <%= f.input :garages, as: :integer, input_html: { min: '0', step: '1' }, label: "Carport", placeholder: "Jumlah", required: true %>
     <%= f.input :property_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Bangunan", placeholder: "meter persegi", required: true %>
+    <%= f.input :greenery, as: :select, collection: boolean_options, prompt: "Pilih", label: "Area hijau", required: true %>
     <%= f.input :lot_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Tanah", placeholder: "meter persegi", required: true %>
     <%= f.input :anno, as: :integer, input_html: { min: '1990', step: '1' }, label: "Tahun Dibangun", required: true %>
+    <%= f.input :description, label: "Informasi Tambahan", input_html: { rows: 10 } %>
   </div>
+  <h4 class="media-heading">Unggah Foto Utama Rumah</h4>
+  <%= render partial: 'elements/direct_photo_upload', locals: { f: f } %>
 
   <div class="form-actions">
     <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>

@@ -12,14 +12,15 @@ class House < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :barcode, :unit_type, :bedrooms, :bathrooms, :kitchen,
-                 :level, :garages, :garden, :property_size, :lot_size,
+                 :barcode, :unit_type, :bedrooms, :bathrooms,
+                 :level, :garages, :greenery, :property_size, :lot_size,
                  :structure_type, :anno, :country
 
   geocoded_by :address   # can also be an IP address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   # before_create :set_default_values!
+  # before_save :mark_it_down!
 
   def states_of_house
     ["for sale", "available", "for rent"]
@@ -55,4 +56,9 @@ class House < ActiveRecord::Base
   # def set_default_values!
   #   self.state = ""
   # end
+
+  # def mark_it_down!
+  #   MarkdownWriter.update_html(self)
+  # end
+
 end

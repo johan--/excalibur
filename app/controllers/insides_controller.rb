@@ -1,4 +1,5 @@
 class InsidesController < ApplicationController
+  
 
   def home
     @documents = current_user.documents
@@ -8,6 +9,9 @@ class InsidesController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def choose
   end
 
 end

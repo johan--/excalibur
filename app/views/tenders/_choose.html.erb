@@ -1,0 +1,28 @@
+<div class="modal-header modal-header-success">
+  <h3>Pilih Produk Pendanaan</h3>
+</div>
+<div class="modal-body">
+  <center>
+    <h3 class="media-heading"><%= "Produk Pendanaan Kapiten" %></h3>
+    <div>
+      <i class="fa fa-exchange fa-3x"></i>
+      <h2>Murabahah</h2>
+      <p>
+      	Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
+      </p>
+      <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme", remote: true  %>
+    </div>
+    <div>
+      <i class="fa fa-group fa-3x"></i>
+      <h2>Musyarakah</h2>
+      <p>
+        Untuk mengatur akun-akun usaha yang telah anda buat, mengaksesnya, atau membuat akun usaha baru, klik tombol di bawah ini.
+      </p>
+      <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah'), class: "btn btn-outlined btn-theme", remote: true  %>
+    </div>	 
+  </center>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+</div>

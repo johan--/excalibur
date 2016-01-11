@@ -1,38 +1,44 @@
-<div class="portlet portlet-bordered">
+<div class="portlet">
 	<div class="portlet-title">
 		<div class="caption caption-red">
 			<i class="glyphicon glyphicon-cog"></i>
-			<span class="caption-subject text-uppercase"> Portlet</span>
+			<span class="caption-subject text-uppercase"><strong><%= @house.title %></strong></span>
 		</div>
-		<div class="actions pull-right">
+<!-- 		<div class="actions pull-right">
 			<a href="javascript:;" class="btn btn-red btn-circle">
 				<i class="glyphicon glyphicon-pencil"></i>
 			</a>
 			<a href="javascript:;" class="btn btn-red btn-circle">
 				<i class="glyphicon glyphicon-trash"></i>
 			</a>
-		</div>
+		</div> -->
 	</div>
 	<div class="portlet-body">
 <div class="estate">
-
     <div class="row">
         <div class="col-md-12">
        <div class="row">
             <div class="col-md-7">
                 <div class="product-gallery">
                     <div class="primary-image">
-                        <img src="http://lorempixel.com/700/500/food/4/" class="img-responsive" alt="">
+                        <!-- Ideal image size is 700x500, with class of img-responsive -->
+                        <% if @house.avatar.blank? %>
+                            <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_500,w_700/v1452508512/asset/2000px-House_Silhouette.png" class="img-responsive" alt="">
+                        <% else %>
+                            <%= cl_image_tag(@house.avatar, house_photo_options('zoom')) %>
+                        <% end %>
                     </div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="product-info">
-                    <h3><%= @house.title %></h3>
                     <div class="wp-block property list no-border">
                         <div class="wp-block-content clearfix">
                             <h4 class="content-title"><%= @house.state %></h4>
-                            <p class="description mb-15"><%= @house.address %></p>
+                            <p class="mb-15"><%= @house.address %></p>
+                            <p class="description mb-15">
+                                <%= link_to 'Ajukan Pendanaan', choose_product_path, class: "btn btn-block btn-outlined btn-theme", remote: true  %>
+                            </p>
                             <span class="pull-left">
                                 <span class="price">
                                 	<%= idr_money(@house.price) %>
@@ -50,10 +56,10 @@
                         </div>
                         <div class="wp-block-footer style2 mt-15">
                             <ul class="aux-info">
-                                <li><i class="fa fa-building"></i>2300 Sq Feet</li>
-                                <li><i class="fa fa-user"></i> 5 Bedrooms</li>
-                                <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
-                                <li><i class="fa fa-car"></i> 3 Garages</li>
+                                <li><i class="fa fa-building"></i><%= @house.property_size %> m2</li>
+                                <li><i class="fa fa-user"></i> <%= @house.bedrooms %> Bedrooms</li>
+                                <li><i class="fa fa-tint"></i> <%= @house.bathrooms %> Bathrooms</li>
+                                <li><i class="fa fa-car"></i> <%= @house.garages %> Garages</li>
                             </ul>
                         </div>
                     </div>
@@ -67,22 +73,28 @@
                 <div class="tabs-framed boxed">
                     <ul class="tabs clearfix">
                         <li class="active"><a href="#tab-1" data-toggle="tab">Additional details</a></li>
-                        <li><a href="#tab-map" data-toggle="tab" data-type="gmap">Map</a></li>
+                        <li><a href="#tab-map" data-toggle="tab" data-type="gmap">Foto</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab-1">
                             <div class="tab-body">
                                 <div class="section-title-wr">
-                                    <h3 class="section-title left">Property description</h3>
+                                    <h3 class="section-title left">Keterangan</h3>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                                    <% if @house.description.nil? %> 
+                                      <div class="blankslate">
+                                        <div class="spacious">
+                                          <h3><%= "Belum Ada Keterangan" %></h3>
+                                        </div>
+                                      </div>
+                                    <% else %>
+                                        <p><%= @house.description %></p>
+                                    <% end %>
                                     <br><br>
-                                </p>
 
                                 <div class="section-title-wr">
-                                    <h3 class="section-title left">Additional details</h3>
+                                    <h3 class="section-title left">Rincian</h3>
                                 </div>
                                 <table class="table table-bordered table-striped table-hover table-responsive">
                                     <tbody>
@@ -92,20 +104,15 @@
                                             <td><strong>Harga:</strong> <%= idr_money(@house.price_ticker) %> jt</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Dapur:</strong> <%= @house.kitchen %></td>
+                                            <td><strong>Tingkat:</strong> <%= @house.level %></td>
                                             <td><strong>Kamar Tidur:</strong> <%= @house.bedrooms %></td>
                                             <td><strong>Kamar Mandi:</strong> <%= @house.bathrooms %></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Garasi:</strong> <%= @house.garages %></td>
-                                            <td><strong>Kebun:</strong> <%= @house.garden %></td>
-                                            <td><strong>Jenis Struktur:</strong> <%= @house.structure_type %></td>
-                                        </tr>
-                                        <tr>
+                                            <td><strong>Kebun:</strong> <%= @house.greenery %></td>
                                             <td><strong>Tahun dibangun:</strong><%= @house.anno %></td>
-                                            <td><strong>Tingkat:</strong> <%= @house.level %></td>
-                                            <td></td>
-                                        </tr>
+                                        <tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -24,6 +24,18 @@ module DocumentsHelper
 	  end
 	end
 
+	def house_photo_options(size)
+		if size == 'zoom'
+			{ :type => :private, :width => 700, :height => 500, quality: 100, 
+			:crop => :scale, format: :jpg, 
+			class: "img-responsive" }
+		else
+			{ :type => :private, :width => 175, :height => 175, quality: 100, 
+			:crop => :scale, format: :jpg, 
+			class: "img-responsive" }			
+		end
+	end
+
 	def cloudinary_thumb_options(type)
 	  if type == 'private'
 		{ :type => :private, :width => 60, :height => 60, quality: 70, 

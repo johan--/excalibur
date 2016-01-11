@@ -16,11 +16,11 @@
     </div>             
     <div class="col-xs-12 col-sm-6">
       <figure>
-        <% if user.avatar.nil? %>
+        <% if user.avatar.blank? %>
           <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
           <%= link_to "Unggah Gambar Profil", avatar_user_path(user), remote: true, class: "btn btn-outlined btn-theme btn-xs" %>
         <% else %>
-          <%= cl_image_tag(user.avatar, cloudinary_photo_options('') ) %>
+          <%= cl_image_tag(user.avatar, cloudinary_photo_options('private') ) %>
           <%= link_to "Hapus foto", remove_avatar_user_path(user), method: :put, data: {:confirm => 'Kamu yakin mau melanjutkan?', object: 'Penghapusan gambar profil'}, class: 'reset-link btn btn-danger btn-xs' %>
         <% end %>
       </figure>
