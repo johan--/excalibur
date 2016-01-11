@@ -12,10 +12,18 @@ class House < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :barcode, :unit_type
+                 :barcode, :unit_type, :bedrooms, :bathrooms, :kitchen,
+                 :level, :garages, :garden, :property_size, :lot_size,
+                 :structure_type, :anno, :country
+
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   # before_create :set_default_values!
 
+  def states_of_house
+    ["for sale", "available", "for rent"]
+  end
 
   def house?
     true if self.type.in?(HOUSE)
@@ -23,6 +31,10 @@ class House < ActiveRecord::Base
 
   def apartment?
     true if self.type.in?(APARTMENT)
+  end
+
+  def price_ticker
+      price_sens / 100000000
   end
 
   # def set_tangible_type
@@ -41,6 +53,6 @@ class House < ActiveRecord::Base
   # end
 
   # def set_default_values!
-  #   self.title = "#{self.category.titleize} #{self.id} #{self.city}"
+  #   self.state = ""
   # end
 end

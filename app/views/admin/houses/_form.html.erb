@@ -1,0 +1,23 @@
+<%= simple_form_for([:admin, @house], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :price, as: :integer, input_html: { min: 100000000, step: 1000000 }, label: "Harga", required: true %>
+    <%= f.input :category, collection: house_categories, prompt: "Pilih", selected: @house.category, label: "Kategori", required: true %>
+    <%= f.input :state, collection: house_states, prompt: "Pilih", selected: @house.state, label: "Status", required: true %>
+    <%= f.input :title, label: "Nama", required: true %>
+    <%= f.input :address, label: "Alamat", required: true %>
+    <%= f.input :city, label: "Kota", required: true %>
+    <%= f.input :bedrooms, as: :integer, input_html: { min: '1', step: '1' }, label: "Kamar Tidur", placeholder: "jumlah", required: true %>
+    <%= f.input :bathrooms, as: :integer, input_html: { min: '1', step: '1' }, label: "Kamar Mandi", placeholder: "jumlah", required: true %>
+    <%= f.input :level, as: :integer, input_html: { min: '1', step: '1' }, label: "Tingkat", placeholder: "jumlah", required: true %>
+    <%= f.input :garages, as: :integer, input_html: { min: '0', step: '1' }, label: "Carport", placeholder: "Jumlah", required: true %>
+    <%= f.input :property_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Bangunan", placeholder: "meter persegi", required: true %>
+    <%= f.input :lot_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Tanah", placeholder: "meter persegi", required: true %>
+    <%= f.input :anno, as: :integer, input_html: { min: '1990', step: '1' }, label: "Tahun Dibangun", required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+  </div>
+<% end %>

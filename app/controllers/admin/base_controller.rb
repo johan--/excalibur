@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   before_filter :require_admin!
   before_action :disable_background
+  before_action :admin_layout
 
   def index
     @last_signups = User.last_signups(10)
@@ -9,10 +10,10 @@ class Admin::BaseController < ApplicationController
     @subs_count = Subscriber.count
     @user_count = User.count
     @post_count = Post.count
+    @house_count = House.count
     @doc_count = Document.count
     @tender_count = Tender.count
     @bid_count = Bid.count
-    @admin_layout = true
   end
 
   def inbox
@@ -61,5 +62,8 @@ class Admin::BaseController < ApplicationController
 
 private
 
+  def admin_layout
+    @admin_layout = true
+  end
 
 end

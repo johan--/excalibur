@@ -1,0 +1,34 @@
+<div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title white">
+            <%= house.title %>
+            <span class="pull-right"><small class="white"><%= idr_money(house.price_ticker) %> jt</small></span>
+        </h4>
+      </div>            
+        <div class="panel-body house-item">
+            <img class="img-responsive img-effect" src="http://lorempixel.com/700/500/food/4/">
+            <div class="store-item-info clearfix">
+                <a href="#"><%= house.address %></a><br>
+                <small>
+                    <a href="#" class="text-muted"><%= "2 bedrooms, 1 bathroom" %></a>
+                </small>
+            </div>                    
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <span class="pull-right">
+                <a href="#" class="btn btn-primary btn-xs tip" title="Favorite">
+                    <i class="glyphicon glyphicon-pushpin"></i>
+                </a>
+                <%= link_to house_path(house), class: "btn btn-primary btn-xs tip" do %>
+                    <i class="fa fa-search-plus"></i>
+                <% end %>
+<!--                 <a href="#" class="btn btn-primary btn-xs tip" title="Share">
+                    <i class="glyphicon glyphicon-share"></i>
+                </a> -->
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

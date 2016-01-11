@@ -165,9 +165,13 @@ ActiveRecord::Schema.define(version: 20160106134201) do
     t.string   "publisher_type",                           null: false
     t.integer  "price_sens",     limit: 8, default: 0,     null: false
     t.string   "price_currency",           default: "IDR", null: false
+    t.integer  "shares",                   default: 1000,  null: false
     t.string   "title",                                    null: false
     t.string   "category"
+    t.string   "state"
     t.string   "address",                                  null: false
+    t.float    "longitude"
+    t.float    "latitude"
     t.string   "city"
     t.jsonb    "details",                  default: {}
     t.text     "description"
@@ -182,6 +186,7 @@ ActiveRecord::Schema.define(version: 20160106134201) do
   add_index "houses", ["deleted_at"], name: "index_houses_on_deleted_at", using: :btree
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
+  add_index "houses", ["state"], name: "index_houses_on_state", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"

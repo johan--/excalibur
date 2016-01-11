@@ -54,8 +54,8 @@ Fustal::Application.routes.draw do
   resources :tenders, only: [:show] do
     resources :bids
   end
-  resources :documents do
-  end
+  resources :documents
+  resources :houses, only: [:show, :index]
 
   # Static Pages
   root "pages#landing"
@@ -104,6 +104,7 @@ Fustal::Application.routes.draw do
     end
     resources :tenders, only: [:index, :edit, :update]
     resources :bids, only: [:index, :edit, :update, :destroy]
+    resources :houses, skip: [:show]
   end
 
   # Vanity AB TESTING FRAMEWORK

@@ -117,4 +117,12 @@ module FormOptionsHelper
 		["belum diproses", "tentatif", "pasti", "batal"]
 	end
 
+# House options
+	def house_categories
+	  ["rumah", "apartemen"]
+	end
+
+	def house_states
+	  ["for sale", "available", "for rent"]
+	end
 end

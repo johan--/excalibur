@@ -1,5 +1,5 @@
-<div class="col-sm-12">
-<!--   <div class="weather-3 pn centered">
+<!-- <div class="col-sm-12">
+<div class="weather-3 pn centered">
     <div class="col-sm-3">
       <i class="fa fa-smile-o centerpiece mt"></i>
       <h3>
@@ -23,10 +23,10 @@
           </div>
         </div>
       </div>
-    </div>
-  </div> -->
+    </div>  
+  </div>
 </div>  
-<div class="profile-userpic">
+ --><div class="profile-userpic">
   <% if current_user.avatar.nil? %>
     <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
     <p class="text-center">
@@ -43,6 +43,6 @@
     <%= current_user.name %>
   </div>
   <div class="profile-usertitle-job">
-    <%= 1 %>
+    <%= %>
   </div>
 </div>

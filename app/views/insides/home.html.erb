@@ -21,9 +21,6 @@
 
       <div role="tabpanel" class="tab-pane active" id="portlet_tab2">
         <div class="row">
-          <div class="col-md-12">
-            <%= render 'pages/userbox' %>
-          </div>
           <div class="col-md-12 col-sm-12 mt">
             <% if current_user.tenders.empty? %>
               <div class="blankslate">
@@ -90,7 +87,7 @@
                 <p>
                   Untuk mengatur akun-akun usaha yang telah anda buat, mengaksesnya, atau membuat akun usaha baru, klik tombol di bawah ini.
                 </p>
-                <%= link_to 'Lihat Galeri', '#', class: "btn btn-outlined btn-theme" %>
+                <%= link_to 'Lihat Galeri', houses_path, class: "btn btn-outlined btn-theme" %>
               </div>
             </div>            
             <div class="col-md-6">

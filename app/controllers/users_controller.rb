@@ -18,14 +18,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(profile_params)
-      if params[:avatar]
-        ahoy.track "Uploaded avatar", 
-          title: "#{@user.name}: #{@user.avatar}", 
-          category: "User", important: "avatar"
-      else
-        ahoy.track "Edited user profile", title: "#{@user.name}", 
-          category: "User", important: "profile"
-      end
+      # if params[:avatar]
+      #   ahoy.track "Uploaded avatar", 
+      #     title: "#{@user.name}: #{@user.avatar}", 
+      #     category: "User", important: "avatar"
+      # else
+      #   ahoy.track "Edited user profile", title: "#{@user.name}", 
+      #     category: "User", important: "profile"
+      # end
       flash[:notice] = 'Profil berhasil diperbaharui'
     else
       flash[:warning] = 'Profil gagal diperbaharui'

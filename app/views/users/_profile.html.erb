@@ -11,23 +11,25 @@
 			<p><strong>Pengeluaran Bulanan: </strong> <%= idr_money(user.monthly_expense) %> </p>
 			<p><strong>Pekerjaan: </strong> <%= user.occupation %> </p>
       <p><strong>Pengalaman Kerja: </strong> <br> <%= user.work_experience %></p>
+      <p><strong>Biografi: </strong><br> <span id="bio"><%= user.about %></span>  </p>
+      <p><strong>Alamat: </strong><span id="address"> <%= user.address %> </p>      
     </div>             
     <div class="col-xs-12 col-sm-6">
       <figure>
-        <% if current_user.avatar.nil? %>
+        <% if user.avatar.nil? %>
           <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+          <%= link_to "Unggah Gambar Profil", avatar_user_path(user), remote: true, class: "btn btn-outlined btn-theme btn-xs" %>
         <% else %>
-          <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('') ) %>
+          <%= cl_image_tag(user.avatar, cloudinary_photo_options('') ) %>
+          <%= link_to "Hapus foto", remove_avatar_user_path(user), method: :put, data: {:confirm => 'Kamu yakin mau melanjutkan?', object: 'Penghapusan gambar profil'}, class: 'reset-link btn btn-danger btn-xs' %>
         <% end %>
       </figure>
-      <p><strong>Biografi: </strong><br> <span id="bio"><%= user.about %></span>  </p>
-      <p><strong>Alamat: </strong><span id="address"> <%= user.address %> </p>
     </div>
   </div>            
   <div class="col-xs-12 divider text-center">
     <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong><%= user.credibility %></strong></h2>                    
-      <p>Kredibilitas</p>
+      <h2><strong><%= user.bids.count %></strong></h2>                    
+      <p>Pendanaan</p>
     </div>
     <div class="col-xs-12 col-sm-4 emphasis">
       <h2><strong><%= documents.count %></strong></h2>                    

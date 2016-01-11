@@ -1,7 +1,8 @@
 FactoryGirl.define do
 	factory :house do
-		price 3000000000
+		price 300000000
 		category "rumah"
+		state "available"
 		title "Rumah 1 Jaksel"
 		address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak"
 		city "Jakarta Selatan"
