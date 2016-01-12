@@ -106,7 +106,11 @@ Fustal::Application.routes.draw do
     end
     resources :tenders, only: [:index, :edit, :update]
     resources :bids, only: [:index, :edit, :update, :destroy]
-    resources :houses, skip: [:show]
+    resources :houses, skip: [:show] do
+      member do
+        get "upload", to: "houses#upload_photo", as: :upload_photo
+      end
+    end
   end
 
   # Vanity AB TESTING FRAMEWORK

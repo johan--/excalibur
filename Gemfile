@@ -13,8 +13,8 @@ gem 'jquery-turbolinks'
 # Authentication
 gem 'devise', '3.4.1'
 gem 'omniauth'
-gem 'omniauth-facebook'
-gem "omniauth-google-oauth2"
+# gem 'omniauth-facebook'
+# gem "omniauth-google-oauth2"
 
 # Analytics
 gem 'ahoy_matey'
@@ -23,8 +23,9 @@ gem 'groupdate'
 
 
 # File Upload
-gem 'attachinary', github: 'galliani/attachinary'
-gem 'cloudinary', '~> 1.0.24'
+gem 'attachinary', '1.3.1'#, github: 'galliani/attachinary'
+# gem 'cloudinary', '~> 1.0.24'
+gem 'cloudinary', '~> 1.1.0'
 
 # Email
 # gem 'griddler'

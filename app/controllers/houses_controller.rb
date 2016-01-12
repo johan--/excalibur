@@ -7,6 +7,7 @@ class HousesController < ApplicationController
 
   def show
   	@house = House.friendly.find(params[:id])
+  	@photos = @house.photos
 	# @position = @house.to_json
   end
 

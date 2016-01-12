@@ -18,10 +18,54 @@
     <%= f.input :anno, as: :integer, input_html: { min: '1990', step: '1' }, label: "Tahun Dibangun", required: true %>
     <%= f.input :description, label: "Informasi Tambahan", input_html: { rows: 10 } %>
   </div>
-  <h4 class="media-heading">Unggah Foto Utama Rumah</h4>
+  <hr>
+  <h4 class="media-heading">Unggah Foto Rumah</h4>
+  <h5>Display Picture</h5>
   <%= render partial: 'elements/direct_photo_upload', locals: { f: f } %>
 
+  <h5>Foto Galeri</h5>
+  <span class="status"></span>
+  <%= f.input :photos, as: :attachinary, class: "cloudinary-fileupload" %>
+  <hr>
+
   <div class="form-actions">
-    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+    <%= submit_tag "Simpan", class: "btn btn-outlined btn-black" %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    // Cloudinary jQuery integration library uses jQuery File Upload widget
+    // (see http://blueimp.github.io/jQuery-File-Upload/).
+    // Any file input field with cloudinary-fileupload class is automatically
+    // wrapped using the File Upload widget and configured for Cloudinary uploads.
+    // You can further customize the configuration using .fileupload method
+    // as we do below.
+    $(".cloudinary-fileupload")
+      .cloudinary_fileupload({ 
+        // Uncomment the following lines to enable client side image resizing and valiation.
+        // Make sure cloudinary/processing is included the js file
+        //disableImageResize: false,
+        //imageMaxWidth: 800,
+        //imageMaxHeight: 600,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
+        maxFileSize: 1000000, // 1MB
+        start: function (e) {
+          $(".status").text("Starting upload...");
+        },
+        progress: function (e, data) {
+          $(".status").text("Uploading... " + Math.round((data.loaded * 100.0) / data.total) + "%");
+        },
+        done: function (e, data) {
+          NProgress.done(true);
+        },        
+        fail: function (e, data) {
+          $(".status").text("Upload failed");
+        }
+      })
+      .off("cloudinarydone").on("cloudinarydone", function (e, data) {
+        NProgress.done(true);
+        $(".status").text("File berhasil diunggah, silahkan tekan Simpan");
+      }
+  }
+</script>

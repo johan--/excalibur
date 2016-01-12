@@ -4,8 +4,9 @@ class House < ActiveRecord::Base
 
   monetize :price_sens
 
-  has_many :tenders
   belongs_to :publisher, polymorphic: true
+  has_many :tenders
+  has_attachments :photos, maximum: 6
 
   HOUSE = ["rumah tunggal", "rumah gandeng", "town house"]
   APARTMENT = ["apartemen, rumah susun, flat"]

@@ -18,12 +18,6 @@
         <div class="preview"></div>
       </div>
     </div>
-    <div class="form_line">
-      <div class="form_controls">
-        <%= f.submit "Simpan", class: "btn btn-outlined btn-theme" %>
-        <% if @error %><span class="error"><%= @error %></span><% end %>
-      </div>
-    </div>
     <%= f.hidden_field :avatar, class: "avatar_field" %>
 </div>
 
@@ -103,5 +97,6 @@
     //     $("<div class=\"upload_details\">")
     //       .append("<h2>Upload metadata:</h2>")
     //       .append($("<table>").append(rows)));
-    // }
+    }
+}
 </script>

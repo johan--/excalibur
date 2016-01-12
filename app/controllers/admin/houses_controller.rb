@@ -1,5 +1,6 @@
 class Admin::HousesController < Admin::BaseController
-  before_action :set_house, only: [:edit, :update, :destroy]
+  before_action :set_house, only: [:edit,
+  									:update, :destroy]
 
   def index
   	@houses = House.all.page params[:page]
@@ -10,6 +11,11 @@ class Admin::HousesController < Admin::BaseController
   end
 
   def edit
+  	@house = House.friendly.find(params[:id])
+  end
+
+  def upload_photo
+  	@house = House.friendly.find(params[:id])
   end
 
   def create
@@ -49,7 +55,14 @@ private
   	  :price, :category, :state, :title, :address, :city, 
   	  :publisher, :publisher_type, :publisher_id,
   	  :bedrooms, :bathrooms, :kitchen, :level, :garages, :greenery,
-  	  :property_size, :lot_size, :anno, :avatar
+  	  :description,
+  	  :property_size, :lot_size, :anno, :avatar,
+  	  :photos_attributes => [:id, :signature, :created_at, 
+  	  	:tags, :bytes, :type, :etag, :url, :secure_url, 
+  	  	:original_filename],
+  	  photos: []
+  	  # {photos: []} failed,
+  	  # photos: [] failed
   	)
   end
 
