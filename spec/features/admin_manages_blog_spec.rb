@@ -4,7 +4,7 @@ feature "AdminManagesBlog", :type => :feature do
   subject { page }
 
   let!(:admin) { FactoryGirl.create(:admin) }
-  let!(:user) { FactoryGirl.create(:client) }
+  let!(:user) { FactoryGirl.create(:user) }
   let!(:post1) { FactoryGirl.create(:post_with_user, :dummy_keywords) }
 
   before(:each) do

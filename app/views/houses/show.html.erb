@@ -1,8 +1,10 @@
+<% meta title: @house.title %>
+
 <div class="portlet">
 	<div class="portlet-title">
 		<div class="caption caption-red">
 			<i class="glyphicon glyphicon-cog"></i>
-			<span class="caption-subject text-uppercase"><strong><%= @house.title %></strong></span>
+			<span class="caption-subject text-uppercase" id="house-title"><strong><%= @house.title %></strong></span>
 		</div>
         <% if current_user.admin? %>
 		<div class="actions pull-right">
@@ -36,13 +38,13 @@
                 <div class="product-info">
                     <div class="wp-block property list no-border">
                         <div class="wp-block-content clearfix">
-                            <h4 class="content-title"><%= @house.state %></h4>
+                            <h4 class="content-title" id="house-state"><%= @house.state %></h4>
                             <p class="mb-15"><%= @house.address %></p>
                             <p class="description mb-15">
                                 <%= link_to 'Ajukan Pendanaan', choose_product_path, class: "btn btn-block btn-outlined btn-theme", remote: true  %>
                             </p>
                             <span class="pull-left">
-                                <span class="price">
+                                <span class="price" id="house-price">
                                 	<%= idr_money(@house.price) %>
                                 </span> 
 <!--                                 <span class="period">

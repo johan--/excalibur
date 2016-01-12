@@ -16,6 +16,17 @@ FactoryGirl.define do
 	      after(:build) do |house|
 	        house.publisher = FactoryGirl.create :developer
 	      end  
-	    end  	    
+	    end
+
+	    trait :full_detail do
+	      bedrooms 3
+	      bathrooms 1
+	      level 1
+	      garages 1
+	      greenery true
+	      lot_size 100
+	      property_size 90
+	      anno 2015	    
+		end
 	end	
 end

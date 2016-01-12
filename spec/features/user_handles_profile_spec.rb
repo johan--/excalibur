@@ -4,7 +4,7 @@ feature "UserHandlesProfile", :type => :feature do
   subject { page }
   
   describe "user fresh after registration", js: true do
-    let!(:user_1) { FactoryGirl.create(:client) }
+    let!(:user_1) { FactoryGirl.create(:user) }
 
   	before do
       sign_in user_1
@@ -24,7 +24,7 @@ feature "UserHandlesProfile", :type => :feature do
   end
 
   describe "when there is a profile" do
-    let!(:user_2) { FactoryGirl.create(:client, :with_full_profile) }
+    let!(:user_2) { FactoryGirl.create(:user, :with_full_profile) }
 
     before(:each) do 
       sign_in user_2

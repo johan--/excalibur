@@ -23,8 +23,8 @@ class Admin::HousesController < Admin::BaseController
   	@house.publisher = current_user if params[:house][:publisher].nil?
   		
     if @house.save
-      flash[:notice] = 'Rumah berhasil dibuat'
-      redirect_to admin_houses_path
+      flash[:notice] = 'Rumah berhasil didaftarkan'
+      redirect_to house_path(@house)
     else
       render :new 
     end  	
@@ -33,7 +33,7 @@ class Admin::HousesController < Admin::BaseController
   def update
   	if @house.update(house_params)
       flash[:notice] = 'Rumah berhasil dikoreksi'
-      redirect_to admin_houses_path
+      redirect_to house_path(@house)
   	else
   	  render :edit
   	end

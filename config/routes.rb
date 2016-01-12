@@ -9,8 +9,9 @@ Fustal::Application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
-            :registrations => "registrations", 
-            :omniauth_callbacks => "omniauth_callbacks" }
+            :registrations => "registrations"
+            #, :omniauth_callbacks => "omniauth_callbacks" 
+          }
   devise_scope :user do
     get "/daftarbeta" => "devise/registrations#new"
     get "/masukbeta" => "devise/sessions#new"

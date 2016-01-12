@@ -20,8 +20,8 @@ class Tender < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :shares, :use_case, :intent, :aqad, :aqad_code,
-                 :margin, :own_capital
+                 :shares, :use_case, :aqad, :aqad_code,
+                 :margin, :own_capital, :unit
   attr_wannabe_bool :broadcast, :draft
 
 # Statesman stuffs

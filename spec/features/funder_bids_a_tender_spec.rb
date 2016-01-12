@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature "FunderBidsATender", :type => :feature do
   subject { page }
-  let!(:user_1) { FactoryGirl.create(:financier) }
-  let!(:user_2) { FactoryGirl.create(:client) }
-  let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user_2) }
+  let!(:user_1) { FactoryGirl.create(:user) } #funder
+  let!(:user_2) { FactoryGirl.create(:user) }  #client
+  let!(:tender) { FactoryGirl.create(:tender, :murabahah, tenderable: user) }
 
   before { sign_in user_1 }
   after { page.driver.reset! }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "ClientUploadsDocuments", :type => :feature do
   subject { page }
-  let!(:consumer) { FactoryGirl.create(:client) }
+  let!(:consumer) { FactoryGirl.create(:user) }
 
   before { sign_in consumer }
 

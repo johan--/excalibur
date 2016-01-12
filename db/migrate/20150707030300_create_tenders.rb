@@ -6,7 +6,8 @@ class CreateTenders < ActiveRecord::Migration
       t.string :category, null: false
       t.string :state, null: false
       t.string :slug, null: false, index: true, unique: true
-      t.integer :maturity
+      t.integer :annum
+      t.integer :unit_amount, default: 0
       t.monetize :target, null: false
       t.jsonb :properties, null: false, default: {}
       t.jsonb :details, null: false, default: {}
