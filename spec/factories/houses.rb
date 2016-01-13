@@ -3,7 +3,7 @@ FactoryGirl.define do
 		price 300000000
 		category "rumah"
 		state "available"
-		title "Rumah 1 Jaksel"
+		anno 2015
 		address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak"
 		city "Jakarta Selatan"
 		association :publisher, factory: :developer
@@ -26,7 +26,6 @@ FactoryGirl.define do
 	      greenery true
 	      lot_size 100
 	      property_size 90
-	      anno 2015	    
 		end
 	end	
 end

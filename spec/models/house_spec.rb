@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe House, :type => :model do
   before do
-  	@house = FactoryGirl.create(:house, :with_developer)
+  	@house = FactoryGirl.build(:house)
   end
 
   subject { @house }
 
   it { should respond_to(:price) }
+  it { should respond_to(:ticker) }
   it { should respond_to(:category) }
   it { should respond_to(:unit_type) }
   it { should respond_to(:address) }
@@ -19,7 +20,7 @@ RSpec.describe House, :type => :model do
   it { should be_valid }  	
 
   describe "when saved" do
-  	# before(:each) { @house.save }
+  	before(:each) { @house.save }
     
     describe "after create callback" do
       it "has a slug" do

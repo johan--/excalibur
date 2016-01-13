@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Document, :type => :model do
-  let!(:user) { FactoryGirl.create(:client) }
+  let!(:user) { FactoryGirl.create(:user) }
   before(:each) do
   	@document = Document.create(category: 'identitas', 
       doc_type: 'KTP',

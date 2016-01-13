@@ -3,9 +3,9 @@ FactoryGirl.define do
   factory :bid do
     association :tender, factory: :tender
     association :bidder, factory: :user
-    # contribution 500000000
-    shares 1000
-    summary "lorem ipsum dolor casus molar"
+    volume 1000
+    message "lorem ipsum dolor casus molar"
+
 
     trait :bidder do
       bidder
@@ -21,8 +21,12 @@ FactoryGirl.define do
       end      
     end
 
+    trait :half do
+      volume 500
+    end
+
     trait :quarter do
-      shares 250
+      volume 250
     end
   end
 end

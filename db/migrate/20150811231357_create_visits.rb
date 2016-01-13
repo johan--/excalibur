@@ -48,7 +48,7 @@ class CreateVisits < ActiveRecord::Migration
       # t.string :app_version
       # t.string :os_version
 
-      t.timestamp :started_at
+      t.timestamp :started_at, null: false
     end
 
     add_index :visits, [:user_id]

@@ -1,7 +1,7 @@
 class House < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :title, use: :slugged
-
+  protokoll :ticker, :pattern => "RUM#y%m%d####"
+  friendly_id :slug_candidates, use: :slugged
   monetize :price_sens
 
   belongs_to :publisher, polymorphic: true
@@ -61,5 +61,7 @@ class House < ActiveRecord::Base
   # def mark_it_down!
   #   MarkdownWriter.update_html(self)
   # end
-
+  def slug_candidates
+    [:ticker]
+  end
 end

@@ -27,11 +27,6 @@ gem 'attachinary', '1.3.1'#, github: 'galliani/attachinary'
 # gem 'cloudinary', '~> 1.0.24'
 gem 'cloudinary', '~> 1.1.0'
 
-# Email
-# gem 'griddler'
-# gem 'griddler-mandrill'
-# gem 'roadie', '2.4'
-
 
 # Blog
 # gem 'acts_as_commentable_with_threading'
@@ -55,6 +50,7 @@ gem 'metamagic'
 gem 'wannabe_bool'
 gem 'browser'
 gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
+gem 'protokoll', '1.0.2'
 
 
 # Complementary
@@ -66,7 +62,9 @@ gem 'statesman', '~> 1.2.3'
 gem 'redcarpet', '3.2.2'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'geocoder'
-gem 'gmaps4rails'
+# gem 'gmaps4rails'
+gem "rails-settings-cached", "~> 0.4.0"
+
 
 # API
 # gem 'apipie-rails'
@@ -106,5 +104,4 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'puma'
-  # gem "passenger", '4.0.59'
 end

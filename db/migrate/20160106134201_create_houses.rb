@@ -4,7 +4,7 @@ class CreateHouses < ActiveRecord::Migration
       t.references :publisher, polymorphic:true, index: true, null: false
       t.monetize   :price, null: false
       t.integer    :shares, null: false, default: 1000
-      t.string     :title, null: false
+      t.string     :ticker, index: true
       t.string     :category
       t.string     :state, index: true
       t.string     :address, null: false

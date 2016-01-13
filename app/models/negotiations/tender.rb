@@ -3,26 +3,23 @@ class Tender < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
   extend FriendlyId
+  protokoll :ticker, :pattern => "PRO%y%m%d####"
   friendly_id :slug_candidates, use: :slugged
   # include PublicActivity::Model
   # tracked
-  monetize :target_sens
+  monetize :price_sens
 
   belongs_to :house
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   
-  serialize :properties, HashSerializer
-  store_accessor :properties, 
-                 :broadcast, :draft,
-                 :summary, :barcode, :tenderable_name
-
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :shares, :use_case, :aqad, :aqad_code,
-                 :margin, :own_capital, :unit
-  attr_wannabe_bool :broadcast, :draft
+                 :state, :aqad_code, :margin, :unit, :draft, :message,
+                 :seed_capital
+
+  attr_wannabe_bool :draft
 
 # Statesman stuffs
   # Initialize the state machine
@@ -35,31 +32,32 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  # validates_presence_of :aqad, :price, :address
+  validates_presence_of :price, :volume, :aqad
 
   before_create :set_default_values!
-  # before_save :set_target!, :set_margin!
+  # before_save :set_price!, :set_margin!
   after_touch :set_state!
 
   # Pagination
   paginates_per 30
 
+  def target
+    price * volume
+  end
 
   def fulfilled?
-    true if check_contribution == self.target
+    return true if check_contribution == self.target
+    return false if check_contribution != self.target
   end
 
-  def self.categories
-    %w(Penggalangan Penjualan)
+  def categories
+    %w(housepurchase sharepurchase houserent)
   end
 
-  scope :open, -> { 
-    where("tenders.properties->>'open' = :true", true: "true") 
-  }
-  scope :qualified, -> { where(state: "qualified") }
-  scope :with_aqad, ->(aqad) { 
-    where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
-  }
+  scope :open, -> { where(state: "open") }
+  # scope :with_aqad, ->(aqad) { 
+  #   where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
+  # }
 
   def access_granted?(user)
     if self.tenderable_type == 'User'
@@ -70,35 +68,21 @@ class Tender < ActiveRecord::Base
   end
 
   def tender_owner?(user)
-    if self.tenderable == user
-      return true
-    else
-      return false
-    end      
+    return true if self.tenderable == user
+    return false if self.tenderable != user
   end
 
   def member_of_tenderable?(user)
-    if tenderable.team.has_as_member?(user)
-      return true
-    else
-      return false
-    end
+    return true if tenderable.team.has_as_member?(user)
+    return false if !tenderable.team.has_as_member?(user)
   end
 
   def funding_progress
-    (check_contribution / target) * 100
+    (check_contribution / price) * 100
   end
 
-  def shares_remaining
-    ((target - check_contribution) / price_per_share).round(0)
-  end
-
-  def price_per_share
-    target / shares
-  end
-
-  def total_share
-    1000
+  def shares_left
+    volume - self.bids.map{ |bid| bid.volume }.compact.sum
   end
 
 # Transitions
@@ -122,23 +106,8 @@ class Tender < ActiveRecord::Base
 
 private
   def set_default_values!
-    self.state = 'open'
-    self.barcode = "##{SecureRandom.hex(3)}"
-    self.tenderable_name = self.tenderable.name
-    self.broadcast = 'true'
-    self.shares = total_share
-  end
-
-  def set_target!
-    # @price = self.price.to_i
-    # @own_capital = self.own_capital.to_i
-
-    # if self.aqad == 'murabahah'
-    #   self.target = @price
-    # elsif self.aqad == 'musyarakah'
-    #   capital = @price * @own_capital / 100
-    #   self.target = @price - capital
-    # end
+    self.state = 'open' if self.state.nil?
+    self.draft = 'no' if self.draft.nil?
   end
 
   def set_margin!
@@ -152,16 +121,17 @@ private
     # end
   end
 
-  def slug_candidates
-    [ 
-      :barcode,
-      [:barcode, :tenderable_name, ]
-    ]
-  end
-
   def check_contribution
     value = self.bids.map{ |bid| bid.contribution }.compact.sum
     return value
+  end
+
+  def set_state!
+    if self.fulfilled?
+      self.closing unless self.state == "closed"
+    else
+      self.reopening
+    end
   end
 
   def self.transition_class
@@ -172,14 +142,7 @@ private
     :open
   end
 
-  def set_state!
-    
-    unless self.state == "qualified"
-        self.qualifying if self.fulfilled? 
-    else  
-      self.processing unless self.state == "processing"
-    end
-
+  def slug_candidates
+    [:ticker]
   end
-
 end

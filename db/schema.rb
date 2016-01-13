@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106134201) do
+ActiveRecord::Schema.define(version: 20160113031720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,25 +62,26 @@ ActiveRecord::Schema.define(version: 20160106134201) do
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "bidder_id",                                       null: false
-    t.string   "bidder_type",                                     null: false
-    t.integer  "tender_id",                                       null: false
-    t.string   "state",                                           null: false
-    t.integer  "contribution_sens",     limit: 8, default: 0,     null: false
-    t.string   "contribution_currency",           default: "IDR", null: false
-    t.jsonb    "properties",                      default: {}
-    t.jsonb    "details",                         default: {}
-    t.string   "slug",                                            null: false
+    t.integer  "bidder_id",                                null: false
+    t.string   "bidder_type",                              null: false
+    t.integer  "tender_id",                                null: false
+    t.string   "ticker"
+    t.integer  "volume",                                   null: false
+    t.integer  "price_sens",     limit: 8, default: 0,     null: false
+    t.string   "price_currency",           default: "IDR", null: false
+    t.jsonb    "details",                  default: {}
+    t.string   "slug",                                     null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "bids", ["bidder_type", "bidder_id"], name: "index_bids_on_bidder_type_and_bidder_id", using: :btree
   add_index "bids", ["deleted_at"], name: "index_bids_on_deleted_at", using: :btree
-  add_index "bids", ["properties"], name: "index_bids_on_properties", using: :gin
+  add_index "bids", ["details"], name: "index_bids_on_details", using: :gin
   add_index "bids", ["slug"], name: "index_bids_on_slug", using: :btree
   add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
+  add_index "bids", ["ticker"], name: "index_bids_on_ticker", using: :btree
 
   create_table "businesses", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -118,6 +119,15 @@ ActiveRecord::Schema.define(version: 20160106134201) do
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["slug"], name: "index_comments_on_slug", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "custom_auto_increments", force: :cascade do |t|
+    t.string   "counter_model_name"
+    t.integer  "counter",            default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
 
   create_table "document_transitions", force: :cascade do |t|
     t.string   "to_state",                 null: false
@@ -166,7 +176,7 @@ ActiveRecord::Schema.define(version: 20160106134201) do
     t.integer  "price_sens",     limit: 8, default: 0,     null: false
     t.string   "price_currency",           default: "IDR", null: false
     t.integer  "shares",                   default: 1000,  null: false
-    t.string   "title",                                    null: false
+    t.string   "ticker"
     t.string   "category"
     t.string   "state"
     t.string   "address",                                  null: false
@@ -187,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160106134201) do
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
   add_index "houses", ["state"], name: "index_houses_on_state", using: :btree
+  add_index "houses", ["ticker"], name: "index_houses_on_ticker", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -232,6 +243,17 @@ ActiveRecord::Schema.define(version: 20160106134201) do
   add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
   add_index "rosters", ["teamable_type", "teamable_id"], name: "index_rosters_on_teamable_type_and_teamable_id", using: :btree
 
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+
   create_table "subscribers", force: :cascade do |t|
     t.string   "email",      null: false
     t.string   "name"
@@ -261,24 +283,26 @@ ActiveRecord::Schema.define(version: 20160106134201) do
     t.string   "tenderable_type",                           null: false
     t.integer  "house_id"
     t.string   "category",                                  null: false
-    t.string   "state",                                     null: false
+    t.string   "aqad",                                      null: false
+    t.string   "ticker"
     t.string   "slug",                                      null: false
-    t.integer  "maturity"
-    t.integer  "target_sens",     limit: 8, default: 0,     null: false
-    t.string   "target_currency",           default: "IDR", null: false
-    t.jsonb    "properties",                default: {},    null: false
+    t.integer  "annum",                                     null: false
+    t.integer  "volume",                                    null: false
+    t.integer  "price_sens",      limit: 8, default: 0,     null: false
+    t.string   "price_currency",            default: "IDR", null: false
     t.jsonb    "details",                   default: {},    null: false
     t.datetime "deleted_at"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
+  add_index "tenders", ["aqad"], name: "index_tenders_on_aqad", using: :btree
   add_index "tenders", ["deleted_at"], name: "index_tenders_on_deleted_at", using: :btree
   add_index "tenders", ["details"], name: "index_tenders_on_details", using: :gin
   add_index "tenders", ["house_id"], name: "index_tenders_on_house_id", using: :btree
-  add_index "tenders", ["properties"], name: "index_tenders_on_properties", using: :gin
   add_index "tenders", ["slug"], name: "index_tenders_on_slug", using: :btree
   add_index "tenders", ["tenderable_type", "tenderable_id"], name: "index_tenders_on_tenderable_type_and_tenderable_id", using: :btree
+  add_index "tenders", ["ticker"], name: "index_tenders_on_ticker", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

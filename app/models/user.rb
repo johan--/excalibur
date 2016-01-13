@@ -1,4 +1,5 @@
-class User < ActiveRecord::Base  
+class User < ActiveRecord::Base
+  include RailsSettings::Extend  
   include WannabeBool::Attributes
   include UserChecking
   include UserAdmin

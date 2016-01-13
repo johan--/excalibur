@@ -54,4 +54,8 @@ Fustal::Application.configure do
     ssl: true,
     tls: true
   }
+
+  # Do not suppress errors raised within 'after rollback' and 
+  # 'after commit' callbacks
+  config.active_record.raise_in_transactional_callbacks = true
 end

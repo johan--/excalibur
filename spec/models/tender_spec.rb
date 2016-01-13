@@ -3,29 +3,24 @@ require 'rails_helper'
 RSpec.describe Tender, :type => :model do
   let!(:user) { FactoryGirl.create(:user) }
 
-  describe "Murabahah financing" do
+  describe "house purchase tender" do
   	before do
-  	  @tender = FactoryGirl.build(:tender, :murabahah, tenderable: user)
+  	  @tender = FactoryGirl.build(:tender, :murabaha,
+  	  								:house_purchase, tenderable: user)
   	end
 
 	subject { @tender }
 
 	it { should respond_to(:house) }
 	it { should respond_to(:tenderable) }
+	it { should respond_to(:ticker) }
 	it { should respond_to(:category) }
 	it { should respond_to(:target) }
-	it { should respond_to(:target_sens) }
-	it { should respond_to(:properties) }
-	it { should respond_to(:summary) }
-	it { should respond_to(:barcode) }
+	it { should respond_to(:price_sens) }
 	it { should respond_to(:details) }
-	it { should respond_to(:maturity) }
-	it { should respond_to(:margin) }
-	it { should respond_to(:intent) }
+	it { should respond_to(:unit) }
 	it { should respond_to(:state) }
-	it { should respond_to(:broadcast) }
 	it { should respond_to(:draft) }
-	it { should respond_to(:aqad) }
 	it { should respond_to(:aqad_code) }
 	it { should be_valid }
 
@@ -33,12 +28,8 @@ RSpec.describe Tender, :type => :model do
 	  before(:each) { @tender.save }
 
 	  describe "default values set by callback or database" do
-	  	it "sets properties of open to true" do
-	  	  expect(@tender.broadcast?).to eq true
-	  	end
-
-	  	it "sets barcode" do
-	  	  expect(@tender.barcode).to_not eq nil
+	  	it "sets tender as not a draft" do
+	  	  expect(@tender.draft?).to eq false
 	  	end
 
 	  	it "sets status" do
@@ -52,7 +43,7 @@ RSpec.describe Tender, :type => :model do
 
 	  describe ".target" do
 		it 'returns the target money sens value of target' do
-		  expect(@tender.target_sens).to eq 30000000000 #plus two zero digits as sens added
+		  expect(@tender.target).to eq 100000000 #plus two zero digits as sens added
 		end
 	  end
 

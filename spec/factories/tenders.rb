@@ -1,19 +1,23 @@
 FactoryGirl.define do
 
   factory :tender do
-    summary "Lorem ipsum dolor cassus"
-
-    target 300000000
-    category "Penggalangan"
-    intent "pembelian rumah"
-    # tangible "rumah tunggal"
-    own_capital 30
-    maturity 8
-    broadcast "true"
-    draft "false"
-    state "open"
     association :house, factory: :house
     association :tenderable, factory: :user
+    price 100000 # one hundred thousand
+    volume 1000
+    annum 8
+    draft "no"
+    message "Lorem ipsum dolor cassus"
+
+    trait :house_purchase do
+      category "house purchase"
+      unit "revenue shares"
+    end
+
+    trait :share_purchase do
+      category "share purchase"
+      unit "ownership shares"
+    end
 
     trait :success do
       state "success"
@@ -38,15 +42,27 @@ FactoryGirl.define do
     end 
 
     trait :draft do
-      draft "true"
+      draft "yes"
     end
 
-    trait :musharakah do
-      aqad "musyarakah"
+    trait :musharaka do
+      aqad "musharaka"
     end
 
-    trait :murabahah do
-      aqad "murabahah"
+    trait :murabaha do
+      aqad "murabaha"
+    end
+
+    trait :mudharaba do
+      aqad "mudharaba"
+    end
+
+    trait :half do
+      volume 500
+    end
+
+    trait :quarter do
+      volume 250
     end
 
     trait :tenderable do
