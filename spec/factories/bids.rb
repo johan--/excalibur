@@ -6,9 +6,16 @@ FactoryGirl.define do
     volume 1000
     message "lorem ipsum dolor casus molar"
 
+    trait :for_purchase_murabaha do
+      association :tender, factory: :house_purchase_murabaha_tender
+    end
 
     trait :bidder do
       bidder
+    end
+
+    trait :tender do
+      tender
     end
 
     trait :confirmed do

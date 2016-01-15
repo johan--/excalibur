@@ -36,6 +36,9 @@ RSpec.describe Tender, :type => :model do
 	  	  expect(@tender.state).to eq 'open'
 	  	end
 
+	  	it "sets slug that is equal to ticker" do
+	  	  expect(@tender.slug).to eq @tender.ticker.downcase
+	  	end
 	  	# it "sets margin" do
 	  	#   expect(@tender.margin).to be > 0
 	  	# end	  	

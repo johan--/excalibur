@@ -6,12 +6,16 @@ class TenderStateMachine
   state :success
   state :dropped
 
-  transition from: :open, to: :closed
-  transition from: :closed, to: [:success, :dropped]
+  transition from: :open, to: [:closed, :dropped]
+  transition from: :closed, to: [:open, :success, :dropped]
   # transition from: :dropped
 
   guard_transition(to: :closed) do |tender|
     tender.fulfilled?
+  end
+
+  guard_transition(to: :open) do |tender|
+    !tender.fulfilled?
   end
 
   after_transition do |tender, transition|

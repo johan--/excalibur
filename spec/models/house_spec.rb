@@ -10,7 +10,6 @@ RSpec.describe House, :type => :model do
   it { should respond_to(:price) }
   it { should respond_to(:ticker) }
   it { should respond_to(:category) }
-  it { should respond_to(:unit_type) }
   it { should respond_to(:address) }
   it { should respond_to(:city) }
   it { should respond_to(:avatar) }

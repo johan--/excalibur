@@ -50,9 +50,8 @@ Fustal::Application.routes.draw do
       get "avatar"
       put "remove_avatar"
     end    
-    resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
-  resources :tenders, only: [:show] do
+  resources :tenders do
     resources :bids
   end
   resources :documents
@@ -105,7 +104,7 @@ Fustal::Application.routes.draw do
         get "delete"
       end
     end
-    resources :tenders, only: [:index, :edit, :update]
+    resources :tenders, only: [:index, :edit, :update, :destroy]
     resources :bids, only: [:index, :edit, :update, :destroy]
     resources :houses, skip: [:show] do
       member do

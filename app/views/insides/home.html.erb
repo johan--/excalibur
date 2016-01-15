@@ -59,37 +59,37 @@
           <div class="row stylish-panel">
             <div class="col-md-6">
               <div>
-                <i class="fa fa-exchange fa-3x"></i>
+                <i class="fa fa-file fa-3x"></i>
                 <h2>Ajukan Pendanaan</h2>
                 <p>
                   Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
                 </p>
-                  <%= link_to 'Ajukan Pendanaan', choose_product_path, class: "btn btn-block btn-outlined btn-theme", remote: true  %>
+                  <%= link_to 'Ajukan Murabahah', new_tender_path(user_id: current_user.id, type: 'murabaha', intent: 'house purchase'), class: "btn btn-outlined btn-theme"  %>
               </div>
             </div>
             <div class="col-md-6">
               <div>
-                <i class="fa fa-group fa-3x"></i>
-                <h2>Musyarakah</h2>
+                <i class="fa fa-home fa-3x"></i>
+                <h2>Galeri Rumah</h2>
                 <p>
                   Untuk mengatur akun-akun usaha yang telah anda buat, mengaksesnya, atau membuat akun usaha baru, klik tombol di bawah ini.
                 </p>
-                <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah'), class: "btn btn-outlined btn-theme", remote: true  %>
-              </div>
+                <%= link_to 'Lihat Galeri', houses_path, class: "btn btn-block btn-outlined btn-theme" %>
+              </div>            
             </div>
           </div>
           <div class="row stylish-panel">
             <br>
             <div class="col-md-6">
               <div>
-                <i class="fa fa-home fa-3x"></i>
-                <h2>Galeri</h2>
+                <i class="fa fa-cog fa-3x"></i>
+                <h2>Pengaturan</h2>
                 <p>
                   Untuk mengatur akun-akun usaha yang telah anda buat, mengaksesnya, atau membuat akun usaha baru, klik tombol di bawah ini.
                 </p>
-                <%= link_to 'Lihat Galeri', houses_path, class: "btn btn-outlined btn-theme" %>
+                <%= link_to 'Ubah Pengaturan', '#', class: "btn btn-block btn-outlined btn-theme", remote: true  %>
               </div>
-            </div>            
+            </div>   
             <div class="col-md-6">
               <div>
                 <i class="fa fa-smile-o fa-3x"></i>
@@ -97,7 +97,7 @@
                 <p>
                   Atur akses dan tindakan yang bisa dilakukan tiap pengguna yang berkaitan.
                 </p>
-                <%= link_to 'Minta bantuan', contact_path, class: "btn btn-outlined btn-theme", remote: true  %> 
+                <%= link_to 'Minta bantuan', contact_path, class: "btn btn-block btn-outlined btn-theme", remote: true  %> 
               </div>
             </div>            
           </div>

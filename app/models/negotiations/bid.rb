@@ -1,6 +1,8 @@
 class Bid < ActiveRecord::Base
   extend FriendlyId
   include WannabeBool::Attributes
+  include RefreshSlug
+  acts_as_paranoid
   protokoll :ticker, :pattern => "BID%y%m%d####"
   friendly_id :slug_candidates, use: :slugged
   belongs_to :bidder, polymorphic: true
@@ -10,13 +12,18 @@ class Bid < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :draft, :state, :message, :intent_type, :intent_assets
+                 :draft, :state, :message, :last_volume, :intent_assets
 
   attr_wannabe_bool :draft
   validates_presence_of :price, :volume
+  validates_associated :tender
 
   before_create :set_default_values!
-  after_save  :touch_tender!, if: ->(obj){ obj.volume.present? and obj.volume_changed? }
+  after_create :refresh_friendly_id!
+  after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
+  before_destroy :reset_volume
+
+  scope :real, -> { where(deleted_at: nil) }
 
   def bidder?(user)
     if self.bidder == user
@@ -28,6 +35,11 @@ class Bid < ActiveRecord::Base
     price * volume
   end
 
+  def reset_volume
+    vol = self.volume
+    update(volume: 0, last_volume: vol)
+  end
+
 private
   def set_default_values!
 	  self.state = "pending" if self.state.nil?
@@ -37,9 +49,12 @@ private
 
   def touch_tender!
     self.tender.touch
+    # Tender.find_by_id(self.tender.id).touch
   end
 
   def slug_candidates
     [:ticker]
   end
+
+
 end

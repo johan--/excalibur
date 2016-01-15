@@ -2,21 +2,26 @@ class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
+  include RefreshSlug
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y%m%d####"
   friendly_id :slug_candidates, use: :slugged
   # include PublicActivity::Model
   # tracked
   monetize :price_sens
+  acts_as_paranoid
 
   belongs_to :house
   belongs_to :tenderable, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   
+  attr_accessor :funding_target
+
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :state, :aqad_code, :margin, :unit, :draft, :message,
+                 :state, :aqad_code, :layman_terms,
+                 :margin, :unit, :draft, :message,
                  :seed_capital
 
   attr_wannabe_bool :draft
@@ -32,9 +37,10 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  validates_presence_of :price, :volume, :aqad
+  validates_presence_of :aqad, :category, :house
 
   before_create :set_default_values!
+  after_create :refresh_friendly_id!
   # before_save :set_price!, :set_margin!
   after_touch :set_state!
 
@@ -77,8 +83,9 @@ class Tender < ActiveRecord::Base
     return false if !tenderable.team.has_as_member?(user)
   end
 
-  def funding_progress
-    (check_contribution / price) * 100
+  def check_contribution
+    value = self.bids.real.map{ |bid| bid.contribution }.compact.sum
+    return value
   end
 
   def shares_left
@@ -86,7 +93,7 @@ class Tender < ActiveRecord::Base
   end
 
 # Transitions
-  def reopen
+  def reopening
     self.transition_to!(:open)
   end
 
@@ -106,8 +113,18 @@ class Tender < ActiveRecord::Base
 
 private
   def set_default_values!
-    self.state = 'open' if self.state.nil?
-    self.draft = 'no' if self.draft.nil?
+    set_tender_unit!
+    self.volume = 1000 if self.volume.nil?
+    self.price = self.house.price / 1000 if self.price.nil?
+    self.state = 'open' if self.state.blank?
+    self.draft = 'no' if self.draft.blank?
+    self.layman_terms = 'credit sale' if self.aqad == 'murabaha'
+    self.layman_terms = 'co-ownership' if self.aqad == 'musharaka'
+  end
+
+  def set_tender_unit!
+    self.unit = 'revenue shares' if self.aqad == 'murabaha'
+    self.unit = 'ownership shares' if self.aqad == 'musharaka'
   end
 
   def set_margin!
@@ -121,14 +138,9 @@ private
     # end
   end
 
-  def check_contribution
-    value = self.bids.map{ |bid| bid.contribution }.compact.sum
-    return value
-  end
-
   def set_state!
     if self.fulfilled?
-      self.closing unless self.state == "closed"
+      self.closing unless self.state == 'closed'
     else
       self.reopening
     end
@@ -143,6 +155,13 @@ private
   end
 
   def slug_candidates
-    [:ticker]
+    [
+      :ticker, 
+      [:ticker, :tenderable_name]
+    ]
+  end
+
+  def tenderable_name
+    self.tenderable.name
   end
 end

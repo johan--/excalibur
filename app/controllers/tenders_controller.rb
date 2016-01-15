@@ -1,36 +1,31 @@
 class TendersController < ApplicationController
   before_action :set_tender, only: [
-    :edit, :update, :destroy
+    :show, :edit, :update, :destroy
   ]
-  before_action :find_tender, only: :show
-  before_action :find_tenderable
+  before_action :find_tenderable, except: [:create]
   before_action :user_layout
 
-  def index
-    @tenders = @tenderable.tenders
-  end
+  # def index
+  #   @tenders = @tenderable.tenders
+  # end
 
   def show
     @bids = @tender.bids
     if @tender.aqad == 'murabahah'
-      @simulation = MurabahaSimulation.new(maturity: @tender.maturity, 
-        price: @tender.target, contribution_percent: @tender.own_capital )
+      @simulation = MurabahaSimulation.new(maturity: @tender.annum, 
+        price: @tender.target, contribution_percent: @tender.seed_capital )
     elsif @tender.aqad == 'musyarakah'
-      @simulation = MusharakaSimulation.new(maturity: @tender.maturity, 
-        price: @tender.target, contribution_percent: @tender.own_capital,
+      @simulation = MusharakaSimulation.new(maturity: @tender.annum, 
+        price: @tender.target, contribution_percent: @tender.seed_capital,
         tangible: @tender.set_tangible_type)
     end
-
-    # unless current_user == @tenderable
-    #   ahoy.track "Viewed proposal", 
-    #     title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|", 
-    #     category: "Tender", important: "#{@tender.aqad}"
-    # end
   end
 
   def new
-    @aqad = params[:aqad]
-    @tender = @tenderable.tenders.build
+    @aqad = params[:type]
+    @category = params[:intent]
+    @houses = House.vacancy.order(:ticker)
+    @tender = Tender.new
   end
 
   def edit
@@ -38,27 +33,21 @@ class TendersController < ApplicationController
   end
 
   def create
-    @tender = @tenderable.tenders.build(tender_params)
-    @tender.category = @tenderable.class.name
+    @tender = Tender.new(tender_params)
+    @tender.tenderable = current_user
 
     if @tender.save
-      # ahoy.track "Created #{@tender.aqad} proposal", 
-      #   title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|", 
-      #   category: "Tender", important: "#{@tender.aqad}"
       flash[:notice] = 'Proposal berhasil dibuat'
       redirect_to @tender
     else
-      render :new 
-      find_tenderable
+      redirect_to user_root_path
       Rails.logger.info(@tender.errors.inspect) 
     end
   end
 
   def update
     if @tender.update(tender_params)
-      # ahoy.track "Edited #{@tender.aqad} proposal", 
-      #   title: "#{@tenderable.name}: #{@tender.barcode} |#{@tender.category.upcase}|",
-      #   category: "Tender", important: "#{@tender.aqad}"
+
       flash[:notice] = 'Proposal berhasil dikoreksi'
       redirect_to @tender
     else
@@ -67,21 +56,10 @@ class TendersController < ApplicationController
     end
   end
 
-  def destroy
-    @tender.destroy
-    flash[:notice] = 'Proposal berhasil dihapuskan'
-    redirect_to user_root_path
-  end
-
 
 private
-  def find_tender
-    @tender = Tender.friendly.find(params[:id])
-  end
-
   def set_tender
-    find_tenderable
-    @tender = @tenderable.tenders.friendly.find(params[:id])
+    @tender = Tender.friendly.find(params[:id])
   end
 
   def find_tenderable
@@ -89,9 +67,6 @@ private
       @tenderable = Business.friendly.find(params[:business_id])
     elsif params[:user_id]
       @tenderable = User.friendly.find(params[:user_id])
-    else
-      find_tender
-      @tenderable = @tender.tenderable
     end
   end
 
@@ -99,11 +74,12 @@ private
     params.require(:tender).permit(
       :tenderable, :tenderable_type, :tenderable_id, 
       :category, :target, :target_sens,
+      :annum, :seed_capital,
       # properties
-      :summary, :published,
+      :message, :draft,
       # details
-      :aqad, :aqad_code, :use_case,
-      :intent, :tangible, :address, :price, :maturity, :own_capital
+      :aqad, :aqad_code,
+      :house, :house_id
     )
   end
 

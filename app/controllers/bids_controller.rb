@@ -1,10 +1,10 @@
 class BidsController < ApplicationController
-  before_action :set_bid, only: [:show, :edit, :update, :destroy, :finalize]
+  before_action :set_bid, only: [:edit, :update, :destroy, :finalize]
   before_action :find_tender
   before_action :user_layout
 
-  def show
-  end
+  # def show
+  # end
 
   def new
     @bid = @tender.bids.build
@@ -17,39 +17,28 @@ class BidsController < ApplicationController
     @bid = @tender.bids.build(bid_params)
     @bid.bidder = current_user
 
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @tender, notice: 'Tawaran berhasil diajukan' }
-        format.json { render :show, status: :created, location: @bid }
-      else
-        format.html { render :new }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
+    if @bid.save
+      redirect_to @tender, notice: 'Tawaran berhasil diajukan'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @bid.update(bid_params)
-        format.html { redirect_to @tender, notice: 'Tawaran berhasil dikoreksi' }
-        format.json { render :show, status: :ok, location: @bid }
-      else
-        format.html { render :edit }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
+    if @bid.update(bid_params)
+      redirect_to @tender, notice: 'Tawaran berhasil dikoreksi'
+    else
+      render :edit
     end
   end
 
   def destroy
     @bid.destroy
-    respond_to do |format|
-      format.html { redirect_to firm_dashboard_url(subdomain: ''), notice: 'Tawaran berhasil ditarik' }
-      format.json { head :no_content }
-    end
+    redirect_to @tender, notice: 'Tawaran berhasil ditarik'
   end
 
   def finalize
-    @bid.transitioning!
+    # @bid.transitioning!
   end
 
 private
@@ -64,7 +53,7 @@ private
 
   def bid_params
     params.require(:bid).permit(
-      :contribution, :summary, :shares
+      :volume, :message, :tender_id
     )
   end
 

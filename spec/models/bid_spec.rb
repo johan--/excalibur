@@ -54,6 +54,29 @@ RSpec.describe Bid, :type => :model do
       end
 
     end
+
+    describe "if destroyed" do
+      before(:each) do 
+        @bid.destroy
+      end
+
+      it "should not really delete the object" do
+        expect(Bid.with_deleted.count).to eq 1
+      end
+
+      it "should set the volume of the object to 0" do
+        expect(@bid.volume).to eq 0
+      end
+
+      it "should affect the tender associated with it" do
+        expect(tender.fulfilled?).to eq false
+      end
+
+      it "should change the tender state" do
+        expect(tender.state).to eq 'open'
+      end      
+    end
+
   end
 
 

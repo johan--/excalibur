@@ -20,6 +20,7 @@ require 'support/features_helpers'
 require 'support/requests_helpers'
 require 'support/database_cleaner'
 require 'support/subdomains'
+require 'support/controller_helpers'
 OmniAuth.config.test_mode = true
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -65,7 +66,9 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
+  
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerHelpers, :type => :controller
 
   config.infer_spec_type_from_file_location!
-  config.include Devise::TestHelpers, type: :controller
 end

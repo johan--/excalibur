@@ -1,5 +1,7 @@
 class House < ActiveRecord::Base
   extend FriendlyId
+  include RefreshSlug
+  include WannabeBool::Attributes
   protokoll :ticker, :pattern => "RUM#y%m%d####"
   friendly_id :slug_candidates, use: :slugged
   monetize :price_sens
@@ -13,27 +15,26 @@ class House < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :barcode, :unit_type, :bedrooms, :bathrooms,
-                 :level, :garages, :greenery, :property_size, :lot_size,
-                 :structure_type, :anno, :country
+                 :for_sale, :for_rent, :vacant, :anno, :country,
+                 :bedrooms, :bathrooms, :level, :garages, 
+                 :greenery, :property_size, :lot_size
 
+  attr_wannabe_bool :for_sale, :for_rent, :vacant
   geocoded_by :address   # can also be an IP address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   # before_create :set_default_values!
-  # before_save :mark_it_down!
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  after_create :refresh_friendly_id!
+  after_update :refresh_tenders
+
+  scope :vacancy, -> { 
+    where("houses.details->>'vacant' = 'yes'") 
+  }
 
   def states_of_house
-    ["for sale", "available", "for rent"]
+    ["for sale", "vacant", "for rent"]
   end
 
-  def house?
-    true if self.type.in?(HOUSE)
-  end
-
-  def apartment?
-    true if self.type.in?(APARTMENT)
-  end
 
   def price_ticker
       price_sens / 100000000
@@ -47,21 +48,13 @@ class House < ActiveRecord::Base
   #   end
   # end
 
-  # def set_barcode
-  #   cat = "APT" if set_tangible_type == 'apartemen'
-  #   cat = "RMH" if set_tangible_type == 'rumah'
-
-  #   return "#{cat} #{id} #{city}"
-  # end
-
-  # def set_default_values!
-  #   self.state = ""
-  # end
-
-  # def mark_it_down!
-  #   MarkdownWriter.update_html(self)
-  # end
   def slug_candidates
     [:ticker]
   end
+
+private
+  def refresh_tenders
+    self.tenders.map{ |tender| tender.touch }
+  end
+
 end

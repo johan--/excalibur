@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160113031720) do
     t.text     "parameters"
     t.integer  "recipient_id"
     t.string   "recipient_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 20160113031720) do
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
     t.integer  "counter",            default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
@@ -248,8 +248,8 @@ ActiveRecord::Schema.define(version: 20160113031720) do
     t.text     "value"
     t.integer  "thing_id"
     t.string   "thing_type", limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
@@ -377,8 +377,8 @@ ActiveRecord::Schema.define(version: 20160113031720) do
     t.integer  "shown"
     t.integer  "seen"
     t.integer  "converted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "vanity_participants", ["experiment_id", "converted"], name: "by_experiment_id_and_converted", using: :btree
@@ -412,7 +412,7 @@ ActiveRecord::Schema.define(version: 20160113031720) do
     t.string   "utm_term"
     t.string   "utm_content"
     t.string   "utm_campaign"
-    t.datetime "started_at"
+    t.datetime "started_at",       null: false
   end
 
   add_index "visits", ["user_id"], name: "index_visits_on_user_id", using: :btree

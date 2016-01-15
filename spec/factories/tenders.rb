@@ -9,6 +9,11 @@ FactoryGirl.define do
     draft "no"
     message "Lorem ipsum dolor cassus"
 
+    factory :house_purchase_murabaha_tender do
+      house_purchase
+      murabaha
+    end
+
     trait :house_purchase do
       category "house purchase"
       unit "revenue shares"

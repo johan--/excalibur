@@ -10,7 +10,7 @@
       <p>
       	Tempat mengurus segala hal yang berurusan dengan urusan berlangganan kamu seperti pembayaran, pencetakan bukti bayar, dan lain-lain.
       </p>
-      <%= link_to 'Ajukan Murabahah', new_user_tender_path(current_user, aqad: 'murabahah'), class: "btn btn-outlined btn-theme", remote: true  %>
+      <%= link_to 'Ajukan Murabahah', new_tender_path(user_id: current_user, type: 'murabaha', intent: 'house purchase'), class: "btn btn-outlined btn-theme", remote: true  %>
     </div>
     <div>
       <i class="fa fa-group fa-3x"></i>
@@ -18,7 +18,7 @@
       <p>
         Untuk mengatur akun-akun usaha yang telah anda buat, mengaksesnya, atau membuat akun usaha baru, klik tombol di bawah ini.
       </p>
-      <%= link_to 'Ajukan Musyarakah', new_user_tender_path(current_user, aqad: 'musyarakah'), class: "btn btn-outlined btn-theme", remote: true  %>
+      <%= link_to 'Ajukan Musyarakah', new_tender_path(user_id: current_user, type: 'musharaka', intent: 'house purchase'), class: "btn btn-outlined btn-theme", remote: true  %>
     </div>	 
   </center>
 </div>

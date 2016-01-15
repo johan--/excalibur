@@ -4,9 +4,12 @@ FactoryGirl.define do
 		category "rumah"
 		state "available"
 		anno 2015
-		address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak"
+		sequence(:address) { |n| "Jl. Cipete 10 No. #{n+13} RT 10 RW 11 Cilandak"}
 		city "Jakarta Selatan"
 		association :publisher, factory: :developer
+		vacant "yes"
+		for_sale "yes"
+		for_rent "no"
 
 	    trait :by_developer do 
 	      association :publisher, factory: :business

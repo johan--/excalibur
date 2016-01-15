@@ -28,4 +28,3 @@
 //= require_tree ./houses
 //= require_tree ./sitewide
 //= require social-share-button
-//= require gmaps/google
