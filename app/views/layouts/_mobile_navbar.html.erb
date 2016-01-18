@@ -23,21 +23,19 @@
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
-			<% if user_signed_in? %>
-			  <li>
-				<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
-			  </li>
-			<% end %>
-			<li class="hidden-xs">
-				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
-			</li>
 			<li class="visible-sm visible-xs">
 				<a href="#" class="menu-toggle" data-show-dialog="side-menu-advanced">
 					<i class="menu-icon fa fa-bars"></i>
 					<span>Menu</span>
 				</a>
-			</li>
+			</li>		
 			<% if user_signed_in? %>
+			  <li>
+				<%= link_fa_to('home', 'Beranda', user_root_url(subdomain: '')) %>
+			  </li>
+			  <li>
+				<%= link_fa_to('cogs', 'Akun', edit_user_registration_url(subdomain: '')) %>
+			  </li>			  
 				<li>
 					<%= link_to destroy_user_session_path, data:{method: :delete} do %>
 						<i class="menu-icon fa fa-sign-out"></i>

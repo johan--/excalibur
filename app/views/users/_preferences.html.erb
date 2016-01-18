@@ -1,0 +1,12 @@
+<%= simple_form_for(user, html: { class: 'form-horizontal' },
+        wrapper: :horizontal_form) do |f| %>
+  <%= f.error_notification %>
+
+	<%= f.input :currency, collection: currency_options, prompt: "Pilih", selected: user.currency, label: "Mata Uang" %>
+	<%= f.input :notification, collection: yes_no_options, prompt: "Pilih", selected: user.notification, label: "Notifikasi" %>  
+	<%= f.input :repayment_period, collection: repayment_period_options, prompt: "Pilih", selected: user.repayment_period, label: "Periode Penerimaan" %>
+
+  
+  	<%= f.button :submit, "Simpan", class: "btn btn-primary" %>
+  
+<% end %>

@@ -4,11 +4,10 @@ class Tender < ActiveRecord::Base
   include ProfitMargin
   include RefreshSlug
   extend FriendlyId
-  protokoll :ticker, :pattern => "PRO%y%m%d####"
+  protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
-  # include PublicActivity::Model
-  # tracked
   monetize :price_sens
+  acts_as_commentable
   acts_as_paranoid
 
   belongs_to :house
@@ -109,6 +108,9 @@ class Tender < ActiveRecord::Base
   end  
 ####
 
+  def tender_discussion
+
+  end
 
 
 private

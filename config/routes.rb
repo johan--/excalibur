@@ -56,6 +56,7 @@ Fustal::Application.routes.draw do
   end
   resources :documents
   resources :houses, only: [:show, :index]
+  resources :comments
 
   # Static Pages
   root "pages#landing"
@@ -63,7 +64,9 @@ Fustal::Application.routes.draw do
   # get "home", to: "pages#home", as: :user_root
   
   get "home", to: "insides#home", as: :user_root
+  get "bursa", to: "insides#marketplace", as: :marketplace
   get "pendanaan", to: "insides#choose", as: :choose_product
+  get "profil", to: "insides#profile", as: :profile
 
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"

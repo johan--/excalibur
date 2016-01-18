@@ -1,34 +1,26 @@
-<div class="col-md-4 col-sm-4 col-xs-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h4 class="panel-title white">
-            <%= house.title %>
-            <span class="pull-right"><small class="white"><%= idr_money(house.price_ticker) %> jt</small></span>
-        </h4>
-      </div>            
-        <div class="panel-body house-item">
-            <img class="img-responsive img-effect" src="http://lorempixel.com/700/500/food/4/">
-            <div class="store-item-info clearfix">
-                <a href="#"><%= house.address %></a><br>
-                <small>
-                    <a href="#" class="text-muted"><%= "2 bedrooms, 1 bathroom" %></a>
-                </small>
-            </div>                    
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <span class="pull-right">
-                <a href="#" class="btn btn-primary btn-xs tip" title="Favorite">
-                    <i class="glyphicon glyphicon-pushpin"></i>
-                </a>
-                <%= link_to house_path(house), class: "btn btn-primary btn-xs tip" do %>
-                    <i class="fa fa-search-plus"></i>
-                <% end %>
-<!--                 <a href="#" class="btn btn-primary btn-xs tip" title="Share">
-                    <i class="glyphicon glyphicon-share"></i>
-                </a> -->
-                </span>
-            </div>
-        </div>
+<div class="col-sm-6 col-xs-12">
+<li>
+    <a href="#" class="product-photo">
+        <% if house.avatar.blank? %>
+            <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png" class="img-responsive" alt="">
+        <% else %>
+            <%= cl_image_tag(house.avatar, house_photo_options()) %>
+        <% end %>                
+    </a>
+
+    <h2><a href="#"><%= house.ticker %></a></h2>
+<!--     <a href="#" class="product-compare">compare</a> -->
+
+    <div class="product-rating">
+        <span><a href="#">Luas Bangunan/Tanah: <%= house.property_size %>m2/<%= house.lot_size %>m2</a></span>
     </div>
+
+    <p class="product-description"><%= house.bedrooms %> kamar tidur dan <%= house.bathrooms %> kamar mandi.</p>
+
+    <%= link_to house_path(house), class: "btn btn-primary btn-xs tip" do %>
+        <i class="fa fa-search-plus"></i> Lihat
+    <% end %>            
+    <p class="product-price"><%= idr_money(house.price_ticker) %> jt</p>
+
+</li>
 </div>

@@ -1,26 +1,16 @@
-<li class="media">
-  <a href="#" class="pull-left">
-    <% if tender.tenderable.avatar.nil? %>
-      <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
-    <% else %>
-      <%= cl_image_tag(tender.tenderable.avatar, cloudinary_photo_options('private')) %>
-    <% end %>                     
-  </a>
-  <div class="media-body">
-    <span class="text-muted pull-right">
-      <small class="text-muted">
-        <%= idr_money(tender.target) %>
-      </small>
-      <span class="label label-primary"><%= tender.state %></span>
-    </span>
-    <strong class="text-success"><%= tender.tenderable.name %></strong>
-    <p>
-      <%= tender.aqad %> untuk  rumah <%= tender.house.ticker %> di <%= tender.house.address %>
-    </p>
-  </div>
-  <div class="media-footer">
-      <%= link_to tender_path(tender) do %>
-        <span class="glyphicon glyphicon-zoom-in"></span> Lihat
-      <% end %>
-  </div>                    
-</li>
+<article class="timeline-entry">
+    <div class="timeline-entry-inner">
+
+        <div class="timeline-icon bg-success">
+            <i class="entypo-feather"></i>
+        </div>
+
+        <div class="timeline-label">
+            <h2><%= link_to tender.ticker, tender_path(tender)  %>
+               <span>  <%= tender.aqad %> | <%= tender.category %></span><span class="label label-primary pull-right"><%= tender.state %></span></h2>
+            <p>Diajukan oleh <strong><%= tender.tenderable.name %> </strong>untuk rumah <%= tender.house.ticker %>.
+            </p>
+        </div>
+    </div>
+
+</article>

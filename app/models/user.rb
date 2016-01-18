@@ -5,13 +5,15 @@ class User < ActiveRecord::Base
   include UserAdmin
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  acts_as_commentable
 
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 
   serialize :preferences, HashSerializer
   store_accessor :preferences, 
-          :language, :currency, :open, :understanding, :developer
+          :currency, :open, :understanding, :developer, 
+          :notification, :repayment_period
   serialize :profile, HashSerializer
   store_accessor :profile, 
     :phone_number, :about, :last_education, 
@@ -81,7 +83,6 @@ class User < ActiveRecord::Base
 
   def set_default_values!
     self.open = true
-    self.language = 'bahasa'
     self.currency = 'idr'
   end
 

@@ -3,10 +3,23 @@ module FormOptionsHelper
   	[ ["True", true], ["False", false] ]
   end
 
-  def province_lists
-  	[ "DKI Jakarta", "Banten", "Jawa Barat" ]
+  def yes_no_options
+  	[ "yes", "no" ]
   end
-  
+
+  def currency_options
+  	[ "idr", "usd" ]
+  end
+
+  def repayment_period_options
+  	[ "weekly", "monthly", "retained" ]
+  end
+
+# Comment options
+	def subject_options
+		["assessment", "interaction"]
+	end
+
 # User options
 	def user_category_options
 		[ 

@@ -10,15 +10,23 @@ class TendersController < ApplicationController
   # end
 
   def show
+    @comment = Comment.new
+    @client = @tender.tenderable 
+    @type = @tender.class.name
+    @commentable_id = @tender.id
     @bids = @tender.bids
-    if @tender.aqad == 'murabahah'
-      @simulation = MurabahaSimulation.new(maturity: @tender.annum, 
-        price: @tender.target, contribution_percent: @tender.seed_capital )
-    elsif @tender.aqad == 'musyarakah'
-      @simulation = MusharakaSimulation.new(maturity: @tender.annum, 
-        price: @tender.target, contribution_percent: @tender.seed_capital,
-        tangible: @tender.set_tangible_type)
-    end
+    @bidders = []
+
+    @bids.each{ |bid| @bidders << bid.bidder }
+
+    # if @tender.aqad == 'murabahah'
+    #   @simulation = MurabahaSimulation.new(maturity: @tender.annum, 
+    #     price: @tender.target, contribution_percent: @tender.seed_capital )
+    # elsif @tender.aqad == 'musyarakah'
+    #   @simulation = MusharakaSimulation.new(maturity: @tender.annum, 
+    #     price: @tender.target, contribution_percent: @tender.seed_capital,
+    #     tangible: @tender.set_tangible_type)
+    # end
   end
 
   def new

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+  let!(:admin) { FactoryGirl.create(:admin) }
+
   before(:each) do
   	@user = User.new(email: "galih@example.com", password: "foobarbaz",
   		password_confirmation: "foobarbaz", name: "galih muhammad", 
@@ -9,6 +11,7 @@ RSpec.describe User, :type => :model do
 
   subject { @user }
 
+  it { should respond_to(:comment_threads) }
   it { should respond_to(:profile) }
   it { should respond_to(:preferences) }
   it { should respond_to(:open) }
@@ -27,7 +30,19 @@ RSpec.describe User, :type => :model do
 
   describe "when saved" do
   	before(:each) { @user.save }
-    
+
+    describe "making comments" do
+      before do
+        @comment = Comment.build_from( @user, admin.id, 
+          "Hey guys this is my comment!" )
+        @comment.save
+      end
+
+      it "should be able to retrieve the comment belonged to the tender" do
+        comments = @user.comment_threads
+        expect(comments.count).to eq 1
+      end
+    end    
     # describe ".preferences" do
   	 #  it 'returns default values of open booelan' do
     #     expect(@user.open).to eq true
@@ -43,9 +58,9 @@ RSpec.describe User, :type => :model do
       	expect(@user.auth_token).to_not eq nil
       end
 
-      it "has a default language" do
-        expect(@user.language).to eq 'bahasa'
-      end
+      # it "has a default language" do
+      #   expect(@user.language).to eq 'bahasa'
+      # end
 
       it "has a default currency" do
         expect(@user.currency).to eq 'idr'
@@ -53,7 +68,6 @@ RSpec.describe User, :type => :model do
     end
 
     describe "scoping users" do
-      let!(:user_2) { FactoryGirl.create(:admin) }
       let!(:user_3) { FactoryGirl.create(:developer) }
       let!(:user_4) { FactoryGirl.create(:developer) }
       

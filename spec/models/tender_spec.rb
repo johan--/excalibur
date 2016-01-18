@@ -13,6 +13,7 @@ RSpec.describe Tender, :type => :model do
 
 	it { should respond_to(:house) }
 	it { should respond_to(:tenderable) }
+	it { should respond_to(:comment_threads) }
 	it { should respond_to(:ticker) }
 	it { should respond_to(:category) }
 	it { should respond_to(:target) }
@@ -66,6 +67,19 @@ RSpec.describe Tender, :type => :model do
 	  	end
 	  end
 
+
+	  describe "making comments" do
+	  	before do
+		  @comment = Comment.build_from( @tender, user.id, 
+		  	"Hey guys this is my comment!" )
+		  @comment.save
+		end
+
+		it "should be able to retrieve the comment belonged to the tender" do
+		  comments = @tender.comment_threads
+		  expect(comments.count).to eq 1
+		end
+	  end
 	end
   end
 

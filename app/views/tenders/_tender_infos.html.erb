@@ -1,0 +1,90 @@
+<div class="panel-body inf-content">
+  <div class="row">
+  	<div class="col-md-2"></div>
+    <div class="col-md-3 text-center">
+      <i class="fa fa-file-text fa-4x" style="display: block;"></i>
+      <h4 id="identifier">#<%= tender.ticker %></h4>
+      <h5><span class="label label-primary" id="tender-state"><%=tender.state %></span></h5> 
+      <% if tender.access_granted?(current_user) %>
+        <%= link_to 'Edit', edit_tender_path(tender), class: "btn btn-round-lg btn-primary", remote: true  %>
+      <% else %>
+        <%= link_to 'Danai', new_tender_bid_path(tender), class: "btn btn-round-lg btn-primary", remote: true  %>
+      <% end %>
+      <br>
+    </div>
+    <div class="col-md-5">
+      <div class="table-responsive">
+        <table class="table table-condensed table-responsive table-user-information">
+          <tbody>
+            <tr>        
+              <td><strong>
+                <span id="aqad" class="glyphicon glyphicon-briefcase text-primary"></span> Akad
+                </strong>
+              </td>
+              <td class="text-primary">
+                <strong><%=tender.aqad.titleize %></strong>
+              </td>
+            </tr>
+            <tr>    
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-user text-primary"></span> Lama 
+                </strong>
+              </td>
+              <td class="text-primary" id="maturity-margin"><%=tender.annum %> Tahun</td>
+            </tr>
+            <tr>    
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-user text-primary"></span> Harga
+                </strong>
+              </td>
+              <td class="text-primary" id="maturity-margin"><%= idr_money(tender.price) %> / unit</td>
+            </tr>					            
+            <tr>					            
+                <td>
+                  <strong>
+                    <span class="glyphicon glyphicon-piggy-bank text-primary"></span> Sisa/Jumlah
+                  </strong>
+                </td>
+                <td class="text-primary">
+                    <%=tender.shares_left %>/<%= tender.volume %> unit
+                </td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-eye-open text-primary"></span> Unit
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= tender.unit %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-pencil text-primary"></span> Diperbarui
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= time_ago_in_words(tender.updated_at) %> ago
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-pencil text-primary"></span> Rumah
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= link_to tender.house.ticker, house_path(tender.house) %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

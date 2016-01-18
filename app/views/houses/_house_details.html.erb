@@ -1,0 +1,19 @@
+<table class="table table-bordered table-striped table-hover table-responsive">
+  <tbody>
+    <tr>
+      <td><strong>Luas Bangunan:</strong> <%= house.property_size %> Sq Ft</td>
+      <td><strong>Luas Tanah:</strong> <%= house.lot_size %> Sq Ft</td>
+      <td><strong>Harga:</strong> <%= idr_money(house.price_ticker) %> jt</td>
+    </tr>
+    <tr>
+      <td><strong>Tingkat:</strong> <%= house.level %></td>
+      <td><strong>Kamar Tidur:</strong> <%= house.bedrooms %></td>
+      <td><strong>Kamar Mandi:</strong> <%= house.bathrooms %></td>
+    </tr>
+    <tr>
+      <td><strong>Garasi:</strong> <%= house.garages %></td>
+      <td><strong>Kebun:</strong> <%= house.greenery %></td>
+      <td><strong>Tahun dibangun:</strong><%= house.anno %></td>
+    <tr>
+  </tbody>
+</table>

@@ -29,7 +29,7 @@ gem 'cloudinary', '~> 1.1.0'
 
 
 # Blog
-# gem 'acts_as_commentable_with_threading'
+gem 'acts_as_commentable_with_threading'
 gem 'social-share-button', '~> 0.1.6'
 
 
@@ -44,14 +44,14 @@ gem 'bootstrap-sass', '3.3.3'
 gem 'goldiloader'
 gem 'simple_form'
 gem 'pg'
-gem 'public_activity'
+# gem 'public_activity'
 gem 'metamagic'
 # gem 'inline_svg', '0.6.1'
 gem 'wannabe_bool'
 gem 'browser'
 gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
 gem 'protokoll', '1.0.2'
-
+gem "socialization", "~> 1.2.0"
 
 # Complementary
 gem 'nprogress-rails'

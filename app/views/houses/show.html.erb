@@ -1,10 +1,10 @@
-<% meta title: @house.title %>
+<% meta title: @house.ticker %>
 
 <div class="portlet">
 	<div class="portlet-title">
 		<div class="caption caption-red">
 			<i class="glyphicon glyphicon-cog"></i>
-			<span class="caption-subject text-uppercase" id="house-title"><strong><%= @house.title %></strong></span>
+			<span class="caption-subject text-uppercase" id="house-title"><strong><%= @house.ticker %></strong></span>
 		</div>
         <% if current_user.admin? %>
 		<div class="actions pull-right">
@@ -98,27 +98,10 @@
                                     <br><br>
 
                                 <div class="section-title-wr">
-                                    <h3 class="section-title left">Rincian</h3>
+                                  <h3 class="section-title left">Rincian</h3>
+                                  <%= render 'houses/house_details', house: @house %>
                                 </div>
-                                <table class="table table-bordered table-striped table-hover table-responsive">
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Luas Bangunan:</strong> <%= @house.property_size %> Sq Ft</td>
-                                            <td><strong>Luas Tanah:</strong> <%= @house.lot_size %> Sq Ft</td>
-                                            <td><strong>Harga:</strong> <%= idr_money(@house.price_ticker) %> jt</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Tingkat:</strong> <%= @house.level %></td>
-                                            <td><strong>Kamar Tidur:</strong> <%= @house.bedrooms %></td>
-                                            <td><strong>Kamar Mandi:</strong> <%= @house.bathrooms %></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Garasi:</strong> <%= @house.garages %></td>
-                                            <td><strong>Kebun:</strong> <%= @house.greenery %></td>
-                                            <td><strong>Tahun dibangun:</strong><%= @house.anno %></td>
-                                        <tr>
-                                    </tbody>
-                                </table>
+
                             </div>
                         </div>
 
