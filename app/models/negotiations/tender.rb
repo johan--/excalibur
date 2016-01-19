@@ -104,7 +104,7 @@ class Tender < ActiveRecord::Base
     self.transition_to!(:success)
   end
   def dropping
-    self.transition_to!(:dropped)
+    self.transition_to!(:failed)
   end  
 ####
 

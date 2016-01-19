@@ -3,7 +3,6 @@ class InsidesController < ApplicationController
 
   def home
     @title = "Beranda"
-    @documents = current_user.documents
     @tenders = Tender.all
   end
 

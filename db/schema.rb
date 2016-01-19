@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117132426) do
+ActiveRecord::Schema.define(version: 20160119004715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,15 +120,6 @@ ActiveRecord::Schema.define(version: 20160117132426) do
   add_index "comments", ["slug"], name: "index_comments_on_slug", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "custom_auto_increments", force: :cascade do |t|
-    t.string   "counter_model_name"
-    t.integer  "counter",            default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
-
   create_table "document_transitions", force: :cascade do |t|
     t.string   "to_state",                 null: false
     t.json     "metadata",    default: {}
@@ -157,17 +148,6 @@ ActiveRecord::Schema.define(version: 20160117132426) do
   add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
   add_index "documents", ["slug"], name: "index_documents_on_slug", unique: true, using: :btree
 
-  create_table "follows", force: :cascade do |t|
-    t.string   "follower_type",   null: false
-    t.integer  "follower_id",     null: false
-    t.string   "followable_type", null: false
-    t.integer  "followable_id",   null: false
-    t.datetime "created_at"
-  end
-
-  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
-  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -180,6 +160,25 @@ ActiveRecord::Schema.define(version: 20160117132426) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.integer  "member_id",       null: false
+    t.string   "member_type",     null: false
+    t.integer  "group_id"
+    t.string   "group_type"
+    t.string   "group_name"
+    t.string   "membership_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "group_memberships", ["group_name"], name: "index_group_memberships_on_group_name", using: :btree
+  add_index "group_memberships", ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
+  add_index "group_memberships", ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.string "type"
+  end
 
   create_table "houses", force: :cascade do |t|
     t.integer  "publisher_id",                             null: false
@@ -220,28 +219,6 @@ ActiveRecord::Schema.define(version: 20160117132426) do
 
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
-
-  create_table "likes", force: :cascade do |t|
-    t.string   "liker_type",    null: false
-    t.integer  "liker_id",      null: false
-    t.string   "likeable_type", null: false
-    t.integer  "likeable_id",   null: false
-    t.datetime "created_at"
-  end
-
-  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
-  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
-
-  create_table "mentions", force: :cascade do |t|
-    t.string   "mentioner_type",   null: false
-    t.integer  "mentioner_id",     null: false
-    t.string   "mentionable_type", null: false
-    t.integer  "mentionable_id",   null: false
-    t.datetime "created_at"
-  end
-
-  add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
-  add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",                        null: false

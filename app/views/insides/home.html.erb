@@ -17,6 +17,7 @@
     <div class="row">
       <div id="user-dashboard">
         <%= render 'dashboard' %>
+        <%= render partial: 'tenders/tender_list', locals: { tenders: @tenders } %>
       </div>
       <div id="app-content" style="display:none;">
       </div>

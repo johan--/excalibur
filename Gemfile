@@ -51,7 +51,8 @@ gem 'wannabe_bool'
 gem 'browser'
 gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
 gem 'protokoll', '1.0.2'
-gem "socialization", "~> 1.2.0"
+gem 'groupify', '0.7.1'
+# gem "socialization", "~> 1.2.0"
 
 # Complementary
 gem 'nprogress-rails'

@@ -141,6 +141,7 @@ GEM
       activesupport (>= 3.2, < 4.3)
     groupdate (2.5.0)
       activesupport (>= 3)
+    groupify (0.7.1)
     hashie (3.4.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -279,8 +280,6 @@ GEM
     social-share-button (0.1.10)
       coffee-rails
       sass-rails
-    socialization (1.2.0)
-      activerecord
     spring (1.2.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -353,6 +352,7 @@ DEPENDENCIES
   geocoder
   goldiloader
   groupdate
+  groupify (= 0.7.1)
   jbuilder (= 2.2.6)
   jquery-rails (= 4.0.3)
   jquery-turbolinks
@@ -377,7 +377,6 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   social-share-button (~> 0.1.6)
-  socialization (~> 1.2.0)
   spring (= 1.2.0)
   statesman (~> 1.2.3)
   thin (= 1.5.1)

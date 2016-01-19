@@ -14,6 +14,7 @@ class TendersController < ApplicationController
     @client = @tender.tenderable 
     @type = @tender.class.name
     @commentable_id = @tender.id
+    @subject = "interaction"
     @bids = @tender.bids
     @bidders = []
 

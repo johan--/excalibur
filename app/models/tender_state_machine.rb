@@ -4,11 +4,11 @@ class TenderStateMachine
   state :open, initial: true
   state :closed
   state :success
-  state :dropped
+  state :failed
 
-  transition from: :open, to: [:closed, :dropped]
-  transition from: :closed, to: [:open, :success, :dropped]
-  # transition from: :dropped
+  transition from: :open, to: [:closed, :failed]
+  transition from: :closed, to: [:open, :success, :failed]
+  # transition from: :failed
 
   guard_transition(to: :closed) do |tender|
     tender.fulfilled?

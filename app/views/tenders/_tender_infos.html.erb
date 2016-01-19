@@ -6,9 +6,9 @@
       <h4 id="identifier">#<%= tender.ticker %></h4>
       <h5><span class="label label-primary" id="tender-state"><%=tender.state %></span></h5> 
       <% if tender.access_granted?(current_user) %>
-        <%= link_to 'Edit', edit_tender_path(tender), class: "btn btn-round-lg btn-primary", remote: true  %>
+        <%= link_to 'Edit', edit_tender_path(tender), class: "btn btn-round-lg btn-info", remote: true  %>
       <% else %>
-        <%= link_to 'Danai', new_tender_bid_path(tender), class: "btn btn-round-lg btn-primary", remote: true  %>
+        <%= link_to 'Danai', new_tender_bid_path(tender), class: "btn btn-block btn-round-lg btn-primary", remote: true  %>
       <% end %>
       <br>
     </div>
@@ -28,7 +28,7 @@
             <tr>    
               <td>
                 <strong>
-                  <span class="glyphicon glyphicon-user text-primary"></span> Lama 
+                  <span class="fa fa-clock-o text-primary"></span> Lama 
                 </strong>
               </td>
               <td class="text-primary" id="maturity-margin"><%=tender.annum %> Tahun</td>
@@ -36,7 +36,7 @@
             <tr>    
               <td>
                 <strong>
-                  <span class="glyphicon glyphicon-user text-primary"></span> Harga
+                  <span class="fa fa-money text-primary"></span> Harga
                 </strong>
               </td>
               <td class="text-primary" id="maturity-margin"><%= idr_money(tender.price) %> / unit</td>
@@ -44,7 +44,7 @@
             <tr>					            
                 <td>
                   <strong>
-                    <span class="glyphicon glyphicon-piggy-bank text-primary"></span> Sisa/Jumlah
+                    <span class="fa fa-cubes text-primary"></span> Sisa/Jumlah
                   </strong>
                 </td>
                 <td class="text-primary">
@@ -54,7 +54,7 @@
             <tr>        
               <td>
                 <strong>
-                  <span class="glyphicon glyphicon-eye-open text-primary"></span> Unit
+                  <span class="fa fa-envelope text-primary"></span> Unit
                 </strong>
               </td>
               <td class="text-primary">
@@ -74,7 +74,7 @@
             <tr>
               <td>
                 <strong>
-                  <span class="glyphicon glyphicon-pencil text-primary"></span> Rumah
+                  <span class="fa fa-building text-primary"></span> Rumah
                 </strong>
               </td>
               <td class="text-primary">

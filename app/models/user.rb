@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   acts_as_commentable
+  acts_as_paranoid
 
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
@@ -29,10 +30,8 @@ class User < ActiveRecord::Base
   has_many :houses, as: :publisher
   has_many :posts
   has_many :comments
-  has_many :rosters, as: :rosterable
-  has_many :teams, through: :rosters #Dont have to use source & source type
-  has_many :businesses, through: :teams, 
-                        source: :teamable, source_type: "Business"
+  groupify :group_member
+  groupify :named_group_member
   has_many :tenders, as: :tenderable
   has_many :bids, as: :bidder
   # analytics

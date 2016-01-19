@@ -649,7 +649,7 @@ ol, ul {
             float: left;
             border: 1px solid #d4d4d4;
             border-radius: 2px;
-            padding: 20px;
+            padding: 15px;
             position: relative;
             -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
             box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
@@ -744,14 +744,13 @@ ol, ul {
 .timeline-body > p,
 .timeline-body > ul {
     margin-bottom: 0;
-    font-weight: 300;
 }
 
     .timeline-body > p + p {
         margin-top: 5px;
     }
 
-@media (max-width: 767px) {
+
     ul.timeline:before {
         left: 40px;
     }
@@ -785,4 +784,3 @@ ol, ul {
             left: -14px;
             right: auto;
         }
-}
