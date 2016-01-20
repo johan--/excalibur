@@ -1,8 +1,8 @@
 FactoryGirl.define do
 
   factory :tender do
-    association :house, factory: :house
-    association :tenderable, factory: :user
+    # association :tenderable, factory: :stock
+    association :starter, factory: :user
     price 100000 # one hundred thousand
     volume 1000
     annum 8
@@ -17,6 +17,7 @@ FactoryGirl.define do
     trait :house_purchase do
       category "house purchase"
       unit "revenue shares"
+      with_stock
     end
 
     trait :share_purchase do
@@ -36,13 +37,16 @@ FactoryGirl.define do
       end
     end      
 
-    trait :with_tenderable do 
-      association :tenderable, factory: :user
+    trait :with_starter do 
+      association :starter, factory: :user
     end 
 
-    trait :with_house do 
+
+
+    trait :with_stock do 
       after(:build) do |tender|
-        tender.house = FactoryGirl.create(:house, :with_developer)
+        house = FactoryGirl.create(:house, :with_developer)
+        tender.tenderable = house.stocks.first
       end
     end 
 
@@ -70,8 +74,8 @@ FactoryGirl.define do
       volume 250
     end
 
-    trait :tenderable do
-      tenderable
+    trait :starter do
+      starter
     end
   end 
 

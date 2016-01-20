@@ -3,9 +3,7 @@ class CreateHouses < ActiveRecord::Migration
     create_table :houses do |t|
       t.references :publisher, polymorphic:true, index: true, null: false
       t.monetize   :price, null: false
-      t.integer    :shares, null: false, default: 1000
-      t.string     :ticker, index: true
-      t.string     :category
+      t.string     :ticker
       t.string     :state, index: true
       t.string     :address, null: false
       t.float      :longitude

@@ -2,16 +2,16 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [
     :show, :edit, :update, :destroy
   ]
-  before_action :find_tenderable, except: [:create]
+  before_action :find_starter, except: [:create]
   before_action :user_layout
 
   # def index
-  #   @tenders = @tenderable.tenders
+  #   @tenders = @starter.tenders
   # end
 
   def show
     @comment = Comment.new
-    @client = @tender.tenderable 
+    @client = @tender.starter 
     @type = @tender.class.name
     @commentable_id = @tender.id
     @subject = "interaction"
@@ -43,7 +43,7 @@ class TendersController < ApplicationController
 
   def create
     @tender = Tender.new(tender_params)
-    @tender.tenderable = current_user
+    @tender.starter = current_user
 
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
@@ -71,24 +71,24 @@ private
     @tender = Tender.friendly.find(params[:id])
   end
 
-  def find_tenderable
+  def find_starter
     if params[:business_id]
-      @tenderable = Business.friendly.find(params[:business_id])
+      @starter = Business.friendly.find(params[:business_id])
     elsif params[:user_id]
-      @tenderable = User.friendly.find(params[:user_id])
+      @starter = User.friendly.find(params[:user_id])
     end
   end
 
   def tender_params
     params.require(:tender).permit(
       :tenderable, :tenderable_type, :tenderable_id, 
+      :starter, :starter_type, :starter_id, 
       :category, :target, :target_sens,
       :annum, :seed_capital,
       # properties
       :message, :draft,
       # details
-      :aqad, :aqad_code,
-      :house, :house_id
+      :aqad, :aqad_code
     )
   end
 

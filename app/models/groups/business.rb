@@ -5,7 +5,7 @@ class Business < ActiveRecord::Base
   has_one  :team, as: :teamable
   has_many :rosters, through: :team
   has_many :users, through: :rosters, source: :rosterable, source_type: 'User'
-  has_many :tenders, as: :tenderable
+  has_many :tenders, as: :starter
 
   serialize :profile, HashSerializer
   store_accessor :profile, 

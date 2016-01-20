@@ -5,6 +5,9 @@ class Bid < ActiveRecord::Base
   acts_as_paranoid
   protokoll :ticker, :pattern => "BID%y%m%d####"
   friendly_id :slug_candidates, use: :slugged
+
+  groupify :group_member
+  groupify :named_group_member
   belongs_to :bidder, polymorphic: true
   belongs_to :tender
 

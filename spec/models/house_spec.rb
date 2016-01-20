@@ -14,14 +14,15 @@ RSpec.describe House, :type => :model do
   it { should respond_to(:city) }
   it { should respond_to(:avatar) }
   it { should respond_to(:publisher) }
-  it { should respond_to(:tenders) }
+  it { should respond_to(:occupancy) }
+  it { should respond_to(:stocks) }
 
   it { should be_valid }  	
 
   describe "when saved" do
   	before(:each) { @house.save }
     
-    describe "after create callback" do
+    describe "before create callback" do
       it "has a slug" do
       	expect(@house.slug).to_not eq nil
       end
@@ -34,9 +35,29 @@ RSpec.describe House, :type => :model do
         expect(@house.price_currency).to eq "IDR"
       end
 
-      # it "has a default currency" do
-      #   expect(@house.currency).to eq 'idr'
-      # end      
+    end
+    describe "after create callback" do
+      before(:each) { @stock = @house.stocks.first }
+
+      it "creates just one stock" do
+        expect(@house.stocks.count).to eq 1
+      end
+
+      it "creates the stock of ownership" do
+        expect(@stock.category).to eq 'ownership'
+      end
+
+      it "also set the stock price" do
+        expect(@stock.price).to eq @house.price / 1000
+      end
+
+      it "also set the stock as the initial stock" do
+        expect(@stock.initial).to eq 'yes'
+      end
+
+      it "also set the stock as tradeable" do
+        expect(@stock.tradeable).to eq true
+      end
     end
 
     describe "scoping users" do

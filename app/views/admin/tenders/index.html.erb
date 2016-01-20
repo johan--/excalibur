@@ -24,7 +24,7 @@
 
   <tr>
     <td><%= link_to tender.ticker, show_tender_link(tender) %></td>
-    <td><%= link_to tender.tenderable.name, user_path(tender.tenderable) %></td>
+    <td><%= link_to tender.starter.name, user_path(tender.starter) %></td>
     <td><%= tender.aqad %></td>
     <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
     <td><%= tender.state %></td>

@@ -18,7 +18,7 @@ FactoryGirl.define do
 	    trait :with_developer do
 	      after(:build) do |house|
 	        house.publisher = FactoryGirl.create :developer
-	      end  
+	      end
 	    end
 
 	    trait :full_detail do
@@ -31,4 +31,21 @@ FactoryGirl.define do
 	      property_size 90
 		end
 	end	
+
+	factory :stock do
+   	  # association :holder, factory: :developer
+      association :house, factory: :house
+      # category "ownership"
+      # initial 'yes'
+      # tradeable true
+      # price 1000
+      # volume 1000
+      # state "full"		
+      before(:build) do |stock|
+      	house = FactoryGirl.create :house
+        stock.house = house
+        stock.holder = house.publisher
+        # stock
+      end      
+	end
 end

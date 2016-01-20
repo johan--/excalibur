@@ -32,8 +32,12 @@ class User < ActiveRecord::Base
   has_many :comments
   groupify :group_member
   groupify :named_group_member
-  has_many :tenders, as: :tenderable
+  acts_as_group_member
+  acts_as_named_group_member
+  has_many :tenders, as: :starter
   has_many :bids, as: :bidder
+  has_many :stocks, as: :holder
+  
   # analytics
   has_many :visits
 

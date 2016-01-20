@@ -6,13 +6,13 @@ RSpec.describe Tender, :type => :model do
   describe "house purchase tender" do
   	before do
   	  @tender = FactoryGirl.build(:tender, :murabaha,
-  	  								:house_purchase, tenderable: user)
+  	  								:house_purchase, starter: user)
   	end
 
 	subject { @tender }
 
-	it { should respond_to(:house) }
 	it { should respond_to(:tenderable) }
+	it { should respond_to(:starter) }
 	it { should respond_to(:comment_threads) }
 	it { should respond_to(:ticker) }
 	it { should respond_to(:category) }
@@ -29,6 +29,10 @@ RSpec.describe Tender, :type => :model do
 	  before(:each) { @tender.save }
 
 	  describe "default values set by callback or database" do
+	  	it "has the tenderable" do
+	  	  expect(@tender.tenderable).to_not eq nil
+	  	end
+
 	  	it "sets tender as not a draft" do
 	  	  expect(@tender.draft?).to eq false
 	  	end
@@ -68,18 +72,18 @@ RSpec.describe Tender, :type => :model do
 	  end
 
 
-	  describe "making comments" do
-	  	before do
-		  @comment = Comment.build_from( @tender, user.id, 
-		  	"Hey guys this is my comment!" )
-		  @comment.save
-		end
+	 #  describe "making comments" do
+	 #  	before do
+		#   @comment = Comment.build_from( @tender, user.id, 
+		#   	"Hey guys this is my comment!" )
+		#   @comment.save
+		# end
 
-		it "should be able to retrieve the comment belonged to the tender" do
-		  comments = @tender.comment_threads
-		  expect(comments.count).to eq 1
-		end
-	  end
+		# it "should be able to retrieve the comment belonged to the tender" do
+		#   comments = @tender.comment_threads
+		#   expect(comments.count).to eq 1
+		# end
+	 #  end
 	end
   end
 
@@ -129,9 +133,9 @@ RSpec.describe Tender, :type => :model do
 
 
  #  describe "scoping tender" do
- #  	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
- #  	let!(:tender_2) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
- #  	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+ #  	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, starter: user) }
+ #  	let!(:tender_2) { FactoryGirl.create(:consumer_tender, :musharakah, starter: user) }
+ #  	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, starter: user) }
 
  #  	describe "Tender.open" do
 	#   let!(:result) { Tender.open }
@@ -152,7 +156,7 @@ RSpec.describe Tender, :type => :model do
 
  #  describe "when there is a bid" do
  #  	let!(:user_1) { FactoryGirl.create(:financier) }
- #  	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+ #  	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, starter: user) }
  #  	let!(:bid) { FactoryGirl.create(:bid, bidder: user_1, tender: tender) }
 	
 	# # subject { tender }

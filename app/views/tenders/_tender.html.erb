@@ -8,7 +8,7 @@
         <div class="timeline-label">
             <h2><%= link_to tender.ticker, tender_path(tender)  %>
                <span>  <%= tender.aqad %> | <%= tender.category %></span><span class="label label-primary pull-right"><%= tender.state %></span></h2>
-            <p>Diajukan oleh <strong><%= tender.tenderable.name %> </strong>untuk rumah <%= tender.house.ticker %>.
+            <p>Diajukan oleh <strong><%= tender.starter.name %> </strong>untuk rumah <%= tender.house.ticker %>.
             </p>
         </div>
     </div>

@@ -10,8 +10,10 @@ class Tender < ActiveRecord::Base
   acts_as_commentable
   acts_as_paranoid
 
-  belongs_to :house
+  groupify :group_member
+  groupify :named_group_member
   belongs_to :tenderable, polymorphic: true  
+  belongs_to :starter, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   
@@ -36,7 +38,7 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  validates_presence_of :aqad, :category, :house
+  validates_presence_of :aqad, :category, :tenderable
 
   before_create :set_default_values!
   after_create :refresh_friendly_id!
@@ -55,8 +57,8 @@ class Tender < ActiveRecord::Base
     return false if check_contribution != self.target
   end
 
-  def categories
-    %w(housepurchase sharepurchase houserent)
+  def self.categories
+    %w(tenderablepurchase sharepurchase)
   end
 
   scope :open, -> { where(state: "open") }
@@ -65,7 +67,7 @@ class Tender < ActiveRecord::Base
   # }
 
   def access_granted?(user)
-    if self.tenderable_type == 'User'
+    if self.starter_type == 'User'
       self.tender_owner?(user)
     else
       self.member_of_tenderable?(user)
@@ -73,13 +75,13 @@ class Tender < ActiveRecord::Base
   end
 
   def tender_owner?(user)
-    return true if self.tenderable == user
-    return false if self.tenderable != user
+    return true if self.starter == user
+    return false if self.starter != user
   end
 
   def member_of_tenderable?(user)
-    return true if tenderable.team.has_as_member?(user)
-    return false if !tenderable.team.has_as_member?(user)
+    return true if starter.team.has_as_member?(user)
+    return false if !starter.team.has_as_member?(user)
   end
 
   def check_contribution
@@ -117,7 +119,7 @@ private
   def set_default_values!
     set_tender_unit!
     self.volume = 1000 if self.volume.nil?
-    self.price = self.house.price / 1000 if self.price.nil?
+    self.price = self.tenderable.price / 1000 if self.price.nil?
     self.state = 'open' if self.state.blank?
     self.draft = 'no' if self.draft.blank?
     self.layman_terms = 'credit sale' if self.aqad == 'murabaha'
@@ -129,22 +131,11 @@ private
     self.unit = 'ownership shares' if self.aqad == 'musharaka'
   end
 
-  def set_margin!
-    # if self.aqad == 'murabahah'
-    #   self.margin = selling_margin(maturity)
-    # elsif self.aqad == 'musyarakah'
-    #   property = "Rumah" if self.house.category == 'Rumah'
-    #   property = "Apartemen" if self.category == 'Apartemen'
-
-    #   self.margin = capitalization_rate(maturity, property)
-    # end
-  end
-
   def set_state!
     if self.fulfilled?
       self.closing unless self.state == 'closed'
     else
-      self.reopening
+      self.reopening unless self.state == 'open'
     end
   end
 
@@ -164,6 +155,6 @@ private
   end
 
   def tenderable_name
-    self.tenderable.name
+    self.starter.name
   end
 end

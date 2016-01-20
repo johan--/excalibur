@@ -10,7 +10,7 @@ module TendersHelper
 	end
 
 	def edit_tender_link(tender)
-		send "edit_#{type(tender)}_tender_path", tender.tenderable, tender
+		send "edit_#{type(tender)}_tender_path", tender.starter, tender
 	end
 
 	def draft_or_real?(tender)

@@ -38,7 +38,7 @@ FactoryGirl.define do
 
     # trait :with_musharakah_tenders do
     #   after :create do |biz|
-    #     FactoryGirl.create_list :biz_tender, 3, :tenderable => biz, :musharakah
+    #     FactoryGirl.create_list :biz_tender, 3, :starter => biz, :musharakah
     #   end
     # end    
   end

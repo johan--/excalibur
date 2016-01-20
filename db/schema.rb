@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119004715) do
+ActiveRecord::Schema.define(version: 20160120033903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,24 +83,6 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
   add_index "bids", ["ticker"], name: "index_bids_on_ticker", using: :btree
 
-  create_table "businesses", force: :cascade do |t|
-    t.string   "name",                     null: false
-    t.string   "state"
-    t.string   "category",                 null: false
-    t.jsonb    "profile",     default: {}, null: false
-    t.jsonb    "preferences", default: {}
-    t.datetime "deleted_at"
-    t.string   "slug",                     null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "businesses", ["category"], name: "index_businesses_on_category", using: :btree
-  add_index "businesses", ["deleted_at"], name: "index_businesses_on_deleted_at", using: :btree
-  add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
-  add_index "businesses", ["profile"], name: "index_businesses_on_profile", using: :gin
-  add_index "businesses", ["slug"], name: "index_businesses_on_slug", using: :btree
-
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",   null: false
     t.string   "commentable_type", null: false
@@ -119,6 +101,15 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["slug"], name: "index_comments_on_slug", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "custom_auto_increments", force: :cascade do |t|
+    t.string   "counter_model_name"
+    t.integer  "counter",            default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
 
   create_table "document_transitions", force: :cascade do |t|
     t.string   "to_state",                 null: false
@@ -185,9 +176,7 @@ ActiveRecord::Schema.define(version: 20160119004715) do
     t.string   "publisher_type",                           null: false
     t.integer  "price_sens",     limit: 8, default: 0,     null: false
     t.string   "price_currency",           default: "IDR", null: false
-    t.integer  "shares",                   default: 1000,  null: false
     t.string   "ticker"
-    t.string   "category"
     t.string   "state"
     t.string   "address",                                  null: false
     t.float    "longitude"
@@ -207,7 +196,6 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
   add_index "houses", ["state"], name: "index_houses_on_state", using: :btree
-  add_index "houses", ["ticker"], name: "index_houses_on_ticker", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -219,6 +207,28 @@ ActiveRecord::Schema.define(version: 20160119004715) do
 
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "occupancies", force: :cascade do |t|
+    t.integer  "house_id",                                         null: false
+    t.integer  "holder_id"
+    t.string   "holder_type"
+    t.string   "slug"
+    t.string   "ticker"
+    t.boolean  "rental",                                           null: false
+    t.integer  "annum",                                            null: false
+    t.integer  "annual_rental_sens",     limit: 8, default: 0,     null: false
+    t.string   "annual_rental_currency",           default: "IDR", null: false
+    t.boolean  "tradeable"
+    t.jsonb    "details"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "occupancies", ["deleted_at"], name: "index_occupancies_on_deleted_at", using: :btree
+  add_index "occupancies", ["holder_type", "holder_id"], name: "index_occupancies_on_holder_type_and_holder_id", using: :btree
+  add_index "occupancies", ["house_id"], name: "index_occupancies_on_house_id", using: :btree
+  add_index "occupancies", ["slug"], name: "index_occupancies_on_slug", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",                        null: false
@@ -237,22 +247,6 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
-  create_table "rosters", force: :cascade do |t|
-    t.integer  "rosterable_id",   null: false
-    t.string   "rosterable_type", null: false
-    t.integer  "teamable_id",     null: false
-    t.string   "teamable_type",   null: false
-    t.string   "role"
-    t.string   "state",           null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "rosters", ["deleted_at"], name: "index_rosters_on_deleted_at", using: :btree
-  add_index "rosters", ["rosterable_type", "rosterable_id"], name: "index_rosters_on_rosterable_type_and_rosterable_id", using: :btree
-  add_index "rosters", ["teamable_type", "teamable_id"], name: "index_rosters_on_teamable_type_and_teamable_id", using: :btree
-
   create_table "settings", force: :cascade do |t|
     t.string   "var",                   null: false
     t.text     "value"
@@ -263,6 +257,30 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "house_id",                                 null: false
+    t.integer  "holder_id",                                null: false
+    t.string   "holder_type",                              null: false
+    t.string   "category",                                 null: false
+    t.string   "slug"
+    t.string   "ticker"
+    t.boolean  "tradeable",                                null: false
+    t.integer  "price_sens",     limit: 8, default: 0,     null: false
+    t.string   "price_currency",           default: "IDR", null: false
+    t.integer  "volume",                                   null: false
+    t.jsonb    "details"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "stocks", ["category"], name: "index_stocks_on_category", using: :btree
+  add_index "stocks", ["deleted_at"], name: "index_stocks_on_deleted_at", using: :btree
+  add_index "stocks", ["holder_type", "holder_id"], name: "index_stocks_on_holder_type_and_holder_id", using: :btree
+  add_index "stocks", ["house_id"], name: "index_stocks_on_house_id", using: :btree
+  add_index "stocks", ["slug"], name: "index_stocks_on_slug", using: :btree
+  add_index "stocks", ["tradeable"], name: "index_stocks_on_tradeable", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "email",      null: false
@@ -289,9 +307,10 @@ ActiveRecord::Schema.define(version: 20160119004715) do
   add_index "tender_transitions", ["tender_id", "sort_key"], name: "index_tender_transitions_parent_sort", unique: true, using: :btree
 
   create_table "tenders", force: :cascade do |t|
+    t.integer  "starter_id",                                null: false
+    t.string   "starter_type",                              null: false
     t.integer  "tenderable_id",                             null: false
     t.string   "tenderable_type",                           null: false
-    t.integer  "house_id"
     t.string   "category",                                  null: false
     t.string   "aqad",                                      null: false
     t.string   "ticker"
@@ -306,11 +325,10 @@ ActiveRecord::Schema.define(version: 20160119004715) do
     t.datetime "updated_at",                                null: false
   end
 
-  add_index "tenders", ["aqad"], name: "index_tenders_on_aqad", using: :btree
   add_index "tenders", ["deleted_at"], name: "index_tenders_on_deleted_at", using: :btree
   add_index "tenders", ["details"], name: "index_tenders_on_details", using: :gin
-  add_index "tenders", ["house_id"], name: "index_tenders_on_house_id", using: :btree
   add_index "tenders", ["slug"], name: "index_tenders_on_slug", using: :btree
+  add_index "tenders", ["starter_type", "starter_id"], name: "index_tenders_on_starter_type_and_starter_id", using: :btree
   add_index "tenders", ["tenderable_type", "tenderable_id"], name: "index_tenders_on_tenderable_type_and_tenderable_id", using: :btree
   add_index "tenders", ["ticker"], name: "index_tenders_on_ticker", using: :btree
 
