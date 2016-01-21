@@ -3,8 +3,6 @@ FactoryGirl.define do
   factory :tender do
     # association :tenderable, factory: :stock
     association :starter, factory: :user
-    price 100000 # one hundred thousand
-    volume 1000
     annum 8
     draft "no"
     message "Lorem ipsum dolor cassus"
@@ -12,18 +10,21 @@ FactoryGirl.define do
     factory :house_purchase_murabaha_tender do
       house_purchase
       murabaha
+      with_stock
+      negotiate
     end
 
     trait :house_purchase do
       category "house purchase"
       unit "revenue shares"
-      with_stock
     end
 
     trait :share_purchase do
       category "share purchase"
       unit "ownership shares"
     end
+
+
 
     trait :success do
       state "success"
@@ -41,12 +42,10 @@ FactoryGirl.define do
       association :starter, factory: :user
     end 
 
-
-
     trait :with_stock do 
       after(:build) do |tender|
-        house = FactoryGirl.create(:house, :with_developer)
-        tender.tenderable = house.stocks.first
+        stock = FactoryGirl.create(:stock)
+        tender.tenderable = stock
       end
     end 
 
@@ -76,6 +75,11 @@ FactoryGirl.define do
 
     trait :starter do
       starter
+    end
+
+    trait :negotiate do
+      price 300000 # one hundred thousand
+      volume 1000
     end
   end 
 

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe House, :type => :model do
-  before do
-  	@house = FactoryGirl.build(:house)
-  end
+  before { @house = FactoryGirl.build(:house) }
 
   subject { @house }
 

@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Tender, :type => :model do
   let!(:user) { FactoryGirl.create(:user) }
 
-  describe "house purchase tender" do
+  describe "fundraising for house purchase" do
   	before do
-  	  @tender = FactoryGirl.build(:tender, :murabaha,
-  	  								:house_purchase, starter: user)
+  	  @tender = FactoryGirl.build(:house_purchase_murabaha_tender, 
+  	  								starter: user)
   	end
 
 	subject { @tender }
@@ -44,6 +44,10 @@ RSpec.describe Tender, :type => :model do
 	  	it "sets slug that is equal to ticker" do
 	  	  expect(@tender.slug).to eq @tender.ticker.downcase
 	  	end
+
+	  	it "sets the same price as the initial stock" do
+	  	  expect(@tender.price).to eq @tender.tenderable.house.price / 1000
+	  	end
 	  	# it "sets margin" do
 	  	#   expect(@tender.margin).to be > 0
 	  	# end	  	
@@ -51,7 +55,7 @@ RSpec.describe Tender, :type => :model do
 
 	  describe ".target" do
 		it 'returns the target money sens value of target' do
-		  expect(@tender.target).to eq 100000000 #plus two zero digits as sens added
+		  expect(@tender.target).to eq 300000000 #plus two zero digits as sens added
 		end
 	  end
 

@@ -118,8 +118,8 @@ class Tender < ActiveRecord::Base
 private
   def set_default_values!
     set_tender_unit!
-    self.volume = 1000 if self.volume.nil?
-    self.price = self.tenderable.price / 1000 if self.price.nil?
+    # self.volume =  stock.volume if self.volume.nil?
+    # self.price = stock.price if self.price.nil?
     self.state = 'open' if self.state.blank?
     self.draft = 'no' if self.draft.blank?
     self.layman_terms = 'credit sale' if self.aqad == 'murabaha'

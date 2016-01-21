@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
-  let!(:tender) { FactoryGirl.create(:tender, :murabaha, :house_purchase) }
+  let!(:tender) { FactoryGirl.create(:house_purchase_murabaha_tender) }
 
   before(:each) do
   	@bid = FactoryGirl.build(:bid, tender: tender)

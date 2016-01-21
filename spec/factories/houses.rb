@@ -11,6 +11,11 @@ FactoryGirl.define do
 		for_sale "yes"
 		for_rent "no"
 
+	    # after(:create) do |house|
+	    #   house = FactoryGirl.create(:house, :with_developer)
+	    #   tender.tenderable = house.stocks.first
+	    # end		
+
 	    trait :by_developer do 
 	      association :publisher, factory: :business
 	    end 		
@@ -33,19 +38,21 @@ FactoryGirl.define do
 	end	
 
 	factory :stock do
-   	  # association :holder, factory: :developer
-      association :house, factory: :house
-      # category "ownership"
-      # initial 'yes'
-      # tradeable true
-      # price 1000
-      # volume 1000
-      # state "full"		
-      before(:build) do |stock|
-      	house = FactoryGirl.create :house
-        stock.house = house
-        stock.holder = house.publisher
-        # stock
-      end      
+   	  association :holder, factory: :developer
+      association :house, factory: :house, strategy: :build
+      category "ownership"
+      initial 'yes'
+      tradeable true
+      price 300000
+      volume 1000
+      state "full"
+      # after(:build) do |stock|
+      # 	house = FactoryGirl.create :house
+      #   stock.house = house
+      #   stock.holder = house.publisher
+      #   stock.volume = 1000
+      # 	stock.price = house.price / 1000
+      #   # stock
+      # end      
 	end
 end
