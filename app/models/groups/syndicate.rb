@@ -1,4 +1,9 @@
 class Syndicate < Group
+  protokoll :name, :pattern => "Syndicate#y####"
   has_members :users
-  # # has_many :bids, through: :group_memberships
+  
+  store_accessor :details, 
+                 :public, :aqad
+
+ 
 end

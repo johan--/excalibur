@@ -21,12 +21,12 @@ class House < ActiveRecord::Base
                  :bedrooms, :bathrooms, :level, :garages, 
                  :greenery, :property_size, :lot_size
 
-  attr_wannabe_bool :for_sale, :for_rent, :vacant
+  attr_wannabe_bool :for_sale, :for_rent, :vacant, :greenery
   geocoded_by :address   # can also be an IP address
 
   # before_create :set_default_values!
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
-  after_create :refresh_friendly_id!, :create_stock!
+  after_create :refresh_friendly_id!, :create_relation!
   # after_update :refresh_tenders
 
   scope :vacancy, -> { 
@@ -51,6 +51,15 @@ private
     self.tenders.map{ |tender| tender.touch }
   end
 
+  def create_relation!
+    if self.vacant? 
+      create_stock!
+    else
+      create_occupancy!
+      create_stock! #if self.for_sale
+    end
+  end
+
   def create_stock!
     Stock.create(
       holder: self.publisher,
@@ -63,4 +72,15 @@ private
     )
   end
 
+  def create_occupancy!
+    Occupancy.create(
+      holder: self.publisher,
+      house: self,
+      rental: false,
+      started_at: Date.today,
+      annual_rental: self.price * 0.05,
+      tradeable: true
+
+    )
+  end
 end

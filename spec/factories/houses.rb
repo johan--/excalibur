@@ -7,9 +7,22 @@ FactoryGirl.define do
 		sequence(:address) { |n| "Jl. Cipete 10 No. #{n+13} RT 10 RW 11 Cilandak"}
 		city "Jakarta Selatan"
 		association :publisher, factory: :developer
-		vacant "yes"
-		for_sale "yes"
-		for_rent "no"
+
+		# trait :empty do
+		  vacant "yes"
+		  for_sale "yes"
+		  for_rent "no"
+		# end
+
+		trait :owned do
+		  vacant "no"
+		  for_sale "yes"
+		  for_rent "no"
+		end
+
+		factory :owned_home do
+
+		end
 
 	    # after(:create) do |house|
 	    #   house = FactoryGirl.create(:house, :with_developer)

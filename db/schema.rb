@@ -159,17 +159,26 @@ ActiveRecord::Schema.define(version: 20160120033903) do
     t.string   "group_type"
     t.string   "group_name"
     t.string   "membership_type"
+    t.jsonb    "details"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "group_memberships", ["details"], name: "index_group_memberships_on_details", using: :gin
   add_index "group_memberships", ["group_name"], name: "index_group_memberships_on_group_name", using: :btree
   add_index "group_memberships", ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
   add_index "group_memberships", ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string "type"
+    t.string "name",    null: false
+    t.string "slug"
+    t.jsonb  "details"
   end
+
+  add_index "groups", ["details"], name: "index_groups_on_details", using: :gin
+  add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
+  add_index "groups", ["slug"], name: "index_groups_on_slug", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.integer  "publisher_id",                             null: false
@@ -215,7 +224,7 @@ ActiveRecord::Schema.define(version: 20160120033903) do
     t.string   "slug"
     t.string   "ticker"
     t.boolean  "rental",                                           null: false
-    t.integer  "annum",                                            null: false
+    t.date     "started_at",                                       null: false
     t.integer  "annual_rental_sens",     limit: 8, default: 0,     null: false
     t.string   "annual_rental_currency",           default: "IDR", null: false
     t.boolean  "tradeable"

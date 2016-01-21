@@ -57,11 +57,10 @@ class Tender < ActiveRecord::Base
     return false if check_contribution != self.target
   end
 
-  def self.categories
-    %w(tenderablepurchase sharepurchase)
-  end
-
   scope :open, -> { where(state: "open") }
+  scope :offering, -> { where(category: "fundraising") }
+  scope :trade, -> { where(category: "trade") }
+  scope :with_aqad, ->(aqad) { where(aqad: aqad) }
   # scope :with_aqad, ->(aqad) { 
   #   where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
   # }

@@ -22,7 +22,7 @@ class CreateStockOwnerships < ActiveRecord::Migration
       t.string     :slug, index: true
       t.string     :ticker      
       t.boolean    :rental, null: false
-      t.integer    :annum, null: false
+      t.date       :started_at, null: false
       t.monetize   :annual_rental
       t.boolean    :tradeable
       t.jsonb      :details

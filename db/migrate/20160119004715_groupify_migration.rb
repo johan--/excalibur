@@ -1,8 +1,12 @@
 class GroupifyMigration < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
-      t.string     :type
+      t.string    :type
+      t.string    :name, null: false, index: true
+      t.string    :slug, index: true
+      t.jsonb     :details
     end
+    add_index :groups, :details, using: :gin
 
     create_table :group_memberships do |t|
       t.references :member, polymorphic: true, index: true, null: false
@@ -13,9 +17,10 @@ class GroupifyMigration < ActiveRecord::Migration
 
       # The membership type the member belongs with
       t.string     :membership_type
-
+      t.jsonb      :details
       t.timestamps  null: false
     end
+    add_index :group_memberships, :details, using: :gin
   end
 
   def self.down

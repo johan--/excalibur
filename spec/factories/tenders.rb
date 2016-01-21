@@ -14,14 +14,26 @@ FactoryGirl.define do
       negotiate
     end
 
+    factory :house_purchase_musharaka_tender do
+      house_purchase
+      musharaka
+      with_stock
+      negotiate
+    end
+
+    factory :musharaka_share_sale do
+      share_purchase
+      musharaka
+      with_stock
+      negotiate
+    end
+
     trait :house_purchase do
-      category "house purchase"
-      unit "revenue shares"
+      category "fundraising"
     end
 
     trait :share_purchase do
-      category "share purchase"
-      unit "ownership shares"
+      category "trade"
     end
 
 
@@ -55,10 +67,12 @@ FactoryGirl.define do
 
     trait :musharaka do
       aqad "musharaka"
+      unit "ownership"
     end
 
     trait :murabaha do
       aqad "murabaha"
+      unit "profit"
     end
 
     trait :mudharaba do
