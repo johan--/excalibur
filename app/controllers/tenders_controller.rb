@@ -10,6 +10,7 @@ class TendersController < ApplicationController
   # end
 
   def show
+    @comments = @tender.comments
     @comment = Comment.new
     @client = @tender.starter 
     @type = @tender.class.name
@@ -33,7 +34,8 @@ class TendersController < ApplicationController
   def new
     @aqad = params[:type]
     @category = params[:intent]
-    @houses = House.vacancy.order(:ticker)
+    @stocks = Stock.initials.tradeables
+    @houses = House.all
     @tender = Tender.new
   end
 
@@ -44,12 +46,14 @@ class TendersController < ApplicationController
   def create
     @tender = Tender.new(tender_params)
     @tender.starter = current_user
+    @tender.tenderable = params[:tender][:asset].constantize.friendly.find(params[:tender][:tenderable_id])
 
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
       redirect_to @tender
     else
       redirect_to user_root_path
+      flash[:danger] = 'Proposal gagal dibuat'
       Rails.logger.info(@tender.errors.inspect) 
     end
   end
@@ -81,9 +85,9 @@ private
 
   def tender_params
     params.require(:tender).permit(
-      :tenderable, :tenderable_type, :tenderable_id, 
+      :asset, :tenderable, :tenderable_type, :tenderable_id, 
       :starter, :starter_type, :starter_id, 
-      :category, :target, :target_sens,
+      :category, :price, :price_sens, :volume, :participate,
       :annum, :seed_capital,
       # properties
       :message, :draft,

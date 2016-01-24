@@ -8,11 +8,9 @@ FactoryGirl.define do
 		city "Jakarta Selatan"
 		association :publisher, factory: :developer
 
-		# trait :empty do
-		  vacant "yes"
-		  for_sale "yes"
-		  for_rent "no"
-		# end
+		vacant "yes"
+		for_sale "yes"
+		for_rent "no"
 
 		trait :owned do
 		  vacant "no"
@@ -21,13 +19,11 @@ FactoryGirl.define do
 		end
 
 		factory :owned_home do
-
 		end
 
 	    # after(:create) do |house|
-	    #   house = FactoryGirl.create(:house, :with_developer)
-	    #   tender.tenderable = house.stocks.first
-	    # end		
+	    #   house.stocks << FactoryGirl.create :stock
+	    # end
 
 	    trait :by_developer do 
 	      association :publisher, factory: :business

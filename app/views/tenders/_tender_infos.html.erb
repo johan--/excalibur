@@ -1,7 +1,9 @@
 <div class="panel-body inf-content">
   <div class="row">
-  	<div class="col-md-2"></div>
+  	<div class="col-md-2">
+    </div>
     <div class="col-md-3 text-center">
+      <h4>Penawaran</h4> 
       <i class="fa fa-file-text fa-4x" style="display: block;"></i>
       <h4 id="identifier">#<%= tender.ticker %></h4>
       <h5><span class="label label-primary" id="tender-state"><%=tender.state %></span></h5> 
@@ -78,7 +80,7 @@
                 </strong>
               </td>
               <td class="text-primary">
-                <%= link_to tender.house.ticker, house_path(tender.house) %>
+                <%= link_to tender.tenderable.house.ticker, house_path(tender.tenderable.house) %>
               </td>
             </tr>
           </tbody>

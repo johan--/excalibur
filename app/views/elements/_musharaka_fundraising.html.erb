@@ -1,0 +1,12 @@
+<div class="box">
+  <div class="box-content">
+    <h1 class="tag-title">Musharaka</h1>
+    <hr class="light">
+    <h3><small>Kepemilikan Rumah</small></h3>
+    <p>Metode pembelian rumah tanpa hutang. Dengan akad yang fleksibel, miliki dan tinggal di rumah impianmu dengan membayar sewa yang ringan. Tidak ada kewajiban untuk membeli habis rumah sama sekali.</p>
+    <br />
+    <% unless defined?(linkless) && linkless == true %>
+      <%= link_to 'Pilih Musyarakah', new_tender_path(user_id: current_user, type: 'musharaka', intent: 'fundraising', asset: "Stock"), class: "btn btn-block btn-round-lg btn-info", remote: true  %>
+    <% end %>    
+  </div>
+</div>

@@ -1,12 +1,46 @@
-<div class="modal-header modal-header-success">
+<div class="col-md-4 col-sm-6 col-xs-12">
+  <ul class="product-list-basic">
+  	<%= render 'elements/murabaha_fundraising', linkless: true if @aqad == 'murabaha' %>
+  	<%= render 'elements/musharaka_fundraising', linkless: true if @aqad == 'musharaka' %>
+  </ul>
+</div>
+<div class="col-md-8 col-sm-6 col-xs-12">
   <h3>Pengajuan Pendanaan</h3>
+  <%= render 'form' %>
 </div>
-<div class="modal-body">
-  <center>
-    <h3 class="media-heading"><%= @aqad.titleize %></h3>
-	  <%= render 'form' %>
-  </center>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
-</div>
+
+
+
+<script type="text/javascript">
+
+// $(".slide-input").slider({
+//   // min: 100000,
+//   // max: 500000000,
+//   // scale: 'logarithmic',
+//   // step: 50000  
+// });
+// $(".slide-input").on("slide", function(slideEvt) {
+	// $("#slide-inputSliderVal").text(slideEvt.value);
+// });
+
+$(function() {
+
+  var inputSliderValue = 0;
+  var humanizer = 1000000;
+
+  function changeValue(){
+    var currentSliderValue = inputSliderValue / humanizer;
+    $( "#amount-inputSliderVal" ).text( currentSliderValue );
+  }
+
+  $(".slide-input").slider();
+  $("#tender_price").on("slide", function(slideEvt) {
+    inputSliderValue = slideEvt.value;
+    changeValue();
+  })
+  $("#tender_annum").on("slide", function(slideEvt) {
+    $("#duration-inputSliderVal").text(slideEvt.value);
+  })
+
+});
+</script>

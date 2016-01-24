@@ -25,6 +25,7 @@
 //= require nprogress-turbolinks
 //= require nprogress-ajax
 //= require bootstrap 
+//= require bootstrap-slider
 //= require_tree ./houses
 //= require_tree ./sitewide
 //= require social-share-button

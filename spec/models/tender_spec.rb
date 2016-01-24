@@ -33,6 +33,10 @@ RSpec.describe Tender, :type => :model do
 	  	  expect(@tender.tenderable).to_not eq nil
 	  	end
 
+	  	# it "belongs to a group of deals" do
+	  	#   expect(@tender.in_group?(Group.first)).to eq true
+	  	# end
+
 	  	it "sets tender as not a draft" do
 	  	  expect(@tender.draft?).to eq false
 	  	end
@@ -92,34 +96,64 @@ RSpec.describe Tender, :type => :model do
   end
 
   describe "fundraising for musharaka house purchase" do
-	before { @tender = FactoryGirl.build(:house_purchase_musharaka_tender, 
+	before { @tender = FactoryGirl.create(:house_purchase_musharaka_tender, 
+  	  								starter: user) }
+	subject { @tender }	
+
+	it "automatically create a bid on the behalf of starter" do
+	  expect(@tender.bids.count).to eq 1
+	end
+
+	it "sets its unit to ownership" do
+	  expect(@tender.unit).to eq 'ownership'
+	end
+
+	it "sets the price to that of its tenderable" do
+	  expect(@tender.price).to eq @tender.tenderable.price
+	end
+
+	it "sets the volume to the max" do
+	  expect(@tender.volume).to eq @tender.tenderable.volume
+	end	
+  end
+
+  describe "trading for musharaka share purchase" do
+	before { @tender = FactoryGirl.build(:musharaka_share_sale, 
   	  								starter: user) }
 	subject { @tender }	
 
 	it { should be_valid }
+
+	describe "after save" do
+	  before(:each) { @tender.save }
+
+	  it "has the tenderable" do
+	    expect(@tender.tenderable).to_not eq nil
+	  end
+	end	
   end
 
 
-  describe "scoping tender" do
-  	let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha_tender) }
-  	let!(:tender_2) { FactoryGirl.create(:house_purchase_musharaka_tender) }
-  	let!(:tender_3) { FactoryGirl.create(:musharaka_share_sale) }
+  # describe "scoping tender" do
+  # 	let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha_tender) }
+  # 	let!(:tender_2) { FactoryGirl.create(:house_purchase_musharaka_tender) }
+  # 	let!(:tender_3) { FactoryGirl.create(:musharaka_share_sale) }
 
-  	describe "Tender.open" do
-	  let!(:result) { Tender.offering }
+  # 	describe "Tender.open" do
+	 #  let!(:result) { Tender.offering }
 
-	  it "returns tender that is fundraising" do
-	  	expect(result.count).to eq 2
-	  end
-  	end
+	 #  it "returns tender that is fundraising" do
+	 #  	expect(result.count).to eq 2
+	 #  end
+  # 	end
 
-  	describe "Tender.with_aqad(aqad)" do
-	  let!(:result) { Tender.with_aqad('murabaha') }
+  # 	describe "Tender.with_aqad(aqad)" do
+	 #  let!(:result) { Tender.with_aqad('murabaha') }
 
-	  it "returns tender that has murabahah as aqad" do
-	  	expect(result.count).to eq 1
-	  end
-  	end
-  end
+	 #  it "returns tender that has murabahah as aqad" do
+	 #  	expect(result.count).to eq 1
+	 #  end
+  # 	end
+  # end
 
 end

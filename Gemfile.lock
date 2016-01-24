@@ -77,6 +77,8 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap-slider-rails (6.0.6)
+      railties (>= 3.2, < 5.0)
     browser (1.1.0)
     builder (3.2.2)
     byebug (3.5.1)
@@ -337,6 +339,7 @@ DEPENDENCIES
   bcrypt (= 3.1.9)
   bootstrap-datepicker-rails
   bootstrap-sass (= 3.3.3)
+  bootstrap-slider-rails
   browser
   byebug (= 3.5.1)
   capybara (~> 2.2.0)

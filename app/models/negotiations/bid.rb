@@ -15,7 +15,7 @@ class Bid < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :draft, :state, :message, :last_volume, :intent_assets
+                 :draft, :state, :message, :last_volume, :installments
 
   attr_wannabe_bool :draft
   validates_presence_of :price, :volume

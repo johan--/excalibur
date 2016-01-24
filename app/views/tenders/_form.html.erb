@@ -1,25 +1,51 @@
-<%= simple_form_for([@starter, @tender], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+<%= simple_form_for(@tender, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <% if @aqad == 'murabaha' %>
-      <%= f.input :annum, as: :integer, input_html: { min: '5', max: '10', step: '1' }, label: "Lama Cicilan", placeholder: "Tahun", required: true %>
-      <%= f.input :seed_capital, as: :integer, input_html: { min: '20', max: '80', step: '5' }, label: "Uang Muka", placeholder: "% dari harga rumah", required: true %> 
-
+    <% if @category == 'fundraising' %>
+      <%= f.input :seed_capital, as: :integer, input_html: { min: '20', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari harga rumah", required: true %>    
     <% else %>
-      <%= f.input :annum, as: :integer, input_html: { min: '20', max: '20', step: '0' }, label: "Lama Syirkah", placeholder: "Tahun", required: true %>
-      <%= f.input :seed_capital, as: :integer, input_html: { min: '10', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari harga rumah", required: true %> 
+      <%= f.input :volume, as: :integer, input_html: { min: '0', max: '1000', step: '1' }, label: "Saham Dijual", placeholder: "jumlah", required: true %>  
+      <%= f.input :price, as: :integer, input_html: { min: '0', step: '10000' }, label: "Harga", placeholder: "per unit", required: true %>
     <% end %>
-    
-    <%= f.input :draft, as: :radio_buttons, collection: published_options, label: "Draft?" %>
-    
-    <%= f.association :house, collection: @houses, label_method: :ticker, value_method: :id, prompt: "pilih rumah", label: "Rumah Terkait" %>
 
+    <div class="form-group">
+      <%= f.label :price %><br>
+      <input name="tender[price]" id="tender_price" class="slide-input" type="text" data-slider-min="100000" data-slider-max="500000000" data-slider-value="0" data-slider-step="50000" /><br>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :annum, "Durasi (Tahun)" %><br>
+      <input name="tender[annum]" id="tender_annum" class="slide-input" type="text" data-slider-min="1" data-slider-max="10" data-slider-value="0" data-slider-step="1" /><br>
+    </div>
+    
+    <%= f.input :draft, as: :boolean, checked_value: 'yes', unchecked_value: 'no', label: "Draft?" %>
+    
+    <%= f.association :tenderable, collection: @stocks, label_method: :house_ticker, value_method: :id, prompt: "pilih rumah", label: "Rumah Pilihan" %>
+    <%= f.input :participate, as: :boolean, checked_value: true, unchecked_value: false, label: "Ikut Syirkah?" if @aqad == 'musharaka' %>
     <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
+    <%= f.input :asset, :as => "hidden", :input_html => { value: params[:asset] } %>
     <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>
   </div>
 
+  <div class="form-group">
+    <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
+    <!-- <span class="help-text">Please choose your amount</span> -->
+    <div class="col-sm-6">
+      <p id="amount-inputSliderVal" class="price lead"></p>
+      <span class="price"> jt</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="total" class="col-sm-6 control-label"><strong>Durasi: </strong></label>
+    <!-- <span class="help-text">(Amount * Days)</span> -->
+    <div class="col-sm-6">
+      <p id="duration-inputSliderVal" class="price lead"></p>
+      <span class="price"> Tahun</span>
+    </div>
+  </div>
+  
   <div class="form-actions">
-    <%= f.submit "Kirim", class: "btn btn-outlined btn-black" %>
+    <%= f.submit "Kirim", class: "btn btn-block btn-primary btn-round-lg" %>
   </div>
 <% end %>

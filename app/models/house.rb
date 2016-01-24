@@ -33,6 +33,10 @@ class House < ActiveRecord::Base
     where("houses.details->>'vacant' = 'yes'") 
   }
 
+  def initial_stock
+    self.stocks.first
+  end
+
   def states_of_house
     ["for sale", "vacant", "for rent"]
   end
@@ -66,6 +70,7 @@ private
       house: self,
       category: "ownership",
       initial: 'yes',
+      expired: 'no',
       tradeable: true, 
       price: self.price/1000, volume: 1000,
       state: "full"

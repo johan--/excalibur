@@ -3,11 +3,13 @@ class InsidesController < ApplicationController
 
   def home
     @title = "Beranda"
-    @tenders = Tender.all
+    @tenders = Tender.published
   end
 
   def choose
   end
+
+  
 
   def marketplace
     @title = "Bursa"

@@ -16,8 +16,9 @@ class Tender < ActiveRecord::Base
   belongs_to :starter, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
+  has_many :comments, as: :commentable
   
-  attr_accessor :funding_target
+  attr_accessor :funding_target, :participate, :asset
 
   serialize :details, HashSerializer
   store_accessor :details, 
@@ -38,10 +39,10 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  validates_presence_of :aqad, :category, :tenderable
+  # validates_presence_of :aqad, :category, :tenderable
 
   before_create :set_default_values!
-  after_create :refresh_friendly_id!
+  after_create :refresh_friendly_id!, :create_musharaka_bid
   # before_save :set_price!, :set_margin!
   after_touch :set_state!
 
@@ -57,10 +58,20 @@ class Tender < ActiveRecord::Base
     return false if check_contribution != self.target
   end
 
-  scope :open, -> { where(state: "open") }
+  def aqad?(aqad)
+    return true if self.aqad == aqad
+    return false if self.aqad != aqad
+  end
+
+  scope :open, -> { where(
+    "tenders.details->>'state' = :type", type: "open")  
+  }
   scope :offering, -> { where(category: "fundraising") }
   scope :trade, -> { where(category: "trade") }
   scope :with_aqad, ->(aqad) { where(aqad: aqad) }
+  scope :published, -> { 
+    where("tenders.details->>'draft' = :type", type: "no") 
+  }  
   # scope :with_aqad, ->(aqad) { 
   #   where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
   # }
@@ -109,26 +120,38 @@ class Tender < ActiveRecord::Base
   end  
 ####
 
-  def tender_discussion
-
-  end
 
 
 private
   def set_default_values!
     set_tender_unit!
-    # self.volume =  stock.volume if self.volume.nil?
-    # self.price = stock.price if self.price.nil?
-    self.state = 'open' if self.state.blank?
+    if self.category == 'fundraising'
+      stock = self.tenderable
+      self.volume =  stock.volume
+      self.price = stock.price #if self.price.nil?
+      self.state = 'open' if self.state.blank?
+    end
     self.draft = 'no' if self.draft.blank?
-    self.layman_terms = 'credit sale' if self.aqad == 'murabaha'
-    self.layman_terms = 'co-ownership' if self.aqad == 'musharaka'
   end
 
   def set_tender_unit!
-    self.unit = 'revenue shares' if self.aqad == 'murabaha'
-    self.unit = 'ownership shares' if self.aqad == 'musharaka'
+    self.unit = 'profit' if aqad?('murabaha')
+    self.unit = 'ownership' if aqad?('musharaka')
   end
+
+  def create_musharaka_bid
+    if self.category == 'fundraising' && aqad?('musharaka')
+      vol = self.seed_capital.to_i * 10
+      Bid.create(tender: self, volume: vol, bidder: self.starter)
+    end
+  end
+
+  # def bundle_deals
+  #   if self.category == 'fundraising'
+  #     deal = Deal.create
+  #     deal.add(self)
+  #   end
+  # end
 
   def set_state!
     if self.fulfilled?

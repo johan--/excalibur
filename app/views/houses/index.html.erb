@@ -1,9 +1,8 @@
 <div class="portlet">
   <div class="portlet-title">
     <div class="caption">
-        <i class="glyphicon glyphicon-search"></i>
-        <span class="caption-subject text-uppercase"> Galeri Rumah</span>
-<!--         <span class="caption-helper">more samples...</span> -->
+      <i class="glyphicon glyphicon-search"></i>
+      <span class="caption-subject text-uppercase"> Galeri Rumah</span>
     </div>
     <div class="inputs">
         <div class="portlet-input input-inline input-medium">
@@ -18,10 +17,9 @@
   </div>
   <div class="portlet-body">
 
-    <ul class="product-list-basic">
-
-        <%= render @houses %>
-    </ul>
+    <div class="row form-group product-chooser">
+      <%= render @houses %>
+    </div>
 
 
   </div>

@@ -19,6 +19,7 @@ FactoryGirl.define do
       musharaka
       with_stock
       negotiate
+      participate true
     end
 
     factory :musharaka_share_sale do
@@ -33,7 +34,7 @@ FactoryGirl.define do
     end
 
     trait :share_purchase do
-      category "trade"
+      category "trading"
     end
 
 

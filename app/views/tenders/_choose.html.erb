@@ -1,40 +1,7 @@
-<ul class="product-list-basic">
-  <div class="col-sm-6 col-xs-12">
-    <li>
-      <a href="#" class="product-photo">
-        <i class="fa fa-exchange fa-5x" style="font-size: 10em;"></i>
-      </a>
+<div class="col-sm-6 col-xs-12">
+  <%= render 'elements/murabaha_fundraising' %>
+</div>
 
-      <h2><a href="#">Murabaha</a></h2>
-      <div class="product-rating">
-          Pembelian Rumah
-      </div>
-
-      <p class="product-description">
-        Pembelian rumah dengan sistem cicilan tanpa bunga, denda, dan penyitaan.
-      </p>
-
-      <%= link_to 'Pilih Murabahah', new_tender_path(user_id: current_user, type: 'murabaha', intent: 'house purchase'), class: "btn btn-block btn-round-lg btn-info", remote: true  %>
-    </li>
-  </div>
-
-  <div class="col-sm-6 col-xs-12">
-    <li>
-      <a href="#" class="product-photo">
-        <i class="fa fa-group fa-5x" style="font-size: 10em;"></i>
-      </a>
-
-      <h2><a href="#">Musharaka</a></h2>
-      <div class="product-rating">
-          Pembelian Rumah
-      </div>
-
-      <p class="product-description">
-        Kepemilikan bersama atas rumah, metode pembelian rumah tanpa hutang.
-      </p>
-
-      <%= link_to 'Pilih Musyarakah', new_tender_path(user_id: current_user, type: 'musharaka', intent: 'house purchase'), class: "btn btn-block btn-round-lg btn-info", remote: true  %>
-
-    </li>
-  </div>
-</ul>
+<div class="col-sm-6 col-xs-12">
+  <%= render 'elements/musharaka_fundraising' %>
+</div>

@@ -10,6 +10,9 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
 
+gem 'bootstrap-slider-rails'
+
+
 # Authentication
 gem 'devise', '3.4.1'
 gem 'omniauth'

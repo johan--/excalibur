@@ -49,10 +49,9 @@ end
 end
 
 Tender.create(
-    price: 100000, volume: 1000, annum: 10, draft: "no", aqad: "murabaha",
-    message: "Lorem ipsum dolor cassus",
-    category: "house purchase", unit: "revenue shares",
-    starter: User.last, house: House.last
+    price: 300000, volume: 1000, annum: 10, draft: "no", aqad: "musharaka",
+    category: "fundraising", unit: "ownership", seed_capital: 20,
+    starter: User.first, tenderable: House.first.stocks.first
 )
 
 # Bid.create(

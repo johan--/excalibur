@@ -105,4 +105,8 @@ module FormOptionsHelper
 	def house_states
 	  ["for sale", "available", "for rent"]
 	end
+
+	def house_and_stocks(stocks)
+	  stocks.each{ |stock| [stock, stock.house.ticker]  }
+	end
 end

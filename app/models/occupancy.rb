@@ -8,6 +8,9 @@ class Occupancy < ActiveRecord::Base
 
   belongs_to :house
   belongs_to :holder, polymorphic: true
+  has_many :tenders, as: :tenderable
+
+  serialize :details, HashSerializer
 
   def slug_candidates
     [:ticker]

@@ -31,9 +31,11 @@ class TenderStateMachine
   #   PaymentService.new(order).submit
   # end
 
-  # after_transition(to: :purchased) do |order, transition|
-  #   MailerService.order_confirmation(order).deliver
-      # model.state = transition.to_state
-      # model.save!
+  # after_transition(to: :success) do |tender, transition|
+  #   if tender.aqad?('murabaha')
+  #   Tender.create(te)
+  #     model.state = transition.to_state
+  #     model.save!
+  #   end
   # end
 end

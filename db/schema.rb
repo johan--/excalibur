@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120033903) do
+ActiveRecord::Schema.define(version: 20160121231258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,25 @@ ActiveRecord::Schema.define(version: 20160120033903) do
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["slug"], name: "index_comments_on_slug", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "tender_id",  null: false
+    t.string   "type"
+    t.string   "aqad",       null: false
+    t.string   "ticker",     null: false
+    t.string   "slug"
+    t.jsonb    "details"
+    t.date     "begin_at"
+    t.date     "end_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contracts", ["deleted_at"], name: "index_contracts_on_deleted_at", using: :btree
+  add_index "contracts", ["slug"], name: "index_contracts_on_slug", using: :btree
+  add_index "contracts", ["tender_id"], name: "index_contracts_on_tender_id", using: :btree
+  add_index "contracts", ["type"], name: "index_contracts_on_type", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
