@@ -1,12 +1,4 @@
-<div class="modal-header modal-header-success">
-  <h3>Edit Proposal <%= @tender.barcode %></h3>
-</div>
-<div class="modal-body">
-  <center>
-    <h3 class="media-heading"><%= "Koreksi" %></h3>
-	  <%= render 'form' %>
-  </center>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+<h3>Koreksi Pengajuan<span class="light"><%= @category.titleize %></span></h3><hr class="light"></hr>
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+  <%= render 'form' %>
 </div>

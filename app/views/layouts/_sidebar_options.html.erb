@@ -1,7 +1,152 @@
-<% if @firm_layout %>
-  <%= render 'layouts/firm_sidebar' %>
-<% elsif @user_layout %>
-  <%= render 'layouts/user_sidebar' %>
-<% elsif @admin_layout %>
-  <%= render 'layouts/admin_sidebar' %>
+<% if @admin_layout %>
+<div class="col-md-2 col-sm-0">
+	<aside class="side-menu-advanced">
+
+	    <div class="side-menu-content">
+
+	        <div class="side-menu-user-profile-section">
+	            <a href="#"><%= current_user.name %></a>
+	            <!-- <span>Administrator</span> -->
+	        </div>
+
+
+	        <div class="side-menu-account-limits-section">
+
+	            <p class="side-menu-section-title"> Status</p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Users", admin_users_path %>
+	                <span><%= @user_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Articles", admin_posts_path %>
+	                <span><%= @post_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Houses", admin_houses_path %>
+	                <span><%= @house_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Documents", admin_documents_path %>
+	                <span><%= @doc_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Proposals", admin_tenders_path %> 
+	                <span><%= @tender_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Bids", admin_bids_path %> 
+	                <span><%= @bid_count %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Comments", admin_comments_path %>
+	                <span><%=  %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Visits", admin_visits_analytics_path %>
+	                <span><%=  %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Events", admin_events_analytics_path %>
+	                <span><%=  %></span>
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Vanity", vanity_path %>
+	                <span><%=  %></span>
+	            </p>	            
+<!-- 	            <div class="side-menu-progress-bar">
+	                <span style="width: 66.6%"></span>
+	            </div> -->
+
+	            <%= link_to "Back to Admin Root", admin_root_path, class: "side-menu-button" %>
+	        </div>
+
+
+	        <div class="side-menu-actions-section">
+
+	            <p class="side-menu-section-title"> Actions </p>
+
+	            <p class="side-menu-row">
+					<%= link_to "Profil", user_url(current_user, subdomain: ''), class: "side-menu-option" %><i class="fa fa-user"></i>	            
+	            </p>
+
+	            <p class="side-menu-row">
+	                <%= link_to "Peraturan", service_terms_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-list"></i>
+	            </p>
+
+		  	<% if user_signed_in? %>
+		  	  <p class="side-menu-row">
+				<%= link_to "Admin", admin_root_url(subdomain: ''), class: "side-menu-option" if current_user.admin? %><i class="fa fa-sun-o"></i>
+		  	  </p>
+			  <p class="side-menu-row">
+			  	<%= link_to "Akun", edit_user_registration_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-cogs"></i>
+			  </p>
+			<% end %>	            
+	        </div>
+
+	        <a href="#" class="side-menu-logo">Logo</a>
+
+	    </div>
+
+	    <span class="side-menu-close visible-sm visible-xs"><i class="fa fa-close"></i></span>
+
+	</aside>
+</div>
+
+<% else %>
+<div class="col-md-2 col-sm-0">
+	<aside class="side-menu-advanced">
+
+	    <div class="side-menu-content">
+
+	        <div class="side-menu-user-profile-section">
+	            <a href="#"><%= current_user.name %></a>
+	            <!-- <span>Administrator</span> -->
+	        </div>
+
+	        <div class="side-menu-actions-section">
+
+	            <p class="side-menu-section-title"> Links </p>
+
+	            <p class="side-menu-row">
+					<%= link_to "Profil", profile_path(current_user, subdomain: ''), remote: true, class: "side-menu-option" %><i class="fa fa-user"></i>	            
+	            </p>
+	            <p class="side-menu-row">
+	                <%= link_to "Legal", service_terms_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-list"></i>
+	            </p>
+	            <p class="side-menu-row">
+	                <%= link_to "Bantuan", contact_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-smile-o"></i>
+	            </p>	            
+
+			  <p class="side-menu-row">
+			  	<%= link_to "Blog", root_url(subdomain: 'blog'), class: "side-menu-option" %><i class="fa fa-newspaper-o"></i>
+			  </p>
+		  	<% if user_signed_in? %>
+			  <p class="side-menu-row">
+			  	<%= link_to "Akun", edit_user_registration_url(subdomain: ''), class: "side-menu-option" %><i class="fa fa-cogs"></i>
+			  </p>
+		  	  <p class="side-menu-row">
+				<%= link_to "Admin", admin_root_url(subdomain: ''), class: "side-menu-option" if current_user.admin? %><i class="fa fa-sun-o"></i>
+		  	  </p>			  
+			<% end %>	            
+	        </div>
+
+	        <a href="#" class="side-menu-logo">Logo</a>
+
+	    </div>
+
+	    <span class="side-menu-close visible-sm visible-xs"><i class="fa fa-close"></i></span>
+
+	</aside>
+</div>
+
 <% end %>

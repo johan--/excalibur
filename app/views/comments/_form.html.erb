@@ -1,0 +1,10 @@
+<%= form_for @comment do |f| %>
+<div class="chat-box bg-white">
+	<div class="input-group">
+		<%= f.text_area :body_md, size: "10x3", class: "form-control border no-shadow no-rounded", placeholder: "tulis komentarmu di sini" %>
+		<span class="input-group-btn">
+			<button class="btn btn-success no-rounded" type="button">Kirim</button>
+		</span>
+	</div><!-- /input-group -->	
+</div> 
+<% end %>

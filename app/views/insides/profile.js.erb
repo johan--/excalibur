@@ -1,0 +1,4 @@
+$('#user-dashboard').hide();
+$("#app-content").html("<%= j (render partial: 'users/profile', 
+	locals: { user: @user }) %>")
+$('#app-content').slideDown(350);

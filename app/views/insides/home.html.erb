@@ -1,0 +1,30 @@
+<% meta title: @title %>
+
+<div class="portlet">
+  <div class="portlet-title">
+    <div class="caption caption-green">
+      <i class="fa fa-home"></i> 
+      <span class="caption-subject bold font-yellow-crusta uppercase">
+        <%= @title %>
+      </span>
+      <span class="caption-helper"><%=  %></span>
+    </div>
+  </div>
+  
+
+  <div class="portlet-body">
+
+    <div class="row">
+      <div id="user-dashboard">
+        <%= render 'dashboard' %>          
+
+        <%= render partial: 'tenders/tender_list', locals: { tenders: @tenders } %>
+      </div>
+      <div id="app-content" style="display:none;">
+      </div>
+    </div>
+      
+  </div>
+
+  
+</div>

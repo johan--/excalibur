@@ -1,35 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Tender, :type => :model do
-  let!(:user) { FactoryGirl.create(:client) }
+  let!(:user) { FactoryGirl.create(:user) }
 
-  describe "Murabahah financing" do
+  describe "fundraising for murabaha house purchase" do
   	before do
-  	  @tender = user.tenders.build(
-  	  		category: "User", aqad: "murabahah", use_case: "pembelian",
-  			intent: "tempat tinggal", price: 10000000, own_capital: 30,
-  			maturity: 8,
-  			tangible: "rumah tunggal", address: "Lorem ipsum dolor cassus")
+  	  @tender = FactoryGirl.build(:house_purchase_murabaha_tender, 
+  	  								starter: user)
   	end
 
 	subject { @tender }
 
-	it { should respond_to(:category) }
 	it { should respond_to(:tenderable) }
+	it { should respond_to(:starter) }
+	it { should respond_to(:comment_threads) }
+	it { should respond_to(:ticker) }
+	it { should respond_to(:category) }
 	it { should respond_to(:target) }
-	it { should respond_to(:target_sens) }
-	it { should respond_to(:properties) }
-	it { should respond_to(:open) }
-	it { should respond_to(:summary) }
-	it { should respond_to(:barcode) }
+	it { should respond_to(:price_sens) }
 	it { should respond_to(:details) }
-	it { should respond_to(:tangible) }
-	it { should respond_to(:maturity) }
-	it { should respond_to(:margin) }
-	it { should respond_to(:intent) }
-	it { should respond_to(:use_case) }
-	it { should respond_to(:published) }
-	it { should respond_to(:aqad) }
+	it { should respond_to(:unit) }
+	it { should respond_to(:state) }
+	it { should respond_to(:draft) }
 	it { should respond_to(:aqad_code) }
 	it { should be_valid }
 
@@ -37,26 +29,37 @@ RSpec.describe Tender, :type => :model do
 	  before(:each) { @tender.save }
 
 	  describe "default values set by callback or database" do
-	  	it "sets properties of open to true" do
-	  	  expect(@tender.open).to eq true
+	  	it "has the tenderable" do
+	  	  expect(@tender.tenderable).to_not eq nil
 	  	end
 
-	  	it "sets barcode" do
-	  	  expect(@tender.barcode).to_not eq nil
+	  	# it "belongs to a group of deals" do
+	  	#   expect(@tender.in_group?(Group.first)).to eq true
+	  	# end
+
+	  	it "sets tender as not a draft" do
+	  	  expect(@tender.draft?).to eq false
 	  	end
 
 	  	it "sets status" do
-	  	  expect(@tender.state).to eq 'fresh'
+	  	  expect(@tender.state).to eq 'open'
 	  	end
 
-	  	it "sets margin" do
-	  	  expect(@tender.margin).to be > 0
-	  	end	  	
+	  	it "sets slug that is equal to ticker" do
+	  	  expect(@tender.slug).to eq @tender.ticker.downcase
+	  	end
+
+	  	it "sets the same price as the initial stock" do
+	  	  expect(@tender.price).to eq @tender.tenderable.house.price / 1000
+	  	end
+	  	# it "sets margin" do
+	  	#   expect(@tender.margin).to be > 0
+	  	# end	  	
 	  end
 
 	  describe ".target" do
 		it 'returns the target money sens value of target' do
-		  expect(@tender.target_sens).to eq 1000000000 #plus two zero digits as sens added
+		  expect(@tender.target).to eq 300000000 #plus two zero digits as sens added
 		end
 	  end
 
@@ -76,97 +79,81 @@ RSpec.describe Tender, :type => :model do
 	  	end
 	  end
 
+
+	 #  describe "making comments" do
+	 #  	before do
+		#   @comment = Comment.build_from( @tender, user.id, 
+		#   	"Hey guys this is my comment!" )
+		#   @comment.save
+		# end
+
+		# it "should be able to retrieve the comment belonged to the tender" do
+		#   comments = @tender.comment_threads
+		#   expect(comments.count).to eq 1
+		# end
+	 #  end
 	end
   end
 
-  describe "Musyarakah financing" do
-  	before do
-  	  @tender = user.tenders.build(
-  	  		category: "User", aqad: "musyarakah", use_case: "pembelian",
-  			intent: "tempat tinggal", own_capital: 30, price: 10000000, 
-  			maturity: 8, tangible: "rumah tunggal", 
-  			address: "Lorem ipsum dolor cassus")
-  	end
+  describe "fundraising for musharaka house purchase" do
+	before { @tender = FactoryGirl.create(:house_purchase_musharaka_tender, 
+  	  								starter: user) }
+	subject { @tender }	
 
-	subject { @tender }
+	it "automatically create a bid on the behalf of starter" do
+	  expect(@tender.bids.count).to eq 1
+	end
 
-	it { should respond_to(:tangible) }
-	it { should respond_to(:maturity) }
-	it { should respond_to(:margin) }
-	it { should respond_to(:intent) }
-	it { should respond_to(:aqad) }
-	it { should respond_to(:aqad_code) }
+	it "sets its unit to ownership" do
+	  expect(@tender.unit).to eq 'ownership'
+	end
+
+	it "sets the price to that of its tenderable" do
+	  expect(@tender.price).to eq @tender.tenderable.price
+	end
+
+	it "sets the volume to the max" do
+	  expect(@tender.volume).to eq @tender.tenderable.volume
+	end	
+  end
+
+  describe "trading for musharaka share purchase" do
+	before { @tender = FactoryGirl.build(:musharaka_share_sale, 
+  	  								starter: user) }
+	subject { @tender }	
+
 	it { should be_valid }
 
 	describe "after save" do
 	  before(:each) { @tender.save }
 
-	  describe "default values set by callback or database" do
-	  	it "sets margin" do
-	  	  # expect(@tender.margin).to be > 0
-	  	  expect(@tender.margin).to be_between(0, 10).inclusive
-	  	end	  	
+	  it "has the tenderable" do
+	    expect(@tender.tenderable).to_not eq nil
 	  end
-
-	  describe ".price" do
-		it 'returns the price of the property' do
-		  expect(@tender.price).to eq 10000000
-		end
-	  end
-
-	  describe ".target" do
-		it 'returns the target money sens value of target' do
-		  expect(@tender.target_sens).to eq 700000000 #plus two zero digits as sens added
-		end
-	  end
-
-	end
+	end	
   end
 
 
-  describe "scoping tender" do
-  	let!(:tender_1) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
-  	let!(:tender_2) { FactoryGirl.create(:consumer_tender, :musharakah, tenderable: user) }
-  	let!(:tender_3) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
+  # describe "scoping tender" do
+  # 	let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha_tender) }
+  # 	let!(:tender_2) { FactoryGirl.create(:house_purchase_musharaka_tender) }
+  # 	let!(:tender_3) { FactoryGirl.create(:musharaka_share_sale) }
 
-  	describe "Tender.open" do
-	  let!(:result) { Tender.open }
+  # 	describe "Tender.open" do
+	 #  let!(:result) { Tender.offering }
 
-	  it "returns tender that has open attribute set to true" do
-	  	expect(result.count).to eq 3
-	  end
-  	end
+	 #  it "returns tender that is fundraising" do
+	 #  	expect(result.count).to eq 2
+	 #  end
+  # 	end
 
-  	describe "Tender.with_aqad(aqad)" do
-	  let!(:result) { Tender.with_aqad('murabahah') }
+  # 	describe "Tender.with_aqad(aqad)" do
+	 #  let!(:result) { Tender.with_aqad('murabaha') }
 
-	  it "returns tender that has murabahah as aqad" do
-	  	expect(result.count).to eq 1
-	  end
-  	end
-  end
-
-  describe "when there is a bid" do
-  	let!(:user_1) { FactoryGirl.create(:financier) }
-  	let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user) }
-  	let!(:bid) { FactoryGirl.create(:bid, bidder: user_1, tender: tender) }
-	
-	# subject { tender }
-
-  	describe "tender.bids" do
-	  it "returns tender that has open attribute set to true" do
-	  	expect(tender.bids.count).to eq 1
-	  end
-  	end
-
-  	describe "tender.contribution" do
-	  let!(:result) { tender.contributed }
-
-	  it "returns tender that has open attribute set to true" do
-	  	expect(result).to eq bid.contribution
-	  end
-  	end
-
-  end
+	 #  it "returns tender that has murabahah as aqad" do
+	 #  	expect(result.count).to eq 1
+	 #  end
+  # 	end
+  # end
 
 end

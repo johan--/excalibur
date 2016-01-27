@@ -9,8 +9,9 @@ Fustal::Application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
-            :registrations => "registrations", 
-            :omniauth_callbacks => "omniauth_callbacks" }
+            :registrations => "registrations"
+            #, :omniauth_callbacks => "omniauth_callbacks" 
+          }
   devise_scope :user do
     get "/daftarbeta" => "devise/registrations#new"
     get "/masukbeta" => "devise/sessions#new"
@@ -49,18 +50,26 @@ Fustal::Application.routes.draw do
       get "avatar"
       put "remove_avatar"
     end    
-    resources :tenders, only: [:new, :edit, :create, :update, :destroy]
   end
-  resources :tenders, only: [:show] do
+  resources :tenders do
+    resources :build, controller: 'products/build'
     resources :bids
   end
-  resources :documents do
-  end
+  resources :documents
+  resources :houses, only: [:show, :index]
+  resources :comments
+  resources :groups
 
   # Static Pages
   root "pages#landing"
   get "ganti", to: "pages#upgrade", as: :upgrade
-  get "home", to: "pages#home", as: :user_root
+  # get "home", to: "pages#home", as: :user_root
+  
+  get "home", to: "insides#home", as: :user_root
+  get "bursa", to: "insides#marketplace", as: :marketplace
+  get "pendanaan", to: "insides#choose", as: :choose_product
+  get "profil", to: "insides#profile", as: :profile
+
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
@@ -100,8 +109,14 @@ Fustal::Application.routes.draw do
         get "delete"
       end
     end
-    resources :tenders, only: [:index, :edit, :update]
+    resources :tenders, only: [:index, :edit, :update, :destroy]
     resources :bids, only: [:index, :edit, :update, :destroy]
+    resources :houses, skip: [:show] do
+      member do
+        get "upload", to: "houses#upload_photo", as: :upload_photo
+      end
+    end
+    resources :comments
   end
 
   # Vanity AB TESTING FRAMEWORK

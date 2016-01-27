@@ -1,0 +1,10 @@
+    <%= f.collection_radio_buttons(:tenderable, @stocks, :id, :stock_image) do |b| %>
+        <%= render 'houses/house', house: b.object.house  %>
+    <% end %>
+
+    <%= f.association :tenderable, collection: @stocks, label_method: :house_ticker, value_method: :id, prompt: "pilih rumah", label: "Rumah Pilihan" %> 
+	<%= f.input :seed_capital, as: :integer, input_html: { min: '20', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari harga rumah", required: true %>
+        <div class="form-group">
+      <%= f.label :price %><br>
+      <input name="tender[price]" id="tender_price" class="slide-input" type="text" data-slider-min="100000" data-slider-max="500000000" data-slider-value="0" data-slider-step="50000" /><br>
+    </div>

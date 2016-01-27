@@ -8,10 +8,12 @@
 		    <h3>Menu</h3>
 		    <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{pluralize(@user_count, 'user')}" %></small></h4>
 		    <h4><%= link_to "Articles", admin_posts_path %> <small>- <%= "#{pluralize(@post_count, 'post')}" %></small></h4>
+		    <h4><%= link_to "Houses", admin_houses_path %> <small>- <%= "#{pluralize(@house_count, 'house')}" %></small></h4>
 		    <h4><%= link_to "Documents", admin_documents_path %> <small>- <%= "#{pluralize(@doc_count, 'docs')}" %></small></h4>
 		    <h4><%= link_to "Proposals", admin_tenders_path %> <small>- <%= "#{pluralize(@tender_count, 'tender')}" %></small></h4>
 			<h4><%= link_to "Bids", admin_bids_path %> <small>- <%= "#{pluralize(@bid_count, 'bid')}" %></small></h4>
 		    <h4><%= link_to "Subscribers", admin_subscribers_path %><small>- <%= "#{pluralize(@subs_count, 'subscribers')}" %></small></h4>
+		    <h4><%= link_to "Comments", admin_comments_path %></h4>
 		    <h4><%= link_to "Visits", admin_visits_analytics_path %></h4>
 		    <h4><%= link_to "Events", admin_events_analytics_path %></h4>
 		    <h4><%= link_to "Vanity", vanity_path %></h4>

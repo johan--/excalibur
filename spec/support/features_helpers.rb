@@ -25,3 +25,10 @@ end
 def file_upload_fixture
 	Rails.root + "spec/support/markdown_cheatsheet.pdf"
 end
+
+def range_select(name, value)
+  selector = %-input[type=range][name=\\"#{name}\\"]-
+  # selector = %-input[type=text][name=\\"#{name}\\"]-
+  script = %-$("#{selector}").val(#{value})-
+  page.execute_script(script)
+end

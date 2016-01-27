@@ -6,7 +6,7 @@ json.cache! ['v1', @tender], expires_in: 1.day do
 	json.aqad @tender.aqad
 	json.target @tender.target
 
-	json.tenderable @tender.tenderable do |tenderable|
-    	json.(tenderable, :id, :type, :name, :about)
+	json.starter @tender.starter do |starter|
+    	json.(starter, :id, :type, :name, :about)
 	end
 end

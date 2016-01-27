@@ -52,7 +52,7 @@ private
   def comment_params
   	params.require(:comment).permit(
   	  :commentable, :commentable_id, :commentable_type, 
-      :title, :body, :subject, :parent_id
+      :title, :body_md, :subject, :parent_id
   	)
   end	
 

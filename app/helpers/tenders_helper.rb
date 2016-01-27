@@ -10,7 +10,7 @@ module TendersHelper
 	end
 
 	def edit_tender_link(tender)
-		send "edit_#{type(tender)}_tender_path", tender.tenderable, tender
+		send "edit_#{type(tender)}_tender_path", tender.starter, tender
 	end
 
 	def draft_or_real?(tender)
@@ -37,25 +37,43 @@ module TendersHelper
 		end		
 	end
 
-	# def bid_tender_link(tender)
-	# 	tenderable = tender.tenderable_type.downcase
-	# 	link_to "Buat Tawaran", new_tender_bid_path(tender)
-	# end
+  def tender_timeline_sign(tender)
+  	if tender.state == 'open'
+		content_tag(:div, 
+			content_tag(:i, '', class: "fa fa-star-o"), 
+			class: "timeline-badge primary", 
+				:"data-toggle" => "tooltip", :"title" => "terbuka" )
+  	elsif tender.state == 'closed'
+		content_tag(:div, 
+			content_tag(:i, '', class: "fa fa-lock"), 
+			class: "timeline-badge default",
+				:"data-toggle" => "tooltip", :"title" => "terkunci" )
+  	elsif tender.state == 'success'
+		content_tag(:div, 
+			content_tag(:i, '', class: "fa fa-star"), 
+			class: "timeline-badge success",
+				:"data-toggle" => "tooltip", :"title" => "berhasil" )
+  	elsif tender.state == 'dropped'
+		content_tag(:div, 
+			content_tag(:i, '', class: "fa fa-fire"), 
+			class: "timeline-badge danger",
+				:"data-toggle" => "tooltip", :"title" => "gagal")
+	end  	
+  end
 
-	# def tender_action_heading
-	# 	if current_page?(new_company_profile_path) || current_page?(new_user_profile_path)
-	# 		return "Buat Profil"
-	# 	else
-	# 		return "Edit Profil"
-	# 	end
-	# end
+  def annum_label(tender)
+  	if tender.aqad == 'murabaha'
+  	  "Lama Cicilan"
+  	elsif tender.aqad == 'musharaka'
+  	  "Lama Syirkah"
+  	end
+  end
 
-	# def tender_type(category)
-	# 	if category == 'CompanyProfile'
-	# 		return "Bisnis"
-	# 	elsif category == 'UserProfile'
-	# 		return "Pengguna"
-	# 	end
-	# end
-
+  def seed_label(tender)
+  	if tender.aqad == 'murabaha'
+  	  "Uang Muka"
+  	elsif tender.aqad == 'musharaka'
+  	  "Modal Kamu"
+  	end
+  end
 end

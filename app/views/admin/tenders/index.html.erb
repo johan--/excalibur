@@ -14,8 +14,8 @@
     <th>Akad</th>
     <th>Updated At</th>
     <th>Status</th>
-    <th>Target</th>
-    <th>Penilaian?</th>
+    <th>Harga</th>
+    <th>Volume</th>
     <th>Tawaran</th>
     <th></th>
   </tr>
@@ -23,13 +23,13 @@
   <% @tenders.each do |tender| %>
 
   <tr>
-    <td><%= link_to tender.barcode, show_tender_link(tender) %></td>
-    <td><%= link_to tender.tenderable.name, user_path(tender.tenderable) %></td>
+    <td><%= link_to tender.ticker, show_tender_link(tender) %></td>
+    <td><%= link_to tender.starter.name, user_path(tender.starter) %></td>
     <td><%= tender.aqad %></td>
     <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
     <td><%= tender.state %></td>
-    <td><%= idr_money(tender.target) %></td>
-    <td><%= tender.summary.present? %></td>
+    <td><%= idr_money(tender.price) %></td>
+    <td><%= tender.volume %></td>
     <td><%= link_to tender.bids.count, admin_bids_path(tender_id: tender.id) %></td>
     <td><%= link_to "Proses", edit_admin_tender_path(tender), remote: true %></td>
   </tr>

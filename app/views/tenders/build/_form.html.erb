@@ -1,0 +1,9 @@
+<%= simple_form_for(@tender, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <%= yield f %>
+  
+  <div class="form-actions">
+    <%= f.submit "Kirim", class: "btn btn-block btn-primary btn-round-lg" %>
+  </div>
+<% end %>

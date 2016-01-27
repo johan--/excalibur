@@ -3,7 +3,7 @@
 # describe API::V1::TendersController do
 #   let!(:user) { FactoryGirl.create(:entrepreneur) }
 #   let!(:biz) { FactoryGirl.create(:business, starter_email: user.email) }
-#   let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, tenderable: biz) }
+#   let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, starter: biz) }
 
 #   before(:each) do 
 #   	api_authorization_header(user.auth_token) 
@@ -11,8 +11,8 @@
 
 #   describe "GET #index" do
 #   	let!(:biz_2) { FactoryGirl.create(:business, :with_starter) }
-#   	let!(:tender_2) { FactoryGirl.create(:retail, :musharakah, tenderable: biz_2) }
-#   	let!(:tender_3) { FactoryGirl.create(:retail, :musharakah, tenderable: biz_2) }
+#   	let!(:tender_2) { FactoryGirl.create(:retail, :musharakah, starter: biz_2) }
+#   	let!(:tender_3) { FactoryGirl.create(:retail, :musharakah, starter: biz_2) }
 
 #     context "when valid" do
 #       it 'sends a list of tenders' do

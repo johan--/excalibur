@@ -1,0 +1,22 @@
+<div class="comment-item">
+	<strong class="pull-left primary-font"><%= comment.user.name.titleize %></strong>
+	<small class="pull-right text-muted">
+	   <span class="glyphicon glyphicon-time"></span>
+	   <%= time_ago_in_words(comment.created_at) %> ago
+	</small>
+	</br>
+	<div class="comment-content">
+		<%= comment.body_md %>
+	</div>
+	</br>
+	  <p>
+		<% if current_user.present? && comment.author?(current_user)  %>
+	  	  <span><%= link_to "Edit", edit_admin_comment_path(comment) %></span>
+	  	<% end %>
+	  </p>
+	
+
+	<% comment.children.find_each do |child| %>
+	  	<%= render partial: 'blog/comments/comment', locals: { comment: child } %>
+	<% end %>	
+</div>

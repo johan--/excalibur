@@ -1,2 +1,3 @@
-$("#inner-main-modal").html("<%= j (render 'tenders/edit_tender') %>")
-$("#main-modal").modal("show")
+$('#front-content').hide();
+$("#edit-section").html("<%= j (render 'tenders/edit_tender') %>")
+$('#edit-section').slideDown(350);

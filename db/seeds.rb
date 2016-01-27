@@ -1,11 +1,7 @@
 # Temporary admin account
 User.create(email: "galih@gmail.com", password: "asdasdasd", 
   password_confirmation: "asdasdasd", name: "Galih Muhammad", 
-  client: true, financier: true, admin: true, understanding: true)
-
-User.create(email: "pampam@gmail.com", password: "asdasdasd", 
-  password_confirmation: "asdasdasd", name: "Pampam", client: true, 
-  admin: true, understanding: true)
+  admin: true, understanding: "yes")
 
 # Test user accounts
 (1..10).each do |i|
@@ -14,25 +10,13 @@ User.create(email: "pampam@gmail.com", password: "asdasdasd",
     password: "1234567",
     password_confirmation: "1234567",
     name: "Example #{i}",
-    financier: true,
-    understanding: true
+    understanding: "yes"
   )
 
   puts "#{i} test users created..." if (i % 5 == 0)
 
 end
 
-# b = Firm.create!(
-#   name: "Bank 1",
-#   anno: 2015,
-#   about: "cloth dress jeans shirt jacket sock shoe",
-#   founding_size: 3,
-#   industry: "fesyen",
-#   city: "Jakarta Selatan",
-#   province: "DKI Jakarta",
-#   starter_email: User.first.email
-# )
-  
 # dummy blog posts
 (1..10).each do |i|
   p = Post.new(
@@ -49,18 +33,36 @@ end
 
 end
 
-# t = Tender.create(category: "Bisnis", aqad: "musharakah",
-#           tenderable: b, target: 15000000,
-#           intent_type: "Modal Kerja", intent_assets: "Persediaan/Stok",
-#           summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
+# Houses
+(1..10).each do |h|
+  House.create(
+  anno: 2015,
+  price: 300000000,
+  state: "available",
+  category: "rumah",
+  address: "Jl. Cipete 7 No. #{h} RT 03 RW 04 Cipete Selatan, Cilandak, Jakarta Selatan, DKI Jakarta",
+  country: "Indonesia",
+  city: "Jakarta Selatan", publisher: User.first,
+  for_sale: "yes", for_rent: "no", vacant: "yes",
+  bedrooms: 3, bathrooms: 1, level: 1,
+  garages: 1, greenery: "yes", lot_size: 100, property_size: 90    )
+end
 
-# t.bids.create(tender: t, bidder: User.second, contribution: 5000000)
-# t.bids.create(tender: t, bidder: User.third, contribution: 5000000)
-# t.bids.create(tender: t, bidder: User.fourth, contribution: 5000000)
+Tender.create(
+    price: 300000, volume: 1000, annum: 10, draft: "no", aqad: "musharaka",
+    category: "fundraising", unit: "ownership", seed_capital: 20,
+    starter: User.first, tenderable: House.first.stocks.first
+)
 
-# z = Tender.create(category: "Individu", aqad: "Musyarakah Mutanaqishah",
-#           tenderable: User.last, target: 30000000, use_case: 'Pembelian',
-#           tangible: "Rumah Tunggal", intent: "Tempat Tinggal",
-#           price: 90000000,
-#           address: "Jl. Cipete III No. 99 RT 01 RW 05 Cilandak, Jakarta Selatan",
-#           summary: "Lorem Ipsum Dolor Duis mollis, est non commodo luctus, nisi erat porttitor ligula")
+# Bid.create(
+#   tender: Tender.first, bidder: User.first, volume: 250
+# )
+# Bid.create(
+#   tender: Tender.first, bidder: User.second, volume: 250
+# )
+# Bid.create(
+#   tender: Tender.first, bidder: User.third, volume: 250
+# )
+# Bid.create(
+#   tender: Tender.first, bidder: User.fourth, volume: 250
+# )

@@ -20,7 +20,13 @@ class Admin::TendersController < Admin::BaseController
     end    
   end
 
-  private
+  def destroy
+    @tender.destroy
+    flash[:notice] = 'Proposal berhasil dihapuskan'
+    redirect_to user_root_path
+  end
+
+private
 
   def set_tender
     @tender = Tender.friendly.find(params[:id])
@@ -28,7 +34,7 @@ class Admin::TendersController < Admin::BaseController
 
   def tender_params
     params.require(:tender).permit(
-      :summary
+      :tenderable_id, :tenderable_type
     )
   end
 

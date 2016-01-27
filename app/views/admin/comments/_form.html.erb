@@ -1,0 +1,20 @@
+<%= simple_form_for([:admin, @comment], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, class: "form-control monospaced-control", placeholder: "Title of the comment..." %>
+
+    <%= f.input :body_md, as: :text, input_html: {rows: 40}, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
+
+	<%= f.input :commentable_type, :as => "hidden", :input_html => { value: @type } %>
+	<%= f.input :commentable_id, :as => "hidden", :input_html => { value: @commentable_id } %>
+	<%= f.input :user_id, :as => "hidden", :input_html => { value: current_user.id } %>
+    <%= f.input :subject, :as => "hidden", :input_html => { value: @subject } %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Simpan", class: "btn btn-round btn-success" %>
+  </div>
+
+
+<% end %>
+  

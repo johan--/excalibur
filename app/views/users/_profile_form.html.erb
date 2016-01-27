@@ -1,10 +1,10 @@
-<%= simple_form_for(@user, html: { class: 'form-horizontal' },
+<%= simple_form_for(user, html: { class: 'form-horizontal' },
         wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
     <%= f.input :address, as: :text, input_html: { rows: 3 }, label: "Alamat"  %>    
-	  <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @user.last_education, label: "Pendidikan Terakhir", required: true %>
-	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @user.marital_status, label: "Status Pernikahan", required: true %>
+	  <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: user.last_education, label: "Pendidikan Terakhir", required: true %>
+	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: user.marital_status, label: "Status Pernikahan", required: true %>
     <%= f.input :number_dependents, label: "Jumlah Individu Tanggungan", required: true %>    
     <%= f.input :occupation, label: "Pekerjaan", required: true %>
     <%= f.input :work_experience, as: :text, input_html: { rows: 5 }, label: "Pengalaman Kerja", placeholder: "pisahkan tiap pengalaman dengan ';' (koma titik)" %>    

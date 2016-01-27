@@ -1,0 +1,16 @@
+  <li> 
+    <a href="#" class="user-avatar">
+      <!-- <img src="assets/images/avatars/1.jpg" width="80" alt="Profile of Adeline Yong" /> -->
+      <%= render_avatar_for(user) %>
+    </a>
+
+    <p>
+      <span class="bidder-name"><a href=""><%= user.name %></a></span>
+      <span>Last seen on <i><%= user.created_at %></i></span>
+    </p>
+
+    <a class="delete" href="#">
+   	  <i class="fa fa-close"></i>
+    </a>
+
+  </li>

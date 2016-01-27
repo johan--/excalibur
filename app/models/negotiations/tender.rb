@@ -2,32 +2,32 @@ class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
+  include RefreshSlug
+  include DirtyAccessor
   extend FriendlyId
+  protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
-  # include PublicActivity::Model
-  # tracked
-  monetize :target_sens
-  monetize :contributed_sens
+  monetize :price_sens
+  acts_as_commentable
+  acts_as_paranoid
 
-  HOUSE = ["rumah tunggal", "rumah koppel/gandeng", "town house"]
-  APARTMENT = "rumah susun/flat"
-
+  groupify :group_member
+  groupify :named_group_member
   belongs_to :tenderable, polymorphic: true  
+  belongs_to :starter, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
+  has_many :comments, as: :commentable
   
-  serialize :properties, HashSerializer
-  store_accessor :properties, 
-                 :open, :category, 
-                 :summary, :barcode, :tenderable_name
+  attr_accessor :asset_id, :participate, :asset
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :tangible, :use_case, :intent, :aqad, :aqad_code,
-                 :address, :area, 
-                 :price, :maturity, :margin, :own_capital,
-                 :published
-  attr_wannabe_bool :open, :published
+                 :state, :aqad_code, :layman_terms,
+                 :margin, :unit, :draft, :message,
+                 :seed_capital
+
+  attr_wannabe_bool :draft
 
 # Statesman stuffs
   # Initialize the state machine
@@ -40,41 +40,46 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  validates_presence_of :aqad, :price, :address
+  # validates_presence_of :aqad, :category, :tenderable, :seed_capital, :starter
 
   before_create :set_default_values!
-  before_save :set_target!, :set_margin!
-  after_touch :update_contribution!, :set_state!
+  after_create :refresh_friendly_id!
+  after_save :connect_with_bid, if: ->(obj){ obj.aqad?('musharaka')}
+  # after_update  :touch_bid!, 
+  after_touch :set_state!
 
   # Pagination
   paginates_per 30
 
-  def house?
-    true if tangible.in?(HOUSE)
-  end
-
-  def apartment?
-    true if tangible.in?(APARTMENT)
+  def target
+    price * volume
   end
 
   def fulfilled?
-    true if self.contributed == self.target
+    return true if check_contribution == self.target
+    return false if check_contribution != self.target
   end
 
-  def self.categories
-    %w(Institusi Bisnis Individu)
+  def aqad?(aqad)
+    return true if self.aqad == aqad
+    return false if self.aqad != aqad
   end
 
-  scope :open, -> { 
-    where("tenders.properties->>'open' = :true", true: "true") 
+  scope :open, -> { where(
+    "tenders.details->>'state' = :type", type: "open")  
   }
-  scope :qualified, -> { where(state: "qualified") }
-  scope :with_aqad, ->(aqad) { 
-    where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
-  }
+  scope :offering, -> { where(category: "fundraising") }
+  scope :trade, -> { where(category: "trade") }
+  scope :with_aqad, ->(aqad) { where(aqad: aqad) }
+  scope :published, -> { 
+    where("tenders.details->>'draft' = :type", type: "no") 
+  }  
+  # scope :with_aqad, ->(aqad) { 
+  #   where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
+  # }
 
   def access_granted?(user)
-    if self.tenderable_type == 'User'
+    if self.starter_type == 'User'
       self.tender_owner?(user)
     else
       self.member_of_tenderable?(user)
@@ -82,105 +87,87 @@ class Tender < ActiveRecord::Base
   end
 
   def tender_owner?(user)
-    if self.tenderable == user
-      return true
-    else
-      return false
-    end      
+    return true if self.starter == user
+    return false if self.starter != user
   end
 
   def member_of_tenderable?(user)
-    if tenderable.team.has_as_member?(user)
-      return true
-    else
-      return false
-    end
+    return true if starter.team.has_as_member?(user)
+    return false if !starter.team.has_as_member?(user)
   end
 
-  def funding_progress
-    (contributed / target) * 100
+  def check_contribution
+    value = self.bids.real.map{ |bid| bid.contribution }.compact.sum
+    return value
   end
 
-  def shares_remaining
-    ((target - contributed) / price_per_share).round(0)
-  end
-
-  def price_per_share
-    target / total_share
-  end
-
-  def total_share
-    1000
+  def shares_left
+    volume - self.bids.map{ |bid| bid.volume }.compact.sum
   end
 
 # Transitions
-  def processing
-    self.transition_to!(:processing)
+  def reopening
+    self.transition_to!(:open)
   end
 
-  def qualifying
-    self.transition_to!(:qualified)
+  def closing
+    self.transition_to!(:closed)
   end
 
   def completing
-    self.transition_to!(:complete)
+    self.transition_to!(:success)
   end
+  def dropping
+    self.transition_to!(:failed)
+  end  
 ####
 
-  def set_tangible_type
-    if self.house?
-      return "Rumah"
-    elsif self.apartment?
-      return "Apartemen"
-    end
-  end
 
 
 private
   def set_default_values!
-    self.state = 'fresh'
-    self.barcode = "##{SecureRandom.hex(3)}"
-    self.tenderable_name = self.tenderable.name
-    self.open = true
+    set_tender_unit!
+    if self.category == 'fundraising'
+      stock = self.tenderable
+      self.volume =  stock.volume
+      self.price = stock.price #if self.price.nil?
+      self.state = 'open' if self.state.blank?
+    end
+    self.draft = 'no' if self.draft.blank?
   end
 
-  def set_target!
-    @price = self.price.to_i
-    @own_capital = self.own_capital.to_i
+  def set_tender_unit!
+    self.unit = 'profit' if aqad?('murabaha')
+    self.unit = 'ownership' if aqad?('musharaka')
+  end
 
-    if self.aqad == 'murabahah'
-      self.target = @price
-    elsif self.aqad == 'musyarakah'
-      capital = @price * @own_capital / 100
-      self.target = @price - capital
+  def create_musharaka_bid(volume)
+    if self.category == 'fundraising' && aqad?('musharaka')
+      Bid.create(tender: self, volume: volume, 
+        bidder: self.starter, starter: 'yes')
     end
   end
 
-  def set_margin!
-    if self.aqad == 'murabahah'
-      self.margin = selling_margin(maturity)
-    elsif self.aqad == 'musyarakah'
-      property = "Rumah" if self.house?
-      property = "Apartemen" if self.apartment?
+  def connect_with_bid
+    vol = self.seed_capital.to_i * 10
 
-      self.margin = capitalization_rate(maturity, property)
+    if self.bids.count == 0
+      create_musharaka_bid(vol)
+    else
+      refresh_musharaka_bid(vol) if details_changed?
     end
   end
 
-  def slug_candidates
-    [ 
-      :barcode,
-      [:barcode, :tenderable_name, ]
-    ]
+  def refresh_musharaka_bid(volume)
+    self.bids.starter.update(volume: volume)
   end
 
-  def update_contribution!
-    update(contributed: check_contribution)
-  end
-
-  def check_contribution
-    value = self.bids.map{ |bid| bid.contribution }.compact.sum
-    return value
+  def set_state!
+    if self.fulfilled?
+      self.closing unless self.state == 'closed'
+    else
+      self.reopening unless self.state == 'open'
+    end
   end
 
   def self.transition_class
@@ -188,17 +175,17 @@ private
   end
 
   def self.initial_state
-    :fresh
+    :open
   end
 
-  def set_state!
-    
-    unless self.state == "qualified"
-        self.qualifying if self.fulfilled? 
-    else  
-      self.processing unless self.state == "processing"
-    end
-
+  def slug_candidates
+    [
+      :ticker, 
+      [:ticker, :tenderable_name]
+    ]
   end
 
+  def tenderable_name
+    self.starter.name
+  end
 end

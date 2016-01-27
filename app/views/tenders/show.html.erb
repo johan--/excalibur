@@ -1,158 +1,78 @@
-<% meta title: "Proposal #{@tender.barcode}" %>
+<% meta title: "Proposal #{@tender.ticker}" %>
 
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
 
-
 <div class="portlet portlet-bordered">
 	<div class="portlet-title tab-row">
-		<div class="caption caption-red">
-			<i class="fa fa-file-text"></i> 
-			<span class="caption-subject bold font-yellow-crusta uppercase">
-				<%= "Proposal" %>
-			</span>
-			<span class="caption-helper"><%= @tender.barcode %></span>
-		</div>
-		<ul class="nav nav-tabs top-menu">
-			<li class="active">
-				<a href="#portlet_tab1" data-toggle="tab">
-					<i class="fa fa-lg fa-info"></i>
-				</a>
-			</li>
-			<li>
-				<a href="#portlet_tab2" data-toggle="tab">
-					<i class="fa fa-lg fa-inbox"></i>
-					<span class="badge"><%= @bids.count %></span>
-				</a>
-			</li>
-		</ul>
+	    <ul class="nav nav-tabs" role="tablist">
+	        <li role="presentation" class="active"><a href="#portlet_tab1" aria-controls="home" role="tab" data-toggle="tab">Front</a></li>
+	        <li role="presentation"><a href="#portlet_tab2" aria-controls="profile" role="tab" data-toggle="tab">Forum</a></li>
+	        <li role="presentation"><a href="#portlet_tab3" aria-controls="messages" role="tab" data-toggle="tab">Info</a></li>
+	    </ul>	
 	</div>
 	
 	<div class="portlet-body">
 		<div class="tab-content">
 			<div class="tab-pane active" id="portlet_tab1">
 				<div class="row">
-					<div class="col-xs-12">
-            <div class="weather-3 pn centered">
-	            <div class="row">
-	              <div class="col-md-3 col-sm-12">
-	                <i class="fa fa-briefcase centerpiece"></i>
-	                <h3>Info Proposal</h3>
-	              </div>
-	              <div class="col-md-3 col-sm-6">
-	                <h3 class="coral" id="tender-progress">
-	                  <%= @tender.shares_remaining %> lembar
-	                </h3>
-	                <h4>Saham Tersedia</h4>
-	              </div>
-	              <div class="col-md-3 col-sm-6">
-	                <h3 class="coral" id="tender-pps">
-	                  <%= idr_money(@tender.price_per_share) %>
-	                </h3>
-	                <h4>@ Harga/lembar</h4>
-	              </div>
-	              <div class="col-md-3 col-sm-12">
-	                <div class="home-prompt">
-		            		<% if  @tender.access_granted?(current_user) %>
-		            			<%= link_to 'Koreksi Proposal', edit_tender_link(@tender), class: "btn btn-outlined btn-theme", remote: true  %>
-		            		<% else %>
-		            			<%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: "btn btn-outlined btn-theme", remote: true %>
-		            		<% end %>
-	                </div>
-	              </div>
 
-	        <div class="col-xs-12">			
-						<div class="profile-stats mt">
-						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-						      <div class="stats-value pink" id="tender-aqad">
-						      	<%= @tender.aqad.titleize %></div>
-						      <div class="stats-title">AKAD</div>
-						  </div>
-						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-						      <div class="stats-value pink" id="tender-maturity"><%= @tender.maturity %> Tahun</div>
-						      <div class="stats-title">JANGKA WAKTU</div>
-						  </div>				  
-						  <div class="col-md-4 col-sm-4 col-xs-12 stats-col">
-						      <div class="stats-value pink" id="tender-target"><%= idr_money(@tender.target) %>
-						      </div>
-						      <div class="stats-title">TARGET</div>
-						  </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col" id="gain_column">
-						        Gain: <strong><%= gain_amount(@tender, @simulation.profit) %></strong>
-						    </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-						        Sumber: <strong><%= gain_from(@tender.aqad) %></strong>
-						    </div>
-						    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-						        <strong><span id="tender-state">Status: <%= @tender.state %></span></strong>
-						    </div>
-						    
+					<div class="col-xs-12">
+						<%= render partial: 'tenders/tender_infos',  locals: {tender: @tender} %>
+					</div>
+					<div id="front-content">
+						<div class="col-xs-12">
+							<h3>Rincian Rumah <small><%= link_to "Telusuri", house_path(@tender.tenderable) %></small></h3>
+							<%= render 'houses/house_details', house: @tender.tenderable.house %>
+						</div>					
+	      		<div class="col-xs-12" id="starter-section">
+	      			<h3>Klien</h3>
+	    				<div class="col-md-4 col-sm-6 col-xs-12" id="tender-target">
+				      	<ul class="user-profiles-list-basic" id="tender-starter">
+				      		<%= render  partial: 'users/user', locals: { user: @client } %>
+				      	</ul>
+		      		</div>
+		      		<div class="col-md-8 col-sm-6 col-xs-12" id="starter-info">
+		      			<%= render  partial: 'users/user_infos', locals: { user: @client } %>
+		      		</div>
+						</div>
+						<div class="col-xs-12" id="tender-bidder">
+							<h3>Pendana</h3>
+							<%= render 'users/users', users: @bidders %>
 						</div>
 					</div>
-					<div class="col-xs-12 mt">
-				    <p class="text">
-				    	Proposal diajukan oleh <span id="tender-client"><%= link_to @tender.tenderable.name, user_path(@tender.tenderable) %></span>.
-							<span>Aset akan difungsikan sebagai <strong><%= @tender.intent unless @tender.intent.nil? %></strong></span>.
-							<span>Dana yang terkumpul akan digunakan untuk <strong> <%= @tender.use_case %></strong></span>.
-				      <span>Aset bertipe <strong><%= @tender.tangible %></strong></span> dan terletak di <strong><%= @tender.address %></strong>
-				    </p>
-				    <br>
-				    <% if @tender.summary.nil? %>
-				     	<p>Belum ada penilaian</p>
-				    <% else %>
-				     	<p><%= @tender.summary %></p>
-				    <% end %>
-					</div>
 
-              </div>
-            </div>
-	        </div>
+      		<div class="col-md-12" id="edit-section" style="display: none;">
+      		</div>
 
-					<div class="col-xs-12">
-				    <div class="weather-3 pn mt">
-							<h3>Penawar</h3>
-							<% if @bids.empty? %>
-								<div class="blankslate">
-									<div class="spacious">
-										<h3><%= "Belum Ada Tawaran" %></h3>
-									</div>
-								</div>
-							<% end %>
-							<ul class="media-list">
-								<% @bids.find_each do |bid| %>
-									<%= render bid %>
-								<% end %>
-		          </ul>
-		          <br>
-				    </div>
-					</div>					
 				</div>			    
 			</div>
 
 			<div class="tab-pane" id="portlet_tab2">
-				<div class="row">
-					<div class="col-xs-12">
-            <div class="weather-3 pn centered">
-	            <div class="row">
-	              <div class="col-md-6 col-sm-12">
-	                <i class="fa fa-briefcase centerpiece"></i>
-	                <h3>
-	                  Bilah Perundingan
-	                </h3>
-	              </div>
-	              <div class="col-md-6 col-sm-12">
-	              	<p>Untuk berinteraksi mengenai proposal ini atau bertanya pada pemohon dan calon penawar, silahkan kamu menulis di kotak komentar di bawah ini.</p>
-	              </div>
-              </div>
-            </div>						
+	      	  <div class="col-xs-12" id="forum">
+	      	  <!-- Comments -->
+			    <h3>Penilaian</h3><hr class="light">
+	      	    <% if @assessment.blank? %>
+				  <div class="blankslate" id="comment-placeholder">
+					<div class="spacious">
+						<h3><%= "Belum Ada Analisis" %></h3>
+						<% if current_user.admin? %>
+							<p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+						<% end %>
 					</div>
-					<div class="col-xs-12">
-						<div id="disqus_thread"></div>
-					</div>					
-				</div>
+				  </div>
+				<% else %>
+			      <%= render 'comments/assessment', comment: @assessment %>
+			      <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+			    <% end %>			    
+
+			    <h3>Komentar</h3><hr class="light">
+	      			<%= render 'comments/comments', comments: @comments %>
+			  </div>
+			</div>
+			<div class="tab-pane" id="portlet_tab3">
 			</div>
 
 		</div>
 	</div>
 
 </div>
-<%= render partial: 'elements/disqus_script', locals: { identifier: @tender.barcode } %>

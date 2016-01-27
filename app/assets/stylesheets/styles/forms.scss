@@ -1,0 +1,329 @@
+/* ----- SimpleForm Styles ----- */
+
+.simple_form div.input {
+  margin-bottom: 10px;
+  clear: both; /* Required for Webkit, but not for Gecko */
+}
+
+.simple_form label {
+  /*float: left;*/
+  /*width: 100px;*/
+  text-align: right;
+  /*margin: 2px 10px;*/
+}
+
+.simple_form .radio label,
+.simple_form .checkbox label {
+  min-height: 22px;
+  padding-left: 50px;
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+div.boolean, .simple_form input[type='submit'] {
+/*  margin-left: 120px;*/
+}
+
+div.boolean label, label.collection_radio_buttons {
+  float: none;
+  margin: 0;
+}
+
+label.collection_radio_buttons {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+.simple_form .error {
+  clear: left;
+  color: black;
+  display: block;
+  margin-left: 120px;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+input.check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+}
+
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+
+/*Price*/
+.price-box {
+    margin: 0 auto;
+    background: #E9E9E9;
+  border-radius: 10px;
+  padding: 40px 15px;
+  width: 500px;
+}
+
+.ui-widget-content {
+  border: 1px solid #bdc3c7;
+  background: #e1e1e1;
+  color: #222222;
+  margin-top: 4px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default{
+background:transparent !important;
+border:none !important;
+}
+.ui-slider .ui-slider-handle label{
+    background: #428bca;
+    border-radius: 20px;
+    width:5.2em;
+}
+
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 5.2em;
+  height: 100px;
+  cursor: default;
+  margin: 0 -40px auto !important;
+  text-align: center; 
+  line-height: 35px;
+  color: #FFFFFF;
+  font-size: 15px;
+    
+}
+
+.ui-slider .ui-slider-handle .glyphicon {
+  color: #FFFFFF;
+  margin: 0 3px; 
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.ui-corner-all {
+  border-radius: 20px;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  top: -.9em;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+  border: 1px solid #f9f9f9;
+  background: #3498db;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  margin-left: -0.5em;
+}
+
+.ui-slider .ui-slider-handle {
+  cursor: pointer;
+}
+
+.ui-slider a,
+.ui-slider a:focus {
+  cursor: pointer;
+  outline: none;
+}
+
+.price, .lead p {
+  font-weight: 600;
+  font-size: 32px;
+  display: inline-block;
+  line-height: 60px;
+}
+
+h4.great {
+  background: #00ac98;
+  margin: 0 0 25px -60px;
+  padding: 7px 15px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  display: inline-block;
+  -moz-box-shadow:    2px 4px 5px 0 #ccc;
+    -webkit-box-shadow: 2px 4px 5px 0 #ccc;
+    box-shadow:         2px 4px 5px 0 #ccc;
+}
+
+.total {
+  border-bottom: 1px solid #7f8c8d;
+  /*display: inline;
+  padding: 10px 5px;*/
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.total:before {
+  content: "";
+  display: inline;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 100%;
+  height: 3px;
+  background: #7f8c8d;
+  opacity: 0.5;
+}
+
+.price-slider {
+  margin-bottom: 70px;
+}
+
+.price-slider span {
+  font-weight: 200;
+  display: inline-block;
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+.form-pricing {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.price-form {
+  background: #ffffff;
+  margin-bottom: 10px;
+  padding: 20px;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  /*-moz-box-shadow:    0 5px 5px 0 #ccc;
+    -webkit-box-shadow: 0 5px 5px 0 #ccc;
+    box-shadow:         0 5px 5px 0 #ccc;*/
+}
+
+.form-group span.price {
+  font-weight: 200;
+  display: inline-block;
+  color: #7f8c8d;
+  font-size: 20px;
+}
+
+.help-text {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 10px;
+  color: #737373;
+  position: absolute;
+  /*margin-left: 20px;*/
+  font-weight: 200;
+  text-align: right;
+  width: 188px;
+}
+
+.price-form label {
+  font-weight: 200;
+  font-size: 21px;
+}
+
+img.payment {
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.ui-slider-range-min {
+  background: #2980b9;
+}
+
+/* HR */
+
+hr.style {
+  margin-top: 0;
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
+.box {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 0 1px #e4e6eb;
+    -moz-box-shadow: 0 1px 0 1px #e4e6eb;
+    box-shadow: 0 1px 0 1px #e4e6eb;
+    margin: 0 0 10px 0;
+}
+
+.box .box-header {
+    background: #36a9e1;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+}
+.box .box-content {
+    padding: 10px;
+    background: white;
+    -webkit-border-radius: 0 0 2px 2px;
+    -moz-border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px;
+}
+.quick-button-small {
+    border: 1px solid #ddd;
+    padding: 10px 0 0 0;
+    /*font-size: 10px;*/
+    background-color: #efefef;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fafafa),to(#efefef));
+    background-image: -webkit-linear-gradient(top,#fafafa,#efefef);
+    background-image: -moz-linear-gradient(top,#fafafa,#efefef);
+    background-image: -o-linear-gradient(top,#fafafa,#efefef);
+    background-image: -ms-linear-gradient(top,#fafafa,#efefef);
+    background-image: linear-gradient(top,#fafafa,#efefef);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    display: block;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+/* Form Slider */
+.slider.slider-horizontal {
+  width: 100%;
+}
+
+.slider-selection {
+  /*background-image: ;*/
+  background-image: -webkit-linear-gradient(top, $brand-primary 0%, $brand-primary 100%);
+  background-image: -o-linear-gradient(top, $brand-primary 0%, $brand-primary 100%);
+  background-image: linear-gradient(to bottom, $brand-primary 0%, $brand-primary 100%);
+  background-repeat: repeat-x;  
+}

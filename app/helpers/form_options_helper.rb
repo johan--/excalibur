@@ -3,33 +3,21 @@ module FormOptionsHelper
   	[ ["True", true], ["False", false] ]
   end
 
-  def days_list
-	[ [ "Senin", "Monday"], ["Selasa", "Tuesday"], ["Rabu", "Wednesday"],
-	  ["Kamis", "Thursday"], ["Jumat", "Friday"], ["Sabtu", "Saturday"],
-	  ["Minggu", "Sunday"] ]
+  def yes_no_options
+  	[ "yes", "no" ]
   end
 
-
-  def province_lists
-  	[ "DKI Jakarta", "Banten", "Jawa Barat" ]
+  def currency_options
+  	[ "idr", "usd" ]
   end
-  
-	def all_hours
-		[
-			"01:00", "02:00", "03:00", "04:00", "05:00",
-			"06:00", "07:00", "08:00", "09:00",
-			"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", 
-			"16:00", "17:00", "18:00", "19:00", "20:00", 
-			"21:00", "22:00", "23:00", "00:00"
-		]		
-	end
 
-	def durations
-		(1..4).map{ |h| ["#{h} Jam", h] }
-	end
+  def repayment_period_options
+  	[ "weekly", "monthly", "retained" ]
+  end
 
-	def role_options
-		[ ['Pemilik', 0], ['Pengelola', 1], ['Staff', 2] ]
+# Comment options
+	def subject_options
+		["assessment", "interaction"]
 	end
 
 # User options
@@ -61,24 +49,16 @@ module FormOptionsHelper
 		["murabahah", "musyarakah mutanaqishah"]
 	end
 
-	def case_options
-		["pembelian", "pembangunan", "perbaikan/renovasi", "pelunasan"]
-	end
-
 	def intent_options
 		["tempat tinggal", "investasi"]
 	end
 
-	def tangible_options
-		[ "rumah tunggal", "rumah koppel/gandeng", "town house", "rumah susun/flat", "tanah kosong" ]
-	end
-
-	def own_capital_options
-		["10%", "20%", "30%", "40%", "50%", "60%", "80%", "90%"]
+	def tender_unit_options
+		[ "revenue shares", "ownership shares"]
 	end
 
   def published_options
-  	[ ["Ya", true], ["Tidak", false] ]
+  	[ 'yes', 'no' ]
   end
 # Document options
 	def document_categories
@@ -117,4 +97,16 @@ module FormOptionsHelper
 		["belum diproses", "tentatif", "pasti", "batal"]
 	end
 
+# House options
+	def house_categories
+	  ["rumah", "apartemen"]
+	end
+
+	def house_states
+	  ["for sale", "available", "for rent"]
+	end
+
+	def house_and_stocks(stocks)
+	  stocks.each{ |stock| [stock, stock.house.ticker]  }
+	end
 end

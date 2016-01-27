@@ -18,11 +18,14 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require turbolinks
 //= require jquery.turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
 //= require nprogress-ajax
 //= require bootstrap 
+//= require bootstrap-slider
+//= require_tree ./houses
 //= require_tree ./sitewide
 //= require social-share-button

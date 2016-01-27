@@ -2,10 +2,10 @@
 
 # describe API::V1::BidsController do
 #   let!(:biz) { FactoryGirl.create(:business, :with_starter) }
-#   let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, tenderable: biz) }
+#   let!(:tender_1) { FactoryGirl.create(:retail, :musharakah, starter: biz) }
 #   let!(:user) { FactoryGirl.create(:investor) }
 #   let!(:bid_1) { FactoryGirl.create(:bid, bidder: user, tender: tender_1) }
-#   let!(:tender_2) { FactoryGirl.create(:retail, :murabahah, tenderable: biz) }
+#   let!(:tender_2) { FactoryGirl.create(:retail, :murabahah, starter: biz) }
   
 #   before(:each) do 
 #   	api_authorization_header(user.auth_token) 

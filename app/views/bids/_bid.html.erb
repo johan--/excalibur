@@ -1,91 +1,28 @@
-<% if defined?(funder) && funder %>
-<li class="ticket-item" id="<%=  %>">
+<li class="ticket-item">
   <div class="row">
-    <div class="ticket-user col-md-5 col-sm-12">
-      <span class="user-name">
-        Proposal <strong><%= bid.tender.barcode %></strong>
-      </span>
-      <span class="user-company">
-        oleh <%= bid.tender.tenderable.name %>
-      </span>
-    </div>
-    <div class="ticket-time col-md-5 col-sm-6 col-xs-12">
-      <div class="divider hidden-md hidden-sm hidden-xs"></div>
-      <%= idr_money(bid.contribution) %> 
-      <span class="time">
-        <%= bid.created_at.strftime("%-d %B %Y") %>
-      </span>
-    </div>
-    <div class="ticket-type  col-md-2 col-sm-6 col-xs-12">
-      <span class="divider hidden-xs"></span>
-      <span class="type">
-        <%= link_to 'Lihat', tender_path(bid.tender), class: "btn btn-xs btn-outlined btn-theme" %>
-      </span>
-    </div>
-    <div class="ticket-state bg-palegreen">
-        <i class="fa fa-check"></i>
-    </div>
+      <div class="ticket-user col-md-3 col-sm-12 col-xs-12">
+        <span class="user-name"><%= bid.bidder.name.titleize %></span>
+      </div>
+      <div class="ticket-time  col-md-3 col-sm-6 col-xs-12">
+          <div class="divider hidden-md hidden-sm hidden-xs"></div>
+          <span class="bid-volume time"><%= bid.volume %> Lembar</span>
+      </div>
+      <div class="ticket-user col-md-4 col-sm-6 col-xs-6">
+    <% if bid.bidder?(current_user) || current_user.admin? %>
+      <%= link_to edit_tender_bid_path(bid.tender, bid), remote: true, class: "btn btn-info btn-circle" do %>
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      <% end %>
+      <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
+        <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
+      <% end %>
+    <% end %>
+      </div>
+      <div class="ticket-type  col-md-2 col-sm-6 col-xs-6">
+          <span class="divider hidden-xs"></span>
+          <span class="type"><%= bid.state %></span>
+      </div>
+      <div class="ticket-state bg-palegreen">
+          <i class="fa fa-check"></i>
+      </div>
   </div>
 </li>
-
-<% else %>
-  <li class="media">
-    <a class="pull-left" href="#">
-    <figure class="media-object img-circle hidden-xs">
-      <% if bid.bidder.avatar.nil? %>
-        <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
-      <% else %>
-        <%= cl_image_tag(bid.bidder.avatar, cloudinary_photo_options('private')) %>
-      <% end %>
-    </figure>
-    </a>
-    <div class="media-body">
-      <div class="well well-lg">
-        <div class="row">
-          <div class="col-xs-6">
-            <h4 class="media-heading text-uppercase reviews" id="bidder-name"><%= bid.bidder.name %></h4>          
-          </div>
-          <div class="col-xs-3">
-            <ul class="media-date text-uppercase reviews list-inline">
-              <span class="warranty">
-                <i class="fa fa-certificate"></i> <%= bid.state %>
-              </span>    
-            </ul>          
-          </div>
-          <div class="col-xs-3">
-            <ul class="media-date text-uppercase reviews list-inline">
-              <span class="price" id="bidder-contribution">
-                <%= idr_money(bid.contribution) %>
-              </span>
-            </ul>
-          </div>
-          <div class="col-xs-12">
-            <p class="media-comment">
-              <% if bid.summary.nil? %>
-                tidak ada pesan
-              <% else %>
-                <%= bid.summary %>
-              <% end %>
-            </p>
-          </div>
-          <div class="col-xs-12">
-            <% if bid.bidder?(current_user) %>
-              <%= link_to edit_tender_bid_path(bid.tender, bid), remote: true, class: "btn btn-info btn-circle" do %>
-                <span class="glyphicon glyphicon-pencil"></span> Edit
-              <% end %>
-              <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
-                <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
-              <% end %>
-            <% end %>
-            <% if current_user.admin? %>
-              <%= link_to tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penarikan tawaran'}, class: "btn btn-warning btn-circle" do %>
-                <span class="glyphicon glyphicon-trash reset-link"></span> Tarik
-              <% end %>              
-            <% end %>
-          </div>
-        </div>
-      </div>              
-    </div>
-  </li>
-
-<% end %>

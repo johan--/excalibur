@@ -15,7 +15,7 @@ FactoryGirl.define do
 
     factory :post_with_user do
   	  transient do
-  	  	author { FactoryGirl.create(:client) }
+  	  	author { FactoryGirl.create(:admin) }
   	  end
 
   	  user { author }

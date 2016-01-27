@@ -53,6 +53,11 @@ module ApplicationHelper
 # => R$1234567890,50
   end
 
+  def idr_concat(number)
+    con = number / 1000000
+    idr_no_symbol(con)
+  end
+
   def language_picker
     if I18n.locale == :en
       "English"
@@ -61,4 +66,7 @@ module ApplicationHelper
     end
   end
 
+   def percent_of(n)
+    n.to_f * 100.0
+   end
 end

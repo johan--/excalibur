@@ -1,60 +1,102 @@
 FactoryGirl.define do
 
   factory :tender do
-    summary "Lorem ipsum dolor cassus"
+    # association :tenderable, factory: :stock
+    association :starter, factory: :user
+    annum 8
+    seed_capital 20
+    draft "no"
+    message "Lorem ipsum dolor cassus"
 
-  	factory :retail do
-  	  category "BizPartnership"
-  	  target "15000000"
+    factory :house_purchase_murabaha_tender do
+      house_purchase
+      murabaha
+      with_stock
+      negotiate
+    end
 
-      trait :with_biz do
-        transient do
-          business { FactoryGirl.create(:business) }
-        end
+    factory :house_purchase_musharaka_tender do
+      house_purchase
+      musharaka
+      with_stock
+      negotiate
+      participate true
+    end
 
-        tenderable { business }
+    factory :musharaka_share_sale do
+      share_purchase
+      musharaka
+      with_stock
+      negotiate
+    end
+
+    trait :house_purchase do
+      category "fundraising"
+    end
+
+    trait :share_purchase do
+      category "trading"
+    end
+
+
+
+    trait :success do
+      state "success"
+
+      transient do
+        count 4
       end
-  	end
 
-  	factory :consumer_tender do
-  	  category "User"
-      price 500000000
-      address "Jl. Cipete 10 No. 90 RT 10 RW 11 Cilandak, Jakarta Selatan"
-      intent "tempat tinggal"
-      tangible "rumah tunggal"
-      use_case "pembelian"
-      own_capital 30
-      maturity 8
-      published true
+      after(:build) do |tender|
+        FactoryGirl.create(:bid, :nameless, :confirmed, :tender => tender, shares: 1000)
+      end
+    end      
 
-      # trait :with_bid do
-      #   transient do
-      #     consumer { FactoryGirl.create(:consumer) }
-      #   end
+    trait :with_starter do 
+      association :starter, factory: :user
+    end 
 
-      #   tenderable { consumer }
-      # end      
-  	end
+    trait :with_stock do 
+      after(:build) do |tender|
+        stock = FactoryGirl.create(:stock)
+        tender.tenderable = stock
+      end
+    end 
 
     trait :draft do
-      published false
+      draft "yes"
     end
 
-    trait :musharakah do
-      aqad "musyarakah"
+    trait :musharaka do
+      aqad "musharaka"
+      unit "ownership"
     end
 
-    trait :murabahah do
-      aqad "murabahah"
+    trait :murabaha do
+      aqad "murabaha"
+      unit "profit"
     end
 
-    trait :tenderable do
-      tenderable
+    trait :mudharaba do
+      aqad "mudharaba"
     end
 
-    trait :processing do
-      state "processing"
-    end 
-  end	
+    trait :half do
+      volume 500
+    end
+
+    trait :quarter do
+      volume 250
+    end
+
+    trait :starter do
+      starter
+    end
+
+    trait :negotiate do
+      price 300000 # one hundred thousand
+      volume 1000
+    end
+  end 
 
 end

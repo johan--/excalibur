@@ -1,41 +1,46 @@
-<div class="well profile">
-  <div class="col-sm-12">
-    <div class="col-xs-12 col-sm-6">
-      <h2><span id="name"><%= user.name %></span> 
-          <small> | <%= link_to "Edit", edit_user_path(user, profile: true), remote: true %></small> 
-      </h2>
-      <p><strong>Pendidikan Terakhir: </strong>  <%= user.last_education %></p>
-      <p><strong>Status Pernikahan: </strong> <%= user.marital_status %> </p>
-      <p><strong>Jumlah Tanggungan: </strong> <%= user.number_dependents %> Orang </p>
-			<p><strong>Penghasilan Bulanan: </strong> <%= idr_money(user.monthly_income) %> </p>
-			<p><strong>Pengeluaran Bulanan: </strong> <%= idr_money(user.monthly_expense) %> </p>
-			<p><strong>Pekerjaan: </strong> <%= user.occupation %> </p>
-      <p><strong>Pengalaman Kerja: </strong> <br> <%= user.work_experience %></p>
-    </div>             
-    <div class="col-xs-12 col-sm-6">
-      <figure>
-        <% if current_user.avatar.nil? %>
-          <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
-        <% else %>
-          <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('') ) %>
-        <% end %>
-      </figure>
-      <p><strong>Biografi: </strong><br> <span id="bio"><%= user.about %></span>  </p>
-      <p><strong>Alamat: </strong><span id="address"> <%= user.address %> </p>
-    </div>
-  </div>            
-  <div class="col-xs-12 divider text-center">
-    <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong><%= user.credibility %></strong></h2>                    
-      <p>Kredibilitas</p>
-    </div>
-    <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong><%= documents.count %></strong></h2>                    
-      <p><small>Dokumen</small></p>
-    </div>
-    <div class="col-xs-12 col-sm-4 emphasis">
-      <h2><strong><%= @verifieds.count %></strong></h2>
-      <p><small>Terverifikasi</small></p>
-    </div>
-  </div>
-</div>                 
+<div class="col-md-12">
+	<h3>Default Tab</h3>
+
+	<div class="tabbable-panel">
+		<div class="tabbable-line">
+			<ul class="nav nav-tabs ">
+				<li class="active">
+					<a href="#tab_default_1" data-toggle="tab">
+					Profil </a>
+				</li>
+				<li>
+					<a href="#tab_default_2" data-toggle="tab">
+					Avatar </a>
+				</li>
+				<li>
+					<a href="#tab_default_3" data-toggle="tab">
+					Preferensi </a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="tab_default_1">
+					<h4>Edit Profil Kamu</h4>
+					<%= render partial: 'users/profile_form', locals: { user: user } %>
+				</div>
+				<div class="tab-pane" id="tab_default_2">
+					<div class="profile-userpic">
+					  <% if current_user.avatar.nil? %>
+					    <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
+					    <p class="text-center">
+					    <%= link_to "Unggah Gambar Profil", avatar_user_path(current_user), remote: true, class: "btn btn-outlined btn-theme btn-xs" %></p>
+					  <% else %>
+					    <p class="text-center">
+					    <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('private')) %>
+					    <%= link_to "Hapus foto", remove_avatar_user_path(current_user), method: :put, data: {:confirm => 'Kamu yakin mau melanjutkan?', object: 'Penghapusan gambar profil'}, class: 'reset-link btn btn-danger btn-xs' %></p>
+					  <% end %>
+				  </div>
+				</div>
+				<div class="tab-pane" id="tab_default_3">
+					<h4>Edit Preferensi Kamu</h4>
+					<%= render partial: 'users/preferences', locals: { user: user } %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

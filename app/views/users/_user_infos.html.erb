@@ -1,0 +1,69 @@
+<div class="panel-body inf-content">
+  <div class="row">
+  	<div class="col-md-1 hidden-sm hidden-xs"></div>
+    <div class="col-md-8 col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-condensed table-responsive table-user-information">
+          <tbody>
+            <tr>        
+              <td><strong>
+                <span id="aqad" class="glyphicon glyphicon-briefcase text-primary"></span> Pekerjaan
+                </strong>
+              </td>
+              <td class="text-primary">
+                <strong><%= user.occupation %></strong>
+              </td>
+            </tr>
+            <tr>    
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-user text-primary"></span>Jumlah Tanggungan 
+                </strong>
+              </td>
+              <td class="text-primary" id="maturity-margin"><strong><%= user.number_dependents %></strong></td>
+            </tr>
+            <tr>    
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-user text-primary"></span>  Alamat
+                </strong>
+              </td>
+              <td class="text-primary" id="maturity-margin"><%= user.address %></td>
+            </tr>					            
+            <tr>					            
+                <td>
+                  <strong>
+                    <span class="glyphicon glyphicon-piggy-bank text-primary"></span> Pendapatan
+                  </strong>
+                </td>
+                <td class="text-primary">
+                    <%= user.monthly_income %>/bulan
+                </td>
+            </tr>
+            <tr>        
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-eye-open text-primary"></span> Pendidikan
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= user.last_education %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-pencil text-primary"></span> Status
+                </strong>
+              </td>
+              <td class="text-primary">
+                <%= user.marital_status %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-1 hidden-sm hidden-xs"></div>
+  </div>
+</div>

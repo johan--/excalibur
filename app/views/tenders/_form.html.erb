@@ -1,26 +1,53 @@
-<%= simple_form_for([@tenderable, @tender], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+<%= simple_form_for(@tender, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
+<div class="col-xs-12">
   <div class="form-inputs">
-    <% if @aqad == 'murabahah' %>
-      <%= f.input :use_case, as: :string, input_html: { value: 'pembelian'}, label: "Tujuan Pembiayaan", required: true, readonly: true %>
-      <%= f.input :maturity, as: :integer, input_html: { min: '5', max: '10', step: '1' }, label: "Lama Cicilan", placeholder: "Tahun", required: true %>
-
+    <%= f.input :aqad, :as => :select, :collection => %w[murabaha musharaka], prompt: "pilih akad", required: true %> <br>
+    <% if @category == 'fundraising' %>
+      <%= f.input :seed_capital, as: :integer, input_html: { min: '20', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari harga rumah", required: true %>
     <% else %>
-      <%= f.input :use_case, collection: case_options, prompt: "Pilih", selected: @tender.use_case, label: "Tujuan Pembiayaan", required: true %>
-      <%= f.input :maturity, as: :integer, input_html: { min: '4', step: '1' }, label: "Lama Sewa", placeholder: "Tahun", required: true %>
+      <%= f.input :volume, as: :integer, input_html: { min: '0', max: '1000', step: '1' }, label: "Saham Dijual", placeholder: "jumlah", required: true %>  
+      <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "100000", 'slider-max'=> "500000000", 'slider-value'=> "0", 'slider-step'=> "50000"} }, label: "Harga", required: true %>
     <% end %>
-    
-    <%= f.input :intent, collection: intent_options, prompt: "Pilih", selected: @tender.intent, label: "Fungsi", required: true %>
-    <%= f.input :own_capital, as: :integer, input_html: { min: '25', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari Harga Aset", required: true %>    
-    <%= f.input :price, as: :integer, input_html: { min: '50000000', max: '1000000000', step: '10000000' }, label: "Harga Rumah", required: true %>
-    <%= f.input :address, label: "Lokasi", required: true %>
-    <%= f.input :tangible, collection: tangible_options, prompt: "Pilih", selected: @tender.tangible, label: "Bentuk Rumah", required: true %>
-    <%= f.input :published, as: :radio_buttons, collection: published_options, label: "Langsung Publikasikan?", required: true %>
-    <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
+
+    <%= f.input :annum, as: :integer, input_html: { min: '1', max: '10', step: '1' }, label: "Durasi", placeholder: "lama kontrak", required: true %>
+
+    <%= f.input :draft, as: :boolean, checked_value: 'yes', unchecked_value: 'no', label: "Draft?" %>
+
+    <%= f.input :asset, :as => "hidden", :input_html => { value: @asset_type } %>
+    <%= f.input :asset_id, :as => "hidden", :input_html => { value: @asset_id } %>
+    <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>
   </div>
 
+  <div class="form-group">
+    <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
+    <!-- <span class="help-text">Please choose your amount</span> -->
+    <div class="col-sm-6">
+      <p id="amount-inputSliderVal" class="price lead"><%= idr_concat(@asset.worth) if @category == 'fundraising'  %></p>
+      <span class="price"> jt</span>
+    </div>
+  </div>
+  <% unless @category == 'fundraising' %>
+  <div class="form-group">
+    <label for="total" class="col-sm-6 control-label"><strong>Durasi: </strong></label>
+    <!-- <span class="help-text">(Amount * Days)</span> -->
+    <div class="col-sm-6">
+      <p id="duration-inputSliderVal" class="price lead">0</p>
+      <span class="price"> Tahun</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="total" class="col-sm-6 control-label"><strong>Modal: </strong></label>
+    <!-- <span class="help-text">(Amount * Days)</span> -->
+    <div class="col-sm-6">
+      <p id="seed-inputSliderVal" class="price lead">20</p>
+      <span class="price"> %</span>
+    </div>
+  </div>
+  <% end %>  
+</div>
   <div class="form-actions">
-    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+    <%= f.submit "Kirim", class: "btn btn-block btn-primary btn-round-lg" %>
   </div>
 <% end %>

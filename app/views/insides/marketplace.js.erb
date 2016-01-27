@@ -1,0 +1,4 @@
+$('#user-dashboard').hide();
+$('#app-content').html("<%= j (render partial: 'tenders/tender_list', 
+	locals: { tenders: @tenders }) %>");
+$('#app-content').slideDown(350);

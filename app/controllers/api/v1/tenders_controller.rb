@@ -5,11 +5,11 @@
 #   def_param_group :tender do
 #     param :tender, Hash, required: true do
 #       param :target, Integer, "Amount of target money that is proposed by the tender, in IDR", required: true
-#       param :tenderable_id, Integer, "Id of the tenderable as a polymorphic owner", required: true
-#       param :tenderable_type, String, "Type of the tenderable, e.g. User, Business, Firm", required: true
+#       param :tenderable_id, Integer, "Id of the starter as a polymorphic owner", required: true
+#       param :tenderable_type, String, "Type of the starter, e.g. User, Business, Firm", required: true
 #       param :category, String, "Category of tender, e.g. Bisnis, Konsumsi", required: true
 #       param :summary, String, "Summary of the proposal, describe in short what the money is for and why people should bid for the tender", required: true
-#       param :aqad, String, "Type of basic sharia aqad proposed by tenderable, e.g. Musharakah, Murabahah, etc", required: true
+#       param :aqad, String, "Type of basic sharia aqad proposed by starter, e.g. Musharakah, Murabahah, etc", required: true
 #       param :intent_type, String, "A classification of intent for the money", required: true
 #       param :intent_assets, Array, "An array of assets that will be acquired from this proposal", required: true
 #     end
@@ -64,15 +64,15 @@
 
 #   def find_tenderable
 #     if params[:business_id]
-#       @tenderable = Business.friendly.find(params[:business_id])
+#       @starter = Business.friendly.find(params[:business_id])
 #     elsif params[:user_id]
-#       @tenderable = User.friendly.find(params[:user_id])
+#       @starter = User.friendly.find(params[:user_id])
 #     end
 #   end
 
 #   def tender_params
 #     params.require(:tender).permit(
-#       :tenderable, :tenderable_type, :tenderable_id, 
+#       :starter, :tenderable_type, :tenderable_id, 
 #       :category, :target, :target_cents,
 #       # properties
 #       :summary, 

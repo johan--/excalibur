@@ -1,29 +1,21 @@
 class TenderStateMachine
   include Statesman::Machine
 
-  state :fresh, initial: true
-  state :processing
-  state :qualified
+  state :open, initial: true
+  state :closed
   state :success
-  state :denied
-  state :dropped
+  state :failed
 
-  transition from: :fresh, to: [:processing, :dropped, :qualified]
-  transition from: :processing, to: [:qualified]
-  transition from: :qualified,  to: [:processing, :success, :denied]
-  transition from: :denied,  to: [:processing, :dropped]
-  # transition from: :dropped
+  transition from: :open, to: [:closed, :failed]
+  transition from: :closed, to: [:open, :success, :failed]
+  # transition from: :failed
 
-  guard_transition(to: :qualified) do |tender|
+  guard_transition(to: :closed) do |tender|
     tender.fulfilled?
   end
 
-  guard_transition(from: :qualified, to: :success) do |tender|
-    # 
-  end
-
-  guard_transition(from: :qualified, to: :denied) do |tender|
-    # 
+  guard_transition(to: :open) do |tender|
+    !tender.fulfilled?
   end
 
   after_transition do |tender, transition|
@@ -39,9 +31,11 @@ class TenderStateMachine
   #   PaymentService.new(order).submit
   # end
 
-  # after_transition(to: :purchased) do |order, transition|
-  #   MailerService.order_confirmation(order).deliver
-      # model.state = transition.to_state
-      # model.save!
+  # after_transition(to: :success) do |tender, transition|
+  #   if tender.aqad?('murabaha')
+  #   Tender.create(te)
+  #     model.state = transition.to_state
+  #     model.save!
+  #   end
   # end
 end

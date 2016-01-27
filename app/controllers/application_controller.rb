@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
       :password_confirmation,
       :name,
       :phone_number,
-      :client, :financier, :category,
       :understanding
       )
     }
@@ -48,10 +47,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.admin?
       admin_root_url(subdomain: '')
-    elsif resource.client? && !resource.financier?
+    else
       user_root_url(subdomain: '')
-    elsif !resource.client? && resource.financier?
-      firm_dashboard_url(subdomain: '')
     end      
   end
 

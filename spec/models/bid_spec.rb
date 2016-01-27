@@ -1,47 +1,82 @@
 require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
-  let!(:user_2) { FactoryGirl.create(:client) }
-  let!(:tender) { FactoryGirl.create(:consumer_tender, :murabahah, tenderable: user_2) }
+  let!(:tender) { FactoryGirl.create(:house_purchase_murabaha_tender) }
 
   before(:each) do
-  	@bid = Bid.new(
-  			  tender: tender, bidder: user_2, shares: 1000
-  		)
+  	@bid = FactoryGirl.build(:bid, tender: tender)
   end
 
   subject { @bid }
 
   it { should respond_to(:tender) }
   it { should respond_to(:bidder) }
-
-  it { should respond_to(:properties) }
+  it { should respond_to(:ticker) }
+  it { should respond_to(:price) }
+  it { should respond_to(:volume) }
   it { should respond_to(:details) }
+  it { should respond_to(:draft) }
+  it { should respond_to(:state) }
+  it { should respond_to(:message) }
 
   describe "after save" do
   	before(:each) { @bid.save }
 
   	describe "default values set by callback or database" do
-  	  it "should sets properties of open to false" do
-  	  	expect(@bid.open).to eq true
-  	  end
+  	  # it "should sets properties of open to true" do
+  	  # 	expect(@bid.broadcast?).to eq true
+  	  # end
+
+      it "should sets properties of draft to no if not specified" do
+        expect(@bid.draft?).to eq false
+      end      
 
   	  it "should sets default state" do
-  	  	expect(@bid.state).to eq "belum diproses"
+  	  	expect(@bid.state).to eq "pending"
   	  end
 
       it "should have price per share at purchase" do
-        expect(@bid.at_price).to eq 500000
+        expect(@bid.price).to eq tender.price
       end
 
-  	  it "should have contribution" do
-  	  	expect(@bid.contribution_sens).to eq 50000000000
-  	  end
-
-      it "should have barcode" do
-        expect(@bid.barcode).to_not eq nil
-      end      
+      it "should have ticker" do
+        expect(@bid.ticker).to_not eq nil
+      end
   	end
+
+    describe "it should affect the tender associated with the bid" do
+      it "should have 0 shares left" do
+        expect(@bid.tender.shares_left).to eq 0
+      end
+
+      it "should change its state to closed" do
+        expect(@bid.tender.state).to eq "closed"
+      end
+
+    end
+
+    describe "if destroyed" do
+      before(:each) do 
+        @bid.destroy
+      end
+
+      it "should not really delete the object" do
+        expect(Bid.with_deleted.count).to eq 1
+      end
+
+      it "should set the volume of the object to 0" do
+        expect(@bid.volume).to eq 0
+      end
+
+      it "should affect the tender associated with it" do
+        expect(tender.fulfilled?).to eq false
+      end
+
+      it "should change the tender state" do
+        expect(tender.state).to eq 'open'
+      end      
+    end
+
   end
 
 

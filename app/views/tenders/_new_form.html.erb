@@ -1,0 +1,22 @@
+
+
+        <form class="form-horizontal form-pricing" role="form">
+
+<input id="ex15" type="text" data-slider-min="100000" data-slider-max="500000000" data-slider-value="100000" data-slider-step="50000" />
+<span id="ex15CurrentSliderValLabel">Current Slider Value: <span id="ex15SliderVal">3</span></span>
+
+        </form>
+
+
+<script type="text/javascript">
+$("#ex15").slider({
+  min: 100000,
+  max: 500000000,
+  scale: 'logarithmic',
+  step: 50000  
+});
+$("#ex15").on("slide", function(slideEvt) {
+  $("#ex15SliderVal").text(slideEvt.value);
+});
+
+</script>

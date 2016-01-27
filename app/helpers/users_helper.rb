@@ -1,15 +1,11 @@
 module UsersHelper
 
-	def user_authority(user)
-		if user.client? && !user.financier?
-			return "Klien"
-		elsif user.financier? && !user.client?
-			return "Pendana"
-		elsif user.client? && user.financier?
-			return "Klien & Pendana"
-		else
-			return "Ada masalah, tolong kontak admin"
-		end
+	def render_avatar_for(user)
+  	  if user.avatar.blank?
+    	cl_image_tag('asset/default-avatar-sm', user_thumb_options('upload'))
+  	  else
+    	cl_image_tag(user.avatar, user_thumb_options('private'))
+  	  end
 	end
 
 	# Failed, undefined method each for String

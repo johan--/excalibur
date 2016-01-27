@@ -1,0 +1,102 @@
+
+<div id="direct_upload">
+  <p>Format yang diterima adalah .jpg atau .png maksimal 1 MB. Bisa dengan mengklik tombol 'Unggah' atau dengan drag dan drop ke dalam area bergaris</p>
+    <% unless defined?(edit) && edit %>
+    <div class="form_line">
+      <%= f.label :image_id, "Foto:" %>
+      <div class="form_controls">
+        <div class="upload_button_holder">
+          <%= link_to("Unggah", "#", :class => "upload_button") %>
+          <%= f.cl_image_upload :image_id, upload_preset: "fdh747hl", :return_delete_token=>true, class: "cloudinary-fileupload" %>
+        </div>
+        <span class="status"></span>
+      </div>
+    </div>
+    <% end %>
+    <div class="form_line">
+      <div class="form_controls">
+        <div class="preview"></div>
+      </div>
+    </div>
+    <%= f.hidden_field :avatar, class: "avatar_field" %>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    // Cloudinary jQuery integration library uses jQuery File Upload widget
+    // (see http://blueimp.github.io/jQuery-File-Upload/).
+    // Any file input field with cloudinary-fileupload class is automatically
+    // wrapped using the File Upload widget and configured for Cloudinary uploads.
+    // You can further customize the configuration using .fileupload method
+    // as we do below.
+    $(".cloudinary-fileupload")
+      .cloudinary_fileupload({ 
+        // Uncomment the following lines to enable client side image resizing and valiation.
+        // Make sure cloudinary/processing is included the js file
+        //disableImageResize: false,
+        //imageMaxWidth: 800,
+        //imageMaxHeight: 600,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
+        maxFileSize: 1000000, // 1MB
+        dropZone: "#direct_upload",
+        start: function (e) {
+          $(".status").text("Starting upload...");
+        },
+        progress: function (e, data) {
+          $(".status").text("Uploading... " + Math.round((data.loaded * 100.0) / data.total) + "%");
+        },
+        // done: function (e, data) {
+        //   $(".status").text("File berhasil diunggah, silahkan tekan Simpan");
+        // },        
+        fail: function (e, data) {
+          $(".status").text("Upload failed");
+        }
+      })
+      .off("cloudinarydone").on("cloudinarydone", function (e, data) {
+        NProgress.done(true);
+        $(".status").text("File berhasil diunggah, silahkan tekan Simpan");
+        $(".avatar_field").val(data.result.public_id);
+        // $(".status").text("");
+        var preview = $(".preview").html('');
+        $.cloudinary.image(data.result.public_id, {
+          format: 'jpg', width: 50, height: 50, crop: "fit"
+        }).appendTo(preview);
+
+        // $('<a/>').
+        //   addClass('delete_by_token').
+        //   attr({href: '#'}).
+        //   data({delete_token: data.result.delete_token}).
+        //   html('&times;').
+        //   appendTo(preview).
+        //   click(function(e) {
+        //     e.preventDefault();
+        //     $.cloudinary.delete_by_token($(this).data('delete_token')).done(function(){
+        //       $('.preview').html('');
+        //       $('#info').html('');
+        //       $("#photo_bytes").val('');
+        //       $('input[name="user[image_id]"]').remove();
+        //     }).fail(function() {
+        //       $('.status').text("Cannot delete image");
+        //   });
+        // });
+        // view_upload_details(data.result);
+      });
+    });
+    
+    // function view_upload_details(upload) {
+    //   // Build an html table out of the upload object
+    //   var rows = [];
+    //   $.each(upload, function(k,v){
+    //     rows.push(
+    //       $("<tr>")
+    //         .append($("<td>").text(k))
+    //         .append($("<td>").text(JSON.stringify(v))));
+    //   });
+    //   $("#info").html(
+    //     $("<div class=\"upload_details\">")
+    //       .append("<h2>Upload metadata:</h2>")
+    //       .append($("<table>").append(rows)));
+    }
+}
+</script>
