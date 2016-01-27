@@ -3,7 +3,7 @@ class CreateBids < ActiveRecord::Migration
     create_table :bids do |t|
       t.references :bidder, polymorphic: true, null: false
       t.references :tender, null: false, index: true
-      t.string     :ticker, index: true
+      t.string     :ticker
       t.integer    :volume, null: false
       t.monetize   :price, null: false
       t.jsonb :details, default: {}

@@ -8,7 +8,7 @@ class CreateHouses < ActiveRecord::Migration
       t.string     :address, null: false
       t.float      :longitude
       t.float      :latitude
-      t.string 	   :city, index: true
+      t.string 	   :city
       t.jsonb  	   :details, default: {}
       t.text   	   :description
       t.string 	   :avatar

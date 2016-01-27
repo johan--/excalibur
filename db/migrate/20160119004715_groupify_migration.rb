@@ -3,7 +3,7 @@ class GroupifyMigration < ActiveRecord::Migration
     create_table :groups do |t|
       t.string    :type
       t.string    :name, null: false, index: true
-      t.string    :slug, index: true
+      t.string    :slug, index: true, unique: true
       t.jsonb     :details
     end
     add_index :groups, :details, using: :gin
@@ -13,7 +13,7 @@ class GroupifyMigration < ActiveRecord::Migration
       t.references :group, polymorphic: true, index: true
 
       # The named group to which a member belongs (if using)
-      t.string     :group_name, index: true
+      t.string     :group_name#, index: true
 
       # The membership type the member belongs with
       t.string     :membership_type

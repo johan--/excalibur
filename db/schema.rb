@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   add_index "bids", ["details"], name: "index_bids_on_details", using: :gin
   add_index "bids", ["slug"], name: "index_bids_on_slug", using: :btree
   add_index "bids", ["tender_id"], name: "index_bids_on_tender_id", using: :btree
-  add_index "bids", ["ticker"], name: "index_bids_on_ticker", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",   null: false
@@ -108,7 +107,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   create_table "contracts", force: :cascade do |t|
     t.integer  "tender_id",  null: false
     t.string   "type"
-    t.string   "aqad",       null: false
     t.string   "ticker",     null: false
     t.string   "slug"
     t.jsonb    "details"
@@ -175,7 +173,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   end
 
   add_index "group_memberships", ["details"], name: "index_group_memberships_on_details", using: :gin
-  add_index "group_memberships", ["group_name"], name: "index_group_memberships_on_group_name", using: :btree
   add_index "group_memberships", ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
   add_index "group_memberships", ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
 
@@ -210,7 +207,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
     t.datetime "updated_at",                               null: false
   end
 
-  add_index "houses", ["city"], name: "index_houses_on_city", using: :btree
   add_index "houses", ["deleted_at"], name: "index_houses_on_deleted_at", using: :btree
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
