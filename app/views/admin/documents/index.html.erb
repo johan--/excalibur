@@ -13,7 +13,6 @@
     <th>#</th>
     <th>Pemilik</th>
     <th>Kategori</th>
-    <th>Judul</th>
     <th>Updated At</th>
     <th>Status</th>
     <th></th>
@@ -22,10 +21,9 @@
 
   <% @documents.each do |document| %>
   <tr>
-    <td><%= link_to document.id, admin_document_path(document), remote: true %></td>
+    <td><%= link_to document.ticker, admin_document_path(document), remote: true %></td>
     <td><%= link_to document.owner.name, user_path(document.owner) %></td>
     <td><%= document.category %></td>
-    <td><%= document.name %></td>
     <td><%= time_ago_in_words(document.updated_at)%> ago</td>
     <td><%= document.state %></td>
     <td><%= link_to "Lihat", document_path(document), remote: true  %></td>

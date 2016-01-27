@@ -1,7 +1,8 @@
 class CreateDocuments < ActiveRecord::Migration
   def self.up
     create_table :documents do |t|
-      t.string		  :name, null: false
+      t.string		  :ticker, null: false
+      t.string      :type
       t.string		  :category
       t.string		  :slug, null: false
       t.jsonb		    :details
@@ -11,6 +12,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :documents, :slug, unique: true
+    add_index :documents, :details, using: :gin
   end
 
   def self.down

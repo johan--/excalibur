@@ -122,7 +122,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   add_index "contracts", ["deleted_at"], name: "index_contracts_on_deleted_at", using: :btree
   add_index "contracts", ["slug"], name: "index_contracts_on_slug", using: :btree
   add_index "contracts", ["tender_id"], name: "index_contracts_on_tender_id", using: :btree
-  add_index "contracts", ["type"], name: "index_contracts_on_type", using: :btree
 
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
@@ -133,21 +132,9 @@ ActiveRecord::Schema.define(version: 20160121231258) do
 
   add_index "custom_auto_increments", ["counter_model_name"], name: "index_custom_auto_increments_on_counter_model_name", using: :btree
 
-  create_table "document_transitions", force: :cascade do |t|
-    t.string   "to_state",                 null: false
-    t.json     "metadata",    default: {}
-    t.integer  "sort_key",                 null: false
-    t.integer  "document_id",              null: false
-    t.boolean  "most_recent",              null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "document_transitions", ["document_id", "most_recent"], name: "index_document_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
-  add_index "document_transitions", ["document_id", "sort_key"], name: "index_document_transitions_parent_sort", unique: true, using: :btree
-
   create_table "documents", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "ticker",     null: false
+    t.string   "type"
     t.string   "category"
     t.string   "slug",       null: false
     t.jsonb    "details"
@@ -159,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   end
 
   add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
+  add_index "documents", ["details"], name: "index_documents_on_details", using: :gin
   add_index "documents", ["slug"], name: "index_documents_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|

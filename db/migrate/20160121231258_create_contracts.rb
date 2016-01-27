@@ -2,7 +2,7 @@ class CreateContracts < ActiveRecord::Migration
   def self.up
     create_table :contracts do |t|
       t.references :tender, index: true, null: false
-      t.string     :type, index: true
+      t.string     :type
       t.string     :aqad, null: false
       t.string     :ticker, null: false
       t.string     :slug, index: true
