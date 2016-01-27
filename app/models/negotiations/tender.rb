@@ -3,6 +3,7 @@ class Tender < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
   include RefreshSlug
+  include DirtyAccessor
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
@@ -18,7 +19,7 @@ class Tender < ActiveRecord::Base
   has_many :tender_transitions
   has_many :comments, as: :commentable
   
-  attr_accessor :funding_target, :participate, :asset
+  attr_accessor :asset_id, :participate, :asset
 
   serialize :details, HashSerializer
   store_accessor :details, 
@@ -39,11 +40,12 @@ class Tender < ActiveRecord::Base
          :current_state, to: :state_machine
 # ##################################
   
-  # validates_presence_of :aqad, :category, :tenderable
+  # validates_presence_of :aqad, :category, :tenderable, :seed_capital, :starter
 
   before_create :set_default_values!
-  after_create :refresh_friendly_id!, :create_musharaka_bid
-  # before_save :set_price!, :set_margin!
+  after_create :refresh_friendly_id!
+  after_save :connect_with_bid, if: ->(obj){ obj.aqad?('musharaka')}
+  # after_update  :touch_bid!, 
   after_touch :set_state!
 
   # Pagination
@@ -139,19 +141,26 @@ private
     self.unit = 'ownership' if aqad?('musharaka')
   end
 
-  def create_musharaka_bid
+  def create_musharaka_bid(volume)
     if self.category == 'fundraising' && aqad?('musharaka')
-      vol = self.seed_capital.to_i * 10
-      Bid.create(tender: self, volume: vol, bidder: self.starter)
+      Bid.create(tender: self, volume: volume, 
+        bidder: self.starter, starter: 'yes')
     end
   end
 
-  # def bundle_deals
-  #   if self.category == 'fundraising'
-  #     deal = Deal.create
-  #     deal.add(self)
-  #   end
-  # end
+  def connect_with_bid
+    vol = self.seed_capital.to_i * 10
+
+    if self.bids.count == 0
+      create_musharaka_bid(vol)
+    else
+      refresh_musharaka_bid(vol) if details_changed?
+    end
+  end
+
+  def refresh_musharaka_bid(volume)
+    self.bids.starter.update(volume: volume)
+  end
 
   def set_state!
     if self.fulfilled?

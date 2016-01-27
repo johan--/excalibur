@@ -23,7 +23,7 @@
                 <span id="aqad" class="glyphicon glyphicon-briefcase text-primary"></span> Akad
                 </strong>
               </td>
-              <td class="text-primary">
+              <td class="text-primary" id="tender-aqad">
                 <strong><%=tender.aqad.titleize %></strong>
               </td>
             </tr>
@@ -33,7 +33,7 @@
                   <span class="fa fa-clock-o text-primary"></span> Lama 
                 </strong>
               </td>
-              <td class="text-primary" id="maturity-margin"><%=tender.annum %> Tahun</td>
+              <td class="text-primary" id="tender-maturity"><%=tender.annum %> Tahun</td>
             </tr>
             <tr>    
               <td>
@@ -41,7 +41,7 @@
                   <span class="fa fa-money text-primary"></span> Harga
                 </strong>
               </td>
-              <td class="text-primary" id="maturity-margin"><%= idr_money(tender.price) %> / unit</td>
+              <td class="text-primary" id="price-share"><%= idr_money(tender.price) %> / unit</td>
             </tr>					            
             <tr>					            
                 <td>
@@ -50,7 +50,7 @@
                   </strong>
                 </td>
                 <td class="text-primary">
-                    <%=tender.shares_left %>/<%= tender.volume %> unit
+                    <span id="shares-left"><%=tender.shares_left %></span>/<%= tender.volume %> unit
                 </td>
             </tr>
             <tr>        

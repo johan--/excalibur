@@ -42,7 +42,12 @@
 	            <p class="side-menu-account-limits">
 	                <%= link_to "Bids", admin_bids_path %> 
 	                <span><%= @bid_count %></span>
-	            </p>	            
+	            </p>
+
+	            <p class="side-menu-account-limits">
+	                <%= link_to "Comments", admin_comments_path %>
+	                <span><%=  %></span>
+	            </p>
 
 	            <p class="side-menu-account-limits">
 	                <%= link_to "Visits", admin_visits_analytics_path %>

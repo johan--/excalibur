@@ -21,7 +21,7 @@
   <% @houses.each do |house| %>
 
   <tr>
-    <td><%= link_to house.title, house_path(house) %></td>
+    <td><%= link_to house.ticker, house_path(house) %></td>
     <td><%= house.publisher.name %></td>
     <td><%= truncate(house.address, length: 20 ) %></td>
     <td><%= time_ago_in_words(house.updated_at)%> ago</td>

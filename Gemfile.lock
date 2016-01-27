@@ -265,6 +265,8 @@ GEM
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
+    rspec-retry (0.4.5)
+      rspec-core
     rspec-support (3.1.2)
     sass (3.4.21)
     sass-rails (5.0.2)
@@ -324,6 +326,8 @@ GEM
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wicked (1.2.1)
+      railties (>= 3.0.7)
     with_model (1.2.1)
       activerecord (>= 3.0)
     xpath (2.0.0)
@@ -376,6 +380,7 @@ DEPENDENCIES
   rails_12factor
   redcarpet (= 3.2.2)
   rspec-rails (= 3.1.0)
+  rspec-retry
   sass-rails (= 5.0.2)
   shoulda-matchers
   simple_form
@@ -390,6 +395,7 @@ DEPENDENCIES
   vanity!
   wannabe_bool
   web-console (= 2.0.0)
+  wicked (= 1.2.1)
   with_model
 
 BUNDLED WITH

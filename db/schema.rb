@@ -87,19 +87,22 @@ ActiveRecord::Schema.define(version: 20160121231258) do
     t.integer  "commentable_id",   null: false
     t.string   "commentable_type", null: false
     t.string   "title"
-    t.text     "body",             null: false
+    t.text     "body_html"
+    t.text     "body_md"
     t.string   "subject"
     t.integer  "user_id",          null: false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
-    t.string   "slug"
+    t.jsonb    "details"
+    t.datetime "deleted_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
-  add_index "comments", ["slug"], name: "index_comments_on_slug", using: :btree
+  add_index "comments", ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
+  add_index "comments", ["details"], name: "index_comments_on_details", using: :gin
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "contracts", force: :cascade do |t|

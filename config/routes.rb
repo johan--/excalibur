@@ -52,6 +52,7 @@ Fustal::Application.routes.draw do
     end    
   end
   resources :tenders do
+    resources :build, controller: 'products/build'
     resources :bids
   end
   resources :documents
@@ -115,6 +116,7 @@ Fustal::Application.routes.draw do
         get "upload", to: "houses#upload_photo", as: :upload_photo
       end
     end
+    resources :comments
   end
 
   # Vanity AB TESTING FRAMEWORK

@@ -1,10 +1,9 @@
 class Comment < ActiveRecord::Base
-  # extend FriendlyId
-  # friendly_id :slug_candidates, use: :slugged
+  include WannabeBool::Attributes
 
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
-  validates :body, :presence => true
+  validates :subject, :presence => true
   validates :user, :presence => true
 
   # NOTE: install the acts_as_votable plugin if you
@@ -14,13 +13,26 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true  
   belongs_to :user # NOTE: Comments belong to a user
 
+  delegate :name, to: :user, prefix: true
+  delegate :avatar, to: :user, prefix: true
+
+  store_accessor :details, 
+                 :official, :flagged
+  attr_wannabe_bool :official, :flagged
+  
+  # Markdown
+  before_save :mark_it_down!
+
+  scope :assessments, -> { where(subject: 'assessment') } 
+  scope :user_as_subject, ->(user) { where(commentable: user) } 
+
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
   def self.build_from(obj, user_id, comment)
     new \
       :commentable => obj,
-      :body        => comment,
+      :body_html        => comment,
       :user_id     => user_id
   end
 
@@ -55,11 +67,10 @@ class Comment < ActiveRecord::Base
     end
   end
 
+
 private
-  def slug_candidates
-    [ 
-      :body,
-      [:body, :commentable_id, :commentable_type]
-    ]
+  def mark_it_down!
+    MarkdownWriter.html_comment(self)
   end
+
 end

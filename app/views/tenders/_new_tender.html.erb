@@ -1,27 +1,11 @@
-<div class="col-md-4 col-sm-6 col-xs-12">
-  <ul class="product-list-basic">
-  	<%= render 'elements/murabaha_fundraising', linkless: true if @aqad == 'murabaha' %>
-  	<%= render 'elements/musharaka_fundraising', linkless: true if @aqad == 'musharaka' %>
-  </ul>
-</div>
-<div class="col-md-8 col-sm-6 col-xs-12">
-  <h3>Pengajuan Pendanaan</h3>
+<h3>Pengajuan <span class="light"><%= @category.titleize %></span></h3><hr class="light"></hr>
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
   <%= render 'form' %>
 </div>
 
 
 
 <script type="text/javascript">
-
-// $(".slide-input").slider({
-//   // min: 100000,
-//   // max: 500000000,
-//   // scale: 'logarithmic',
-//   // step: 50000  
-// });
-// $(".slide-input").on("slide", function(slideEvt) {
-	// $("#slide-inputSliderVal").text(slideEvt.value);
-// });
 
 $(function() {
 
@@ -41,6 +25,8 @@ $(function() {
   $("#tender_annum").on("slide", function(slideEvt) {
     $("#duration-inputSliderVal").text(slideEvt.value);
   })
-
+  $("#tender_seed_capital").on("slide", function(slideEvt) {
+    $("#seed-inputSliderVal").text(slideEvt.value);
+  })
 });
 </script>

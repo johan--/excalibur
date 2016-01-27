@@ -14,7 +14,9 @@ class Stock < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :initial, :state, :expired
+                 :dummy, :initial, :state, :expired
+
+  attr_wannabe_bool :dummy, :initial, :expired
 
   after_create :refresh_friendly_id!
   
@@ -23,6 +25,10 @@ class Stock < ActiveRecord::Base
   }
   scope :tradeables, -> { where(tradeable: true) }
 
+
+  def stock_image
+    house.display_picture
+  end
 
   def worth
     price * volume

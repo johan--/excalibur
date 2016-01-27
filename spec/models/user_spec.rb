@@ -33,8 +33,8 @@ RSpec.describe User, :type => :model do
 
     describe "making comments" do
       before do
-        @comment = Comment.build_from( @user, admin.id, 
-          "Hey guys this is my comment!" )
+        @comment = Comment.new(commentable: @user,  user: admin, 
+          body_md: "Hey guys this is my comment!", subject: "assessment" )
         @comment.save
       end
 

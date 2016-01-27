@@ -55,6 +55,8 @@ gem 'browser'
 gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
 gem 'protokoll', '1.0.2'
 gem 'groupify', '0.7.1'
+gem 'wicked', '1.2.1'
+
 # gem "socialization", "~> 1.2.0"
 
 # Complementary
@@ -93,6 +95,7 @@ end
 
 group :test, :development do
 	gem 'rspec-rails', '3.1.0'
+  gem 'rspec-retry'
   gem "shoulda-matchers"
 	gem 'capybara', '~> 2.2.0'
 	gem 'factory_girl_rails', '4.5.0'

@@ -381,7 +381,8 @@ div.product-chooser{
         margin-right: 10x;
 	}
 	
-	div.product-chooser div.product-chooser-item:hover{
+	div.product-chooser div.product-chooser-item:hover,
+	div.product-chooser div.product-chooser-item.selected{
 		border: 2px solid $brand-primary;
 		background: #efefef;
 		padding: 8px;

@@ -7,6 +7,7 @@ class InsidesController < ApplicationController
   end
 
   def choose
+    @houses = House.all
   end
 
   

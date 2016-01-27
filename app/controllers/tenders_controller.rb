@@ -2,7 +2,6 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [
     :show, :edit, :update, :destroy
   ]
-  before_action :find_starter, except: [:create]
   before_action :user_layout
 
   # def index
@@ -13,6 +12,7 @@ class TendersController < ApplicationController
     @comments = @tender.comments
     @comment = Comment.new
     @client = @tender.starter 
+    @assessment = Comment.assessments.user_as_subject(@client).first
     @type = @tender.class.name
     @commentable_id = @tender.id
     @subject = "interaction"
@@ -32,21 +32,22 @@ class TendersController < ApplicationController
   end
 
   def new
-    @aqad = params[:type]
     @category = params[:intent]
-    @stocks = Stock.initials.tradeables
-    @houses = House.all
+    @asset_type = params[:asset]
+    @asset_id = params[:asset_id]
+    @asset = @asset_type.constantize.friendly.find(@asset_id)
     @tender = Tender.new
   end
 
   def edit
-    @aqad = @tender.aqad
+    @category = @tender.category
+    @asset = @tender.tenderable
   end
 
   def create
     @tender = Tender.new(tender_params)
     @tender.starter = current_user
-    @tender.tenderable = params[:tender][:asset].constantize.friendly.find(params[:tender][:tenderable_id])
+    @tender.tenderable = params[:tender][:asset].constantize.friendly.find(params[:tender][:asset_id])
 
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
@@ -75,17 +76,9 @@ private
     @tender = Tender.friendly.find(params[:id])
   end
 
-  def find_starter
-    if params[:business_id]
-      @starter = Business.friendly.find(params[:business_id])
-    elsif params[:user_id]
-      @starter = User.friendly.find(params[:user_id])
-    end
-  end
-
   def tender_params
     params.require(:tender).permit(
-      :asset, :tenderable, :tenderable_type, :tenderable_id, 
+      :asset, :asset_id, :tenderable, :tenderable_type, :tenderable_id, 
       :starter, :starter_type, :starter_id, 
       :category, :price, :price_sens, :volume, :participate,
       :annum, :seed_capital,

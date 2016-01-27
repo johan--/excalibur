@@ -1,23 +1,15 @@
-<div class="comment-item">
-	<strong class="pull-left primary-font"><%= comment.user.name.titleize %></strong>
-	<small class="pull-right text-muted">
-	   <span class="glyphicon glyphicon-time"></span>
-	   <%= time_ago_in_words(comment.created_at) %> ago
-	</small>
-	</br>
-	<li class="ui-state-default">
-		<%= comment.body %>
-	</li>
-	</br>
-	  <p>
-		<% if comment.author?(current_user) || current_user.present? && current_user.admin? || current_user.present? && comment.author?(current_user) %>
-	  	  <span><%= link_to "Edit", '#', remote: true %></span> |
-	  	<% end %>
-	  	<span><%= link_to "Balas", '#', remote: true %></span>
-	  </p>
-	
-
-	<% comment.children.find_each do |child| %>
-	  	<%= render partial: 'blog/comments/comment', locals: { comment: child } %>
-	<% end %>	
-</div>
+<li class="left clearfix">
+	<span class="chat-img pull-left">
+		<!-- <img src="http://bootdey.com/img/Content/user_3.jpg" alt="User Avatar"> -->
+          <%= render_avatar_for(comment.user) %>
+	</span>
+	<div class="chat-body clearfix">
+		<div class="chat-header">
+			<strong class="primary-font"><%= comment.user_name.titleize %></strong>
+			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(comment.created_at) %> ago</small>
+		</div>
+		<p>
+		  <%= comment.body_md.html_safe %>
+		</p>
+	</div>
+</li>

@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :houses, as: :publisher
   has_many :posts
   has_many :comments
+  has_many :comments, as: :commentable
   groupify :group_member
   groupify :named_group_member
   acts_as_group_member

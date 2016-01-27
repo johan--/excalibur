@@ -4,6 +4,7 @@ FactoryGirl.define do
     # association :tenderable, factory: :stock
     association :starter, factory: :user
     annum 8
+    seed_capital 20
     draft "no"
     message "Lorem ipsum dolor cassus"
 

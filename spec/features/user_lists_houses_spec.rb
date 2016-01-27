@@ -14,7 +14,7 @@ feature "UserListsHouses", :type => :feature do
 	    fill_in "house_price", with: 300000000
 	    select "rumah", from: "house_category"
 	    select "available", from: "house_state"
-	    fill_in "house_title", with: "rumah 1 kompleks pangkalan jati"
+	    # fill_in "house_title", with: "rumah 1 kompleks pangkalan jati"
 	    fill_in "house_address", with: "Jl. Lorem No. 99"
 	    fill_in "house_city", with: "Jakarta Selatan"
 	    fill_in "house_bedrooms", with: 3
@@ -31,7 +31,6 @@ feature "UserListsHouses", :type => :feature do
   	it { should have_content('Rumah berhasil didaftarkan') }
 
 	context "should have correct information on tender show page" do
-	  it { should have_css('#house-title', text: "rumah 1 kompleks pangkalan jati") }
 	  it { should have_css('#house-price', text: "Rp 300000000,00") }
 	end
 

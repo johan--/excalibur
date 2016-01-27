@@ -61,5 +61,19 @@ module TendersHelper
 	end  	
   end
 
+  def annum_label(tender)
+  	if tender.aqad == 'murabaha'
+  	  "Lama Cicilan"
+  	elsif tender.aqad == 'musharaka'
+  	  "Lama Syirkah"
+  	end
+  end
 
+  def seed_label(tender)
+  	if tender.aqad == 'murabaha'
+  	  "Uang Muka"
+  	elsif tender.aqad == 'musharaka'
+  	  "Modal Kamu"
+  	end
+  end
 end

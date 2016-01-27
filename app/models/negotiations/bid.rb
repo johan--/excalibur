@@ -15,9 +15,10 @@ class Bid < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :draft, :state, :message, :last_volume, :installments
+                 :starter, :draft, :state, :message, 
+                 :last_volume, :installments
 
-  attr_wannabe_bool :draft
+  attr_wannabe_bool :draft, :starter
   validates_presence_of :price, :volume
   validates_associated :tender
 
@@ -27,6 +28,7 @@ class Bid < ActiveRecord::Base
   before_destroy :reset_volume
 
   scope :real, -> { where(deleted_at: nil) }
+  scope :starter, -> { where("bids.details->>'starter' = :type", type: "yes").first  }
 
   def bidder?(user)
     if self.bidder == user

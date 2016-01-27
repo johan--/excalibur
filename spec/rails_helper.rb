@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'rspec/retry'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
@@ -21,6 +22,7 @@ require 'support/requests_helpers'
 require 'support/database_cleaner'
 require 'support/subdomains'
 require 'support/controller_helpers'
+require 'support/capybara_extension'
 OmniAuth.config.test_mode = true
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -71,4 +73,14 @@ RSpec.configure do |config|
   config.extend ControllerHelpers, :type => :controller
 
   config.infer_spec_type_from_file_location!
+
+  # show retry status in spec process
+  config.verbose_retry = true
+  # show exception that triggers a retry if verbose_retry is set to true
+  config.display_try_failure_messages = true
+
+  # run retry only on features
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
+  end  
 end

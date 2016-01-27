@@ -3,9 +3,6 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new 
-    @type = params[:com_type]
-    @commentable_id = params[:com_id]
-    @subject = params[:subj]
     respond_to :js    
   end
 
@@ -21,11 +18,13 @@ class CommentsController < ApplicationController
     end	
   end
 
+  def edit
+  end
+
   def update
     @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      ahoy.track "Updating Comment", title: "Comment no.#{@comment.id} was edited"
       redirect_to :back
       flash[:notice] =  'Komentar berhasil dikoreksi'
     else
@@ -42,7 +41,7 @@ private
   def comment_params
   	params.require(:comment).permit(
   	  :commentable, :commentable_id, :commentable_type, 
-      :title, :body, :subject, :parent_id, :user_id
+      :title, :body_md, :body_html, :subject, :parent_id, :user_id
   	)
   end	
 

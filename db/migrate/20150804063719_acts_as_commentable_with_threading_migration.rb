@@ -4,15 +4,18 @@ class ActsAsCommentableWithThreadingMigration < ActiveRecord::Migration
       t.integer :commentable_id, null: false
       t.string :commentable_type, null: false
       t.string :title
-      t.text :body, null: false
+      t.text :body_html
+      t.text :body_md
       t.string :subject
       t.integer :user_id, :null => false
       t.integer :parent_id, :lft, :rgt
-      t.string :slug, index: true
+      t.jsonb      :details
+      t.datetime   :deleted_at, index: true
 
       t.timestamps null: false
     end
 
+    add_index :comments, :details, using: :gin
     add_index :comments, :user_id
     add_index :comments, [:commentable_id, :commentable_type]
   end

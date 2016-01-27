@@ -37,6 +37,14 @@ class House < ActiveRecord::Base
     self.stocks.first
   end
 
+  def placeholder
+    "http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png"
+  end
+
+  def display_picture
+    avatar || placeholder
+  end
+
   def states_of_house
     ["for sale", "vacant", "for rent"]
   end
