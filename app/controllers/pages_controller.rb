@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     :change_locale
   ]
   before_filter :disable_background, only: [
-    :tos, :upgrade, :for_clients, :for_investors, :for_developers, :about_us]
+    :tos, :upgrade]
 
   def landing
     @category = "registration"

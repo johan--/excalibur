@@ -1,6 +1,5 @@
 <div class="col-md-12" id="subcribe-prompt">
 	<p><%= t "landing.subscribe_prompt" %></p>
-	<div class="panel-body" id="landing-subscriber">
 		<%= form_tag subscribe_path, method: 'post', html: {role: "form"} do %>
 		  <div class="input-group">
 		    <%= text_field_tag :email, '', placeholder: t("forms.hints.subscribe"), class: "form-control" %>
@@ -11,5 +10,5 @@
 		    </span>
 		  </div>
 		<% end %> 		
-	</div>
+
 </div>	 

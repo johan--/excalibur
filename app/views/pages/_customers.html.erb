@@ -1,0 +1,79 @@
+<section id="works" class="works">
+    <div class="container">
+        <div class="section-heading text-center">
+            <h1 class="title landing" data-wow-delay=".3s">Manfaat</h1>
+            <p class="wow fadeInDown" data-wow-delay=".5s">
+                Membangun masa depan yang tentram bersama, rumah demi rumah
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                    <div class="img-wrapper">
+                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449580961/asset/houses-1007932_1920.jpg" class="img-responsive" alt="this is a title" >
+                        <div class="overlay">
+                            <div class="buttons">
+                                <%= link_to t("links.view"), for_developers_path  %>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                    <h4>
+                    <a href="#">
+                        <%= t("landing.developer") %>
+                    </a>
+                    </h4>
+                    <p>
+                        developer dan penjual rumah untuk segmen terjangkau
+                    </p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <div class="img-wrapper">
+                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/family-1003816_640.jpg" class="img-responsive" alt="this is a title" >
+                        <div class="overlay">
+                            <div class="buttons">
+                                <%= link_to t("links.view"), for_clients_path  %>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                    <h4>
+                    <a href="#">
+                        <%= t("landing.client") %>
+                    </a>
+                    </h4>
+                    <p>
+                        pihak yang ingin membeli rumah dan membutuhkan pendanaan
+                    </p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <div class="img-wrapper">
+                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/telephone-586266_640.jpg" class="img-responsive" alt="" >
+                        <div class="overlay">
+                            <div class="buttons">
+                                <%= link_to t("links.view"), for_investors_path  %>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                    <h4>
+                    <a href="#">
+                        <%= t("landing.financier") %>
+                    </a>
+                    </h4>
+                    <p>
+                        pihak yang membantu membiayai bersama para investor lainnya
+                    </p>
+                    </figcaption>
+                </figure>
+            </div>
+            <%= render 'pages/faq' unless I18n.locale == :en %> 
+        </div>
+    </div>
+</section>
