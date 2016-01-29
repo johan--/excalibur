@@ -4,7 +4,6 @@ class PagesController < ApplicationController
 
   def landing
     @category = "registration"
-    # @current_count = Subscriber.whitelist.count
     @no_layout = true
   end
 
@@ -83,17 +82,17 @@ class PagesController < ApplicationController
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
       )
-      ahoy.track "Simulated for #{@simulation.tangible}", 
-        title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
-        category: "Simulation", important: "murabahah"
+      # ahoy.track "Simulated for #{@simulation.tangible}", 
+      #   title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
+      #   category: "Simulation", important: "murabahah"
     elsif @sim[:aqad] == 'musharaka'
       @simulation = MusharakaSimulation.new(maturity: 10, 
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
       )
-      ahoy.track "Simulated for #{@simulation.tangible}", 
-        title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
-        category: "Simulation", important: "musyarakah"
+      # ahoy.track "Simulated for #{@simulation.tangible}", 
+      #   title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
+      #   category: "Simulation", important: "musyarakah"
     end
   end
 

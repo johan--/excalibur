@@ -4,8 +4,7 @@ RSpec.describe MurabahaSimulation, :type => :model do
   	
   	before(:each) do
   	  @year =  8 
-	  @price =  500
-	  @denom = 1000000
+	  @price =  500000000
 	  @contribution =  30 
   	  @test_class = Struct.new(:maturity) { include ProfitMargin } 
   	  @stub = @test_class.new(@year)
@@ -13,9 +12,9 @@ RSpec.describe MurabahaSimulation, :type => :model do
   	  @simulation = MurabahaSimulation.new(
   	  	 maturity: @year, price: @price, tangible: "Rumah", 
          contribution_percent: @contribution)
-  	  @first = (@price * @contribution * @denom) / 100
-	  @gain = (@price * @margin * @denom) / 100
-	  @new_price = (@price * @denom) + @gain
+  	  @first = (@price * @contribution ) / 100
+	  @gain = (@price * @margin ) / 100
+	  @new_price = (@price ) + @gain
 	  @months = @year * 12
 	  @mo_installment = (@new_price - @first) / @months
   	end

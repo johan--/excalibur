@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ahoy
 //= require cloudinary
 //= require jquery.ui.widget
 //= require jquery.iframe-transport

@@ -9,9 +9,9 @@ module ProfitMargin
 	  	modifier = 1
 
 	  	if @maturity <= @base_year
-	  		return @base_margin
+	  		return @base_margin * @maturity
 	  	else
-	  		return (@base_margin + modifier)
+	  		return (@base_margin + modifier) * @maturity
 	  	end  	
 	  end
 

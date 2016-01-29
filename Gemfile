@@ -20,7 +20,8 @@ gem 'omniauth'
 # gem "omniauth-google-oauth2"
 
 # Analytics
-gem 'ahoy_matey'
+# gem 'ahoy_matey'
+gem 'mixpanel-ruby'
 gem "chartkick"
 gem 'groupdate'
 
