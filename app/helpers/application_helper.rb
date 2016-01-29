@@ -54,7 +54,7 @@ module ApplicationHelper
   end
 
   def idr_concat(number)
-    con = number / 1000000
+    con = (number / 1000000).round(2)
     idr_no_symbol(con)
   end
 

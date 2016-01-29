@@ -51,3 +51,29 @@
     <%= f.submit "Kirim", class: "btn btn-block btn-primary btn-round-lg" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+$(function() {
+
+  var inputSliderValue = 0;
+  var humanizer = 1000000;
+
+  function changeValue(){
+    var currentSliderValue = inputSliderValue / humanizer;
+    $( "#amount-inputSliderVal" ).text( currentSliderValue );
+  }
+
+  $(".slide-input").slider();
+  $("#tender_price").on("slide", function(slideEvt) {
+    inputSliderValue = slideEvt.value;
+    changeValue();
+  })
+  $("#tender_annum").on("slide", function(slideEvt) {
+    $("#duration-inputSliderVal").text(slideEvt.value);
+  })
+  $("#tender_seed_capital").on("slide", function(slideEvt) {
+    $("#seed-inputSliderVal").text(slideEvt.value);
+  })
+});
+</script>

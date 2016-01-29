@@ -3,17 +3,54 @@
 </div>
 <div class="modal-body">
   <center>
-  	<% if params[:aqad] == 'murabaha' %>
-	    <h3 class="media-heading"><%= "Simulasi Murabahah" %></h3>
-		<p>Rumah tersebut akan kami jual kepada kamu dengan perkiraan harga <strong id="price"><%= idr_money(@simulation.marked_up_price) %></strong>. 
-			Pembayaran pertama yang kamu lakukan sebesar <strong id="first"><%= idr_money(@simulation.first_payment) %></strong>, sehingga Cicilan per bulan yang harus kamu bayar selama <%= @simulation.total_months %> bulan adalah sebesar <strong id="installments"><%= idr_money(@simulation.calc_monthly_installment) %></strong></p>
-	<% elsif params[:aqad] == 'musharaka' %>
-	    <h3 class="media-heading"><%= "Simulasi Musyarakah" %></h3>
-		<p>Rumah tersebut akan dibeli bersama antara kamu dan siKapiten. 
-			Kamu membayar <strong id="first"><%= idr_money(@simulation.first_payment) %></strong> untuk <span id="contribution"><%= @simulation.contribution_percent %>%</span> kepemilikan.</p>	
-		<p>Perkiraan Biaya sewa per bulan atas rumah itu adalah sebesar <%= idr_money(@simulation.monthly_rent) %>. Apabila kamu mau menempati rumah tersebut, kamu hanya perlu membayar <%= @simulation.other_party_ownership %>% biaya sewa yaitu sebesar <strong><%= idr_money(@simulation.rental_fee) %></strong></p>
+  	<% if @sim[:aqad] == 'murabaha' %>
+	    <h3 class="media-heading"><%= "Pembelian Rumah Dengan Murabahah" %></h3><hr class="light">
+
+        <form action="#" class="long-inline lead-big" role="form">
+          <div class="form-group">
+            <label for="name">Apabila kamu memilih Murabaha, diperkirakan rumah akan dijual kepadamu seharga<span>Harga Jual </span></label>
+            <%= text_field_tag :tangible, '', placeholder: idr_money(@simulation.marked_up_price), disabled: true  %>
+          </div>
+
+          <div class="form-group">
+            <label for="name"> dan kamu cukup membayar uang muka sebesar <span>Down Payment Pertama  </span></label>
+            <%= text_field_tag :price, '', placeholder: idr_money(@simulation.first_payment), disabled: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="company"> Perkiraan biaya cicilan per bulan adalah sebesar <span>Cicilan Bulanan</span></label>
+            <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@simulation.calc_monthly_installment), disabled: true %>.
+          </div><br>
+
+        </form>
+	  <%= link_to "Atur Ulang", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-primary btn-round-lg" %>
+	</center>
+	<% else  %>
+	    <h3 class="media-heading"><%= "Simulasi Musyarakah" %></h3><hr class="light">
+        <form action="#" class="long-inline lead-big" role="form">
+          <div class="form-group">
+            <label for="name">Apabila kamu memilih Musyarakah, kamu cukup membayar uang muka sebesar<span>Down Payment Pertama </span></label>
+            <%= text_field_tag :tangible, '', placeholder: idr_money(@simulation.first_payment), disabled: true  %>
+          </div>
+
+          <div class="form-group">
+            <label for="name">dan kamu akan mendapatkan porsi kepemilikan sebesar <span>Kepemilikan </span></label>
+            <%= text_field_tag :price, '', placeholder: (@simulation.contribution_percent.to_s + '%.'), disabled: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="company"> Perkiraan biaya sewa per bulan atas rumah itu adalah sebesar <span>Sewa Bulanan</span></label>
+            <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@simulation.monthly_rent), disabled: true %>.
+          </div><br>
+
+          <div class="form-group">
+            <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
+            <%= text_field_tag :maturity, '', placeholder: idr_money(@simulation.rental_fee), disabled: true  %>
+          </div><br>
+        </form>
+
+		<%= link_to "Atur Ulang", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
 	<% end %>
-  </center>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>

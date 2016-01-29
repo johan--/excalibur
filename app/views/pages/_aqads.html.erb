@@ -54,7 +54,7 @@
             </div>
         </div>
         <center>
-            <%= link_to "Jalankan Simulasi", '#', class: "btn btn-primary btn-kapiten" %>
+          <%= link_to "Simulasikan Murabaha", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-round-lg btn-primary" %>
         </center>
     </div>
     <div class="item">
@@ -106,7 +106,7 @@
             </div>            
         </div>  
         <center>
-            <%= link_to "Jalankan Simulasi", '#', class: "btn btn-primary btn-kapiten" %>
+          <%= link_to "Simulasikan Musyarakah", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
         </center>
     </div>
   </div>

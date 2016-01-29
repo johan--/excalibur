@@ -11,7 +11,7 @@ class MurabahaSimulation
   def initialize(attributes={})
     super
   	@income = income.to_i
-  	@price = price.to_i * 1000000
+  	@price = price.to_i
   	@maturity = maturity.to_i
   	@contribution = contribution_percent.to_i
   end

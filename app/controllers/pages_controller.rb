@@ -1,11 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [
-    :landing, :tos, :email, :subscribe, :upgrade, :simulation, 
-    :for_clients, :for_investors, :for_developers, :about_us, 
-    :change_locale
-  ]
-  before_filter :disable_background, only: [
-    :tos, :upgrade]
+  skip_before_action :authenticate_user!
+  before_filter :disable_background
 
   def landing
     @category = "registration"
@@ -28,20 +23,9 @@ class PagesController < ApplicationController
   def about_us
   end
 
-  def dashboard
-    @tenders = Tender.all.order(:created_at).page params[:page]
-    @bids = current_user.bids
-    @financier_layout = true
-  end
-
-  def home
-    @documents = current_user.documents
-    @tenders = Tender.all
-
-    respond_to do |format| 
-      format.html
-      format.js
-    end
+  def open_simulation
+    @for = params[:type]
+    @aqad = params[:aqad]
   end
 
   def tos
@@ -93,18 +77,19 @@ class PagesController < ApplicationController
   end
 
   def simulation
-    if params[:aqad] == 'murabaha'
-      @simulation = MurabahaSimulation.new(maturity: params[:maturity], 
-        price: params[:price], tangible: params[:tangible], 
-        contribution_percent: params[:contribution_percent]
+    @sim = params[:simulation]
+    if @sim[:aqad] == 'murabaha'
+      @simulation = MurabahaSimulation.new(maturity: @sim[:maturity], 
+        price: @sim[:price], tangible: @sim[:tangible], 
+        contribution_percent: @sim[:contribution]
       )
       ahoy.track "Simulated for #{@simulation.tangible}", 
         title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
         category: "Simulation", important: "murabahah"
-    elsif params[:aqad] == 'musharaka'
-      @simulation = MusharakaSimulation.new(maturity: params[:maturity], 
-        price: params[:price], tangible: params[:tangible], 
-        contribution_percent: params[:contribution_percent]
+    elsif @sim[:aqad] == 'musharaka'
+      @simulation = MusharakaSimulation.new(maturity: 10, 
+        price: @sim[:price], tangible: @sim[:tangible], 
+        contribution_percent: @sim[:contribution]
       )
       ahoy.track "Simulated for #{@simulation.tangible}", 
         title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 

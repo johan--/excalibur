@@ -75,6 +75,7 @@ Fustal::Application.routes.draw do
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
   post "/subscribe", to: "pages#subscribe", as: "subscribe"
   get "/simulasi", to: "pages#simulation", as: "simulation"
+  get "/buka_simulasi", to: "pages#open_simulation", as: "open_simulation"
 
   get "about", to: "pages#about_us", as: :about_us
   get "klien", to: "pages#for_clients", as: :for_clients

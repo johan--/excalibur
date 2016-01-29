@@ -4,28 +4,25 @@ module ProfitMargin
 
 	  def selling_margin(maturity)
 	  	@maturity = maturity.to_i
-	  	base = 27
-	  	modifier = 11
-	  	diff_years = @maturity - 3
+	  	@base_margin = Setting['aqad.base_margin']
+	  	@base_year = Setting['aqad.base_year']
+	  	modifier = 1
 
-	  	if diff_years == 0
-	  		capitalization_rate = base
+	  	if @maturity <= @base_year
+	  		return @base_margin
 	  	else
-	  		capitalization_rate = base + (diff_years * modifier)
+	  		return (@base_margin + modifier)
 	  	end  	
 	  end
 
 	  def capitalization_rate(maturity, tangible)
-	  	@maturity = maturity.to_i
-	  	base_maturity = 4
-	  	diff_maturity = @maturity - 4
+	  	# @maturity = maturity.to_i
+	  	# base_maturity = 5
 
 	  	if tangible == "Rumah"
-	  		base_rate = 5
-	  		capitalization_rate = 5
+	  		capitalization_rate = Setting['aqad.base_capitalization']
 	  	elsif tangible == "Apartemen"
-	  		base_rate = 10
-	  		capitalization_rate = 8
+	  		capitalization_rate = Setting['aqad.base_capitalization']
 	  	end
 	  end
 
