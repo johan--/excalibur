@@ -70,7 +70,7 @@ gem 'redcarpet', '3.2.2'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'geocoder'
 # gem 'gmaps4rails'
-gem "rails-settings-cached", "~> 0.4.0"
+# gem "rails-settings-cached", "~> 0.4.0"
 
 
 # API
