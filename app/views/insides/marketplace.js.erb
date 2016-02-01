@@ -1,4 +1,5 @@
-$('#user-dashboard').hide();
-$('#app-content').html("<%= j (render partial: 'tenders/tender_list', 
-	locals: { tenders: @tenders }) %>");
-$('#app-content').slideDown(350);
+$('#home-view').hide();
+$('#side-view').html("<%= j (render 'tenders/marketplace', 
+	locals: { fundraisings: @fundraisings, tradings: @tradings }) %>");
+$('#side-view').slideDown(350);
+$('.selected').removeClass('selected');

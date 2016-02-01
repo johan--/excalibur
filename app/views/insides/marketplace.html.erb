@@ -1,0 +1,37 @@
+
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to marketplace_path, class: "" do %>
+        <div class="panel dash-button dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Bazaar</h4>
+            <i class="ion-ios-bolt"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to home_path, remote: true, class: "" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Desk</h4>
+            <i class="ion-monitor"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to cafe_path, class: "" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Lounge</h4>
+            <i class="ion-coffee"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'tenders/tender', collection: @tenders %>

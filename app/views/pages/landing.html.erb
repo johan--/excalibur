@@ -1,6 +1,6 @@
 <% metamagic site: ENV["SITE_NAME"], title: :site %>
 <%
-	meta description: "Miliki rumah tanpa terlibat hutang berbunga, kami bantu mewujudkan mimpimu dengan menggunakan aqad dan mematuhi rambu syariah Islam.",
+    meta description: "Miliki rumah tanpa terlibat hutang berbunga, kami bantu mewujudkan mimpimu dengan menggunakan aqad dan mematuhi rambu syariah Islam.",
     keywords: %w(pembiayaan keuangan syariah islam)
 %>
 
@@ -8,28 +8,28 @@
 <section id="home" name="home"></section>
 <% if is_opera_mini? %>
 <div id="opera-mini-wrap">
-	<div class="container">
-		<div class="row centered">
-			<%= render 'value_prompt' %>  		
-    		<br>			
-		</div>
-	</div>
+    <div class="container">
+        <div class="row centered">
+            <%= render 'value_prompt' %>        
+            <br>            
+        </div>
+    </div>
 </div>
 <% else %>
 <div class="landing-header" id="headerwrap">
     <div class="container">
-    	<div class="row centered">
-			<%= render 'value_prompt' %>  		
-    		<br>
-    	</div>
+        <div class="row centered">
+            <%= render 'value_prompt' %>        
+            <br>
+        </div>
     </div> <!--/ .container -->
-</div><!--/ #headerwrap -->	
+</div><!--/ #headerwrap --> 
 <% end %>
 <div>
 
 <%= render 'pages/mantra' %>
-<%= render 'pages/customers' %>
 <%= render 'pages/aqads' %>
+<%= render 'pages/customers' %>
 
 
 <section id="footerwrap">
@@ -43,8 +43,8 @@
     </div>
     <%= render 'elements/form_contact' %>
     <br>
-	<!-- <small>© 2015 by PT Kapiten Teknologi Indonesia -->
-	<%= render 'elements/authorship_credit' %>
+    <!-- <small>© 2015 by PT Kapiten Teknologi Indonesia -->
+    <%= render 'elements/authorship_credit' %>
   </div>
 </section>
 <%= vanity_js %>

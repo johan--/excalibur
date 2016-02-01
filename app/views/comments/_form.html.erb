@@ -3,8 +3,12 @@
 	<div class="input-group">
 		<%= f.text_area :body_md, size: "10x3", class: "form-control border no-shadow no-rounded", placeholder: "tulis komentarmu di sini" %>
 		<span class="input-group-btn">
-			<button class="btn btn-success no-rounded" type="button">Kirim</button>
+			<%= f.submit "Send", class: "btn btn-success no-rounded" %>
 		</span>
 	</div><!-- /input-group -->	
 </div> 
+	<%= f.hidden_field :commentable_type, value: @type %>
+	<%= f.hidden_field :commentable_id, value: @commentable_id  %>
+	<%= f.hidden_field :user_id, value: current_user.id  %>
+    <%= f.hidden_field :subject, value: @subject  %>
 <% end %>

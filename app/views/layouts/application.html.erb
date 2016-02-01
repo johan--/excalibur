@@ -12,50 +12,48 @@
   <%= cloudinary_js_config %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  
   <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <% if user_signed_in? %>
-    <%= render 'layouts/mobile_navbar' %>
-  <% else %>
-    <%= render 'layouts/classic_navbar' %>
-  <% end %>
-  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
-  <% if @no_layout  %>
-    <%= yield %>
-  <% else %>
-    <% if @blog_layout %>
+<% if @inside %>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+    <%= render 'layouts/wrapper' %>
+  </body>
+
+<% else %>
+
+  <body>
+    <%= render 'layouts/mobile_navbar' if user_signed_in? %>
+    <%= render 'layouts/classic_navbar' if !user_signed_in? %>
+    <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
+
+    <% if @no_layout  %>
+      <%= yield %>
+    <% elsif @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
-    <% else %>
+    <% elsif @disable_background %>
 
-      <% if @disable_background %>
-        <div class="wrap">
-      <% else %>
-        <div class="wrap main-content">
-      <% end %>
-          <div class="container" id="outer-container">
-            
-            <div class="row" style="margin-top: 50px;">
-              <%= render 'layouts/messages' %>
+      <div class="wrap">
+        <div class="container" id="outer-container">
+          <div class="row" style="margin-top: 50px;">
+            <%= render 'layouts/messages' %>
+              
+              <section class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px; padding-bottom: 100px">
+
+                <%= render 'layouts/sidebar_options' unless current_user.nil? %>
+                <div class="col-md-10 col-sm-12 white-background" id="main-layout">
+                  <%= yield %>
+                </div>
+              </section>
                 
-                <section class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px; padding-bottom: 100px">
-
-                  <%= render 'layouts/sidebar_options' unless current_user.nil? %>
-                  <div class="col-md-10 col-sm-12 white-background" id="main-layout">
-                    <%= yield %>
-                  </div>
-                </section>
-                           
-            </div>
-            
           </div>
-
         </div>
-    <% end %> 
-  <% end %>
+      </div>
 
+    <% end %>
+  </body>
 
-</body>
+<% end %>
+
 </html>

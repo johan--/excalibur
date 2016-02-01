@@ -69,7 +69,7 @@ class Tender < ActiveRecord::Base
     "tenders.details->>'state' = :type", type: "open")  
   }
   scope :offering, -> { where(category: "fundraising") }
-  scope :trade, -> { where(category: "trade") }
+  scope :trading, -> { where(category: "trading") }
   scope :with_aqad, ->(aqad) { where(aqad: aqad) }
   scope :published, -> { 
     where("tenders.details->>'draft' = :type", type: "no") 

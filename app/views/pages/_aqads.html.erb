@@ -1,14 +1,14 @@
 <section id="feature">
-<div class="container">
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
+  <div class="container">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <h1 class="title text-center landing">Manfaat Musyarakah</h1>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
 
         <div class="section-heading text-center">
-            <h1 class="title landing" data-wow-delay=".3s">Fitur Murabaha</h1>
+            <h3 class="title landing" data-wow-delay=".3s">Untuk Pendana</h3>
             <br>
             <br>
         </div>
@@ -17,12 +17,12 @@
                 <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="fa fa-magic"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Sederhana</h4>
-                        <p>Jual-beli putus dengan sistem mencicil.</p>
+                        <h4 class="media-heading">Halal</h4>
+                        <p>Imbal hasil dari pendapatan sewa dan penjualan porsi kepemilikan.</p>
                     </div>
                 </div>
             </div>
@@ -30,12 +30,12 @@
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="600ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="fa fa-magnet"></i>
+                            <i class="fa fa-magic"></i>
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Stabil</h4>
-                        <p>Imbal hasil berasarl dari pembayaran cicilan penjualan rumah yang tetap hingga jatuh tempo.</p>
+                        <h4 class="media-heading">Fleksibel</h4>
+                        <p>Jual sahammu atau terus nikmati keuntungan sewa dan apresiasi aset.</p>
                     </div>
                 </div>
             </div>
@@ -54,13 +54,13 @@
             </div>
         </div>
         <center>
-          <%= link_to "Simulasikan Murabaha", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-round-lg btn-primary" %>
+          <%= link_to "Jalankan Simulasi", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-round-lg btn-primary" %>
         </center>
     </div>
     <div class="item">
 
         <div class="section-heading text-center">
-            <h1 class="title landing" data-wow-delay=".3s">Fitur Musyarakah</h1>
+            <h3 class="primary" data-wow-delay=".3s">Untuk Pembeli Rumah</h3>
             <br>
             <br>            
         </div>
@@ -69,12 +69,12 @@
                 <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="fa fa-rocket"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Fleksibel</h4>
-                        <p>Kombinasi antara 3 kontrak yang terpisah, tidak memaksa, dan adil.</p>
+                        <h4 class="media-heading">Halal</h4>
+                        <p>Kombinasi antara 3 transaksi yang terpisah: Kerja sama, Sewa, dan Pembelian Sukuk.</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Tanpa Hutang</h4>
-                        <p>Pihak yang memakai rumah tidak perlu terlibat dalam hutang.</p>
+                        <p>Tidur di rumah tanpa perlu khawatir akan hutang.</p>
                     </div>
                 </div>
             </div>
@@ -95,27 +95,32 @@
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="900ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-rocket"></i>
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Potensial</h4>
-                        <p>Potensi keuntungan lebih besar dari penjualan saham dan pendapatan sewa.</p>
+                        <h4 class="media-heading">Bebas</h4>
+                        <p>Tanpa denda atau pemaksaan untuk membeli habis kepemilikan, it's your choice.</p>
                     </div>
                 </div>
             </div>            
         </div>  
         <center>
-          <%= link_to "Simulasikan Musyarakah", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
+          <%= link_to "Jalankan Simulasi", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
         </center>
     </div>
   </div>
 
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-  </ol> 
+        <div class="controlsBlock">
+          <div class="controls">
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            <div class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            </div>
+          </div>
+        </div>  
 </div>
     
 </div>

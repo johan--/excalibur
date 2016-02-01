@@ -1,78 +1,100 @@
 <% meta title: "Proposal #{@tender.ticker}" %>
 
-<%= render partial: 'elements/modal_placeholder', locals: { modal_name: "tender" } %>
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to user_root_path, class: "" do %>
+        <div class="panel dash-button dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Jurnal</h4>
+            <i class="ion-ios-monitor"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to tender_path(@tender), remote: true, class: "" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Cover</h4>
+            <i class="ion-ios-box"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to discuss_tender_path(@tender), remote: true, class: "" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Diskusi</h4>
+            <i class="ion-chatbubbles"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="box box-default collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Detil Proposal</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <h5>Info</h5><hr class="light">
+        <%= render 'tenders/tender_infos', tender: @tender %>
 
-<div class="portlet portlet-bordered">
-	<div class="portlet-title tab-row">
-	    <ul class="nav nav-tabs" role="tablist">
-	        <li role="presentation" class="active"><a href="#portlet_tab1" aria-controls="home" role="tab" data-toggle="tab">Front</a></li>
-	        <li role="presentation"><a href="#portlet_tab2" aria-controls="profile" role="tab" data-toggle="tab">Forum</a></li>
-	        <li role="presentation"><a href="#portlet_tab3" aria-controls="messages" role="tab" data-toggle="tab">Info</a></li>
-	    </ul>	
-	</div>
-	
-	<div class="portlet-body">
-		<div class="tab-content">
-			<div class="tab-pane active" id="portlet_tab1">
-				<div class="row">
+        <h5>Aset</h5><hr class="light">
+        <small>Belum ada aset dimiliki</small>
+      </div><!-- /.box-body -->
+    </div><!-- /.box --> 
+  </div>
+  <div class="col-md-8">  
+    <div id="home-view">
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">Rincian Rumah <small><%= link_to "Telusuri", house_path(@tender.tenderable) %></small></h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body">
+					<%= render 'houses/house_details', house: @tender.tenderable.house %>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+			
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">Pengusul</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body">
+	      	<ul class="user-profiles-list-basic" id="tender-starter">
+	      		<%= render  partial: 'users/user', locals: { user: @client } %>
+	      	</ul>
+					<%= render  partial: 'users/user_infos', locals: { user: @client } %>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
 
-					<div class="col-xs-12">
-						<%= render partial: 'tenders/tender_infos',  locals: {tender: @tender} %>
-					</div>
-					<div id="front-content">
-						<div class="col-xs-12">
-							<h3>Rincian Rumah <small><%= link_to "Telusuri", house_path(@tender.tenderable) %></small></h3>
-							<%= render 'houses/house_details', house: @tender.tenderable.house %>
-						</div>					
-	      		<div class="col-xs-12" id="starter-section">
-	      			<h3>Klien</h3>
-	    				<div class="col-md-4 col-sm-6 col-xs-12" id="tender-target">
-				      	<ul class="user-profiles-list-basic" id="tender-starter">
-				      		<%= render  partial: 'users/user', locals: { user: @client } %>
-				      	</ul>
-		      		</div>
-		      		<div class="col-md-8 col-sm-6 col-xs-12" id="starter-info">
-		      			<%= render  partial: 'users/user_infos', locals: { user: @client } %>
-		      		</div>
-						</div>
-						<div class="col-xs-12" id="tender-bidder">
-							<h3>Pendana</h3>
-							<%= render 'users/users', users: @bidders %>
-						</div>
-					</div>
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">Pendana</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body" id="tender-bidder">
+	      	<%= render 'users/users', users: @bidders %>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+    </div>
 
-      		<div class="col-md-12" id="edit-section" style="display: none;">
-      		</div>
-
-				</div>			    
-			</div>
-
-			<div class="tab-pane" id="portlet_tab2">
-	      	  <div class="col-xs-12" id="forum">
-	      	  <!-- Comments -->
-			    <h3>Penilaian</h3><hr class="light">
-	      	    <% if @assessment.blank? %>
-				  <div class="blankslate" id="comment-placeholder">
-					<div class="spacious">
-						<h3><%= "Belum Ada Analisis" %></h3>
-						<% if current_user.admin? %>
-							<p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-						<% end %>
-					</div>
-				  </div>
-				<% else %>
-			      <%= render 'comments/assessment', comment: @assessment %>
-			      <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-			    <% end %>			    
-
-			    <h3>Komentar</h3><hr class="light">
-	      			<%= render 'comments/comments', comments: @comments %>
-			  </div>
-			</div>
-			<div class="tab-pane" id="portlet_tab3">
-			</div>
-
-		</div>
-	</div>
-
+    <div id="side-view" style="display:none;">
+    </div>
+  </div>
 </div>

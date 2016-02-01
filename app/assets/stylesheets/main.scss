@@ -1,23 +1,25 @@
-@import "styles/mobile-navbar";
+/*@import "styles/mobile-navbar";
 @import "bootstrap-slider";
-/*@import "bootstrap-datepicker3";*/
-@import "styles/buttons";
-@import "styles/login";
-@import "styles/new-landing";
-@import "styles/colorful-modal";
-@import "styles/custom-panels";
-@import "styles/portlet";
-@import "styles/tender";
-@import "styles/blog";
-@import "styles/forms";
-@import "styles/user";
-/*@import "styles/user-cred";*/
-@import "styles/file-upload";
 @import "styles/image-panel";
 @import "styles/ticket-style";
 @import "styles/base-layout";
+@import "styles/custom-panels";
+*/
+@import "styles/user";
 @import "styles/lists";
+@import 'ionicons';
+@import "styles/portlet";
+@import "styles/tender";
+@import "styles/colorful-modal";
+@import "styles/file-upload";
+@import "styles/forms";
+@import "styles/buttons";
 @import "social-share-button";
+@import "styles/blog";
+@import "styles/new-landing";
+@import "styles/login";
+@import "styles/AdminLTE";
+@import "styles/skins/skin-blue";
 
 /* Progress Bar */
 $nprogress-color: $brand-coral;
@@ -155,7 +157,7 @@ hr.coral {
 }
 
 
-a:hover,
+a:hover, a.selected,
 a:focus {
     color: #eb3812;
 }

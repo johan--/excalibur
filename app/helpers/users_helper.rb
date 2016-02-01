@@ -1,10 +1,10 @@
 module UsersHelper
 
-	def render_avatar_for(user)
+	def render_avatar_for(user, string)
   	  if user.avatar.blank?
-    	cl_image_tag('asset/default-avatar-sm', user_thumb_options('upload'))
+    	cl_image_tag('asset/default-avatar-sm', user_thumb_options('upload', string))
   	  else
-    	cl_image_tag(user.avatar, user_thumb_options('private'))
+    	cl_image_tag(user.avatar, user_thumb_options('private', string))
   	  end
 	end
 

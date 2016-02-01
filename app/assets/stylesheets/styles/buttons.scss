@@ -44,3 +44,45 @@ padding-right: 10px;
     color: #ffffff;
     border: none;	
 }
+
+.button-row {
+    /*background: white;*/
+    /*padding: 0 0 0 0;*/
+    /*border:1px solid #999;*/
+}
+
+.dash-icon {
+    background: inherit;
+    &:hover { border:1px solid #999; }
+    i.fa {
+      font-size: 2em;
+    }
+    h4 {
+      font-size: 0.5em;
+    }
+}
+
+@media (max-width: 480px) {
+  .dash-icon {
+    font-size: 28px;
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .dash-icon {
+    font-size: 32px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .dash-icon {
+    font-size: 36px;
+    }
+}
+
+@media (min-width: 980px) {
+  .dash-icon {
+    font-size: 46px;
+  }
+}

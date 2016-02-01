@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new 
-    respond_to :js    
+    # respond_to :js    
   end
 
   def create
@@ -11,11 +11,11 @@ class CommentsController < ApplicationController
 
     if @comment.save
       # ahoy.track "Posting Comment", title: "#{@comment.user} commented on #{@comment.commentable.class.name}"
-      redirect_to :back
       flash[:notice] = 'Komentar berhasil dibuat'
     else
-      render :new
-    end	
+      flash[:warning] = 'Komentar gagal dibuat'
+    end 
+      redirect_to :back
   end
 
   def edit

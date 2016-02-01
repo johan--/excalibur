@@ -47,9 +47,10 @@ module ImagesHelper
 	  end
 	end
 
-	def user_thumb_options(type)
+	def user_thumb_options(type, string)
 		type = type.to_sym
-		{ :type => type, :width => 80, :crop => :scale, format: :jpg }
+		{ :type => type, :width => 80, :crop => :scale, format: :jpg,
+		class: "#{string}" }
 	end
 
 end

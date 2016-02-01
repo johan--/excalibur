@@ -5,13 +5,14 @@ module TendersHelper
 		# send "#{type(tender)}_tender_path", tender
 	end
 
-	def show_tender_link(tender)
-		send "tender_path", tender
+	def render_blank_or_show(tenders)
+		if tenders.blank?
+			return "tidak ada proposal saat ini"
+		else
+			render partial: 'tenders/tender', collection: tenders
+		end
 	end
 
-	def edit_tender_link(tender)
-		send "edit_#{type(tender)}_tender_path", tender.starter, tender
-	end
 
 	def draft_or_real?(tender)
 		if tender.published?

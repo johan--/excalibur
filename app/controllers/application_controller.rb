@@ -102,6 +102,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_opera_mini?
 
+  def inside_app
+    @inside = true
+  end
 
 
 private

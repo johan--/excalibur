@@ -1,29 +1,15 @@
-<li>
-  <%= tender_timeline_sign(tender) %>
-
-  <div class="timeline-panel">
-    <div class="timeline-heading">
-      <div class="col-md-6 col-sm-12">
-        <h4 class="timeline-title">
-          <%= link_to tender.ticker, tender_path(tender) %>
-        </h4>
-        <p><%= tender.category %></p>
-        <p>
-          <small class="text-muted"><i class="glyphicon glyphicon-time"></i> using <%= tender.aqad.titleize %> for <%= tender.annum %> years</small>            
-        </p>
+<div class="info-box">
+  <%= link_to tender_path(tender) do %>
+    <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+    <div class="info-box-content">
+      <span class="info-box-text"><%= tender.category %> <%=  tender.ticker %></span>
+      <span class="info-box-number"><%= idr_money(tender.target) %></span>
+      <div class="progress">
+        <div class="progress-bar" style="width: 70%"></div>
       </div>
-      <div class="col-md-6 col-sm-12">
-        <div class="col-sm-6 mt">
-          <%= tender.shares_left %> saham tersisa
-        </div>
-        <div class="col-sm-6 mt">
-          <span class="pull-right"><%= idr_money(tender.target) %></span>
-        </div>
-        <div class="col-sm-12 mt">
-          <%= link_to "lihat", tender_path(tender), class: "btn btn-primary btn-round-lg" %>
-        </div>        
-      </div>
-    </div>
-  </div>
-
-</li>
+      <span class="progress-description">
+        <%= tender.shares_left %> saham tersisa
+      </span>
+    </div><!-- /.info-box-content -->
+  <% end %>
+</div><!-- /.info-box -->

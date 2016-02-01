@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :user_layout
+  before_filter :inside_app
   
   def index
   	@houses = House.all

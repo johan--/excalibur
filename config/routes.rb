@@ -52,6 +52,9 @@ Fustal::Application.routes.draw do
     end    
   end
   resources :tenders do
+    member do
+      get "discuss"
+    end
     resources :build, controller: 'products/build'
     resources :bids
   end
@@ -67,6 +70,8 @@ Fustal::Application.routes.draw do
   
   get "home", to: "insides#home", as: :user_root
   get "bursa", to: "insides#marketplace", as: :marketplace
+  get "forum", to: "insides#lounge", as: :lounge
+  get "forum", to: "insides#desk", as: :desk
   get "pendanaan", to: "insides#choose", as: :choose_product
   get "profil", to: "insides#profile", as: :profile
 

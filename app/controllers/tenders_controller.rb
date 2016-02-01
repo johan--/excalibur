@@ -1,24 +1,13 @@
 class TendersController < ApplicationController
-  before_action :set_tender, only: [
-    :show, :edit, :update, :destroy
-  ]
-  before_action :user_layout
+  before_filter :inside_app
 
   # def index
   #   @tenders = @starter.tenders
   # end
 
   def show
-    @comments = @tender.comments
-    @comment = Comment.new
-    @client = @tender.starter 
-    @assessment = Comment.assessments.user_as_subject(@client).first
-    @type = @tender.class.name
-    @commentable_id = @tender.id
-    @subject = "interaction"
-    @bids = @tender.bids
+    set_tender
     @bidders = []
-
     @bids.each{ |bid| @bidders << bid.bidder }
 
     # if @tender.aqad == 'murabahah'
@@ -31,6 +20,16 @@ class TendersController < ApplicationController
     # end
   end
 
+  def discuss
+    set_tender
+    @assessment = Comment.assessments.user_as_subject(@client).first
+    @comments = @tender.comments
+    @comment = Comment.new
+    @type = @tender.class.name
+    @commentable_id = @tender.id
+    @subject = "interaction"    
+  end
+
   def new
     @category = params[:intent]
     @asset_type = params[:asset]
@@ -40,6 +39,7 @@ class TendersController < ApplicationController
   end
 
   def edit
+    set_tender
     @category = @tender.category
     @asset = @tender.tenderable
   end
@@ -60,6 +60,7 @@ class TendersController < ApplicationController
   end
 
   def update
+    set_tender
     if @tender.update(tender_params)
 
       flash[:notice] = 'Proposal berhasil dikoreksi'
@@ -73,7 +74,9 @@ class TendersController < ApplicationController
 
 private
   def set_tender
-    @tender = Tender.friendly.find(params[:id])
+    @tender = Tender.includes(:bids).friendly.find(params[:id])
+    @client = @tender.starter 
+    @bids = @tender.bids    
   end
 
   def tender_params

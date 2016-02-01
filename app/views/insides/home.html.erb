@@ -1,30 +1,89 @@
 <% meta title: @title %>
 
-<div class="portlet">
-  <div class="portlet-title">
-    <div class="caption caption-green">
-      <i class="fa fa-home"></i> 
-      <span class="caption-subject bold font-yellow-crusta uppercase">
-        <%= @title %>
-      </span>
-      <span class="caption-helper"><%=  %></span>
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to marketplace_path, remote: true, class: "dash-link" do %>
+        <div class="panel dash-button dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Bursa</h4>
+            <i class="ion-ios-bolt"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to user_root_path, remote: true, class: "dash-link selected" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Jurnal</h4>
+            <i class="ion-monitor"></i>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+      <%= link_to lounge_path, remote: true, class: "dash-link" do %>
+        <div class="panel panel-colorful dash-icon">
+          <div class="panel-body text-center">
+            <h4 class="text-uppercase mar-btm text-sm">Forum</h4>
+            <i class="ion-coffee"></i>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  
+</div>
 
-  <div class="portlet-body">
+<div class="row">
+  <div id="home-view">
+    <div class="col-md-8">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Portofolio</h3>
+          <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <h5>Pengajuan</h5><hr class="light">
+          <%= render partial: 'tenders/tender', collection: @tenders  %>
 
-    <div class="row">
-      <div id="user-dashboard">
-        <%= render 'dashboard' %>          
+          <h5>Penawaran</h5><hr class="light">
+          <%= render partial: 'bids/bid', collection: @bids  %>
 
-        <%= render partial: 'tenders/tender_list', locals: { tenders: @tenders } %>
-      </div>
-      <div id="app-content" style="display:none;">
-      </div>
+          <h5>Aset</h5><hr class="light">
+          <small>Belum ada aset dimiliki</small>
+        </div><!-- /.box-body -->
+      </div><!-- /.box --> 
     </div>
-      
+    <div class="col-md-4">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>150</h3>
+          <p>New Orders</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>65</h3>
+          <p>Unique Visitors</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>      
+    </div>
   </div>
-
-  
+  <div id="side-view" style="display:none;">
+  </div>
 </div>
