@@ -1,11 +1,11 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="index2.html" class="logo">
+  <%= link_to root_url(subdomain: ''), class: 'logo' do %>
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>KAPI</b></span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg"><b>Kapiten</b></span>
-  </a>
+  <% end %>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->

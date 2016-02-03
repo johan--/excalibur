@@ -36,11 +36,11 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <div class="box box-default collapsed-box">
+    <div class="box box-default">
       <div class="box-header with-border">
         <h3 class="box-title">Detil Proposal</h3>
         <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
         </div><!-- /.box-tools -->
       </div><!-- /.box-header -->
       <div class="box-body">
@@ -73,8 +73,8 @@
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
-        <div class="box-body">
-	      	<ul class="user-profiles-list-basic" id="tender-starter">
+        <div class="box-body" id="tender-starter">
+	      	<ul class="user-profiles-list-basic">
 	      		<%= render  partial: 'users/user', locals: { user: @client } %>
 	      	</ul>
 					<%= render  partial: 'users/user_infos', locals: { user: @client } %>

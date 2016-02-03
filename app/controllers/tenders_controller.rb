@@ -32,6 +32,7 @@ class TendersController < ApplicationController
 
   def new
     @category = params[:intent]
+    @aqad = params[:akad]
     @asset_type = params[:asset]
     @asset_id = params[:asset_id]
     @asset = @asset_type.constantize.friendly.find(@asset_id)

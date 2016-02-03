@@ -9,7 +9,7 @@ class InsidesController < ApplicationController
   end
 
   def choose
-    @houses = House.all
+    @houses = House.includes(:stocks).all
   end
 
   def lounge

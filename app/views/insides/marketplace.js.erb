@@ -1,5 +1,5 @@
 $('#home-view').hide();
-$('#side-view').html("<%= j (render 'tenders/marketplace', 
+$('#marketplace').html("<%= j (render 'tenders/marketplace', 
 	locals: { fundraisings: @fundraisings, tradings: @tradings }) %>");
-$('#side-view').slideDown(350);
+$('#marketplace').show();
 $('.selected').removeClass('selected');

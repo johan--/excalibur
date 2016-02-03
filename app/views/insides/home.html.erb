@@ -1,89 +1,134 @@
-<% meta title: @title %>
+<div class="user-menu-container square">
+    <div class="col-xs-12 user-details">
+        <div class="row white-background white">
+            <div class="col-md-8 col-xs-8">
+                <div class="user-pad">
+                    <h3 class="black">Selamat Datang, <%= current_user.name %></h3>
+                    <h4 class="white"><i class="fa fa-check-circle-o"></i> Akun Individu</h4>
+                    <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
+                    <button type="button" class="btn btn-labeled btn-info" href="#">
+                        <span class="btn-label"><i class="fa fa-pencil"></i></span>Update</button>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4 no-pad">
+                <div class="user-image">
+                    <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
+                </div>
+            </div>
+        </div>
+        <div class="row overview">
+            <div class="col-xs-4 user-pad text-center">
+                <h3>FOLLOWERS</h3>
+                <h4>2,784</h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>FOLLOWING</h3>
+                <h4>456</h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>APPRECIATIONS</h3>
+                <h4>4,901</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 user-menu-btns">
+<!--             <div class="btn-group-vertical square" id="responsive"> -->
+            <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+                <%= link_to user_root_path, remote: true, class: "btn btn-block btn-primary active" do %>
+                  <i class="fa fa-bell-o fa-3x"></i>
+                <% end %>
+            </div>
+            <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+                <%= link_to marketplace_path, remote: true, class: "btn btn-block btn-primary" do %>
+                  <i class="fa fa-envelope-o fa-3x"></i>
+                <% end %>             
+            </div>
+            <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+                <a href="#" class="btn btn-block btn-primary">
+                  <i class="fa fa-laptop fa-3x"></i>
+                </a>                    
+            </div>
+<!--             </div> -->
+    </div>
+    <br>
+    <div class="col-xs-12 user-menu">
+        <div class="user-menu-content active" id="home-view">
+            <h3>
+                Portofolio
+            </h3>
+            <div class="col-md-4">
+                <center><i class="fa fa-cloud-upload fa-4x"></i></center>
+                <div class="share-links">
+                    <center>
+                    <p>
+                        <%= link_to "Ajukan Fundraising",  choose_product_path, remote: true, class: 'btn btn-block btn-round-lg btn-primary' %>
+                    </p>
+                    <p>ATAU</p>
+                    <p><%= link_to "Ingin Investasi?",  marketplace_path, remote: true, class: 'btn btn-block btn-round-lg btn-primary' %></p>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-8">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Portofolio</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <h5>Pengajuan</h5><hr class="light">
+                  <%= render partial: 'tenders/tender', collection: @tenders  %>
 
-<div class="row">
-  <div class="col-md-12 col-xs-12">
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to marketplace_path, remote: true, class: "dash-link" do %>
-        <div class="panel dash-button dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Bursa</h4>
-            <i class="ion-ios-bolt"></i>
-          </div>
+                  <h5>Penawaran</h5><hr class="light">
+                  <%= render partial: 'bids/bid', collection: @bids  %>
+
+                  <h5>Aset</h5><hr class="light">
+                  <small>Belum ada aset dimiliki</small>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->                 
+            </div>
         </div>
-      <% end %>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to user_root_path, remote: true, class: "dash-link selected" do %>
-        <div class="panel panel-colorful dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Jurnal</h4>
-            <i class="ion-monitor"></i>
-          </div>
+        <div class="user-menu-content" id="marketplace" style="display: none;">
         </div>
-      <% end %>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to lounge_path, remote: true, class: "dash-link" do %>
-        <div class="panel panel-colorful dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Forum</h4>
-            <i class="ion-coffee"></i>
-          </div>
+        <div class="user-menu-content" style="display: none;">
+            <h3>
+                Trending
+            </h3>
         </div>
-      <% end %>
+        <div class="user-menu-content" id="houses-view" style="display: none;">
+            <h3>
+                Trending
+            </h3>
+        </div>        
     </div>
-  </div>
 </div>
 
-<div class="row">
-  <div id="home-view">
-    <div class="col-md-8">
-      <div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Portofolio</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          <h5>Pengajuan</h5><hr class="light">
-          <%= render partial: 'tenders/tender', collection: @tenders  %>
+<script type="text/javascript">
+$(document).ready(function() {
+    var $btnSets = $('.responsive'),
+    $btnLinks = $btnSets.find('a');
+ 
+    $btnLinks.click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.user-menu>div.user-menu-content").removeClass("active");
+        $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+    });
+});
 
-          <h5>Penawaran</h5><hr class="light">
-          <%= render partial: 'bids/bid', collection: @bids  %>
-
-          <h5>Aset</h5><hr class="light">
-          <small>Belum ada aset dimiliki</small>
-        </div><!-- /.box-body -->
-      </div><!-- /.box --> 
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-aqua">
-        <div class="inner">
-          <h3>150</h3>
-          <p>New Orders</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-shopping-cart"></i>
-        </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fa fa-arrow-circle-right"></i>
-        </a>
-      </div>
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>65</h3>
-          <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fa fa-arrow-circle-right"></i>
-        </a>
-      </div>      
-    </div>
-  </div>
-  <div id="side-view" style="display:none;">
-  </div>
-</div>
+$( document ).ready(function() {
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.view').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+});
+</script>

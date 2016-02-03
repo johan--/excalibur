@@ -12,7 +12,7 @@ feature "UserEditsFundraisings", :type => :feature do
   
   describe "editing a musharaka fundraising tender", js: true do
   	before do
-  	  click_link tender.ticker
+  	  visit tender_path(tender)
   	  click_link "Edit"
   	  within('#edit_tender_1') do
   	  	fill_in "Modal Kamu", with: 50

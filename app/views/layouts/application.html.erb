@@ -18,6 +18,7 @@
 <% if @inside %>
 
   <body class="hold-transition skin-blue sidebar-mini">
+    <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>  
     <%= render 'layouts/wrapper' %>
   </body>
 

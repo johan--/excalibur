@@ -1,10 +1,10 @@
 /*@import "styles/mobile-navbar";
-@import "bootstrap-slider";
 @import "styles/image-panel";
 @import "styles/ticket-style";
 @import "styles/base-layout";
 @import "styles/custom-panels";
 */
+@import "bootstrap-slider";
 @import "styles/user";
 @import "styles/lists";
 @import 'ionicons';
@@ -213,7 +213,7 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 ***/
 
-body {
+/*body {
   background: white;
 }
 
@@ -268,7 +268,7 @@ body {
     right: 25px;
     top: 25px;
 }*/
-.media-date li { padding: 0; }
+/*.media-date li { padding: 0; }
 .media-date li:first-child:before { content: ''; }
 .media-date li:before { 
     content: '.'; 
@@ -283,7 +283,7 @@ body {
     border-radius: 20px;
 }
 .btn-circle span { padding-right: 6px; }
-.embed-responsive { margin-bottom: 20px; }
+.embed-responsive { margin-bottom: 20px; }*/
 
 
 /*Timelines*/
@@ -332,8 +332,7 @@ body {
 
 
 /*tender*/
-
-img {
+/*img {
     vertical-align: middle;
 }
 
@@ -373,15 +372,4 @@ img {
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
 }
-
-.nav-tabs { border-bottom: 2px solid #DDD; }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
-    .nav-tabs > li > a { border: none; color: #666; }
-        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
-        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
-    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
-.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
-/*.tab-pane { padding: 15px 0; }
-.tab-content{padding:20px}*/
-
-
+*/

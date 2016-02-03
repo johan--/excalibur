@@ -7,17 +7,17 @@ class PagesController < ApplicationController
     @no_layout = true
   end
 
-  def for_clients
-    @no_layout = true
-  end
+  # def for_clients
+  #   @no_layout = true
+  # end
 
-  def for_investors
-    @no_layout = true
-  end
+  # def for_investors
+  #   @no_layout = true
+  # end
 
-  def for_developers
-    @no_layout = true
-  end
+  # def for_developers
+  #   @no_layout = true
+  # end
 
   def about_us
   end

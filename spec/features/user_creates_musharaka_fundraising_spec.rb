@@ -10,15 +10,20 @@ feature "UserCreatesMusharakaFundraising", :type => :feature do
   
   describe "creating a musharaka fundraising tender", js: true do
 	before do
-	  click_link "Pendanaan"
+	  click_link "Bursa"
+	  click_link "Ajukan Fundraising"
 	  click_link "Pilih"
-	  select 'musharaka', from: "tender[aqad]"
+	  # select 'musharaka', from: "tender[aqad]"
 	  fill_in "Modal Kamu", with: 20
 	  fill_in "Durasi", with: 8
 	  click_button "Kirim"
 	end
 
 	it { should have_content('Proposal berhasil dibuat') }
+
+	it "shows that the info of the starter" do
+   	  expect(find('#tender-starter')).to have_selector('div.inf-content', count: 1)
+	end
 
 	describe "should have correct information on tender show page" do
 	  # it { should have_css('#price-share', text: "Rp 300.000") }

@@ -1,10 +1,3 @@
-<% metamagic site: ENV["SITE_NAME"], title: :site %>
-<%
-    meta description: "Miliki rumah tanpa terlibat hutang berbunga, kami bantu mewujudkan mimpimu dengan menggunakan aqad dan mematuhi rambu syariah Islam.",
-    keywords: %w(pembiayaan keuangan syariah islam)
-%>
-
-
 <section id="home" name="home"></section>
 <% if is_opera_mini? %>
 <div id="opera-mini-wrap">
@@ -27,10 +20,36 @@
 <% end %>
 <div>
 
-<%= render 'pages/mantra' %>
-<%= render 'pages/aqads' %>
 <%= render 'pages/customers' %>
+<%= render 'pages/aqads' %>
+<%= render 'pages/benefits' %>
 
+<section id="reminder">
+  <div class="container">
+    <div class="section-heading text-center">
+      <h1>Mari Bergabung</h1>
+      <div class="section-divider"></div>
+      <p>Membangun masa depan yang tentram bersama, rumah demi rumah</p>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 white" id="subcribe-prompt">
+        <%= render 'elements/subscribe_form' %>
+      </div>    
+      <div class="col-md-12 white suggestions">
+        <%= link_to about_us_url(subdomain: ''), class: "btn btn-white btn-round-lg" do %>
+            <i class="fa fa-group fa-3x pull-left"></i>
+            <span>Cek Tentang</span><br>
+            <b>Kapiten</b>
+        <% end %>
+        <%= link_to root_url(subdomain: 'blog'), class: "btn btn-white btn-round-lg" do %>
+            <i class="fa fa-newspaper-o fa-3x pull-left"></i>
+            <span>Kunjungi Blog</span><br>
+            <b>Kapiten</b>
+        <% end %>
+      </div>
+  </div>
+</section>
 
 <section id="footerwrap">
   <div class="container">

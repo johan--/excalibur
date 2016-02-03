@@ -1,16 +1,27 @@
 <section id="feature">
   <div class="container">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <h1 class="title text-center landing">Manfaat Musyarakah</h1>
+    <div class="section-heading text-center">
+        <h1>Musyarakah</h1>
+        <p class="wow fadeInDown" data-wow-delay=".5s">
+            Ini yang kami tawarkan kepada calon pembeli rumah atau pemilik rumah
+        </p>
+        <br>
+        <br>
+    </div>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
 
         <div class="section-heading text-center">
-            <h3 class="title landing" data-wow-delay=".3s">Untuk Pendana</h3>
-            <br>
-            <br>
+            <div class="controlsBlock">
+                <div class="controls">
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <h3 class="title landing" data-wow-delay=".3s">Untuk Pendana</h3>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>  
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-4 col-xs-12">
@@ -53,16 +64,17 @@
                 </div>
             </div>
         </div>
-        <center>
-          <%= link_to "Jalankan Simulasi", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-round-lg btn-primary" %>
-        </center>
     </div>
     <div class="item">
 
         <div class="section-heading text-center">
-            <h3 class="primary" data-wow-delay=".3s">Untuk Pembeli Rumah</h3>
-            <br>
-            <br>            
+            <div class="controlsBlock">
+                <div class="controls">
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <h3 class="title landing" data-wow-delay=".3s">Untuk Pembeli Rumah</h3>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>  
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-4 col-xs-12">
@@ -106,21 +118,19 @@
             </div>            
         </div>  
         <center>
-          <%= link_to "Jalankan Simulasi", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
+        <%= link_to open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" do %>
+            <i class="fa fa-calculator fa-3x pull-left"></i>
+            <span>Jalankan Simulasi</span><br>
+            <b>Untuk Klien</b>        
+        <% end %>
         </center>
     </div>
   </div>
 
-        <div class="controlsBlock">
-          <div class="controls">
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-            <div class="carousel-indicators">
+            <ol class="carousel-indicators">
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            </div>
-          </div>
-        </div>  
+            </ol>  
 </div>
     
 </div>

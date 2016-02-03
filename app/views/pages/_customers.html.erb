@@ -1,79 +1,32 @@
 <section id="works" class="works">
     <div class="container">
         <div class="section-heading text-center">
-            <h1 class="title landing" data-wow-delay=".3s">Mari Bergabung</h1>
+            <h1>Produk</h1>
             <p class="wow fadeInDown" data-wow-delay=".5s">
-                Membangun masa depan yang tentram bersama, rumah demi rumah
+                Ini yang kami tawarkan kepada calon pembeli rumah atau pemilik rumah
             </p>
         </div>
-        <div class="row">
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
-                    <div class="img-wrapper">
-                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449580961/asset/houses-1007932_1920.jpg" class="img-responsive" alt="this is a title" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <%= link_to t("links.view"), for_developers_path  %>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        <%= link_to t("landing.developer"), for_developers_path %>
-                    </a>
-                    </h4>
-                    <p>
-                        developer dan penjual rumah untuk segmen terjangkau
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/family-1003816_640.jpg" class="img-responsive" alt="this is a title" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <%= link_to t("links.view"), for_clients_path  %>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        <%= link_to t("landing.client"), for_clients_path %>
-                    </a>
-                    </h4>
-                    <p>
-                        pihak yang ingin membeli rumah dan membutuhkan pendanaan
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                        <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/telephone-586266_640.jpg" class="img-responsive" alt="" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <%= link_to t("links.view"), for_investors_path  %>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        <%= link_to t("landing.financier"), for_investors_path %>
-                    </a>
-                    </h4>
-                    <p>
-                        pihak yang membantu membiayai bersama para investor lainnya
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <%= render 'pages/faq' unless I18n.locale == :en %> 
-        </div>
+        <ul class="article-list-basic">
+            <li>
+                <a href="#">
+                    <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
+                </a>
+                <div>
+                    <h2><a href="#">Hijra</a></h2>
+                    <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah</p>
+                    <!-- <a href="#" class="read-more">Read more &rarr;</a> -->
+                </div>
+            </li>
+
+            <li>
+                <a href="#">
+                    <img src="http://res.cloudinary.com/instilla/image/upload/s--zI7LdhyW--/c_scale,w_400/v1454471660/cup-hot-hands_kcdfrd.jpg"  alt="Sahale Wa" />
+                </a>
+                <div>
+                    <h2><a href="#">Remedy</a></h2>
+                    <p>Takeover hipotik rumah, untuk mereka yang ingin terbebas dari praktik penindasan</p>
+                    <!-- <a href="#" class="read-more">Read more &rarr;</a> -->
+                </div>
+            </li>
     </div>
 </section>

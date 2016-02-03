@@ -3,7 +3,6 @@
 
 <div class="col-xs-12">
   <div class="form-inputs">
-    <%= f.input :aqad, :as => :select, :collection => %w[murabaha musharaka], prompt: "pilih akad", required: true %> <br>
     <% if @category == 'fundraising' %>
       <%= f.input :seed_capital, as: :integer, input_html: { min: '20', max: '80', step: '5' }, label: "Modal Kamu", placeholder: "% dari harga rumah", required: true %>
     <% else %>
@@ -15,6 +14,7 @@
 
     <%= f.input :draft, as: :boolean, checked_value: 'yes', unchecked_value: 'no', label: "Draft?" %>
 
+    <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
     <%= f.input :asset, :as => "hidden", :input_html => { value: @asset_type } %>
     <%= f.input :asset_id, :as => "hidden", :input_html => { value: @asset_id } %>
     <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>

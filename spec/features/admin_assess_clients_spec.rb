@@ -15,7 +15,10 @@ feature "AdminAssessClients", :type => :feature do
 
   describe "filling out the comment form of the client", js: true do
   	before do
-  	  click_link("Forum", href: "#portlet_tab2")
+      click_link "Bursa"
+      first('.tender-item').click
+      click_link "Diskusi"
+  	  # click_link("Forum", href: "#portlet_tab2")
   	  click_link "Buat Analisis"
       fill_in "comment_title", with: "Assessment Personality"
   	  fill_in "comment_body_md", with: "Lorem ipsum dolor Lorem 

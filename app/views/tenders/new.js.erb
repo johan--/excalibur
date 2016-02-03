@@ -1,3 +1,2 @@
-$('#user-dashboard').hide();
-$("#app-content").html("<%= j (render 'tenders/new_tender') %>")
-$('#app-content').slideDown(350);
+$("#inner-main-modal").html("<%= j (render 'tenders/new_tender') %>")
+$("#main-modal").modal("show")
