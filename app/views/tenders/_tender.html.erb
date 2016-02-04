@@ -1,15 +1,13 @@
-<div class="info-box bg-aqua tender-item">
-  <%= link_to tender_path(tender) do %>
-    <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text"><%= tender.category %> <%=  tender.ticker %></span>
-      <span class="info-box-number"><%= idr_money(tender.target) %></span>
-      <div class="progress">
-        <div class="progress-bar" style="width: 70%"></div>
-      </div>
-      <span class="progress-description">
-        <%= tender.shares_left %> saham tersisa
-      </span>
-    </div><!-- /.info-box-content -->
-  <% end %>
-</div><!-- /.info-box -->
+<div class="timeline-panel debits">
+    <ul class="timeline-panel-ul">
+        <li><span class="importo"><%= link_to tender.ticker, tender_path(tender) %></span></li>
+        <li><span class="causale">Pengajuan <%= tender.category %> ini dibuat oleh <%= tender.starter.name %> atas rumah <%= link_to tender.tenderable.ticker, house_path(tender.tenderable) %></span> </li>
+        <li>
+        	<p><small class="text-muted">
+        		<i class="glyphicon glyphicon-money"></i> <%= idr_money(tender.target) %>
+        		<i class="glyphicon glyphicon-time"></i> 11/09/2014
+        		</small>
+        	</p> 
+        </li>
+    </ul>
+</div>

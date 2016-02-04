@@ -1,21 +1,21 @@
-<div class="col-xs-12" id="forum">
-  <!-- Comments -->
-	<h3>Penilaian</h3><hr class="light">
-    <% if @assessment.blank? %>
-  	  <div class="blankslate" id="comment-placeholder">
-	  	<div class="spacious">
-	  	<h3><%= "Belum Ada Analisis" %></h3>
-		<% if current_user.admin? %>
-			<p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-		<% end %>
-		</div>
-  	  </div>
-	<% else %>
-  	  <%= render 'comments/assessment', comment: @assessment %>
-      <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-	<% end %>			    
+<h3>Forum</h3><hr class="light">
 
-	<h3>Komentar</h3><hr class="light">
-		<%= render 'comments/comments', comments: @comments %>
+<h5>Penilaian</h5>
+<% if @assessment.blank? %>
+	  <div class="blankslate" id="comment-placeholder">
+  	<div class="spacious">
+  	<h3><%= "Belum Ada Analisis" %></h3>
+	<% if current_user.admin? %>
+		<p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+	<% end %>
 	</div>
+	  </div>
+<% else %>
+	  <%= render 'comments/assessment', comment: @assessment %>
+  <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+<% end %>			    
+<br>
+<!-- Comments -->
+<h5>Komentar</h5>
+	<%= render 'comments/comments', comments: @comments %>
 </div>

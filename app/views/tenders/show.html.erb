@@ -1,100 +1,101 @@
 <% meta title: "Proposal #{@tender.ticker}" %>
 
-<div class="row">
-  <div class="col-md-12 col-xs-12">
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to user_root_path, class: "" do %>
-        <div class="panel dash-button dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Jurnal</h4>
-            <i class="ion-ios-monitor"></i>
-          </div>
+<div class="user-menu-container square">
+    <div class="user-details">
+        <div class="row white-background white" style="margin-left: 0px;">
+            <div class="col-md-9 col-xs-8">
+              <div class="user-pad">
+                <h3 class="black"><%= @tender.ticker %></h3>
+                <h4 class="white"><i class="ion-android-folder-open"></i> <%= @tender.category %></h4>
+                <h4 class="white"><i class="ion-android-clipboard"></i>penggalangan <%= idr_money(@tender.target) %> untuk kongsi selama <%= (@tender.annum) %> tahun</h4>
+                <%= link_fa_to('pencil', 'Edit', edit_tender_url(@tender, subdomain: '')) if @tender.access_granted?(current_user) %>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <div class="user-image">
+                  <%= render_house_display(@tender.tenderable.house, 'img-responsive thumbnail') %>
+                </div>
+            </div>
         </div>
-      <% end %>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to tender_path(@tender), remote: true, class: "" do %>
-        <div class="panel panel-colorful dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Cover</h4>
-            <i class="ion-ios-box"></i>
-          </div>
+        <div class="row overview">
+            <div class="col-xs-4 user-pad text-center">
+                <h3>SAHAM</h3>
+                <h4><%= @tender.shares_left %> tersisa</h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>HARGA SATUAN</h3>
+                <h4><%= idr_money(@tender.price) %></h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>STATUS</h3>
+                <h4><%= @tender.state %></h4>
+            </div>
         </div>
-      <% end %>
     </div>
-    <div class="col-sm-4 col-xs-4">
-      <%= link_to discuss_tender_path(@tender), remote: true, class: "" do %>
-        <div class="panel panel-colorful dash-icon">
-          <div class="panel-body text-center">
-            <h4 class="text-uppercase mar-btm text-sm">Diskusi</h4>
-            <i class="ion-chatbubbles"></i>
-          </div>
+    <div class="col-xs-12 user-menu-btns">
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <%= link_to tender_path(@tender), class: "interface btn btn-block btn-primary active", id: "home-button" do %>
+              <i class="fa fa-anchor fa-3x"></i>
+            <% end %>
         </div>
-      <% end %>
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <%= link_to discuss_tender_path(@tender), remote: true, class: "interface btn btn-block btn-primary", id: "forum-button" do %>
+              <i class="fa fa-comments fa-3x"></i>
+            <% end %>             
+        </div>
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fa fa-road fa-3x"></i>
+            </a>                    
+        </div>
     </div>
-  </div>
+    <br>
+    <div class="col-xs-12 user-menu">
+        <div class="user-menu-content active">
+            <div class="col-md-3 centered" id="left-view">
+              <br>
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <i class="fa fa-cloud-upload fa-4x"></i>
+                </div>
+                <div class="col-md-12 col-xs-5">
+                      <%= render_double_button('money', 'Ajukan', 'Penawaran', new_tender_bid_path(@tender), true) %>
+                </div>
+                <div class="col-md-12 col-xs-2" style="margin-top: 10px; margin-bottom: 10px;">
+                      ATAU
+                  </div>
+                  <div class="col-md-12 col-xs-5">
+                    <%= render_double_button('flag', 'Kembali ke', 'Markas', user_root_path) %>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+              <div id="home-view">
+              <h3>Inti</h3><hr class="light">
+              <div class="right-display">
+                <div class="item">
+                    <h5>Rincian Rumah <small><%= link_to "Telusuri", house_path(@tender.tenderable.house) %></small></h5>                
+                    <%= render 'houses/house_details', house: @tender.tenderable.house %>
+                  </div>
+                  <div class="item" id="tender-starter">
+                    <h5>Klien</h5>
+                      <ul class="user-profiles-list-basic">
+                        <%= render  partial: 'users/user', locals: { user: @client } %>
+                      </ul>
+                      <%= render  partial: 'users/user_infos', locals: { user: @client } %>
+                  </div>
+                  <div class="item" id="tender-bidders">
+                    <h5>Pendana</h5>
+                    <%= render 'users/users', users: @bidders %>
+                  </div>
+                </div>
+              </div>
+          <div class="side-view" id="forum" style="display: none;">
+          </div>
+          <div class="side-view" id="progress" style="display: none;">
+          </div>                        
+            </div>
+        </div>
+    </div>
 </div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="box box-default">
-      <div class="box-header with-border">
-        <h3 class="box-title">Detil Proposal</h3>
-        <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        </div><!-- /.box-tools -->
-      </div><!-- /.box-header -->
-      <div class="box-body">
-        <h5>Info</h5><hr class="light">
-        <%= render 'tenders/tender_infos', tender: @tender %>
 
-        <h5>Aset</h5><hr class="light">
-        <small>Belum ada aset dimiliki</small>
-      </div><!-- /.box-body -->
-    </div><!-- /.box --> 
-  </div>
-  <div class="col-md-8">  
-    <div id="home-view">
-      <div class="box box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Rincian Rumah <small><%= link_to "Telusuri", house_path(@tender.tenderable) %></small></h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-					<%= render 'houses/house_details', house: @tender.tenderable.house %>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-			
-      <div class="box box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Pengusul</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body" id="tender-starter">
-	      	<ul class="user-profiles-list-basic">
-	      		<%= render  partial: 'users/user', locals: { user: @client } %>
-	      	</ul>
-					<%= render  partial: 'users/user_infos', locals: { user: @client } %>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-
-      <div class="box box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Pendana</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body" id="tender-bidder">
-	      	<%= render 'users/users', users: @bidders %>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
-    </div>
-
-    <div id="side-view" style="display:none;">
-    </div>
-  </div>
-</div>

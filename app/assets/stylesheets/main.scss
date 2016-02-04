@@ -29,6 +29,18 @@ $nprogress-zindex: 10100;
 @import 'nprogress-bootstrap';
 
 
+#medium-wrap{
+  border: 1px solid #ddd;
+  padding-left: 0px; padding-right: 0px;
+}
+
+.right-display {
+  margin-bottom: 30px;
+  .item {
+    margin-bottom: 15px;
+  }
+}
+
 .img-center {
     margin: 0 auto;
 }

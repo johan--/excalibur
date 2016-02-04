@@ -1,30 +1,42 @@
-<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-	<div class="product-chooser-item">
-    <% if house.avatar.blank? %>
-      <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="">
-    <% else %>
-      <%= cl_image_tag(house.avatar, house_photo_options()) %>
-    <% end %>	
-		
-    <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
-			<span class="title"><%= house.ticker %></span>
-			<span class="description"><%= house.property_size %>m2/<%= house.lot_size %>m2, <%= house.bedrooms %> kamar tidur dan <%= house.bathrooms %> kamar mandi.</span>
-<!-- 			<input type="radio" name="product" value="mobile_desktop" checked="checked"> -->
-		</div>
-    
-    <div class="col-xs-4 col-sm-4 col-md-6">
-      <%= link_to house_path(house), class: "btn btn-sm btn-primary" do %>
-        <i class="fa fa-search-plus"></i> Lihat
-      <% end %>                         
+<div class="wp-block property list">
+    <div class="wp-block-title">
+        <h3><a href="#">3015 Grand Avenue, CocoWalk</a></h3>
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-6">
-    <% if defined?(fundraising) && fundraising == true %>
-      <%= link_to new_tender_path(user_id: current_user, intent: 'fundraising', asset: "Stock", asset_id: house.initial_stock, akad: "musharaka"), class: "btn btn-sm btn-primary", remote: true do %>
-      <i class="fa fa-search-plus"></i> Pilih
-      <% end %>
-    <% end %>
+    <div class="wp-block-body">
+        <div class="wp-block-img">
+            <% if house.avatar.blank? %>
+              <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="">
+            <% else %>
+              <%= cl_image_tag(house.avatar, house_photo_options()) %>
+            <% end %>   
+        </div>
+        <div class="wp-block-content">
+            <small>10 days only</small>
+            <h4 class="content-title">Special Offer</h4>
+        <ul class="aux-info">
+            <li><i class="fa fa-building"></i>2300<sup>2</sup> Feet</li>
+            <li><i class="fa fa-user"></i> 5 Bedrooms</li>
+            <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
+            <li><i class="fa fa-car"></i> 3 Garages</li>
+        </ul>
+            <span class="pull-left">
+                <span class="price">$230</span> 
+                <span class="period">per month</span>
+            </span>
+            <span class="pull-right">
+            <span class="capacity">
+                <i class="fa fa-user"></i>
+                <i class="fa fa-user"></i>
+            </span>
+        </span>
+        </div>
+            <div class="wp-block-footer">
+        <ul class="aux-info">
+            <li><i class="fa fa-building"></i>2300<sup>2</sup> Feet</li>
+            <li><i class="fa fa-user"></i> 5 Bedrooms</li>
+            <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
+            <li><i class="fa fa-car"></i> 3 Garages</li>
+        </ul>
     </div>
-    
-		<div class="clear"></div>
-	</div>
-</div>                   
+    </div>
+</div>

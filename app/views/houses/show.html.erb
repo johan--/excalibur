@@ -1,151 +1,110 @@
-<% meta title: @house.ticker %>
 
-<div class="portlet">
-	<div class="portlet-title">
-		<div class="caption caption-red">
-			<i class="glyphicon glyphicon-cog"></i>
-			<span class="caption-subject text-uppercase" id="house-title"><strong><%= @house.ticker %></strong></span>
-		</div>
-        <% if current_user.admin? %>
-		<div class="actions pull-right">
-            <%= link_to edit_admin_house_path(@house), class: "btn btn-red btn-circle" do %>
-				<i class="glyphicon glyphicon-pencil"></i>
-            <% end %>
-<!-- 			<a href="javascript:;" class="btn btn-red btn-circle">
-				<i class="glyphicon glyphicon-trash"></i>
-			</a> -->
-		</div>
-        <% end %>
-	</div>
-	<div class="portlet-body">
-<div class="estate">
-    <div class="row">
-        <div class="col-md-12">
-       <div class="row">
-            <div class="col-md-7">
-                <div class="product-gallery">
-                    <div class="primary-image">
-                        <!-- Ideal image size is 700x500, with class of img-responsive -->
-                        <% if @house.avatar.blank? %>
-                            <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_500,w_700/v1452508512/asset/2000px-House_Silhouette.png" class="img-responsive" alt="">
-                        <% else %>
-                            <%= cl_image_tag(@house.avatar, house_photo_options('zoom')) %>
-                        <% end %>
-                    </div>
+<div class="user-menu-container square">
+    <div class="user-details">
+        <div class="row white-background white" style="margin-left: 0px;">
+            <div class="col-md-8 col-xs-4">
+                <div class="user-pad">
+                    <h3 class="black"><%= @house.ticker %></h3>
+                    <h4 class="white"><i class="fa fa-check-circle-o"></i> <%= @house.address %></h4>
+<!--                     <h4 class="white"><i class="fa fa-twitter"></i> <%= @house.address %></h4> -->
+                    <%= link_fa_to('pencil', 'Profil', edit_admin_house_url(@house, subdomain: '')) if current_user.admin? %>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="product-info">
-                    <div class="wp-block property list no-border">
-                        <div class="wp-block-content clearfix">
-                            <h4 class="content-title" id="house-state"><%= @house.state %></h4>
-                            <p class="mb-15"><%= @house.address %></p>
-                            <p class="description mb-15">
-                                <%= link_to 'Ajukan Pendanaan', choose_product_path, class: "btn btn-block btn-outlined btn-theme", remote: true  %>
-                            </p>
-                            <span class="pull-left">
-                                <span class="price" id="house-price">
-                                	<%= idr_money(@house.price) %>
-                                </span> 
-<!--                                 <span class="period">
-                                	per month
-                                </span> -->
-                            </span>
-                            <span class="pull-right">
-                                <span class="capacity">
-<!--                                     <i class="fa fa-user"></i>
-                                    <i class="fa fa-user"></i> -->
-                                </span>
-                            </span>
-                        </div>
-                        <div class="wp-block-footer style2 mt-15">
-                            <ul class="aux-info">
-                                <li><i class="fa fa-building"></i><%= @house.property_size %> m2</li>
-                                <li><i class="fa fa-user"></i> <%= @house.bedrooms %> Bedrooms</li>
-                                <li><i class="fa fa-tint"></i> <%= @house.bathrooms %> Bathrooms</li>
-                                <li><i class="fa fa-car"></i> <%= @house.garages %> Garages</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="col-md-4 col-xs-6">
+                <div class="user-image">
+                    <% if @house.avatar.blank? %>
+                        <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_500,w_700/v1452508512/asset/2000px-House_Silhouette.png" class="img-responsive" alt="">
+                    <% else %>
+                        <%= cl_image_tag(@house.avatar, house_photo_options('zoom')) %>
+                    <% end %>
                 </div>
             </div>
         </div>
-
-        <!-- PROPERTY DESCRIPTION -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tabs-framed boxed">
-                    <ul class="tabs clearfix">
-                        <li class="active"><a href="#tab-1" data-toggle="tab">Info</a></li>
-                        <li><a href="#tab-map" data-toggle="tab" data-type="gmap">Foto</a></li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab-1">
-                            <div class="tab-body">
-                                <div class="section-title-wr">
-                                    <h3 class="section-title left">Keterangan</h3>
-                                </div>
-                                    <% if @house.description.blank? %> 
-                                      <div class="blankslate">
-                                        <div class="spacious">
-                                          <h3><%= "Belum Ada Keterangan" %></h3>
-                                        </div>
-                                      </div>
-                                    <% else %>
-                                        <p><%= @house.description %></p>
-                                    <% end %>
-                                    <br><br>
-
-                                <div class="section-title-wr">
-                                  <h3 class="section-title left">Rincian</h3>
-                                  <%= render 'houses/house_details', house: @house %>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab-map">
-                            <div class="tab-body">
-                            <% @photos.each do |photo| %>
-                                <div class="col-md-6">
-
-<div class="panel panel-default" id="panel-image">
-    <div class="panel-heading">
-        <small><%=  %></small>
-    </div>
-    <div class="panel-image hide-panel-body">
-        <%= cl_image_tag(photo.path, { :height => 200, width: 300, quality: 70, :crop => :scale }) %>
-    </div>
-    <div class="panel-footer text-center">
-        <span class="badge"><%=  %></span>
-            <%= link_to '#' do %>
-                <span class="glyphicon glyphicon-zoom-in"></span>
-            <% end %>
-            <% if current_user.admin? %>
-                <%= link_to '#' do %>
-                    <span class="glyphicon glyphicon-download"></span>
-                <% end %>
-                <%= link_to '#' do %>
-                    <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-            <% end %>
-    </div>
-</div>                                    
-                                </div>
-                            <% end %>
-
-                            <%= link_to "Unggah Foto", upload_photo_admin_house_path(@house), class: "btn btn-outlined btn-block btn-black" if current_user.admin? %>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+        <div class="row overview">
+            <div class="col-xs-4 user-pad text-center">
+                <h3>HARGA</h3>
+                <h4><%= idr_concat(@house.price) %> jt</h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>FOR SALE</h3>
+                <h4><%= @house.for_sale %></h4>
+            </div>
+            <div class="col-xs-4 user-pad text-center">
+                <h3>FOR RENT</h3>
+                <h4><%= @house.for_rent %></h4>
             </div>
         </div>
     </div>
-	</div>
+<!--     <div class="col-xs-12 user-menu-btns">
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <%= link_to house_path(@house), remote: true, class: "interface btn btn-block btn-primary active", id: "home-button" do %>
+              <i class="fa fa-laptop fa-3x"></i>
+            <% end %>
+        </div>
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <%= link_to marketplace_path, remote: true, class: "interface btn btn-block btn-primary", id: "market-button" do %>
+              <i class="fa fa-briefcase fa-3x"></i>
+            <% end %>             
+        </div>
+        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fa fa-coffee fa-3x"></i>
+            </a>                    
+        </div>
+    </div> -->
+    <br>
+    <div class="col-xs-12 user-menu">
+        <div class="user-menu-content active">
+            <div class="col-md-3 centered" id="left-view">
+                <br>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <i class="fa fa-cloud-upload fa-4x"></i>
+                    </div>
+                    <div class="col-md-12 col-xs-5">
+                        <%= render_double_button('lightbulb-o', 'Beli Dengan', 'Pendanaan', new_tender_path(user_id: current_user, intent: 'fundraising', asset: "Stock", asset_id: @house.initial_stock, akad: "musharaka"), true) %>
+                    </div>
+                    <div class="col-md-12 col-xs-2" style="margin-top: 10px; margin-bottom: 10px;">
+                        ATAU
+                    </div>
+                    <div class="col-md-12 col-xs-5">
+                        <%= render_double_button('search', 'Pilih Untuk', 'Menyewa', '', true) %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+              <div id="home-view">
+                <div class="right-display">
+                  <div class="item">
+                    <div class="wp-block-footer style2 mt-15">
+                        <ul class="aux-info">
+                            <li><i class="fa fa-building"></i><%= @house.property_size %> m2</li>
+                            <li><i class="fa fa-user"></i> <%= @house.bedrooms %> Bedrooms</li>
+                            <li><i class="fa fa-tint"></i> <%= @house.bathrooms %> Bathrooms</li>
+                            <li><i class="fa fa-car"></i> <%= @house.garages %> Garages</li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <h5>Info</h5>
+                    <%= render 'houses/house_details', house: @house %>
+                    <p><%= @house.description %></p>
+                  </div>
+                  <div class="item">
+                    <!-- <h5>Foto</h5> -->
+                    <% @photos.each do |photo| %>
+                        <%= render 'houses/house_photo', photo: photo %>
+                    <% end %>
 
-</div>                
-	</div>
+                    <%= link_to "Unggah Foto", upload_photo_admin_house_path(@house), class: "btn btn-round-lg btn-primary" if current_user.admin? %>
+                  </div>
+                </div>
+              </div>
+              <div class="side-view" id="marketplace" style="display: none;">
+              </div>
+              <div class="side-view" id="houses" style="display: none;">
+              </div>                          
+            </div>
+        </div>
+    </div>
 </div>

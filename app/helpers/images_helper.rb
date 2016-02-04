@@ -53,4 +53,27 @@ module ImagesHelper
 		class: "#{string}" }
 	end
 
+	def user_lg_options(type, string)
+		type = type.to_sym
+		{ :type => type, :width => 400, :height => 300, 
+			:crop => :scale, format: :jpg, class: "#{string}" }
+	end
+
+
+  def render_house_display(house, string)
+    if house.avatar.blank?
+      cl_image_tag('asset/2000px-House_Silhouette', user_lg_options('', string))
+    else
+      cl_image_tag(house.avatar, user_lg_options('private', string))
+    end
+  end
+
+  def render_house_display(house, string)
+    if house.avatar.blank?
+ 	  image_tag('http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png',
+ 	  	class: 'img-responsive thumbnail')
+    else
+      cl_image_tag(house.avatar, user_lg_options('private', string))
+    end
+  end  
 end

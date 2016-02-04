@@ -1,141 +1,37 @@
-.panel-heading:hover {
-    cursor:pointer;
+/*For the list item of tender and bids*/
+.timeline-panel {
+  border: 1px solid #d4d4d4;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  color: #666;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
-.panel-heading {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;    
+.timeline-panel .timeline-panel-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.side-tab:hover {
-        cursor: pointer;
-    }
-
-.panel.panel-default {
-    border: none;
-    box-shadow: none !important;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    
+.timeline-panel.credits .timeline-panel-ul {
+  text-align: right;
 }
-.panel-heading {
-    border: none;
-    background-color: #eee;
+.timeline-panel.credits .timeline-panel-ul li {
+  color: #666;
 }
-.panel-body #tender-item {
-    background-color: #f5f5f5;
+.timeline-panel.credits .timeline-panel-ul li span.importo {
+  color: #468c1f;
+  font-size: 1.3em;
 }
-.panel-title {
-    font-weight: 400;
-    color: black;
+.timeline-panel.debits .timeline-panel-ul {
+  text-align: left;
 }
-
-/* Alert Card */
-.notice {
-    padding: 15px;
-    background-color: #fafafa;
-    border-left: 6px solid #7f7f84;
-    margin-bottom: 10px;
-    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
-       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
-            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+.timeline-panel.debits .timeline-panel-ul span.importo {
+  color: #e2001a;
+  font-size: 1.3em;
 }
-.notice p {
-	margin-bottom: 10px;
-}
-
-.notice-sm {
-    padding: 10px;
-    font-size: 80%;
-}
-.notice-lg {
-    padding: 35px;
-    font-size: large;
-}
-.notice-success {
-    border-color: #80D651;
-}
-.notice-success>strong {
-    color: #80D651;
-}
-.notice-info {
-    border-color: #45ABCD;
-}
-.notice-info>strong {
-    color: #45ABCD;
-}
-.notice-warning {
-    border-color: #FEAF20;
-}
-.notice-warning>strong {
-    color: #FEAF20;
-}
-.notice-danger {
-    border-color: #d73814;
-}
-.notice-danger>strong {
-    color: #d73814;
-}
-
-.msg {
-    background: #fefefe;
-    color: #666666;
-    font-weight: bold;
-    font-size: small;
-    padding: 12px;
-    padding-left: 16px;
-    border-top: solid 3px #CCCCCC;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    -webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
-       -moz-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
-            box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
-}
-.msg-clear {
-    border-color: #fefefe;
-    -webkit-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
-       -moz-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
-            box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
-}
-.msg-info {
-    border-color: #b8dbf2;
-}
-.msg-success {
-    border-color: #cef2b8;
-}
-.msg-warning {
-    border-color: rgba(255,165,0,.5);
-}
-.msg-danger {
-    border-color: #ec8282;
-}
-.msg-primary {
-    border-color: #9ca6f1;
-}
-.msg-magick {
-    border-color: #e0b8f2;
-}
-.msg-info-text {
-    color: #39b3d7;
-}
-.msg-success-text {
-    color: #80d651;
-}
-.msg-warning-text {
-    color: #db9e34;
-}
-.msg-danger-text {
-    color: #c9302c;
-}
-.msg-primary-text {
-    color: rgba(47,106,215,.9);
-}
-.msg-magick-text {
-    color: #bb39d7;
-}
-
 
 /*Test tab*/
 #top_menu > li, ul.top-menu > li {

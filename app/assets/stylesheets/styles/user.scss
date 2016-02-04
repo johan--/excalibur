@@ -1,6 +1,6 @@
 /* User root flat interface */
 div.user-menu {
-  padding-left: 0px; padding-right: 0px;
+  padding-left: 0px; padding-right: 0px; min-height: 500px;
 }
 
 div.user-menu-container {
@@ -25,7 +25,8 @@ div.user-menu-container h4 {
 */
 div.user-menu-container .thumbnail {
    width:100%;
-   min-height:200px;
+   min-height:15em;
+   /*min-height:200px; */
    border: 0px!important;
    padding: 0px;
    border-radius: 0;
@@ -114,6 +115,9 @@ div.user-menu div.user-menu-content:not(.active){
 .user-image {
   max-height:200px;
   overflow:hidden;
+  .thumbnail {
+  	margin-bottom: 0px;
+  }
 }
 
 .overview h3 {
@@ -315,4 +319,5 @@ div.user-menu div.user-menu-content:not(.active){
 .btn-pref .btn {
     -webkit-border-radius:0 !important;
 }
+
 

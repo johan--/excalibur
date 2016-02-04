@@ -26,13 +26,13 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%= render_avatar_for(current_user, 'user-image') %>
+            <%= render_user_thumb(current_user, 'user-image') %>
             <span class="hidden-xs"><%= current_user.name %></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <%= render_avatar_for(current_user, 'img-circle') %>
+              <%= render_user_thumb(current_user, 'img-circle') %>
               <p>
                 <%= current_user.name %>
                 <small>Member since <%= time_ago_in_words(current_user.created_at) %> ago</small>

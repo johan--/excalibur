@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :switch_browser_prompt, if: :devise_controller?
   before_filter :set_locale
 
-  use_vanity :current_user
+  # use_vanity :current_user
 
   # Devise permitted params
   def configure_permitted_parameters

@@ -1,5 +1,5 @@
 $('#home-view').hide();
+$('#market-button').addClass('active');
 $('#marketplace').html("<%= j (render 'tenders/marketplace', 
 	locals: { fundraisings: @fundraisings, tradings: @tradings }) %>");
 $('#marketplace').show();
-$('.selected').removeClass('selected');

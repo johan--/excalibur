@@ -1,13 +1,13 @@
-<div class="info-box bg-red">
-  <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-  <div class="info-box-content">
-    <span class="info-box-text"><%= bid.ticker %></span>
-    <span class="info-box-number"><%= bid.volume %> lembar</span>
-    <div class="progress">
-      <div class="progress-bar" style="width: 70%"></div>
-    </div>
-    <span class="progress-description">
-      untuk pengajuan <%= bid.tender.ticker %>
-    </span>
-  </div><!-- /.info-box-content -->
-</div><!-- /.info-box -->
+<div class="timeline-panel credits">
+    <ul class="timeline-panel-ul">
+        <li><span class="importo"><%= bid.ticker %></span></li>
+        <li><span class="causale">Penawaran atas <%= link_to bid.tender.ticker, tender_path(bid.tender) %> dengan jumlah <%= bid.volume %> lembar</span> </li>
+        <li>
+        	<p><small class="text-muted">
+        		<i class="glyphicon glyphicon-money"></i> <%= idr_money(bid.contribution) %>
+        		<i class="glyphicon glyphicon-time"></i> 11/09/2014
+        		</small>
+        	</p> 
+        </li>
+    </ul>
+</div>

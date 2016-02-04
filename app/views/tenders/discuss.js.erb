@@ -1,3 +1,4 @@
 $('#home-view').hide();
-$('#side-view').html("<%= j (render 'tenders/discussion') %>");
-$('#side-view').slideDown(350);
+$('#market-button').addClass('active');
+$('#forum').html("<%= j (render 'tenders/discussion') %>");
+$('#forum').show();

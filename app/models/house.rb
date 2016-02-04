@@ -45,6 +45,11 @@ class House < ActiveRecord::Base
     avatar || placeholder
   end
 
+  def house_owner
+    publisher.name if self.occupancy.holder.nil? 
+    # self.occupancy.holder.name unless self.occupancy.holder.nil?
+  end
+
   def states_of_house
     ["for sale", "vacant", "for rent"]
   end

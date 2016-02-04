@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def render_double_button(icon_name, top, bottom, link, ajax=false)
+
+    link_to link, class: "btn btn-primary btn-block btn-round-lg", remote: ajax do
+      content_tag(:i, ' ', class: "fa fa-#{icon_name} fa-3x pull-left") +
+      content_tag(:span, " #{top}") + tag(:br) +
+      content_tag(:b, "#{bottom}")
+    end    
+  end
   
   def app_name
     return "Kapiten"
@@ -19,9 +28,9 @@ module ApplicationHelper
   end
 
   def link_fa_to(icon_name, text, link)
-    active = "active" if current_page?(link)
-    link_to link, class: active do
-      content_tag(:i, ' ', class: "menu-icon fa fa-#{icon_name}") +
+    # active = "active" if current_page?(link)
+    link_to link, class: "btn btn-labeled btn-info" do
+      content_tag(:i, ' ', class: "fa fa-#{icon_name}") +
       content_tag(:span, " #{text}")
     end
   end
