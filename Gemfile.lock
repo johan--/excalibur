@@ -160,6 +160,9 @@ GEM
       mime-types (>= 1.16, < 3)
     mail_view (2.0.4)
       tilt
+    meta_events (1.2.1)
+      activesupport (>= 3.0, <= 4.99.99)
+      json (~> 1.0)
     metamagic (3.1.7)
       rails (>= 3.0.0)
     mime-types (2.99)
@@ -371,6 +374,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari (= 0.16.2)
   mail_view (~> 2.0.4)
+  meta_events
   metamagic
   mixpanel-ruby
   money-rails

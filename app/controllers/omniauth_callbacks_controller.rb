@@ -28,8 +28,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash.notice = "Signed in!"
       sign_in_and_redirect user
     else
-      sign_in user
-      redirect_to edit_user_registration_url
+      # sign_in user
+      # redirect_to edit_user_registration_url
+      flash.warning = "Ada masalah, mohon coba lagi atau kontak admin"
+      redirect_to new_user_registration_url
     end
   end
 

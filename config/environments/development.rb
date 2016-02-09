@@ -46,4 +46,7 @@ Fustal::Application.configure do
   #   tls: true
   # }
 
+  # Fire event to rails log, development log
+  MetaEvents::Tracker.default_event_receivers << MetaEvents::TestReceiver.new
+
 end

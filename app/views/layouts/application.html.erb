@@ -14,6 +14,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= yield :head %>
   <%= csrf_meta_tags %>
+  <%= render 'elements/mixpanel_script' %>
 </head>
 <% if @inside %>
 
@@ -25,7 +26,8 @@
 <% else %>
 
   <body>
-    <%= render 'layouts/classic_navbar' %>
+    <%= render 'layouts/classic_navbar' if !user_signed_in? %>
+    <%= render 'layouts/mobile_navbar' if user_signed_in? %>
     <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
 
     <% if @no_layout  %>

@@ -114,5 +114,8 @@ Fustal::Application.configure do
     password: ENV["ZOHO_PASS"],
     ssl: true,
     tls: true
-  }  
+  } 
+
+  # Fire event to mixpanel
+  MetaEvents::Tracker.default_event_receivers << Mixpanel::Tracker.new(ENV["MIX_TOK"]) 
 end

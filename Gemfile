@@ -23,6 +23,7 @@ gem 'omniauth-linkedin-oauth2'
 # Analytics
 # gem 'ahoy_matey'
 gem 'mixpanel-ruby'
+gem 'meta_events'
 gem "chartkick"
 gem 'groupdate'
 

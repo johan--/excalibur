@@ -73,6 +73,8 @@ class Identity < ActiveRecord::Base
       )
       self.user.save!(validate: false)
       self.save!
+      MetaEvents::Tracker.new(current_user.try(:id), request.remote_ip)
+        .event!(:user, :signed_up, { auth: auth_with })
       return self.user
     end
   end

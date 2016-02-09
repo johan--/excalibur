@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
 
   # use_vanity :current_user
 
+  def meta_events_tracker
+    @meta_events_tracker ||= MetaEvents::Tracker.new(
+      current_user.try(:id), request.remote_ip
+    )
+  end
+
   # Auto-sign out locked users
   def reject_locked!
     if current_user && current_user.locked?
@@ -58,7 +64,6 @@ class ApplicationController < ActionController::Base
 
 
 private
-
   def detect_device_format
     case request.user_agent
     when /iPad/i

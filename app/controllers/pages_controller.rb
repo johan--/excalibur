@@ -5,19 +5,13 @@ class PagesController < ApplicationController
   def landing
     @category = "registration"
     @no_layout = true
+
+    unless current_user.present?
+      meta_events_tracker.event!(:visit, :landing, { 
+        distinct_id: request.uuid }
+      )
+    end    
   end
-
-  # def for_clients
-  #   @no_layout = true
-  # end
-
-  # def for_investors
-  #   @no_layout = true
-  # end
-
-  # def for_developers
-  #   @no_layout = true
-  # end
 
   def about_us
   end
@@ -25,6 +19,7 @@ class PagesController < ApplicationController
   def open_simulation
     @for = params[:type]
     @aqad = params[:aqad]
+    # meta_events_tracker.event!(:user, :open_simulation, { type: @for } )
   end
 
   def tos
@@ -69,6 +64,9 @@ class PagesController < ApplicationController
       # SubscriberMailer.welcome(@subscriber).deliver
       flash[:notice] = "Terima kasih, kami akan kabari kamu"
       redirect_to root_path
+      meta_events_tracker.event!(:user, :subscribed, { 
+        distinct_id: request.uuid, email: @subscriber.email } 
+      )      
     else
       flash.now.alert = "Tolong tulis alamat email yang valid, terima kasih."
       redirect_to root_path
@@ -82,18 +80,17 @@ class PagesController < ApplicationController
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
       )
-      # ahoy.track "Simulated for #{@simulation.tangible}", 
-      #   title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
-      #   category: "Simulation", important: "murabahah"
     elsif @sim[:aqad] == 'musharaka'
       @simulation = MusharakaSimulation.new(maturity: 10, 
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
       )
-      # ahoy.track "Simulated for #{@simulation.tangible}", 
-      #   title: "#{@simulation.maturity} Tahun @ #{@simulation.price}, #{@simulation.contribution_percent}% Modal", 
-      #   category: "Simulation", important: "musyarakah"
     end
+    meta_events_tracker.event!(:user, :simulate, { 
+      aqad: @sim[:aqad], capital: @sim[:contribution], 
+      period: @sim[:maturity], category: "purchase",
+      distinct_id: request.uuid } 
+    )
   end
 
   def change_locale

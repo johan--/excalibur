@@ -31,10 +31,16 @@
 			</li>		
 			<% if user_signed_in? %>
 			  <li>
-				<%= link_fa_to('flag', 'Markas', user_root_url(subdomain: '')) %>
+			  	<%= link_to user_root_url(subdomain: '') do %>
+				  <i class="menu-icon fa fa-flag"></i>
+				  <span><strong>Markas</strong></span>				
+				<% end %>
 			  </li>
 			  <li>
-				<%= link_fa_to('cogs', 'Akun', edit_user_registration_url(subdomain: '')) %>
+			  	<%= link_to root_url(subdomain: 'blog') do %>
+				  <i class="menu-icon fa fa-newspaper-o"></i>
+				  <span><strong>Blog</strong></span>				
+				<% end %>
 			  </li>			  
 				<li>
 					<%= link_to destroy_user_session_path, data:{method: :delete} do %>
