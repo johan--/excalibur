@@ -27,9 +27,9 @@ module ApplicationHelper
     end
   end
 
-  def link_fa_to(icon_name, text, link)
+  def link_fa_to(icon_name, text, link, remote=false)
     # active = "active" if current_page?(link)
-    link_to link, class: "btn btn-labeled btn-info" do
+    link_to link, class: "btn btn-labeled btn-info", remote: remote do
       content_tag(:i, ' ', class: "fa fa-#{icon_name}") +
       content_tag(:span, " #{text}")
     end

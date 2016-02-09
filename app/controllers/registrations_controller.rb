@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  # skip_before_filter :authenticate_user!, unless: [:edit, :update]
   before_filter :resource_params, if: :devise_controller?
-  skip_before_filter :authenticate_user!, unless: [:edit, :update]
 
   def new
     @no_layout = true

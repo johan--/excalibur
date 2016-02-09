@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
   before_filter :reject_locked!, if: :devise_controller?
-  # before_filter :authenticate_user!, unless: :devise_controller?  
+  before_filter :authenticate_user!#, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
   before_filter :set_locale

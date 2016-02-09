@@ -8,7 +8,7 @@
                     <h3 class="black">Hai, <%= current_user.first_name %></h3>
                     <h4 class="white"><i class="fa fa-check-circle-o"></i> Individu</h4>
                     <%= render_user_auth_choice(current_user) %>
-                    <%= link_fa_to('pencil', 'Profil', edit_user_registration_url(current_user, subdomain: '')) %>
+                    <%= link_fa_to('pencil', 'Akun', profile_url(subdomain: ''), true) %>
                 </div>
             </div>
             <div class="col-md-3 col-xs-4">
@@ -90,7 +90,9 @@
 		      <div class="side-view" id="marketplace" style="display: none;">
 		      </div>
 		      <div class="side-view" id="houses" style="display: none;">
-		      </div>              		      
+		      </div>
+              <div class="side-view" id="profile" style="display: none;">
+              </div>              
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-	<h3>Default Tab</h3>
+	<h3>Akun <%= current_user.name %></h3>
 
 	<div class="tabbable-panel">
 		<div class="tabbable-line">
@@ -10,7 +10,7 @@
 				</li>
 				<li>
 					<a href="#tab_default_2" data-toggle="tab">
-					Avatar </a>
+					Data </a>
 				</li>
 				<li>
 					<a href="#tab_default_3" data-toggle="tab">
@@ -23,6 +23,7 @@
 					<%= render partial: 'users/profile_form', locals: { user: user } %>
 				</div>
 				<div class="tab-pane" id="tab_default_2">
+				  <% unless current_user.using_omniauth? %>
 					<div class="profile-userpic">
 					  <% if current_user.avatar.nil? %>
 					    <%= cl_image_tag('asset/default-avatar', cloudinary_photo_options('')) %>
@@ -33,6 +34,10 @@
 					    <%= cl_image_tag(current_user.avatar, cloudinary_photo_options('private')) %>
 					    <%= link_to "Hapus foto", remove_avatar_user_path(current_user), method: :put, data: {:confirm => 'Kamu yakin mau melanjutkan?', object: 'Penghapusan gambar profil'}, class: 'reset-link btn btn-danger btn-xs' %></p>
 					  <% end %>
+				    </div>
+				  <% end %>
+				  <div class="account-form">
+				   	<%= render 'users/account_form', user: user %>
 				  </div>
 				</div>
 				<div class="tab-pane" id="tab_default_3">

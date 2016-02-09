@@ -1,0 +1,17 @@
+<%= simple_form_for(user, url: user_path(user), method: :patch ) do |f| %>
+  
+  <%= f.input :email, :autofocus => true, required: true %>
+  <%= f.input :phone_number, label: "Nomor Telp (HP)", placeholder: "nomor telepon genggam utama", required: true %>
+
+  <% if current_user.password_required? %>
+    <%= f.input :password, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', placeholder: "panjang minimal 6 karakter", label: "Password Baru" %>
+
+    <%= f.input :password_confirmation, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', label: "Konfirmasi Password Baru" %>
+
+    <%= f.input :current_password, as: :password, :autocomplete => "off", hint: 'masukkan password untuk konfirmasi perubahan data', label: "Password Sekarang", placeholder: "password saat ini", required: true  %>
+  <% end %>
+  
+  <div class="action_container">
+    <%= f.submit %>
+  </div>
+<% end %>

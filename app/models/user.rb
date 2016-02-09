@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
   # include RailsSettings::Extend  
   include WannabeBool::Attributes
-  include UserOauth
   include UserAdmin
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   acts_as_commentable
   acts_as_paranoid
 
+  TEMP_EMAIL_PREFIX = 'change_me'
+  TEMP_EMAIL_REGEX = /\Achange_me/
 
   serialize :preferences, HashSerializer
   store_accessor :preferences, 

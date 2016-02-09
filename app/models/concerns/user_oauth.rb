@@ -2,8 +2,6 @@ module UserOauth
   extend ActiveSupport::Concern
   included do
 
-  TEMP_EMAIL_PREFIX = 'change_me'
-  TEMP_EMAIL_REGEX = /\Achange_me/
 
   # def self.find_for_oauth(auth, signed_in_resource = nil)
   #   # Get the identity and user if they exist
