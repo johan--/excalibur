@@ -9,13 +9,13 @@ Fustal::Application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
-            :registrations => "registrations"
-            #, :omniauth_callbacks => "omniauth_callbacks" 
-          }
-  devise_scope :user do
-    get "/daftarbeta" => "devise/registrations#new"
-    get "/masukbeta" => "devise/sessions#new"
-  end
+    :registrations => "registrations", :sessions => "sessions", 
+    :passwords => "passwords", :omniauth_callbacks => "omniauth_callbacks" 
+  }
+  # devise_scope :user do
+  #   get "/daftarbeta" => "devise/registrations#new"
+  #   get "/masukbeta" => "devise/sessions#new"
+  # end
 
   # namespace :api,  defaults: { format: :json }  do  
   #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
@@ -38,11 +38,11 @@ Fustal::Application.routes.draw do
   end
 
   # namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
-  namespace :firm, path: '/dana' do
-    # root "base#landing"
-    get 'dashboard', to: "base#dashboard", as: :dashboard
-    resources :bids
-  end
+  # namespace :firm, path: '/dana' do
+  #   # root "base#landing"
+  #   get 'dashboard', to: "base#dashboard", as: :dashboard
+  #   resources :bids
+  # end
 
 # New App
   resources :users, only: [:show, :edit, :update] do
@@ -83,9 +83,9 @@ Fustal::Application.routes.draw do
   get "/buka_simulasi", to: "pages#open_simulation", as: "open_simulation"
 
   get "about", to: "pages#about_us", as: :about_us
-  get "klien", to: "pages#for_clients", as: :for_clients
-  get "investor", to: "pages#for_investors", as: :for_investors
-  get "developer", to: "pages#for_developers", as: :for_developers
+  # get "klien", to: "pages#for_clients", as: :for_clients
+  # get "investor", to: "pages#for_investors", as: :for_investors
+  # get "developer", to: "pages#for_developers", as: :for_developers
   get '/change_locale/:locale', to: 'pages#change_locale', as: :change_locale
 
 

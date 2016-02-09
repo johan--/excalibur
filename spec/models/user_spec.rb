@@ -6,12 +6,13 @@ RSpec.describe User, :type => :model do
   before(:each) do
   	@user = User.new(email: "galih@example.com", password: "foobarbaz",
   		password_confirmation: "foobarbaz", name: "galih muhammad", 
-      understanding: "true")
+      understanding: "yes")
   end
 
   subject { @user }
 
   it { should respond_to(:comment_threads) }
+  it { should respond_to(:identities) }
   it { should respond_to(:profile) }
   it { should respond_to(:preferences) }
   it { should respond_to(:open) }
@@ -43,24 +44,32 @@ RSpec.describe User, :type => :model do
         expect(comments.count).to eq 1
       end
     end    
-    # describe ".preferences" do
-  	 #  it 'returns default values of open booelan' do
-    #     expect(@user.open).to eq true
-  	 #  end
-    # end
+    describe ".preferences" do
+  	  it 'returns default values of open booelan' do
+        expect(@user.open?).to eq true
+  	  end
+
+      it 'returns default values of notification booelan' do
+        expect(@user.notification?).to eq true
+      end
+
+      it 'returns default values of understanding booelan' do
+        expect(@user.understanding?).to eq true
+      end      
+    end
 
     describe "after create callback" do
       it "has a titleized name attribute" do
-      	expect(@user.name).to eq 'Galih Muhammad'
+      	expect(@user.name).to eq 'galih muhammad'
       end
 
       it "has a random authentication token" do
       	expect(@user.auth_token).to_not eq nil
       end
 
-      # it "has a default language" do
-      #   expect(@user.language).to eq 'bahasa'
-      # end
+      it "has an empy auth with column" do
+        expect(@user.auth_with).to eq ''
+      end
 
       it "has a default currency" do
         expect(@user.currency).to eq 'idr'
@@ -70,6 +79,7 @@ RSpec.describe User, :type => :model do
     describe "scoping users" do
       let!(:user_3) { FactoryGirl.create(:developer) }
       let!(:user_4) { FactoryGirl.create(:developer) }
+      let!(:user_5) { FactoryGirl.create(:fb_user) }
       
       describe "All users which are developers" do
         let!(:result) { User.developers }
@@ -85,7 +95,15 @@ RSpec.describe User, :type => :model do
         it "returns user that is an admin" do
           expect(result.count).to eq 1
         end
-      end      
+      end
+
+      describe "All users which use omniauth" do
+        let!(:result) { User.omniauthers }
+
+        it "returns users that use omniauth" do
+          expect(result.count).to eq 1
+        end
+      end          
     end    
   end
 

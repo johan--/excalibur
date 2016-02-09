@@ -187,10 +187,21 @@ ActiveRecord::Schema.define(version: 20160121231258) do
     t.integer  "user_id"
     t.string   "provider",   null: false
     t.string   "uid",        null: false
+    t.string   "token",      null: false
+    t.string   "secret"
+    t.datetime "expires_at"
+    t.string   "email"
+    t.string   "image"
+    t.string   "nickname"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location"
+    t.string   "public_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "identities", ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true, using: :btree
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
@@ -330,9 +341,9 @@ ActiveRecord::Schema.define(version: 20160121231258) do
     t.datetime "deleted_at"
     t.string   "avatar"
     t.jsonb    "profile",                default: {}
-    t.jsonb    "preferences",            default: {},    null: false
+    t.jsonb    "preferences",            default: {}
     t.string   "auth_token",             default: "",    null: false
-    t.string   "slug",                                   null: false
+    t.string   "slug"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

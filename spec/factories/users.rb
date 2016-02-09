@@ -17,17 +17,28 @@ FactoryGirl.define do
       developer "true"
 		end
 
-    factory :facebook_user do
+    factory :fb_user do
+      auth_with 'facebook'
       after(:create) do |user|
-        create(:identity, :facebook, user: user)
-      end
+        create(:fb_omni, user: user)
+      end      
     end
 
-    factory :google_user do
-      after(:create) do |user|
-        create(:identity, :google, user: user)
-      end
-    end
+    # factory :facebook_user do
+    #   after(:create) do |user|
+    #     create(:identity, :facebook, user: user)
+    #   end
+    # end
+    # factory :google_user do
+    #   after(:create) do |user|
+    #     create(:identity, :google, user: user)
+    #   end
+    # end
+    # factory :linkedin_user do
+    #   after(:create) do |user|
+    #     create(:identity, :linkedin, user: user)
+    #   end
+    # end
 
     trait :with_full_profile do
       phone_number "081398979879" 
@@ -39,16 +50,32 @@ FactoryGirl.define do
 
   factory :identity do
     user
+    token "afiafi0oqafoibqanfoiqa"
+
+    factory :fb_omni do
+      # before(:create) do |identity|
+      #   identity.user = FactoryGirl.create :user
+      # end
+      facebook      
+    end
 
     trait :facebook do
+      last_name 'facebooker'
       provider 'facebook'
       uid 'facebook-user-id'
     end
 
     trait :google do
+      last_name 'googler'
       provider 'google'
       uid 'google-user-id'
     end
+
+    trait :linkedin do
+      last_name 'link'
+      provider 'linkedin'
+      uid 'linkedin-user-id'
+    end    
   end
 
 

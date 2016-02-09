@@ -2,6 +2,9 @@ module UserOauth
   extend ActiveSupport::Concern
   included do
 
+  TEMP_EMAIL_PREFIX = 'change_me'
+  TEMP_EMAIL_REGEX = /\Achange_me/
+
   # def self.find_for_oauth(auth, signed_in_resource = nil)
   #   # Get the identity and user if they exist
   #   identity = Identity.find_for_oauth(auth)
@@ -26,11 +29,21 @@ module UserOauth
   #     if user.nil?
   #       user = User.new(
   #         # name: auth.extra.raw_info.name,
+  #         first_name: auth.info.first_name, 
+  #         last_name: auth.info.last_name,
   #         name: auth.info.name,
-  #         email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+  #         email: email,
   #         password: Devise.friendly_token[0,20], 
+  #         location: auth.info.location,
+  #         auth_with: auth.provider,
   #         avatar: auth.info.image
   #       )
+  #       if auth.provider == 'linkedin'
+  #         user.linkedin_url = auth.info.urls[:public_profile]
+  #       else
+  #         user.facebook_url = auth.info.urls[:Facebook]
+  #       end
+  #       user.skip_confirmation! if user.respond_to?(:skip_confirmation)
   #       user.save!
   #     end
   #   end
@@ -42,6 +55,10 @@ module UserOauth
   #   user
   # end
 
+    def email_verified?
+      self.email && self.email !~ TEMP_EMAIL_REGEX
+    end
+        
 
   end
 end

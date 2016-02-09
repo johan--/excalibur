@@ -10,7 +10,6 @@
 		<%= f.input :password_confirmation, label: 'Konfirmasi Password', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true%>
 		<%= f.input :name, label: "Nama Lengkap", help: "sesuai dengan KTP atau SIM", required: true %>
 		<%= f.input :phone_number, label: "Nomor Telp (HP)", help: "nomor telepon genggam utama", required: true %>
-		<%= f.input :category, collection: user_category_options, prompt: "Pilih", selected: params[:category], label: "Jenis", required: true %>
 		<p>
 			Untuk mendaftar, kamu harus menyetujui syarat dan ketentuan pelayanan siKapiten dengan mengklik kotak "Saya setuju" di bawah ini. Syarat dan ketentuan yang dimaksud dapat dilihat di <%= link_to "di sini", service_terms_path %>
 		</p>

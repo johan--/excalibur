@@ -116,6 +116,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.10-x86-mingw32)
     figaro (1.0.0)
       thor (~> 0.14)
@@ -148,6 +150,7 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
+    jwt (1.5.0)
     kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -173,13 +176,32 @@ GEM
       money (~> 6.5.0)
       railties (>= 3.0)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
     netrc (0.11.0)
     nokogiri (1.6.7.1-x86-mingw32)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
+    omniauth-facebook (2.0.1)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.2.6)
+      omniauth (> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-linkedin-oauth2 (0.1.5)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+    omniauth-oauth2 (1.3.0)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     orm_adapter (0.5.0)
     paranoia (2.1.5)
       activerecord (~> 4.0)
@@ -354,6 +376,9 @@ DEPENDENCIES
   money-rails
   nprogress-rails
   omniauth
+  omniauth-facebook
+  omniauth-google-oauth2
+  omniauth-linkedin-oauth2
   paranoia (~> 2.0)
   pg
   poltergeist

@@ -16,8 +16,9 @@ gem 'bootstrap-slider-rails'
 # Authentication
 gem 'devise', '3.4.1'
 gem 'omniauth'
-# gem 'omniauth-facebook'
-# gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem 'omniauth-linkedin-oauth2'
 
 # Analytics
 # gem 'ahoy_matey'

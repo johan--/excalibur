@@ -244,15 +244,24 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   # Uncomment if want to use omniauth
-  # require "omniauth-facebook"
-  # require 'omniauth-google-oauth2'
+  require "omniauth-facebook"
+  require 'omniauth-google-oauth2'
+  require 'omniauth-linkedin-oauth2'
 
-  # if Rails.env.production?
-  #   config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SEC']
-  # else  
-  #   config.omniauth :facebook, ENV['FB_TEST_APP_ID'], ENV['FB_TEST_APP_SEC']
-  # end
-  #   config.omniauth :google_oauth2, ENV['GO_APP_ID'], ENV['GO_APP_SEC'], { access_type: "offline", approval_prompt: "" }
+  if Rails.env.production?
+    config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SEC'],
+      :scope => 'email,public_profile,user_friends', :display => 'popup',
+      :secure_image_url => true, :image_size => 'large'
+  else  
+    config.omniauth :facebook, ENV['FB_TEST_APP_ID'], ENV['FB_TEST_APP_SEC']
+  end
+    config.omniauth :google_oauth2, ENV['GO_APP_ID'], ENV['GO_APP_SEC'], { access_type: "offline", approval_prompt: "" }
+    config.omniauth :linkedin, ENV['LINK_APP_ID'], ENV['LINK_APP_SEC'], 
+      :scope => 'r_basicprofile r_emailaddress w_share',
+      fields: ['id', 'email-address', 'first-name', 'last-name', 
+        'headline', 'location', 'industry', 'picture-urls::(original)', 
+        'public-profile-url', 'positions']
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

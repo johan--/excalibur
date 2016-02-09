@@ -20,11 +20,13 @@
 
     <%= f.input :phone_number, label: "Nomor Telp (HP)", placeholder: "nomor telepon genggam utama", required: true %>
 
+  <% if current_user.password_required? %>
     <%= f.input :password, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', placeholder: "panjang minimal 6 karakter", label: "Password Baru" %>
 
     <%= f.input :password_confirmation, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', label: "Konfirmasi Password Baru" %>
 
     <%= f.input :current_password, as: :password, :autocomplete => "off", hint: 'masukkan password untuk konfirmasi perubahan data', label: "Password Sekarang", placeholder: "password saat ini", required: true  %>
+  <% end %>
 
     <div class="row">
       <div class="col-sm-6">

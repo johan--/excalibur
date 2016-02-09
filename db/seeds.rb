@@ -1,6 +1,6 @@
 # Temporary admin account
 User.create(email: "galih@gmail.com", password: "asdasdasd", 
-  password_confirmation: "asdasdasd", name: "Galih Muhammad", 
+  password_confirmation: "asdasdasd", name: "galih muhammad", 
   admin: true, understanding: "yes")
 
 # Test user accounts
@@ -9,7 +9,7 @@ User.create(email: "galih@gmail.com", password: "asdasdasd",
     email: "user#{i}@example.com",
     password: "1234567",
     password_confirmation: "1234567",
-    name: "Example #{i}",
+    name: "example #{i}",
     understanding: "yes"
   )
 

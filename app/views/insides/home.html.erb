@@ -1,19 +1,19 @@
-
+<% meta title: "Home" %>
 
 <div class="user-menu-container square">
     <div class="user-details">
         <div class="row white-background white" style="margin-left: 0px;">
             <div class="col-md-9 col-xs-8">
                 <div class="user-pad">
-                    <h3 class="black">Selamat Datang, <%= current_user.name %></h3>
-                    <h4 class="white"><i class="fa fa-check-circle-o"></i> Akun Individu</h4>
-                    <!-- <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4> -->
+                    <h3 class="black">Hai, <%= current_user.first_name %></h3>
+                    <h4 class="white"><i class="fa fa-check-circle-o"></i> Individu</h4>
+                    <%= render_user_auth_choice(current_user) %>
                     <%= link_fa_to('pencil', 'Profil', edit_user_registration_url(current_user, subdomain: '')) %>
                 </div>
             </div>
             <div class="col-md-3 col-xs-4">
                 <div class="user-image">
-                	<%= render_user_display(current_user, 'img-responsive thumbnail') %>
+                	<%= determine_user_display(current_user, 'img-responsive thumbnail') %>
                 </div>
             </div>
         </div>

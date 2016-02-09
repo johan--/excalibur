@@ -17,21 +17,33 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(profile_params)
-      # if params[:avatar]
-      #   ahoy.track "Uploaded avatar", 
-      #     title: "#{@user.name}: #{@user.avatar}", 
-      #     category: "User", important: "avatar"
-      # else
-      #   ahoy.track "Edited user profile", title: "#{@user.name}", 
-      #     category: "User", important: "profile"
-      # end
-      flash[:notice] = 'Profil berhasil diperbaharui'
-    else
-      flash[:warning] = 'Profil gagal diperbaharui'
-      # Rails.logger.info(@user.errors.inspect) 
-    end   
-    redirect_to user_root_path 
+    # if @user.update_attributes(profile_params)
+    #   # if params[:avatar]
+    #   #   ahoy.track "Uploaded avatar", 
+    #   #     title: "#{@user.name}: #{@user.avatar}", 
+    #   #     category: "User", important: "avatar"
+    #   # else
+    #   #   ahoy.track "Edited user profile", title: "#{@user.name}", 
+    #   #     category: "User", important: "profile"
+    #   # end
+    #   flash[:notice] = 'Profil berhasil diperbaharui'
+    # else
+    #   flash[:warning] = 'Profil gagal diperbaharui'
+    #   # Rails.logger.info(@user.errors.inspect) 
+    # end   
+    # redirect_to user_root_path 
+
+    # authorize! :update, @user
+    respond_to do |format|
+      if @user.update(user_params)
+        sign_in(@user == current_user ? @user : current_user, :bypass => true)
+        format.html { redirect_to user_root_path, notice: 'Profil berhasil diperbaharui' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end    
   end
 
   def avatar
@@ -56,13 +68,17 @@ private
   	@user = User.friendly.find(params[:id])
   end
 
+  def user_params
+    accessible = [ :name, :email, :phone_number, :avatar ] # extend with your own params
+    accessible << profile_params
+    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+    params.require(:user).permit(accessible)    
+  end
+
   def profile_params
-  	params.require(:user).permit(
-      :id, :avatar, :image_id,
-      :phone_number, :about, :last_education, :marital_status, 
+      [ :image_id, :about, :last_education, :marital_status, 
       :address, :work_experience, :occupation,
-      :monthly_income, :monthly_expense, :number_dependents
-  	)
+      :monthly_income, :monthly_expense, :number_dependents ]
   end
 
 end

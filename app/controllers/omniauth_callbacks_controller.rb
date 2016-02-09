@@ -1,36 +1,40 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController   
 
-  # def google
-  #   @user = User.from_omniauth(request.env["omniauth.auth"], current_user)
-  #   if @user.persisted?       
-	 #  #this will throw if @user is not activated
-  #     sign_in_and_redirect @user, :event => :authentication 
-  #     set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
-  #   else
-  #     session["devise.facebook_data"] = request.env["omniauth.auth"]
-  #     redirect_to new_user_registration_url
-  #   end
+  # def self.provides_callback_for(provider)
+  #   class_eval %Q{
+  #     def #{provider}
+  #       @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+
+  #       if @user.persisted?
+  #         sign_in_and_redirect @user, event: :authentication
+  #         set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
+  #       else
+  #         session["devise.#{provider}_data"] = env["omniauth.auth"]
+  #         redirect_to new_user_registration_url
+  #       end
+  #     end
+  #   }
   # end
 
-  def self.provides_callback_for(provider)
-    class_eval %Q{
-      def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+  # [:facebook, :google_oauth2, :linked_in, :linkedin].each do |provider|
+  #   provides_callback_for provider
+  # end
 
-        if @user.persisted?
-          sign_in_and_redirect @user, event: :authentication
-          set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-        else
-          session["devise.#{provider}_data"] = env["omniauth.auth"]
-          redirect_to new_user_registration_url
-        end
-      end
-    }
+  def all
+    identity = Identity.from_omniauth(request.env["omniauth.auth"])
+    user = identity.find_or_create_user(current_user)
+
+    if user.valid?
+      flash.notice = "Signed in!"
+      sign_in_and_redirect user
+    else
+      sign_in user
+      redirect_to edit_user_registration_url
+    end
   end
 
-  [:facebook, :google_oauth2].each do |provider|
-    provides_callback_for provider
-  end
+  alias_method :facebook, :all
+  alias_method :linkedin, :all
 
   def after_sign_in_path_for(resource)
     super resource

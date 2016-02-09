@@ -25,8 +25,7 @@
 <% else %>
 
   <body>
-    <%= render 'layouts/mobile_navbar' if user_signed_in? %>
-    <%= render 'layouts/classic_navbar' if !user_signed_in? %>
+    <%= render 'layouts/classic_navbar' %>
     <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
 
     <% if @no_layout  %>

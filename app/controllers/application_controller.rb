@@ -4,53 +4,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :exception
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
-  before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
-  before_filter :authenticate_user!, unless: :devise_controller?  
+  # before_filter :authenticate_user!, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
   before_filter :set_locale
 
   # use_vanity :current_user
-
-  # Devise permitted params
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(
-      :email,
-      :password,
-      :password_confirmation,
-      :name,
-      :phone_number,
-      :understanding
-      )
-    }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(
-      # :login, 
-      :email,
-      # :phone_number,
-      :password, 
-      :remember_me
-      ) 
-    }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(
-      :email,
-      :name,
-      :phone_number,
-      :password,
-      :password_confirmation,
-      :current_password
-      )
-    }
-  end
-
-  # Redirects on successful sign in
-  def after_sign_in_path_for(resource)
-    if resource.admin?
-      admin_root_url(subdomain: '')
-    else
-      user_root_url(subdomain: '')
-    end      
-  end
 
   # Auto-sign out locked users
   def reject_locked!
@@ -75,16 +35,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :require_admin!
 
-  def clear_search_index
-    if params[:search_cancel]
-      params.delete(:search_cancel)
-      if(!search_params.nil?)
-        search_params.each do |key, param|
-          search_params[key] = nil
-        end
-      end
-    end
-  end
 
   def switch_browser_prompt
     redirect_to upgrade_path if is_opera_mini?
