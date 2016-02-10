@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121231258) do
+ActiveRecord::Schema.define(version: 20160210040134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acquisitions", force: :cascade do |t|
+    t.integer  "benefactor_id"
+    t.string   "benefactor_type"
+    t.integer  "bid_id",                        null: false
+    t.integer  "acquireable_id"
+    t.string   "acquireable_type"
+    t.string   "slug"
+    t.jsonb    "details",          default: {}
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "acquisitions", ["acquireable_type", "acquireable_id"], name: "index_acquisitions_on_acquireable_type_and_acquireable_id", using: :btree
+  add_index "acquisitions", ["benefactor_type", "benefactor_id"], name: "index_acquisitions_on_benefactor_type_and_benefactor_id", using: :btree
+  add_index "acquisitions", ["bid_id"], name: "index_acquisitions_on_bid_id", using: :btree
+  add_index "acquisitions", ["details"], name: "index_acquisitions_on_details", using: :gin
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -31,6 +48,19 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   end
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
+  create_table "bid_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "bid_id",                     null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "bid_transitions", ["bid_id", "most_recent"], name: "index_bid_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "bid_transitions", ["bid_id", "sort_key"], name: "index_bid_transitions_parent_sort", unique: true, using: :btree
 
   create_table "bids", force: :cascade do |t|
     t.integer  "bidder_id",                                null: false
@@ -259,6 +289,11 @@ ActiveRecord::Schema.define(version: 20160121231258) do
     t.datetime "deleted_at"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth",                    default: 0
+    t.integer  "children_count",           default: 0
   end
 
   add_index "stocks", ["category"], name: "index_stocks_on_category", using: :btree
@@ -401,5 +436,6 @@ ActiveRecord::Schema.define(version: 20160121231258) do
   add_index "vanity_participants", ["experiment_id", "shown"], name: "by_experiment_id_and_shown", using: :btree
   add_index "vanity_participants", ["experiment_id"], name: "index_vanity_participants_on_experiment_id", using: :btree
 
+  add_foreign_key "acquisitions", "bids"
   add_foreign_key "identities", "users"
 end

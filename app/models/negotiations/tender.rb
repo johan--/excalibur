@@ -11,23 +11,24 @@ class Tender < ActiveRecord::Base
   acts_as_commentable
   acts_as_paranoid
 
-  groupify :group_member
-  groupify :named_group_member
   belongs_to :tenderable, polymorphic: true  
   belongs_to :starter, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   has_many :comments, as: :commentable
+
+  groupify :group_member
+  groupify :named_group_member
   
-  attr_accessor :asset_id, :participate, :asset
+  attr_accessor :asset_id, :asset
 
   serialize :details, HashSerializer
   store_accessor :details, 
                  :state, :aqad_code, :layman_terms,
                  :margin, :unit, :draft, :message,
-                 :seed_capital
+                 :seed_capital, :participate
 
-  attr_wannabe_bool :draft
+  attr_wannabe_bool :draft, :participate
 
 # Statesman stuffs
   # Initialize the state machine
@@ -68,6 +69,9 @@ class Tender < ActiveRecord::Base
   scope :open, -> { where(
     "tenders.details->>'state' = :type", type: "open")  
   }
+  scope :completed, -> { where(
+    "tenders.details->>'state' = :type", type: "success")  
+  }  
   scope :offering, -> { where(category: "fundraising") }
   scope :trading, -> { where(category: "trading") }
   scope :with_aqad, ->(aqad) { where(aqad: aqad) }
@@ -103,6 +107,11 @@ class Tender < ActiveRecord::Base
 
   def shares_left
     volume - self.bids.map{ |bid| bid.volume }.compact.sum
+  end
+
+  def expire_stock!
+    self.tenderable.update(
+      tradeable: false, expired: 'yes', expired_at: Date.today)
   end
 
 # Transitions
@@ -142,9 +151,9 @@ private
   end
 
   def create_musharaka_bid(volume)
-    if self.category == 'fundraising' && aqad?('musharaka')
+    if self.category == 'fundraising' && self.participate?
       Bid.create(tender: self, volume: volume, 
-        bidder: self.starter, starter: 'yes')
+        bidder: self.starter, client: 'yes')
     end
   end
 
@@ -159,7 +168,7 @@ private
   end
 
   def refresh_musharaka_bid(volume)
-    self.bids.starter.update(volume: volume)
+    self.bids.client.update(volume: volume)
   end
 
   def set_state!

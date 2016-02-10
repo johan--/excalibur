@@ -59,8 +59,8 @@ RSpec.describe Group, :type => :model do
 
   	describe "after save" do
   	  # let!(:user_1) { FactoryGirl.create(:user) }
-  	  let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha_tender) }
-  	  let!(:tender_2) { FactoryGirl.create(:house_purchase_musharaka_tender) }
+  	  let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha) }
+  	  let!(:tender_2) { FactoryGirl.create(:house_purchase_musharaka) }
 
   	  before { @deal.save }
 

@@ -5,7 +5,7 @@ RSpec.describe Tender, :type => :model do
 
   describe "fundraising for murabaha house purchase" do
   	before do
-  	  @tender = FactoryGirl.build(:house_purchase_murabaha_tender, 
+  	  @tender = FactoryGirl.build(:house_purchase_murabaha, 
   	  								starter: user)
   	end
 
@@ -96,7 +96,7 @@ RSpec.describe Tender, :type => :model do
   end
 
   describe "fundraising for musharaka house purchase" do
-	before { @tender = FactoryGirl.create(:house_purchase_musharaka_tender, 
+	before { @tender = FactoryGirl.create(:incomplete_house_purchase_musharaka, 
   	  								starter: user) }
 	subject { @tender }	
 

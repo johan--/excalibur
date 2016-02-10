@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
-  let!(:tender) { FactoryGirl.create(:house_purchase_murabaha_tender) }
+  let!(:tender) { FactoryGirl.create(:incomplete_house_purchase_musharaka) }
 
   before(:each) do
-  	@bid = FactoryGirl.build(:bid, tender: tender)
+  	@bid = FactoryGirl.build(:bid, tender: tender, volume: 800)
   end
 
   subject { @bid }
@@ -18,6 +18,8 @@ RSpec.describe Bid, :type => :model do
   it { should respond_to(:draft) }
   it { should respond_to(:state) }
   it { should respond_to(:message) }
+  it { should respond_to(:bid_transitions) }
+  it { should respond_to(:acquisitions) }
 
   describe "after save" do
   	before(:each) { @bid.save }
@@ -61,7 +63,7 @@ RSpec.describe Bid, :type => :model do
       end
 
       it "should not really delete the object" do
-        expect(Bid.with_deleted.count).to eq 1
+        expect(Bid.with_deleted.count).to eq 2
       end
 
       it "should set the volume of the object to 0" do
@@ -77,6 +79,17 @@ RSpec.describe Bid, :type => :model do
       end      
     end
 
+    # describe "if transitioned to confirmed" do
+    #   before { @bid.approving! }
+
+    #   it "creates an acquisition record" do
+    #     expect(Acquisition.count).to eq 1
+    #   end
+
+    #   it "also creates a new stock" do
+    #     expect(Stock.last).to eq Acquisition.first.acquireable
+    #   end
+    # end
   end
 
 

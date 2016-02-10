@@ -33,6 +33,10 @@ class House < ActiveRecord::Base
     where("houses.details->>'vacant' = 'yes'") 
   }
 
+  def annual_rental
+    self.price * 0.1
+  end
+
   def initial_stock
     self.stocks.first
   end
@@ -79,26 +83,16 @@ private
 
   def create_stock!
     Stock.create(
-      holder: self.publisher,
-      house: self,
-      category: "ownership",
-      initial: 'yes',
-      expired: 'no',
-      tradeable: true, 
-      price: self.price/1000, volume: 1000,
-      state: "full"
+      holder: self.publisher, house: self, initial: 'yes',
+      price: self.price/1000, volume: 1000
     )
   end
 
   def create_occupancy!
     Occupancy.create(
-      holder: self.publisher,
-      house: self,
-      rental: false,
-      started_at: Date.today,
-      annual_rental: self.price * 0.05,
-      tradeable: true
-
+      holder: self.publisher, house: self,
+      rental: false, started_at: Date.today,
+      annual_rental: self.price * 0.05, tradeable: true
     )
   end
 end

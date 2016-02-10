@@ -18,11 +18,19 @@ class TenderStateMachine
     !tender.fulfilled?
   end
 
+  guard_transition(to: :success) do |tender|
+    tender.bids
+  end
+
   after_transition do |tender, transition|
     tender.state = transition.to_state
     tender.save!
   end
 
+  after_transition(to: :success) do |tender, transition|
+    #make stock untradeable and expired
+    tender.expire_stock! if tender.tenderable.should_be_expired?
+  end
   # before_transition(from: :checking_out, to: :cancelled) do |order, transition|
   #   order.reallocate_stock
   # end

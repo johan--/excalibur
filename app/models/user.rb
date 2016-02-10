@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :identities
   has_many :documents, as: :owner
   has_many :houses, as: :publisher
+  has_many :acquisitions, as: :benefactor
   has_many :posts
   has_many :comments
   has_many :comments, as: :commentable

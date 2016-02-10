@@ -18,8 +18,10 @@ FactoryGirl.define do
       tender
     end
 
-    trait :confirmed do
-      state "confirmed"
+    trait :success do
+      after(:create) do |bid|
+        bid.approving!
+      end      
     end
 
     trait :nameless do
