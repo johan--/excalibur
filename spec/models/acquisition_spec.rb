@@ -6,8 +6,9 @@ RSpec.describe Acquisition, :type => :model do
 
   before do
     tender.transition_to!(:running)
-    @pay = bid.invoice_payments.create(sender: bid.bidder, amount: bid.contribution)
-  	# bid.approving!
+    # @pay = bid.invoice.payments.create(sender: bid.bidder, amount: bid.contribution)
+    # @pay.confirm_payment! # equal to bid.approving!, transition the payment, then invoice, then the bid state machine
+    @pay = FactoryGirl.create(:full_payment, invoice: bid.invoice)
   	@acquisition = Acquisition.first
   end
 
@@ -30,25 +31,25 @@ RSpec.describe Acquisition, :type => :model do
     describe "about the stock" do
       before { @stock = Stock.last }
 
-	  it "also creates a new stock" do
-	    expect(@stock).to eq @acquisition.acquireable
-	  end
+  	  it "also creates a new stock" do
+  	    expect(@stock).to eq @acquisition.acquireable
+  	  end
 
-	  it "should be related to the bidder" do
-	    expect(@stock.holder).to eq @acquisition.bid.bidder
-	  end
+  	  it "should be related to the bidder" do
+  	    expect(@stock.holder).to eq @acquisition.bid.bidder
+  	  end
 
-	  it "should also mention the right volume" do
-	    expect(@stock.volume).to eq bid.volume
-	  end
+  	  it "should also mention the right volume" do
+  	    expect(@stock.volume).to eq bid.volume
+  	  end
 
-	  it "should also mention the right price" do
-	    expect(@stock.price).to eq tender.price
-	  end
+  	  it "should also mention the right price" do
+  	    expect(@stock.price).to eq tender.price
+  	  end
 
-	  it "should also mention the stock parent" do
-	    expect(@stock.parent).to eq tender.tenderable
-	  end
+  	  it "should also mention the stock parent" do
+  	    expect(@stock.parent).to eq tender.tenderable
+  	  end
     end
 
     describe "about the occupancy" do
@@ -63,7 +64,5 @@ RSpec.describe Acquisition, :type => :model do
       end      
     end
   end
-
-
 
 end

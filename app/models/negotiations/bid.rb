@@ -49,6 +49,8 @@ class Bid < ActiveRecord::Base
   scope :completed, -> { where(
     "bids.details->>'state' = :type", type: "success")  
   }
+  alias_attribute :worth, :contribution
+
 
   def bidder?(user)
     return true if self.bidder == user

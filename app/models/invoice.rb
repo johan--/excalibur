@@ -16,7 +16,7 @@ class Invoice < ActiveRecord::Base
 	# scope :paid, -> { where(admin: true) }
 
   def total_paid
-  	self.payments.map{ |p| p.amount }.compact.sum
+  	self.payments.verified.map{ |p| p.amount }.compact.sum
   end
 
   def paid?
@@ -39,5 +39,6 @@ private
 
   def set_defaults
   	self.state = 'active'
+  	self.amount = self.invoiceable.worth if self.amount.nil?
   end
 end
