@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
   has_many :tenders, as: :starter
   has_many :bids, as: :bidder
   has_many :stocks, as: :holder
-  
+  has_many :invoices, as: :recipient
+  has_many :payments, as: :sender
   # analytics
   has_many :visits
 

@@ -62,6 +62,9 @@ Fustal::Application.routes.draw do
   resources :houses, only: [:show, :index]
   resources :comments
   resources :groups
+  resources :invoices do
+    resources :payments
+  end
 
   # Static Pages
   root "pages#landing"

@@ -2,18 +2,22 @@ class BidStateMachine
   include Statesman::Machine
 
   state :pending, initial: true
+  state :waiting
   # state :confirmed
   state :success
   state :failed
-  state :waiting
 
   transition from: :pending, to: [:success, :failed, :waiting]
-  transition from: :success, to: :failed
   transition from: :waiting, to: [:pending, :success]
+  transition from: :success, to: :failed
   # transition from: :confirmed, to: [:success, :failed]
   # transition from: :failed
 
-  # guard_transition(to: :confirmed) do |tender|
+  guard_transition(to: :success) do |bid|
+    bid.has_been_paid?
+  end
+
+  # guard_transition(to: :success) do |tender|
   #   bid.paid?
   # end
 
@@ -21,6 +25,10 @@ class BidStateMachine
     bid.state = transition.to_state
     bid.save!
   end
+
+  # after_transition(to: :waiting) do |bid, transition|
+  #   bid.request_funding
+  # end
 
   after_transition(to: :success) do |bid, transition|
     bid.transfer_ownership!

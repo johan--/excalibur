@@ -123,6 +123,10 @@ class Tender < ActiveRecord::Base
     self.transition_to!(:closed)
   end
 
+  def running
+    self.transition_to!(:running)
+  end
+
   def completing
     self.transition_to!(:success)
   end

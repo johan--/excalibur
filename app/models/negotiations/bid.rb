@@ -11,7 +11,8 @@ class Bid < ActiveRecord::Base
   belongs_to :tender
   has_many   :bid_transitions
   has_many   :acquisitions
-
+  has_one    :invoice, as: :invoiceable
+  delegate :paid?, :payments, to: :invoice, prefix: true
   monetize :price_sens
   groupify :group_member
   groupify :named_group_member  
@@ -40,6 +41,7 @@ class Bid < ActiveRecord::Base
   before_create :set_default_values!
   after_create :refresh_friendly_id!
   after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
+  after_touch :change_state
   before_destroy :reset_volume
 
   scope :real, -> { where(deleted_at: nil) }
@@ -52,6 +54,14 @@ class Bid < ActiveRecord::Base
     return true if self.bidder == user
   end
   
+  def has_been_paid?
+    if self.invoice.present? && self.invoice_paid?
+      return true
+    else
+      return false
+    end
+  end
+
   def contribution
     price * volume
   end
@@ -83,6 +93,11 @@ class Bid < ActiveRecord::Base
     self.state_machine.transition_to!(:success) unless self.state == 'success'
   end
 
+  def request_funding
+    self.create_invoice(recipient: self.bidder, amount: contribution, 
+      deadline: 2.days.from_now, category: "funding")    
+  end
+
 private
   def set_default_values!
 	  self.state = "pending" if self.state.nil?
@@ -104,5 +119,12 @@ private
 
   def self.initial_state
     :pending
+  end
+
+  def change_state
+    if self.has_been_paid?
+      self.approving!
+    else
+    end
   end
 end

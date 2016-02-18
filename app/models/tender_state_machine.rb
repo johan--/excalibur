@@ -3,28 +3,35 @@ class TenderStateMachine
 
   state :open, initial: true
   state :closed
+  state :running
   state :success
   state :failed
 
-  transition from: :open, to: [:closed, :failed]
-  transition from: :closed, to: [:open, :success, :failed]
+  transition from: :open, to: [:running, :closed, :failed]
+  transition from: :closed, to: [:open, :running, :failed]
+  transition from: :running, to: [:success, :failed]
   # transition from: :failed
 
-  guard_transition(to: :closed) do |tender|
-    tender.fulfilled?
-  end
+  # guard_transition(to: :closed) do |tender|
+  #   tender.fulfilled?
+  # end
 
-  guard_transition(to: :open) do |tender|
-    !tender.fulfilled?
-  end
+  # guard_transition(to: :open) do |tender|
+  #   !tender.fulfilled?
+  # end
 
-  guard_transition(to: :success) do |tender|
-    tender.bids
-  end
+  # guard_transition(to: :running) do |tender|
+  #   tender.bids.each{ |b| b. }
+  # end
 
   after_transition do |tender, transition|
     tender.state = transition.to_state
     tender.save!
+  end
+
+  after_transition(to: :running) do |tender, transition|
+    #make invoice for all bids
+    tender.bids.each{ |b| b.request_funding }
   end
 
   after_transition(to: :success) do |tender, transition|

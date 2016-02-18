@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210040134) do
+ActiveRecord::Schema.define(version: 20160211070532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,6 +235,25 @@ ActiveRecord::Schema.define(version: 20160210040134) do
   add_index "identities", ["user_id", "provider", "uid"], name: "index_identities_on_user_id_and_provider_and_uid", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "invoiceable_id",                             null: false
+    t.string   "invoiceable_type",                           null: false
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.integer  "amount_sens",      limit: 8, default: 0,     null: false
+    t.string   "amount_currency",            default: "IDR", null: false
+    t.string   "ticker"
+    t.string   "category"
+    t.string   "state"
+    t.date     "deadline"
+    t.jsonb    "details"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "invoices", ["deleted_at"], name: "index_invoices_on_deleted_at", using: :btree
+
   create_table "occupancies", force: :cascade do |t|
     t.integer  "house_id",                                         null: false
     t.integer  "holder_id"
@@ -256,6 +275,22 @@ ActiveRecord::Schema.define(version: 20160210040134) do
   add_index "occupancies", ["holder_type", "holder_id"], name: "index_occupancies_on_holder_type_and_holder_id", using: :btree
   add_index "occupancies", ["house_id"], name: "index_occupancies_on_house_id", using: :btree
   add_index "occupancies", ["slug"], name: "index_occupancies_on_slug", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "invoice_id"
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "amount_sens",     limit: 8, default: 0,     null: false
+    t.string   "amount_currency",           default: "IDR", null: false
+    t.string   "ticker"
+    t.string   "state"
+    t.jsonb    "details"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
+  add_index "payments", ["sender_type", "sender_id"], name: "index_payments_on_sender_type_and_sender_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",                        null: false
