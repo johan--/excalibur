@@ -6,12 +6,12 @@
 		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
 		  <% if !current_page?(root_url(subdomain: 'blog')) %>
-			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-outlined btn-white" %>
+			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-white" %>
 		  <% else %>
-		  	<%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white btn-outlined" %>
+		  	<%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white" %>
 		  <% end %>
 		  <% if current_user.present? %>
-			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
+			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" %>
 		  <% end %>		  
 		</div><!-- /row -->
     </div> <!-- /container -->
@@ -70,25 +70,3 @@
 
 
 <!-- FOOTER -->
-<div id="footerwrap">
-  <div class="container">
-	<div class="row">
- 	  <div class="col-md-5">
-	</div>
-	<div class="col-md-2">
-	</div>
-	<div class="col-md-5">
-	  <h4>Korespondensi</h4>
-	  <hr class="coral"></hr>
-	  <p>
-		Didirikan oleh Galih Muhammad, Pamungkas Hendra, dan Diandra Setiabudi
-	  </p>
-	  <p>
-	  	<i class="fa fa-envelope small-icons plain"></i>
-		tim@sikapiten.com<br/>
-	  </p>
-	  <%= render 'elements/authorship_credit' %>
- 	  </div> 	
-	</div>
-  </div>
-</div>

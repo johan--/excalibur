@@ -93,10 +93,19 @@ padding-right: 10px;
   border: 2px solid #ffffff;
   background: none;
   color: #ffffff;
+  &:hover{
+    background-color: white;
+    color: $brand-primary;
+  }
 }
-.btn.btn-white:hover {
-  color: #ffffff;
+
+.btn.btn-primary {
+  &:hover{
+    background-color: white;
+    color: $brand-primary;
+  }
 }
+
 .btn.btn-default {
   border: none;
   background: #ffffff;
