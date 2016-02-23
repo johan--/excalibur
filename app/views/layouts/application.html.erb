@@ -26,12 +26,14 @@
 <% else %>
 
   <body>
-    <%= render 'layouts/classic_navbar' if !user_signed_in? %>
-    <%= render 'layouts/mobile_navbar' if user_signed_in? %>
     <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>
 
     <% if @no_layout  %>
       <%= yield %>
+    <% elsif @static  %>
+      <%= render 'layouts/classic_navbar' if !user_signed_in? %>
+      <%= render 'layouts/mobile_navbar' if user_signed_in? %>    
+      <%= yield %>      
     <% elsif @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
     <% elsif @disable_background %>

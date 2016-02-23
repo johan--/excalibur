@@ -86,9 +86,8 @@ Fustal::Application.routes.draw do
   get "/buka_simulasi", to: "pages#open_simulation", as: "open_simulation"
 
   get "about", to: "pages#about_us", as: :about_us
-  # get "klien", to: "pages#for_clients", as: :for_clients
-  # get "investor", to: "pages#for_investors", as: :for_investors
-  # get "developer", to: "pages#for_developers", as: :for_developers
+  get "/karma", to: "pages#saving_product", as: :saving_product
+  get "/hijrah", to: "pages#financing_product", as: :financing_product
   get '/change_locale/:locale', to: 'pages#change_locale', as: :change_locale
 
 

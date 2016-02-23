@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @category = "registration"
     @no_layout = true
 
+
     unless current_user.present?
       meta_events_tracker.event!(:visit, :landing, { 
         distinct_id: request.uuid }
@@ -14,6 +15,15 @@ class PagesController < ApplicationController
   end
 
   def about_us
+    @static = true
+  end
+
+  def saving_product
+    @static = true
+  end
+
+  def financing_product
+    @static = true
   end
 
   def open_simulation
@@ -26,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def upgrade
-    @no_layout = true
+    @static = true
   end
 
   def contact

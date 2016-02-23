@@ -1,24 +1,48 @@
-<section id="home" name="home"></section>
-<% if is_opera_mini? %>
-<div id="opera-mini-wrap">
-    <div class="container">
-        <div class="row centered">
-            <%= render 'value_prompt' %>        
-            <br>            
+<div class="site-wrapper">
+  <div class="site-wrapper-inner">
+    <div class="cover-container">
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">Kapiten</h3>
+
+          <ul class="nav masthead-nav">
+            <li class="active">
+              <%= link_to "Blog", root_url(subdomain: "blog") %>
+            </li>
+            <li>
+              <%= link_to "Daftar", new_user_session_url(subdomain: "") %>
+            </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "Markas", user_root_url(subdomain: '') %>
+              </li>
+              <li>
+                <%= link_to "Keluar", destroy_user_session_path, data:{method: :delete} %>
+              </li>
+            <% end %>
+          </ul>
         </div>
+      </div>
+
+      <div class="inner cover">
+        <h1 class="cover-heading">Full screen background cover page.</h1>
+
+        <p class="lead">Cover is a one-page template for building simple and
+        beautiful home pages. Download, edit the text, and add your own
+        fullscreen background color and photo to make it your own.
+            
+        <small>    <br> <a href="http://bootsnipp.com/iframe/g6GWQ" target=
+              "_blank">Best viewed on full screen</a></small>
+            
+        </p>
+
+        <p class="lead"><a class="btn btn-lg btn-info" href="#">Learn
+        more</a></p>
+      </div>
+
     </div>
 </div>
-<% else %>
-<div class="landing-header" id="headerwrap">
-    <div class="container">
-        <div class="row centered">
-            <%= render 'value_prompt' %>        
-            <br>
-        </div>
-    </div> <!--/ .container -->
-</div><!--/ #headerwrap --> 
-<% end %>
-<div>
+</div>
 
 <%= render 'pages/customers' %>
 <%= render 'pages/aqads' %>
