@@ -3,10 +3,6 @@ module LayoutSelector
   def disable_background
     @disable_background = true
   end
-  def blog_layout
-    @blog_layout = true
-    @recents = Post.recent
-  end
   # def financier_layout
   #   @financier_layout = true
   # end

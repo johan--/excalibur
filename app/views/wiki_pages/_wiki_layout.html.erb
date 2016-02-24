@@ -1,0 +1,29 @@
+<!-- BLUE WRAP -->
+<div id="blue">
+    <div class="container">
+		<div class="row white centered">
+		  <h2>Pustaka Kapiten</h2>
+		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
+		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
+		  <%= link_to "Ke Halaman Jurnal", root_url(subdomain: "blog"), class: "btn btn-sm btn-white" if !current_page?(root_url(subdomain: 'blog')) %>
+		  <%= link_to "Ke Markas", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" if user_signed_in? %>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+ 
+<!-- BLOG CONTENT -->
+<div id="blog-body">
+
+	<div class="container mtb">
+	  <div class="row">
+	 	<%= render 'layouts/messages' %>
+	  </div>
+	  <div class="row">
+	 	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "blog" } %>
+		  <%= yield %>
+			<div class="spacing"></div>
+	  </div><!-- <! row  -->
+	</div>
+</div>
+
+<!-- FOOTER -->

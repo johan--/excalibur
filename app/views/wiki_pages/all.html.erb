@@ -1,0 +1,7 @@
+<%= wiki_page_style -%>
+
+  <%= wiki_paginate @pages do -%>
+  	<% @pages.each do |page| -%>
+  	  <%= render 'wiki_pages/wiki_page', page: page %>
+  	<% end %>
+  <% end -%>

@@ -36,6 +36,8 @@
       <%= yield %>      
     <% elsif @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
+    <% elsif @wiki_layout %>
+      <%= render 'wiki_pages/wiki_layout' %>
     <% elsif @disable_background %>
 
       <div class="wrap">

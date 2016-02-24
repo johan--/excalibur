@@ -2,10 +2,10 @@ require 'api_constraints'
 require 'subdomain'
 
 Fustal::Application.routes.draw do
+  wiki_root '/wiki'
   # apipie
-  if Rails.env.development?
-    mount SubscriberPreview => 'subscriber_view'
-  end
+
+  mount SubscriberPreview => 'subscriber_view' if Rails.env.development?
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
@@ -17,18 +17,6 @@ Fustal::Application.routes.draw do
   #   get "/masukbeta" => "devise/sessions#new"
   # end
 
-  # namespace :api,  defaults: { format: :json }  do  
-  #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-  #     resources :users, only: [:index, :show, :create, :update]
-  #     resources :sessions, only: [:create, :destroy]
-  #     resources :relationships, only: [:index, :show, :create, :destroy]
-  #     resources :businesses, only: [:index, :show, :create, :update, :destroy]
-  #     resources :tenders, only: [:index, :show, :create, :update, :destroy]
-  #     resources :bids, only: [:index, :show, :create, :update, :destroy]
-  #     resources :rosters, only: [:show, :create, :update, :destroy]
-  #   end
-  # end
-
   namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
     get "find", to: "posts#find_posts", as: "find_posts"
     get "diskusi", to: "posts#discussion_room", as: "discussion"
@@ -36,13 +24,6 @@ Fustal::Application.routes.draw do
     end
     get '' => "posts#index"
   end
-
-  # namespace :firm, path: '/', constraints: { subdomain: 'dana' } do    
-  # namespace :firm, path: '/dana' do
-  #   # root "base#landing"
-  #   get 'dashboard', to: "base#dashboard", as: :dashboard
-  #   resources :bids
-  # end
 
 # New App
   resources :users, only: [:show, :edit, :update] do
@@ -136,4 +117,15 @@ Fustal::Application.routes.draw do
   post '/vanity/add_participant'
   get '/vanity/image'
 
+  # namespace :api,  defaults: { format: :json }  do  
+  #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+  #     resources :users, only: [:index, :show, :create, :update]
+  #     resources :sessions, only: [:create, :destroy]
+  #     resources :relationships, only: [:index, :show, :create, :destroy]
+  #     resources :businesses, only: [:index, :show, :create, :update, :destroy]
+  #     resources :tenders, only: [:index, :show, :create, :update, :destroy]
+  #     resources :bids, only: [:index, :show, :create, :update, :destroy]
+  #     resources :rosters, only: [:show, :create, :update, :destroy]
+  #   end
+  # end
 end

@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/alno/irwi.git
+  revision: ec12f4c976574aba18243d9c067fee9abec9f907
+  specs:
+    irwi (0.5.0)
+      actionpack (>= 4.0)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      diff-lcs (>= 1.1.2)
+      rails_autolink (>= 1.0)
+
+GIT
   remote: https://github.com/assaf/vanity
   revision: 1aee1066e820bde25bdeec2963745e2e25eda09b
   branch: master
@@ -245,6 +256,8 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.4)
     railties (4.2.0)
@@ -369,6 +382,7 @@ DEPENDENCIES
   groupdate
   groupify (= 0.7.1)
   ionicons-rails
+  irwi!
   jbuilder (= 2.2.6)
   jquery-rails (= 4.0.3)
   jquery-turbolinks

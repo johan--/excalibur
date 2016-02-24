@@ -2,7 +2,7 @@
 <div id="blue">
     <div class="container">
 		<div class="row white centered">
-		  <h2>Blog Si Kapiten</h2>
+		  <h2>Jurnal Kapiten</h2>
 		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
 		  <% if !current_page?(root_url(subdomain: 'blog')) %>
@@ -31,7 +31,7 @@
     <!-- SIDEBAR -->
     
  	<div class="col-md-4">
- 		<div class="post-box">
+ 	  <div class="post-box">
 		  <h4>Topik</h4>
 		  <hr class="coral"></hr>
 			<% @topics.each do |topic, posts| %>

@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+
+  serialize :keywords, HashSerializer
   store_accessor :keywords, 
         :topic, :tags, :tags_text, :meta_description, :meta_image, :sticky
   attr_wannabe_bool :sticky
@@ -21,8 +23,6 @@ class Post < ActiveRecord::Base
 
   # Relations
   belongs_to :user
-
-  serialize :keywords, HashSerializer
 
   attr_accessor :delete_image, :image_id
   # before_validation :remove_attached_image

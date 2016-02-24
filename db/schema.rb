@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211070532) do
+ActiveRecord::Schema.define(version: 20160223111340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -470,6 +470,37 @@ ActiveRecord::Schema.define(version: 20160211070532) do
   add_index "vanity_participants", ["experiment_id", "seen"], name: "by_experiment_id_and_seen", using: :btree
   add_index "vanity_participants", ["experiment_id", "shown"], name: "by_experiment_id_and_shown", using: :btree
   add_index "vanity_participants", ["experiment_id"], name: "index_vanity_participants_on_experiment_id", using: :btree
+
+  create_table "wiki_page_versions", force: :cascade do |t|
+    t.integer  "page_id",    null: false
+    t.integer  "updator_id"
+    t.integer  "number"
+    t.string   "comment"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wiki_page_versions", ["page_id"], name: "index_wiki_page_versions_on_page_id", using: :btree
+  add_index "wiki_page_versions", ["updator_id"], name: "index_wiki_page_versions_on_updator_id", using: :btree
+
+  create_table "wiki_pages", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "updator_id"
+    t.string   "path"
+    t.string   "title",      null: false
+    t.string   "slug"
+    t.jsonb    "details"
+    t.text     "content_md"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wiki_pages", ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
+  add_index "wiki_pages", ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
+  add_index "wiki_pages", ["slug"], name: "index_wiki_pages_on_slug", using: :btree
 
   add_foreign_key "acquisitions", "bids"
   add_foreign_key "identities", "users"

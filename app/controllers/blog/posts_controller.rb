@@ -46,4 +46,9 @@ private
     @topics = @all_posts.group_by{ |post| post.topic }
   end
 
+  def blog_layout
+    @blog_layout = true
+    @recents = Post.recent
+  end
+
 end

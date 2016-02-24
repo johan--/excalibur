@@ -16,6 +16,9 @@ class MarkdownWriter
     obj.content_html = MarkdownWriter.to_html(obj.content_md)
   end
 
+  def self.to_wiki_html(obj)
+    obj.content = MarkdownWriter.to_html(obj.content_md)
+  end
 
   def self.html_comment(obj)
     obj.body_html = MarkdownWriter.to_html(obj.body_md)
