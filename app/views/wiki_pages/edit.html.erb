@@ -13,6 +13,8 @@
   <%= hidden_field_tag :path, @page.path %>
 
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
+  <p><%=wt 'Header URL:' %><br /><%= f.text_field :thumbnail %></p>
+  <p><%=wt 'Tags:' %><br /><%= f.text_field :tags %></p>
 
   <%# If our 'content' contains newlines, Erubis will indent them (to make the
       produced HTML look nicer). However those indenting spaces *will* appear

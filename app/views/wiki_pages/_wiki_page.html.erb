@@ -3,9 +3,9 @@
   <div class="box box-widget widget-user">
     <!-- Add the bg color to the header using any of the bg-* classes -->
     <%= link_to wiki_page_path( page.path ) do %>
-    <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+    <div class="widget-user-header bg-black" style="background: url(<%= page.thumbnail %>) center center;">
       <h3 class="widget-user-username"><%= page.title %></h3>
-      <h5 class="widget-user-desc"><%= page.try(:creator)  %></h5>
+      <h5 class="widget-user-desc"><%=   %></h5>
     </div>
     <% end %>
     <div class="box-footer">

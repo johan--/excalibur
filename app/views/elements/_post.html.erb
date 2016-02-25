@@ -12,7 +12,10 @@
 	  <%= cl_image_tag(post.header, cly_lg_header_options) %>
 	<% end %>
   <% end %>
-  
+
+
+  <%= link_to "Kembali ke Daftar Artikel", root_url(subdomain: "blog") if !current_page?(root_url(subdomain: 'blog')) %>
+
   <% if defined?(admin_list) && admin_list %>
 	<%= link_to admin_post_path(post.slug) do %>
 	  <h3 class="ctitle">
@@ -42,10 +45,7 @@
 	  <%= post.content_html.html_safe %>
 	</div>
 	<hr>
-	<h6>SHARE Via Media Sosial:</h6>
-	<p class="share">
-		<%= social_share_button_tag(post.title) %>
-	</p>	
+
   <% end %>
 
   <div class="post-footer">

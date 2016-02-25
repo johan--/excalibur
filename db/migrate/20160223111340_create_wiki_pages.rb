@@ -6,7 +6,7 @@ class CreateWikiPages < ActiveRecord::Migration
 
       t.string :path
       t.string :title, null: false
-      t.string :slug, index: true
+      t.string :slug, index: true, unique: true
       t.jsonb  :details
 
       # t.text :content, limit: 4_294_967_295

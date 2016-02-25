@@ -5,12 +5,8 @@
 		  <h2>Jurnal Kapiten</h2>
 		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
-		  <% if !current_page?(root_url(subdomain: 'blog')) %>
-			<%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-white" %>
-		  <% else %>
-		  	<%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white" %>
-		  <% end %>
-		  <% if current_user.present? %>
+		  <%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white" %>
+		  <% if user_signed_in? %>
 			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" %>
 		  <% end %>		  
 		</div><!-- /row -->
@@ -23,47 +19,26 @@
 <div class="container mtb">
   <div class="row">
  	<%= render 'layouts/messages' %>
+ 	<div class="col-md-4">
+ 	  <div class="post-box">
+		<div class="blankslate">
+			<div class="spacious">
+				<h3><%= "Pustaka" %></h3>
+				<p><%= "untuk kamu yang ingin mendalami keuangan Islam." %></p>
+				<%= link_to 'Lihat Pustaka', wiki_all_path, class: "btn btn-primary"  %>
+			</div>
+		</div> 	  
+		<hr class="coral">
+ 	  </div>
+	  	<div class="spacing"></div>
+	
+ 	</div>
  	<div class="col-md-8">
  	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "blog" } %>
 	  <%= yield %>
 		<div class="spacing"></div>
 	</div>
     <!-- SIDEBAR -->
-    
- 	<div class="col-md-4">
- 	  <div class="post-box">
-		  <h4>Topik</h4>
-		  <hr class="coral"></hr>
-			<% @topics.each do |topic, posts| %>
-		 	  <p>
-		 	  	<%= link_to blog_find_posts_path(topic: topic) do %>
-			 	  	<i class="fa fa-angle-double-down small-icons"></i> <%= topic.titleize %>
-		 	  	<% end %>
-		 	  	<span class="badge badge-theme pull-right"><%= posts.count %></span>
-		 	  </p>
-			<% end %>
- 		</div>
-	  	<div class="spacing"></div>
-	
-	  <% unless Rails.env.test? %>
-		<div class="post-box">
-		  <h4>Artikel Terbaru</h4>
-		  <hr class="coral">
-		  <ul class="popular-posts">
-		    <% @recents.each do |post| %>
-	        <li>
-	          <%= link_to blog_post_path(post.slug) do %>
-	            <p><%= post.title %></p>
-	            <em>Posted <%= time_ago_in_words(post.updated_at) %> ago</em>
-	          <% end %>
-	        </li>
-	        <% end %>
-	      </ul>
-		</div> 		 
-	  <% end %>
-	  <div class="spacing"></div>
- 	</div>
- 	
 
   </div><!-- <! row  -->
 </div>

@@ -1,6 +1,7 @@
 class WikiPagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:all, :show, :compare]
   # before_filter :disable_background
+  # skip_before_action :setup_page, only: :show
   before_action :wiki_layout
   before_action :all_pages, only: :show
 
@@ -15,8 +16,12 @@ private
 
   def permitted_page_params
     params.require(:page).permit(
-      :title, :content, :comment, :content_md
+      :title, :content, :comment, :content_md, :thumbnail, :tags
     )
+  end
+
+  def slugged_page
+
   end
 
   def all_pages
