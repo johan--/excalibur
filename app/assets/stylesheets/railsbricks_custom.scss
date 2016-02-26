@@ -12,7 +12,7 @@ $brand-coral: #FA396f;
 $brand-grey: #F9DC5C;
 $brand-blue: #394264;
 $brand-green: #1ABC9C;
-$brand-dark: #2C4251;
+$brand-dark: #192f42;
 $brand-red: #E84855;
 $brand-yellow: #F9DC5C;
 
@@ -23,7 +23,7 @@ $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
 // Typography
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,600);
 $font-family-roboto: 'Roboto', sans-serif;
 $font-family-base: $font-family-roboto;
 $font-size-base: 16px;

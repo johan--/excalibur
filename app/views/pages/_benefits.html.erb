@@ -1,105 +1,229 @@
-<section id="screens">
-  <div class="container">
-
-    <div class="section-heading centered">
-      <h1>Manfaat</h1>
-      <div class="section-divider"></div>
-      <p>Untuk Semua Pihak Yang Terlibat</p>
-      <div class="nav nav-tabs list-group list-group-horizontal">
-          <a class="list-group-item active" href="#tab_default_1" data-toggle="tab">Pendana</a>
-          <a class="list-group-item" href="#tab_default_2" data-toggle="tab">Klien</a>
-<!--           <a class="list-group-item" href="#tab_default_3" data-toggle="tab">Pengembang</a> -->
-      </div>      
+<section class="section home-tour works" id="screens works">
+  <div class="grid">
+    <div class="section-heading text-center">
+      <h2 class="section-title">Manfaat</h2>
+      <h1 class="section-headline">Beberapa alasan untuk memilih Kapiten sebagai metode pendanaan pembelian rumah</h1>
     </div>
+    <div class="row tour-items">
+      <div class="col-md-4 col-lg-4 col-xs-12">
+          <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+              <div class="media-left">
+                  <div class="icon">
+                      <i class="fa fa-star"></i>
+                  </div>
+              </div>
+              <div class="media-body">
+                  <h4 class="media-heading">Halal</h4>
+                  <p>Kombinasi antara 3 transaksi yang terpisah: Kerja sama, Sewa, dan Pembelian Sukuk.</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xs-12">
+          <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="600ms">
+              <div class="media-left">
+                  <div class="icon">
+                      <i class="fa fa-smile-o"></i>
+                  </div>
+              </div>
+              <div class="media-body">
+                  <h4 class="media-heading">Tanpa Hutang</h4>
+                  <p>Tidur di rumah tanpa perlu khawatir akan hutang.</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xs-12">
+          <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="900ms">
+              <div class="media-left">
+                  <div class="icon">
+                      <i class="fa fa-rocket"></i>
+                  </div>
+              </div>
+              <div class="media-body">
+                  <h4 class="media-heading">Bebas</h4>
+                  <p>Tanpa denda atau pemaksaan untuk membeli habis kepemilikan, it's your choice.</p>
+              </div>
+          </div>
+        </div>            
+    </div>  
+    <div class="tour-observe">
+      <div class="section-heading centered">
+        <h2 class="section-title">Produk</h2>
+        <h1 class="section-headline">Kami menyediakan dua skema untuk mendanai pembelian rumah kamu</h1>
+        <div class="nav nav-tabs list-group list-group-horizontal">
+          <a class="list-group-item active" href="#tab_default_1" data-toggle="tab">Hijrah</a>
+          <a class="list-group-item" href="#tab_default_2" data-toggle="tab">Karma</a>
+        </div>      
+      </div>
 
-    <div class="row">
-      <div class="tab-content">
+      <div class="row">
+        <div class="tab-content">
 
-        <div class="tab-pane active" id="tab_default_1">
-        	<div class="col-md-2"></div>
-          <div class="col-md-4 col-xs-10 col-xs-offset-1">
-            <figure>
-                <div class="img-wrapper">
-                    <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/telephone-586266_640.jpg" class="img-responsive" alt="" >
-                    <div class="overlay">
-                        <div class="buttons">
-                            <%=   %>
-                        </div>
+          <div class="tab-pane active" id="tab_default_1">
+            <div class="col-md-6">
+              <ul class="article-list-basic">
+                <li>
+                  <a href="#">
+                    <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
+                  </a>
+                  <div>
+                    <h2><a href="#">Hijrah</a></h2>
+                    <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah, namun sudah memiliki modal.</p>
+                  </div>
+                </li>            
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  
+                  <!-- panel 1 -->
+                  <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+                      <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4 class="panel-title">Manfaat</h4>
+                      </div>
+                    </span>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                      <!-- Tab content goes here -->
+                      Crowdfunding adalah sistem pendanaan yang bersumber pada banyak pihak. Manfaat dari crowdfunding atau pendanaan gotong royong adalah mekanisme permintaan dan penawaran yang efisien. Di Kapiten, para pendana mendapatkan hak imbal hasil atas kontribusi mereka. Untuk mengetahui lebih lanjut mengenai investasi di Kapiten, silahkan <%= link_to "klik di sini", funding_job_url(subdomain:'') %>.
+                      </div>
                     </div>
-                </div>
-                <figcaption>
-                <h4>
-                <a href="#">
-                    <%=  %>
-                </a>
-                </h4>
-                <p>
-                    pihak yang membantu membiayai bersama para investor lainnya
-                </p>
-                </figcaption>
-            </figure>
-          </div>
-          <div class="col-md-4">
-              <div class="features">              
-                <h5>Online Reporting</h5>
-                <p>
-                Pantau kelanjutan dan status investasi secara online.
-                </p>
-              </div>
-              <div class="features">              
-                <h5>Bukti Kepemilikan</h5>
-                <p>
-                Setiap investasimu, berapapun jumlahnya, dinyatakan dalam dokumen resmi secara nyata dan digital.
-                </p>
-              </div>
-              <div class="features">              
-                <h5>Sindikasi</h5>
-                <p>
-                  Bingung dalam memilih investasi? Bentuk grup investasi dengan teman-temanmu untuk mempermudah pengambilan keputusan.
-                </p>
-              </div>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
+                  </div> 
+                  <!-- / panel 1 -->
+                  
+                  <!-- panel 2 -->
+                  <div class="panel panel-default">
+                      <!--wrap panel heading in span to trigger image change as well as collapse -->
+                      <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+                          <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <h4 class="panel-title collapsed">Persyaratan</h4>
+                          </div>
+                      </span>
 
-        <div class="tab-pane" id="tab_default_2">
-        	<div class="col-md-2"></div>
-          <div class="col-md-4 col-xs-10 col-xs-offset-1">
-            <figure>
-                <div class="img-wrapper">
-                    <img src="http://res.cloudinary.com/instilla/image/upload/c_scale,w_450/v1449582605/asset/family-1003816_640.jpg" class="img-responsive" alt="this is a title" >
-                    <div class="overlay">
-                        <div class="buttons">
-                            <%=  %>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                          <!-- Tab content goes here -->
+                            Musyarakah Mutanaqishah
+                            (MMQ), adalah akad kepemilikan
+                            bersama atas suatu aset. Pihak yang
+                            memakai aset harus membayar
+                            biaya sewa kepada pemilik aset
+                            yang tidak menggunakannya. Porsi
+                            kepemilikan dapat diperjual-belikan                        
+                          </div>
+                      </div>
+                  </div>
+                  <!-- / panel 2 -->
+                  
+                  <!--  panel 3 -->
+                  <div class="panel panel-default">
+                      <!--wrap panel heading in span to trigger image change as well as collapse -->
+                      <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                          <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              <h4 class="panel-title">Cara</h4>
+                          </div>
+                      </span>
+
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                            <!-- tab content goes here -->
+                             tab 3 content
+                            </div>
+                          </div>
                         </div>
-                    </div>
-                </div>
-                <figcaption>
-                <h4>
+              </div> <!-- / panel-group -->
+               
+              <div class="centered">
+                <%= link_to open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" do %>
+                  <i class="fa fa-calculator fa-3x pull-left"></i>
+                  <span>Jalankan Simulasi</span><br>
+                  <b>Untuk Hijrah</b>        
+                <% end %>
+              </div>              
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab_default_2">
+            <div class="col-md-6">
+              <ul class="article-list-basic"><li>
                 <a href="#">
-                    <%=  %>
+                  <img src="http://res.cloudinary.com/instilla/image/upload/s--zI7LdhyW--/c_scale,w_400/v1454471660/cup-hot-hands_kcdfrd.jpg"  alt="Sahale Wa" />
                 </a>
-                </h4>
-                <p>
-                    pihak yang ingin membeli rumah dan membutuhkan pendanaan
-                </p>
-                </figcaption>
-            </figure>          
+                <div>
+                  <h2><a href="#">Karma</a></h2>
+                  <p>Bagi kamu yang ingin memiliki rumah di kemudian hari, tapi belum mempunyai modal yang cukup sebagai uang muka.</p>       
+                </div>
+              </li></ul>
+            </div>
+            <div class="col-md-6">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  
+                  <!-- panel 1 -->
+                  <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+                      <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4 class="panel-title">Manfaat</h4>
+                      </div>
+                    </span>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                      <!-- Tab content goes here -->
+                        <p>"Karma" adalah skema bagi kamu yang ingin memiliki rumah, namun masih mengumpulkan uang untuk down payment pertama. Pada dasarnya skema ini menjadikan kamu sebagai salah satu pendana di Kapiten yang akan membantu mendanai mereka yang memilih skema "Hijrah".</p>
+                      </div>
+                    </div>
+                  </div> 
+                  <!-- / panel 1 -->
+                  
+                  <!-- panel 2 -->
+                  <div class="panel panel-default">
+                      <!--wrap panel heading in span to trigger image change as well as collapse -->
+                      <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+                          <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <h4 class="panel-title collapsed">Persyaratan</h4>
+                          </div>
+                      </span>
+
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                          <!-- Tab content goes here -->
+                            Musyarakah Mutanaqishah
+                            (MMQ), adalah akad kepemilikan
+                            bersama atas suatu aset. Pihak yang
+                            memakai aset harus membayar
+                            biaya sewa kepada pemilik aset
+                            yang tidak menggunakannya. Porsi
+                            kepemilikan dapat diperjual-belikan                        
+                          </div>
+                      </div>
+                  </div>
+                  <!-- / panel 2 -->
+                  
+                  <!--  panel 3 -->
+                  <div class="panel panel-default">
+                      <!--wrap panel heading in span to trigger image change as well as collapse -->
+                      <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                          <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              <h4 class="panel-title">Cara</h4>
+                          </div>
+                      </span>
+
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                            <!-- tab content goes here -->
+                             tab 3 content
+                            </div>
+                          </div>
+                        </div>
+              </div> <!-- / panel-group -->            
+            </div>
           </div>
-          <div class="col-md-4">
-              <div class="features">              
-                <h5>Full Advisory</h5>
-                <p>Kami berikan segala bentuk konsultasi kepadamu dari tahap awal hingga selesai, jangan khawatir.</p>
-              </div>
-              <div class="features">              
-                <h5>Payment Distributor</h5>
-                <p>Kami kumpulkan pembayaranmu dan salurkan ke tiap rekan syirkahmu sesuai dengan perjanjiannya.</p>
-              </div>
-          </div>
-          <div class="col-md-2"></div>
+
+
         </div>
-
-
       </div>
     </div>
   </div>
