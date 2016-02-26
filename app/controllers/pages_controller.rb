@@ -18,11 +18,11 @@ class PagesController < ApplicationController
     @static = true
   end
 
-  def saving_product
+  def ownership
     @static = true
   end
 
-  def financing_product
+  def funding
     @static = true
   end
 

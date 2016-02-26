@@ -1,6 +1,15 @@
 <div id="<%= modal_name %>-modal" class="modal fade">
   <div class="modal-dialog">
     <div id="inner-<%= modal_name %>-modal" class="modal-content">
+	  <div class="modal-header modal-header-primary">
+	    <h3><%= heading if defined?(heading) %></h3>
+	  </div>
+	  <div class="modal-body">
+	  	<%= yield %>
+	  </div>
+	  <div class="modal-footer">
+        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+	  </div>	  
     </div>
   </div>
 </div>

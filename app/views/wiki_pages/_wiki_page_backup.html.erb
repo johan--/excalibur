@@ -1,0 +1,28 @@
+<div class="col-md-4">
+  <!-- Widget: user widget style 1 -->
+  <div class="box box-widget widget-user">
+    <!-- Add the bg color to the header using any of the bg-* classes -->
+    <%= link_to wiki_page_path( page.path ) do %>
+    <div class="widget-user-header bg-black" style="background: url(<%= page.thumbnail %>) center center;">
+      <h3 class="widget-user-username"><%= page.title %></h3>
+      <h5 class="widget-user-desc"><%=   %></h5>
+    </div>
+    <% end %>
+    <div class="box-footer">
+      <div class="row">
+        <div class="col-sm-6 border-right">
+          <div class="description-block">
+            <h5 class="description-header"><%= page.updated_at.strftime("%Y, %B %-d") %></h5>
+            <span class="description-text">DIPERBARUI</span>
+          </div><!-- /.description-block -->
+        </div><!-- /.col -->
+        <div class="col-sm-6 border-right">
+          <div class="description-block">
+            <h5 class="description-header"><%= page.last_version_number %></h5>
+            <span class="description-text">VERSI</span>
+          </div><!-- /.description-block -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+  </div><!-- /.widget-user -->
+</div><!-- /.col -->

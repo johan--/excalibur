@@ -1,36 +1,129 @@
-<section id="works" class="works">
-    <div class="container">
-        <div class="section-heading text-center">
-            <h1>Produk</h1>
-            <p class="wow fadeInDown" data-wow-delay=".5s">
-                Ini yang kami tawarkan kepada calon pembeli rumah atau pemilik rumah
-            </p>
-        </div>
-        <ul class="article-list-basic">
-            <li>
-                <a href="#">
-                    <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
-                </a>
-                <div>
-                    <h2><a href="#">Hijrah</a></h2>
-                    <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah, namun sudah memiliki modal.</p>
-                    <%= link_to financing_product_url(subdomain: ''), class: "read-more" do %>
-                      Read more &rarr;
-                    <% end %>
-                </div>
-            </li>
-
-            <li>
-                <a href="#">
-                    <img src="http://res.cloudinary.com/instilla/image/upload/s--zI7LdhyW--/c_scale,w_400/v1454471660/cup-hot-hands_kcdfrd.jpg"  alt="Sahale Wa" />
-                </a>
-                <div>
-                    <h2><a href="#">Karma</a></h2>
-                    <p>Bagi kamu yang ingin memiliki rumah di kemudian hari, tapi belum mempunyai modal yang cukup sebagai uang muka.</p>
-                    <%= link_to saving_product_url(subdomain: ''), class: "read-more" do %>
-                      Read more &rarr;
-                    <% end %>                    
-                </div>
-            </li>
+<section id="works" class="home-tour works">
+  <div class="grid">
+    <div class="text-center">
+      <h2 class="section-title">Pilih Kebutuhanmu</h2>
+      <h1 class="section-headline">Kami melayani berbagai macam kebutuhan di platform ini, silahkan pilih</h1>
     </div>
+    <div class="spacing"></div>
+    <div class="row tour-items">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="box centered investor">
+                <div class="box-icon">
+                    <span class="fa fa-3x fa-suitcase"></span>
+                </div>
+                <div class="info centered">
+                    <h4>Investasi</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur</p>
+                    <%= link_to "Telusuri", funding_job_url(subdomain: ""), class: "btn btn-lg" %>                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="box centered client">
+                <div class="box-icon">
+                    <span class="fa fa-3x fa-rocket"></span>
+                </div>
+                <div class="info centered">
+                    <h4>Kepemilikan</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur</p>
+                <%= link_to "Telusuri", ownership_job_url(subdomain: ""), class: "btn btn-lg" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacing"></div>
+    <div class="tour-observe">
+      <h2 class="section-title">Kapiten bukanlah bank atau lembaga keuangan</h2>
+      <h3 class="section-headline">Kami adalah pengelola kegiatan investasi antara pembeli rumah dan pendananya.</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- begin panel group -->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                
+                <!-- panel 1 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+                        <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="panel-title">She Sells Seashells</h4>
+                        </div>
+                    </span>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                        <!-- Tab content goes here -->
+                        That fall, as Nadia and Masha got shipped off to prison camps in Siberia, South Brooklyn tried to recover from the storm. My dad and I spent a lot of time in the same apartment engrossed in separate laptops, separate internet missives. He followed Russian news bloggers closely and would update me on troubling developments. A rise in protofascist nationalism
+                        </div>
+                    </div>
+                </div> 
+                <!-- / panel 1 -->
+                
+                <!-- panel 2 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+                        <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title collapsed">TAB 2</h4>
+                        </div>
+                    </span>
+
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        <!-- Tab content goes here -->
+                        tab 2 content
+                        </div>
+                    </div>
+                </div>
+                <!-- / panel 2 -->
+                
+                <!--  panel 3 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                        <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h4 class="panel-title">TAB 3 </h4>
+                        </div>
+                    </span>
+
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                          <!-- tab content goes here -->
+                           tab 3 content
+                          </div>
+                        </div>
+                      </div>
+            </div> <!-- / panel-group -->
+             
+        </div> <!-- /col-md-4 -->
+        
+        <div class="col-md-8">
+            <!-- begin macbook pro mockup -->
+                <!-- content goes here -->                
+                <div class="tab-featured-image">
+                    <div class="tab-content">
+                        <div class="tab-pane  in active" id="tab1">
+                                <img src="https://ununsplash.imgix.net/photo-1417024321782-1375735f8987?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive">
+                        </div>
+                        <div class="tab-pane " id="tab2">
+                            
+                                <img src="https://unsplash.imgix.net/uploads/1411724908903377d4696/2e9b0cb2?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950">
+                            
+                        </div>
+                        <div class="tab-pane fade" id="tab3">
+                            
+                                <img src="https://ununsplash.imgix.net/photo-1422479516648-9b1f0b6e8da8?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950" alt="tab1" class="img img-responsive">
+                        </div>
+                    </div>
+                </div>
+        <!-- end macbook pro mockup -->
+        </div> <!-- / .col-md-8 -->
+    </div> <!--/ .row -->
+<!--       <ul>
+          <li>lorem ipsum dolor</li>
+          <li>lorem ipsum dolor</li>
+          <li>lorem ipsum dolor</li>
+      </ul> -->
+    </div>    
+  </div>
 </section>

@@ -1,5 +1,6 @@
 <% if @for == 'client' %>
-  $("#inner-main-modal").html("<%= j (render 'elements/client_simulation') %>")
+  $("#inner-main-modal").html("<%= j (render partial: 'elements/client_simulation',
+  	locals: { heading: 'Simulasi'} ) %>")
 <% elsif @for == 'investor' %>
 <% end %>
 $("#main-modal").modal("show")

@@ -27,4 +27,3 @@
 //= require bootstrap-slider
 //= require_tree ./houses
 //= require_tree ./sitewide
-//= require social-share-button

@@ -2,11 +2,11 @@
 @import "styles/image-panel";
 @import "styles/ticket-style";
 @import "styles/base-layout";
-@import "styles/custom-panels";
 */
 @import "bootstrap-slider";
 @import "styles/user";
 @import "styles/lists";
+@import "styles/custom-panels";
 @import 'ionicons';
 @import "styles/portlet";
 @import "styles/tender";
@@ -14,10 +14,9 @@
 @import "styles/file-upload";
 @import "styles/forms";
 @import "styles/buttons";
-@import "social-share-button";
 @import "styles/blog";
 @import "styles/new-landing";
-/*@import "styles/login";*/
+@import "styles/login";
 @import "styles/AdminLTE";
 @import "styles/skins/skin-blue";
 
@@ -44,63 +43,6 @@ $nprogress-zindex: 10100;
 .img-center {
     margin: 0 auto;
 }
-    .social {
-        list-style: none;
-        padding: 0px;
-        margin-top: 25px;
-        text-align: center;
-    }
-    .social a {
-        position: relative;
-        display: inline-block;
-        min-width: 40px;
-        padding: 10px 0px;
-        margin: 0px 5px;
-        overflow: hidden;
-        text-align: center;
-        background-color: rgb(215, 215, 215);
-        border-radius: 40px;
-    }
-
-    a.social-icon {
-        text-decoration: none !important;
-        box-shadow: 0px 0px 1px rgb(51, 51, 51);
-        box-shadow: 0px 0px 1px rgba(51, 51, 51, 0.7);
-    }
-    a.social-icon:hover {
-        color: rgb(255, 255, 255) !important;
-    }
-    a.facebook {
-        color: rgb(59, 90, 154) !important;
-    }
-    a.facebook:hover {      
-        background-color: rgb(59, 90, 154) !important;
-    }
-    a.twitter {
-        color: rgb(45, 168, 225) !important;
-    }
-    a.twitter:hover {
-        background-color: rgb(45, 168, 225) !important;
-    }
-    a.github {
-        color: rgb(51, 51, 51) !important;
-    }
-    a.github:hover {
-        background-color: rgb(51, 51, 51) !important;
-    }
-    a.google-plus {
-        color: rgb(244, 94, 75) !important;
-    }
-    a.google-plus:hover {
-        background-color: rgb(244, 94, 75) !important;
-    }
-    a.linkedin {
-        color: rgb(1, 116, 179) !important;
-    }
-    a.linkedin:hover {
-        background-color: rgb(1, 116, 179) !important;
-    }
-
 
 .pop-helper {
   cursor: pointer;
@@ -147,6 +89,8 @@ $nprogress-zindex: 10100;
 .white-background { background-color: white; }
 .coral-background { background-color: $brand-coral; }
 .primary-background { background-color: $brand-primary; }
+.green-background { background-color: $brand-green; }
+.blue-background { background-color: $brand-blue; }
 
 /* Main format */
 p {
@@ -168,9 +112,8 @@ hr.coral {
 }
 
 
-a:hover, a.selected,
-a:focus {
-    color: #eb3812;
+a:hover, a.selected, a:focus {
+  color: #eb3812;
 }
 
 /*Helpers*/
@@ -207,7 +150,6 @@ a:focus {
   margin: 0 !important;
 }
 
-
 .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -217,420 +159,24 @@ a:focus {
     user-select: none;
 }
 
-
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
-
-/*body {
-  background: white;
-}
-
-
-.state-icon {
-    left: -5px;
-}
-
-.badge-primary {
-  background-color: $badge-primary-bg
-}
-.badge-success {
-  background-color: $badge-success-bg
-}
-
-.embed-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
-  width: 100%;
-  height: auto;
-  margin-bottom: 12px;
-} 
-
-.embed-container iframe,
-.embed-container object,
-.embed-container embed {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-
-
-.page-header { position: relative; }
-.reviews {
-    color: #555;    
-    font-weight: bold;
-    margin: 10px auto 20px;
-}
-.notes {
-    color: #999;
-    font-size: 12px;
-}
-.media .media-object { max-width: 120px; }
-.media-body { position: relative; }
-/*.media-date { 
-    position: absolute; 
-    right: 25px;
-    top: 25px;
-}*/
-/*.media-date li { padding: 0; }
-.media-date li:first-child:before { content: ''; }
-.media-date li:before { 
-    content: '.'; 
-    margin-left: -2px; 
-    margin-right: 2px;
-}
-.media-comment { margin-bottom: 20px; }
-.btn-circle {
-    font-weight: bold;
-    font-size: 12px;
-    padding: 6px 15px;
-    border-radius: 20px;
-}
-.btn-circle span { padding-right: 6px; }
-.embed-responsive { margin-bottom: 20px; }*/
-
-
-/*Timelines*/
-
-.media-image {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-.media-box {
-  padding: auto;
-}
-
-.benefits {
-  padding: 20px;
-  /*width: 800px;*/
-  box-sizing: border-box;  
-}
-
-.icon-block {
-    margin-bottom: 20px;
-}
-.icon-block.icon-block-1 .icon-block-item {
-    width: 20%;
-    display: table-cell;
-    vertical-align: top;
-    font-size: 64px;
-    text-align: center;
-    color: #333;
-}
-.icon-block.icon-block-1 .icon-block-body {
-    display: table-cell;
-    vertical-align: top;
-    padding-left: 15px;
-}
-.icon-block.icon-block-1 .icon-block-body .title {
-    margin-bottom: 5px;
-    color: #333;
-}
-.icon-block.icon-block-1 .icon-block-body p {
-    margin: 0;
-}
-
-.site-wrapper {
-  display: table;
-  width: 100%;
-  height: 100%; /* For at least Firefox */
-  min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-    background: 
-        linear-gradient(
-          rgba(35, 116, 118, 0.46), 
-          rgba(35, 116, 118, 0.46)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/v1449580963/asset/homes-1017547_1920.jpg') no-repeat center center scroll;
-}
-.site-wrapper-inner {
-  display: table-cell;
-  vertical-align: top;
-}
-.cover-container {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* Padding for spacing */
-.inner {
-  padding-left: 50px; padding-right: 50px;
-  padding-bottom: 20px; padding-top: 5px;
-  color: white;
-}
-
-
-/*
- * Header
- */
-.masthead-brand {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.masthead-nav > li {
-  display: inline-block;
-}
-.masthead-nav > li + li {
-  margin-left: 20px;
-}
-.masthead-nav > li > a {
-  padding-right: 0;
-  padding-left: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.95);
-  border-bottom: 2px solid transparent;
-}
-.masthead-nav > li > a:hover,
-.masthead-nav > li > a:focus {
-  background-color: transparent;
-  border-bottom-color: #a9a9a9;
-  border-bottom-color: rgba(255,255,255,.25);
-}
-.masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
-.masthead-nav > .active > a:focus {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-
-@media (min-width: 768px) {
-  .masthead-brand {
-    float: left;
-  }
-  .masthead-nav {
-    float: right;
-  }
-}
-
-
-/*
- * Cover
- */
-
-.cover {
-  padding: 0 20px;
-}
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-
-/*
- * Footer
- */
-
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
-}
-@media (max-width: 768px) {
-  .masthead {
-    background-color: rgba(0, 238, 242, 0.6);
-  }
-  .inner {
-    text-align: center;
-  }  
-}
-/*
- * Affix and center
- */
-
-@media (min-width: 768px) {
-  /* Pull out the header and footer */
-  .masthead {
-    position: fixed;
-    top: 10px;
-    background-color: rgba(0, 238, 242, 0.6);
-  }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
-  /* Handle the widths */
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
-}
-
-@media (min-width: 992px) {
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 700px;
-  }
-}
-
-
-/*test*/
-.container-top {
-  height:460px;
-  min-height:460px;
-  color:#fff;
-  padding-top: 120px;
-}
-#saving-product {
-  background: 
-    linear-gradient(
-      rgba(35, 116, 118, 0.46), 
-      rgba(35, 116, 118, 0.46)
-    ),
-    url('http://res.cloudinary.com/instilla/image/upload/s--FWLXd2Nw--/c_scale,w_1280/v1455955254/asset/pexels-photo_2.jpg');
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;      
-}
-#financing-product {
-  background: 
-    linear-gradient(
-      rgba(35, 116, 118, 0.46), 
-      rgba(35, 116, 118, 0.46)
-    ),
-    url('http://res.cloudinary.com/instilla/image/upload/v1455955253/asset/pexels-photo_1.jpg');
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;      
-}
-.section-dk {
-  background-color:#192f42;
-  min-height:460px;
-  color:#fff;
-  padding-top: 120px;
-}
-  
-.section {
-  min-height:430px;
-  padding-top:100px;
-  padding-bottom:100px;
-}
-
-.hex-text {
-  font-size:18px;
-  letter-spacing:3px;
-  font-weight:800;
-  text-align:center;
-}
-
-.hex-logo {
-  color:rgba(250,250,250,0.6);
-  font-size:58px;
-  width:100%;
-  text-align:center;
-  position:relative;
-  z-index:9;
-  top:-83px;
-  line-height:40px;
-}
-
-.hex-overlay {
-  color:rgba(255,255,255,0.7);
-  text-transform:uppercase;
-  font-size:15px;
-  width:100%;
-  text-align:center;
-  position:relative;
-  z-index:11;
-  font-weight:bold;
-}
-
-.hex {
-  width: 200px;
-  height: 100px;
-  position: relative;
-  /*background: rgba(40,186,0,0.85);*/
-  background: rgba(49,176,213,0.8);
-  margin:0 auto;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-}
-.hex:before {
-  content: "";
-  position: absolute;
-  border-bottom: 60px solid rgba(40,186,0,0.85);
-  border-bottom: 60px solid rgba(49,176,213,0.8);
-  border-right: 100px solid transparent;
-  border-left: 100px solid transparent;
-  top: -60px;
-  transition: all .3s ease;
-  -webkit-transition: all .3s ease;
-}
-.hex:after {
-  content: "";
-  position: absolute;
-  border-top: 60px solid rgba(40,186,0,0.85);
-  border-top: 60px solid rgba(49,176,213,0.8);
-  border-right: 100px solid transparent;
-  border-left: 100px solid transparent;
-  bottom: -60px;
-  transition: all .3s ease;
-  -webkit-transition: all .3s ease;
-}
-
-.table>tbody>tr>td, .table>thead>tr>td,
-.table>tfoot>tr>td, .table-bordered {
-  font-size:16px;
-  border-color:rgba(49,176,213,0.25);
-}
-
-.table-hover>tbody>tr:hover>td,
-.table-hover>tbody>tr:hover>th,
-.table-bordered thead {
-  background-color:rgba(49,176,213,0.55);
-  border-bottom-width:0;
-}
-
-.btn-huge {
-  font-size:30px;
-  padding:10px 20px;
-  background-color:rgba(30,30,50,0.25);
-  color:rgba(49,176,213,0.95)
-}
-
-.grayscale {
-  filter: grayscale(90%); /* Current draft standard */
-  -webkit-filter: grayscale(90%); /* New WebKit */
-  -moz-filter: grayscale(90%);
-  -ms-filter: grayscale(90%); 
-  -o-filter: grayscale(90%);
-  opacity:0.4;
-}
-
-.list-inline li {
-  vertical-align:middle;
-    text-align:center;
-}
-
-.circles {
-  margin-top: 20px;
-    background-color: #4d7fc7;
-    color: #fff;
-    border-radius: 50%;
-    line-height: 3em;
-    width: 3em;
-    height: 3em;
-}
+.side-tab:hover {
+        cursor: pointer;
+    }
+    .panel.panel-default {
+        border: none;
+        box-shadow: none !important;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        
+    }
+    .panel-heading {
+        border: none;
+        background-color: #eee;
+    
+    }
+    .panel-body {
+        background-color: #f5f5f5;
+    }
+    .panel-title {
+        font-weight: 400;
+    }

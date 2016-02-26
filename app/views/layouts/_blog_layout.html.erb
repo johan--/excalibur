@@ -6,9 +6,7 @@
 		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
 		  <%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white" %>
-		  <% if user_signed_in? %>
-			<%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" %>
-		  <% end %>		  
+		  <%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" if user_signed_in? %>
 		</div><!-- /row -->
     </div> <!-- /container -->
 </div><!-- /blue -->

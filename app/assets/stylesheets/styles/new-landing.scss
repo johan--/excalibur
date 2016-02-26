@@ -6,9 +6,6 @@ Image credits: unsplash.com
 Image placeholders: placemi.com
 */
 
-#key-message {
-    background-color: #eee;
-}
 
 .header {
     padding-top: 50px;
@@ -33,10 +30,6 @@ Image placeholders: placemi.com
     vertical-align: middle;
 }
 
-.btn {
-    padding-left: 25px;
-    padding-right: 25px;
-}
 .btn-circle {
     border-radius: 20px;
 }
@@ -70,43 +63,6 @@ section {
     text-align: center;
 }
 
-/* Links */
-/*a {
-    color: $brand-coral;
-    word-wrap: break-word;
-
-    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
-    transition: color 0.1s ease-in, background 0.1s ease-in;
-}
-
-a:hover,
-a:focus {
-    color: #c0392b;
-    text-decoration: none;
-    outline: 0;
-}
-
-a:before,
-a:after {
-    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
-    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
-    transition: color 0.1s ease-in, background 0.1s ease-in;
-}
-*/
- hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
 
 /* ==========================================================================
    Wrap Sections
@@ -129,70 +85,12 @@ a:after {
     background-size: cover;
     -o-background-size: cover;    
 }
-h3.sub-heading{
-  font-weight: 100;
-  margin-bottom: 20px;
-}
 
-.landing-header h1 {
-    color: white;
-    /*font-size: 260%;*/
-    /*font-size: 50px*/;
-    line-height: 5.75rem;
-    font-weight: 400;
-    margin: .67em 0;
-    margin-bottom: 0;
-    margin-top: 0;    
-}
-.landing-header nav{
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;  
-  background: transparent;
-  border-color: transparent;
-  height: 70px;
-  font-size: 15px;
-}
-/*.landing-header nav .navbar-brand {
-  font-size: 25px;
-  font-weight: 200px;
-}
-*/
-.landing-header nav.shrink {
-  background: rgba(0,255,255,0.8);
-  background: rgb (0,0,0);
-  height: 7%;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;  
-}
-
-.colored-text {
-    color: $brand-primary !important;
-}
 .intro-section {
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
-.landing-header h3 {
-    /*font-size: 150%;*/
-    font-size: 30px;
-    font-weight: 150;
-    padding-right: 10%;
-    padding-left: 10%;
-    color: #ffffff;
-}
-
-.landing-header h5 {
-    color: white;
-    font-weight: 700;
-    text-align: left;
-}
-
-.landing-header p {
-    color: white
-}
 #subscribe-prompt h3{
     font-size: 100%;
     margin-bottom: 5%;
@@ -279,46 +177,6 @@ h3.sub-heading{
     color: white;
 }
 
-/* intro Wrap */
-h3.landing {
-  color: $brand-primary;
-  font-size: 2.5em;
-  font-weight: 400;
-  text-align: center;
-}
-
-#intro {
-    padding-top: 5%;
-    background-color: white;
-}
-
-#footerwrap {
-    padding-top: 40px;
-    padding-bottom: 60px;
-    text-align: left;
-}
-
-#footerwrap h3 {
-    font-size: 28px;
-    color: white;
-}
-
-#footerwrap p {
-    color: white;
-    font-size: 18px;
-}
-
-/* Copyright Wrap */
-
-#c {
-    background: #222222;
-    padding-top: 15px;
-    text-align: right;
-}
-
-#c p {
-    color: white
-}
 
 #landing-subscriber {
     background-color: $brand-grey;
@@ -329,122 +187,6 @@ h3.landing {
     }
 }
 
-#client-benefits{ 
-    width: 100%;
-    height: 50%;
-    padding: 3%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/v1449582605/asset/family-1003816_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.4em;
-    }    
-}
-#investor-benefits{ 
-    width: 100%;
-    height: 50%;
-    padding: 3%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/v1449582605/asset/telephone-586266_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.4em;
-    }    
-}
-#developer-benefits{ 
-    width: 100%;
-    height: 50%;
-    padding: 3%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/v1449582919/asset/signature-962355_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.4em;
-    }    
-}
-@media(max-width:767px){
-#client-benefits{ 
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/v1449582605/asset/family-1003816_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.6em;
-    }    
-  }
-#investor-benefits{ 
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582605/asset/telephone-586266_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.6em;
-    }    
-  }
-#developer-benefits{ 
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    background: 
-        linear-gradient(
-          rgba(36, 46, 46, 0.55), 
-          rgba(36, 46, 46, 0.55)
-        ),
-        url('//res.cloudinary.com/instilla/image/upload/c_scale,w_350/v1449582919/asset/signature-962355_640.jpg') no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;    
-    h3, p {
-        font-size: 1.6em;
-    }    
-  }    
-}
 
 .hero-container {
     background: #eee;
@@ -893,4 +635,391 @@ section#reminder {
   margin-right: 10px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+/* Job Section */
+.home-tour .section-title {
+    text-align: center;
+    color: $brand-coral;
+    font-size: 100%;
+    margin-bottom: 25px;
+    line-height: 1.5rem;
+    text-transform: uppercase;    
+    font-weight: 800;
+}
+.grid {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1364px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.home-tour .section-headline {
+    max-width: 900px;
+    margin: 0 auto 90px;
+    font-size: 4.25rem;
+    line-height: 1.2;
+    color: $brand-primary;
+    text-align: center;
+    font-weight: 600;    
+}
+.home-tour .tour-items {
+    max-width: 1080px;
+    margin: 80px auto 0;
+}
+.home-tour .tour-observe {
+    margin: 70px auto 0;
+    padding: 60px 40px 40px;
+    border: 1px solid #d5e1ec;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 1080px;
+    box-sizing: border-box;
+    font-weight: 400;
+    letter-spacing: 1px;
+    letter-spacing: -0.02em;
+}
+.home-tour .tour-observe ul {
+    width: 100%; list-style: none;
+}
+.home-tour .tour-observe li {
+    display: inline-block;
+    margin-right: 10px;
+    padding-right: 10px;
+    position: relative;
+    color: #757575;
+    line-height: 1.5;
+}
+.home-tour .tour-observe li:after {
+    content: '·';
+    position: absolute;
+    right: -2px;
+    font-weight: 500;
+}
+.footer {
+  background-color: $brand-dark;
+  padding: 70px 0 80px;
+  position: relative;
+  z-index: 10;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -0.01em;
+  font-size: 1.7rem;
+  line-height: 1.875rem;
+  color: #d1dae8;
+  ul li a {
+    color: white;
+  }
+  ul li a:hover {
+    background-color: white;
+    color: $brand-primary;
+  }    
+}
+/* Landing Cover */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    background: 
+        linear-gradient(
+          rgba(35, 116, 118, 0.46), 
+          rgba(35, 116, 118, 0.46)
+        ),
+        url('//res.cloudinary.com/instilla/image/upload/v1449580963/asset/homes-1017547_1920.jpg') no-repeat center center scroll;
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding-left: 50px; padding-right: 50px;
+  padding-bottom: 20px; padding-top: 5px;
+  color: white;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.95);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+  margin: 0 auto 0 auto;
+  h1 {
+    line-height: 140%;
+  }
+  p.lead {
+    line-height: 1.6;
+  }
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+@media (max-width: 768px) {
+  .masthead {
+    background-color: rgba(0, 238, 242, 0.6);
+  }
+  .inner {
+    text-align: center;
+  }  
+  .cover {
+    padding-top: 40px;
+  }
+}
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0px;
+    background-color: rgba(0, 238, 242, 0.6);
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead, .mastfoot, .cover-container {
+    /*width: 700px;*/
+    width: 100%;
+  }
+  .cover {
+    width: 900px;
+  }
+}
+/*END Landing Cover */
+
+/*Static Pages*/
+.container-top {
+  height:460px;
+  min-height:460px;
+  color:#fff;
+  padding-top: 120px;
+}
+#saving-product {
+  background: 
+    linear-gradient(
+      rgba(35, 116, 118, 0.46), 
+      rgba(35, 116, 118, 0.46)
+    ),
+    url('http://res.cloudinary.com/instilla/image/upload/s--FWLXd2Nw--/c_scale,w_1280/v1455955254/asset/pexels-photo_2.jpg');
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;      
+}
+#financing-product {
+  background: 
+    linear-gradient(
+      rgba(35, 116, 118, 0.46), 
+      rgba(35, 116, 118, 0.46)
+    ),
+    url('http://res.cloudinary.com/instilla/image/upload/v1455955253/asset/pexels-photo_1.jpg');
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;      
+}
+.section-dk {
+  background-color:#192f42;
+  min-height:460px;
+  color:#fff;
+  padding-top: 120px;
+}
+  
+.section {
+  min-height:430px;
+  padding-top:100px;
+  padding-bottom:100px;
+}
+
+.hex-text {
+  font-size:18px;
+  letter-spacing:3px;
+  font-weight:800;
+  text-align:center;
+}
+
+.hex-logo {
+  color:rgba(250,250,250,0.6);
+  font-size:58px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  z-index:9;
+  top:-83px;
+  line-height:40px;
+}
+
+.hex-overlay {
+  color:rgba(255,255,255,0.7);
+  text-transform:uppercase;
+  font-size:15px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  z-index:11;
+  font-weight:bold;
+}
+
+.hex {
+  width: 200px;
+  height: 100px;
+  position: relative;
+  /*background: rgba(40,186,0,0.85);*/
+  background: rgba(49,176,213,0.8);
+  margin:0 auto;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.hex:before {
+  content: "";
+  position: absolute;
+  border-bottom: 60px solid rgba(40,186,0,0.85);
+  border-bottom: 60px solid rgba(49,176,213,0.8);
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+  top: -60px;
+  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+}
+.hex:after {
+  content: "";
+  position: absolute;
+  border-top: 60px solid rgba(40,186,0,0.85);
+  border-top: 60px solid rgba(49,176,213,0.8);
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+  bottom: -60px;
+  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+}
+
+.table>tbody>tr>td, .table>thead>tr>td,
+.table>tfoot>tr>td, .table-bordered {
+  font-size:16px;
+  border-color:rgba(49,176,213,0.25);
+}
+
+.table-hover>tbody>tr:hover>td,
+.table-hover>tbody>tr:hover>th,
+.table-bordered thead {
+  background-color:rgba(49,176,213,0.55);
+  border-bottom-width:0;
+}
+
+.btn-huge {
+  font-size:30px;
+  padding:10px 20px;
+  background-color:rgba(30,30,50,0.25);
+  color:rgba(49,176,213,0.95)
+}
+
+.grayscale {
+  filter: grayscale(90%); /* Current draft standard */
+  -webkit-filter: grayscale(90%); /* New WebKit */
+  -moz-filter: grayscale(90%);
+  -ms-filter: grayscale(90%); 
+  -o-filter: grayscale(90%);
+  opacity:0.4;
+}
+
+.list-inline li {
+  vertical-align:middle;
+    text-align:center;
+}
+
+.circles {
+  margin-top: 20px;
+    background-color: #4d7fc7;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 3em;
+    width: 3em;
+    height: 3em;
 }
