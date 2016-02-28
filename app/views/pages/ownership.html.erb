@@ -1,15 +1,27 @@
 <% meta title: "Solusi Pendanaan Rumah Secara Syariah", description: '',
      keywords: '' %>
 
-<div class="container-fluid container-top" id="financing-product">
-  <div class="hex"></div>
-  <div class="hex-overlay">
-    <div class="hex-logo">Kepemilikan
-      <p class="hex-text">R u m a h</p>
+<section class="about-section" id="financing-product">
+  <div class="about-cont about-to-left">
+    <div class="container">
+        <div class="row">
+          <!-- ABOUT TEXT SECTION -->
+          <div class="col-md-6">
+            <!-- ABOUT TITLE -->
+            <h3 class="" style="opacity: 1;">Mau punya rumah dengan cara yang halal dan bebas hutang?</h3>
+            
+            <!-- ABOUT DESCRIPTION -->
+            <p class="" style="opacity: 1;">Kami di Kapiten telah merancang skema kepemilikan rumah yang berdasar pada prinsip-prinsip dan metode syariah Islam serta sistem pendanaan untuk membantumu.</p>
+          </div>
+
+          <!-- ABOUT IMAGE -->
+          <div class="col-md-6 about-img">
+            <img src="">
+          </div>
+        </div>
     </div>
   </div>
-  <h1 class="text-center">Cara terbaik membangun masa depanmu.</h1>
-</div>
+</section>
 <%= render 'pages/benefits' %>  
 <div class="section section-dk container-fluid home-tour">
   <div class="grid">
@@ -17,21 +29,29 @@
       <h2 class="section-title">Proses</h2>
       <h1 class="section-headline">Alur Program Kepemilikan Rumah Kapiten</h1>
     </div>
-
+    <div class="blankslate">
+      <div class="spacious">
+        <h3 class="coral"><%= "Coming Soon" %></h3>
+      </div>
+    </div>
   </div>     
 </div>
+
 <div class="section container-fluid">
   <div class="row">
      <div class="col-sm-6 col-sm-offset-3">
        <h1 class="text-center">Kapiten masih dalam pengembangan.</h1>
        <h4 class="text-center text-info">we just have to make a few finishing touches</h4>
        <h2 class="text-center"></h2>
-       <form class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1">
+       <%= form_tag subscribe_path, method: 'post', html: {role: "form"}, class: "col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" do %>
          <div class="input-group input-group-lg text-center">
-           <input class="form-control input-lg" title="Don't worry. We hate spam, and will not share your email with anyone." placeholder="enter your email" type="text">
-           <span class="input-group-btn"><button class="btn btn-primary" type="button">Notify me</button></span>
+          <%= text_field_tag :email, '', placeholder: "alamat emailmu", class: "form-control input-lg" %>
+          <%= hidden_field_tag :category, @category, readonly: true %>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" >Kabari Saya</button>
+          </span>
          </div>
-       </form>
+       <% end %>
      </div>
   </div>
 </div>

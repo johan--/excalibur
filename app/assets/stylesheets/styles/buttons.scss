@@ -88,23 +88,31 @@ padding-right: 10px;
   -moz-box-shadow: none;
   box-shadow: none;
   padding: 5px 25px;
-}
-.btn.btn-white {
-  border: 2px solid #ffffff;
-  background: none;
-  color: #ffffff;
-  &:hover{
-    background-color: white;
-    color: $brand-primary;
+  &.btn-white {
+    border: 2px solid #ffffff;
+    background: none;
+    color: #ffffff;
+    &:hover{
+      background-color: white;
+      color: $brand-primary;
+    }
+  }
+  &.btn-primary {
+    &:hover{
+      background-color: white;
+      color: $brand-primary;
+    }
+  }
+  &.btn-secondary {
+    color: white; background-color: $brand-coral;
+    &:hover{
+      background-color: white;
+      color: $brand-coral;
+      border: 2px solid $brand-coral;
+    }
   }
 }
 
-.btn.btn-primary {
-  &:hover{
-    background-color: white;
-    color: $brand-primary;
-  }
-}
 
 .btn.btn-default {
   border: none;

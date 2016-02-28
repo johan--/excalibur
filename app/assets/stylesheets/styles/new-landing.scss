@@ -340,27 +340,6 @@ figure figcaption p {
   margin-top: 5px;
 }
 
-.about-feature {
-  margin-top: 50px;
-}
-.about-feature .block {
-  color: #fff;
-/*  width: 33.33%; */
-  padding: 5%;
-  float: left;
-}
-.about-feature .block p {
-  font-weight: 300;
-}
-.about-feature .about-feature-1 {
-  background: #02bdd5;
-}
-.about-feature .about-feature-2 {
-  background: #00B0C7;
-}
-.about-feature .about-feature-3 {
-  background: #00A6BB;
-}
 #feature {
   padding: 80px 0;
   background: white;
@@ -422,7 +401,7 @@ figure figcaption p {
   border-color: white;
 }
 
-#about {
+/*#about {
   padding: 110px 0;
 }
 #about .block {
@@ -443,7 +422,7 @@ figure figcaption p {
 #about .block img {
   max-width: 100%;
 }
-
+*/
 .controlsBlock {
     position: relative;
     bottom: 0;
@@ -573,8 +552,29 @@ section#screens .filter a.active {
   background: #66cdcc;
   border-color: #66cdcc;
 }
-.list-group-horizontal .list-group-item {
-    display: inline-block;
+
+.list-group-horizontal {
+  .list-group-item {
+      float: none;
+      text-align: center;  
+      display: inline-block;
+  }
+  &.nav-tabs li {
+    cursor: pointer;
+    a {
+      background-color: white; border: none; cursor: pointer;
+      font-size: 1.3em;
+      &:hover{
+        color: $brand-primary;background-color: white; 
+      }      
+    }
+    &.active {
+      background-color: $brand-primary; color: white;
+      a {
+        background-color: $brand-primary; color: white;border: none;
+      } 
+    }
+  }
 }
 .list-group-horizontal .list-group-item {
   margin-bottom: 0;
@@ -885,7 +885,7 @@ section#reminder {
       rgba(35, 116, 118, 0.46), 
       rgba(35, 116, 118, 0.46)
     ),
-    url('http://res.cloudinary.com/instilla/image/upload/s--FWLXd2Nw--/c_scale,w_1280/v1455955254/asset/pexels-photo_2.jpg');
+    url('http://res.cloudinary.com/instilla/image/upload/s--FWLXd2Nw--/c_scale,w_1280/v1455955254/asset/pexels-photo_2.jpg') no-repeat center center scroll;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -893,17 +893,24 @@ section#reminder {
   -o-background-size: cover;      
 }
 #financing-product {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
   background: 
     linear-gradient(
       rgba(35, 116, 118, 0.46), 
       rgba(35, 116, 118, 0.46)
-    ),
+    ),  
     url('http://res.cloudinary.com/instilla/image/upload/v1455955253/asset/pexels-photo_1.jpg');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;      
+
 }
 .section-dk {
   background-color:#192f42;
@@ -916,68 +923,6 @@ section#reminder {
   min-height:430px;
   padding-top:100px;
   padding-bottom:100px;
-}
-
-.hex-text {
-  font-size:18px;
-  letter-spacing:3px;
-  font-weight:800;
-  text-align:center;
-}
-
-.hex-logo {
-  color:rgba(250,250,250,0.6);
-  font-size:58px;
-  width:100%;
-  text-align:center;
-  position:relative;
-  z-index:9;
-  top:-83px;
-  line-height:40px;
-}
-
-.hex-overlay {
-  color:rgba(255,255,255,0.7);
-  text-transform:uppercase;
-  font-size:15px;
-  width:100%;
-  text-align:center;
-  position:relative;
-  z-index:11;
-  font-weight:bold;
-}
-
-.hex {
-  width: 200px;
-  height: 100px;
-  position: relative;
-  /*background: rgba(40,186,0,0.85);*/
-  background: rgba(49,176,213,0.8);
-  margin:0 auto;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-}
-.hex:before {
-  content: "";
-  position: absolute;
-  border-bottom: 60px solid rgba(40,186,0,0.85);
-  border-bottom: 60px solid rgba(49,176,213,0.8);
-  border-right: 100px solid transparent;
-  border-left: 100px solid transparent;
-  top: -60px;
-  transition: all .3s ease;
-  -webkit-transition: all .3s ease;
-}
-.hex:after {
-  content: "";
-  position: absolute;
-  border-top: 60px solid rgba(40,186,0,0.85);
-  border-top: 60px solid rgba(49,176,213,0.8);
-  border-right: 100px solid transparent;
-  border-left: 100px solid transparent;
-  bottom: -60px;
-  transition: all .3s ease;
-  -webkit-transition: all .3s ease;
 }
 
 .table>tbody>tr>td, .table>thead>tr>td,

@@ -20,10 +20,12 @@ class PagesController < ApplicationController
 
   def ownership
     @static = true
+    @category = "ownership"
   end
 
   def funding
     @static = true
+    @category = "funding"
   end
 
   def open_simulation
@@ -70,7 +72,7 @@ class PagesController < ApplicationController
     @subscriber = Subscriber.new(email: params[:email], category: params[:category])
     
     if @subscriber.save
-      track! :signup
+      # track! :signup
       # SubscriberMailer.welcome(@subscriber).deliver
       flash[:notice] = "Terima kasih, kami akan kabari kamu"
       redirect_to root_path
