@@ -25,14 +25,6 @@ class MusharakaSimulation
     # @avg_acquisition = avg_acquisition.to_i
   end
 
-  def total_months
-  	@maturity * 12
-  end
-
-  def rate
-    capitalization_rate(@maturity, tangible)
-  end
-
   def other_party_ownership(contribution)
   	1000 - contribution
   end
@@ -46,16 +38,8 @@ class MusharakaSimulation
     other_party_ownership(@contribution) / @maturity
   end
 
-  def avg_annual_rental
-    @price *  rate / 100 # + modifier
-  end
-
   def acquisition(cost)
     avg_acquisition_rate * cost
-  end
-
-  def acquisition_value
-    avg_acquisition_rate
   end
 
   def rental_value(n, contribution)
@@ -64,23 +48,32 @@ class MusharakaSimulation
   end
 
   def geometric_price(n)
-    @par * avg_annual_price_increase**(n)
+    # @par * avg_annual_price_increase**(n)
+    @par * (1 - avg_annual_price_increase**(n+1)) / (1-avg_annual_price_increase)
   end
 
   def calculating_total_spending
     current_ownership = @contribution
     share_spending = 0
     rent_spending = 0
+    results = {}
     # current_price = @par
 
     @maturity.times do |k|
     # until current_ownership == 100  do
       # $i +=1;
+
+      current_price = geometric_price(k) #get the new price after one year
+
       rent_spending += rental_value(k, current_ownership)
-      current_price = geometric_price(k)
       share_spending += acquisition(current_price)
       current_ownership += avg_acquisition_rate
+
+      results = { obligation: rent_spending, purchase: share_spending, 
+        total: rent_spending + share_spending }
     end
+
+    return results
   end
 
 end

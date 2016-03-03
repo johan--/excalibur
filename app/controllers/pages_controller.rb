@@ -106,12 +106,7 @@ class PagesController < ApplicationController
 
   def simulation
     @sim = params[:simulation]
-    if @sim[:aqad] == 'murabaha'
-      @simulation = MurabahaSimulation.new(maturity: @sim[:maturity], 
-        price: @sim[:price], tangible: @sim[:tangible], 
-        contribution_percent: @sim[:contribution]
-      )
-    elsif @sim[:aqad] == 'musharaka'
+    if @sim[:aqad] == 'musharaka'
       @simulation = MusharakaSimulation.new(maturity: 10, 
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
