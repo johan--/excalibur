@@ -46,7 +46,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bcrypt', '3.1.9'
 gem 'kaminari', '0.16.2'
 gem 'friendly_id', '5.1.0'
-gem 'font-awesome-sass', '4.2.2'
+gem 'font-awesome-sass', '~> 4.5.0'
 gem 'bootstrap-sass', '3.3.3'
 gem 'goldiloader'
 gem 'simple_form'

@@ -1,6 +1,7 @@
 <% meta title: "Solusi Pendanaan Rumah Secara Syariah", description: '',
      keywords: '' %>
 
+<%= render partial: 'elements/modal_placeholder', locals: { modal_name: "main" } %>  
 <section class="about-section" id="financing-product">
   <div class="about-cont about-to-left">
     <div class="container">
@@ -29,30 +30,93 @@
       <h2 class="section-title">Proses</h2>
       <h1 class="section-headline">Alur Program Kepemilikan Rumah Kapiten</h1>
     </div>
-    <div class="blankslate">
-      <div class="spacious">
-        <h3 class="coral"><%= "Coming Soon" %></h3>
+    <div class="timeline">
+      <!--  <div class="date-title">
+        <span>March 2014</span>
+      </div> -->
+      <div class="row">
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>1</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Registrasi</h2>
+            <p>Registrasi dengan akun facebook, linkedin, atau buat akun Kapiten. Singkat, kurang dari 1 menit. </p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6 news-item right">
+          <div class="news-content">
+            <div class="date">
+              <p>2</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Buat Pengajuan</h2>
+            <p>Kamu sebagai Klien mengajukan penawaran musyarakah  di platform Kapiten. Dalam membuat pengajuan ini kamu diminta untuk memberikan beberapa informasi penting tentang dirimu, tentang rumah yang dipilih, serta memberikan hasil scan dokumen-dokumen penting.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
       </div>
-    </div>
+      
+      <div class="row">
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>3</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Penilaian</h2>
+            <p>Kamu sebagai klien mengisi kuesioner dan diwawancara. Kapiten menyampaikan penilaian secara terbuka dalam tulisan, metrics, dan rekaman.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6 news-item right">
+          <div class="news-content">
+            <div class="date">
+              <p>4</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Penawaran</h2>
+            <p>Jika pengajuanmu lolos verifikasi, maka Kapiten akan mempublikasikannya dan membuka penawaran investasi kepada para pendana. Apabila dalam kurun waktu 4 bulan semua saham telah dipesan dan kemudian dibayar, maka lanjut ke tahap selanjutnya, apabila tidak tercapai, maka pengajuan dianggap gagal.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="date-title">
+        <span>February 2014</span>
+      </div> -->
+      <div class="row"> 
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>5</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Eksekusi Kontrak</h2>
+            <p>Kontrak Musyarakah Mutanaqishah diteken antara Kapiten sebagai wakil para pendana dengan kamu sebagai pembeli rumah. Setelah itu Kapiten membeli rumah atas nama syirkah.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6 news-item right">
+          <div class="news-content">
+            <div class="date">
+              <p>6</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Sukses</h2>
+            <p>Selamat, kamu telah memiliki rumah tanpa terlibat dalam hutang. Rumah tersebut belum sepenuhnya kamu miliki, tapi kamu memiliki hak dan kewajiban atas rumah tersebut sesuai dengan porsi kepemilikanmu, yang dapat kamu tingkatkan kapan saja dengan membeli saham kepemilikan dari para pendana.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+      </div>
+    </div>    
   </div>     
 </div>
 
-<div class="section container-fluid">
-  <div class="row">
-     <div class="col-sm-6 col-sm-offset-3">
-       <h1 class="text-center">Kapiten masih dalam pengembangan.</h1>
-       <h4 class="text-center text-info">we just have to make a few finishing touches</h4>
-       <h2 class="text-center"></h2>
-       <%= form_tag subscribe_path, method: 'post', html: {role: "form"}, class: "col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" do %>
-         <div class="input-group input-group-lg text-center">
-          <%= text_field_tag :email, '', placeholder: "alamat emailmu", class: "form-control input-lg" %>
-          <%= hidden_field_tag :category, @category, readonly: true %>
-          <span class="input-group-btn">
-            <button class="btn btn-primary" >Kabari Saya</button>
-          </span>
-         </div>
-       <% end %>
-     </div>
-  </div>
-</div>
+<%= render 'pages/reminder' %>
 <%= render 'layouts/footer' %>

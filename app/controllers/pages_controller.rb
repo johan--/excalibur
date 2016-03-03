@@ -85,6 +85,25 @@ class PagesController < ApplicationController
     end    
   end
 
+
+  def prepare_request
+  end
+
+  def send_request
+    @soft_request = SoftRequest.build_from(
+      params[:name], params[:email], params[:occupation], 
+      params[:income], params[:tangible], params[:address], 
+      params[:price], params[:capital])
+
+    if @soft_request.valid?
+      ContactMailer.funding_request_message(
+        params[:name], params[:email], @soft_request.message).deliver_later
+      flash.now.notice = "Terima kasih, permintaanmu sudah dikirimkan."
+    else
+      flash.now.alert = "Maaf ada masalah, mohon coba lagi."
+    end
+  end
+
   def simulation
     @sim = params[:simulation]
     if @sim[:aqad] == 'murabaha'

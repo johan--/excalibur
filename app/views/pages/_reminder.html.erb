@@ -1,0 +1,18 @@
+<div class="section container-fluid">
+  <div class="row">
+     <div class="col-sm-6 col-sm-offset-3">
+       <h1 class="text-center">Kapiten masih dalam pengembangan.</h1>
+       <h4 class="text-center text-info">we just have to make a few finishing touches</h4>
+       <h2 class="text-center"></h2>
+       <%= form_tag subscribe_path, method: 'post', html: {role: "form"}, class: "col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" do %>
+         <div class="input-group input-group-lg text-center">
+          <%= text_field_tag :email, '', placeholder: "alamat emailmu", class: "form-control input-lg" %>
+          <%= hidden_field_tag :category, @category, readonly: true %>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" >Kabari Saya</button>
+          </span>
+         </div>
+       <% end %>
+     </div>
+  </div>
+</div>

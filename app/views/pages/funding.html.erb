@@ -1,6 +1,6 @@
 <% meta title: "Solusi investasi properti yang syariah dan nyaman", description: '',
      keywords: '' %>
-<section class="about-section" id="saving-product">
+<section class="about-section" id="investment-product">
   <div class="about-cont about-to-left">
     <div class="container">
         <div class="row">
@@ -29,7 +29,7 @@
     <div class="row tour-items">
       <div class="benefit-item col-md-4 col-sm-12">                    
         <!-- FEATURE ICON -->
-        <span><i class="fa fa-star fa-4x"></i></span>
+        <span><%= icon('star', class: 'fa-4x') %></span>
         
         <!-- FEATURE TITLE -->
         <h5>Halal</h5>
@@ -40,7 +40,7 @@
       </div>
       <div class="benefit-item col-md-4 col-sm-12">                    
         <!-- FEATURE ICON -->
-        <span><i class="fa fa-gift fa-4x"></i></span>
+        <span><%= icon('gift', class: 'fa-4x') %></span>
         
         <!-- FEATURE TITLE -->
         <h5>Berdampak Sosial</h5>
@@ -51,7 +51,7 @@
       </div>
       <div class="benefit-item col-md-4 col-sm-12">                    
         <!-- FEATURE ICON -->
-        <span><i class="fa fa-hotel fa-4x"></i></span>
+        <span><%= icon('hotel', class: 'fa-4x') %></i></span>
         
         <!-- FEATURE TITLE -->
         <h5>Nyaman</h5>
@@ -64,18 +64,18 @@
     <div class="tour-observe">
       <div class="section-heading centered">
         <h2 class="section-title">Produk</h2>
-        <h1 class="section-headline">Kami menyediakan berbagai layanan dalam </h1>
+        <h1 class="section-headline">Kami merancang skema investasi properti berdampak sosial</h1>
       </div>
       <div class="row">
         <div class="col-md-6">
           <ul class="article-list-basic">
             <li>
               <a href="#">
-                <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
+                <img src="http://res.cloudinary.com/instilla/image/upload/v1449582606/asset/father-656734_640.jpg" alt="Industrial Mech" />
               </a>
               <div>
-                <h2><a href="#">Hijrah</a></h2>
-                <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah, namun sudah memiliki modal.</p>
+                <h2><a href="#">Pendanaan Pembelian Rumah</a></h2>
+                <p>Skema investasi untuk mendanai pembelian rumah tanpa hutang  sebuah keluarga dengan akad Musyarakah Mutanaqishah.</p>
               </div>
             </li>            
           </ul>
@@ -94,8 +94,8 @@
                 
                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
-                  <!-- Tab content goes here -->
-                  Crowdfunding adalah sistem pendanaan yang bersumber pada banyak pihak. Manfaat dari crowdfunding atau pendanaan gotong royong adalah mekanisme permintaan dan penawaran yang efisien. Di Kapiten, para pendana mendapatkan hak imbal hasil atas kontribusi mereka. Untuk mengetahui lebih lanjut mengenai investasi di Kapiten, silahkan <%= link_to "klik di sini", funding_job_url(subdomain:'') %>.
+                    <!-- Tab content goes here -->
+                    Siapa bilang investasi tidak bisa menguntungkan sekaligus berdampak sosial? Kami di Kapiten ingin membuktikan hal tersebut mungkin. Dengan skema produk ini, ekspektasi imbal hasil yang didapat berkisar antara <strong>6-15%</strong> per tahunnya, yang berasal dari pembayaran sewa rumah oleh si pembeli dan penjualan saham kepemilikanmu. 
                   </div>
                 </div>
               </div> 
@@ -106,41 +106,47 @@
                   <!--wrap panel heading in span to trigger image change as well as collapse -->
                   <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
                       <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          <h4 class="panel-title collapsed">Persyaratan</h4>
+                          <h4 class="panel-title collapsed">Skema</h4>
                       </div>
                   </span>
 
                   <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                      <!-- Tab content goes here -->
-                        Musyarakah Mutanaqishah
-                        (MMQ), adalah akad kepemilikan
-                        bersama atas suatu aset. Pihak yang
-                        memakai aset harus membayar
-                        biaya sewa kepada pemilik aset
-                        yang tidak menggunakannya. Porsi
-                        kepemilikan dapat diperjual-belikan                        
+                        Berikut merupakan skema dari produk investasi ini:
                       </div>
+                        <ul class="list-group">
+                          <li class="list-group-item">Menggunakan akad Wakalah (perwakilan) antara kamu sebagai pendana dengan Kapiten</li>
+                          <li class="list-group-item">Pendanaan diestimasi berlangsung hingga 10 tahun, namun pendana mempunyai fleksibilitas untuk keluar selama sesuai prosedur</li>
+                          <li class="list-group-item">Minimal nilai investasi adalah 0,5% dari harga rumah.</li>
+                          <li class="list-group-item">Tidak ada jaminan atas imbal hasil yang didapatkan, tetapi investasi dijamin oleh rumah yang didanai</li>
+                          <li class="list-group-item">Dapat menjual saham kepemilikan kepada pihak luar selama memenuhi proses dari Kapiten</li>
+                        </ul>
                   </div>
               </div>
               <!-- / panel 2 -->
               
               <!--  panel 3 -->
               <div class="panel panel-default">
-                  <!--wrap panel heading in span to trigger image change as well as collapse -->
-                  <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                      <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          <h4 class="panel-title">Cara</h4>
-                      </div>
-                  </span>
-
-                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                        <!-- tab content goes here -->
-                         tab 3 content
-                        </div>
-                      </div>
+                <!--wrap panel heading in span to trigger image change as well as collapse -->
+                <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                    <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4 class="panel-title">Legalitas</h4>
                     </div>
+                </span>
+
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    Berikut berbagai unsur legalitas dari skema ini:
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">Kontrak Musyarakah Mutanaqishah dan Ijarah dapat dilihat oleh pendana terkait</li>
+                    <li class="list-group-item">Dokumen porsi kepemilikan sebagai addendum dari kontrak Musyarakah</li>
+                    <li class="list-group-item">Mendapatkan sertifikat tanda kepemilikan saham dan kontrak Wakalah</li>
+                    <li class="list-group-item">Perpanjangan kontrak wakalah setiap 2 tahun sekali selama 10 tahun.</li>
+                    <li class="list-group-item">Sertifikat rumah tetap atas nama penjual, sedangkan PPJB & AJB atas nama pembeli. Dokumen-dokumen tersebut disimpan oleh Kapiten sebagai jaminan dan dapat dilihat pula</li>
+                  </ul>                  
+                </div>
+              </div>
           </div> <!-- / panel-group -->
            
           <div class="centered">
@@ -161,31 +167,86 @@
       <h2 class="section-title">Proses</h2>
       <h1 class="section-headline">Alur Program Investasi Rumah Kapiten</h1>
     </div>
-    <div class="blankslate">
-      <div class="spacious">
-        <h3 class="coral"><%= "Coming Soon" %></h3>
+    <div class="timeline">
+      <!--  <div class="date-title">
+        <span>March 2014</span>
+      </div> -->
+      <div class="row">
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>1</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Registrasi</h2>
+            <p>Registrasi dengan akun facebook, linkedin, atau buat akun Kapiten. Singkat, kurang dari 1 menit. </p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6 news-item right">
+          <div class="news-content">
+            <div class="date">
+              <p>2</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Pilih Penawaran</h2>
+            <p>Pilih proposal pendanaan sesuai seleramu. Beberapa aspek yang perlu dipertimbangkan seperti lokasi, calon pembeli, dan tingkat risiko. Setelah memilih, kamu diminta menyebutkan jumlah saham yang ingin kamu beli, namun kamu tidak diminta untuk langsung membayar.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>3</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Konfirmasi</h2>
+            <p>Apabila semua saham untuk proposal tersebut sudah dipesan, maka kamu akan diminta konfirmasi dengan menandatangani kontrak Wakalah dan membayar untuk jumlah saham yang kamu pesan.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6 news-item right">
+          <div class="news-content">
+            <div class="date">
+              <p>4</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Eksekusi Kontrak</h2>
+            <p>Kontrak Musyarakah Mutanaqishah diteken antara Kapiten sebagai wakil para pendana dengan pembeli rumah sebagai klien. Setelah itu Kapiten membeli rumah atas nama syirkah.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="date-title">
+        <span>February 2014</span>
+      </div> -->
+      <div class="row"> 
+        <div class="col-sm-6 news-item">
+          <div class="news-content">
+            <div class="date">
+              <p>5</p>
+              <small></small>
+            </div>
+            <h2 class="news-title">Terima Imbal Hasil</h2>
+            <p>Kamu sebagai pendana dan anggota syirkah yang tidak memakai aset syirkah (rumah) berhak kompensasi dari si pemakai aset syirkah dalam bentuk pembayaran sewa. Selain itu, kamu juga mempunyai potensi keuntungan dari penjualan saham kepemilikan.</p>
+            <!-- <a class="read-more" href="#">Read More</a> -->
+          </div>
+        </div>
+        
+        <div class="col-sm-6">
+
+        </div>
       </div>
     </div>
-  </div>     
-</div>
-<div class="section container-fluid">
-  <div class="row">
-     <div class="col-sm-6 col-sm-offset-3">
-       <h1 class="text-center">Kapiten masih dalam pengembangan.</h1>
-       <h4 class="text-center text-info">we just have to make a few finishing touches</h4>
-       <h2 class="text-center"></h2>
-       <%= form_tag subscribe_path, method: 'post', html: {role: "form"}, class: "col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" do %>
-         <div class="input-group input-group-lg text-center">
-          <%= text_field_tag :email, '', placeholder: "alamat emailmu", class: "form-control input-lg" %>
-          <%= hidden_field_tag :category, @category, readonly: true %>
-          <span class="input-group-btn">
-            <button class="btn btn-primary" >Kabari Saya</button>
-          </span>
-         </div>
-       <% end %>
-     </div>
   </div>
-</div>
+</div>     
+<%= render 'pages/reminder' %>
 <%= render 'layouts/footer' %>
 <!-- <div class="section section-dk container-fluid">
   <div class="row">

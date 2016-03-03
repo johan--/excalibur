@@ -6,11 +6,11 @@
           <h3 class="masthead-brand">Kapiten</h3>
 
           <ul class="nav masthead-nav">
-            <li class="active">
+            <li class="">
               <%= link_to "Blog", root_url(subdomain: "blog") %>
             </li>
             <li>
-              <%= link_to "Daftar", new_user_session_url(subdomain: "") %>
+              <a class="btn btn-lg btn-info" href="#works">Learn more</a>
             </li>
             <% if user_signed_in? %>
               <li>
@@ -29,8 +29,7 @@
         <div class="spacing"></div>
         <p class="lead">Kapiten adalah tempat dimana kamu bisa membantu sebuah keluarga memiliki rumah dengan berinvestasi menggunakan prinsip dan kontrak berbasis syariah. 
         <div class="spacing"></div>
-        <p class="lead"><a class="btn btn-lg btn-info" href="#works">Learn
-        more</a></p>
+        <!-- <p class="lead"><a class="btn btn-lg btn-info" href="#works">Telusuri</a></p> -->
       </div>
 
     </div>
@@ -39,9 +38,9 @@
 
 <%= render 'pages/customers' %>
 <!-- render sub jobs here when completed -->
+<%= render 'pages/reminder' %>
 
-
-<section id="footerwrap" style="padding-top: 40px;padding-bottom: 40px;">
+<!-- <section id="footerwrap" style="padding-top: 40px;padding-bottom: 40px;">
   <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -52,5 +51,5 @@
     </div>
     <%= render 'elements/form_contact' %>
   </div>
-</section>
+</section> -->
 <%= render 'layouts/footer' %>
