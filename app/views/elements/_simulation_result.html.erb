@@ -3,54 +3,34 @@
 </div>
 <div class="modal-body">
   <center>
-  	<% if @sim[:aqad] == 'murabaha' %>
-	    <h3 class="media-heading"><%= "Pembelian Rumah Dengan Murabahah" %></h3><hr class="light">
+  <% if @sim[:type] == 'hijrah' %>
+	<h3 class="media-heading"><%= "Simulasi Hijrah" %></h3><hr>
+  <h5 class="coral">Hasil simulasi ini bukan hasil yang pasti karena Kapiten menentukan tingkat ROI berbeda-beda untuk tiap pengajuan.</h5>
+    <form action="#" class="long-inline lead-big" role="form">
+      <div class="form-group">
+        <label for="name">Kamu akan mendapatkan<span>Jumlah Saham</span></label>
+        <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada.
+      </div>
 
-        <form action="#" class="long-inline lead-big" role="form">
-          <div class="form-group">
-            <label for="name">Apabila kamu memilih Murabaha, diperkirakan rumah akan dijual kepadamu seharga<span>Harga Jual </span></label>
-            <%= text_field_tag :tangible, '', placeholder: idr_money(@simulation.marked_up_price), disabled: true  %>
-          </div>
+      <div class="form-group">
+        <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
+        <%= text_field_tag :maturity, '', placeholder: idr_money(@results[:avg_obligation]), disabled: true  %>
+      </div><br>
 
-          <div class="form-group">
-            <label for="name"> dan kamu cukup membayar uang muka sebesar <span>Down Payment Pertama  </span></label>
-            <%= text_field_tag :price, '', placeholder: idr_money(@simulation.first_payment), disabled: true %>
-          </div>
+      <div class="form-group">
+        <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan perlu membayar <span>Rata-rata nilai pembelian saham</span></label>
+        <%= text_field_tag :contribution, '', placeholder: idr_money(@results[:avg_purchase]), disabled: true %> per bulannya.
+      </div><br>
+      
+      <div class="form-group">
+        <label for="company"> Jadi rata-rata selama <%= @simulation.maturity %> tahun setiap bulannya kamu mengeluarkan <span>Total Pengeluaran</span></label>
+        <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@results[:avg_total]), disabled: true %> untuk memiliki rumah sepenuhnya.
+      </div><br>          
+    </form>
 
-          <div class="form-group">
-            <label for="company"> Perkiraan biaya cicilan per bulan adalah sebesar <span>Cicilan Bulanan</span></label>
-            <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@simulation.calc_monthly_installment), disabled: true %>.
-          </div><br>
-
-        </form>
-	  <%= link_to "Atur Ulang", open_simulation_path(type: 'client', aqad: 'murabaha'), remote: true, class: "btn btn-primary btn-round-lg" %>
-	</center>
-	<% else  %>
-	    <h3 class="media-heading"><%= "Simulasi Musyarakah" %></h3><hr class="light">
-        <form action="#" class="long-inline lead-big" role="form">
-          <div class="form-group">
-            <label for="name">Apabila kamu memilih Musyarakah, kamu cukup membayar uang muka sebesar<span>Down Payment Pertama </span></label>
-            <%= text_field_tag :tangible, '', placeholder: idr_money(@simulation.first_payment), disabled: true  %>
-          </div>
-
-          <div class="form-group">
-            <label for="name">dan kamu akan mendapatkan porsi kepemilikan sebesar <span>Kepemilikan </span></label>
-            <%= text_field_tag :price, '', placeholder: (@simulation.contribution_percent.to_s + '%.'), disabled: true %>
-          </div>
-
-          <div class="form-group">
-            <label for="company"> Perkiraan biaya sewa per bulan atas rumah itu adalah sebesar <span>Sewa Bulanan</span></label>
-            <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@simulation.monthly_rent), disabled: true %>.
-          </div><br>
-
-          <div class="form-group">
-            <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
-            <%= text_field_tag :maturity, '', placeholder: idr_money(@simulation.rental_fee), disabled: true  %>
-          </div><br>
-        </form>
-
-		<%= link_to "Atur Ulang", open_simulation_path(type: 'client', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
+		<%= link_to "Atur Ulang", open_simulation_path(type: 'hijrah', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
 	<% end %>
+  </center>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>

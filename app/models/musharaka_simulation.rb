@@ -29,6 +29,10 @@ class MusharakaSimulation
   	1000 - contribution
   end
 
+  def share_purchased
+    "#{@contribution} dari 1000"
+  end
+
   def profit
     "Rp #{monthly_rent}/bulan"
   end
@@ -52,28 +56,36 @@ class MusharakaSimulation
     @par * (1 - avg_annual_price_increase**(n+1)) / (1-avg_annual_price_increase)
   end
 
-  def calculating_total_spending
+  def calculation
     current_ownership = @contribution
     share_spending = 0
     rent_spending = 0
     results = {}
-    # current_price = @par
 
     @maturity.times do |k|
     # until current_ownership == 100  do
       # $i +=1;
 
-      current_price = geometric_price(k) #get the new price after one year
+      current_price = geometric_price(k) #get the new price after each year
 
-      rent_spending += rental_value(k, current_ownership)
-      share_spending += acquisition(current_price)
+      rent_spending += rental_value(k, current_ownership).round(0)
+      share_spending += acquisition(current_price).round(0)
       current_ownership += avg_acquisition_rate
+      tot = rent_spending + share_spending
 
-      results = { obligation: rent_spending, purchase: share_spending, 
-        total: rent_spending + share_spending }
+      results = { 
+        obligation: rent_spending, purchase: share_spending, 
+        total: tot, 
+        avg_obligation: monthly_average_of_total(rent_spending),
+        avg_purchase: monthly_average_of_total(share_spending),
+        avg_total: monthly_average_of_total(tot) }
     end
 
     return results
+  end
+
+  def monthly_average_of_total(number)
+    number / (@maturity * 12)
   end
 
 end

@@ -9,7 +9,7 @@ class SoftRequest
   validates :tangible, presence: true
   validates :target_address, presence: true
   validates :occupation, presence: true
-  validates :income, presence: true, numericality: { only_integer: true }
+  # validates :income, presence: true, numericality: { only_integer: true }
   validates :price, presence: true, numericality: { only_integer: true }
   validates :capital, presence: true, numericality: { only_integer: true }
 
@@ -22,11 +22,11 @@ class SoftRequest
   	@contribution = capital.to_i
   end
 
-  def self.build_from(name, email, occupation, income, tangible, address, price, capital)
+  def self.build_from(name, email, occupation, tangible, address, price, capital)
     new \
       full_name: name, email: email, 
-      occupation: occupation, income: income,
-      tangible: tangible, target_address: address, price: price, 
+      occupation: occupation, tangible: tangible, 
+      target_address: address, price: price, 
       capital: capital
   end
 

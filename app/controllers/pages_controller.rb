@@ -92,7 +92,7 @@ class PagesController < ApplicationController
   def send_request
     @soft_request = SoftRequest.build_from(
       params[:name], params[:email], params[:occupation], 
-      params[:income], params[:tangible], params[:address], 
+      params[:tangible], params[:address], 
       params[:price], params[:capital])
 
     if @soft_request.valid?
@@ -107,10 +107,11 @@ class PagesController < ApplicationController
   def simulation
     @sim = params[:simulation]
     if @sim[:aqad] == 'musharaka'
-      @simulation = MusharakaSimulation.new(maturity: 10, 
+      @simulation = MusharakaSimulation.new(maturity: @sim[:maturity], 
         price: @sim[:price], tangible: @sim[:tangible], 
         contribution_percent: @sim[:contribution]
       )
+      @results = @simulation.calculation
     end
     meta_events_tracker.event!(:user, :simulate, { 
       aqad: @sim[:aqad], capital: @sim[:contribution], 
