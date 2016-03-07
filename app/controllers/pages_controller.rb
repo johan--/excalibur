@@ -93,7 +93,7 @@ class PagesController < ApplicationController
     @soft_request = SoftRequest.build_from(
       params[:name], params[:email], params[:occupation], 
       params[:tangible], params[:address], 
-      params[:price], params[:capital])
+      params[:price], params[:capital], params[:type])
 
     if @soft_request.valid?
       ContactMailer.funding_request_message(

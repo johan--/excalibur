@@ -1,16 +1,19 @@
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <figure>
-        <div class="img-wrapper">
-            <img src="<%= page.thumbnail %>" class="img-responsive" alt="" >
-            <div class="overlay">
-                <div class="buttons">
-                    <%= link_to "Telusuri", wiki_page_path( page.path )  %>
-                </div>
-            </div>
-        </div>
-        <figcaption>
+<div class=" item masonry-brick">
+    <div class="picture">
+      <%= link_to wiki_page_path(page.path), class: 'image' do %>
+        <img src="<%= page.thumbnail %>" alt="" >
+      <% end %>
+      <div class="item-content">
+        <div class="description">
             <h4><%= link_to page.title, wiki_page_path(page.path) %></h4>
-            <p>Terakhir diperbarui pada tanggal <%= page.updated_at.strftime("%-d %B %Y") %></p>
-        </figcaption>
-    </figure>    
+        </div>
+        <div class="author"></div>
+        <div class="meta">
+            <span class="time">
+                <i class="fa fa-calendar"></i>
+                <%= page.updated_at.strftime("%-d %B %Y") %>
+            </span>
+        </div>
+      </div>
+    </div>
 </div>

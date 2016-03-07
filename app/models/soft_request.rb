@@ -2,7 +2,7 @@ class SoftRequest
   include ActiveModel::Model
   
   attr_accessor :occupation, :income, :price, :capital, :tangible,
-  				:target_address, :email, :full_name
+  				:target_address, :email, :full_name, :type
 
   validates :email, presence: true
   validates :full_name, presence: true
@@ -22,12 +22,12 @@ class SoftRequest
   	@contribution = capital.to_i
   end
 
-  def self.build_from(name, email, occupation, tangible, address, price, capital)
+  def self.build_from(name, email, occupation, tangible, address, price, capital, type)
     new \
       full_name: name, email: email, 
       occupation: occupation, tangible: tangible, 
       target_address: address, price: price, 
-      capital: capital
+      capital: capital, type: type
   end
 
   def message

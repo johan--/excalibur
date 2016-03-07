@@ -1,7 +1,20 @@
 <%= wiki_page_style -%>
 
+<div id="items">
   <%= wiki_paginate @pages do -%>
   	<% @pages.each do |page| -%>
   	  <%= render 'wiki_pages/wiki_page', page: page %>
   	<% end %>
   <% end -%>
+</div>
+
+<script type="text/javascript">
+var $container = $('#items');
+  $container.imagesLoaded(function(){
+    $container.masonry({
+      itemSelector : '.item',
+      columnWidth : 320,
+      isAnimated: true
+  });
+});	
+</script>

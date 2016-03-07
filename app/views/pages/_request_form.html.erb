@@ -49,6 +49,8 @@
       </div>
     </div>
 
+    <%= hidden_field_tag :type, '', value: params[:type], required: true %>
+    
     <div class="row">
       <div class="col-xs-12 padded">
         <%= submit_tag t("forms.buttons.submit"), class: 'btn btn-lg btn-success' %>
