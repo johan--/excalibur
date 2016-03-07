@@ -580,8 +580,7 @@ section#reminder {
   -o-background-size: cover;      
 }
 #financing-product {
-  background: 
-    url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_1200/v1456927453/asset/pexels-photo.jpg') no-repeat center center scroll;
+  background: url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_1200/v1456927453/asset/pexels-photo.jpg') no-repeat center center scroll;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -591,7 +590,11 @@ section#reminder {
 }
 #about-us {
   background: 
-    url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_1200/v1456927453/asset/pexels-photo.jpg') no-repeat center center scroll;
+    linear-gradient(
+      rgba(35, 116, 118, 0.46), 
+      rgba(35, 116, 118, 0.46)
+    ),  
+    url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_1200/v1456927453/asset/pexels-photo-25109.jpg') no-repeat center center scroll;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -599,6 +602,19 @@ section#reminder {
   -o-background-size: cover;      
 
 }
+
+@media (max-width: 768px) {
+  #investment-product {
+    background: url('//res.cloudinary.com/instilla/image/upload/s--BYAjihIV--/c_scale,w_800/v1456927252/asset/167.jpg') no-repeat center center scroll;    
+  } 
+  #financing-product {
+    background: url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_800/v1456927453/asset/pexels-photo.jpg') no-repeat center center scroll;
+  }
+  #about-us {
+    background: url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_800/v1456927453/asset/pexels-photo-25109.jpg') no-repeat center center scroll;
+  }
+}
+
 .section-dk {
   background-color:#192f42;
   min-height:460px;

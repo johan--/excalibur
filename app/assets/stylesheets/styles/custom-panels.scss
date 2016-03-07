@@ -108,3 +108,9 @@
 .icon-block.icon-block-1 .icon-block-body p {
     margin: 0;
 }
+.panel-heading {
+  text-align: left;
+  .clickable {
+    margin-top: -20px;font-size: 15px;
+  }
+}
