@@ -6,11 +6,11 @@
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
   
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
-  <p><%=wt 'Header URL:' %><br /><%= f.text_field :thumbnail %></p>
-  <p><%=wt 'Tags:' %><br /><%= f.text_field :tags %></p>
-  <p><%=wt 'Content:' %><br /><%= f.text_area :content_md %></p>
+  <p><%=wt 'Header URL:' %><br /><%= f.text_field :thumbnail, placeholder: 'untuk gambar header' %></p>
+  <p><%=wt 'Tags:' %><br /><%= f.text_field :tags, placeholder: "pisahkan dengan tanda titik koma ';' " %></p>
+  <p><%=wt 'Content:' %><br /><%= f.text_area :content_md, rows: 40 %></p>
   <%= f.hidden_field :comment, :value => 'First Revision'%>
   <%= hidden_field_tag :path, @page.path %>
 
-  <input type="submit" value="<%=wt 'Create page' %>" class="submit" />
+  <input type="submit" value="<%=wt 'Buat Halaman' %>" class="submit" />
 <% end %>

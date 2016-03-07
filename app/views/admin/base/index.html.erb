@@ -1,46 +1,124 @@
 <% title("Admin Dashboard") %>
 <h1>Admin <small>Dashboard</small></h1>
 
-  <div class="col-sm-4 col-xs-6">
-    <h3>Recent Subscribers</h3>
-    <ul class="list-unstyled">
-      <% @last_subscribers.each do |subs| %>
-      <li class="list-padded-bottom">
-        <%= subs.email %><br/>
-        <small>
-          <%= time_ago_in_words(subs.created_at)%> ago
-        </small>
-      </li>
+<!-- Small boxes (Stat box) -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3><%= @tender_count %></h3>
+        <p>Proposal</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <%= link_to admin_tenders_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
       <% end %>
-    </ul>
-  </div>
-
-  <div class="col-sm-4 col-xs-6">
-    <h3>Last Sign Ups</h3>
-    <ul class="list-unstyled">
-      <% @last_signups.each do |user| %>
-      <li class="list-padded-bottom">
-        <%= user.email %><br/>
-        <small><%= time_ago_in_words(user.created_at)%> ago</small>
-      </li>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3><%= @bid_count %></h3>
+        <p>Tawaran</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+      <%= link_to admin_bids_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
       <% end %>
-    </ul>
-  </div>
-
-  <div class="col-sm-4 col-xs-6">
-    <h3>Last Sign Ins</h3>
-    <ul class="list-unstyled">
-      <% @last_signins.each do |user| %>
-      <li class="list-padded-bottom">
-        <%= user.email %><br/>
-        <small>
-          <% unless user.last_sign_in_at.nil? %>
-          <%= time_ago_in_words(user.last_sign_in_at)%> ago
-          <% else %>
-          never
-          <% end %>
-        </small>
-      </li>
+    </div>
+  </div><!-- ./col -->            
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3><%= @doc_count %></h3>
+        <p>Document</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-stats-bars"></i>
+      </div>
+      <%= link_to admin_documents_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
       <% end %>
-    </ul>
-  </div>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3><%= @user_count %></h3>
+        <p>Users</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
+      </div>
+      <%= link_to admin_users_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-navy">
+      <div class="inner">
+        <h3><%= @post_count %></h3>
+        <p>Posts</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-paper"></i>
+      </div>
+      <%= link_to admin_posts_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div><!-- ./col -->  
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-maroon">
+      <div class="inner">
+        <h3><%= @wiki_count %></h3>
+        <p>Wikis</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-book"></i>
+      </div>
+      <%= link_to wiki_all_path, class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div><!-- ./col -->    
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-lime">
+      <div class="inner">
+        <h3><%= @house_count %></h3>
+        <p>Houses</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-home"></i>
+      </div>
+      <%= link_to admin_houses_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div><!-- ./col -->    
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-teal">
+      <div class="inner">
+        <h3><%= @assess_count %></h3>
+        <p>Assessments</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ionic"></i>
+      </div>
+      <%= link_to admin_comments_url(subdomain: ''), class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div><!-- ./col -->      

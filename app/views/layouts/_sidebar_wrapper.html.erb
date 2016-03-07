@@ -44,7 +44,12 @@
         <%= link_to root_url(subdomain: 'blog') do %>
           <i class="fa fa-newspaper-o"></i> <span>Blog</span> <small class="label pull-right bg-green">new</small>
         <% end %>
-      </li>      
+      </li>
+      <li class="">
+        <%= link_to admin_root_url(subdomain: '') do %>
+          <i class="fa fa-dashboard"></i> <span>Admin</span>
+        <% end %>
+      </li>          
       <li class="treeview">
         <a href="#">
           <i class="fa fa-table"></i> <span>Bantuan</span>

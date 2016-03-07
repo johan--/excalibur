@@ -1,6 +1,6 @@
 class Admin::BaseController < ApplicationController
   before_filter :require_admin!
-  before_action :disable_background
+  before_filter :inside_app
   before_action :admin_layout
 
   def index
@@ -14,6 +14,8 @@ class Admin::BaseController < ApplicationController
     @doc_count = Document.count
     @tender_count = Tender.count
     @bid_count = Bid.count
+    @wiki_count = WikiPage.count
+    @assess_count = Comment.count
   end
 
   def inbox
