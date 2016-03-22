@@ -9,7 +9,7 @@ $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 $brand-info: #5bc0de;
 $brand-coral: #FA396f;
-$brand-grey: #F9DC5C;
+$brand-grey: #6C7A89;
 $brand-blue: #394264;
 $brand-green: #1ABC9C;
 $brand-dark: #192f42;
@@ -559,15 +559,5 @@ img {
 
 //***********************************************************
 // FOOTER
-#footer {
-  background-color: $brand-primary;
-  color: #fff;
-  height: 100px;
-  margin-top: 30px;
-  letter-spacing: 1px;
 
-  .footer-first-row {
-    padding-top: 20px;
-  }
-}
 //***********************************************************

@@ -1,4 +1,4 @@
-  <%= form_for([:admin, @house], url: {action: "update"}) do |f| %>
+<%= form_for([:admin, @house], url: {action: "update"}) do |f| %>
 
 <div id="direct_upload">
   <p>Format yang diterima adalah .jpg atau .png maksimal 1 MB. Bisa dengan mengklik tombol 'Unggah' atau dengan drag dan drop ke dalam area bergaris</p>
@@ -21,13 +21,12 @@
       </div>
     </div>
 </div>
-
     
-    <button class='btn btn-outlined btn-theme'>
-      <i class='fa fa-plus-square'></i> Simpan
-    </button> - <%= link_to "Cancel", house_path(@house) %>
+<button class='btn btn-outlined btn-theme'>
+  <i class='fa fa-plus-square'></i> Simpan
+</button> - <%= link_to "Cancel", house_path(@house) %>
 
-  <% end %>
+<% end %>
 <script>
 // $('photo_submit').on('keyup', function(event){
 //   if event.target.val().length > 0 {

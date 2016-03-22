@@ -1,4 +1,20 @@
 /*For the list item of tender and bids*/
+.list-wing{
+  height: 50%; margin: auto;
+  /*position: absolute;*/
+  top: 0; left: 0; bottom: 0; right: 0;
+  h4{
+    text-align: center;
+  }
+}
+.timeline-footer{
+    margin-top: 25px;
+    padding-top:10px; padding-left: 10px; padding-right: 10px;
+}
+.timeline-footer > a{
+    cursor: pointer; margin-right: 10px;
+    text-decoration: none;
+}
 .timeline-panel {
   border: 1px solid #d4d4d4;
   border-radius: 3px;
@@ -9,6 +25,9 @@
   position: relative;
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  .timeline-footer {
+    border-top: 1px solid #d4d4d4;
+  }
 }
 .timeline-panel .timeline-panel-ul {
   list-style: none;
@@ -56,4 +75,8 @@
     right: -10px;
     top: -10px;
     z-index: 100;
+}
+
+.tender-item {
+  background-color: white;
 }

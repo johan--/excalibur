@@ -19,10 +19,10 @@
 <% if @inside %>
 
   <body class="hold-transition skin-blue sidebar-mini">
-    <% unless @admin_layout %>  
-      <%= render 'layouts/wrapper' %>
-    <% else %>
+    <% if @admin_layout %>  
       <%= render 'layouts/admin_layout' %>
+    <% else %>
+      <%= render 'layouts/wrapper' %>
     <% end %>
   </body>
 

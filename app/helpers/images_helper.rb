@@ -55,14 +55,14 @@ module ImagesHelper
 
 	def user_lg_options(type, string)
 		type = type.to_sym
-		{ :type => type, :width => 400, :height => 300, 
+		{ :type => type, :width => 450, :height => 300, 
 			:crop => :scale, format: :jpg, class: "#{string}" }
 	end
 
 
-  def render_house_display(house, string)
+  def render_lg_house_display(house, string)
     if house.avatar.blank?
-      cl_image_tag('asset/2000px-House_Silhouette', user_lg_options('', string))
+      image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_300,w_450/v1452508512/asset/2000px-House_Silhouette.png')
     else
       cl_image_tag(house.avatar, user_lg_options('private', string))
     end
@@ -70,10 +70,25 @@ module ImagesHelper
 
   def render_house_display(house, string)
     if house.avatar.blank?
- 	  image_tag('http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png',
+ 	  image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_160,w_240/v1452508512/asset/2000px-House_Silhouette.png',
  	  	class: 'img-responsive thumbnail')
     else
       cl_image_tag(house.avatar, user_lg_options('private', string))
     end
   end  
+
+  def render_house_display_for_tender(house, string)
+    if house.avatar.blank?
+ 	  image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_200,w_300/v1452508512/asset/2000px-House_Silhouette.png',
+ 	  	style: 'width: 100%;')
+    else
+      cl_image_tag(house.avatar, house_tender_options('private', string))
+    end
+  end    
+
+	def house_tender_options(type, string)
+		type = type.to_sym
+		{ :type => type, :width => 300, :height => 200, 
+			:crop => :scale, format: :jpg, class: "#{string}" }
+	end  
 end

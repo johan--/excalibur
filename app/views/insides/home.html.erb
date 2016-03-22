@@ -1,116 +1,73 @@
 <% meta title: "Home" %>
 
-<div class="user-menu-container square">
-    <div class="user-details">
-        <div class="row white-background white" style="margin-left: 0px;">
-            <div class="col-md-9 col-xs-8">
-                <div class="user-pad">
-                    <h3 class="black">Hai, <%= current_user.first_name %></h3>
-                    <h4 class="white"><i class="fa fa-check-circle-o"></i> Individu</h4>
-                    <%= render_user_auth_choice(current_user) %>
-                    <%= link_fa_to('pencil', 'Akun', profile_url(subdomain: ''), true) %>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-4">
-                <div class="user-image">
-                	<%= determine_user_display(current_user, 'img-responsive thumbnail') %>
-                </div>
-            </div>
-        </div>
-        <div class="row overview">
-            <div class="col-xs-4 user-pad text-center">
-                <h3>FOLLOWERS</h3>
-                <h4>-</h4>
-            </div>
-            <div class="col-xs-4 user-pad text-center">
-                <h3>FOLLOWING</h3>
-                <h4>-</h4>
-            </div>
-            <div class="col-xs-4 user-pad text-center">
-                <h3>APPRECIATIONS</h3>
-                <h4>-</h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 user-menu-btns">
-        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
-            <%= link_to user_root_path, remote: true, class: "interface btn btn-block btn-primary active", id: "home-button" do %>
-              <i class="fa fa-laptop fa-3x"></i>
-            <% end %>
-        </div>
-        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
-            <%= link_to marketplace_path, remote: true, class: "interface btn btn-block btn-primary", id: "market-button" do %>
-              <i class="fa fa-briefcase fa-3x"></i>
-            <% end %>             
-        </div>
-        <div class="col-xs-4 responsive" style="padding-left: 0px; padding-right: 0px;">
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fa fa-coffee fa-3x"></i>
-            </a>                    
-        </div>
-    </div>
-    <br>
-    <div class="col-xs-12 user-menu">
-        <div class="user-menu-content active">
-            <div class="col-md-3 centered" id="left-view">
-            	<br>
-            	<div class="row">
-	            	<div class="col-md-12 col-sm-12">
-	                	<i class="fa fa-cloud-upload fa-4x"></i>
-	            	</div>
-	            	<div class="col-md-12 col-xs-5">
-	                   	<%= render_double_button('lightbulb-o', 'Ajukan', 'Fundraising', choose_product_path, true) %>
-	            	</div>
-	            	<div class="col-md-12 col-xs-2" style="margin-top: 10px; margin-bottom: 10px;">
-	                    ATAU
-	                </div>
-	                <div class="col-md-12 col-xs-5">
-	                	<%= render_double_button('search', 'Pilih', 'Investasi', marketplace_path, true) %>
-	                </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-              <div id="home-view">
-	            <h3>Portofolio</h3><hr class="light">
-            	<div class="right-display">
-            	  <div class="item">
-                  	<h5>Pengajuan</h5>
-                  	<%= render partial: 'tenders/tender', collection: @tenders  %>
-                  </div>
-                  <div class="item">
-                  	<h5>Penawaran</h5>
-                  	<%= render partial: 'bids/bid', collection: @bids  %>
-                  </div>
-                  <div class="item">
-                  	<h5>Aset</h5>
-                  	<small>Belum ada aset dimiliki</small>
-                  </div>
+<div class="home" style="">
+  <h1 class="primary">Markas</h1><hr class="light">
+
+  <div class="row" id="home-view">
+    <div class="col-md-10 col-md-offset-1 right-display">
+      <ul class="nav nav-tabs list-group list-group-horizontal centered">
+        <li class="list-group-item active">
+          <a href="#tab_default_1" data-toggle="tab">Investasi</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#tab_default_2" data-toggle="tab">Pengajuan</a>
+        </li>        
+      </ul>
+      <div class="row">
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_default_1">
+            <% if @bids.present? %>
+              <div class="item">
+                <%= render partial: 'bids/bid', collection: @bids  %>
+              </div>
+              <div class="row" id="prompts">
+                <div class="col-md-8 col-sm-6 col-xs-3"></div>
+                <div class="col-md-4 col-sm-6 col-xs-9">
+                  <%= render_double_button('search', 'Pilih', 'Investasi', marketplace_path, true)  %>
                 </div>
               </div>
-		      <div class="side-view" id="marketplace" style="display: none;">
-		      </div>
-		      <div class="side-view" id="houses" style="display: none;">
-		      </div>
-              <div class="side-view" id="profile" style="display: none;">
-              </div>              
+            <% else %>
+
+            <% end %>
+          </div>
+          <div class="tab-pane" id="tab_default_2">
+            <div class="item">
+              <div class="row">
+                <div class="col-md-5">
+                  <%= render partial: 'tenders/tenders', locals: {tenders: @tenders}  %>
+                </div>
+                <div class="col-md-7">
+                  <% if @documents.present? %>
+                    <% @groups.each do |category, documents| %>
+                      <h5 class="primary"><%= category.titleize %></h5><hr>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <% docs_per_category(category).each do |doc| %>
+                            <span class="label label-primary" style="margin-right: 5px;">
+                              <%= doc %>  <%= document_checklist(doc) %>
+                            </span>
+                          <% end %>
+                        </div>
+                        <% documents.each do |document| %>
+                          <div class="col-xs-6 col-sm-4">
+                            <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
+                  <% end %>                  
+                </div>
+              </div>
             </div>
+            <div class="col-md-8 col-sm-6 col-xs-3"></div>
+            <div class="col-md-4 col-sm-6 col-xs-9">
+              <%= render_double_button('lightbulb-o', 'Ajukan', 'Fundraising', choose_product_path, true) unless current_user.has_proposals? %>
+            </div>            
+          </div>
         </div>
+      </div>      
     </div>
+  </div>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    var $btnSets = $('.responsive'),
-    $btnLinks = $btnSets.find('a');
- 
-    $btnLinks.click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.user-menu>div.user-menu-content").removeClass("active");
-        $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
-    });
-});
-
-</script>

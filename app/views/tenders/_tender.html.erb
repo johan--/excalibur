@@ -1,13 +1,29 @@
-<div class="timeline-panel debits">
-    <ul class="timeline-panel-ul">
-        <li><span class="importo"><%= link_to tender.ticker, tender_path(tender) %></span></li>
-        <li><span class="causale">Pengajuan <%= tender.category %> ini dibuat oleh <%= tender.starter.name %> atas rumah <%= link_to tender.tenderable.ticker, house_path(tender.tenderable) %></span> </li>
-        <li>
-        	<p><small class="text-muted">
-        		<i class="glyphicon glyphicon-money"></i> <%= idr_money(tender.target) %>
-        		<i class="glyphicon glyphicon-time"></i> 11/09/2014
-        		</small>
-        	</p> 
-        </li>
-    </ul>
-</div>
+<li class="col-md-3 col-sm-6 co-xs-12">
+  <div class="thumbnail tender-item" style="padding: 0">
+    <div style="padding:4px">
+      <%= render_house_display_for_tender(tender.tenderable.house, '') %>
+<!--       <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150"> -->
+    </div>
+    <div class="caption">
+      <h3><%= link_to tender.ticker, tender_path(tender) %></h3>
+      <h4><i class="ion ion-android-folder-open"></i> <%= tender.category %></h4>
+      <h4><i class="ion ion-android-bulb"></i> <%= tender.state %></h4>
+      <p><i class="ion ion-home"></i> <%= link_to tender.tenderable.ticker, house_path(tender.tenderable) %></p>
+      <p><i class="ion ion-person"></i> <%= tender.starter.name %></p>
+      <p class="centered">
+      <%= link_to "Buat Penawaran", new_tender_bid_path(tender), class: "btn btn-md btn-primary" %></p>
+    </div>
+    <div class="modal-footer" style="text-align: left">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            <span class="sr-only">60% Complete</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><b><%= idr_concat(tender.target) %> jt</b><br/><small>TARGET</small></div>
+        <div class="col-md-4"><b>60%</b><br/><small>FUNDED</small></div>
+        <div class="col-md-4"><b>18</b><br/><small>DAYS</small></div>
+      </div>
+    </div>
+  </div>
+</li>

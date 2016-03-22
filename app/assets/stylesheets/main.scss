@@ -1,14 +1,12 @@
 /*@import "styles/mobile-navbar";
 @import "styles/image-panel";
-@import "styles/ticket-style";
-@import "styles/base-layout";
 */
 @import "bootstrap-slider";
 @import "styles/user";
 @import "styles/lists";
 @import "styles/custom-panels";
 @import 'ionicons';
-@import "styles/portlet";
+/*@import "styles/portlet";*/
 @import "styles/tender";
 @import "styles/colorful-modal";
 @import "styles/file-upload";
@@ -27,9 +25,16 @@ $nprogress-zindex: 10100;
 @import 'nprogress';
 @import 'nprogress-bootstrap';
 
+.home {
+  background-color: white; padding-top: 20px;padding-left: 20px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); 
+  #prompts {
+    margin-bottom: 20px;
+    display: block;
+  }
+}
 
 #medium-wrap{
-  border: 1px solid #ddd;
   padding-left: 0px; padding-right: 0px;
 }
 
@@ -38,6 +43,26 @@ $nprogress-zindex: 10100;
   .item {
     margin-bottom: 15px;
   }
+}
+
+@media ( min-width: 768px ) {
+    .grid-divider {
+        position: relative;
+        padding: 0;
+    }
+    .grid-divider>[class*='col-'] {
+        position: static;
+    }
+    .grid-divider>[class*='col-']:nth-child(n+2):before {
+        content: "";
+        border-left: 1px solid #DDD;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+    .col-padding {
+        padding: 0 15px;
+    }
 }
 
 .img-center {
@@ -320,3 +345,28 @@ a:hover, a.selected, a:focus {
   }        
 }
 
+
+
+/* Actions */
+/*.portlet-title .actions {
+  float: right;
+  display: inline-block;
+  a {
+    margin-left: 3px;
+  }
+  .btn {
+    color: #666;
+    padding: 3px 9px;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 50px;
+    &:hover {
+      background: #f2f2f2;
+    }
+    i {
+      font-size: 12px;
+    }      
+  }  
+}*/

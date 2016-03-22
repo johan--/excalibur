@@ -77,6 +77,18 @@ class User < ActiveRecord::Base
     return false if self.identities.count == 0
   end
 
+  def has_proposals?
+    if self.tenders.offering.count != 0
+      return true
+    else
+      return false
+    end
+  end
+
+  # def has_bids?
+  #   return true if self.bids.count != 0
+  #   return  false if self.bids.count == 0
+  # end  
 
   def has_documents?(doc)
     if self.documents.by_types(doc).count != 0

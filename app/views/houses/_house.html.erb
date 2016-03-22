@@ -1,42 +1,36 @@
-<div class="wp-block property list">
-    <div class="wp-block-title">
-        <h3><a href="#">3015 Grand Avenue, CocoWalk</a></h3>
-    </div>
-    <div class="wp-block-body">
-        <div class="wp-block-img">
-            <% if house.avatar.blank? %>
-              <img src="http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="">
-            <% else %>
-              <%= cl_image_tag(house.avatar, house_photo_options()) %>
-            <% end %>   
-        </div>
-        <div class="wp-block-content">
-            <small>10 days only</small>
-            <h4 class="content-title">Special Offer</h4>
-        <ul class="aux-info">
-            <li><i class="fa fa-building"></i>2300<sup>2</sup> Feet</li>
-            <li><i class="fa fa-user"></i> 5 Bedrooms</li>
-            <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
-            <li><i class="fa fa-car"></i> 3 Garages</li>
-        </ul>
-            <span class="pull-left">
-                <span class="price">$230</span> 
-                <span class="period">per month</span>
-            </span>
-            <span class="pull-right">
-            <span class="capacity">
-                <i class="fa fa-user"></i>
-                <i class="fa fa-user"></i>
-            </span>
-        </span>
-        </div>
-            <div class="wp-block-footer">
-        <ul class="aux-info">
-            <li><i class="fa fa-building"></i>2300<sup>2</sup> Feet</li>
-            <li><i class="fa fa-user"></i> 5 Bedrooms</li>
-            <li><i class="fa fa-tint"></i> 2 Bathrooms</li>
-            <li><i class="fa fa-car"></i> 3 Garages</li>
-        </ul>
-    </div>
-    </div>
-</div>
+<div class="col-md-8">
+        <div class="wp-block-item property-list">
+                <div class="wp-block-title">
+                    <h3><%= link_to house.ticker, house_path(house) %>  <small><%= house.address %></small></h3>
+                </div>
+                <div class="body">
+                    <div class="wp-block-img">
+                        <%= link_to house_path(house) do %>
+                            <%= render_house_display(house, '') %>
+                        <% end %>
+                    </div>
+                    <div class="wp-block-content">
+                        <h4 class="content-title"><%= house.state %></h4>
+                        <p class="description"><%= house.description || "Lorem ipsum dolor sit amet, consectetur adipisg elitm Ut tincidunt purus iaculis ipsum dctum non dtum quam." %></p>
+                        <span class="pull-left">
+                            <span class="price">$230</span> 
+                            <span class="period">per month</span>
+                        </span>
+                        <span class="pull-right">
+                        <span class="capacity">
+                            <i class="fa fa-user"></i>
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </span></div>
+                </div>
+                <div class="list-footer">
+                    <ul class="aux-info">
+                        <li><i class="fa fa-building"></i> <%= house.property_size %>/<%= house.lot_size %> m<sup>2</sup></li>
+                        <li><i class="fa fa-moon-o"></i> <%= house.bedrooms %> k. Tidur</li>
+                        <li><i class="fa fa-tint"></i> <%= house.bathrooms %> k. Mandi</li>
+                        <li><i class="fa fa-car"></i> <%= house.garages %> port</li>
+                        <li><i class="fa fa-plus-square"></i> <%= house.level %> tingkat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>        

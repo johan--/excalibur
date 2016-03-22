@@ -1,7 +1,6 @@
 module ApplicationHelper
 
   def render_double_button(icon_name, top, bottom, link, ajax=false)
-
     link_to link, class: "btn btn-primary btn-block btn-round-lg", remote: ajax do
       content_tag(:i, ' ', class: "fa fa-#{icon_name} fa-3x pull-left") +
       content_tag(:span, " #{top}") + tag(:br) +

@@ -1,13 +1,25 @@
-<div class="timeline-panel credits">
-    <ul class="timeline-panel-ul">
-        <li><span class="importo"><%= bid.ticker %></span></li>
-        <li><span class="causale">Penawaran atas <%= link_to bid.tender.ticker, tender_path(bid.tender) %> dengan jumlah <%= bid.volume %> lembar</span> </li>
-        <li>
-        	<p><small class="text-muted">
-        		<i class="glyphicon glyphicon-money"></i> <%= idr_money(bid.contribution) %>
-        		<i class="glyphicon glyphicon-time"></i> 11/09/2014
-        		</small>
-        	</p> 
-        </li>
-    </ul>
+<div class="timeline-panel debits">
+  <div class="row">
+    <div class="col-md-3 col-sm-6" style="">
+        <div class="list-wing">
+            <h4><%= bid.tender.category %></h4>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-6" style="border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;">
+        <ul class="timeline-panel-ul">
+            <li><span class="importo"><%= link_to bid.ticker, tender_path(bid.tender) %></span></li>
+            <li><span class="causale">Pengusul: <%= bid.bidder.name %></span></li>
+        </ul>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="list-wing">
+            <h4 class=""><%= bid.volume %> lembar</h4>
+        </div>
+    </div>
+  </div>
+    <div class="timeline-footer">
+        <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+        <a><i class="glyphicon glyphicon-share"></i></a>
+        <a class="pull-right">Continuar Lendo</a>
+    </div>
 </div>
