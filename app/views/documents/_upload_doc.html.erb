@@ -1,8 +1,7 @@
-<% meta title: "Unggah Dokumen" %>
-
-<div class="portlet portlet-bordered">
-
-<!-- Nav tabs -->
+<div class="modal-header modal-header-primary coral-background">
+  <h3>Permintaan Pendanaan</h3>
+</div>
+<div class="modal-body">
   <div class="card">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab">Identitas</a></li>
@@ -26,12 +25,8 @@
       	<%= render partial: 'form', locals: { category: "kepemilikan", types: collateral_docs } %>
       </div>
     </div>
-</div>
-
-
-  	<strong>
-  		<%= link_to "Kembali ke Profil", user_path(current_user) %> |
-  		<%= link_to "Kembali ke Beranda", user_root_path %>
-  	</strong>
-  	
   </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
+</div>

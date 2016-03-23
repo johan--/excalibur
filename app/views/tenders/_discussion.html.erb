@@ -13,7 +13,7 @@
 <% else %>
 	  <%= render 'comments/assessment', comment: @assessment %>
   <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-<% end %>			    
+<% end %>
 <br>
 <!-- Comments -->
 <h5>Komentar</h5>

@@ -1,21 +1,23 @@
 <% meta title: "Home" %>
 
+<%= render partial: 'elements/modal_placeholder', locals: { modal_name: 'home' } %>
+
 <div class="home" style="">
   <h1 class="primary">Markas</h1><hr class="light">
 
   <div class="row" id="home-view">
-    <div class="col-md-10 col-md-offset-1 right-display">
+    <div class="col-md-12 right-display">
       <ul class="nav nav-tabs list-group list-group-horizontal centered">
         <li class="list-group-item active">
-          <a href="#tab_default_1" data-toggle="tab">Investasi</a>
+          <a data-target="#investment" data-toggle="tab">Investasi</a>
         </li>
         <li class="list-group-item">
-          <a href="#tab_default_2" data-toggle="tab">Pengajuan</a>
+          <a data-target="#financing" data-toggle="tab">Pengajuan</a>
         </li>        
       </ul>
-      <div class="row">
+      <!-- <div class="row"> -->
         <div class="tab-content">
-          <div class="tab-pane active" id="tab_default_1">
+          <div class="tab-pane active" id="investment">
             <% if @bids.present? %>
               <div class="item">
                 <%= render partial: 'bids/bid', collection: @bids  %>
@@ -30,13 +32,13 @@
 
             <% end %>
           </div>
-          <div class="tab-pane" id="tab_default_2">
+          <div class="tab-pane" id="financing">
             <div class="item">
               <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <%= render partial: 'tenders/tenders', locals: {tenders: @tenders}  %>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                   <% if @documents.present? %>
                     <% @groups.each do |category, documents| %>
                       <h5 class="primary"><%= category.titleize %></h5><hr>
@@ -55,19 +57,23 @@
                         <% end %>
                       </div>
                     <% end %>
+                    <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
                   <% else %>
                     <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
+                    <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
                   <% end %>                  
                 </div>
               </div>
             </div>
-            <div class="col-md-8 col-sm-6 col-xs-3"></div>
-            <div class="col-md-4 col-sm-6 col-xs-9">
-              <%= render_double_button('lightbulb-o', 'Ajukan', 'Fundraising', choose_product_path, true) unless current_user.has_proposals? %>
-            </div>            
+            <div class="row">
+              <div class="col-md-8 col-sm-6 col-xs-3"></div>
+              <div class="col-md-4 col-sm-6 col-xs-9">
+                <%= render_double_button('lightbulb-o', 'Ajukan', 'Fundraising', choose_product_path, true) unless current_user.has_proposals? %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>      
-    </div>
+      <!-- </div>       -->
+    <!-- </div> -->
   </div>
 </div>

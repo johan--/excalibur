@@ -1,12 +1,45 @@
-<section id="works" class="home-tour works">
+<div class="spacing"></div>
+<div class="container-fluid home-tour">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+              <h2 class="section-title">Apa Kebutuhanmu?</h2>
+              <h1 class="section-headline">Kami melayani berbagai macam kebutuhan di platform ini, silahkan pilih</h1>
+            </div>            
+        </div>
+    </div>
+    <!-- row requires "row-divided" class -->
+    <div class="row row-divided">
+        <div class="col-xs-12 col-sm-6 column-one tour-items centered">
+            <div class="proposition">
+                <h2>Investasi</h2>
+                <p>Berinvestasi properti dengan mudah dan nyaman, tentunya sesuai dengan prinsip dan metode syariah</p>
+                <div class="spacing"></div>
+                <%= link_to "Telusuri", funding_job_url(subdomain: ""), class: "btn btn-primary btn-lg" %>                
+            </div>
+        </div>
+        <!-- vertical-divider-* class sets the position in a 12 grid layout -->
+        <div class="vertical-divider hidden-xs"></div>
+        <div class="col-xs-12 col-sm-6 column-two tour-items centered">
+            <div class="proposition">
+                <h2>Kepemilikan</h2>
+                <p>Membeli rumah impian tanpa terlibat dalam hutang dan riba dengan prinsip dan metode yang syar'i</p>
+                <div class="spacing"></div>
+                <%= link_to "Telusuri", ownership_job_url(subdomain: ""), class: "btn btn-primary btn-lg" %>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="works" class="container-fluid home-tour">
   <div class="grid">
-    <div class="text-center">
+<!--     <div class="text-center">
       <h2 class="section-title">Apa Kebutuhanmu?</h2>
       <h1 class="section-headline">Kami melayani berbagai macam kebutuhan di platform ini, silahkan pilih</h1>
     </div>
     <div class="spacing"></div>
-    <div class="row tour-items">
-        <div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom: 45px;">
+    <div class="row"><div class="col-xs-12"></div></div> -->
+<!--     <div class="row tour-items">
+        <div class="col-xs-12 col-sm-6" style="margin-bottom: 45px;">
             <div class="box centered investor">
                 <div class="box-icon">
                     <span class="fa fa-3x fa-suitcase"></span>
@@ -19,7 +52,7 @@
             </div>
         </div>
         
-        <div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom: 45px;">
+        <div class="col-xs-12 col-sm-6" style="margin-bottom: 45px;">
             <div class="box centered client">
                 <div class="box-icon">
                     <span class="fa fa-3x fa-rocket"></span>
@@ -27,11 +60,11 @@
                 <div class="info centered">
                     <h4>Kepemilikan</h4>
                     <p>Membeli rumah impian tanpa terlibat dalam hutang dan riba dengan prinsip dan metode yang syar'i</p>
-                <%= link_to "Telusuri", ownership_job_url(subdomain: ""), class: "btn btn-lg" %>
+                    <%= link_to "Telusuri", ownership_job_url(subdomain: ""), class: "btn btn-lg" %>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="spacing"></div>
     <div class="tour-observe">
       <h2 class="section-title">Kapiten bukanlah bank</h2>

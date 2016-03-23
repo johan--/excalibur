@@ -26,7 +26,8 @@ $nprogress-zindex: 10100;
 @import 'nprogress-bootstrap';
 
 .home {
-  background-color: white; padding-top: 20px;padding-left: 20px;
+  background-color: white; padding-top: 10px;
+  padding-left: 20px;padding-right: 20px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); 
   #prompts {
     margin-bottom: 20px;
@@ -370,3 +371,74 @@ a:hover, a.selected, a:focus {
     }      
   }  
 }*/
+
+.vertical-divider {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 50%;
+  line-height: 0;
+  text-align:center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.vertical-divider:before, 
+.vertical-divider:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  z-index: 9;
+  border-left: 1px solid rgba(34,36,38,.15);
+  border-right: 1px solid rgba(255,255,255,.1);
+  width: 0;
+  height: calc(100% - 1rem);
+}
+
+.row-divided > .vertical-divider {
+  height: calc(50% - 1rem);    
+}
+
+.vertical-divider:before {
+  top: -100%;
+}
+
+.vertical-divider:after {
+  top: auto;
+  bottom: 0;
+}
+
+.row-divided {
+  position:relative;
+  .tour-items{
+    margin: 0;
+    padding: 30px;
+    color: white;
+    &.column-one, &.column-two {
+      height: 400px; position: relative;
+      .proposition {
+        margin-left: 20px;margin-right: 20px;
+        position: absolute;            
+        top: 50%;                      
+        transform: translate(0, -50%);
+      }
+    }
+    &.column-one {
+      background-color: $brand-yellow;padding-right: 20px;
+    }
+    &.column-two {
+      background-color: $brand-red;padding-left: 20px;
+    }    
+  }
+}
+
+.row-divided > [class^="col-"],
+.row-divided > [class*=" col-"] {
+  padding-left: 30px;  /* gutter width (give a little extra room) 2x default */
+  padding-right: 30px; /* gutter width (give a little extra room) 2x default */
+}
+

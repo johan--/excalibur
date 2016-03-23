@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  before_filter :inside_app
   before_action :set_document, only: [:show, :edit, :update, :delete, :destroy]
 
   def show

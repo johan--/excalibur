@@ -350,7 +350,7 @@ section#reminder {
     margin: 0 auto 90px;
     font-size: 4.25rem;
     line-height: 1.2;
-    color: $brand-primary;
+    color: $brand-dark;
     text-align: center;
     font-weight: 600;    
 }
@@ -415,12 +415,14 @@ section#reminder {
   min-height: 100%;
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-    background: 
-        url('//res.cloudinary.com/instilla/image/upload/s--2fpIleUe--/c_scale,w_1600/v1456927313/asset/photo-1444703686981-a3abbc4d4fe3.jpg') no-repeat center center scroll;
+  background: 
+    url('//res.cloudinary.com/instilla/image/upload/s--NWxEGcfc--/c_scale,w_1600/v1456927252/asset/167.jpg') no-repeat center center scroll;
 }
 .site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
+  background: rgb(0, 236, 240);
+  background: rgba(0, 236, 240, 0.4);
 }
 .cover-container {
   margin-right: auto;
@@ -566,27 +568,38 @@ section#reminder {
   color:#fff;
   padding-top: 120px;
 }
+.overlay {
+  height: 100%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;    
+}
 #investment-product {
   background: 
-    linear-gradient(
-      rgba(35, 116, 118, 0.46), 
-      rgba(35, 116, 118, 0.46)
-    ),
-    url('//res.cloudinary.com/instilla/image/upload/s--BYAjihIV--/c_scale,w_1200/v1456927252/asset/167.jpg') no-repeat center center scroll;
+    url('//res.cloudinary.com/instilla/image/upload/s--BdUvbz2j--/c_scale,w_1200/v1458692370/man-hands-working-technology_2_sestkk.jpg') no-repeat center center scroll;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  -o-background-size: cover;      
+  -o-background-size: cover;
+  .overlay{    
+    background: rgb(0, 236, 240);
+    background: rgba(0, 236, 240, 0.5);
+  }  
 }
 #financing-product {
-  background: url('//res.cloudinary.com/instilla/image/upload/s--eJNfQFUz--/c_scale,w_1200/v1456927453/asset/pexels-photo.jpg') no-repeat center center scroll;
+  background: url('//res.cloudinary.com/instilla/image/upload/s--Y7ApUb9---/c_scale,w_1200/v1456927292/asset/pexels-photo-25109.jpg') no-repeat center center scroll;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;      
-
+/*  overflow: hidden;
+  position: relative;*/
+  .overlay{    
+    background: rgb(0, 236, 240);
+    background: rgba(0, 236, 240, 0.5);
+  }
 }
 #about-us {
   background: 

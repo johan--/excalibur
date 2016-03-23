@@ -14,15 +14,21 @@
 <div class="col-md-8">
   <!-- Nav tabs -->
   <div class="material-card">
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Inti</a></li>
-          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Komunikasi</a></li>
-          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Progress</a></li>
-        </ul>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#cover" aria-controls="cover" role="tab" data-toggle="tab">Inti</a>
+      </li>
+      <li role="presentation">
+        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Komunikasi</a>
+      </li>
+      <li role="presentation">
+        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Progress</a>
+      </li>
+    </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="home">
+      <div role="tabpanel" class="tab-pane active" id="cover">
         <div class="item">
           <h4 class="grey">Pengajuan</h4>
           <%= render partial: 'tender_infos', locals: { tender: @tender } %>
@@ -38,7 +44,25 @@
         </div>
       </div>
       <div role="tabpanel" class="tab-pane" id="profile">
-        <div class="side-view" id="forum" style="display: none;">
+        <div class="item">
+          <h4 class="grey">Penilaian</h4>
+          <% if @assessment.blank? %>
+              <div class="blankslate" id="comment-placeholder">
+              <div class="spacious">
+              <h3><%= "Belum Ada Analisis" %></h3>
+            <% if current_user.admin? %>
+              <p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+            <% end %>
+            </div>
+              </div>
+          <% else %>
+              <%= render 'comments/assessment', comment: @assessment %>
+            <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
+          <% end %>
+          <div class="item">
+            <h4 class="grey">Interaksi</h4>
+            <%= render 'comments/comments', comments: @comments %>
+          </div>
         </div>
       </div>
       <div role="tabpanel" class="tab-pane" id="messages">
