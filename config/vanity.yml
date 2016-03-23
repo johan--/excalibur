@@ -19,6 +19,16 @@ test:
   port: 5432
   password: galliani
   collecting: false
+staging:
+  adapter: active_record
+  active_record_adapter: default
+  <% unless ENV['DATABASE_URL'].nil? %>
+  <% username, password, host, database = ENV['DATABASE_URL'].scan(%r{//(.*):(.*)@(.*)/(.*)}).first %>
+  host:     <%= host %>
+  username: <%= username %>
+  password: <%= password %>
+  database: <%= database %>
+  <% end %>  
 production:
   adapter: active_record
   active_record_adapter: default
