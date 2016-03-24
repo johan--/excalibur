@@ -8,11 +8,12 @@
   <div class="col-sm-4"><%= link_to "New post", new_admin_post_path %></div>
 </div>
 <p class="pagination-summary"><%= page_entries_info @posts %></p>
+<%= link_to "Ke Halaman Blog", root_url(subdomain: 'blog') %>
 <hr/>
 
 <div id="posts-list">
 <% @posts.each do |post| %>
-  <%= render partial: 'elements/post', locals: { post: post, multiple: true, admin_list: true } %>
+  <%= render partial: 'elements/post', locals: { post: post } %>
   <div class="spacing"></div>
 <% end %>
 </div>

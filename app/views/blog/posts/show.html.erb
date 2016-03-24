@@ -13,6 +13,21 @@
         fb: ENV["FB_APP_ID"] 
 %>
 
-<%= render partial: 'elements/post', locals: { post: @post, comments: @root_comments } %>
-
-<%= render partial: 'elements/disqus_script', locals: { identifier: @post.title } %>
+<div class="col-md-10 col-md-offset-1">
+	<div class="outset-column no-select">
+	<% if request.variant.include? :phone %>
+	  <%= cl_image_tag(@post.meta_image, { :width => 300, :crop => :scale, type: 'upload', format: :jpg } ) %>
+	<% else %>
+	  <%= cl_image_tag(@post.meta_image, { :width => 1020, :crop => :scale, type: 'upload'}) %>
+	<% end %>
+	</div>
+	<div class="single-column post-content no-select">
+	  <p class="single-column post-content" style="margin-bottom: 0px;"><csmall>&nbsp;&nbsp;<%= @post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= @post.user.name %></csmall2></p>
+	  <h1><%=h @post.title %></h1>
+	  
+	  <div class="spacing"></div>
+	  <div class="single-column post-content no-select">
+	  	<%= @post.content_html.html_safe %>
+	  </div>
+	</div>
+</div>

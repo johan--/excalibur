@@ -6,8 +6,9 @@ class Blog::PostsController < ApplicationController
   before_action :tag_cloud#, only: [:posts, :show_post, :find_posts]
 
   def index
+    @index = true
     @posts = Post.page(params[:page]).per(7)
-    
+        
     unless current_user.present? && current_user.admin?
       meta_events_tracker.event!(:visit, :blog, { 
         distinct_id: request.uuid }
@@ -29,6 +30,7 @@ class Blog::PostsController < ApplicationController
   end
 
   def find_posts
+    @index = true
     if params[:topic]
       @posts = Post.by_topic(params[:topic]).page(params[:page]).per(7)
     elsif params[:tag]

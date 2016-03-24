@@ -6,8 +6,9 @@
   <div class="form-inputs">
     <%= f.input :title, :autofocus => true, class: "form-control monospaced-control", placeholder: "Title (also used for URL slug)..." %>
     <%= f.input :meta_description, class: "form-control monospaced-control", placeholder: "singkat, padat, jelas" %>
+    <%= f.input :meta_image, class: "form-control monospaced-control", placeholder: "File id cloudinary" %>
 
-    <div id="direct_upload">
+<!--     <div id="direct_upload">
       <p>Format yang diterima adalah .jpg, .png, dan .pdf.</p>
       <div class="form_line">
         <%= f.label :header, "Gambar Header:" %>
@@ -20,7 +21,7 @@
           <span class="status"></span>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <%= f.input :topic, class: "form-control monospaced-control", placeholder: "Topic of the post" %>
 
