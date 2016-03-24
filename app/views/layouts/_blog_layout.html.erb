@@ -2,7 +2,7 @@
 <div id="blue">
     <div class="container">
 		<div class="row white centered">
-		  <h2>Jurnal Kapiten</h2>
+		  <h2>Blog Kapiten</h2>
 		  <p>Untuk mengikuti perkembangan atau artikel terbaru, follow @si_kapiten di Twitter dan gabung ke grup sikapitensyariah di Facebook </p>
 		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
 		  <%= link_to t("links.to_forum"), blog_discussion_url(subdomain: ''), class: "btn btn-sm btn-white" %>
@@ -17,26 +17,24 @@
 <div class="container mtb">
   <div class="row">
  	<%= render 'layouts/messages' %>
- 	<div class="col-md-4">
- 	  <div class="post-box">
-		<div class="blankslate">
-			<div class="spacious">
-				<h3><%= "Pustaka" %></h3>
-				<p><%= "untuk kamu yang ingin mendalami keuangan Islam." %></p>
-				<%= link_to 'Lihat Pustaka', wiki_all_path, class: "btn btn-primary"  %>
-			</div>
-		</div> 	  
-		<hr class="coral">
- 	  </div>
-	  	<div class="spacing"></div>
-	
- 	</div>
- 	<div class="col-md-8">
+ 	<div class="col-md-10 col-md-offset-1">
  	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "blog" } %>
 	  <%= yield %>
 		<div class="spacing"></div>
 	</div>
     <!-- SIDEBAR -->
+ 	<div class="col-md-10 col-md-offset-1">
+ 	  <div class="post-box">
+		<div class="blankslate">
+			<div class="spacious">
+				<h3><%= "Kapitenpedia" %></h3>
+				<p><%= "untuk kamu yang ingin mendalami muamalah" %></p>
+				<%= link_to 'Telusuri', wiki_all_path, class: "btn btn-primary"  %>
+			</div>
+		</div> 	  
+ 	  </div>
+	  <div class="spacing"></div>
+ 	</div>
 
   </div><!-- <! row  -->
 </div>

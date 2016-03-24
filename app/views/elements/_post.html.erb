@@ -13,9 +13,6 @@
 	<% end %>
   <% end %>
 
-
-  <%= link_to "Kembali ke Daftar Artikel", root_url(subdomain: "blog") if !current_page?(root_url(subdomain: 'blog')) %>
-
   <% if defined?(admin_list) && admin_list %>
 	<%= link_to admin_post_path(post.slug) do %>
 	  <h3 class="ctitle">
@@ -25,14 +22,14 @@
   	<% end %>
   <% else %>
   	<%= link_to blog_post_url(post.slug) do %>
-	  <h3 class="ctitle">
+	  <h3 class="ctitle single-column post-content">
 	  	<%= post.title %>
 	  	<small><%= post.topic %></small>
 	  </h3>
   	<% end %>  	
   <% end %>
 
-	<p><csmall>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
+	<p class="single-column post-content"><csmall>&nbsp;&nbsp;<%= post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= post.user.name %></csmall2></p>
   
   <% if defined?(multiple) && multiple %>
 	<div class="post-truncate">
@@ -41,7 +38,7 @@
 	<p><%= link_to "Baca lebih lanjut", blog_post_path(post.slug) %></p>
 	<div class="spacing"></div>
   <% else %>
-	<div class="post-content no-select">
+	<div class="single-column post-content no-select">
 	  <%= post.content_html.html_safe %>
 	</div>
 	<hr>
