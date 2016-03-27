@@ -1,6 +1,7 @@
-/*@import "styles/mobile-navbar";
+/*
 @import "styles/image-panel";
 */
+@import "styles/mobile-navbar";
 @import "bootstrap-slider";
 @import "styles/user";
 @import "styles/lists";
@@ -442,3 +443,29 @@ a:hover, a.selected, a:focus {
   padding-right: 30px; /* gutter width (give a little extra room) 2x default */
 }
 
+
+.affix-top,.affix{
+ position: static;
+}
+#left-col{
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);   
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+    margin-top:30px;
+    width:228px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
+}
+
+#sidebar li.active {
+  border:0 #eee solid;
+  border-right-width:5px;
+}

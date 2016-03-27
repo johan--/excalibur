@@ -32,7 +32,7 @@ Fustal::Application.routes.draw do
       put "remove_avatar"
     end    
   end
-  resources :tenders do
+  resources :tenders, path: 'bursa' do
     member do
       get "discuss"
     end
@@ -50,13 +50,10 @@ Fustal::Application.routes.draw do
   # Static Pages
   root "pages#landing"
   get "ganti", to: "pages#upgrade", as: :upgrade
-  # get "home", to: "pages#home", as: :user_root
   
   get "home", to: "insides#home", as: :user_root
-  get "bursa", to: "insides#marketplace", as: :marketplace
-  get "forum", to: "insides#lounge", as: :lounge
-  get "forum", to: "insides#desk", as: :desk
-  get "pendanaan", to: "insides#choose", as: :choose_product
+  # get "bursa", to: "insides#marketplace", as: :marketplace
+  # get "pendanaan", to: "insides#choose", as: :choose_product
   get "profil", to: "insides#profile", as: :profile
 
   get "tos", to: "pages#tos", as: :service_terms

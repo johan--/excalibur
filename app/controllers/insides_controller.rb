@@ -12,21 +12,12 @@ class InsidesController < ApplicationController
     @houses = House.includes(:stocks).all
   end
 
-  def lounge
-    @users = User.all
-  end
-
-  def desk
-    @tenders = current_user.tenders
-    @bids = current_user.bids
-  end
-
-  def marketplace
-    @title = "Bursa"
-    @tenders = Tender.published
-    @fundraisings = @tenders.offering
-    @tradings = @tenders.trading
-  end
+  # def marketplace
+  #   @title = "Bursa"
+  #   @tenders = Tender.published
+  #   @fundraisings = @tenders.offering
+  #   @tradings = @tenders.trading
+  # end
 
   def profile
     @user = User.friendly.find_by_id(current_user.id)

@@ -1,15 +1,17 @@
 html, body {
     height: 100%;
 }
-body {    
-    /*padding-top: 50px;*/
+body.mobile-navbar {    
+	background-color: #f9f9f9;
+	.wrap{
+		padding-top: 75px;
+		.nav-stacked > li > a.active {
+			background-color: $brand-primary; color: white;
+		}
+	}
 }
 body.navbar-more-show  {
 	overflow: hidden;
-}
-
-.main-content {
-  background: url("http://res.cloudinary.com/instilla/image/upload/v1443699835/asset/restaurant.png");
 }
 
 .animate {
@@ -67,9 +69,7 @@ body.navbar-more-show  {
 	flex-grow: 1;
 	text-align: center;
 }
-
-
-.navbar-nav.mobile-bar > li > a > i.menu-icon {
+.navbar-nav.mobile-bar > li > a > span.menu-icon {
 	display: block;
 	font-size: 1.8em;
 }
@@ -84,7 +84,7 @@ body.navbar-more-show  {
 .navbar-more .navbar-nav > li > a {
     color: rgb(64, 64, 64);   
 }
-.navbar-more > .navbar-nav > li > a > i.menu-icon {
+.navbar-more > .navbar-nav > li > a > span.menu-icon {
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -100,7 +100,7 @@ body.navbar-more-show  {
 		max-height: 64px;
 		margin: 0px -15px;
 	}
-	.navbar-nav.mobile-bar > li > a > i.menu-icon {
+	.navbar-nav.mobile-bar > li > a > span.menu-icon {
 		display: none;
 	}
 }

@@ -18,15 +18,16 @@
   <%= render 'elements/mixpanel_script' %>
 </head>
 <% if @inside %>
+  <% if @admin_layout %>  
+    <body class="hold-transition skin-blue sidebar-mini">
+        <%= render 'layouts/admin_layout' %>
+    </body>
+  <% else %>
+    <body class="mobile-navbar">
+      <%= render 'layouts/mobile_navbar' if user_signed_in? %>
+    </body>
 
-  <body class="hold-transition skin-blue sidebar-mini">
-    <% if @admin_layout %>  
-      <%= render 'layouts/admin_layout' %>
-    <% else %>
-      <%= render 'layouts/wrapper' %>
-    <% end %>
-  </body>
-
+  <% end %>
 <% else %>
 
   <body>

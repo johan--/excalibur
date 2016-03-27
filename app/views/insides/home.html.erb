@@ -3,7 +3,7 @@
 <%= render partial: 'elements/modal_placeholder', locals: { modal_name: 'home' } %>
 
 <div class="home" style="">
-  <h1 class="primary">Markas</h1><hr class="light">
+  <h3 class="primary"><i class="ion ion-flag"></i> Markas</h3><hr class="light">
 
   <div class="row" id="home-view">
     <div class="col-md-12 right-display">
@@ -25,7 +25,7 @@
               <div class="row" id="prompts">
                 <div class="col-md-8 col-sm-6 col-xs-3"></div>
                 <div class="col-md-4 col-sm-6 col-xs-9">
-                  <%= render_double_button('search', 'Pilih', 'Investasi', marketplace_path, true)  %>
+                  
                 </div>
               </div>
             <% else %>
@@ -68,7 +68,7 @@
             <div class="row">
               <div class="col-md-8 col-sm-6 col-xs-3"></div>
               <div class="col-md-4 col-sm-6 col-xs-9">
-                <%= render_double_button('lightbulb-o', 'Ajukan', 'Fundraising', choose_product_path, true) unless current_user.has_proposals? %>
+                
               </div>
             </div>
           </div>

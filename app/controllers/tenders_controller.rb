@@ -1,9 +1,12 @@
 class TendersController < ApplicationController
   before_filter :inside_app
 
-  # def index
-  #   @tenders = @starter.tenders
-  # end
+  def index
+    @title = "Bursa"
+    @tenders = Tender.published
+    @fundraisings = @tenders.offering
+    @tradings = @tenders.trading
+  end
 
   def show
     set_tender

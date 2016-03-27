@@ -1,67 +1,111 @@
 <div class="navbar-more-overlay"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top animate">
 	<div class="container navbar-more visible-xs">
-		<br>
-		<br>
-<!-- 		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav">
 			<li>
-				<%= link_fa_to('anchor', 'Utama', root_url(subdomain: '')) %>
-			</li>
-			<li>
-				<%= link_fa_to('newspaper-o', 'Blog', root_url(subdomain: 'blog')) %>
-			</li>
-			<li>
-				<%= link_to contact_url(subdomain: ''), remote: true do %>
-					<i class="menu-icon fa fa-phone"></i><span>Kontak</span>
+				<%= active_link_to profile_url(subdomain: ''), remote: true do %>
+					<span class="menu-icon fa fa-picture-o"></span>Akun
 				<% end %>
 			</li>
-		</ul> -->
+			<li>
+				<%= active_link_to service_terms_url(subdomain: '') do %>
+					<span class="menu-icon fa fa-bell-o"></span>
+					Terms
+				<% end %>
+			</li>
+			<li>
+				<%= active_link_to destroy_user_session_path, data:{method: :delete} do %>
+					<span class="menu-icon fa fa-picture-o"></span>Sign out
+				<% end %>
+			</li>			
+			<% if current_user.admin? %>
+			  <li>
+				<%= active_link_to admin_root_url(subdomain: '') do %>
+				  <span class="menu-icon fa fa-picture-o"></span>
+					Admin
+				<% end %>
+			  </li>
+			<% end %>
+		</ul>
 	</div>
 	<div class="container">
 		<div class="navbar-header hidden-xs">
-			<%= link_to ENV["SITE_NAME"], root_url(subdomain: ''), class: "navbar-brand" %>
+			<a class="navbar-brand" href="#">Kapiten</a>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
-			<li class="visible-sm visible-xs">
-				<a href="#" class="menu-toggle" data-show-dialog="side-menu-advanced">
-					<i class="menu-icon fa fa-bars"></i>
-					<span>Menu</span>
-				</a>
-			</li>		
-			<% if user_signed_in? %>
-			  <li>
-			  	<%= link_to user_root_url(subdomain: '') do %>
-				  <i class="menu-icon fa fa-flag"></i>
-				  <span><strong>Markas</strong></span>				
+			<li class="visible-xs">
+				<%= active_link_to user_root_url(subdomain: '') do %>
+					<span class="menu-icon ion ion-flag"></span>
+					Desk
 				<% end %>
-			  </li>
-			  <li>
-			  	<%= link_to root_url(subdomain: 'blog') do %>
-				  <i class="menu-icon fa fa-newspaper-o"></i>
-				  <span><strong>Blog</strong></span>				
+			</li>
+			<li class="visible-xs">
+				<%= active_link_to tenders_url(subdomain: '') do %>
+					<span class="menu-icon ion ion-briefcase"></span>
+					Bursa
 				<% end %>
-			  </li>			  
-				<li>
-					<%= link_to destroy_user_session_path, data:{method: :delete} do %>
-						<i class="menu-icon fa fa-sign-out"></i>
-						<span><strong>Keluar</strong></span>
-					<% end %>
-				</li>
-			<% else %>
-				<li>
-					<%= link_to new_user_session_url(subdomain: '') do %>
-						<i class="menu-icon fa fa-sign-in"></i>
-						<span><strong>Masuk</strong></span>
-					<% end %>
-				</li>			
-			<% end %>
-<!-- 			<li class="visible-xs">
+			</li>			
+			<li class="visible-xs">
+				<%= active_link_to houses_url(subdomain: '') do %>
+					<span class="menu-icon ion ion-cube"></span>
+					<span class="visible-xs">Properti</span>
+				<% end %>
+			</li>
+		    <li class="dropdown hidden-xs">
+		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hai, <%= current_user.name %><span class="caret"></span></a>
+		      <ul class="dropdown-menu">
+		        <li><%= active_link_to "Akun", profile_url(subdomain: ''), remote: true %></li>
+		        <li><%= active_link_to "Terms", service_terms_url(subdomain: '') %></li>
+		        <li role="separator" class="divider"></li>
+		        <li><%= active_link_to "Admin", admin_root_url(subdomain: '') if current_user.admin? %></li>
+		        <li role="separator" class="divider"></li>
+		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary"%>
+		        </li>		        
+		      </ul>
+		    </li>
+			<li class="visible-xs">
 				<a href="#navbar-more-show">
-					<i class="menu-icon fa fa-bars"></i>
-					Opsi
+					<span class="menu-icon fa fa-bars"></span>
+					More
 				</a>
-			</li> -->
+			</li>
 		</ul>
 	</div>
 </nav>
+<div class="wrap">
+	<div class="container">
+
+		<div class="row">	  
+	      <!--left-->
+	      <div class="col-md-2 col-sm-2 hidden-xs" id="leftCol" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+	        <ul class="nav nav-stacked" id="sidebar">
+	          <li>
+	          	<%= active_link_to user_root_url(subdomain: '') do %>
+	          		<i class="ion ion-flag"></i> Markas
+	          	<% end %>
+	          </li>
+	          <li>
+	          	<%= active_link_to tenders_url(subdomain: '') do %>
+	          		<i class="ion ion-briefcase"></i> Bursa
+	          	<% end %>          	
+	          </li>
+	          <li>
+	          	<%= active_link_to houses_url(subdomain: '') do %>
+	          		<i class="ion ion-cube"></i> Properti
+	          	<% end %>          	
+	          </li>
+	        </ul>
+	      </div><!--/left-->
+	      
+	      <!--right-->
+	      <div class="col-md-9 col-sm-10">
+	      	<div class="row"><%= render 'layouts/messages' %></div>	
+	      	<div class="row">
+				<%= yield %>
+	      	</div>
+	      </div><!--/right-->
+	      <div class="col-md-1"></div>
+	  	</div><!--/row-->
+	</div><!--/container-->
+</div>
