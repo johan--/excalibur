@@ -1,27 +1,27 @@
 <div class="navbar-more-overlay"></div>
-<nav class="navbar navbar-inverse navbar-fixed-top animate">
+<nav class="navbar navbar-default navbar-fixed-top animate">
 	<div class="container navbar-more visible-xs">
 		<ul class="nav navbar-nav">
 			<li>
 				<%= active_link_to profile_url(subdomain: ''), remote: true do %>
-					<span class="menu-icon fa fa-picture-o"></span>Akun
+					<span class="menu-icon fa fa-user"></span>Akun
 				<% end %>
 			</li>
 			<li>
 				<%= active_link_to service_terms_url(subdomain: '') do %>
-					<span class="menu-icon fa fa-bell-o"></span>
+					<span class="menu-icon fa fa-legal"></span>
 					Terms
 				<% end %>
 			</li>
 			<li>
-				<%= active_link_to destroy_user_session_path, data:{method: :delete} do %>
-					<span class="menu-icon fa fa-picture-o"></span>Sign out
+				<%= active_link_to destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary" do %>
+					<span class="menu-icon fa fa-sign-out white"> Sign out</span>
 				<% end %>
 			</li>			
 			<% if current_user.admin? %>
 			  <li>
 				<%= active_link_to admin_root_url(subdomain: '') do %>
-				  <span class="menu-icon fa fa-picture-o"></span>
+				  <span class="menu-icon fa fa-rocket"></span>
 					Admin
 				<% end %>
 			  </li>
@@ -60,7 +60,7 @@
 		        <li role="separator" class="divider"></li>
 		        <li><%= active_link_to "Admin", admin_root_url(subdomain: '') if current_user.admin? %></li>
 		        <li role="separator" class="divider"></li>
-		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary"%>
+		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary" %>
 		        </li>		        
 		      </ul>
 		    </li>

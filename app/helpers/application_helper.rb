@@ -48,9 +48,9 @@ module ApplicationHelper
   end
 
   def idr_money(number)
-    number_to_currency(number, unit: "Rp ", separator: ",", 
+    number_to_currency(number.to_i, precision: 0, unit: "Rp ", separator: ",", 
                        delimiter: ".", negative_format: "(%u%n)",
-                       raise: true, precision: 0)
+                       raise: true)
 # => R$1234567890,50
   end
 
@@ -61,9 +61,9 @@ module ApplicationHelper
 # => R$1234567890,50
   end
 
-  def idr_concat(number)
-    con = (number / 1000000).round(2)
-    idr_no_symbol(con)
+  def idr_concat(number, divider)
+    con = (number / divider)
+    number_with_precision(con, precision: 0)
   end
 
   def language_picker

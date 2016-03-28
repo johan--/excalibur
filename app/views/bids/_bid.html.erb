@@ -1,25 +1,21 @@
 <div class="timeline-panel debits">
   <div class="row">
-    <div class="col-md-3 col-sm-6" style="">
-        <div class="list-wing">
-            <h4><%= bid.tender.category %></h4>
-        </div>
+    <div class="col-md-8 col-sm-7 col-xs-7" style="border-right: 1px solid #d4d4d4;">
+        <h3 class="coral"><%= bid.ticker %></span></h3>
+        <h4 class=""><%= idr_money(bid.contribution) %><small> <%= bid.volume %> lembar </small></h4>
     </div>
-    <div class="col-md-5 col-sm-6" style="border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;">
-        <ul class="timeline-panel-ul">
-            <li><span class="importo"><%= link_to bid.ticker, tender_path(bid.tender) %></span></li>
-            <li><span class="causale">Pengusul: <%= bid.bidder.name %></span></li>
-        </ul>
-    </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-5 col-xs-5">
         <div class="list-wing">
-            <h4 class=""><%= bid.volume %> lembar</h4>
+            <ul class="timeline-panel-ul">
+                <li><h5> <%= link_to bid.tender.ticker, tender_path(bid.tender) %></h5></li>
+                <li><i class="ion ion-person"></i> <%= bid.tender.starter.name %></li>
+                <li><i class="ion ion-pricetag"></i> <%= idr_money(bid.tender.price) %></li>
+            </ul>
         </div>
     </div>
   </div>
     <div class="timeline-footer">
         <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
         <a><i class="glyphicon glyphicon-share"></i></a>
-        <a class="pull-right">Continuar Lendo</a>
     </div>
 </div>

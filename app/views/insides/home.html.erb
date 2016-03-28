@@ -22,14 +22,20 @@
               <div class="item">
                 <%= render partial: 'bids/bid', collection: @bids  %>
               </div>
-              <div class="row" id="prompts">
-                <div class="col-md-8 col-sm-6 col-xs-3"></div>
-                <div class="col-md-4 col-sm-6 col-xs-9">
-                  
-                </div>
+              <div class="blankslate long">
+                <h4><%= "Tambah Investasi" %></h4>
+                <%= link_to tenders_path do %>
+                  <h1><i class="ion ion-android-add-circle"></i></h1>
+                <% end %>
               </div>
             <% else %>
-
+              <div class="blankslate">
+                <div class="spacious">
+                  <h4><%= "Belum Ada Investasi" %></h4>
+                  <h1><i class="ion ion-briefcase"></i></h1>
+                  <%= link_to "Pilih Investasi", tenders_path, class: "btn btn-primary" %>
+                </div>
+              </div>
             <% end %>
           </div>
           <div class="tab-pane" id="financing">
@@ -59,8 +65,13 @@
                     <% end %>
                     <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
                   <% else %>
-                    <%= render partial: 'elements/blankslate', locals: { heading: "Belum Ada Dokumen", explanation: "Tingkatkan kredibilitas dan kelayakan kamu dengan mengunggah dokumen-dokumen yang relevan terhadap kelayakan kamu sebagai klien", anchor: "Unggah Dokumen", destination: new_document_path } %>
-                    <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
+                  <div class="blankslate">
+                    <div class="spacious">
+                      <h4><%= "Belum Ada Dokumen" %></h4>
+                      <h1><i class="ion ion-android-attach"></i></h1>
+                      <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
+                    </div>
+                  </div>
                   <% end %>                  
                 </div>
               </div>

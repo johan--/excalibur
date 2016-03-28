@@ -77,4 +77,17 @@ module TendersHelper
   	  "Modal Kamu"
   	end
   end
+
+  def render_progress_bar(value)
+  	content_tag(:div, 
+  		content_tag(:span, "#{value}% Complete", class: "sr-only"), 
+  		class: "progress-bar", 
+  		:"role" => "progressbar", 
+  		:"aria-valuenow" => "#{value}", :"aria-valuemin" => "0",
+  		:"aria-valuemax" => "100", :"style" => "width: #{value}%;")
+  end
+
+  def calculate_progress(tender)
+    (tender.check_contribution / tender.target)
+  end  
 end

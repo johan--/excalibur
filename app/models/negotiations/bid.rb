@@ -65,7 +65,7 @@ class Bid < ActiveRecord::Base
   end
 
   def contribution
-    price * volume
+    (self.price * self.volume)
   end
 
   def reset_volume

@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_filter :disable_background
 
   def landing
     @category = "registration"

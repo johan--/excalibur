@@ -34,6 +34,9 @@ $nprogress-zindex: 10100;
     margin-bottom: 20px;
     display: block;
   }
+  #financing {
+    min-height: 400px;
+  }
 }
 
 #medium-wrap{
@@ -79,7 +82,7 @@ $nprogress-zindex: 10100;
 
 .blankslate {
   position: relative;
-  padding: 30px;
+  /*padding: 30px;*/
   margin-bottom: 10px;
   text-align: center;
   background-color: #fafafa;
@@ -87,7 +90,19 @@ $nprogress-zindex: 10100;
   border-radius: 3px;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.05);  
   .spacious {
-    padding: 100px 60px 120px;
+    padding: 5em 2.5em;
+    /*padding: 10%;*/
+  }
+  h3  { color: $brand-dark; }
+  i {
+    color: darken(#fafafa, 10%); font-size: 5em;
+  }
+  &.long {
+    padding: 1em 1.5em;
+    a i { color: $brand-primary; }
+    i {
+      color: darken(#fafafa, 10%); font-size: 2em;
+    }    
   }
 }
 
@@ -106,7 +121,7 @@ $nprogress-zindex: 10100;
     background-color: white;
     margin-bottom: 10px;
 }
-.red { color: #f75353 !important; }
+.red { color: $brand-red }
 .black { color: black; }
 .white { color: white; }
 .danger-link { color: #BE371F; }
@@ -118,6 +133,7 @@ $nprogress-zindex: 10100;
 .primary-background { background-color: $brand-primary; color: white; }
 .green-background { background-color: $brand-green; }
 .blue-background { background-color: $brand-blue; }
+.bg-grey {background: #f3f3f3;}    
 
 /* Main format */
 p {
@@ -225,46 +241,6 @@ a:hover, a.selected, a:focus {
   }    
 }
 
-.about-section {
-  .about-cont {
-    padding: 70px 0;
-    color: white;
-    h3 {
-      /*color: #333333;*/
-      font-size: 2.5em;
-      font-weight: 400;
-    }
-    h1 {
-      font-size: 3.5em;
-      line-height: 48px;
-      font-weight: 300;
-    }
-    h1:after, h3:after{
-      content: ' ';
-      width: 100%;
-      border-top: 2px solid #da4a3a;
-      height: 1px;
-      display: block;
-      margin: 20px 0 30px;
-    }
-  }
-  .about-to-left h3, .about-to-left p {
-      text-align: left;
-  }
-  .about-to-left .about-img {
-      text-align: left;
-  }
-  p {
-      width: 100%;
-      display: inline-block;
-      margin-bottom: 20px;
-  }
-  .about-img {
-  }
-}
-.bg-grey {
-    background: #f3f3f3;
-}    
 
 .slideshow-home {
   padding: 100px 0 0;
@@ -347,32 +323,6 @@ a:hover, a.selected, a:focus {
   }        
 }
 
-
-
-/* Actions */
-/*.portlet-title .actions {
-  float: right;
-  display: inline-block;
-  a {
-    margin-left: 3px;
-  }
-  .btn {
-    color: #666;
-    padding: 3px 9px;
-    font-size: 13px;
-    line-height: 1.5;
-    background-color: #fff;
-    border-color: #ccc;
-    border-radius: 50px;
-    &:hover {
-      background: #f2f2f2;
-    }
-    i {
-      font-size: 12px;
-    }      
-  }  
-}*/
-
 .vertical-divider {
   position: absolute;
   z-index: 10;
@@ -413,35 +363,6 @@ a:hover, a.selected, a:focus {
   bottom: 0;
 }
 
-.row-divided {
-  position:relative;
-  .tour-items{
-    margin: 0;
-    padding: 30px;
-    color: white;
-    &.column-one, &.column-two {
-      height: 400px; position: relative;
-      .proposition {
-        margin-left: 20px;margin-right: 20px;
-        position: absolute;            
-        top: 50%;                      
-        transform: translate(0, -50%);
-      }
-    }
-    &.column-one {
-      background-color: $brand-yellow;padding-right: 20px;
-    }
-    &.column-two {
-      background-color: $brand-red;padding-left: 20px;
-    }    
-  }
-}
-
-.row-divided > [class^="col-"],
-.row-divided > [class*=" col-"] {
-  padding-left: 30px;  /* gutter width (give a little extra room) 2x default */
-  padding-right: 30px; /* gutter width (give a little extra room) 2x default */
-}
 
 
 .affix-top,.affix{
@@ -469,3 +390,31 @@ a:hover, a.selected, a:focus {
   border:0 #eee solid;
   border-right-width:5px;
 }
+
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  path, polygon, rect {
+    fill: #4691f6;
+  }
+  circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+  }  
+}
+.svg-bg {
+  width: 10em;
+  height: 10em;
+  path, polygon, rect {
+    fill: white;
+  }  
+  circle {
+    stroke: white;
+    stroke-width: 1;
+  }    
+}
+

@@ -144,10 +144,10 @@ $navbar-border-radius: 0px;
 // Navbar: Default navbar
 // -> Basics
 $navbar-default-color: $brand-primary;
-$navbar-default-bg: #f8f8f8;
+$navbar-default-bg: white;
 $navbar-default-border: darken($navbar-default-bg, 7%);
 // -> Links
-$navbar-default-link-color: #777777;
+$navbar-default-link-color: $brand-primary;
 $navbar-default-link-hover-color: #333333;
 $navbar-default-link-hover-bg: $navbar-default-bg;
 $navbar-default-link-active-color: #555555;

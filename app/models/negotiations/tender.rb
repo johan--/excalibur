@@ -53,7 +53,7 @@ class Tender < ActiveRecord::Base
   paginates_per 30
 
   def target
-    price * volume
+    (self.price * self.volume)
   end
 
   def fulfilled?
@@ -112,6 +112,14 @@ class Tender < ActiveRecord::Base
   def expire_stock!
     self.tenderable.update(
       tradeable: false, expired: 'yes', expired_at: Date.today)
+  end
+
+  def progress
+    (check_contribution / target * 100)
+  end
+
+  def to_window_closed
+    ((created_at.to_date + 90.days) - Date.today).to_i
   end
 
 # Transitions
