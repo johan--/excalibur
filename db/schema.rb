@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223111340) do
+ActiveRecord::Schema.define(version: 20160328073723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -367,15 +367,15 @@ ActiveRecord::Schema.define(version: 20160223111340) do
     t.string   "starter_type",                              null: false
     t.integer  "tenderable_id",                             null: false
     t.string   "tenderable_type",                           null: false
-    t.string   "category",                                  null: false
-    t.string   "aqad",                                      null: false
+    t.string   "category"
+    t.string   "aqad"
     t.string   "ticker"
     t.string   "slug",                                      null: false
-    t.integer  "annum",                                     null: false
-    t.integer  "volume",                                    null: false
+    t.integer  "annum"
+    t.integer  "volume"
     t.integer  "price_sens",      limit: 8, default: 0,     null: false
     t.string   "price_currency",            default: "IDR", null: false
-    t.jsonb    "details",                   default: {},    null: false
+    t.jsonb    "details",                   default: {}
     t.datetime "deleted_at"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false

@@ -3,6 +3,7 @@ class HousesController < ApplicationController
   
   def index
   	@houses = House.all
+  	@tender = Tender.new
   end
 
   def show

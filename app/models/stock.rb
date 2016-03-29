@@ -12,7 +12,7 @@ class Stock < ActiveRecord::Base
   has_many :tenders, as: :tenderable
   has_many :acquisitions, as: :acquireable
 
-  delegate :ticker, to: :house, prefix: true
+  delegate :ticker, :display_picture, to: :house, prefix: true
 
   serialize :details, HashSerializer
   store_accessor :details, 
@@ -26,8 +26,8 @@ class Stock < ActiveRecord::Base
   # after_touch   :check_condition
 
 
-  scope :initials, -> { 
-    where("stocks.details->>'initial' = :type", type: "yes") 
+  scope :initial, -> { 
+    where("stocks.details->>'initial' = :type", type: "yes").first
   }
   scope :tradeables, -> { where(tradeable: true) }
 

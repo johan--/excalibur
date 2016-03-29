@@ -1,9 +1,0 @@
-<h1>Pilih Objek Pendanaan</h1>
-
-<%= render layout: 'form' do |f| %>
-
-<% f.collection_radio_buttons(:tenderable, @stocks, :id, :display_picture) do |b| %>
-  <%= b.label { b.radio_button + image_tag(b.object.display_picture) } %>
-<% end %>
-
-<% end %>

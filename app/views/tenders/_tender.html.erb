@@ -1,25 +1,36 @@
 <li class="col-md-3 col-sm-6 co-xs-12">
   <div class="thumbnail tender-item" style="padding: 0">
-    <div style="padding:4px">
-      <%= render_house_display_for_tender(tender.tenderable.house, '') %>
-<!--       <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150"> -->
-    </div>
+    <%= link_to tender_path(tender) do %>
+      <div>
+        <%= render_house_display_for_tender(tender.tenderable.house, '') %>
+        <!--       <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150"> -->
+      </div>
+    <% end %>
     <div class="caption">
       <h3 style="margin-top: 0px;margin-bottom: 5px;"><%= link_to tender.ticker, tender_path(tender) %> <i class="fa fa-search-plus pull-right"></i> </h3>
       <h4 style=""><span class="label label-default"><%= tender.category %></span><span class="label label-success"><%= tender.state %></span></h4>
       <p style="margin-bottom:0px;"><i class="ion ion-home"></i> <%= link_to tender.tenderable.ticker, house_path(tender.tenderable) %></p>
       <p style="margin-bottom:20px;"><i class="ion ion-person"></i> <%= tender.starter.name %></p>
-      <%= link_to "Tawar", new_tender_bid_path(tender), class: "btn btn-block btn-primary" %>
+      <p class="centered">
+      <% unless tender.draft? %>
+        <%= link_to "Lihat", tender_path(tender), class: "btn btn-primary" %>
+        <%= link_to "Tawar", new_tender_bid_path(tender), class: "btn btn-secondary" %>
+      <% else %>
+        <h1 class="centered">DRAFT</h1>
+      <% end %>
+      </p>      
     </div>
     <div class="modal-footer" style="text-align: left">
-      <div class="progress">
-        <%= render_progress_bar(tender.progress.to_i) %>
-      </div>
-      <div class="row centered">
-        <div class="col-xs-4"><b><%= idr_concat(tender.price, 1000) %> rb</b><br/><small>HARGA</small></div>
-        <div class="col-xs-4"><b><%= tender.progress %>%</b><br/><small>TERCAPAI</small></div>
-        <div class="col-xs-4"><b><%= tender.to_window_closed %></b><br/><small>HARI</small></div>
-      </div>
+      <% unless tender.draft? %>
+        <div class="progress">
+          <%= render_progress_bar(tender.progress.to_i) %>
+        </div>
+        <div class="row centered">
+          <div class="col-xs-4"><b><%= idr_concat(tender.price, 1000) %> rb</b><br/><small>HARGA</small></div>
+          <div class="col-xs-4"><b><%= tender.progress %>%</b><br/><small>TERCAPAI</small></div>
+          <div class="col-xs-4"><b><%= tender.to_window_closed %></b><br/><small>HARI</small></div>
+        </div>
+      <% end %>
     </div>
   </div>
 </li>

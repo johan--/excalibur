@@ -22,8 +22,10 @@
 #   end
 # end
 
-Fustal::Application.config.secret_token = if Rails.env.development? or Rails.env.test?
-  ('x' * 30) # meets minimum requirement of 30 chars long
+Fustal::Application.config.secret_token = 
+if Rails.env.development? or Rails.env.test?
+  # ('x' * 30) # meets minimum requirement of 30 chars long
+  File.read(Rails.root.join('.secret')).chomp  
 else
   ENV['SECRET_KEY_BASE']
 end

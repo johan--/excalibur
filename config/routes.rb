@@ -36,11 +36,13 @@ Fustal::Application.routes.draw do
     member do
       get "discuss"
     end
-    resources :build, controller: 'products/build'
+    resources :build, only: [:show, :update], controller: 'tenders/build'
     resources :bids
   end
   resources :documents
-  resources :houses, only: [:show, :index]
+  resources :houses, only: [:show, :index] do
+    resources :tenders, only: :create
+  end
   resources :comments
   resources :groups
   resources :invoices do

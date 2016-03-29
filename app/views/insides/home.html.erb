@@ -39,49 +39,7 @@
             <% end %>
           </div>
           <div class="tab-pane" id="financing">
-            <div class="item">
-              <div class="row">
-                <div class="col-md-4">
-                  <%= render partial: 'tenders/tenders', locals: {tenders: @tenders}  %>
-                </div>
-                <div class="col-md-8">
-                  <% if @documents.present? %>
-                    <% @groups.each do |category, documents| %>
-                      <h5 class="primary"><%= category.titleize %></h5><hr>
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <% docs_per_category(category).each do |doc| %>
-                            <span class="label label-primary" style="margin-right: 5px;">
-                              <%= doc %>  <%= document_checklist(doc) %>
-                            </span>
-                          <% end %>
-                        </div>
-                        <% documents.each do |document| %>
-                          <div class="col-xs-6 col-sm-4">
-                            <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
-                          </div>
-                        <% end %>
-                      </div>
-                    <% end %>
-                    <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
-                  <% else %>
-                  <div class="blankslate">
-                    <div class="spacious">
-                      <h4><%= "Belum Ada Dokumen" %></h4>
-                      <h1><i class="ion ion-android-attach"></i></h1>
-                      <%= link_to "Unggah Dokumen", new_document_path, remote: true, class: "btn btn-primary" %>
-                    </div>
-                  </div>
-                  <% end %>                  
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8 col-sm-6 col-xs-3"></div>
-              <div class="col-md-4 col-sm-6 col-xs-9">
-                
-              </div>
-            </div>
+            <%= render 'request' %>
           </div>
         </div>
       <!-- </div>       -->

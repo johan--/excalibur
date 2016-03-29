@@ -57,8 +57,10 @@
 		      <ul class="dropdown-menu">
 		        <li><%= active_link_to "Akun", profile_url(subdomain: ''), remote: true %></li>
 		        <li><%= active_link_to "Terms", service_terms_url(subdomain: '') %></li>
-		        <li role="separator" class="divider"></li>
-		        <li><%= active_link_to "Admin", admin_root_url(subdomain: '') if current_user.admin? %></li>
+		        <% if current_user.admin? %>
+			        <li role="separator" class="divider"></li>
+			        <li><%= active_link_to "Admin", admin_root_url(subdomain: '')  %></li>
+			    <% end %>
 		        <li role="separator" class="divider"></li>
 		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary" %>
 		        </li>		        
@@ -78,7 +80,7 @@
 
 		<div class="row">	  
 	      <!--left-->
-	      <div class="col-md-2 col-sm-2 hidden-xs" id="leftCol" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+	      <div class="col-md-2 col-sm-3 hidden-xs" id="leftCol" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
 	        <ul class="nav nav-stacked" id="sidebar">
 	          <li>
 	          	<%= active_link_to user_root_url(subdomain: '') do %>
@@ -99,7 +101,7 @@
 	      </div><!--/left-->
 	      
 	      <!--right-->
-	      <div class="col-md-9 col-sm-10">
+	      <div class="col-md-10 col-sm-9">
 	      	<div class="row"><%= render 'layouts/messages' %></div>	
 	      	<div class="row">
 				<%= yield %>

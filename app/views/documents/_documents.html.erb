@@ -1,0 +1,17 @@
+<% @groups.each do |category, documents| %>
+  <h5 class="primary"><%= category.titleize %></h5><hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <% docs_per_category(category).each do |doc| %>
+        <span class="label label-primary" style="margin-right: 5px;">
+          <%= doc %>  <%= document_checklist(doc) %>
+        </span>
+      <% end %>
+    </div>
+    <% documents.each do |document| %>
+      <div class="col-xs-6 col-sm-4">
+        <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

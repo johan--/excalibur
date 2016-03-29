@@ -94,12 +94,18 @@ $nprogress-zindex: 10100;
     /*padding: 10%;*/
   }
   h3  { color: $brand-dark; }
+  h4  { color: darken(#fafafa, 30%); }
   i {
     color: darken(#fafafa, 10%); font-size: 5em;
   }
   &.long {
     padding: 1em 1.5em;
-    a i { color: $brand-primary; }
+    a i { 
+      color: $brand-primary; 
+      &:hover {
+        color: darken($brand-primary, 20%);
+      }
+    }
     i {
       color: darken(#fafafa, 10%); font-size: 2em;
     }    

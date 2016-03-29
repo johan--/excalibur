@@ -60,7 +60,7 @@ gem 'vanity', :git => 'https://github.com/assaf/vanity', :branch => 'master'
 gem 'protokoll', '1.0.2'
 gem 'groupify', '0.7.1'
 gem 'wicked', '1.2.1'
-
+gem 'pacecar' #https://github.com/thoughtbot/pacecar
 # gem "socialization", "~> 1.2.0"
 
 # Complementary

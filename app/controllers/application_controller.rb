@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper 
   include LayoutSelector
   # Prevent CSRF attacks by raising an exception.
-  protect_from_forgery with: :exception
+  protect_from_forgery with:  :null_session
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
   before_filter :reject_locked!, if: :devise_controller?
   before_filter :authenticate_user!#, unless: :devise_controller?  

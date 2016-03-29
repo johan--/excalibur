@@ -1,0 +1,69 @@
+<div class="item">
+  <% if current_user.has_proposals? %>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Proposal</h3>
+        <%= render partial: 'tenders/tender_info', locals: {tender: @tender}  %>
+      </div>
+      <div class="col-md-6">
+      </div>      
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="blankslate long">
+              <h4><%= "Tentukan Modal" %></h4>
+              <%= link_to edit_tender_path(@tender), remote: true do %>
+                <h1><i class="glyphicon glyphicon-piggy-bank"></i></h1>
+              <% end %>
+            </div>          
+          </div>      
+          <div class="col-xs-4">
+            <div class="blankslate long">
+              <h4><%= "Isi Data Diri" %></h4>
+              <%= link_to edit_user_path(current_user), remote: true do %>
+                <h1><i class="ion ion-person"></i></h1>
+              <% end %>
+            </div>          
+          </div>
+          <div class="col-xs-4">
+            <div class="blankslate long">
+              <h4><%= "Unggah Dokumen" %></h4>
+              <%= link_to new_document_path do %>
+                <h1><i class="ion ion-android-attach"></i></h1>
+              <% end %>
+            </div>          
+          </div>
+        </div>
+      </div>
+      <div class="spacing"></div>
+      <div class="col-md-12">
+        <% if @documents.present? %>
+          <%= render 'documents/documents' %>
+        <% end %>
+      </div>
+      <div class="col-md-12">
+        <% if @documents.present? %>
+          <%= render 'documents/documents' %>
+        <% end %>
+      </div>      
+      <div class="spacing"></div>
+      <div class="col-md-12">
+        <%= link_to "Minta Approval", '#', class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="blankslate">
+      <div class="spacious">
+        <h4><%= "Ingin membeli rumah?" %></h4>
+        <h1><i class="ion ion-android-home"></i></h1>
+        <%= link_to "Ajukan proposal", new_tender_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-sm-6 col-xs-3"></div>
+    <div class="col-md-4 col-sm-6 col-xs-9">
+      
+  </div>
+</div>

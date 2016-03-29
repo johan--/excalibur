@@ -1,13 +1,14 @@
 class Tenders::BuildController < ApplicationController
   include Wicked::Wizard
+  steps *Tender.form_steps
 
-  steps :add_aqad, :add_tenderable, :finish_up
+  # steps :fill_proposal, :fill_profile, :upload_docs
 
   def show
     @tender = Tender.find(params[:tender_id])
     case step
-    when :add_tenderable
-      @stocks = Stock.initials.tradeables
+    when :fill_profile
+      @user = current_user
     end    
     render_wizard
   end

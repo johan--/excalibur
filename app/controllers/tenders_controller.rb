@@ -4,8 +4,6 @@ class TendersController < ApplicationController
   def index
     @title = "Bursa"
     @tenders = Tender.published
-    @fundraisings = @tenders.offering
-    @tradings = @tenders.trading
   end
 
   def show
@@ -29,11 +27,13 @@ class TendersController < ApplicationController
   end
 
   def new
-    @category = params[:intent]
-    @aqad = params[:akad]
-    @asset_type = params[:asset]
-    @asset_id = params[:asset_id]
-    @asset = @asset_type.constantize.friendly.find(@asset_id)
+    @houses = House.all
+    @stocks = Stock.all
+    # @category = params[:intent]
+    # @aqad = params[:akad]
+    # @asset_type = params[:asset]
+    # @asset_id = params[:asset_id]
+    # @asset = @asset_type.constantize.friendly.find(@asset_id)
     @tender = Tender.new
   end
 
@@ -44,15 +44,25 @@ class TendersController < ApplicationController
   end
 
   def create
-    @tender = Tender.new(tender_params)
-    @tender.starter = current_user
-    @tender.tenderable = params[:tender][:asset].constantize.friendly.find(params[:tender][:asset_id])
-
-    if @tender.save
-      flash[:notice] = 'Proposal berhasil dibuat'
-      redirect_to @tender
+    if params[:house_id]
+      @house = House.friendly.find(params[:house_id])
+      @tender = Tender.create(starter: current_user, 
+        tenderable: @house.stocks.initial, draft: 'yes', 
+        category: "fundraising", annum: 10, 
+        aqad: "Musyarakah Mutanaqishah")
     else
+      @tender = Tender.new(tender_params)
+      @tender.starter = current_user
+      @tender.tenderable = @house.stocks.initial
+      tender.save
+    end
+        
+    if @tender.valid?
+      flash[:notice] = 'Proposal berhasil dibuat'
+      # redirect_to tender_build_path(@tender, Tender.builds.first)
       redirect_to user_root_path
+    else
+      redirect_to new_tender_path
       flash[:danger] = 'Proposal gagal dibuat'
       Rails.logger.info(@tender.errors.inspect) 
     end

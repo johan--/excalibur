@@ -8,26 +8,26 @@
     <% else %>
       <%= f.input :volume, as: :integer, input_html: { min: '0', max: '1000', step: '1' }, label: "Saham Dijual", placeholder: "jumlah", required: true %>  
       <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "100000", 'slider-max'=> "500000000", 'slider-value'=> "0", 'slider-step'=> "50000"} }, label: "Harga", required: true %>
+      <%= f.input :annum, as: :integer, input_html: { min: '1', max: '10', step: '1' }, label: "Durasi", placeholder: "lama kontrak", required: true %>
+
+      <%= f.input :draft, as: :boolean, checked_value: 'yes', unchecked_value: 'no', label: "Draft?" %>
+
+      <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
+      <%= f.input :asset, :as => "hidden", :input_html => { value: @asset_type } %>
+      <%= f.input :asset_id, :as => "hidden", :input_html => { value: @asset_id } %>
+      <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>      
     <% end %>
-
-    <%= f.input :annum, as: :integer, input_html: { min: '1', max: '10', step: '1' }, label: "Durasi", placeholder: "lama kontrak", required: true %>
-
-    <%= f.input :draft, as: :boolean, checked_value: 'yes', unchecked_value: 'no', label: "Draft?" %>
-
-    <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
-    <%= f.input :asset, :as => "hidden", :input_html => { value: @asset_type } %>
-    <%= f.input :asset_id, :as => "hidden", :input_html => { value: @asset_id } %>
-    <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>
   </div>
 
   <div class="form-group">
-    <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
-    <!-- <span class="help-text">Please choose your amount</span> -->
+    <label for="total" class="col-sm-6 control-label"><strong>Modal: </strong></label>
+    <!-- <span class="help-text">(Amount * Days)</span> -->
     <div class="col-sm-6">
-      <p id="amount-inputSliderVal" class="price lead"><%= idr_concat(@asset.worth) if @category == 'fundraising'  %></p>
-      <span class="price"> jt</span>
+      <p id="seed-inputSliderVal" class="price lead">20</p>
+      <span class="price"> %</span>
     </div>
   </div>
+
   <% unless @category == 'fundraising' %>
   <div class="form-group">
     <label for="total" class="col-sm-6 control-label"><strong>Durasi: </strong></label>
@@ -45,6 +45,14 @@
       <span class="price"> %</span>
     </div>
   </div>
+  <div class="form-group">
+    <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
+    <!-- <span class="help-text">Please choose your amount</span> -->
+    <div class="col-sm-6">
+      <p id="amount-inputSliderVal" class="price lead"><%= idr_concat(@asset.worth) if @category == 'fundraising'  %></p>
+      <span class="price"> jt</span>
+    </div>
+  </div>  
   <% end %>  
 </div>
   <div class="form-actions">

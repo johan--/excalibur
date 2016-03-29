@@ -1,15 +1,17 @@
 class TenderStateMachine
   include Statesman::Machine
 
-  state :open, initial: true
+  state :request, initial: true
+  state :open
   state :closed
-  state :running
   state :success
+  state :done
   state :failed
 
-  transition from: :open, to: [:running, :closed, :failed]
-  transition from: :closed, to: [:open, :running, :failed]
-  transition from: :running, to: [:success, :failed]
+  transition from: :request, to: [:open, :failed]
+  transition from: :open, to: [:success, :closed, :failed]
+  transition from: :closed, to: [:open, :success, :failed]
+  transition from: :success, to: [:done, :failed]
   # transition from: :failed
 
   # guard_transition(to: :closed) do |tender|
@@ -20,7 +22,7 @@ class TenderStateMachine
   #   !tender.fulfilled?
   # end
 
-  # guard_transition(to: :running) do |tender|
+  # guard_transition(to: :success) do |tender|
   #   tender.bids.each{ |b| b. }
   # end
 
@@ -29,12 +31,12 @@ class TenderStateMachine
     tender.save!
   end
 
-  after_transition(to: :running) do |tender, transition|
+  after_transition(to: :success) do |tender, transition|
     #make invoice for all bids
     tender.bids.each{ |b| b.request_funding }
   end
 
-  after_transition(to: :success) do |tender, transition|
+  after_transition(to: :done) do |tender, transition|
     #make stock untradeable and expired
     tender.expire_stock! if tender.tenderable.should_be_expired?
   end
@@ -46,7 +48,7 @@ class TenderStateMachine
   #   PaymentService.new(order).submit
   # end
 
-  # after_transition(to: :success) do |tender, transition|
+  # after_transition(to: :done) do |tender, transition|
   #   if tender.aqad?('murabaha')
   #   Tender.create(te)
   #     model.state = transition.to_state

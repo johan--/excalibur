@@ -42,11 +42,12 @@ class House < ActiveRecord::Base
   end
 
   def placeholder
-    "http://res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png"
+    "//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png"
   end
 
   def display_picture
-    avatar || placeholder
+    avatar
+    placeholder if avatar.nil?
   end
 
   def house_owner

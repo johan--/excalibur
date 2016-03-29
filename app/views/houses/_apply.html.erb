@@ -1,0 +1,4 @@
+<%= form_tag tenders_path, method: 'post' do  %>
+	<div><%= hidden_field_tag :house %></div>
+	<%= submit_tag "Apply", class: "btn btn-primary" %>
+<% end %>

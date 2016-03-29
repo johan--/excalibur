@@ -10,7 +10,10 @@ class Tender < ActiveRecord::Base
   monetize :price_sens
   acts_as_commentable
   acts_as_paranoid
-
+  cattr_accessor :form_steps do
+    %w(fill_proposal fill_profile upload_docs)
+  end
+  
   belongs_to :tenderable, polymorphic: true  
   belongs_to :starter, polymorphic: true  
   has_many :bids
@@ -24,11 +27,10 @@ class Tender < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :state, :aqad_code, :layman_terms,
-                 :margin, :unit, :draft, :message,
-                 :seed_capital, :participate
+                 :unit, :draft, :seed_capital, :participate,
+                 :state,  :pushed
 
-  attr_wannabe_bool :draft, :participate
+  attr_wannabe_bool :draft, :participate, :pushed
 
 # Statesman stuffs
   # Initialize the state machine
