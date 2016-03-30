@@ -1,0 +1,305 @@
+.fixed_height_320 {
+  height: 320px;
+}
+.fixed_height_390 {
+  height: 390px;
+}
+.fixed_height_200 {
+  height: 200px;
+}
+
+/* *********  tabs  **************************** */
+
+ul.bar_tabs {
+  /* border: 1px solid #ff0000; */
+  overflow: visible;
+  background: #F5F7FA;
+  height: 25px;
+  margin: 21px 0 14px;
+  padding-left: 14px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 1px solid #E6E9ED;
+}
+ul.bar_tabs > li {
+  border: 1px solid #E6E9ED;
+  color: #333 !important;
+  margin-top: -17px;
+  margin-left: 8px;
+  background: #fff;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+ul.bar_tabs > li.active {
+  border-right: 6px solid #D3D6DA;
+  border-top: 0; 
+  margin-top: -15px;
+}
+ul.bar_tabs > li.active a {
+  background: #fff;
+  color: black; font-style: bold;
+  border-color: transparent;
+  &:focus {
+    color: black; font-style: bold;
+  }
+}
+ul.bar_tabs > li a {
+  padding: 10px 17px;
+  background: #F5F7FA;
+  margin: 0;
+  border-radius: 0;
+}
+ul.bar_tabs.right {
+  padding-right: 14px;
+}
+ul.bar_tabs.right li {
+  float: right
+}
+a:focus {
+  outline: none;
+}
+
+/* *********  /tabs  **************************** */
+/* *********  verticle tabs  **************************** */
+
+
+/*!
+ * bootstrap-vertical-tabs - v1.2.1
+ * https://dbtek.github.io/bootstrap-vertical-tabs
+ * 2014-11-07
+ * Copyright (c) 2014 İsmail Demirbilek
+ * License: MIT
+ */
+
+.tabs-left, .tabs-right {
+  border-bottom: none;
+  padding-top: 2px;
+}
+.tabs-left {
+  border-right: 1px solid #F7F7F7;
+}
+.tabs-right {
+  border-left: 1px solid #F7F7F7;
+}
+.tabs-left>li, .tabs-right>li {
+  float: none;
+  margin-bottom: 2px;
+}
+.tabs-left>li {
+  margin-right: -1px;
+}
+.tabs-right>li {
+  margin-left: -1px;
+}
+.tabs-left>li.active>a, .tabs-left>li.active>a:hover, .tabs-left>li.active>a:focus {
+  border-bottom-color: #F7F7F7;
+  border-right-color: transparent;
+}
+.tabs-right>li.active>a, .tabs-right>li.active>a:hover, .tabs-right>li.active>a:focus {
+  border-bottom: 1px solid #F7F7F7;
+  border-left-color: transparent;
+}
+.tabs-left>li>a {
+  border-radius: 4px 0 0 4px;
+  margin-right: 0;
+  display: block;
+  background: #F7F7F7;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.tabs-right>li>a {
+  border-radius: 0 4px 4px 0;
+  margin-right: 0;
+  background: #F7F7F7;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.sideways {
+  margin-top: 50px;
+  border: none;
+  position: relative;
+}
+.sideways>li {
+  height: 20px;
+  width: 120px;
+  margin-bottom: 100px;
+}
+.sideways>li>a {
+  border-bottom: 1px solid #ddd;
+  border-right-color: transparent;
+  text-align: center;
+  border-radius: 4px 4px 0px 0px;
+}
+.sideways>li.active>a, .sideways>li.active>a:hover, .sideways>li.active>a:focus {
+  border-bottom-color: transparent;
+  border-right-color: #ddd;
+  border-left-color: #ddd;
+}
+.sideways.tabs-left {
+  left: -50px;
+}
+.sideways.tabs-right {
+  right: -50px;
+}
+.sideways.tabs-right>li {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.sideways.tabs-left>li {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+/* *********  /verticle tabs  **************************** */
+.x_panel {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 17px;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #E6E9ED;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+  opacity: 1;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  transition: all .2s ease;
+}
+.x_title {
+  border-bottom: 2px solid #E6E9ED;
+  padding: 1px 5px 6px;
+  margin-bottom: 10px;
+  .filter {
+    width: 40%;
+    float: right;
+  }
+  h2, h3, h4 {
+    margin: 5px 0 6px;
+    float: left;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    small {
+      margin-left: 10px;
+    }  
+  }  
+  span {
+    color: #BDBDBD;
+  }  
+}
+
+.x_content {
+  padding: 0 5px 6px;
+  position: relative;
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-top: 5px;
+  h4 {
+    font-size: 16px;
+    font-weight: 500;
+  }  
+}
+
+legend {
+  padding-bottom: 7px;
+}
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.demo-placeholder {
+  height: 280px;
+}
+
+.panel_toolbox {
+  float: right;
+  min-width: 70px;
+}
+.panel_toolbox>li {
+  float: left;
+}
+.panel_toolbox>li>a {
+  padding: 5px;
+  color: #C5C7CB;
+  font-size: 14px;
+}
+.panel_toolbox>li>a:hover {
+  background: #F5F7FA;
+}
+
+/*Projects*/
+.project_progress .progress {
+  margin-bottom: 3px !important;
+  margin-top: 5px;
+}
+.projects {
+  btn btn-xs{
+    font-size: 12px; line-height: 1.2;
+  }
+  .list-inline {
+    margin: 0;
+  }
+}
+.profile_title {
+  background: #F5F7FA;
+  border: 0;
+  padding: 7px 0;
+  display: flex;
+}
+ul.stats-overview {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+ul.stats-overview li {
+  display: inline-block;
+  text-align: center;
+  padding: 0 15px;
+  width: 30%;
+  font-size: 14px;
+  border-right: 1px solid #e8e8e8;
+}
+ul.stats-overview li:last-child {
+  border-right: 0;
+}
+ul.stats-overview li .name {
+  font-size: 12px;
+}
+ul.stats-overview li .value {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+ul.stats-overview li:first-child {
+  padding-left: 0;
+}
+ul.project_files li {
+  margin-bottom: 5px;
+}
+ul.project_files li a i {
+  width: 20px;
+}
+.project_detail p {
+  margin-bottom: 10px;
+}
+.project_detail p.title {
+  font-weight: bold;
+  margin-bottom: 0
+}
+.avatar img {
+  border-radius: 50%;
+  max-width: 45px;
+}

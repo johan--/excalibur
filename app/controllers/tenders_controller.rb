@@ -73,7 +73,7 @@ class TendersController < ApplicationController
     if @tender.update(tender_params)
 
       flash[:notice] = 'Proposal berhasil dikoreksi'
-      redirect_to @tender
+      redirect_to user_root_path
     else
       render :edit
       Rails.logger.info(@tender.errors.inspect) 

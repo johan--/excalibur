@@ -1,0 +1,52 @@
+<h2 class="">Dokumen</h2>
+<!-- start project list -->
+<table class="table table-striped projects">
+  <thead>
+    <tr>
+      <th style="width: 1%">#</th>
+      <th style="width: 24%">Nama</th>
+      <th style="width: 15%">Status</th>
+      <th style="width: 60%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @documents.present? %>  
+    <% @documents.each_with_index do |doc, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td>
+          <a><%= doc.ticker %></a>
+          <br />
+          <small>Diperbarui <%= doc.updated_at %></small>
+        </td>
+        <td>
+          <span class="label label-default"><%= doc.state %></span>
+        </td>
+        <td>
+          <%= link_to document_path(doc), class: "btn btn-primary btn-xs" do %>
+              <i class="fa fa-search-plus"></i> Edit
+          <% end %>
+          <%= link_to edit_document_path(doc), class: "btn btn-info btn-xs" do %>
+            <i class="fa fa-pencil"></i> Edit
+          <% end %> 
+          <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'}, class: "btn btn-danger btn-xs" do %>
+            <i class="fa fa-trash"></i> Hapus
+          <% end %>        
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td></td>
+      <td><h5 class=" grey">Belum ada dokumen</h5></td>
+      <td><h5 class=" grey">yang diunggah</h5></td>
+      <td>
+        <%= link_to new_document_path, remote: true, class: "btn btn-primary btn-xs" do %>
+          <i class="fa fa-cloud"></i> Unggah
+        <% end %>         
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!-- end project list --> 

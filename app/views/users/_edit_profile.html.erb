@@ -1,9 +1,10 @@
 <div class="modal-header modal-header-success">
-  <h3>Koreksi Pengajuan<span class="light"><%= @category.titleize %></span></h3><hr class="light"></hr>
+  <h3>Isi Profil</h3>
 </div>
 <div class="modal-body">
   <center>
-  	<%= render 'form' %>
+  	<h3> <%= user.name %></h3>
+  	<%= render partial: 'users/profile_form', locals: { user: user } %>
   </center>
 </div>
 <div class="modal-footer">

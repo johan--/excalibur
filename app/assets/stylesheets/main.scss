@@ -16,7 +16,8 @@
 @import "styles/blog";
 @import "styles/new-landing";
 @import "styles/login";
-@import "styles/AdminLTE";
+/*@import "styles/AdminLTE";*/
+@import "styles/gentella-bits";
 @import "styles/skins/skin-blue";
 
 /* Progress Bar */
@@ -150,17 +151,6 @@ hr {
     border-width: 1px;
 }
 
-hr.strong {
-    border-color: #575757;
-    border-width: 2px;
-}
-
-hr.coral {
-    border-color: $brand-coral;
-    border-width: 3px;
-}
-
-
 a:hover, a.selected, a:focus {
   color: #eb3812;
 }
@@ -186,10 +176,6 @@ a:hover, a.selected, a:focus {
 .mb {
   margin-bottom: 25px;
 }
-
-.ml {
-  margin-left: 5px;
-  }
 
 .no-padding {
   padding: 0 !important;
@@ -371,26 +357,29 @@ a:hover, a.selected, a:focus {
 
 
 
-.affix-top,.affix{
- position: static;
+.affix {
+  top: 70px;
+  width: 12.3%;
+}
+.affix-top {
+  width: 100%;
+}
+.affix-bottom {
+  position: absolute;
+  width: 85%;
 }
 #left-col{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);   
 }
 
-@media (min-width: 979px) {
+/*@media (min-width: 979px) {
   #sidebar.affix-top {
-    position: static;
-    margin-top:30px;
-    width:228px;
+    position: static; margin-top:30px;width:228px;
   }
-  
   #sidebar.affix {
-    position: fixed;
-    top:70px;
-    width:228px;
+    position: fixed; top:70px; width:228px;
   }
-}
+}*/
 
 #sidebar li.active {
   border:0 #eee solid;
