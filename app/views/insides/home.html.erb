@@ -6,43 +6,16 @@
   <h3 class="primary"><i class="ion ion-flag"></i> Markas</h3><hr class="light">
 
   <div class="row" id="home-view">
-    <div class="col-md-12 right-display">
-      <ul class="nav nav-tabs list-group list-group-horizontal centered">
-        <li class="list-group-item active">
-          <a data-target="#investment" data-toggle="tab">Investasi</a>
-        </li>
-        <li class="list-group-item">
-          <a data-target="#financing" data-toggle="tab">Pengajuan</a>
-        </li>        
-      </ul>
+    <div class="col-xs-12 right-display">
       <!-- <div class="row"> -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="investment">
-            <% if @bids.present? %>
-              <div class="item">
-                <%= render partial: 'bids/bid', collection: @bids  %>
-              </div>
-              <div class="blankslate long">
-                <h4><%= "Tambah Investasi" %></h4>
-                <%= link_to tenders_path do %>
-                  <h1><i class="ion ion-android-add-circle"></i></h1>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="blankslate">
-                <div class="spacious">
-                  <h4><%= "Belum Ada Investasi" %></h4>
-                  <h1><i class="ion ion-briefcase"></i></h1>
-                  <%= link_to "Pilih Investasi", tenders_path, class: "btn btn-primary" %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="tab-pane" id="financing">
-            <%= render 'request' %>
-          </div>
+<!--         <div class="col-md-12">
+          <h3>Bursa</h3><hr>
+          <%= render 'investment' %>
+        </div> -->
+        <div class="col-md-12">
+          <%= render 'request' %>
         </div>
-      <!-- </div>       -->
-    <!-- </div> -->
+      <!-- </div> -->
+    </div>
   </div>
 </div>

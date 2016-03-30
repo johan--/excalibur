@@ -1,0 +1,23 @@
+<% if @bids.present? %>
+  <div class="col-md-3">
+    <div class="item">
+      <%= render partial: 'bids/bid', collection: @bids  %>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="blankslate long">
+      <h4><%= "Tambah Investasi" %></h4>
+      <%= link_to tenders_path do %>
+        <h1><i class="ion ion-android-add-circle"></i></h1>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+    <div class="blankslate">
+      <div class="spacious">
+        <h4><%= "Belum Ada Investasi" %></h4>
+        <h1><i class="ion ion-briefcase"></i></h1>
+        <%= link_to "Pilih Investasi", tenders_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+<% end %>

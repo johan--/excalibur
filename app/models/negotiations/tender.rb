@@ -47,7 +47,7 @@ class Tender < ActiveRecord::Base
 
   before_create :set_default_values!
   after_create :refresh_friendly_id!
-  after_save :connect_with_bid, if: ->(obj){ obj.aqad?('musharaka')}
+  after_save :connect_with_bid
   # after_update  :touch_bid!, 
   after_touch :set_state!
 
@@ -182,7 +182,7 @@ private
   end
 
   def refresh_musharaka_bid(volume)
-    self.bids.client.update(volume: volume)
+    self.bids.client.first.update(volume: volume)
   end
 
   def set_state!

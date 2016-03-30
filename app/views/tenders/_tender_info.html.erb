@@ -15,6 +15,14 @@
         <tr>    
           <td>
             <strong>
+              <span class="fa fa-clock-o text-primary"></span> Pemohon
+            </strong>
+          </td>
+          <td class="text-primary" id="tender-maturity"><%=tender.starter.name %></td>
+        </tr>
+        <tr>    
+          <td>
+            <strong>
               <span class="fa fa-clock-o text-primary"></span> Lama 
             </strong>
           </td>
@@ -41,11 +49,11 @@
         <tr>        
           <td>
             <strong>
-              <span class="fa fa-envelope text-primary"></span> Unit
+              <span class="fa fa-envelope text-primary"></span> Modal
             </strong>
           </td>
           <td class="text-primary">
-            <%= tender.unit %>
+            <%= tender.seed_capital %>%
           </td>
         </tr>
         <tr>

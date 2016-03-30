@@ -34,6 +34,7 @@ class PagesController < ApplicationController
   end
 
   def tos
+    @static = true
   end
 
   def upgrade

@@ -45,7 +45,7 @@ class Bid < ActiveRecord::Base
   before_destroy :reset_volume
 
   scope :real, -> { where(deleted_at: nil) }
-  scope :client, -> { where("bids.details->>'client' = :type", type: "yes").first  }
+  scope :client, -> { where("bids.details->>'client' = :type", type: "yes")  }
   scope :completed, -> { where(
     "bids.details->>'state' = :type", type: "success")  
   }

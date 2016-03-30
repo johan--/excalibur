@@ -7,7 +7,7 @@
             <div class="blankslate long">
               <h4><%= "Tentukan Modal" %></h4>
               <%= link_to edit_tender_path(@tender), remote: true do %>
-                <h1><i class="glyphicon glyphicon-piggy-bank"></i></h1>
+                <h1><i class="ion ion-cash"></i></h1>
               <% end %>
             </div>          
           </div>      
@@ -33,22 +33,26 @@
       <div class="col-md-12 col-sm-6 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h4><i class="fa fa-bars"></i> Pengajuan Pendanaan <small>Panel</small></h4>
-<!--             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
+            <h4>Pengajuan Pendanaan <small></small></h4>
+            <ul class="nav navbar-right panel_toolbox">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars"></i></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
+                  <li>
+                    <%= link_to edit_tender_path(@tender) do %> 
+                      <i class="fa fa-pencil"></i> Edit
+                    <% end %>                  
+                  </li>                
+                  <li>
+                    <%= link_to tender_path(@tender), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan Proposal'} do %>
+                      <i class="fa fa-trash"></i> Hapus
+                    <% end %>                  
                   </li>
                 </ul>
+              </li> 
+              <li>
               </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul> -->
+            </ul>          
             <div class="clearfix"></div>
           </div>
           <div class="x_content">

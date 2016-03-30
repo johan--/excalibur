@@ -49,7 +49,7 @@ class TendersController < ApplicationController
       @tender = Tender.create(starter: current_user, 
         tenderable: @house.stocks.initial, draft: 'yes', 
         category: "fundraising", annum: 10, 
-        aqad: "Musyarakah Mutanaqishah")
+        aqad: "Musyarakah Mutanaqishah", participate: 'yes')
     else
       @tender = Tender.new(tender_params)
       @tender.starter = current_user
@@ -71,11 +71,11 @@ class TendersController < ApplicationController
   def update
     set_tender
     if @tender.update(tender_params)
-
       flash[:notice] = 'Proposal berhasil dikoreksi'
       redirect_to user_root_path
     else
-      render :edit
+      # render :edit
+      redirect_to user_root_path
       Rails.logger.info(@tender.errors.inspect) 
     end
   end

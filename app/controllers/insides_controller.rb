@@ -4,7 +4,7 @@ class InsidesController < ApplicationController
 
   def home
     @title = "Beranda"
-    @tender = current_user.tenders.offering.first
+    @tender = User.first.tenders.offering.first
     @bids = current_user.bids
     @documents = current_user.documents
     @groups = @documents.group_by { |doc| doc.category }    

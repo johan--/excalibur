@@ -1,4 +1,7 @@
 module LayoutSelector
+  def inside_app
+    @inside = true
+  end
 
   def disable_background
     @disable_background = true

@@ -48,11 +48,11 @@ end
   garages: 1, greenery: "yes", lot_size: 100, property_size: 90    )
 end
 
-Tender.create(
-    price: 300000, volume: 1000, annum: 10, draft: "no", aqad: "musharaka",
-    category: "fundraising", unit: "ownership", seed_capital: 20,
-    starter: User.first, tenderable: House.first.stocks.first
-)
+# Tender.create(
+#     price: 300000, volume: 1000, annum: 10, draft: "no", aqad: "musharaka",
+#     category: "fundraising", unit: "ownership", seed_capital: 20,
+#     starter: User.first, tenderable: House.first.stocks.first
+# )
 
 # Bid.create(
 #   tender: Tender.first, bidder: User.first, volume: 250

@@ -286,8 +286,8 @@ section#reminder {
 .site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
-  background: rgb(0, 236, 240);
-  background: rgba(0, 236, 240, 0.4);
+/*  background: rgb(0, 236, 240);
+  background: rgba(0, 236, 240, 0.4);*/
 }
 .cover-container {
   margin-right: auto;
@@ -299,6 +299,9 @@ section#reminder {
   padding-left: 50px; padding-right: 50px;
   padding-bottom: 20px; padding-top: 5px;
   color: white;
+  .cover-heading {
+    background-color: $brand-primary; font-weight: 300; padding: .15em .2em;
+  }  
 }
 
 
@@ -348,11 +351,7 @@ section#reminder {
   }
 }
 
-
-/*
- * Cover
- */
-
+/** Cover */
 .cover {
   padding: 0 20px;
   margin: 0 auto 0 auto;
@@ -360,7 +359,7 @@ section#reminder {
     line-height: 140%;
   }
   p.lead {
-    line-height: 1.6;
+    line-height: 1.6; color: #343333;;
   }
 }
 .cover .btn-lg {

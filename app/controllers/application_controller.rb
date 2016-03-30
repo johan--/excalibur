@@ -58,11 +58,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_opera_mini?
 
-  def inside_app
-    @inside = true
-  end
-
-
 private
   def detect_device_format
     case request.user_agent
