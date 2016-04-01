@@ -1,0 +1,61 @@
+<% body_class "disable-nprogress" %>
+
+<%= render layout: 'form' do  %>
+  <%= form_for(@house) do |f| %>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+        <% if @no_avatar %>
+          <h5 class="centered">Unggah Display Picture</h5>
+          <p>Unggah foto yang akan menjadi display picture propertimu. Format yang diterima adalah .jpg atau .png maksimal 1 MB. <br><small>Klik 'Choose Files' untuk memulai memilih, kemudian tekan tombol simpan.</small></p>
+        <% else %>
+          <h5 class="centered">Display Picture Saat Ini</h5>
+          <%= render_lg_house_display(@house, 'img-responsive') %>
+        <% end %>    
+    </div>
+    <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+
+      <div id="direct_upload" class="centered">
+        <div class="form_line">
+          <%= f.label "Status:" %><br>
+          <%= f.submit "0 % Uploading", class: "btn btn-coral", disabled: true %>
+          <div class="spacing"></div>
+          <div class="row">
+            <div class="form_controls col-sm-6 col-sm-offset-3">
+             <%= f.attachinary_file_field :photos %>
+            </div>            
+          </div>
+        </div>
+
+          <div class="form_line">
+            <div class="form_controls">
+            	<span class="status"></span>
+              <div class="preview"></div>
+              <div class="spacing"></div>
+              <button class='btn btn-success centered'>
+                <i class='fa fa-plus-square'></i> Simpan
+              </button>              
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form-actions">
+      <%= link_to "Sebelumnya", previous_wizard_path, class: "btn btn-info btn-round-lg pull-left" unless @disable_previous %>
+      <%= link_to "Selanjutnya", next_wizard_path, class: "btn btn-primary btn-round-lg pull-right" unless @disable_next %>
+    </div>
+  </div>
+
+  <% end %>
+<% end %>
+<script>
+  $(document).ready(function() {
+    $('.attachinary-input').attachinary({
+      dataType: 'json',
+      done: function (e, data) {
+        data.context.text('Upload finished.');
+      }      
+    })
+  });
+</script>

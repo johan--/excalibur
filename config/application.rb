@@ -22,7 +22,7 @@ module Fustal
 
     config.i18n.available_locales = [:id, :en]
     # Default Locale
-    config.i18n.default_locale = :id
+    config.i18n.default_locale = :en
     
     # Handles error via routes
     config.exceptions_app = self.routes

@@ -36,11 +36,12 @@ Fustal::Application.routes.draw do
     member do
       get "discuss"
     end
-    resources :build, only: [:show, :update], controller: 'tenders/build'
+    # resources :build, only: [:show, :update], controller: 'tenders/build'
     resources :bids
   end
   resources :documents
-  resources :houses, only: [:show, :index] do
+  resources :houses do
+    resources :steps, only: [:show, :update], controller: 'houses/steps'
     resources :tenders, only: :create
   end
   resources :comments
@@ -105,6 +106,7 @@ Fustal::Application.routes.draw do
       member do
         get "upload", to: "houses#upload_photo", as: :upload_photo
       end
+      resources :steps, only: [:show, :update], controller: 'house/steps'
     end
     resources :comments
   end

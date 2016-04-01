@@ -1,0 +1,28 @@
+<%= render layout: 'form' do |f| %>
+  <%= f.input :category, collection: house_categories, prompt: "Pilih", selected: @house.category, label: "Kategori", required: true %>
+  <div class="row">
+	  <div class="col-xs-6">
+		<%= f.input :bedrooms, as: :integer, input_html: { min: '1', step: '1' }, label: "Kamar Tidur", placeholder: "jumlah", required: true %>
+	  </div>
+	  <div class="col-xs-6">
+	  	<%= f.input :bathrooms, as: :integer, input_html: { min: '1', step: '1' }, label: "Kamar Mandi", placeholder: "jumlah", required: true %>
+	  </div>
+  </div>
+  <div class="row">
+	  <div class="col-xs-6">
+		<%= f.input :level, as: :integer, input_html: { min: '1', step: '1' }, label: "Tingkat", placeholder: "jumlah", required: true %>
+	  </div>
+	  <div class="col-xs-6">
+	  	<%= f.input :garages, as: :integer, input_html: { min: '0', step: '1' }, label: "Carport", placeholder: "Jumlah", required: true %>
+	  </div>
+  </div>  
+  <div class="row">
+	  <div class="col-xs-6">
+		<%= f.input :lot_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Tanah", placeholder: "meter persegi", required: true %>
+	  </div>
+	  <div class="col-xs-6">
+	  	<%= f.input :property_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Bangunan", placeholder: "meter persegi", required: true %>  
+	  </div>
+  </div>
+   
+<% end %>

@@ -1,23 +1,10 @@
-def secure_token
-  token_file = Rails.root.join('.secret')
-  if File.exist?(token_file)
-    # Use the existing token.
-    File.read(token_file).chomp
-  else
-    # Generate a new token and store it in token_file.
-    token = SecureRandom.hex(64)
-    File.write(token_file, token)
-    token
-  end
-end
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = secure_token
+  config.secret_key = '<%= ENV["SECRET_KEY_BASE"] %>' if Rails.env == 'production'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -182,7 +169,7 @@ Devise.setup do |config|
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  # config.maximum_attempts = 20
+  config.maximum_attempts = 10
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   # config.unlock_in = 1.hour

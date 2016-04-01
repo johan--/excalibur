@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, @house], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+<%= simple_form_for(@house], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -62,6 +62,5 @@
         NProgress.done(true);
         $(".status").text("File berhasil diunggah, silahkan tekan Simpan");
       }
-    $('.attachinary-input').attachinary()
   }
 </script>

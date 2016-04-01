@@ -1,0 +1,6 @@
+<%= render layout: 'form' do |f| %>
+  <%= f.input :complex, as: :string, label: "Kompleks"  %>
+  <%= f.input :address, as: :string, label: "Alamat", required: true  %>
+  <%= f.input :city, as: :string, label: "Kota", required: true  %>
+  <%= f.input :province, as: :string, label: "Provinsi", required: true  %>
+<% end %>

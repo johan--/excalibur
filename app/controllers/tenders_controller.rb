@@ -46,7 +46,7 @@ class TendersController < ApplicationController
   def create
     if params[:house_id]
       @house = House.friendly.find(params[:house_id])
-      @tender = Tender.create(starter: current_user, 
+      @tender = Tender.new(starter: current_user, 
         tenderable: @house.stocks.initial, draft: 'yes', 
         category: "fundraising", annum: 10, 
         aqad: "Musyarakah Mutanaqishah", participate: 'yes')
@@ -54,10 +54,9 @@ class TendersController < ApplicationController
       @tender = Tender.new(tender_params)
       @tender.starter = current_user
       @tender.tenderable = @house.stocks.initial
-      tender.save
     end
         
-    if @tender.valid?
+    if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
       # redirect_to tender_build_path(@tender, Tender.builds.first)
       redirect_to user_root_path

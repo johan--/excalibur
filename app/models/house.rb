@@ -12,19 +12,41 @@ class House < ActiveRecord::Base
   # has_many :tenders, through: :stocks
   has_attachments :photos, maximum: 6
 
+  cattr_accessor :form_steps do
+    %w(place characteristics pictures situations)
+  end
+
   HOUSE = ["rumah tunggal", "rumah gandeng", "town house"]
   APARTMENT = ["apartemen, rumah susun, flat"]
 
+
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :category, :for_sale, :for_rent, :vacant, :anno, :country,
-                 :bedrooms, :bathrooms, :level, :garages, 
-                 :greenery, :property_size, :lot_size
+                 :category, :bedrooms, :bathrooms, :level, 
+                 :greenery, :garages, :property_size, :lot_size
 
-  attr_wannabe_bool :for_sale, :for_rent, :vacant, :greenery
-  geocoded_by :address   # can also be an IP address
+  store_accessor :location, 
+                 :address, :address_was, :city, :complex,
+                 :province, :country
 
-  # before_create :set_default_values!
+  store_accessor :condition,
+                 :form_step, :state, :for_sale, :for_rent, 
+                 :vacant, :anno, 
+                 :mortgage_period_left, :outstanding_mortgage
+
+  attr_wannabe_bool :for_sale, :for_rent, :vacant
+  geocoded_by :full_street_address 
+
+  with_options if: -> { required_for_step?(:characteristics) } do |step|
+    step.validates :bedrooms, presence: true
+    step.validates :bathrooms, presence: true
+    step.validates :level, presence: true
+    step.validates :garages, presence: true
+    step.validates :property_size, presence: true
+    step.validates :lot_size, presence: true
+  end
+
+  before_create :set_default_values!
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   after_create :refresh_friendly_id!, :create_relation!
   # after_update :refresh_tenders
@@ -32,6 +54,15 @@ class House < ActiveRecord::Base
   scope :vacancy, -> { 
     where("houses.details->>'vacant' = 'yes'") 
   }
+
+  def full_street_address
+    "#{self.address}, #{self.city}, #{self.province}, #{self.country}"
+  end
+
+  def address_changed?
+    return true if self.address != self.address_was
+    return false if self.address == self.address_was
+  end
 
   def annual_rental
     self.price * 0.1
@@ -59,7 +90,6 @@ class House < ActiveRecord::Base
     ["for sale", "vacant", "for rent"]
   end
 
-
   def price_ticker
       price_sens / 100000000
   end
@@ -68,7 +98,23 @@ class House < ActiveRecord::Base
     [:ticker]
   end
 
+  def required_for_step?(step)
+    # All fields are required if no form step is present
+    return true if form_step.nil?
+
+    # All fields from previous steps are required if the
+    # step parameter appears before or we are on the current step
+    return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
+  end
+
 private
+  def set_default_values!
+    self.country = 'indonesia'
+    self.state = 'pending' if self.state.nil?
+    self.address_was = ''
+    self.for_rent = 'yes'
+  end
+
   def refresh_tenders
     self.tenders.map{ |tender| tender.touch }
   end

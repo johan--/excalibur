@@ -64,7 +64,7 @@ module ImagesHelper
     if house.avatar.blank?
       image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_300,w_450/v1452508512/asset/2000px-House_Silhouette.png')
     else
-      cl_image_tag(house.avatar, user_lg_options('private', string))
+      cl_image_tag(house.avatar, house_avatar_options(string))
     end
   end
 
@@ -91,4 +91,9 @@ module ImagesHelper
 		{ :type => type, :width => 300, :height => 200, 
 			:crop => :scale, format: :jpg, class: "#{string}" }
 	end  
+
+  def house_avatar_options(string)
+	{ :width => 450, :height => 300, 
+		:crop => :scale, class: "#{string}" }
+  end
 end

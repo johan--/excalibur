@@ -369,7 +369,8 @@ section#reminder {
 
 @media (max-width: 768px) {
   .masthead {
-    background-color: rgba(0, 238, 242, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
+    display: none;
   }
   .inner {
     text-align: center;
@@ -387,7 +388,8 @@ section#reminder {
   .masthead {
     position: fixed;
     top: 0px;
-    background-color: rgba(0, 238, 242, 0.6);
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
   }
   .mastfoot {
     position: fixed;
@@ -569,16 +571,17 @@ section#reminder {
         position: absolute;            
         top: 50%;                      
         transform: translate(0, -50%);
+        .btn {margin-bottom: 25px;}
         p {
           font-size: 18px; margin-left: 15px; margin-right: 15px;
         }
       }
     }
     &.column-one {
-      background-color: $brand-yellow;padding-right: 20px;
+      background-color: $brand-dark;padding-right: 20px;
     }
     &.column-two {
-      background-color: $brand-red;padding-left: 20px;
+      background-color: $brand-dark;padding-left: 20px;
     }    
   }
 }

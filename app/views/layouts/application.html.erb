@@ -23,18 +23,16 @@
         <%= render 'layouts/admin_layout' %>
     </body>
   <% else %>
-    <body class="mobile-navbar">
+    <body class="mobile-navbar <%= yield (:body_class) %>">
       <%= render 'layouts/mobile_navbar' %>
     </body>
 
   <% end %>
 <% else %>
   <body>
-    <% if @no_layout  %>
+    <% if @no_layout || @static %>
+      <%= render 'layouts/classic_navbar' %>
       <%= yield %>
-    <% elsif @static  %>
-      <%= render 'layouts/classic_navbar' %>    
-      <%= yield %>      
     <% elsif @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
     <% elsif @wiki_layout %>

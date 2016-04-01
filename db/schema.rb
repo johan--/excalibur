@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330103444) do
+ActiveRecord::Schema.define(version: 20160331035920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,14 +191,11 @@ ActiveRecord::Schema.define(version: 20160330103444) do
   create_table "houses", force: :cascade do |t|
     t.integer  "publisher_id",                             null: false
     t.string   "publisher_type",                           null: false
-    t.integer  "price_sens",     limit: 8, default: 0,     null: false
+    t.integer  "price_sens",     limit: 8, default: 0
     t.string   "price_currency",           default: "IDR", null: false
     t.string   "ticker"
-    t.string   "state"
-    t.string   "address",                                  null: false
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "city"
     t.jsonb    "details",                  default: {}
     t.text     "description"
     t.string   "avatar"
@@ -206,12 +203,13 @@ ActiveRecord::Schema.define(version: 20160330103444) do
     t.datetime "deleted_at"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.jsonb    "location"
+    t.jsonb    "condition"
   end
 
   add_index "houses", ["deleted_at"], name: "index_houses_on_deleted_at", using: :btree
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
-  add_index "houses", ["state"], name: "index_houses_on_state", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"

@@ -1,0 +1,22 @@
+<%= render layout: 'form' do |f| %>
+  <%= f.input :price, as: :integer, input_html: { min: 100000000, step: 1000000 }, label: "Harga", required: true %>
+  <div class="row">
+	  <div class="col-xs-4">
+		<%= f.input :for_sale, as: :select, collection: yes_no_options, prompt: "Pilih", label: "Dijual?", required: true %>
+	  </div>
+	  <div class="col-xs-4">
+	  	<%= f.input :vacant, as: :select, collection: yes_no_options, prompt: "Pilih", label: "Kosong?", required: true %>
+	  </div>
+	  <div class="col-xs-4">
+	  	<%= f.input :anno, as: :integer, input_html: { min: '1990', step: '1' }, label: "Tahun Dibangun", required: true %>
+	  </div>
+  </div>
+  <div class="row">
+	<div class="col-xs-4">
+	  <%= f.input :mortgage_period_left, as: :integer, input_html: { min: '1', step: '1' }, label: "Tenor Hutang", placeholder: "sisa", required: true %>
+	</div>
+	<div class="col-xs-4">
+	  <%= f.input :outstanding_mortgage, as: :integer, input_html: { min: 50000000, step: 10000000 }, label: "Jumlah Hutang", placeholder: "sisa", required: true %>
+	</div>  	
+  </div>
+<% end %>

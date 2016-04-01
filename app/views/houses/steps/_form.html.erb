@@ -1,0 +1,63 @@
+<div class="home" style="">
+  <h3 class="primary"><i class="ion ion-flag"></i> Pendaftaran Properti</h3><hr class="light">
+  <div class="row">
+      <div id="wizard" class="form_wizard wizard_horizontal">
+        <ul class="wizard_steps">
+          <li>
+          	<%= active_link_to house_step_path(@house, :place) do %>
+              <span class="step_no">1</span>
+              <span class="step_descr">Lokasi<br />
+				<!-- <small>Beritahu kami lokasi properti</small> -->
+              </span>
+            <% end %>
+          </li>
+          <li>
+            <%= active_link_to house_step_path(@house, :characteristics) do %>
+              <span class="step_no">2</span>
+              <span class="step_descr">Karakteristik<br />
+                <!-- <small>Karakteristik yang dimiliki oleh Properti</small> -->
+               </span>
+            <% end %>
+          </li>
+          <li>
+            <%= active_link_to house_step_path(@house, :pictures) do %>
+              <span class="step_no">3</span>
+              <span class="step_descr">Display Picture<br />
+				<!-- <small>Unggah foto-foto dari properti terkait</small> -->
+              </span>
+            <% end %>
+          </li>
+          <li>
+            <%= active_link_to house_step_path(@house, :situations) do %>
+              <span class="step_no">4</span>
+              <span class="step_descr">Kondisi<br />
+                <!-- <small>Terangkan kami tentang kondisi legal atas properti</small> -->
+              </span>
+            <% end %>
+          </li>
+        </ul>
+        <% unless @uploading %>
+	        <div class="row" id="building-form">
+				<%= simple_form_for(@house, method: :put, url: wizard_path, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
+				  <%= f.error_notification %>
+
+				  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+				  	<%= yield f %>
+				  </div>
+				  
+				  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form-actions">
+				  	<%= link_to "Sebelumnya", previous_wizard_path, class: "btn btn-info btn-round-lg pull-left" unless @disable_previous %>
+				    <%= f.submit "Lanjutkan", class: "btn btn-success btn-round-lg pull-right" %>
+				  </div>
+				<% end %>
+	        </div>
+        <% else %>
+			<div class="row" id="uploading-form">
+			  <%= yield %>		
+			</div>
+		<% end %>
+      </div>
+      <!-- End SmartWizard Content -->
+      <div class="spacing"></div>
+  </div>
+</div>
