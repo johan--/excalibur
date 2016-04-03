@@ -27,12 +27,6 @@ class PagesController < ApplicationController
     @category = "funding"
   end
 
-  def open_simulation
-    @for = params[:type]
-    @aqad = params[:aqad]
-    # meta_events_tracker.event!(:user, :open_simulation, { type: @for } )
-  end
-
   def tos
     @static = true
   end
@@ -83,10 +77,6 @@ class PagesController < ApplicationController
       flash.now.alert = "Tolong tulis alamat email yang valid, terima kasih."
       redirect_to root_path
     end    
-  end
-
-
-  def prepare_request
   end
 
   def send_request

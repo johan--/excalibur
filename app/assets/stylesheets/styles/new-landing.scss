@@ -189,72 +189,115 @@ section#reminder {
 }
 
 /* Job Section */
-.home-tour .section-title {
+.home-tour {
+  .benefit-item {
+      text-align: center;
+      color: #666666;
+      margin-bottom: 25px;
+      padding-top: 20px;
+      padding-bottom: 10px;
+      box-shadow: inset 0px 0px 0px 1px transparent;
+    h5 {
+      margin-top: 32px;
+      font-size: 1.25em;
+      font-weight: 300;      
+      color: black;
+    }    
+  }  
+  .section-title {
     text-align: center;
-    color: $brand-coral;
+    color: $brand-primary;
     font-size: 100%;
     margin-bottom: 25px;
     line-height: 1.5rem;
     text-transform: uppercase;    
     font-weight: 800;
-}
-.grid {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 1364px;
-    margin: 0 auto;
-    overflow: hidden;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.home-tour .section-headline {
-    max-width: 900px;
-    margin: 0 auto 90px;
-    font-size: 4.25rem;
-    line-height: 1.2;
-    color: $brand-dark;
-    text-align: center;
-    font-weight: 600; 
-    &.inverse {
-      color: white;
-    }   
-}
-.home-tour .tour-items {
-    max-width: 1080px;
-    margin: 80px auto 0;
-}
-.home-tour .tour-observe {
+  }
+  .tour-observe {
     margin: 70px auto 0;
     padding: 60px 40px 40px;
     border: 1px solid #d5e1ec;
-    border-radius: 10px;
+    border-radius: 10px ;
     text-align: center;
     max-width: 1080px;
     box-sizing: border-box;
     font-weight: 400;
     letter-spacing: 1px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.02em;  
+    .panel.panel-default {
+      border: none;
+      box-shadow: none !important;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      .panel-heading {
+        border: 1px solid $brand-lightgrey;
+        color: $brand-grey;
+        background-color: white;
+        .panel-title {
+          font-weight: 400;
+        }              
+      }        
+      .panel-body p {
+        color: $brand-grey;
+        text-align: left;
+      }
+      .side-tab {
+        &:hover {
+          cursor: pointer;
+        }
+      }            
+    }    
+    ul {
+      width: 100%; list-style: none;
+    }  
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      padding-right: 10px;
+      position: relative;
+      color: #757575;
+      line-height: 1.5;
+    }
+    &:after {
+      content: '·';
+      position: absolute;
+      right: -2px;
+      font-weight: 500;
+    }    
+  }
+  .grid {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1364px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+  .section-headline {
+      max-width: 900px;
+      margin: 0 auto 90px;
+      font-size: 4.25rem;
+      line-height: 1.2;
+      color: $brand-dark;
+      text-align: center;
+      font-weight: 300; 
+      &.inverse {
+        color: white;
+      }   
+  }
+  .tour-items {
+      max-width: 1080px;
+      margin: 50px auto 0;
+  }  
 }
-.home-tour .tour-observe ul {
-    width: 100%; list-style: none;
-}
-.home-tour .tour-observe li {
-    display: inline-block;
-    margin-right: 10px;
-    padding-right: 10px;
-    position: relative;
-    color: #757575;
-    line-height: 1.5;
-}
-.home-tour .tour-observe li:after {
-    content: '·';
-    position: absolute;
-    right: -2px;
-    font-weight: 500;
-}
+
+
+
+
 .footer {
-  background-color: $brand-dark;
-  padding: 70px 0 80px;
+  background-color: white;
+  padding: 70px 0 0px;
   position: relative;
   z-index: 10;
   font-weight: 600;
@@ -264,14 +307,15 @@ section#reminder {
   line-height: 1.875rem;
   color: #d1dae8;
   ul li a {
-    color: white;
+    color: $brand-grey;
   }
   ul li a:hover {
-    background-color: $brand-dark;
     color: $brand-primary;
     border-bottom: 1px solid $brand-primary;
+    background-color: white;
   }    
 }
+
 /* Landing Cover */
 .site-wrapper {
   display: table;
@@ -563,7 +607,7 @@ section#reminder {
   .tour-items{
     margin: 0;
     padding: 30px;
-    color: white;
+    color: $brand-grey;
     &.column-one, &.column-two {
       height: 400px; position: relative;
       .proposition {
@@ -578,10 +622,21 @@ section#reminder {
       }
     }
     &.column-one {
-      background-color: $brand-dark;padding-right: 20px;
+      background-color: white;padding-right: 20px;
     }
     &.column-two {
-      background-color: $brand-dark;padding-left: 20px;
+      background-color: white;padding-left: 20px;
+    }    
+    .svg-bg {
+      width: 10em;
+      height: 10em;
+      path, polygon, rect {
+        fill: $brand-grey;
+      }  
+      circle {
+        stroke: white;
+        stroke-width: 1;
+      }    
     }    
   }
 }

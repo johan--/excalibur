@@ -24,7 +24,7 @@ $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
 // Typography
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,600);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,500);
 $font-family-roboto: 'Roboto', sans-serif;
 $font-family-base: $font-family-roboto;
 $font-size-base: 16px;
@@ -147,8 +147,8 @@ $navbar-default-color: $brand-primary;
 $navbar-default-bg: white;
 $navbar-default-border: darken($navbar-default-bg, 7%);
 // -> Links
-$navbar-default-link-color: $brand-primary;
-$navbar-default-link-hover-color: #333333;
+$navbar-default-link-color: $brand-dark;
+$navbar-default-link-hover-color: none;
 $navbar-default-link-hover-bg: $navbar-default-bg;
 $navbar-default-link-active-color: #555555;
 $navbar-default-link-active-bg: darken($navbar-default-bg, 7%);

@@ -93,7 +93,7 @@ module ImagesHelper
 	end  
 
   def house_avatar_options(string)
-	{ :width => 450, :height => 300, 
-		:crop => :scale, class: "#{string}" }
+	{ :width => 500, :height => 300, 
+		:crop => :lfill, gravity: :center, class: "#{string}" }
   end
 end

@@ -1,10 +1,6 @@
-<div class="modal-header modal-header-primary">
-  <h3>Simulasi <%= params[:type].titleize %> <small>v 1.0</small></h3>
-</div>
-<div class="modal-body">
+<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
   <center>
-    <h3 class="white media-heading"><%= "Untuk Klien" %></h3>
-    <h5 class="coral">Simulasi dapat berubah sewaktu-waktu</h5>
+    <h5 class="coral">Formula simulasi dapat berubah sewaktu-waktu</h5>
     <%= simple_form_for(:simulation, { url: simulation_path, method: 'get', remote: true, html: { class: 'form-vertical' }, wrapper: :vertical_form }) do |f| %>
     <%= f.error_notification %>
 
@@ -52,9 +48,7 @@
 
   </center>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
-</div>
+
 
 <script type="text/javascript">
 

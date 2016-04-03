@@ -30,4 +30,42 @@
     
         <div class="clear"></div>
     </div>
-</div>                   
+</div>
+
+<!-- Partial item -->
+<div class="col-md-10">
+    <div class="wp-block-item property-list">
+        <div class="wp-block-title">
+            <h3><%= link_to house.ticker, house_path(house) %>  <small><%= house.address %></small></h3>
+        </div>
+        <div class="body">
+            <div class="wp-block-img">
+                <%= link_to house_path(house) do %>
+                    <%= render_house_display(house, '') %>
+                <% end %>
+            </div>
+            <div class="wp-block-content">
+                <h4 class="content-title"><%= house.state %></h4>
+                <p class="description"><%= house.description || "Lorem ipsum dolor sit amet, consectetur adipisg elitm Ut tincidunt purus iaculis ipsum dctum non dtum quam." %></p>
+                <span class="pull-left">
+                    <span class="value"><%= idr_money(house.price.to_i) %></span> 
+                    <!-- <span class="period">per month</span> -->
+                </span>
+                <% if defined?(fundraising) && fundraising == true %>
+                    <span class="pull-right">
+                        <%= button_to "Apply", house_tenders_path(house) %>
+                    </span>
+                <% end %>
+            </div>
+        </div>
+        <div class="list-footer">
+            <ul class="aux-info">
+                <li><i class="fa fa-building"></i> <%= house.property_size %>/<%= house.lot_size %> m<sup>2</sup></li>
+                <li><i class="fa fa-moon-o"></i> <%= house.bedrooms %> k. Tidur</li>
+                <li><i class="fa fa-tint"></i> <%= house.bathrooms %> k. Mandi</li>
+                <li><i class="fa fa-car"></i> <%= house.garages %> port</li>
+                <li><i class="fa fa-plus-square"></i> <%= house.level %> tingkat</li>
+            </ul>
+        </div>
+    </div>
+</div> 

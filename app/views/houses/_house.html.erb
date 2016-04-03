@@ -1,36 +1,26 @@
-<div class="col-md-10">
-    <div class="wp-block-item property-list">
-        <div class="wp-block-title">
-            <h3><%= link_to house.ticker, house_path(house) %>  <small><%= house.address %></small></h3>
-        </div>
-        <div class="body">
-            <div class="wp-block-img">
-                <%= link_to house_path(house) do %>
-                    <%= render_house_display(house, '') %>
-                <% end %>
+<div class="col-md-6">
+    <div class="thumbnail house-listing">
+        <%= render_lg_house_display(house, 'img-responsive') %>
+        <div class="caption">
+            <div class="row">
+                <div class="col-sm-8 col-xs-8">
+                    <div class="top-desc address"><%= house.address %> <span class="city small"><%= house.province %></span></div>
+                </div>
+                <div class="col-sm-4 col-xs-4">
+                    <div class="top-desc coral pull-right"><strong><%= "Rp " + idr_concat(house.price, 1000000) + " jt" %></strong></div> 
+                </div>
             </div>
-            <div class="wp-block-content">
-                <h4 class="content-title"><%= house.state %></h4>
-                <p class="description"><%= house.description || "Lorem ipsum dolor sit amet, consectetur adipisg elitm Ut tincidunt purus iaculis ipsum dctum non dtum quam." %></p>
-                <span class="pull-left">
-                    <span class="value"><%= idr_money(house.price.to_i) %></span> 
-                    <!-- <span class="period">per month</span> -->
-                </span>
-                <% if defined?(fundraising) && fundraising == true %>
-                    <span class="pull-right">
-                        <%= button_to "Apply", house_tenders_path(house) %>
-                    </span>
-                <% end %>
+            <div class="row">
+                <div class="col-xs-8 top-desc">
+                    <p>
+                        <span class="lggrey"><%= house.bedrooms %> Kamar Tidur <sup>.</sup> 
+                        <%= house.bathrooms %> Kamar Mandi <sup>.</sup> <%= house.lot_size %>m<sup>2</sup></span>
+                    </p> 
+                </div>
+                <div class="col-xs-4">
+                </div>                
+            
             </div>
-        </div>
-        <div class="list-footer">
-            <ul class="aux-info">
-                <li><i class="fa fa-building"></i> <%= house.property_size %>/<%= house.lot_size %> m<sup>2</sup></li>
-                <li><i class="fa fa-moon-o"></i> <%= house.bedrooms %> k. Tidur</li>
-                <li><i class="fa fa-tint"></i> <%= house.bathrooms %> k. Mandi</li>
-                <li><i class="fa fa-car"></i> <%= house.garages %> port</li>
-                <li><i class="fa fa-plus-square"></i> <%= house.level %> tingkat</li>
-            </ul>
         </div>
     </div>
-</div> 
+</div>

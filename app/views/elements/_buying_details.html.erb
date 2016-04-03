@@ -1,0 +1,128 @@
+<div id="buying_details" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Skema Hijrah</h4>
+      </div>
+<div class="modal-body">
+  <div id="explanation" class="row">
+    <h4 class="centered">Penjelasan</h4>
+    <div class="col-md-4">
+      <ul class="article-list-basic">
+        <li>
+          <a href="#">
+            <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
+          </a>
+          <div>
+            <h2><a href="#">Hijrah</a></h2>
+            <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah, namun sudah memiliki modal.</p>
+          </div>
+        </li>            
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          
+          <!-- panel 1 -->
+          <div class="panel panel-default">
+            <!--wrap panel heading in span to trigger image change as well as collapse -->
+            <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+              <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title">Penjelasan</h4>
+                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+              </div>
+            </span>
+            
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                Dengan skema Hijrah, kamu akan memiliki rumah tanpa perlu terlibat dalam hutang. Dengan akad Musyarakah Mutanaqishah, kamu tergabung dalam kerja sama kepemilikan bersama dengan para pendana dan kamu tidak mempunyai kewajiban untuk membeli saham kepemilikan mereka. Kewajibanmu hanya sebatas membayar sewa yang didiskon oleh porsi kepemilikanmu, artinya semakin besar porsimu maka semakin rendah sewa yang harus kamu bayarkan kepada para pendana.
+              </div>
+            </div>
+          </div> 
+          <!-- / panel 1 -->
+          
+          <!-- panel 2 -->
+          <div class="panel panel-default">
+              <!--wrap panel heading in span to trigger image change as well as collapse -->
+              <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+                  <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <h4 class="panel-title collapsed">Persyaratan</h4>
+                      <span class="pull-right clickable" style="margin-top: -20px;font-size: 15px;"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                  </div>
+              </span>
+
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  Berikut persyaratan yang harus kamu penuhi untuk menerbitkan pengajuan di Kapiten: 
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">Belum pernah memiliki rumah</li>
+                  <li class="list-group-item">Memiliki modal sebesar minimal 20% dari harga rumah</li>
+                  <li class="list-group-item">Rumah yang diinginkan memenuhi kriteria minimum Kapiten</li>
+                  <li class="list-group-item">Mampu membayar uang komitmen (hamish jiddiyah) sebagai bukti keseriusan</li>
+                  <li class="list-group-item">Bersedia memberikan data diri serta menjalani proses seleksi secara jujur oleh Kapiten</li>
+                </ul>
+              </div>
+          </div>
+          <!-- / panel 2 -->
+          
+          <!--  panel 3 -->
+      </div> <!-- / panel-group -->
+       
+      <div class="centered">
+        <%= link_to '#', remote: true, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
+          <i class="fa fa-calculator fa-3x pull-left"></i>
+          <span>Jalankan Simulasi</span><br>
+          <b>Untuk Hijrah</b>        
+        <% end %>
+      </div>
+    </div><!-- End of right column -->
+  </div>
+  <div id="simulation" class="row" style="display: none;">
+    <h4 class="centered">Simulasi</h4>
+    <%= render partial: 'elements/client_simulation',
+          locals: { heading: 'Simulasi'}  %>    
+  </div>
+</div>
+      <div class="modal-footer">
+        <button type="button" id="BT1" class="btn btn-info" style="display: none;">Kembali ke Penjelasan</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--         <div class="panel panel-default">
+          <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+              <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <h4 class="panel-title">Cara</h4>
+                  <span class="pull-right clickable" style="margin-top: -20px;font-size: 15px;"><i class="glyphicon glyphicon-chevron-down"></i></span>
+              </div>
+          </span>
+
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Cara untuk mengajukan pendanaan Hijrah:
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">Silahkan jalankan simulasi pendanaan dengan menekan tombol "Jalankan Simulasi" di bawah ini</li>
+              <li class="list-group-item">Apabila puas dengan hasilnya, silahkan tekan tombol "Kirim Permintaan"</li>
+              <li class="list-group-item">Isi formulir yang ada dan dalam 1x24 jam tim kami akan memberikan tanggapan dan informasi lanjutan</li>
+            </ul>
+          </div>
+        </div> -->
+<script type="text/javascript">
+  document.getElementById("BT1").addEventListener("click", function(){
+      $("#simulation").hide();
+      $("#explanation").show();
+  });
+  document.getElementById("BT2").addEventListener("click", function(){
+      $("#explanation").hide();
+      $("#simulation").show();
+      $("#BT1").show();
+  });    
+</script>

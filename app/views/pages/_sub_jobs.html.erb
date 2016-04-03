@@ -1,39 +1,39 @@
-<div class="slideshow-home hide-on-medium" data-slideshow="3" data-trigger="click">
-  <div class="grid">
-
-    <div class="right headline">
-      <h3>The single platform for every customer interaction</h3>
+<div class="spacing"></div>
+<div class="container-fluid home-tour">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+              <h2 class="section-title">Apa Kebutuhanmu?</h2>
+              <h1 class="section-headline">Kami melayani berbagai macam kebutuhan di platform ini, silahkan pilih</h1>
+            </div>            
+        </div>
     </div>
-
-    <div class="left">
-      <div class="media-browser">
-        <div class="tab-content">
-            <div class="tab-pane in active" id="sub1">
-              <img class="" src="https://ununsplash.imgix.net/photo-1417024321782-1375735f8987?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950">
-            </div>
-            <div class="tab-pane " id="sub2">
-              <img class="" src="https://unsplash.imgix.net/uploads/1411724908903377d4696/2e9b0cb2?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950">
-            </div>
-            <div class="tab-pane " id="sub3">
-              <img alt="Engage" class="" src="https://ununsplash.imgix.net/photo-1422479516648-9b1f0b6e8da8?dpr=2&fit=crop&fm=jpg&h=650&q=75&w=950">
+    <!-- row requires "row-divided" class -->
+    <div class="row row-divided">
+        <div class="col-xs-12 col-sm-6 column-one tour-items centered">
+            <div class="proposition">
+                <h2>Pembelian</h2>
+                <%= embedded_svg('iconmonstr-key-9.svg', class: 'svg-bg') %>
+                <p>Membeli rumah impian tanpa terlibat dalam hutang dan riba dengan prinsip dan metode yang syar'i</p>
+                <div class="spacing"></div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buying_details">Telusuri</button>
             </div>
         </div>
-      </div>
+        <!-- vertical-divider-* class sets the position in a 12 grid layout -->
+        <div class="vertical-divider hidden-xs"></div>
+        <div class="col-xs-12 col-sm-6 column-two tour-items centered">
+            <div class="proposition">
+                <h2>Takeover</h2>
+                <svg class="svg-bg" viewBox="0 0 20 20">
+                    <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
+                </svg>
+                <p>Keluar dari hutang riba atas rumahmu untuk menciptakan hidup yang tentram dan penuh rahmat</p>
+                <div class="spacing"></div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#takeover_details">Telusuri</button>
+            </div>
+        </div>
     </div>
-
-    <div class="right">
-      <ul class="captions">
-        <li class="active" data-target="#sub1" data-toggle="tab" role="tab" aria-expanded="false">
-          <h4>Sindikasi</h4>
-        </li>
-        <li data-target="#sub2" data-toggle="tab" role="tab" aria-expanded="false">
-          <h4>Anytime Monitoring</h4>
-        </li>
-        <li data-target="#sub3" data-toggle="tab" role="tab" aria-expanded="false">
-          <h4>Belajar & Diskusi</h4>
-        </li>
-      </ul>
-    </div>
-
-  </div>
 </div>
+<div class="spacing"></div>
+<%= render 'elements/buying_details' %>
+<%= render 'elements/takeover_details' %>

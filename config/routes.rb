@@ -62,15 +62,13 @@ Fustal::Application.routes.draw do
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"
   post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
-  get "/prepare_request", to: "pages#prepare_request", as: "prepare_request"
   post "/send_request", to: "pages#send_request", as: "send_request"
   post "/subscribe", to: "pages#subscribe", as: "subscribe"
   get "/simulasi", to: "pages#simulation", as: "simulation"
-  get "/buka_simulasi", to: "pages#open_simulation", as: "open_simulation"
 
   get "about", to: "pages#about_us", as: :about_us
   get "/kepemilikan", to: "pages#ownership", as: :ownership_job
-  get "/investasi", to: "pages#funding", as: :funding_job
+  get "/how-it-works", to: "pages#funding", as: :funding_job
   get '/change_locale/:locale', to: 'pages#change_locale', as: :change_locale
 
 

@@ -1,28 +1,32 @@
 <section class="footer">
   <div class="container text-center">
-      <hr />
     <div class="row">
+      <hr>
       <div class="col-lg-12">
-        <div class="col-md-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 col-xs-6">
           <ul class="nav nav-pills nav-stacked">
             <li><%= link_to "Pembelian Rumah", ownership_job_url(subdomain: '') %></li>
             <li><%= link_to "Investasi Properti", funding_job_url(subdomain: '') %></li>
+            <li><%= link_to "Tentang Kapiten", about_us_url(subdomain: '') %></li>            
           </ul>
         </div>      
-        <div class="col-md-4">
+        <div class="col-md-3 col-xs-6">
           <ul class="nav nav-pills nav-stacked">
-            <li><%= link_to "Tentang Kapiten", about_us_url(subdomain: '') %></li>
             <li><%= link_to "Blog", root_url(subdomain: 'blog') %></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <ul class="nav nav-pills nav-stacked">            
             <li><%= link_to "Kapitenpedia", wiki_all_path %></li>
           </ul>
         </div>
+        <div class="col-md-3"></div>
+        <div class="col-xs-12">
+          <br>
+          <small>PT Kapiten Teknologi Indonesia © 2016
+        </div>
       </div>
     </div>
-    <hr>
-    <small>PT Kapiten Teknologi Indonesia © 2016
-  </div>  
+  </div>
+  <div class="row footer-background">
+    <%= image_tag "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png", class: "hidden-xs" %>
+    <%= image_tag "//res.cloudinary.com/instilla/image/upload/s--GP4lvlG2--/c_lfill,g_center,h_300,w_800/v1459597691/footer_a0ypny.png", class: "visible-xs" %>
+  </div>
 </section>
