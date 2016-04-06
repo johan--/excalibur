@@ -1,4 +1,6 @@
-<% title("Edit Akun: #{@current_user.name}") %>
+<% meta title: "Edit Akun: #{current_user.name}" %>
+
+  <div class="col-xs-12">
     <h1>Edit Akunmu</h1>
 
     <%= simple_form_for(resource, :as => resource_name,
@@ -20,7 +22,7 @@
 
     <%= f.input :phone_number, label: "Nomor Telp (HP)", placeholder: "nomor telepon genggam utama", required: true %>
 
-  <% if current_user.password_required? %>
+  <% unless f.object.using_omniauth? %>
     <%= f.input :password, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', placeholder: "panjang minimal 6 karakter", label: "Password Baru" %>
 
     <%= f.input :password_confirmation, :autocomplete => "off", hint: 'Kosongkan bila tidak ingin diganti', label: "Konfirmasi Password Baru" %>
@@ -29,11 +31,10 @@
   <% end %>
 
     <div class="row">
-      <div class="col-sm-6">
-        <%= f.submit "Simpan", class: "btn btn-outlined btn-theme" %>
-      </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 col-sm-offset-3">
+        <%= f.submit "Simpan", class: "btn btn-success" %>
       </div>
     </div>
 
     <% end %>
+  </div>

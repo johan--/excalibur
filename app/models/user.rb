@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessor :image_id, :category
 
 # Relations
-  has_many :identities
+  has_many :identities,  dependent: :destroy 
   has_many :documents, as: :owner
   has_many :houses, as: :publisher
   has_many :acquisitions, as: :benefactor
@@ -73,8 +73,8 @@ class User < ActiveRecord::Base
   scope :admins, -> { where(admin: true) }    
   
   def using_omniauth?
-    return true if self.identities.count != 0
-    return false if self.identities.count == 0
+    return true if !identities.empty?
+    return false if identities.empty?
   end
 
   def has_proposals?
@@ -104,16 +104,6 @@ class User < ActiveRecord::Base
       return false
     end
   end 
-
-  # Password not required when using omniauth
-  def password_required?
-    super && identities.empty?
-  end
-
-  # Confirmation not required when using omniauth
-  def confirmation_required?
-    super && identities.empty?
-  end
 
   def update_with_password(params, *options)
     if encrypted_password.blank?
