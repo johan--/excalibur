@@ -17,7 +17,7 @@
             Kepemilikan <span class="hidden-xs">Rumah</span>
           <% end %>
         </li>
-        <li><%= link_to "Markas", user_root_url(subdomain: '') if user_signed_in? %></li>
+        <li><%= active_link_to "Markas", user_root_url(subdomain: ''), :active => :exclusive if user_signed_in? %></li>
       </ul>
     </div>    
 <!--     <%= render 'layouts/language_selector' %> -->

@@ -34,35 +34,35 @@
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
-			<li class="visible-xs">
+			<li class="">
 				<%= active_link_to user_root_url(subdomain: '') do %>
 					<span class="menu-icon ion ion-flag"></span>
 					Desk
 				<% end %>
 			</li>
-			<li class="visible-xs">
+<!-- 			<li class="">
 				<%= active_link_to tenders_url(subdomain: '') do %>
 					<span class="menu-icon ion ion-briefcase"></span>
 					Bursa
 				<% end %>
-			</li>			
-			<li class="visible-xs">
+			</li>		 -->	
+<!-- 			<li class="">
 				<%= active_link_to houses_url(subdomain: '') do %>
 					<span class="menu-icon ion ion-cube"></span>
-					<span class="visible-xs">Properti</span>
+					<span class="">Properti</span>
 				<% end %>
-			</li>
+			</li> -->
 		    <li class="dropdown hidden-xs">
 		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hai, <%= current_user.name %><span class="caret"></span></a>
 		      <ul class="dropdown-menu">
-		        <li><%= active_link_to "Akun", profile_url(subdomain: ''), remote: true %></li>
-		        <li><%= active_link_to "Terms", service_terms_url(subdomain: '') %></li>
+		        <li><%= active_link_to "Profil", profile_url(subdomain: '') %></li>
+		        <li><%= active_link_to "Akun", edit_user_registration_url(subdomain: '') %></li>
 		        <% if current_user.admin? %>
 			        <li role="separator" class="divider"></li>
 			        <li><%= active_link_to "Admin", admin_root_url(subdomain: '')  %></li>
 			    <% end %>
 		        <li role="separator" class="divider"></li>
-		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary" %>
+		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "white btn btn-secondary" %>
 		        </li>		        
 		      </ul>
 		    </li>
@@ -80,34 +80,14 @@
 
 		<div class="row">	  
 	      <!--left-->
-	      <div class="col-md-2 col-sm-3 hidden-xs" id="leftCol">
-	        <ul class="nav nav-stacked" id="sidebar" data-spy="affix" data-offset-top="20" data-offset-bottom="400">
-	          <li>
-	          	<%= active_link_to user_root_url(subdomain: '') do %>
-	          		<i class="ion ion-flag"></i> Markas
-	          	<% end %>
-	          </li>
-	          <li>
-	          	<%= active_link_to tenders_url(subdomain: '') do %>
-	          		<i class="ion ion-briefcase"></i> Bursa
-	          	<% end %>          	
-	          </li>
-	          <li>
-	          	<%= active_link_to houses_url(subdomain: '') do %>
-	          		<i class="ion ion-cube"></i> Properti
-	          	<% end %>          	
-	          </li>
-	        </ul>
-	      </div><!--/left-->
 	      
 	      <!--right-->
-	      <div class="col-md-10 col-sm-9">
+	      <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
 	      	<div class="row"><%= render 'layouts/messages' %></div>	
 	      	<div class="row">
 				<%= yield %>
 	      	</div>
 	      </div><!--/right-->
-	      <div class="col-md-1"></div>
 	  	</div><!--/row-->
 	</div><!--/container-->
 </div>

@@ -31,7 +31,11 @@ class Houses::StepsController < ApplicationController
     @house.form_step = 'done' if Wicked::LAST_STEP
 
     if @house.update(house_params(step))
-      flash[:notice] = 'Data telah disimpan, lanjutkan'
+      if Wicked::FINISH_STEP
+        flash[:notice] = 'Terima kasih, rumah sudah didaftarkan'
+      else
+        flash[:notice] = 'Data telah disimpan, lanjutkan'
+      end
     else
       flash[:warning] = 'Data gagal disimpan, mohon ulangi'
     end
@@ -64,6 +68,6 @@ private
   end  
 
   def finish_wizard_path
-    house_path
+    house_path(@house)
   end  
 end

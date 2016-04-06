@@ -1,0 +1,66 @@
+<section class="bg-custom-lg">
+<!--   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="padding-md">
+          <h2><span class="white"><%= @house.address %></span></h2>
+          <h4><span class="white"><%= @house.city + ", " + @house.province %></span></h4>
+          <a href="##" class="btn btn-white btn-outline">Buy Now!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="bg-black-trans">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          
+        </div>
+      </div>
+    </div>  
+  </section> -->
+</section>
+<section class="section-xs bg-white border-default">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 col-xs-9">
+        <div class="col-xs-12">
+          <div class="top-desc address"><%= @house.address %> <span class="city small grey"> <%= @house.province %></span></div>
+        </div>
+        <div class="col-xs-12 top-desc">
+          <p>
+            <span class="lggrey"><%= @house.bedrooms %> <span class="words">Kamar Tidur</span> <sup>.</sup> 
+            <%= @house.bathrooms %> <span class="words">Kamar Mandi</span> <sup>.</sup> <%= @house.property_size %>m<sup>2</sup>/<%= @house.lot_size %>m<sup>2</sup></span>
+          </p> 
+        </div>        
+      </div>
+      <div class="col-sm-4 col-xs-3">
+        <div class="top-desc coral pull-right"><h3><%= "Rp " + idr_concat(@house.price, 1000000) + " jt" %></h3></div> 
+      </div>
+      <div class="col-xs-12">
+        <%= link_to "Beli", '#', class: 'btn btn-primary' %>
+        <%= link_to "Ajukan Pendanaan", '#', class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="section-xs bg-white border-default">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb no-margin">
+          <li><a href="#link">Main</a></li>
+          <li><a href="#link">Section</a></li>
+          <li class="active">Current</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+ -->
+
+<style type="text/css">
+  .bg-custom-lg {
+    background: #252931 url("<%= cl_image_path(@house.display_picture, house_header_options) %>");
+  }
+</style>

@@ -56,8 +56,9 @@ Fustal::Application.routes.draw do
   
   get "home", to: "insides#home", as: :user_root
   # get "bursa", to: "insides#marketplace", as: :marketplace
-  # get "pendanaan", to: "insides#choose", as: :choose_product
   get "profil", to: "insides#profile", as: :profile
+  get "portofolio", to: "insides#portofolio", as: :portofolio
+  get "starting", to: "insides#starting", as: :starting
 
   get "tos", to: "pages#tos", as: :service_terms
   get "/contact", to: "pages#contact", as: "contact"

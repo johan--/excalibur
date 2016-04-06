@@ -1,0 +1,55 @@
+
+<%= render layout: 'app_navigation' do |f| %>
+    <div class="col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h5><i class="fa fa-align-left"></i> Collapsible / Accordion <small>Sessions</small></h5>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <!-- start accordion -->
+          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+              <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title"><span class="badge"><%= @houses.count %></span> Rumah yang kamu daftarkan</h4>
+              </a>
+              <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <%= render 'listing_house' %>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+                <h4 class="panel-title"><span class="badge"><%= @tenders.count %></span> Proposal yang kamu ajukan</h4>
+              </a>
+              <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                <%= render 'request' %>
+                </div>
+              </div>
+            </div>
+<!--             <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
+                <h4 class="panel-title">Collapsible Group Item #3</h4>
+              </a>
+              <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <p><strong>Collapsible Item 3 data</strong>
+                  </p>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- end of accordion -->
+
+
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-6">
+  </div>  
+<% end %>
+

@@ -158,9 +158,13 @@
 
 /* Property*/
 .estate {
+  background-color: white;
   .primary-image {
     border: 1px solid #e0eded;
     padding: 5px;
+    .product-info {
+      padding-left: 15px;padding-right: 15px;
+    }
   }
   .thumbnail-images {
     display: table;
@@ -247,7 +251,7 @@
 }
 
 .wp-block {
-  margin: 0 0 15px 0;
+  /*margin: 0 0 15px 0;*/
   -webkit-transition: all .3s linear;
   transition: all .3s linear;
   position: relative;

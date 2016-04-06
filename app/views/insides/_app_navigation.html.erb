@@ -1,0 +1,26 @@
+<%= render partial: 'elements/modal_placeholder', locals: { modal_name: 'home' } %>
+<nav class="box nav">
+  <ul>
+    <li>
+      <%= active_link_to user_root_path, :active => :exclusive do %>
+        <i class="ion ion-hammer"></i><br />
+        <span class="title">Actions</span>
+      <% end %>
+    </li>
+    <li>
+      <%= active_link_to portofolio_path, :active => :exclusive do %>
+        <i class="ion ion-monitor"></i><br />
+        <span class="title">Portofolio</span>
+      <% end %>
+    </li>
+    <li>
+      <%= active_link_to '#', :active => :exclusive do %>
+        <i class="ion ion-gear-b"></i><br />
+        <span class="title">Home</span>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+<div class="row">
+  <%= yield %>
+</div>

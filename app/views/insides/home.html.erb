@@ -1,22 +1,118 @@
 <% meta title: "Home" %>
 
-<%= render partial: 'elements/modal_placeholder', locals: { modal_name: 'home' } %>
 
-<div class="home" style="">
-  <h3 class="primary"><i class="ion ion-flag"></i> Markas</h3><hr class="light">
-
-  <div class="row" id="home-view">
-    <div class="col-xs-12 right-display">
-      <!-- <div class="row"> -->
-<!--         <div class="col-md-12">
-          <h3>Bursa</h3><hr>
-          <%= render 'investment' %>
-        </div> -->
-        <div class="col-md-12">
-          <%= render 'request' %>
-          <%= link_to 'Daftarkan Rumah', houses_path(build: 'true'), method: :post %>
+<!--   <div class="col-sm-6">
+    <div class="box widget locations">
+      <div class="row">
+        <div class="col-md-12 col-xs-3">
+          <div class="avatar">
+            <i class="fa fa-home fa-5x"></i><br>
+          </div>
         </div>
-      <!-- </div> -->
+        <div class="col-md-12 col-xs-6">
+          <div class="details">
+            <h2>Pendaftaran Rumah</h2>
+            <p>Rumah yang telah kamu daftarkan: <strong><%= @houses_count %></strong></p>
+          </div>          
+        </div>
+        <div class="col-md-12 col-xs-3">          
+          <div class="details">
+            <%= link_to houses_path(build: 'true'), method: :post do %>
+              <i class="fa fa-plus fa-3x"></i>
+            <% end %>
+          </div>
+            <div class="col-xs-12 visible-xs mt">
+            </div>
+            <div class="col-md-6 col-xs-12">
+            <% if current_user.has_houses? %>
+              <%= link_to houses_path do %>
+                <i class="fa fa-chevron-right fa-3x"></i>
+              <% end %>
+            <% end %>
+            </div>
+          
+        </div>
+      </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="box widget locations">
+      <div class="row">
+        <div class="col-md-12 col-xs-4">
+          <div class="avatar">
+            <i class="fa fa-folder fa-5x"></i><br>
+          </div>
+        </div>
+        <div class="col-md-12 col-xs-5">
+          <div class="details">
+            <h2>Pengajuan Pendanaan</h2>
+            <p>Proposal yang telah kamu ajukan: <strong><%= @tender_count %></strong></p>
+          </div>          
+        </div>
+        <div class="col-md-12 col-xs-3">
+          <div class="details">
+            <% if current_user.has_proposals? %>
+              <%= link_to tender_path(@tender) do %>
+                <i class="fa fa-chevron-right fa-3x"></i>
+              <% end %>            
+            <% else %>
+              <%= link_to new_tender_path do %>
+                <i class="fa fa-plus fa-3x"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<div class="row">
+    <div class="col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h5><i class="fa fa-align-left"></i> Portofolio</h5>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <!-- start accordion -->
+          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+              <a class="panel-heading" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo">
+                <h4 class="panel-title"><span class="badge"><%= @tenders.count %></span> Proposal yang kamu ajukan <i class="fa fa-chevron-down pull-right"></i></h4>
+              </a>
+              <div id="collapseTwo1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                <%= render 'request' %>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne">
+                <h4 class="panel-title"><span class="badge"><%= @houses.count %></span> Rumah yang kamu daftarkan <i class="fa fa-chevron-down pull-right"></i></h4>
+              </a>
+              <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <%= render 'listing_house' %>
+                </div>
+              </div>
+            </div>
+<!--             <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
+                <h4 class="panel-title">Collapsible Group Item #3</h4>
+              </a>
+              <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <p><strong>Collapsible Item 3 data</strong>
+                  </p>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- end of accordion -->
+
+
+        </div>
+      </div>
+    </div>
 </div>

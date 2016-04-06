@@ -31,10 +31,10 @@ class House < ActiveRecord::Base
 
   store_accessor :condition,
                  :form_step, :state, :for_sale, :for_rent, 
-                 :vacant, :anno, 
+                 :vacant, :anno, :inspected,
                  :mortgage_period_left, :outstanding_mortgage
 
-  attr_wannabe_bool :for_sale, :for_rent, :vacant
+  attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
   geocoded_by :full_street_address 
 
   with_options if: -> { required_for_step?(:characteristics) } do |step|
@@ -64,10 +64,6 @@ class House < ActiveRecord::Base
     return false if self.address == self.address_was
   end
 
-  def annual_rental
-    self.price * 0.1
-  end
-
   def initial_stock
     self.stocks.first
   end
@@ -77,8 +73,11 @@ class House < ActiveRecord::Base
   end
 
   def display_picture
-    avatar
-    placeholder if avatar.nil?
+    if avatar.nil?
+
+    else
+      avatar
+    end
   end
 
   def house_owner
@@ -111,9 +110,13 @@ private
   def set_default_values!
     self.country = 'indonesia'
     self.state = 'pending' if self.state.nil?
-    self.address_was = ''
+    self.address_was = self.address
     self.for_rent = 'yes'
   end
+
+  # def check_address
+  #   if self.address
+  # end
 
   def refresh_tenders
     self.tenders.map{ |tender| tender.touch }

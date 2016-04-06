@@ -96,4 +96,9 @@ module ImagesHelper
 	{ :width => 500, :height => 300, 
 		:crop => :lfill, gravity: :center, class: "#{string}" }
   end
+
+  def house_header_options
+	{ :width => 1200, :height => 500, :crop => :lfill, 
+		gravity: :center, quality: 100 }
+  end  
 end

@@ -110,6 +110,11 @@ padding-right: 10px;
       border: 2px solid $brand-coral;
     }
   }
+  &.btn-inverse {
+    background-color: white; border: 1px solid $brand-primary;
+    color: $brand-primary; 
+    &:hover { background-color: $brand-primary; color: white; }
+  }
 }
 
 

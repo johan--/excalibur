@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :resource_params, if: :devise_controller?
+  before_filter :inside_app, only: [:edit]
 
   def new
     @no_layout = true
@@ -8,7 +9,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def edit
     super
-    inside_app
   end
 
   def create
@@ -47,6 +47,7 @@ class RegistrationsController < Devise::RegistrationsController
       admin_root_url(subdomain: '')
     else
       user_root_url(subdomain: '')
+      # starting_url(subdomain: '')
     end          
   end
 

@@ -1,0 +1,11 @@
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <%= link_to "Sebelumnya", previous_wizard_path, class: "btn btn-info btn-round-lg pull-left" unless @disable_previous %>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "Kembali", user_root_path, class: "btn btn-default btn-round-lg"  %>
+  </div>
+  <div class="btn-group" role="group">
+    <%= f.submit "Lanjutkan", class: "btn btn-success btn-round-lg pull-right" %>
+  </div>
+</div>

@@ -85,6 +85,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_houses?
+    if self.houses.count != 0
+      return true
+    else
+      return false
+    end
+  end
   # def has_bids?
   #   return true if self.bids.count != 0
   #   return  false if self.bids.count == 0

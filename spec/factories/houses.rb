@@ -1,16 +1,30 @@
 FactoryGirl.define do
 	factory :house do
-		price 300000000
-		category "rumah"
-		state "available"
-		anno 2015
-		sequence(:address) { |n| "Jl. Cipete 10 No. #{n+13} RT 10 RW 11 Cilandak"}
-		city "Jakarta Selatan"
 		association :publisher, factory: :developer
 
-		vacant "yes"
-		for_sale "yes"
-		for_rent "no"
+		trait :place do
+			sequence(:address) { |n| "Cipete 10 No. #{n+13} RT 10 RW 11 Cilandak"}
+			city "Jakarta Selatan" 
+			province "DKI Jakarta"
+		end
+	    trait :characteristics do
+	      category "rumah"
+	      bedrooms 3
+	      bathrooms 1
+	      level 1
+	      garages 1
+	      lot_size 100
+	      property_size 90
+		end				
+		
+		trait :situations do
+			vacant "yes"
+			for_sale "yes"
+			for_rent "no"
+			price 300000000
+			anno 2015
+			mortgage_period_left 0
+		end
 
 		trait :owned do
 		  vacant "no"
@@ -34,16 +48,6 @@ FactoryGirl.define do
 	        house.publisher = FactoryGirl.create :developer
 	      end
 	    end
-
-	    trait :full_detail do
-	      bedrooms 3
-	      bathrooms 1
-	      level 1
-	      garages 1
-	      greenery true
-	      lot_size 100
-	      property_size 90
-		end
 	end	
 
 	factory :stock do

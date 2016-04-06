@@ -12,11 +12,11 @@
 	  </div>
   </div>
   <div class="row">
-	<div class="col-xs-4">
-	  <%= f.input :mortgage_period_left, as: :integer, input_html: { min: '1', step: '1' }, label: "Tenor Hutang", placeholder: "sisa", required: true %>
+	<div class="col-xs-6">
+	  <%= f.input :mortgage_period_left, as: :integer, input_html: { min: '0', step: '1' }, label: "Sisa Tenor Hutang", placeholder: "sisa bulan", required: true %>
 	</div>
-	<div class="col-xs-4">
-	  <%= f.input :outstanding_mortgage, as: :integer, input_html: { min: 50000000, step: 10000000 }, label: "Jumlah Hutang", placeholder: "sisa", required: true %>
+	<div class="col-xs-6">
+	  <%= f.input :outstanding_mortgage, as: :integer, input_html: { min: 50000000, step: 10000000 }, label: "Sisa Hutang", placeholder: "nilai (Rp)" %>
 	</div>  	
   </div>
 <% end %>

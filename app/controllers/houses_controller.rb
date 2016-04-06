@@ -32,7 +32,7 @@ class HousesController < ApplicationController
     end
 
     if @house.save
-      flash[:notice] = 'Rumah berhasil didaftarkan'
+      flash[:notice] = 'Rumah mulai didaftarkan'
       redirect_to house_step_path(@house, House.form_steps.first)
     else
       render :new 

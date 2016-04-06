@@ -4,7 +4,7 @@ html, body {
 body.mobile-navbar {    
 	background-color: #f9f9f9;
 	.wrap{
-		padding-top: 75px;
+		padding-top: 80px;
 		.nav-stacked > li > a.active {
 			background-color: $brand-primary; color: white;
 		}
@@ -68,6 +68,14 @@ body.navbar-more-show  {
 	-webkit-flex-grow: 1;
 	flex-grow: 1;
 	text-align: center;
+    a:hover {
+      box-shadow: 0 2px 0 0 $brand-grey;
+      color: $brand-grey;
+    }
+    a.active {
+      box-shadow: 0 2px 0 0 $brand-primary; 
+      color: $brand-primary;
+    }	
 }
 .navbar-nav.mobile-bar > li > a > span.menu-icon {
 	display: block;

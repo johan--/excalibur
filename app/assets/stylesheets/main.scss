@@ -31,7 +31,7 @@ $nprogress-zindex: 10100;
   .spinner { display: none; }  .bar { display: none; }
 }
 
-.navbar-default {
+#classic-navbar {
   border-color: white;
   .navbar-brand {
     padding-bottom: 3px;padding-top: 18px;
@@ -59,6 +59,10 @@ $nprogress-zindex: 10100;
   }
   #financing {
     min-height: 400px;
+  }
+  .sub-heading {
+    text-align: center; color: $brand-grey; padding-bottom: 7px;
+    box-shadow: 0 2px 0 0 $brand-grey; 
   }
 }
 
@@ -152,6 +156,7 @@ $nprogress-zindex: 10100;
 }
 .red { color: $brand-red }
 .black { color: black; }
+.dark { color: $brand-dark; }
 .white { color: white; }
 .danger-link { color: #BE371F; }
 .primary{ color: $brand-primary; }
@@ -396,6 +401,7 @@ div.house-listing {
     .top-desc{
       font-size: 14px;
       /*white-space: nowrap; text-overflow: ellipsis;*/
+      h3 { font-size: 1.5em; color: $brand-coral; } 
       &.address {
         font-weight: 500;
       }      
@@ -409,4 +415,230 @@ div.house-listing {
   }
 }
 @media ( max-width: 768px ) {
+}
+
+.ui-ribbon-container {
+  position: relative;
+}
+.ui-ribbon-container .ui-ribbon-wrapper {
+  position: absolute;
+  overflow: hidden;
+  width: 85px;
+  height: 88px;
+  top: -3px;
+  right: -3px;
+}
+.ui-ribbon-container.ui-ribbon-primary .ui-ribbon {
+  background-color: #5b90bf;
+}
+.ui-ribbon-container .ui-ribbon {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  padding: 7px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+  line-height: 20px;
+  background-color: #555;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.ui-ribbon-container.ui-ribbon-primary .ui-ribbon:after, .ui-ribbon-container.ui-ribbon-primary .ui-ribbon:before {
+  border-top: 2px solid #5b90bf;
+}
+.ui-ribbon-container .ui-ribbon:before {
+  left: 0;
+  bottom: -1px;
+}
+.ui-ribbon-container .ui-ribbon:before {
+  right: 0;
+}
+.ui-ribbon-container .ui-ribbon:after, .ui-ribbon-container .ui-ribbon:before {
+  position: absolute;
+  content: " ";
+  line-height: 0;
+  border-top: 2px solid #555;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.widget_tally_box p,
+.widget_tally_box span {
+    text-align: center;
+}
+
+.widget_tally_box .name {
+    text-align: center;
+    margin: 25px;
+}
+
+.widget_tally_box .name_title {
+    text-align: center;
+    margin: 5px;
+}
+
+.widget_tally_box ul.legend {
+    margin: 0;
+}
+
+.widget_tally_box ul.legend p,
+.widget_tally_box ul.legend span {
+    text-align: left;
+}
+
+.widget_tally_box ul.legend li .icon {
+    font-size: 20px;
+    float: left;
+    width: 14px;
+}
+
+.widget_tally_box ul.legend li .name {
+    font-size: 14px;
+    margin: 5px 0 0 14px;
+    text-overflow: ellipsis;
+    float: left;
+}
+
+.widget_tally_box ul.legend p {
+    display: inline-block;
+    margin: 0;
+}
+
+.widget_tally_box ul.verticle_bars li {
+    height: 140px;
+    width: 23%;
+}
+
+
+.box {
+  background: white;
+  box-shadow: 0 0 1px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.1);
+  border-radius: 5px; border-top: 0px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+  h2 {
+    color: $brand-primary;
+    font-size: (14/16) + em;
+  }
+  p {
+    font-size: (12/16) + em;
+    color: #7d7d7d;
+  }
+  &.nav {
+    a {
+      text-decoration: none;
+      color: #cccccc;
+      text-shadow: 1px 1px 1px rgba(255,255,255,.5);
+      font-size: (12/16) + em;
+    }
+    i {
+      font-size: (24/12) + em;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+    }
+    li {
+      display: inline-block;
+      a {
+        display: block;
+        padding: 20px 18px;
+        &.active {
+          i { color: $brand-primary; }
+        }
+        &:hover {
+          i { color: $brand-grey; }
+        }              
+      }
+    }
+  }
+  &.locations {
+    padding: 30px;  
+    text-align: center;
+    .avatar {
+      border-radius: 50%;
+      img {
+        border-radius: 50%;
+      }
+    }
+    .details {
+      margin-top: 30px;
+      a { margin: 20px; }
+    }
+    .btn {
+      margin-top: 30px;
+    }
+  }
+}
+
+
+/*House show page header*/
+.bg-custom-lg {
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover; min-height: 500px;
+  .padding-md { padding: 2em !important; }
+  .bg-black-trans {
+    margin-top: 4em;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 2px;
+  }
+  .bg-info {
+    background-color: white; 
+  }
+}
+.border-default {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bdc3c7;
+}
+.section-xs {
+  padding: 1em 0;
+  .top-desc{
+    h3 { font-size: 1.5em; color: $brand-coral; } 
+    p { margin-bottom: 3px; }
+    .words{
+      font-size: 0.9em;
+    }
+  }    
+}
+
+.notice-card {
+  padding: 15px;
+  background-color: #fafafa;
+  border-left: 6px solid #7f7f84;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+          box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  &.notice-lg {
+      padding: 35px;
+      font-size: large;
+  }            
+}
+
+.accordion .panel {
+  margin-bottom: 5px;
+  border-radius: 0;
+  border-bottom: 1px solid #efefef;
+}
+.accordion .panel-heading {
+  background: #F2F5F7;
+  padding: 13px;
+  width: 100%;
+  display: block;
 }
