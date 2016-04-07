@@ -1,18 +1,16 @@
 <% if current_user.has_houses? %>
   <div class="row">
-    <% @houses.each do |house| %>
       <div class="col-md-6">
-        <%= render partial: "houses/house", locals:{house: house} %>
+        <%= render partial: "house", collection: @houses %>
       </div>
-    <% end %>
-<!--     <div class="col-md-6">
+      <div class="col-md-6">
       <div class="blankslate long">
         <h4><%= "Daftarkan Rumah" %></h4>
         <%= link_to houses_path(build: 'true'), method: :post do %>
           <h1><i class="ion ion-android-attach"></i></h1>
         <% end %>
       </div>
-    </div> -->
+    </div>
   </div>
 <% else %>
   <div class="blankslate">

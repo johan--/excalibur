@@ -1,3 +1,5 @@
 $('#home-view').hide();
-$('#houses').html("<%= j (render 'tenders/choose') %>");
-$('#houses').show();
+$('#choose').html("<%= j (render partial: 'houses/houses', 
+	locals: { houses: @houses } ) %>");
+$('#returns').show();
+$('#choose').show();

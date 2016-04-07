@@ -1,0 +1,5 @@
+<% houses.each do |house| %>
+  <div class="col-md-6">
+    <%= render partial: "houses/house", locals:{house: house} %>
+  </div>
+<% end %>

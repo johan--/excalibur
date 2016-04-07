@@ -9,6 +9,13 @@ body.mobile-navbar {
 			background-color: $brand-primary; color: white;
 		}
 	}
+	.app-footer{
+		margin-top: 50px; padding-top: 20px;
+	    width: 100%;
+	    height: 60px;
+	    background-color: white;
+	    .box .nav{ margin-bottom: 0px; }
+	}
 }
 body.navbar-more-show  {
 	overflow: hidden;

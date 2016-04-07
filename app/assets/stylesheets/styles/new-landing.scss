@@ -646,3 +646,99 @@ section#reminder {
   padding-right: 30px; /* gutter width (give a little extra room) 2x default */
 }
 
+
+.slideshow-home {
+  padding: 100px 0 0;
+  overflow: hidden;
+  background: #4d9de0;
+  .right {
+    float: right;
+    width: 50%;
+    box-sizing: border-box;
+    padding-left: 105px;
+    h3 {
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 3.25rem;
+      letter-spacing: -.02em;
+      color: white;
+      line-height: 1.3;
+      margin-top: -6px;
+      margin-right: 20px;
+    }
+    .captions {
+        margin-top: 65px;
+      li {
+          margin-bottom: 20px;
+          position: relative;
+          -webkit-transition: none;
+          transition: none;
+      }
+      li.active {
+        h4 {  color: $brand-primary; }
+      }      
+      h4 {
+        font-weight: 600;
+        color: white;
+        letter-spacing: 0.1em;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+        font-size: 2.3rem;
+        line-height: 1.3;
+        cursor: pointer;
+        display: block;
+        -webkit-margin-before: 1.33em;
+        -webkit-margin-after: 1.33em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+      } 
+      p {
+        opacity: 1;
+        font-weight: 400;
+        font-size: 0.9375rem;
+        line-height: 1.3;
+        margin-top: 7px;
+        a {
+            text-decoration: underline;
+            color: white;
+        }          
+      }            
+    }
+    ul { list-style: none; }
+  }
+  .left {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    font-size: 0;
+    .media-browser {
+        position: relative;
+        max-width: 100%;
+    }
+  }
+  .media-browser {
+      background: #e9edf0;
+      padding-top: 22px;
+      border: 1px solid #d9dee1;
+      border-radius: 5px 5px 0 0;
+      display: inline-block;
+      box-sizing: border-box;
+      position: relative;
+  }        
+}
+
+.vertical-divider {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 50%;
+  line-height: 0;
+  text-align:center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}

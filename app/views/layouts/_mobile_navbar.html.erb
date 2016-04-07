@@ -30,14 +30,18 @@
 	</div>
 	<div class="container">
 		<div class="navbar-header hidden-xs">
-			<a class="navbar-brand" href="#">Kapiten</a>
+			<a class="navbar-brand" href="/">Kapiten</a>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right mobile-bar">
+			<li class="visible-xs">
+				<%= link_to root_url(subdomain: '') do %>
+					<span class="menu-icon ion ion-chevron-left"></span> Front
+				<% end %>
+			</li>
 			<li class="">
 				<%= active_link_to user_root_url(subdomain: '') do %>
-					<span class="menu-icon ion ion-flag"></span>
-					Desk
+					<span class="menu-icon ion ion-home"></span> Home
 				<% end %>
 			</li>
 <!-- 			<li class="">
@@ -76,7 +80,7 @@
 	</div>
 </nav>
 <div class="wrap">
-	<div class="container">
+	<div class="container-fluid">
 
 		<div class="row">	  
 	      <!--left-->
@@ -91,3 +95,27 @@
 	  	</div><!--/row-->
 	</div><!--/container-->
 </div>
+<footer class="app-footer">
+<nav class="box nav">
+  <ul>
+    <li>
+      <%= active_link_to root_url(subdomain: 'blog'), :active => :exclusive do %>
+        <i class="ion ion-ios-paper"></i><br />
+        <span class="title">Blog</span>
+      <% end %>
+    </li>
+    <li>
+      <%= active_link_to wiki_all_path, :active => :exclusive do %>
+        <i class="ion ion-ios-book"></i><br />
+        <span class="title">Kapitenpedia</span>
+      <% end %>
+    </li>
+    <li>
+      <%= active_link_to '#', :active => :exclusive do %>
+        <i class="ion ion-asterisk"></i><br />
+        <span class="title">Terms</span>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+</footer>

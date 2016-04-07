@@ -1,25 +1,24 @@
 <nav class="navbar navbar-default" id="classic-navbar" style="height: calc(0%); margin-bottom: 10px;">
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header pull-left">
       <%= link_to root_url(subdomain: ''), class: 'navbar-brand' do %>
         <%= ENV["SITE_NAME"] %> <span class="label label-success text-capitalize"></span>
       <% end %>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav pull-right">
-        <li>
-          <%= active_link_to root_path, :active => :exclusive do %>
-            Investasi <span class="hidden-xs">Properti</span>
-          <% end %>
-        </li>
-        <li>
-          <%= active_link_to ownership_job_path, :active => :exclusive do %>
-            Kepemilikan <span class="hidden-xs">Rumah</span>
-          <% end %>
-        </li>
-        <li><%= active_link_to "Markas", user_root_url(subdomain: ''), :active => :exclusive if user_signed_in? %></li>
-      </ul>
-    </div>    
-<!--     <%= render 'layouts/language_selector' %> -->
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation">
+        <%= active_link_to root_path, :active => :exclusive do %>
+              Investasi <span class="hidden-xs">Properti</span>
+        <% end %>
+      </li>
+      <li role="presentation">
+        <%= active_link_to ownership_job_path, :active => :exclusive do %>
+          Jual-beli <span class="hidden-xs">Rumah</span>
+        <% end %>      
+      </li>
+      <li role="presentation">
+        <%= active_link_to "Markas", user_root_url(subdomain: ''), :active => :exclusive if user_signed_in? %>      
+      </li>
+    </ul>    
   </div>
 </nav>

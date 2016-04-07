@@ -86,8 +86,8 @@
     <small>Pilih rumah yang sudah didaftarkan di Kapiten atau daftarkan rumah yang kamu inginkan</small>
     <h1><i class="ion ion-android-home"></i></h1>
     <div class="btn-group" role="group" aria-label="...">
-      <%= link_to "Pilih Rumah", new_tender_path, class: "btn btn-inverse" %>
-      <%= link_to "Daftarkan Rumah", new_tender_path, class: "btn btn-inverse" %>
+      <%= link_to "Pilih Rumah", choose_path, remote: true, class: "btn btn-inverse" %>
+      <%= link_to "Daftarkan Rumah", houses_path(build: 'true'), class: "btn btn-inverse" %>
     </div>      
   </div>
 

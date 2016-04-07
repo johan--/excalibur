@@ -2,8 +2,6 @@
 <div class="home" style="">
   <h3 class="primary"><i class="ion ion-cube"></i> Properti</h3><hr class="light">
   <div class="row">
-  	<div class="col-md-6">
-  		<%= render partial: "house", collection: @houses %>
-  	</div>
+  	<%= render partial: "houses/houses", locals: { houses: @houses } %>
   </div>
 </div>
