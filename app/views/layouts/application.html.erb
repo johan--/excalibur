@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-    <% metamagic site: ENV["SITE_NAME"], title: [:title, :site], separator: " | " %>
+  <% unless Rails.env.staging? %>
+    <% metamagic site: ENV["SITE_NAME"], title: [:title, :site], separator: " | "  %>
     <% twitter site: ENV["TWTR_HANDLER"] %>  
     <% meta og: { site_name: ENV["SITE_NAME"] } %>
     <%= metamagic %>
-  
+  <% end %>
   <%= favicon_link_tag 'newlogo.ico' %>
   <%= favicon_link_tag '//res.cloudinary.com/instilla/image/upload/s--SepQWrvb--/c_scale,w_30/v1452061579/asset/png/Drawing_7.png', rel: 'logo', type: 'image/png' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
