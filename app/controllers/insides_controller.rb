@@ -9,21 +9,17 @@ class InsidesController < ApplicationController
     @bids = current_user.bids
     @documents = current_user.documents
     @houses = current_user.houses
-    @groups = @documents.group_by { |doc| doc.category }   
     @houses_count = @houses.count 
     @tender_count = @tenders.count
     @bids_count = @bids.count
+
+    if params[:not_done] == 'true'
+      flash[:warning] = 'Data belum lengkap, mohon lanjutkan' 
+    end
   end
 
   def choose
     @houses = House.includes(:stocks).all
-  end
-
-  def portofolio
-    @houses = current_user.houses
-    @bids = current_user.bids
-    @tenders = current_user.tenders.offering
-    @tender = @tenders.first
   end
 
   def starting

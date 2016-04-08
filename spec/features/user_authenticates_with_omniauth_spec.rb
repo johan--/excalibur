@@ -15,21 +15,21 @@ feature "UserAuthenticatesWithOmniauth", :type => :feature do
   describe "login with Facebook" do
     before do
       mock_auth_hash_facebook
-	  click_link 'Sign in via Facebook'
-	end
+	    click_link 'Sign in via Facebook'
+	  end
 
-	  # it { should have_content('Beranda') }
-	  it { should have_content('Hai, Facebooker') }
+	  it { should have_content('Signed in!') }
+	  it { should have_content('Hai, Facebook User') }
   end
 
   describe "login with linkedin" do
     background do   	
-      mock_auth_hash_google
+      mock_auth_hash_link
 	  click_link 'Sign in via Linkedin'
 	end
 
-	  # it { should have_content('Beranda') }
-	  it { should have_content('Hai, Link') }
+	  it { should have_content('Signed in!') }
+	  it { should have_content('Hai, Link User') }
   end
 
  #  describe "login with google" do

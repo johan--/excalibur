@@ -47,7 +47,7 @@
           <%= link_to "Sebelumnya", previous_wizard_path, class: "btn btn-info btn-round-lg" unless @disable_previous %>
         </div>
         <div class="btn-group" role="group">
-          <%= link_to "Kembali", user_root_path, class: "btn btn-default btn-round-lg" %>
+          <%= link_to "Kembali", user_root_path(not_done: @status), class: "btn btn-default btn-round-lg" %>
         </div>
         <div class="btn-group" role="group">
           <%= link_to "Selanjutnya", next_wizard_path, class: "btn btn-primary btn-round-lg" unless @disable_next %>

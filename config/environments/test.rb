@@ -33,6 +33,7 @@ Fustal::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_deliveries = false
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
@@ -40,20 +41,20 @@ Fustal::Application.configure do
   config.app_domain = 'localhost:3000'
   
   # Mailer
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: ENV["ZOHO_SMTP_SERV"],
-    # openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-    port: ENV["ZOHO_SMTP_PORT"].to_i,
-    domain: ENV["MAILER_DOMAIN"],
-    authentication: :plain,
-    user_name: ENV["ZOHO_USERNAME"],
-    password: ENV["ZOHO_PASS"],
-    ssl: true,
-    tls: true
-  }
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV["ZOHO_SMTP_SERV"],
+  #   # openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+  #   port: ENV["ZOHO_SMTP_PORT"].to_i,
+  #   domain: ENV["MAILER_DOMAIN"],
+  #   authentication: :plain,
+  #   user_name: ENV["ZOHO_USERNAME"],
+  #   password: ENV["ZOHO_PASS"],
+  #   ssl: true,
+  #   tls: true
+  # }
 
   # Do not suppress errors raised within 'after rollback' and 
   # 'after commit' callbacks

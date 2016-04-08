@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-sm-8 col-xs-9">
         <div class="col-xs-12">
-          <div class="top-desc address"><%= @house.address %> <span class="city small grey"> <%= @house.province %></span></div>
+          <div class="top-desc address"><%= @house.address %> <span class="city small grey"> <%= @house.city %></span></div>
         </div>
         <div class="col-xs-12 top-desc">
           <p>
@@ -61,6 +61,8 @@
 
 <style type="text/css">
   .bg-custom-lg {
-    background: #252931 url("<%= cl_image_path(@house.display_picture, house_header_options) %>");
+    background: #252931 url("<%= cl_image_path(@house.display_picture.path, house_header_options) %>");
+    background-repeat:no-repeat;
+    background-position: center center;
   }
 </style>

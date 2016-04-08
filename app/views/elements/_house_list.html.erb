@@ -1,0 +1,27 @@
+<div class="wp-block-item property-list">
+    <div class="body">
+        <div class="wp-block-img">
+            <%= link_to house_path(house) do %>
+                <%= render_house_display(house, '') %>
+            <% end %>
+        </div>
+        <div class="wp-block-content">
+            <h4><%= house.address %>  <small><%= house.city %></small></h4>
+            <h5 class="content-title"><%= house.state %></h5>
+            <span class="pull-left">
+                <ul class="social-links">
+                    <li><%= edit_link(house) %></li>
+                    <li><%= show_link(house) %></li>
+                    <li>
+                        <%= link_to house_path(house), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan rumah', toggle: 'tooltip', placement: 'top', original_title: 'Hapus'} do %>
+                            <i class="fa fa-trash"></i>
+                        <% end %>
+                    </li>
+                </ul>                     
+            </span>
+            <span class="pull-right coral">
+                <strong><%= idr_money(house.price.to_i) %></strong>
+            </span>
+        </div>
+    </div>
+</div>

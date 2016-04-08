@@ -7,6 +7,7 @@ class Houses::StepsController < ApplicationController
     @house = House.friendly.find(params[:house_id])
     @step = step
     @previous = previous_step
+    @status = true if @house.form_step != 'done'
 
     case step
       when 'place'
@@ -31,8 +32,8 @@ class Houses::StepsController < ApplicationController
     @house.form_step = 'done' if Wicked::LAST_STEP
 
     if @house.update(house_params(step))
-      if Wicked::FINISH_STEP
-        flash[:notice] = 'Terima kasih, rumah sudah didaftarkan'
+      if @house.form_step == 'done'
+        flash[:notice] = 'Terima kasih, data sudah lengkap'
       else
         flash[:notice] = 'Data telah disimpan, lanjutkan'
       end

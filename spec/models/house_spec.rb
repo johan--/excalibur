@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe House, :type => :model do
   describe "empty house" do
-    before { @house = FactoryGirl.build(:house) }
+    before { @house = FactoryGirl.build(:complete_house) }
 
     subject { @house }
 
@@ -62,7 +62,7 @@ RSpec.describe House, :type => :model do
   end
 
   describe "owned house" do
-    before { @house = FactoryGirl.create(:house, :owned) }
+    before { @house = FactoryGirl.create(:owned_house) }
     subject { @house }
 
     it { should be_valid }

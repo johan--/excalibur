@@ -57,7 +57,7 @@
 				<% end %>
 			</li> -->
 		    <li class="dropdown hidden-xs">
-		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hai, <%= current_user.name %><span class="caret"></span></a>
+		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hai, <%= current_user.name.titleize %><span class="caret"></span></a>
 		      <ul class="dropdown-menu">
 		        <li><%= active_link_to "Profil", profile_url(subdomain: '') %></li>
 		        <li><%= active_link_to "Akun", edit_user_registration_url(subdomain: '') %></li>

@@ -177,7 +177,36 @@ a:hover, a.selected, a:focus { color: #eb3812;}
     user-select: none;
 }
 
-
+.property-list {
+  border: 1px solid #BBBBBB;
+  .pull-left .social-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    margin-bottom: 10px;
+    li { 
+      display: inline-block; 
+      a {
+        background: #EFF0F4;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        color: #7A7676;
+        i { color: $brand-primary; }
+        &:hover {
+          background: #ff6c60;
+          color: #fff;
+          i { color: white; }
+        }
+      }
+    }
+  }
+}
 /*.vertical-divider:before, 
 .vertical-divider:after {
   position: absolute;
@@ -390,7 +419,8 @@ div.house-listing {
     .words{
       font-size: 0.9em;
     }
-  }    
+  }
+  .bg-white { background-color: white; }
 }
 
 .notice-card {
@@ -417,4 +447,62 @@ div.house-listing {
   padding: 13px;
   width: 100%;
   display: block;
+}
+
+
+.col-md-55 {
+  width: 50%;
+  margin-bottom: 10px;
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+  .thumbnail {
+    height: 190px;
+    overflow: hidden;
+    .caption {/*background: #F7F7F7;*/}
+    .view {
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        box-shadow: 1px 1px 2px #e6e6e6;
+        cursor: default;
+        img { position: relative; }
+      .mask {
+        position: absolute;
+        width: 100%;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+      }
+    }
+    .view-first {
+      .mask {
+          opacity: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          transition: all 0.4s ease-in-out;
+      }      
+      img {
+        transition: all 0.2s linear;
+      }
+    }    
+    .image {
+        height: 120px;
+        overflow: hidden;
+    }      
+  }  
+}
+@media (min-width: 1200px) {
+  .col-md-55 {
+      width: 20%;
+  }
+}
+
+#house-photos{
+  .blankslate {
+    background-color: white; 
+     border: 1px solid white; 
+     box-shadow: inset 0 0 10px white;
+  }
 }

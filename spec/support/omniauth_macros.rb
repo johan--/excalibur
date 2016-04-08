@@ -7,7 +7,13 @@
       'uid' => '123545',
       'info' => {
         'email' => 'facebooker@example.com',
-        'name' => 'facebooker'
+        'image' => '//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_300,w_450/v1452508512/asset/2000px-House_Silhouette.png',
+        'first_name' => 'facebook',
+        'last_name' => 'user',
+        'location' => 'jakarta',
+        'urls' => {
+          'Facebook' => 'facebook.com/facebooker'
+        }
       },
       'credentials' => {
         'token' => 'mock_token',
@@ -33,7 +39,7 @@
     })
   end
 
-  def mock_auth_hash_google
+  def mock_auth_hash_link
     # The mock_auth configuration allows you to set per-provider (or default)
     # authentication hashes to return during integration testing.
     OmniAuth.config.mock_auth[:linkedin] = OmniAuth::AuthHash.new({
@@ -41,7 +47,13 @@
       'uid' => '123545',
       'info' => {
         'email' => 'link@example.com',
-        'name' => 'link'
+        'image' => '//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_300,w_450/v1452508512/asset/2000px-House_Silhouette.png',
+        'first_name' => 'link',
+        'last_name' => 'user',
+        'location' => 'jakarta',        
+        'urls' => {
+          'public_profile' => 'linkedin.com/link'
+        }
       },
       'credentials' => {
         'token' => 'mock_token',

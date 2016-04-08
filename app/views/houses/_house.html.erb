@@ -1,25 +1,25 @@
 
-    <div class="thumbnail house-listing">
-        <%= render_lg_house_display(house, 'img-responsive') %>
-        <div class="caption">
-            <div class="row">
-                <div class="col-sm-8 col-xs-8">
-                    <div class="top-desc address"><%= house.address %> <span class="city small"><%= house.province %></span></div>
-                </div>
-                <div class="col-sm-4 col-xs-4">
-                    <div class="top-desc coral pull-right"><strong><%= "Rp " + idr_concat(house.price, 1000000) + " jt" %></strong></div> 
-                </div>
+<div class="thumbnail house-listing">
+    <%= render_lg_house_display(house, 'img-responsive') %>
+    <div class="caption">
+        <div class="row">
+            <div class="col-sm-8 col-xs-8">
+                <div class="top-desc address"><%= house.address %> <span class="city small"><%= house.province %></span></div>
             </div>
-            <div class="row">
-                <div class="col-xs-8 top-desc">
-                    <p>
-                        <span class="lggrey"><%= house.bedrooms %> Kamar Tidur <sup>.</sup> 
-                        <%= house.bathrooms %> Kamar Mandi <sup>.</sup> <%= house.lot_size %>m<sup>2</sup></span>
-                    </p> 
-                </div>
-                <div class="col-xs-4">
-                </div>                
-            
+            <div class="col-sm-4 col-xs-4">
+                <div class="top-desc coral pull-right"><strong><%= "Rp " + idr_concat(house.price, 1000000) + " jt" %></strong></div> 
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-8 top-desc">
+                <p>
+                    <span class="lggrey"><%= house.bedrooms %> Kamar Tidur <sup>.</sup> 
+                    <%= house.bathrooms %> Kamar Mandi <sup>.</sup> <%= house.lot_size %>m<sup>2</sup></span>
+                </p> 
+            </div>
+            <div class="col-xs-4">
+            </div>                
+        
+        </div>
     </div>
+</div>

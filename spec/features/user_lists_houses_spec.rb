@@ -7,9 +7,9 @@ feature "UserListsHouses", :type => :feature do
   
   before(:each) { sign_in user }
 
-  describe "go into root path then start the form wizard" do
+  describe "go into root path then start the form wizard and complete it" do
   	before do
-  	  	click_link "Daftarkan Rumah"
+  	  	click_link "Daftarkan Rumah", match: :first
 	    fill_in "Alamat", with: "Lorem No. 99"
 	    fill_in "Kota", with: "Jakarta Selatan"
 	    fill_in "Provinsi", with: "DKI Jakarta"
@@ -36,7 +36,7 @@ feature "UserListsHouses", :type => :feature do
 	    click_button "Lanjutkan"
   	end
 
-  	it { should have_content('Terima kasih, rumah sudah didaftarkan') }
+  	it { should have_content('Terima kasih, data sudah lengkap') }
 
 	# context "should have correct information on tender show page" do
 	#   it { should have_css('#house-price', text: "Rp 300000000,00") }
@@ -62,5 +62,30 @@ feature "UserListsHouses", :type => :feature do
 	#   it { should have_css('#house-price', text: "Rp 140000000,00") }
 	# end
  #  end
+  describe "start the form wizard but not complete it" do
+  	before do
+  	  	click_link "Daftarkan Rumah", match: :first
+	    fill_in "Alamat", with: "Lorem No. 99"
+	    fill_in "Kota", with: "Jakarta Selatan"
+	    fill_in "Provinsi", with: "DKI Jakarta"
+	    click_button "Lanjutkan"
 
+	    select "rumah", from: "house_category"
+	    fill_in "house_bedrooms", with: 3
+	    fill_in "house_bathrooms", with: 1
+	    fill_in "house_level", with: 1
+	    fill_in "house_garages", with: 1
+	    fill_in "house_lot_size", with: 100
+	    fill_in "house_property_size", with: 90
+		click_button "Lanjutkan"
+		
+		click_button "Kembali"
+  	end
+
+  	it { should have_content('Terima kasih, data sudah lengkap') }
+
+	# context "should have correct information on tender show page" do
+	#   it { should have_css('#house-price', text: "Rp 300000000,00") }
+	# end
+  end
 end

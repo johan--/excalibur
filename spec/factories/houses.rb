@@ -32,8 +32,16 @@ FactoryGirl.define do
 		  for_rent "no"
 		end
 
-		factory :owned_home do
+		factory :complete_house do
+		  place
+		  characteristics
+		  situations
+		  
+		  factory :owned_house do
+		    owned
+		  end
 		end
+
 
 	    # after(:create) do |house|
 	    #   house.stocks << FactoryGirl.create :stock

@@ -1,22 +1,3 @@
-<div class="panel panel-default" id="panel-image">
-    <div class="panel-heading">
-        <small><%=  %></small>
-    </div>
-    <div class="panel-image hide-panel-body">
-        <%= cl_image_tag(photo.path, { :height => 200, width: 300, quality: 70, :crop => :scale }) %>
-    </div>
-    <div class="panel-footer text-center">
-        <span class="badge"><%=  %></span>
-            <%= link_to '#' do %>
-                <span class="glyphicon glyphicon-zoom-in"></span>
-            <% end %>
-            <% if current_user.admin? %>
-                <%= link_to '#' do %>
-                    <span class="glyphicon glyphicon-download"></span>
-                <% end %>
-                <%= link_to '#' do %>
-                    <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-            <% end %>
-    </div>
-</div>
+<%= link_to '#' do %>
+  <img class="img-responsive" src="<%= cl_image_path @house.display_picture.path, house_tender_options('') %>" alt="image" />                  
+<% end %>

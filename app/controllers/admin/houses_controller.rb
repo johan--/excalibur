@@ -3,7 +3,7 @@ class Admin::HousesController < Admin::BaseController
   									:update, :destroy]
 
   def index
-  	@houses = House.all.page params[:page]
+  	@houses = House.with_deleted.page params[:page]
   end
 
   def new

@@ -1,5 +1,5 @@
 
-<div class="col-md-12">
+<div class="col-md-12" id="post_form">
   <%= simple_form_for([:admin, @post], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>
 
@@ -35,7 +35,7 @@
       <%= link_to "Hapus", remove_header_admin_post_path(@post), method: :put %>
     <% end %>
 
-    <%= f.input :content_md, as: :text, input_html: {rows: 40}, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)..." %>
+    <%= f.input :content_md, as: :text, input_html: {rows: 40}, class: "form-control monospaced-control", placeholder: "Post content (Markdown format)...", label: "Konten (Markdown)" %>
   </div>
   <div class="form-actions">
     <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>

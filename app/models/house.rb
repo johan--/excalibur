@@ -5,6 +5,7 @@ class House < ActiveRecord::Base
   protokoll :ticker, :pattern => "RUM#y%m####"
   friendly_id :slug_candidates, use: :slugged
   monetize :price_sens
+  acts_as_paranoid
 
   belongs_to :publisher, polymorphic: true
   has_many :stocks
@@ -73,11 +74,11 @@ class House < ActiveRecord::Base
   end
 
   def display_picture
-    if avatar.nil?
+    photos.first
+  end
 
-    else
-      avatar
-    end
+  def input_unfinished?
+    if form_step != 'done' then true else false end
   end
 
   def house_owner

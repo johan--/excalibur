@@ -13,15 +13,19 @@ feature "AdminManagesBlog", :type => :feature do
 
   describe "create a post" do
     before do
-      visit new_admin_post_path
+      # visit new_admin_post_path
+      click_link "Telusuri posts"
+      click_link "New post"
     end
 
     context "publish immediately" do
-      before(:each) do
-        fill_in "post_title", with: "Admin Post 1"
-        fill_in "post_content_md", with: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor"
-        fill_in "post_topic", with: "test dummy"
-        click_button "Simpan"
+      before do
+        within("#post_form") do
+          fill_in "post_title", with: "Admin Post 1"
+          fill_in "Konten (Markdown)", with: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor"
+          fill_in "post_topic", with: "test dummy"
+          click_button "Simpan"
+        end
       end
 
       it { should have_content("New post published.") }
@@ -34,13 +38,11 @@ feature "AdminManagesBlog", :type => :feature do
       # visit admin_posts_path
       # click_link("Edit", match: :first)
       visit edit_admin_post_path(post1)
-      fill_in "post_content_md", with: "Cech monreal almunia bellerin per mertesacker arteta"
+      fill_in "Konten (Markdown)", with: "Cech monreal almunia bellerin per mertesacker arteta"
       click_button "Simpan"
     end
 
     it { should have_content("Post successfully edited.") }
     it { should_not have_content("Lorem ipsum dolor Lorem ipsum dolor") }
   end
-
-
 end

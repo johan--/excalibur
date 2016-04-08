@@ -18,6 +18,4 @@ module PagesHelper
       return "#{slot_left} slot tersisa"
     end
   end
-
-  
 end
