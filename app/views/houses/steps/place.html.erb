@@ -1,5 +1,7 @@
+<% content_for :step_title do %>
+  <h4 class="centered mt dark"><%= 'Lokasi' %></h4>
+<% end %>
+
 <%= render layout: 'form' do |f| %>
-  <%= f.input :address, as: :string, label: "Alamat", required: true  %>
-  <%= f.input :city, as: :string, label: "Kota", required: true  %>
-  <%= f.input :province, as: :string, label: "Provinsi", required: true  %>
+  <%= render 'houses/place_fields', f: f %>
 <% end %>

@@ -38,6 +38,7 @@
         </ul>
         <% unless @uploading %>
 	        <div class="row" id="building-form">
+            <%= yield :step_title %>
 				<%= simple_form_for(@house, method: :put, url: wizard_path, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
 				  <%= f.error_notification %>
 

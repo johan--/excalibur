@@ -1,6 +1,6 @@
 FactoryGirl.define do
 	factory :house do
-		association :publisher, factory: :developer
+		association :publisher, factory: :user
 
 		trait :place do
 			sequence(:address) { |n| "Cipete 10 No. #{n+13} RT 10 RW 11 Cilandak"}
@@ -36,7 +36,8 @@ FactoryGirl.define do
 		  place
 		  characteristics
 		  situations
-		  
+		  form_step 'done'
+
 		  factory :owned_house do
 		    owned
 		  end

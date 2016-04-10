@@ -4,7 +4,7 @@ feature "UserListsHouses", :type => :feature do
   subject { page }
 
   let!(:user) { FactoryGirl.create(:user) }
-  
+
   before(:each) { sign_in user }
 
   describe "go into root path then start the form wizard and complete it" do
@@ -37,31 +37,9 @@ feature "UserListsHouses", :type => :feature do
   	end
 
   	it { should have_content('Terima kasih, data sudah lengkap') }
-
-	# context "should have correct information on tender show page" do
-	#   it { should have_css('#house-price', text: "Rp 300000000,00") }
-	# end
   end
 
- #  describe "editing the house" do
- #  	let!(:house) { FactoryGirl.create(:house) }
 
- #    before do
- #      click_link "Houses"
-	#   click_link("Proses")
-	#   # click_link("", href: edit_admin_house_path(house))
-	#   fill_in "house_price", with: 140000000
-	#   select "for sale", from: "house_state"
-	#   click_button "Simpan"
-	# end
-
- #  	it { should have_content('Rumah berhasil dikoreksi') }
-
-	# context "should have correct information on tender show page" do
-	#   it { should have_css('#house-state', text: "for sale") }
-	#   it { should have_css('#house-price', text: "Rp 140000000,00") }
-	# end
- #  end
   describe "start the form wizard but not complete it" do
   	before do
   	  	click_link "Daftarkan Rumah", match: :first
@@ -79,13 +57,10 @@ feature "UserListsHouses", :type => :feature do
 	    fill_in "house_property_size", with: 90
 		click_button "Lanjutkan"
 		
-		click_button "Kembali"
+		click_link "Home"
+		click_link("Edit")
   	end
 
-  	it { should have_content('Terima kasih, data sudah lengkap') }
-
-	# context "should have correct information on tender show page" do
-	#   it { should have_css('#house-price', text: "Rp 300000000,00") }
-	# end
+  	it { should have_content('Unggah Display Picture') }
   end
 end

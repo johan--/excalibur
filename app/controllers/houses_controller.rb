@@ -19,9 +19,6 @@ class HousesController < ApplicationController
     @house = House.friendly.find(params[:id])
   end
 
-  def upload_photo
-    @house = House.friendly.find(params[:id])
-  end
 
   def create
     if params[:build]

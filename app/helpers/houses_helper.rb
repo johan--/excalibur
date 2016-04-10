@@ -8,19 +8,19 @@ module HousesHelper
         destination = house_step_path(house, house.form_step)
       end
    else
-     destination = edit_house_path(house, house.form_step)
+     destination = edit_house_path(house)
    end
 
    link_to destination, data: {toggle: 'tooltip', 
     placement: 'top', original_title: 'Edit'} do
-      content_tag(:i, '', class: "fa fa-pencil")
+      content_tag(:i, '', class: "fa fa-pencil") + content_tag(:span, ' Edit', class: "hidden-xs")
    end
  end
 
   def show_link(house)
     link_to house_path(house), data: {toggle: 'tooltip', 
       placement: 'top', original_title: 'Telusuri'} do
-        content_tag(:i, '', class: "fa fa-search-plus")
+        content_tag(:i, '', class: "fa fa-search-plus") + content_tag(:span, 'Telusuri', class: "hidden-xs")
     end  	
   end
 
@@ -63,5 +63,17 @@ module HousesHelper
   def house_header_options
   { :width => 1200, :height => 500, :crop => :lfill, 
     gravity: :center, quality: 100 }
+  end  
+
+  def sale_label(house)
+    content_tag(:span, 'Dijual', class: 'label label-default')  if house.for_sale?
+  end
+
+  def rent_label(house)
+    content_tag(:span, 'Disewa', class: 'label label-default')  if house.for_rent?
+  end
+
+  def vacant_label(house)
+    content_tag(:span, 'Kosong', class: 'label label-default')  if house.vacant?
   end  
 end

@@ -17,7 +17,7 @@ class Houses::StepsController < ApplicationController
         @disable_next = true if @house.form_step == previous_step || @house.form_step == step
       when 'pictures'
         @uploading = true
-        @no_avatar = true if @house.avatar.nil?
+        @no_avatar = true if @house.photos.empty?
         @disable_next = true if @no_avatar || @house.form_step == step
       when 'situations'
         @disable_next = true if @house.form_step == step
@@ -28,16 +28,21 @@ class Houses::StepsController < ApplicationController
 
   def update
     @house = House.friendly.find(params[:house_id])
-    @house.form_step = next_step unless Wicked::LAST_STEP
-    @house.form_step = 'done' if Wicked::LAST_STEP
+    @house.assign_attributes(house_params(step))
 
-    if @house.update(house_params(step))
+    if @house.valid?
+      unless @form_step == 'done'
+        @house.form_step = next_step if next_step != Wicked::FINISH_STEP
+        @house.form_step = 'done' if next_step == Wicked::FINISH_STEP
+      end
+      @house.save
       if @house.form_step == 'done'
         flash[:notice] = 'Terima kasih, data sudah lengkap'
       else
         flash[:notice] = 'Data telah disimpan, lanjutkan'
-      end
-    else
+      end      
+    else 
+      @house.errors
       flash[:warning] = 'Data gagal disimpan, mohon ulangi'
     end
 

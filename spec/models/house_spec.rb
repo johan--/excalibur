@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe House, :type => :model do
+  let!(:user) { FactoryGirl.create(:user) }
+
   describe "empty house" do
-    before { @house = FactoryGirl.build(:complete_house) }
+    before { @house = FactoryGirl.build(:complete_house, publisher: user) }
 
     subject { @house }
 
@@ -37,6 +39,14 @@ RSpec.describe House, :type => :model do
       end
       describe "after create callback" do
         before(:each) { @stock = @house.stocks.first }
+
+        it "the user now has one house" do
+          expect(user.houses.count).to eq 1
+        end
+
+        it "listed the user as the publisher" do
+          expect(user.houses.first).to eq @house
+        end
 
         it "creates just one stock" do
           expect(@house.stocks.count).to eq 1

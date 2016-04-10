@@ -38,14 +38,14 @@ class House < ActiveRecord::Base
   attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
   geocoded_by :full_street_address 
 
-  with_options if: -> { required_for_step?(:characteristics) } do |step|
-    step.validates :bedrooms, presence: true
-    step.validates :bathrooms, presence: true
-    step.validates :level, presence: true
-    step.validates :garages, presence: true
-    step.validates :property_size, presence: true
-    step.validates :lot_size, presence: true
-  end
+  # with_options if: -> { required_for_step?(:characteristics) } do |step|
+  #   step.validates :bedrooms, presence: true
+  #   step.validates :bathrooms, presence: true
+  #   step.validates :level, presence: true
+  #   step.validates :garages, presence: true
+  #   step.validates :property_size, presence: true
+  #   step.validates :lot_size, presence: true
+  # end
 
   before_create :set_default_values!
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
@@ -101,7 +101,6 @@ class House < ActiveRecord::Base
   def required_for_step?(step)
     # All fields are required if no form step is present
     return true if form_step.nil?
-
     # All fields from previous steps are required if the
     # step parameter appears before or we are on the current step
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
@@ -112,7 +111,8 @@ private
     self.country = 'indonesia'
     self.state = 'pending' if self.state.nil?
     self.address_was = self.address
-    self.for_rent = 'yes'
+    self.for_rent = 'no'
+    self.avatar = 'first'
   end
 
   # def check_address

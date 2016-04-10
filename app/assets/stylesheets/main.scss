@@ -179,6 +179,7 @@ a:hover, a.selected, a:focus { color: #eb3812;}
 
 .property-list {
   border: 1px solid #BBBBBB;
+  .pull-left, .pull-right { margin-top: 7px; }
   .pull-left .social-links {
     list-style-type: none;
     padding: 0;
@@ -188,20 +189,21 @@ a:hover, a.selected, a:focus { color: #eb3812;}
     li { 
       display: inline-block; 
       a {
-        background: #EFF0F4;
-        width: 30px;
+        background: $brand-primary;
+        padding-left: 10px;padding-right: 10px;
         height: 30px;
         line-height: 30px;
         text-align: center;
         display: inline-block;
         border-radius: 5px;
         -webkit-border-radius: 5px;
-        color: #7A7676;
-        i { color: $brand-primary; }
+        color: white;
+        i { color: white; }
         &:hover {
-          background: #ff6c60;
-          color: #fff;
-          i { color: white; }
+          background: white; border: 1px solid $brand-primary;
+          border-radius: 5px;
+          -webkit-border-radius: 5px; color: $brand-primary;
+          i { color: $brand-primary; }
         }
       }
     }
@@ -500,6 +502,7 @@ div.house-listing {
 }
 
 #house-photos{
+  .photo-box{ padding-left: 0px; padding-right: 0px;}
   .blankslate {
     background-color: white; 
      border: 1px solid white; 

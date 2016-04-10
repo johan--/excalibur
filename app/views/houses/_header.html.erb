@@ -35,11 +35,7 @@
         </div>        
       </div>
       <div class="col-sm-4 col-xs-3">
-        <div class="top-desc coral pull-right"><h3><%= "Rp " + idr_concat(@house.price, 1000000) + " jt" %></h3></div> 
-      </div>
-      <div class="col-xs-12">
-        <%= link_to "Beli", '#', class: 'btn btn-primary' %>
-        <%= link_to "Ajukan Pendanaan", '#', class: 'btn btn-success' %>
+        <div class="top-desc coral pull-right"><h3 id="house-price"><%= "Rp " + idr_concat(@house.price, 1000000) + " jt" %></h3></div> 
       </div>
     </div>
   </div>
@@ -58,11 +54,12 @@
   </div>
 </section>
  -->
-
-<style type="text/css">
-  .bg-custom-lg {
-    background: #252931 url("<%= cl_image_path(@house.display_picture.path, house_header_options) %>");
-    background-repeat:no-repeat;
-    background-position: center center;
-  }
-</style>
+<% unless @house.display_picture.nil? %>
+  <style type="text/css">
+    .bg-custom-lg {
+      background: #252931 url("<%= cl_image_path(@house.display_picture.path, house_header_options) %>");
+      background-repeat:no-repeat;
+      background-position: center center;
+    }
+  </style>
+<% end %>

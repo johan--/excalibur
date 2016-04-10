@@ -37,10 +37,10 @@
 (1..5).each do |h|
   House.create(
   anno: 2015, price: 300000000, category: "rumah",
-  address: "Jl. Cipete 7 No. #{h} RT 03 RW 04 Cipete Selatan, Cilandak",
+  address: "Cipete 7 No. #{h} RT 03 RW 04 Cipete Selatan, Cilandak",
   city: "Jakarta Selatan", province: 'DKI Jakarta', 
   publisher: User.first,
-  for_sale: "yes", vacant: "yes",
+  for_sale: "yes", for_rent: "no", vacant: "yes",
   bedrooms: 3, bathrooms: 1, level: 1,
   garages: 1, lot_size: 100, property_size: 90    )
 end
