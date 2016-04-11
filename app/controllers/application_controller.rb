@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
   before_filter :set_locale
-  before_filter :resource_params, if: :devise_controller?
+  # before_filter :resource_params, if: :devise_controller?
   # use_vanity :current_user
 
   def meta_events_tracker
@@ -58,19 +58,19 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_opera_mini?
 
-  def resource_params
-    devise_parameter_sanitizer.for(:sign_up) {|user| user.permit(
-      :first_name, :last_name, :email, :password, :password_confirmation,
-      :understanding, :phone_number, :location, :name, :avatar,
-      :auth_with
-      )
-    }
-    devise_parameter_sanitizer.for(:account_update) {|user| user.permit(
-      :first_name, :last_name, :email, :phone_number,
-      :password, :password_confirmation, :current_password
-      )
-    }
-  end
+  # def resource_params
+  #   devise_parameter_sanitizer.for(:sign_up) {|user| user.permit(
+  #     :first_name, :last_name, :email, :password, :password_confirmation,
+  #     :understanding, :phone_number, :location, :name, :avatar,
+  #     :auth_with
+  #     )
+  #   }
+  #   devise_parameter_sanitizer.for(:account_update) {|user| user.permit(
+  #     :first_name, :last_name, :email, :phone_number,
+  #     :password, :password_confirmation, :current_password
+  #     )
+  #   }
+  # end
 
 private
   def detect_device_format

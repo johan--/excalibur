@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  before_filter :resource_params, if: :devise_controller?
+  before_filter :resource_params
   skip_before_filter :authenticate_user!
   
   def new
