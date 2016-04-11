@@ -3,7 +3,6 @@ class Tender < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
   include RefreshSlug
-  include DirtyAccessor
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
