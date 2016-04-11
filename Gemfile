@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby "2.2.4"
 
 # Standard Rails gems
-gem 'rails', '4.2.0'
+gem "rails", "~> 4.2.0"
 gem 'sass-rails', '5.0.2'
 gem 'uglifier', '2.6.0'
 gem 'coffee-rails', '4.1.0'
@@ -12,6 +12,7 @@ gem 'jquery-turbolinks'
 
 gem 'bootstrap-slider-rails'
 
+gem "high_voltage"
 
 # Authentication
 gem 'devise', '3.4.1'
@@ -43,7 +44,9 @@ gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 # Necessities
   # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
-gem 'bcrypt', '3.1.9'
+# gem 'bcrypt', '3.1.9' not working anymore
+# gem 'bcrypt-ruby', '3.1.11', :require => 'bcrypt'
+gem 'bcrypt', '3.1.11'
 gem 'kaminari', '0.16.2'
 gem 'friendly_id', '5.1.0'
 gem 'font-awesome-sass', '~> 4.5.0'
@@ -100,19 +103,22 @@ group :development, :test do
 end
 
 group :test, :development do
-	gem 'rspec-rails', '3.1.0'
+	gem 'rspec-rails', '3.3.0'
   gem 'rspec-retry'
-  gem "shoulda-matchers"
 	gem 'capybara', '~> 2.2.0'
 	gem 'factory_girl_rails', '4.5.0'
-	gem 'database_cleaner', '1.3.0'
   # gem 'faker', '~> 1.4.3'
-  gem 'timecop'
-  gem 'poltergeist'
   # gem 'phantomjs', :require => 'phantomjs/poltergeist'
   # gem 'selenium-webdriver', '~> 2.45.0'
 end
 
+group :test do
+  gem "formulaic"
+  gem 'timecop'
+  gem 'poltergeist'  
+  gem 'database_cleaner', '1.3.0'
+  gem "shoulda-matchers"
+end
 
 group :production, :staging do
   gem 'rails_12factor'
