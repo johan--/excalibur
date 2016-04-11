@@ -2,10 +2,11 @@
 :url => registration_path(resource_name),
 :html => { :class => "form-horizontal" }, wrapper: :horizontal_form) do |f| %>
 	
-	  <%= devise_error_messages! %>
+<!-- 	  <%= devise_error_messages! %> -->
+	<%= f.error_notification %>
 
 	<div class="form-inputs">
-		<%= f.input :email, placeholder: "ini akan digunakan untuk kontak dan login", required: true, input_html: { value: params[:email] } %>
+		<%= f.input :email, placeholder: "ini akan digunakan untuk kontak dan login", required: true %>
 		<%= f.input :password, input_html: { maxlength: 20, minlength: 6 }, placeholder: "panjang minimal 6 karakter, huruf, angka, atau campurannya", required: true %>
 		<%= f.input :password_confirmation, label: 'Konfirmasi Password', placeholder: "masukkan kata kunci yang sama untuk memastikan", required: true%>
 		<%= f.input :name, label: "Nama Lengkap", help: "sesuai dengan KTP atau SIM", required: true %>

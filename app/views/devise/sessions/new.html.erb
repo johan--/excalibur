@@ -15,6 +15,7 @@
     <p class="login-box-msg">Sign in to start your session</p>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
+      <%= devise_error_messages! %>
       <div class="form-group has-feedback">
         <%= f.text_field :email, placeholder: "email", class: "form-control", required: true, autofocus: true %>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

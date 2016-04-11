@@ -25,11 +25,11 @@ class House < ActiveRecord::Base
   store_accessor :details, 
                  :category, :bedrooms, :bathrooms, :level, 
                  :greenery, :garages, :property_size, :lot_size
-
+  serialize :location, HashSerializer
   store_accessor :location, 
                  :address, :address_was, :city, :complex,
                  :province, :country
-
+  serialize :condition, HashSerializer
   store_accessor :condition,
                  :form_step, :state, :for_sale, :for_rent, 
                  :vacant, :anno, :inspected,
