@@ -27,6 +27,7 @@ doc/
 
 # Ignore application configuration
 /config/application.yml
+/config/database.yml
 /config/secrets.yml
 /config/veritrans.yml
 .secret
