@@ -26,11 +26,6 @@ section {
     }
 }
 
-.centered {
-    text-align: center;
-}
-
-
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
@@ -741,4 +736,8 @@ section#reminder {
   text-align:center;
   text-transform: uppercase;
   transform: translateX(-50%);
+}
+
+#disclaimer small {
+  text-align: justify; color: #999999;
 }

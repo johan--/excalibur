@@ -15,7 +15,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #     end
   #   }
   # end
-
   # [:facebook, :google_oauth2, :linked_in, :linkedin].each do |provider|
   #   provides_callback_for provider
   # end
@@ -27,9 +26,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user.persisted?
       flash[:notice] = "Signed in!"
       sign_in_and_redirect user
+      meta_events_tracker.event!(:user, :signed_up, { auth: identity.provider })
     else
-      # sign_in user
-      # redirect_to edit_user_registration_url
       flash[:alert] = "Ada masalah, mohon coba lagi atau kontak admin"
       redirect_to new_user_registration_url
     end

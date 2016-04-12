@@ -232,22 +232,18 @@ Devise.setup do |config|
 
   # Uncomment if want to use omniauth
   require "omniauth-facebook"
-  require 'omniauth-google-oauth2'
   require 'omniauth-linkedin-oauth2'
+  # require 'omniauth-google-oauth2'
 
-  if Rails.env.production?
     config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SEC'],
       :scope => 'email,public_profile,user_friends', :display => 'popup',
       :secure_image_url => true, :image_size => 'large'
-  else  
-    config.omniauth :facebook, ENV['FB_TEST_APP_ID'], ENV['FB_TEST_APP_SEC']
-  end
-    config.omniauth :google_oauth2, ENV['GO_APP_ID'], ENV['GO_APP_SEC'], { access_type: "offline", approval_prompt: "" }
     config.omniauth :linkedin, ENV['LINK_APP_ID'], ENV['LINK_APP_SEC'], 
       :scope => 'r_basicprofile r_emailaddress w_share',
       fields: ['id', 'email-address', 'first-name', 'last-name', 
         'headline', 'location', 'industry', 'picture-urls::(original)', 
         'public-profile-url', 'positions']
+    # config.omniauth :google_oauth2, ENV['GO_APP_ID'], ENV['GO_APP_SEC'], { access_type: "offline", approval_prompt: "" }
 
 
   # ==> Warden configuration
