@@ -20,11 +20,11 @@ class Identity < ActiveRecord::Base
       identity.location     = auth.info.location if auth.info.location
       identity.first_name   = auth.info.first_name
       identity.last_name    = auth.info.last_name
-      if auth.provider == 'facebook'
-        identity.public_url = auth.info.urls[:Facebook]
-      else
-        identity.public_url = auth.info.urls[:public_profile]
-      end      
+      # if auth.provider == 'facebook'
+      #   identity.public_url = auth.info.urls[:Facebook]
+      # else
+      #   identity.public_url = auth.info.urls[:public_profile]
+      # end
     end
     identity.save!
 

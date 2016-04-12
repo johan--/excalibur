@@ -12,10 +12,10 @@ Fustal::Application.routes.draw do
     :registrations => "registrations", :sessions => "sessions", 
     :passwords => "passwords", :omniauth_callbacks => "omniauth_callbacks" 
   }
-  devise_scope :user do
-    get "/daftarbeta" => "devise/registrations#new"
-    get "/masukbeta" => "devise/sessions#new"
-  end
+  # devise_scope :user do
+  #   get "/daftarbeta" => "devise/registrations#new"
+  #   get "/masukbeta" => "devise/sessions#new"
+  # end
 
   namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
     get "find", to: "posts#find_posts", as: "find_posts"
