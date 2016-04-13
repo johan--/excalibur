@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # include RailsSettings::Extend  
   include WannabeBool::Attributes
   include UserAdmin
   extend FriendlyId
