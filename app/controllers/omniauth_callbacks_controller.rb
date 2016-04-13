@@ -7,6 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   #       if @user.persisted?
   #         sign_in_and_redirect @user, event: :authentication
+  #         meta_events_tracker.event!(:user, :signed_up, { auth: #{provider} })
   #         set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
   #       else
   #         session["devise.#{provider}_data"] = env["omniauth.auth"]
@@ -15,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #     end
   #   }
   # end
-  # [:facebook, :google_oauth2, :linked_in, :linkedin].each do |provider|
+  # [:facebook, :google_oauth2, :linkedin].each do |provider|
   #   provides_callback_for provider
   # end
 
@@ -38,12 +39,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def after_sign_in_path_for(resource)
     super resource
-    # Below conditional is for omniauth that does not provide email
-    # if resource.email_verified?
-    #   super resource
-    # else
-    #   finish_signup_path(resource)
-    # end
   end
 
 end

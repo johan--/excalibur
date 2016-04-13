@@ -128,7 +128,7 @@ class User < ActiveRecord::Base
     self.currency = 'idr'
     self.open = 'yes'
     self.notification = 'yes'
-    self.auth_with = '' if self.auth_with.nil?
+    self.auth_with = 'no' if self.auth_with.nil?
   end
 
   def generate_auth_token!

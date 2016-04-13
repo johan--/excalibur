@@ -4,7 +4,21 @@ class Identity < ActiveRecord::Base
   validates_uniqueness_of :uid, :scope => :provider
 
   # def self.find_for_oauth(auth)
-  #   find_or_create_by(uid: auth.uid, provider: auth.provider)
+  #   # find_or_create_by(uid: auth.uid, provider: auth.provider)
+  #   identity = where(uid: auth.uid, provider: auth.provider).first_or_create do |identity|
+  #     identity.provider     = auth.provider
+  #     identity.uid          = auth.uid
+  #     identity.token        = auth.credentials.token
+  #     identity.secret       = auth.credentials.secret if auth.credentials.secret
+  #     identity.expires_at   = auth.credentials.expires_at if auth.credentials.expires_at
+  #     if auth.provider == 'facebook'
+  #       identity.public_url = auth.info.urls[:Facebook]
+  #     else
+  #       identity.public_url = auth.info.urls[:public_profile]
+  #     end      
+  #   end
+  #   # identity.save!
+  #   # identity
   # end
 
   def self.from_omniauth(auth)
@@ -20,11 +34,11 @@ class Identity < ActiveRecord::Base
       identity.location     = auth.info.location if auth.info.location
       identity.first_name   = auth.info.first_name
       identity.last_name    = auth.info.last_name
-      # if auth.provider == 'facebook'
-      #   identity.public_url = auth.info.urls[:Facebook]
-      # else
-      #   identity.public_url = auth.info.urls[:public_profile]
-      # end
+      if auth.provider == 'facebook'
+        identity.public_url = auth.info.urls[:Facebook]
+      else
+        identity.public_url = auth.info.urls[:public_profile]
+      end
     end
     identity.save!
 
@@ -63,6 +77,7 @@ class Identity < ActiveRecord::Base
       # No user associated with the identity so we need to create a new one
       self.build_user(
         email: self.email,
+        password: Devise.friendly_token[0,20],
         avatar: self.image,
         name: "#{self.first_name} #{self.last_name}",
         first_name: self.first_name,

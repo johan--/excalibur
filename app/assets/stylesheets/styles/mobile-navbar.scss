@@ -33,6 +33,13 @@ body.navbar-more-show  {
 	max-height: 300px;
 	-webkit-transform: translate(0px, calc(-100% + 69px));
 	transform: translate(0px, calc(-100% + 69px));
+  .navbar-brand {
+    padding-top: 14px;
+    color: $brand-primary; font-weight: 700;
+    /*padding-left: 5px;*/
+    background: image-url('logo-font-copy.png') no-repeat;
+    margin-top: 7px; width: 175px; height: 50px;
+  }	
 }
 .navbar .container:not(.navbar-more) {
     padding: 0px;
