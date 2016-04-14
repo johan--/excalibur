@@ -112,6 +112,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.from_omniauth(auth, identity)
+    where(email: auth.info.email).first_or_create do |user|
+      user.email      = auth.info.email
+      user.password   = Devise.friendly_token[0,20]
+      user.password_confirmation = user.password
+      user.first_name = auth.info.first_name
+      user.last_name  = auth.info.last_name
+      user.name       = auth.info.name
+      user.location   = auth.info.location if auth.info.location
+      user.image      = auth.info.image if auth.info.image
+      user.nickname   = auth.info.nickname if auth.info.nickname
+      user.auth_with  = auth.provider
+      user.understanding = 'yes'
+    end
+  end
+
 # private
 
   # def up_name
@@ -128,7 +144,7 @@ class User < ActiveRecord::Base
     self.currency = 'idr'
     self.open = 'yes'
     self.notification = 'yes'
-    self.auth_with = 'no' if self.auth_with.nil?
+    self.auth_with = '' if self.auth_with.nil?
   end
 
   def generate_auth_token!
