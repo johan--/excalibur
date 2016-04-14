@@ -121,8 +121,7 @@ class User < ActiveRecord::Base
       user.last_name  = auth.info.last_name
       user.name       = auth.info.name
       user.location   = auth.info.location if auth.info.location
-      user.image      = auth.info.image if auth.info.image
-      user.nickname   = auth.info.nickname if auth.info.nickname
+      user.avatar     = auth.info.image if auth.info.image
       user.auth_with  = auth.provider
       user.understanding = 'yes'
     end
