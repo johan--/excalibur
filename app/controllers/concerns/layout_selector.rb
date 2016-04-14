@@ -1,6 +1,7 @@
 module LayoutSelector
   def inside_app
     @inside = true
+    @body_class = "mobile-navbar"
   end
 
   def disable_background
@@ -11,6 +12,7 @@ module LayoutSelector
   end
   def admin_layout
     @admin_layout = true
+    @body_class = "hold-transition skin-blue sidebar-mini"
   end
 
 end

@@ -3,11 +3,6 @@ class Identity < ActiveRecord::Base
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
 
-
-  # def self.from_omniauth(auth)
-  #   find_by(uid: auth.uid, provider: auth.provider)
-  # end
-
   def self.create_with_omniauth(auth)
     Identity.create do |identity|
       identity.provider     = auth.provider
@@ -74,21 +69,3 @@ class Identity < ActiveRecord::Base
   # end
 
 end
-
-  # def self.find_for_oauth(auth)
-  #   # find_or_create_by(uid: auth.uid, provider: auth.provider)
-  #   identity = where(uid: auth.uid, provider: auth.provider).first_or_create do |identity|
-  #     identity.provider     = auth.provider
-  #     identity.uid          = auth.uid
-  #     identity.token        = auth.credentials.token
-  #     identity.secret       = auth.credentials.secret if auth.credentials.secret
-  #     identity.expires_at   = auth.credentials.expires_at if auth.credentials.expires_at
-  #     if auth.provider == 'facebook'
-  #       identity.public_url = auth.info.urls[:Facebook]
-  #     else
-  #       identity.public_url = auth.info.urls[:public_profile]
-  #     end      
-  #   end
-  #   # identity.save!
-  #   # identity
-  # end

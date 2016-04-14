@@ -17,6 +17,29 @@
   <%= csrf_meta_tags %>
   <%= render 'elements/mixpanel_script' %>
 </head>
+<body class="<%= yield (:body_class) %> <%= @body_class %>">
+  <% if @inside %>
+    <% if @admin_layout %>  
+        <%= render 'layouts/admin_layout' %>
+    <% else %>
+      <%= render 'layouts/mobile_navbar' %>
+    <% end %>
+  
+  <% else %>
+    <% if @no_layout || @static %>
+      <%= render 'layouts/classic_navbar' %>
+      <%= yield %>
+    <% elsif @blog_layout %>
+      <%= render 'layouts/blog_layout' %>    
+    <% elsif @wiki_layout %>
+      <%= render 'wiki_pages/wiki_layout' %>
+    <% end %>
+    
+  <% end %>
+  <%= render 'elements/large_modal' %>
+</body>
+</html>
+<!-- 
 <% if @inside %>
   <% if @admin_layout %>  
     <body class="hold-transition skin-blue sidebar-mini">
@@ -41,6 +64,4 @@
     <%= render 'elements/large_modal' %>
   </body>
 
-<% end %>
-
-</html>
+<% end %> -->

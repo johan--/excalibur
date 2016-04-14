@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!#, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
-  before_filter :set_locale
+  # before_filter :set_locale
   # before_filter :resource_params, if: :devise_controller?
   # use_vanity :current_user
 

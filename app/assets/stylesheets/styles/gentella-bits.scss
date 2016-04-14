@@ -7,7 +7,24 @@
 .fixed_height_200 {
   height: 200px;
 }
-
+.error-display {
+  color: #73879C;
+  .error-number {
+    font-size: 90px; 
+    line-height: 90px;
+    margin: 20px 0;
+  }
+  p { font-size: 13px;  }
+}
+.col-middle {
+  margin-top: 5%;
+}
+.mid_center {
+  width: 370px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 20px;
+}
 /* *********  tabs  **************************** */
 
 ul.bar_tabs {
