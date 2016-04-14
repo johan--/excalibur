@@ -78,6 +78,7 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'geocoder'
 gem 'ionicons-rails'
 gem 'active_link_to'
+
 # gem 'gmaps4rails'
 # gem "rails-settings-cached", "~> 0.4.0"
 
@@ -89,6 +90,9 @@ gem 'jbuilder', '2.2.6'
 group :development do
   # gem "mail_view", "~> 1.0.3"
   gem "mail_view", "~> 2.0.4"
+  gem "awesome_print", require:"ap"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do

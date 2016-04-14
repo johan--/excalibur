@@ -3,7 +3,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     auth = request.env["omniauth.auth"]
     @identity = Identity.find_by(uid: auth.uid, provider: auth.provider)    
-    @identity = Identity.create_with_omniauth(auth) if @identity.nil?
+    if @identity.nil?
+      @identity = Identity.create_with_omniauth(auth) 
+    end
 
     if signed_in?
       if @identity.user == current_user
