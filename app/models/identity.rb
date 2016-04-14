@@ -16,11 +16,7 @@ class Identity < ActiveRecord::Base
       identity.secret       = auth.credentials.secret if auth.credentials.secret
       identity.expires_at   = auth.credentials.expires_at if auth.credentials.expires_at
       identity.email        = auth.info.email if auth.info.email
-      identity.image        = auth.info.image if auth.info.image
-      identity.nickname     = auth.info.nickname if auth.info.nickname
       identity.location     = auth.info.location if auth.info.location
-      identity.first_name   = auth.info.first_name
-      identity.last_name    = auth.info.last_name
       # if auth.provider == 'facebook'
       #   identity.public_url = auth.info.urls[:Facebook]
       # else
