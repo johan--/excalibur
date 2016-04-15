@@ -37,6 +37,10 @@ class MusharakaSimulation
     "Rp #{monthly_rent}/bulan"
   end
 
+  def annual_rental
+    capitalization_rate(tangible) * @price
+  end
+
 
   def avg_acquisition_rate
     other_party_ownership(@contribution) / @maturity
@@ -46,9 +50,13 @@ class MusharakaSimulation
     avg_acquisition_rate * cost
   end
 
-  def rental_value(n, contribution)
-    lagged_price = geometric_price(n - 1)
-    capitalization_rate(tangible) * lagged_price * other_party_ownership(contribution)
+  # def rental_value(n, contribution)
+  #   lagged_price = geometric_price(n - 1)
+  #   capitalization_rate(tangible) * lagged_price * other_party_ownership(contribution)
+  # end
+
+  def static_rental_value
+    annual_rental * @maturity
   end
 
   def geometric_price(n)
@@ -65,10 +73,10 @@ class MusharakaSimulation
     @maturity.times do |k|
     # until current_ownership == 100  do
       # $i +=1;
-
       current_price = geometric_price(k) #get the new price after each year
 
-      rent_spending += rental_value(k, current_ownership).round(0)
+      # rent_spending += rental_value(k, current_ownership).round(0)
+      rent_spending += static_rental_value.round(0)
       share_spending += acquisition(current_price).round(0)
       current_ownership += avg_acquisition_rate
       tot = rent_spending + share_spending

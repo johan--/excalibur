@@ -1,21 +1,20 @@
-
 <h3 class="media-heading centered"><%= "Simulasi Hijrah" %></h3><hr>
 <form action="#" class="long-inline lead-big" role="form">
   <div class="col-md-8 col-md-offset-2">
     <div class="form-group">
       <label for="name">Kamu akan mendapatkan<span>Jumlah Saham</span></label>
-      <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada.
+      <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada dan memiliki <%= @simulation.contribution_percent %>% atas properti.
     </div><br>
   </div>
   <div class="col-md-8 col-md-offset-2">
     <div class="form-group">
-      <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
-      <%= text_field_tag :maturity, '', placeholder: idr_money(@results[:avg_obligation]), disabled: true  %>
+      <label for="company"> Diperkirakan biaya sewa tahunan atas properti adalah sebesar <span>Sewa Tahunan</span></label>
+      <%= text_field_tag :maturity, '', placeholder: idr_money(@simulation.annual_rental), disabled: true  %>, yang kemudian akan didiskon oleh porsi kepemilikanmu.
     </div><br>
   </div>
   <div class="col-md-8 col-md-offset-2">
     <div class="form-group">
-      <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan perlu membayar <span>Rata-rata nilai pembelian saham</span></label>
+      <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan membayar <span>Rata-rata nilai pembelian saham</span></label>
       <%= text_field_tag :contribution, '', placeholder: idr_money(@results[:avg_purchase]), disabled: true %> per bulannya.
     </div><br>
   </div>

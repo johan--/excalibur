@@ -19,9 +19,9 @@ module ProfitMargin
 
 	  def capitalization_rate(asset_type)
 		if asset_type == 'Rumah'
-			return 0.05
+			return 0.08
 		else
-			return 0.10
+			return 0.13
 		end
 	  	# @maturity = maturity.to_i
 	  	# base_maturity = 5
