@@ -1,4 +1,47 @@
 <% meta title: "Home" %>
+ 
+<div class="row">
+  <div id="home-view">
+    <div class="col-xs-12">
+      <div class="x_panel">
+        <div class="x_title mb">
+          <h5><i class="fa fa-align-left"></i> Portofolio</h5>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <h4 class="sub-title">Proposal yang kamu ajukan <span class="badge"><%= @tenders.count %></span></h4>
+          <%= render 'request' %>
+
+          <div class="spacing"></div>
+
+          <h4 class="sub-title">Rumah yang kamu daftarkan <span class="badge"><%= @houses.count %></span></h4>
+          <%= render 'listing_house' %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="choose" class="side-view" style="display: none;">
+  </div>
+  <div id="returns" class="side-view"  style="display: none;">
+    <%= link_to "Kembali Ke Portofolio", user_root_path, remote: true %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--   <div class="col-sm-6">
     <div class="box widget locations">
@@ -64,31 +107,3 @@
       </div>
     </div>
   </div> -->
-  
-<div class="row">
-  <div id="home-view">
-    <div class="col-xs-12">
-      <div class="x_panel">
-        <div class="x_title mb">
-          <h5><i class="fa fa-align-left"></i> Portofolio</h5>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <h4 class="sub-title">Proposal yang kamu ajukan <span class="badge"><%= @tenders.count %></span></h4>
-          <%= render 'request' %>
-
-          <div class="spacing"></div>
-
-          <h4 class="sub-title">Rumah yang kamu daftarkan <span class="badge"><%= @houses.count %></span></h4>
-          <%= render 'listing_house' %>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="choose" class="side-view" style="display: none;">
-  </div>
-  <div id="returns" class="side-view"  style="display: none;">
-    <%= link_to "Kembali Ke Portofolio", user_root_path, remote: true %>
-  </div>
-</div>

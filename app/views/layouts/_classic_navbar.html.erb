@@ -11,7 +11,7 @@
         <% end %>
       </li>
       <li role="presentation">
-        <%= active_link_to ownership_job_path, :active => :exclusive do %>
+        <%= active_link_to '/kepemilikan', :active => :inclusive do %>
           Jual-beli <span class="hidden-xs">Rumah</span>
         <% end %>      
       </li>
@@ -21,3 +21,4 @@
     </ul>    
   </div>
 </nav>
+<%= yield %>

@@ -1,37 +1,31 @@
-<div class="modal-header modal-header-primary">
-  <h3>Hasil Simulasi</h3>
-</div>
-<div class="modal-body">
-  <center>
-  <% if @sim[:type] == 'hijrah' %>
-	<h3 class="media-heading"><%= "Simulasi Hijrah" %></h3><hr>
-  <h5 class="coral">Hasil simulasi ini bukan hasil yang pasti karena Kapiten menentukan tingkat ROI berbeda-beda untuk tiap pengajuan.</h5>
-    <form action="#" class="long-inline lead-big" role="form">
-      <div class="form-group">
-        <label for="name">Kamu akan mendapatkan<span>Jumlah Saham</span></label>
-        <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada.
-      </div>
 
-      <div class="form-group">
-        <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
-        <%= text_field_tag :maturity, '', placeholder: idr_money(@results[:avg_obligation]), disabled: true  %>
-      </div><br>
-
-      <div class="form-group">
-        <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan perlu membayar <span>Rata-rata nilai pembelian saham</span></label>
-        <%= text_field_tag :contribution, '', placeholder: idr_money(@results[:avg_purchase]), disabled: true %> per bulannya.
-      </div><br>
-      
-      <div class="form-group">
-        <label for="company"> Jadi rata-rata selama <%= @simulation.maturity %> tahun setiap bulannya kamu mengeluarkan <span>Total Pengeluaran</span></label>
-        <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@results[:avg_total]), disabled: true %> untuk memiliki rumah sepenuhnya.
-      </div><br>          
-    </form>
-
-		<%= link_to "Atur Ulang", open_simulation_path(type: 'hijrah', aqad: 'musharaka'), remote: true, class: "btn btn-primary btn-round-lg" %>
-	<% end %>
-  </center>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batalkan</button>
-</div>
+<h3 class="media-heading centered"><%= "Simulasi Hijrah" %></h3><hr>
+<form action="#" class="long-inline lead-big" role="form">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+      <label for="name">Kamu akan mendapatkan<span>Jumlah Saham</span></label>
+      <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada.
+    </div><br>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+      <label for="company"> Apabila kamu mau menempati rumah tersebut, setiap bulannya kamu hanya perlu membayar <span>Sewa Terdiskon</span></label>
+      <%= text_field_tag :maturity, '', placeholder: idr_money(@results[:avg_obligation]), disabled: true  %>
+    </div><br>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+      <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan perlu membayar <span>Rata-rata nilai pembelian saham</span></label>
+      <%= text_field_tag :contribution, '', placeholder: idr_money(@results[:avg_purchase]), disabled: true %> per bulannya.
+    </div><br>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+      <label for="company"> Jadi rata-rata selama <%= @simulation.maturity %> tahun setiap bulannya kamu mengeluarkan <span>Total Pengeluaran</span></label>
+      <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@results[:avg_total]), disabled: true %> untuk memiliki rumah sepenuhnya.
+    </div><br>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <p class="grey centered">Hasil simulasi ini bukan hasil yang pasti karena Kapiten menentukan tingkat ROI berbeda-beda untuk tiap pengajuan.</p>
+  </div>
+</form>

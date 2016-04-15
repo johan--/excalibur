@@ -84,11 +84,14 @@
   <div id="simulation" class="row" style="display: none;">
     <h4 class="centered">Simulasi</h4>
     <%= render partial: 'elements/client_simulation',
-          locals: { heading: 'Simulasi'}  %>    
+          locals: { heading: 'Simulasi'}  %> 
+  </div>
+  <div id="simulation-result" class="row" style="display: none;">
   </div>
 </div>
       <div class="modal-footer">
         <button type="button" id="BT1" class="btn btn-info" style="display: none;">Kembali ke Penjelasan</button>
+        <button type="button" id="BT3" class="btn btn-success" style="display: none;">Atur ulang simulasi</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
 
@@ -96,25 +99,6 @@
   </div>
 </div>
 
-<!--         <div class="panel panel-default">
-          <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-              <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  <h4 class="panel-title">Cara</h4>
-                  <span class="pull-right clickable" style="margin-top: -20px;font-size: 15px;"><i class="glyphicon glyphicon-chevron-down"></i></span>
-              </div>
-          </span>
-
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="panel-body">
-              Cara untuk mengajukan pendanaan Hijrah:
-            </div>
-            <ul class="list-group">
-              <li class="list-group-item">Silahkan jalankan simulasi pendanaan dengan menekan tombol "Jalankan Simulasi" di bawah ini</li>
-              <li class="list-group-item">Apabila puas dengan hasilnya, silahkan tekan tombol "Kirim Permintaan"</li>
-              <li class="list-group-item">Isi formulir yang ada dan dalam 1x24 jam tim kami akan memberikan tanggapan dan informasi lanjutan</li>
-            </ul>
-          </div>
-        </div> -->
 <script type="text/javascript">
   document.getElementById("BT1").addEventListener("click", function(){
       $("#simulation").hide();
@@ -124,5 +108,11 @@
       $("#explanation").hide();
       $("#simulation").show();
       $("#BT1").show();
-  });    
+  });
+  document.getElementById("BT3").addEventListener("click", function(){
+      $("#simulation-result").hide();
+      $("#BT3").hide();
+      $("#BT1").show();
+      $("#simulation").show();
+  });  
 </script>

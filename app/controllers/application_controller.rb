@@ -58,19 +58,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_opera_mini?
 
-  # def resource_params
-  #   devise_parameter_sanitizer.for(:sign_up) {|user| user.permit(
-  #     :first_name, :last_name, :email, :password, :password_confirmation,
-  #     :understanding, :phone_number, :location, :name, :avatar,
-  #     :auth_with
-  #     )
-  #   }
-  #   devise_parameter_sanitizer.for(:account_update) {|user| user.permit(
-  #     :first_name, :last_name, :email, :phone_number,
-  #     :password, :password_confirmation, :current_password
-  #     )
-  #   }
-  # end
 
 private
   def detect_device_format

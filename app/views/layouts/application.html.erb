@@ -13,6 +13,7 @@
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= cloudinary_js_config %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  
   <%= yield :head %>
   <%= csrf_meta_tags %>
   <%= render 'elements/mixpanel_script' %>
@@ -26,9 +27,8 @@
     <% end %>
   
   <% else %>
-    <% if @no_layout || @static %>
+    <% if @static %>
       <%= render 'layouts/classic_navbar' %>
-      <%= yield %>
     <% elsif @blog_layout %>
       <%= render 'layouts/blog_layout' %>    
     <% elsif @wiki_layout %>
@@ -39,29 +39,3 @@
   <%= render 'elements/large_modal' %>
 </body>
 </html>
-<!-- 
-<% if @inside %>
-  <% if @admin_layout %>  
-    <body class="hold-transition skin-blue sidebar-mini">
-        <%= render 'layouts/admin_layout' %>
-    </body>
-  <% else %>
-    <body class="mobile-navbar <%= yield (:body_class) %>">
-      <%= render 'layouts/mobile_navbar' %>
-    </body>
-
-  <% end %>
-<% else %>
-  <body>
-    <% if @no_layout || @static %>
-      <%= render 'layouts/classic_navbar' %>
-      <%= yield %>
-    <% elsif @blog_layout %>
-      <%= render 'layouts/blog_layout' %>    
-    <% elsif @wiki_layout %>
-      <%= render 'wiki_pages/wiki_layout' %>
-    <% end %>
-    <%= render 'elements/large_modal' %>
-  </body>
-
-<% end %> -->

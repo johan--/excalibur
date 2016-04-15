@@ -1,6 +1,6 @@
-class ErrorsController < ApplicationController
+class ErrorsController < ApplicationController  
   skip_before_action :authenticate_user!
-  
+
   def not_found
     @static = true
   	render(:status => 404)

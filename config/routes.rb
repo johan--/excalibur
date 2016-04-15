@@ -36,7 +36,6 @@ Fustal::Application.routes.draw do
     member do
       get "discuss"
     end
-    # resources :build, only: [:show, :update], controller: 'tenders/build'
     resources :bids
   end
   resources :documents
@@ -45,37 +44,29 @@ Fustal::Application.routes.draw do
     resources :tenders, only: :create
   end
   resources :comments
-  resources :groups
-  resources :invoices do
-    resources :payments
-  end
+  # resources :groups
+  # resources :invoices do
+  #   resources :payments
+  # end
 
   # Static Pages
   root "pages#landing"
-  get "ganti", to: "pages#upgrade", as: :upgrade
   
   get "home", to: "insides#home", as: :user_root
   # get "bursa", to: "insides#marketplace", as: :marketplace
   get "profil", to: "insides#profile", as: :profile
   get "portofolio", to: "insides#portofolio", as: :portofolio
   get "pilih", to: "insides#choose", as: :choose
-
-  get "tos", to: "pages#tos", as: :service_terms
-  get "/contact", to: "pages#contact", as: "contact"
-  post "/emailconfirmation", to: "pages#email", as: "email_confirmation"
-  post "/send_request", to: "pages#send_request", as: "send_request"
-  post "/subscribe", to: "pages#subscribe", as: "subscribe"
-  get "/simulasi", to: "pages#simulation", as: "simulation"
-
-  get "about", to: "pages#about_us", as: :about_us
-  get "/kepemilikan", to: "pages#ownership", as: :ownership_job
-  get "/how-it-works", to: "pages#funding", as: :funding_job
-  get '/change_locale/:locale', to: 'pages#change_locale', as: :change_locale
-
+  post "/emailconfirmation", to: "insides#email", as: "email_confirmation"
+  post "/subscribe", to: "insides#subscribe", as: "subscribe"
+  get "/simulasi", to: "insides#simulation", as: "simulation"
+  get '/change_locale/:locale', to: 'insides#change_locale', as: :change_locale
 
   get "/404" => "errors#not_found"
   get "/422" => "errors#unprocessable"
   get "/500" => "errors#internal_server_error"
+
+  get "/*id" => 'pages#show', format: false
 
   namespace :admin do
     root "base#index"
