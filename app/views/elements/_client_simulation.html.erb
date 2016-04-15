@@ -7,21 +7,18 @@
     <div class="form-inputs">
       <%= f.input :tangible, as: :select, collection: [ "Rumah", "Apartemen" ], prompt: "pilih", label: "Jenis Properti", required: true %>
 
-      <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "100000000", 'slider-max'=> "950000000", 'slider-value'=> "0", 'slider-step'=> "10000000"} }, label: "Harga", required: true %>
+      <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "0", 'slider-max'=> "950000000", 'slider-value'=> "100000000", 'slider-step'=> "10000000"} }, label: "Harga", required: true %>
 
-      <%= f.input :maturity, input_html: { class: "slide-input", :data => {'slider-min'=> "0", 'slider-max'=> "10", 'slider-value'=> "0", 'slider-step'=> "1"} }, label: "Lama Kongsi", required: true %>
+      <%= f.input :maturity, input_html: { class: "slide-input", :data => {'slider-min'=> "1", 'slider-max'=> "10", 'slider-value'=> "5", 'slider-step'=> "1"} }, label: "Lama Kongsi", required: true %>
 
-      <%= f.input :contribution, input_html: { class: "slide-input", :data => {'slider-min'=> "20", 'slider-max'=> "80", 'slider-value'=> "10", 'slider-step'=> "5"} }, label: "Modal Kamu", required: true %>
-
-      <%= f.input :aqad, :as => 'hidden', :input_html => { value: @aqad } %>
-      <%= f.input :type, :as => 'hidden', :input_html => { value: @for } %>
+      <%= f.input :contribution, input_html: { class: "slide-input", :data => {'slider-min'=> "20", 'slider-max'=> "80", 'slider-value'=> "20", 'slider-step'=> "5"} }, label: "Modal Kamu", required: true %>
     </div>
 
     <div class="form-group">
       <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
       <!-- <span class="help-text">Please choose your amount</span> -->
       <div class="col-sm-6">
-        <p id="amount-inputSliderVal" class="price lead">0</p>
+        <p id="amount-inputSliderVal" class="price lead">100</p>
         <span class="price"> jt</span>
       </div>
     </div>
@@ -29,7 +26,7 @@
       <label for="total" class="col-sm-6 control-label"><strong>Durasi: </strong></label>
       <!-- <span class="help-text">(Amount * Days)</span> -->
       <div class="col-sm-6">
-        <p id="duration-inputSliderVal" class="price lead">0</p>
+        <p id="duration-inputSliderVal" class="price lead">5</p>
         <span class="price"> Tahun</span>
       </div>
     </div>
@@ -42,7 +39,8 @@
       </div>
     </div>    
     <div class="form-actions">
-      <%= f.submit "Hitung", class: "btn btn-lg btn-primary btn-round-lg" %>
+      <%= button_tag "Hitung", class: "btn btn-lg btn-primary btn-round-lg", data: {disable_with: "<i class='fa fa-spinner fa-pulse'>
+      </i> Sedang dihitung..."}  %>
     </div>
   <% end %>
 

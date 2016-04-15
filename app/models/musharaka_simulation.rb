@@ -48,7 +48,7 @@ class MusharakaSimulation
 
   def rental_value(n, contribution)
     lagged_price = geometric_price(n - 1)
-    capitalization_rate * lagged_price * other_party_ownership(contribution)
+    capitalization_rate(tangible) * lagged_price * other_party_ownership(contribution)
   end
 
   def geometric_price(n)
