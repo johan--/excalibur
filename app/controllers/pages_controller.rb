@@ -23,8 +23,4 @@ private
     else
     end
   end
-
-  def set_as_static
-    @static = true
-  end
 end

@@ -3,7 +3,7 @@ class SessionsController < Devise::SessionsController
   skip_before_filter :authenticate_user!
   
   def new
-    @no_layout = true
+    set_as_static
     super  	
   end
 

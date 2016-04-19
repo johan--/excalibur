@@ -3,6 +3,10 @@ module LayoutSelector
     @inside = true
     @body_class = "mobile-navbar"
   end
+  
+  def set_as_static
+    @static = true
+  end
 
   def disable_background
     @disable_background = true

@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :inside_app, only: [:edit]
 
   def new
-    @no_layout = true
+    set_as_static
     super
   end
 

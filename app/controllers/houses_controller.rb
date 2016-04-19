@@ -2,12 +2,14 @@ class HousesController < ApplicationController
   before_filter :inside_app
   before_action :set_house, only: [:show, :edit,
                     :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: [ :show ]
+  
   def index
     @houses = House.all.page params[:page]
   end
 
-  def show    
+  def show 
+    set_as_static
     @photos = @house.photos
   end
 
