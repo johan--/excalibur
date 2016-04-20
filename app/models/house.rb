@@ -10,6 +10,7 @@ class House < ActiveRecord::Base
   belongs_to :publisher, polymorphic: true
   has_many :stocks
   has_one :occupancy
+  has_many :comments, as: :commentable
   # has_many :tenders, through: :stocks
   has_attachments :photos, maximum: 6
 
@@ -84,6 +85,10 @@ class House < ActiveRecord::Base
   def house_owner
     publisher.name if self.occupancy.holder.nil? 
     # self.occupancy.holder.name unless self.occupancy.holder.nil?
+  end
+
+  def self.access_granted(user)
+    if user == self.publisher then true else false end
   end
 
   def states_of_house

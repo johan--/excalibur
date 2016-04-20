@@ -1,9 +1,9 @@
 class HousesController < ApplicationController
-  before_filter :inside_app
+  before_filter :inside_app, except: :show
   before_action :set_house, only: [:show, :edit,
                     :update, :destroy]
   skip_before_action :authenticate_user!, only: [ :show ]
-  
+
   def index
     @houses = House.all.page params[:page]
   end

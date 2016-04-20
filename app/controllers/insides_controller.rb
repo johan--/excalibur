@@ -1,6 +1,7 @@
 class InsidesController < ApplicationController
   respond_to :html, :js
-  before_filter :inside_app
+  before_filter :inside_app, except: [:email, 
+    :subscribe, :simulation, :change_locale]
   skip_before_action :authenticate_user!, only: [ :email, 
     :subscribe, :simulation, :change_locale ]
 

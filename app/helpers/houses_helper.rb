@@ -1,5 +1,13 @@
 module HousesHelper
 
+  def mortgage_left(house)
+    if house.outstanding_mortgage.nil? || house.outstanding_mortgage.blank?
+      return '0'
+    else
+      return house.outstanding_mortgage
+    end
+  end
+
  def edit_link(house)
    if house.input_unfinished?
       if house.form_step.nil?

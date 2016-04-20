@@ -18,6 +18,7 @@
 @import "styles/login";
 @import "styles/AdminLTE";
 @import "styles/gentella-bits";
+@import "styles/houses";
 @import "styles/skins/skin-blue";
 
 /* Progress Bar */
@@ -101,7 +102,16 @@ $nprogress-zindex: 10100;
   font-size: 30px;
   margin-top: 10px;
 }
-
+.center-xs {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+.extra-bottom-margin {
+    margin-bottom: 1em !important;
+}
 .blankslate {
   position: relative;
   margin-bottom: 10px;
