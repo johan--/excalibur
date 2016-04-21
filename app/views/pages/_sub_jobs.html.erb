@@ -69,7 +69,7 @@
           </div> <!-- / panel-group -->
            
           <div class="centered">
-            <%= link_to '#', remote: true, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
+            <%= link_to '#', data: {toggle: "modal", target: "#buying_details"}, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
               <i class="fa fa-calculator fa-3x pull-left"></i>
               <span>Jalankan Simulasi</span><br>
               <b>Untuk Hijrah</b>
@@ -80,3 +80,16 @@
 </div>
 <div class="spacing"></div>
 <%= render 'elements/buying_details' %>
+
+<script type="text/javascript">
+  document.getElementById("BT2").addEventListener("click", function(){
+      $("body").addClass("disable-nprogress");
+      // $("#buying_details").show();
+      // $("#BT1").show();
+  });
+  document.getElementById("BT3").addEventListener("click", function(){
+      $("#simulation-result").hide();
+      $("#BT3").hide();
+      $("#simulation").show();
+  });  
+</script>

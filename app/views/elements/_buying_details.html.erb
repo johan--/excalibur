@@ -8,7 +8,7 @@
         <h4 class="modal-title" id="myModalLabel">Skema Hijrah</h4>
       </div>
 <div class="modal-body">
-  <div id="simulation" class="row" style="display: none;">
+  <div id="simulation" class="row" style="">
     <h4 class="centered">Simulasi</h4>
     <%= render partial: 'elements/client_simulation',
           locals: { heading: 'Simulasi'}  %> 
@@ -25,20 +25,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  document.getElementById("BT2").addEventListener("click", function(){
-      $("body").addClass("disable-nprogress");
-      $("#explanation").hide();
-      $("#simulation").show();
-      $("#BT1").show();
-  });
-  document.getElementById("BT3").addEventListener("click", function(){
-      $("#simulation-result").hide();
-      $("#BT3").hide();
-      $("#BT1").show();
-      $("#simulation").show();
-  });  
-</script>
+
 <!--         <div class="col-xs-12 col-sm-5 column-one tour-items centered">
             <div class="proposition">
                 <h2>Pembelian</h2>
