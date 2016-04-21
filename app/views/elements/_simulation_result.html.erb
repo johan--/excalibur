@@ -1,30 +1,44 @@
-<h3 class="media-heading centered"><%= "Simulasi Hijrah" %></h3><hr>
-<form action="#" class="long-inline lead-big" role="form">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="form-group">
-      <label for="name">Kamu akan mendapatkan<span>Jumlah Saham</span></label>
-      <%= text_field_tag :price, '', placeholder: (@simulation.share_purchased), disabled: true %> lembar saham yang ada dan memiliki <%= @simulation.contribution_percent %>% atas properti.
-    </div><br>
+<!-- top tiles -->
+<h3 class="media-heading centered"><%= "Hasil Simulasi" %></h3><hr>
+<div class="tile_count ">
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 tile_stats_count">
+    <div class="left"></div>
+    <div class="right">
+      <span class="count_top"> Penambahan Porsi Kepemilikan</span>
+      <div class="count"><p><%= @simulation.annual_share_purchase %> saham</p></div>
+      <span class="count_bottom">
+        +<%= ownership_increase_rate(@simulation) %> kepemilikan per tahun
+      </span>
+    </div>
   </div>
-  <div class="col-md-8 col-md-offset-2">
-    <div class="form-group">
-      <label for="company"> Diperkirakan biaya sewa tahunan atas properti adalah sebesar <span>Sewa Tahunan</span></label>
-      <%= text_field_tag :maturity, '', placeholder: idr_money(@simulation.annual_rental), disabled: true  %>, yang kemudian akan didiskon oleh porsi kepemilikanmu.
-    </div><br>
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 tile_stats_count">
+    <div class="left"></div>
+    <div class="right">
+      <span class="count_top"> Biaya Pemakaian Tahunan</span>
+      <div class="count"><p><%= idr_money(@simulation.mean_rental_spending_annually) %></p></div>
+      <span class="count_bottom primary"><%= comparison_to_normal_rent @simulation %> lebih murah dari biaya sewa normal</span>
+    </div>
   </div>
-  <div class="col-md-8 col-md-offset-2">
-    <div class="form-group">
-      <label for="company"> Untuk memperoleh 100% porsi kepemilikan, kamu diperkirakan membayar <span>Rata-rata nilai pembelian saham</span></label>
-      <%= text_field_tag :contribution, '', placeholder: idr_money(@results[:avg_purchase]), disabled: true %> per bulannya.
-    </div><br>
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 tile_stats_count">
+    <div class="left"></div>
+    <div class="right">
+      <span class="count_top"> Akusisi Tahunan</span>
+      <div class="count"><p><%= idr_money @simulation.mean_acquisition_annually %></p></div>
+      <span class="count_bottom primary">atau <%= idr_money @simulation.mean_acquisition_monthly %> per bulannya (tidak wajib)</span>
+    </div>
   </div>
-  <div class="col-md-8 col-md-offset-2">
-    <div class="form-group">
-      <label for="company"> Jadi rata-rata selama <%= @simulation.maturity %> tahun setiap bulannya kamu mengeluarkan <span>Total Pengeluaran</span></label>
-      <%= text_field_tag :contribution_percent, '', placeholder: idr_money(@results[:avg_total]), disabled: true %> untuk memiliki rumah sepenuhnya.
-    </div><br>
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 tile_stats_count">
+    <div class="left"></div>
+    <div class="right">
+      <span class="count_top"> Total Pengeluaran</span>
+      <div class="count strong"><p><%= idr_money @results[:total] %></p>
+      </div>
+      <span class="count_bottom">+<%= idr_money @simulation.initial_outlay %> sebagai modal awal</span>      
+    </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
     <small class="grey centered">Hasil simulasi ini bukan hasil yang pasti karena Kapiten menentukan tingkat ROI berbeda-beda untuk tiap pengajuan.</small>
   </div>
-</form>
+
+</div>
+<!-- /top tiles -->

@@ -20,17 +20,22 @@ class MusharakaSimulation
   	@income = income.to_i
   	@price = price.to_i 
   	@maturity = maturity.to_i
-  	@contribution = contribution_percent.to_i * 10
+    @ownership =  contribution_percent.to_i / Float(100)
+  	@shares = contribution_percent.to_i * 10
     @par = @price / 1000
     # @avg_acquisition = avg_acquisition.to_i
   end
 
-  def other_party_ownership(contribution)
+  def initial_outlay
+    @par * @shares
+  end
+
+  def other_party_shares(contribution)
   	1000 - contribution
   end
 
   def share_purchased
-    "#{@contribution} dari 1000"
+    "#{@shares} dari 1000"
   end
 
   def profit
@@ -41,62 +46,64 @@ class MusharakaSimulation
     capitalization_rate(tangible) * @price
   end
 
+  def annual_share_purchase
+    other_party_shares(@shares) / @maturity
+  end
 
-  def avg_acquisition_rate
-    other_party_ownership(@contribution) / @maturity
+  def annual_ownership_increase
+    left = 1 - @ownership
+    left / @maturity
   end
 
   def acquisition(cost)
-    avg_acquisition_rate * cost
-  end
-
-  # def rental_value(n, contribution)
-  #   lagged_price = geometric_price(n - 1)
-  #   capitalization_rate(tangible) * lagged_price * other_party_ownership(contribution)
-  # end
-
-  def static_rental_value
-    annual_rental * @maturity
-  end
-
-  def geometric_price(n)
-    # @par * avg_annual_price_increase**(n)
-    @par * (1 - avg_annual_price_increase**(n+1)) / (1-avg_annual_price_increase)
+    annual_share_purchase * cost
   end
 
   def calculation
-    current_ownership = @contribution
+    current_ownership = @ownership
     share_spending = 0
     rent_spending = 0
     results = {}
 
-    @maturity.times do |k|
-    # until current_ownership == 100  do
-      # $i +=1;
+    @maturity.times do |k| # until current_ownership == 100 
       current_price = geometric_price(k) #get the new price after each year
 
-      # rent_spending += rental_value(k, current_ownership).round(0)
-      rent_spending += static_rental_value.round(0)
+      rent_spending += rental_payment(current_ownership).round(0)
       share_spending += acquisition(current_price).round(0)
-      current_ownership += avg_acquisition_rate
+      current_ownership += annual_ownership_increase
       tot = rent_spending + share_spending
 
       results = { 
         obligation: rent_spending, purchase: share_spending, 
-        total: tot, 
-        avg_obligation: monthly_average_of_total(rent_spending),
-        avg_purchase: monthly_average_of_total(share_spending),
-        avg_total: monthly_average_of_total(tot) }
+        total: tot }
     end
 
     return results
+  end
+
+  def mean_rental_spending_annually
+    self.calculation[:obligation] / @maturity
+  end
+
+  def mean_acquisition_annually
+    self.calculation[:purchase] / @maturity
+  end
+
+  def mean_acquisition_monthly
+    mean_acquisition_annually / 12
   end
 
   def monthly_average_of_total(number)
     number / (@maturity * 12)
   end
 
+  def geometric_price(n)
+    power = n - 1
+    @par * avg_annual_price_increase**power
+  end
+
+  def rental_payment(ownership)
+    annual_rental * (1 - ownership) 
+  end
+
 end
-
-
-

@@ -6,7 +6,8 @@ class House < ActiveRecord::Base
   friendly_id :slug_candidates, use: :slugged
   monetize :price_sens
   acts_as_paranoid
-
+  is_impressionable
+  
   belongs_to :publisher, polymorphic: true
   has_many :stocks
   has_one :occupancy

@@ -35,7 +35,6 @@ gem 'attachinary', '1.3.1'#, github: 'galliani/attachinary'
 # gem 'cloudinary', '~> 1.0.24'
 gem 'cloudinary', '~> 1.1.0'
 
-
 # Blog
 gem 'acts_as_commentable_with_threading'
 # gem 'social-share-button', '~> 0.1.6'
@@ -78,7 +77,7 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'geocoder'
 gem 'ionicons-rails'
 gem 'active_link_to'
-
+gem 'impressionist'
 # gem 'gmaps4rails'
 # gem "rails-settings-cached", "~> 0.4.0"
 

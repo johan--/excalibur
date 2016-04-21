@@ -7,37 +7,24 @@
     <div class="form-inputs">
       <%= f.input :tangible, as: :select, collection: [ "Rumah", "Apartemen" ], prompt: "pilih", label: "Jenis Properti", required: true %>
 
-      <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "0", 'slider-max'=> "950000000", 'slider-value'=> "100000000", 'slider-step'=> "10000000"} }, label: "Harga", required: true %>
+      <%= f.input :maturity, as: :integer, input_html: { value: '5', min: '3', max: '10',step: '1' }, label: "Lama Syirkah", required: true %>
 
-      <%= f.input :maturity, input_html: { class: "slide-input", :data => {'slider-min'=> "1", 'slider-max'=> "10", 'slider-value'=> "5", 'slider-step'=> "1"} }, label: "Lama Kongsi", required: true %>
+      <%= f.input :contribution, as: :integer, input_html: { value: '20', min: '20', max: '80',step: '5' }, label: "Modal Kamu", required: true %>
 
-      <%= f.input :contribution, input_html: { class: "slide-input", :data => {'slider-min'=> "20", 'slider-max'=> "80", 'slider-value'=> "20", 'slider-step'=> "5"} }, label: "Modal Kamu", required: true %>
+      <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "0", 'slider-max'=> "950000000", 'slider-value'=> "100000000", 'slider-step'=> "10000000"} }, label: "Harga", required: true %>      
     </div>
 
     <div class="form-group">
-      <label for="amount" class="col-sm-6 control-label">Nilai (Rp): </label>
+      <div class="col-sm-2 col-xs-1"></div>
+      <label for="amount" class="col-sm-4 col-xs-5 control-label">Harga (Rp): </label>
       <!-- <span class="help-text">Please choose your amount</span> -->
-      <div class="col-sm-6">
+      <div class="col-sm-4 col-xs-5">
         <p id="amount-inputSliderVal" class="price lead">100</p>
         <span class="price"> jt</span>
       </div>
+      <div class="col-sm-2 col-xs-1"></div>
     </div>
-    <div class="form-group">
-      <label for="total" class="col-sm-6 control-label"><strong>Durasi: </strong></label>
-      <!-- <span class="help-text">(Amount * Days)</span> -->
-      <div class="col-sm-6">
-        <p id="duration-inputSliderVal" class="price lead">5</p>
-        <span class="price"> Tahun</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="total" class="col-sm-6 control-label"><strong>Modal: </strong></label>
-      <!-- <span class="help-text">(Amount * Days)</span> -->
-      <div class="col-sm-6">
-        <p id="seed-inputSliderVal" class="price lead">20</p>
-        <span class="price"> %</span>
-      </div>
-    </div>    
+
     <div class="form-actions">
       <%= button_tag "Hitung", class: "btn btn-lg btn-primary btn-round-lg", data: {disable_with: "<i class='fa fa-spinner fa-pulse'>
       </i> Sedang dihitung..."}  %>

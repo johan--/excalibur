@@ -9,6 +9,8 @@ class Tender < ActiveRecord::Base
   monetize :price_sens
   acts_as_commentable
   acts_as_paranoid
+  is_impressionable
+  
   cattr_accessor :form_steps do
     %w(fill_proposal fill_profile upload_docs)
   end

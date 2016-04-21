@@ -19,9 +19,9 @@ module ProfitMargin
 
 	  def capitalization_rate(asset_type)
 		if asset_type == 'Rumah'
-			return 0.08
+			return Float(0.08)
 		else
-			return 0.13
+			return Float(0.13)
 		end
 	  	# @maturity = maturity.to_i
 	  	# base_maturity = 5
@@ -35,7 +35,11 @@ module ProfitMargin
 
 	  def avg_annual_price_increase
 	  	# @base_margin = Setting['aqad.base_margin']
-	  	0.07
+	  	Float(0.07)
+	  end
+
+	  def kapiten_fee
+	  	Float(0.15)
 	  end
 
   end
