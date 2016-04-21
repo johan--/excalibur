@@ -1,4 +1,5 @@
 class HousesController < ApplicationController
+  impressionist :actions=> [:show]
   before_filter :inside_app, except: :show
   before_action :set_house, only: [:show, :edit,
                     :update, :destroy]
@@ -11,6 +12,10 @@ class HousesController < ApplicationController
   def show 
     set_as_static
     @photos = @house.photos
+    @view_count = @house.impressionist_count(:filter=>:session_hash)
+    unless current_user.present? && @house.access_granted?(current_user)
+      impressionist(@house) 
+    end
   end
 
   # def new

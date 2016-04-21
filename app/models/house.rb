@@ -62,6 +62,7 @@ class House < ActiveRecord::Base
     "#{self.address}, #{self.city}, #{self.province}, #{self.country}"
   end
 
+
   def address_changed?
     return true if self.address != self.address_was
     return false if self.address == self.address_was
@@ -88,8 +89,8 @@ class House < ActiveRecord::Base
     # self.occupancy.holder.name unless self.occupancy.holder.nil?
   end
 
-  def self.access_granted(user)
-    if user == self.publisher then true else false end
+  def self.access_granted?(user)
+    if user == self.publisher || user.admin? then true else false end
   end
 
   def states_of_house
