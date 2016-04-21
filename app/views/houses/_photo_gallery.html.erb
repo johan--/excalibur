@@ -12,7 +12,7 @@
           <%= render partial: 'house_photo', locals: {photo: photo} %>
       <% end %>
       
-        <% if !current_user.present?  %>
+        <% if current_user.present? &&  @house.access_granted?(current_user) %>
           <div class="col-sm-4 col-xs-6">
             <div class="blankslate long">
               <%= link_to '#', data: { toggle: :modal, target: '#upload_photo'}, id: "BT1" do %>
@@ -28,7 +28,6 @@
 
 <script type="text/javascript">
   document.getElementById("BT1").addEventListener("click", function(){
-      /*$("#upload_photo").show();*/
-      $("body").addClass("disable-nprogress");
+    $("body").addClass("disable-nprogress");
   });
 </script>

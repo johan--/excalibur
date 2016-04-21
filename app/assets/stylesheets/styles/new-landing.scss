@@ -616,23 +616,8 @@ section#reminder {
         }
       }
     }
-    &.column-one {
-      background-color: white;padding-right: 20px;
-    }
-    &.column-two {
-      background-color: white;padding-left: 20px;
-    }    
-    .svg-bg {
-      width: 10em;
-      height: 10em;
-      path, polygon, rect {
-        fill: $brand-grey;
-      }  
-      circle {
-        stroke: white;
-        stroke-width: 1;
-      }    
-    }    
+    &.column-one {background-color: white;padding-right: 20px;}
+    &.column-two {background-color: white;padding-left: 20px;} 
   }
 }
 .row-divided > [class^="col-"],
@@ -640,7 +625,25 @@ section#reminder {
   padding-left: 30px;  /* gutter width (give a little extra room) 2x default */
   padding-right: 30px; /* gutter width (give a little extra room) 2x default */
 }
-
+.home-tour{
+  margin-bottom: 50px;
+  padding-left: 50px; padding-right: 50px;
+  .proposition { 
+    h2 { font-weight: 400; color: $brand-dark; }
+    p { font-weight: 700; color: $brand-grey; }
+  }
+  .svg-bg {
+    width: 10em;
+    height: 10em;
+    path, polygon, rect {
+      fill: $brand-grey;
+    }  
+    circle {
+      stroke: white;
+      stroke-width: 1;
+    }    
+  }    
+}
 
 .slideshow-home {
   padding: 100px 0 0;

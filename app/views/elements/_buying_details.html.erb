@@ -8,79 +8,6 @@
         <h4 class="modal-title" id="myModalLabel">Skema Hijrah</h4>
       </div>
 <div class="modal-body">
-  <div id="explanation" class="row">
-    <h4 class="centered">Penjelasan</h4>
-    <div class="col-md-4">
-      <ul class="article-list-basic">
-        <li>
-          <a href="#">
-            <img src="http://res.cloudinary.com/instilla/image/upload/s--HjbjwXjc--/c_scale,w_400/v1454471660/sea-sunset-bird-flying_qv7mju.jpg" alt="Industrial Mech" />
-          </a>
-          <div>
-            <h2><a href="#">Hijrah</a></h2>
-            <p>Skema kepemilikan rumah tanpa hutang untuk mereka yang belum memiliki rumah, namun sudah memiliki modal.</p>
-          </div>
-        </li>            
-      </ul>
-    </div>
-    <div class="col-md-8">
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          
-          <!-- panel 1 -->
-          <div class="panel panel-default">
-            <!--wrap panel heading in span to trigger image change as well as collapse -->
-            <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
-              <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <h4 class="panel-title">Penjelasan</h4>
-                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-              </div>
-            </span>
-            
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                Dengan skema Hijrah, kamu akan memiliki rumah tanpa perlu terlibat dalam hutang. Dengan akad Musyarakah Mutanaqishah, kamu tergabung dalam kerja sama kepemilikan bersama dengan para pendana dan kamu tidak mempunyai kewajiban untuk membeli saham kepemilikan mereka. Kewajibanmu hanya sebatas membayar sewa yang didiskon oleh porsi kepemilikanmu, artinya semakin besar porsimu maka semakin rendah sewa yang harus kamu bayarkan kepada para pendana.
-              </div>
-            </div>
-          </div> 
-          <!-- / panel 1 -->
-          
-          <!-- panel 2 -->
-          <div class="panel panel-default">
-              <!--wrap panel heading in span to trigger image change as well as collapse -->
-              <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
-                  <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <h4 class="panel-title collapsed">Persyaratan</h4>
-                      <span class="pull-right clickable" style="margin-top: -20px;font-size: 15px;"><i class="glyphicon glyphicon-chevron-down"></i></span>
-                  </div>
-              </span>
-
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  Berikut persyaratan yang harus kamu penuhi untuk menerbitkan pengajuan di Kapiten: 
-                </div>
-                <ul class="list-group">
-                  <li class="list-group-item">Belum pernah memiliki rumah</li>
-                  <li class="list-group-item">Memiliki modal sebesar minimal 20% dari harga rumah</li>
-                  <li class="list-group-item">Rumah yang diinginkan memenuhi kriteria minimum Kapiten</li>
-                  <li class="list-group-item">Mampu membayar uang komitmen (hamish jiddiyah) sebagai bukti keseriusan</li>
-                  <li class="list-group-item">Bersedia memberikan data diri serta menjalani proses seleksi secara jujur oleh Kapiten</li>
-                </ul>
-              </div>
-          </div>
-          <!-- / panel 2 -->
-          
-          <!--  panel 3 -->
-      </div> <!-- / panel-group -->
-       
-      <div class="centered">
-        <%= link_to '#', remote: true, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
-          <i class="fa fa-calculator fa-3x pull-left"></i>
-          <span>Jalankan Simulasi</span><br>
-          <b>Untuk Hijrah</b>
-        <% end %>
-      </div>
-    </div><!-- End of right column -->
-  </div>
   <div id="simulation" class="row" style="display: none;">
     <h4 class="centered">Simulasi</h4>
     <%= render partial: 'elements/client_simulation',
@@ -90,7 +17,6 @@
   </div>
 </div>
       <div class="modal-footer">
-        <button type="button" id="BT1" class="btn btn-info" style="display: none;">Kembali ke Penjelasan</button>
         <button type="button" id="BT3" class="btn btn-success" style="display: none;">Atur ulang simulasi</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
       </div>
@@ -100,10 +26,6 @@
 </div>
 
 <script type="text/javascript">
-  document.getElementById("BT1").addEventListener("click", function(){
-      $("#simulation").hide();
-      $("#explanation").show();
-  });
   document.getElementById("BT2").addEventListener("click", function(){
       $("body").addClass("disable-nprogress");
       $("#explanation").hide();
@@ -117,3 +39,25 @@
       $("#simulation").show();
   });  
 </script>
+<!--         <div class="col-xs-12 col-sm-5 column-one tour-items centered">
+            <div class="proposition">
+                <h2>Pembelian</h2>
+                <%= embedded_svg('iconmonstr-key-9.svg', class: 'svg-bg') %>
+                <p>Membeli rumah impian tanpa terlibat dalam hutang dan riba dengan prinsip dan metode yang syar'i</p>
+                <div class="spacing"></div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buying_details">Telusuri</button> 
+            </div>
+        </div>
+        vertical-divider-* class sets the position in a 12 grid layout 
+        <div class="vertical-divider hidden-xs"></div>-->
+<!--         <div class="col-xs-12 col-sm-6 column-two tour-items centered">
+            <div class="proposition">
+                <h2>Penjualan</h2>
+                <svg class="svg-bg" viewBox="0 0 20 20">
+                    <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
+                </svg>
+                <p>Kami bantu penjualan/penyewaan rumahmu dengan memasarkan rumahmu</p>
+                <div class="spacing"></div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trade_details">Telusuri</button>
+            </div>
+        </div> -->
