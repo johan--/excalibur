@@ -55,22 +55,6 @@ $nprogress-zindex: 10100;
   }
 }
 
-.home {
-  background-color: white; padding-top: 10px;
-  padding-left: 20px;padding-right: 20px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); 
-  #prompts {
-    margin-bottom: 20px;
-    display: block;
-  }
-  #financing {
-    min-height: 400px;
-  }
-  .sub-heading {
-    text-align: center; color: $brand-grey; padding-bottom: 7px;
-    box-shadow: 0 2px 0 0 $brand-grey; 
-  }
-}
 
 #medium-wrap{padding-left: 0px; padding-right: 0px;}
 
@@ -154,11 +138,33 @@ $nprogress-zindex: 10100;
 .etc-login-form p {
   margin-bottom: 5px;
 }
+h1, h2, h3 { font-weight: 300; }
 
 /* Main format */
 p { font-weight: $font-weight-base}
 hr { border-width: 1px; }
 a:hover, a.selected, a:focus { color: #eb3812;}
+
+section.padded {
+    padding: 6rem 0 5rem 0;
+    h2 { color: $brand-dark; }
+}
+.prose h1, h2, p {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+h1.highlight {
+  letter-spacing: -0.06em;
+}
+.highlight {
+    background-color: $brand-primary;
+    border-radius: 2px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0.2em 0 0 $brand-primary, -0.2em 0 0 $brand-primary;
+    padding: .15em .2em;
+    margin-bottom: 20px;
+}
 
 /*Helpers*/
 .red { color: $brand-red }
@@ -579,4 +585,40 @@ div.house-listing {
       font-weight: 600;
     }  
   }
+}
+
+.center-xs {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+ section.steps .image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background-position: center center;
+    position: relative;
+    top: -50px;
+}
+
+.start-xs {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: left;
+}
+section.steps .number {
+    line-height: 35px;
+}
+.text-right {
+    text-align: right;
+}
+.blue {
+    color: #2ba8de !important;
+    border-color: #2ba8de;
 }

@@ -1,100 +1,68 @@
-<section id="works" class="container-fluid home-tour">
-  <div class="grid">
-    <div class="spacing"></div>
-    <div class="tour-observe">
-      <h2 class="section-title">Kapiten bukanlah bank</h2>
-      <h3 class="section-headline">Kami adalah pengelola kegiatan investasi antara pembeli rumah dan pendananya.</h1>
-    	<div class="row">
-            <div class="col-sm-8">
-                <!-- begin macbook pro mockup -->
-                    <!-- content goes here -->                
-                    <div class="tab-featured-image">
-                        <div class="tab-content">
-                            <div class="tab-pane  in active" id="tab1">
-                                <%= image_tag("http://res.cloudinary.com/instilla/image/upload/v1456901804/asset/crowdfunding_diagram.png", class: "img img-responsives") %>
-                            </div>
-                            <div class="tab-pane " id="tab2">
-                                <%= image_tag("http://res.cloudinary.com/instilla/image/upload/v1456901805/asset/skema_pembiayaan.png", class: "img img-responsives") %>
-                            </div>
-                            <div class="tab-pane fade" id="tab3">
-                              <%= image_tag("http://res.cloudinary.com/instilla/image/upload/v1456913383/asset/mutually_beneficial_1.png", class: "img img-responsives") %>
-                            </div>
-                        </div>
-                    </div>
-            <!-- end macbook pro mockup -->
-            </div> <!-- / .col-md-8 -->        
-            <div class="col-sm-4">
-                <!-- begin panel group -->
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    
-                    <!-- panel 1 -->
-                    <div class="panel panel-default">
-                      <!--wrap panel heading in span to trigger image change as well as collapse -->
-                      <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
-                        <div class="panel-heading" role="tab" id="headingOne"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          <h4 class="panel-title">Crowdfunding = Gotong Royong</h4>
-                          <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-                        </div>
-                      </span>
-                      
-                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            <p>
-                            Crowdfunding adalah sistem pendanaan yang bersumber pada banyak pihak. Manfaat dari crowdfunding atau pendanaan gotong royong adalah mekanisme permintaan dan penawaran yang efisien. Di Kapiten, para pendana mendapatkan hak imbal hasil atas kontribusi mereka. Untuk mengetahui lebih lanjut mengenai investasi di Kapiten, silahkan <%= link_to "klik di sini", '/how_it_works' %>.
-                            </p>
-                        </div>
-                      </div>
-                    </div> 
-                    <!-- / panel 1 -->
-                    
-                    <!-- panel 2 -->
-                    <div class="panel panel-default">
-                        <!--wrap panel heading in span to trigger image change as well as collapse -->
-                        <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
-                            <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              <h4 class="panel-title collapsed">Skema Pendanaan</h4>
-                              <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-                            </div>
-                        </span>
-
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                                <p>
-    							Musyarakah Mutanaqishah
-    							(MMQ), adalah akad kepemilikan
-    							bersama atas suatu aset. Pihak yang
-    							memakai aset harus membayar
-    							biaya sewa kepada pemilik aset
-    							yang tidak menggunakannya. Porsi
-    							kepemilikan dapat diperjual-belikan                     
-                                </p>   
-                            </div>
-                        </div>
-                    </div>
-                    <!-- / panel 2 -->
-                    
-                    <!--  panel 3 -->
-                    <div class="panel panel-default">
-                        <!--wrap panel heading in span to trigger image change as well as collapse -->
-                        <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                            <div class="panel-heading" role="tab" id="headingThree"  class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <h4 class="panel-title">Saling Menguntungkan</h4>
-                                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-                            </div>
-                        </span>
-
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                              <div class="panel-body">
-                                <p>
-                               	Apabila pendanaan sudah mencapai tahap kontrak, maka Kapiten akan memberikan kontrak MMQ kepada pembeli rumah, paralel dengan penekanan kontrak wakalah (perwakilan) kepada setiap pendana. Setelah itu pembelian rumah dilakukan oleh Kapiten atas nama syirkah (kongsi antara pembeli rumah dan para pendana), namun kontrak PPJB & AJB atas nama pembeli rumah dengan sertifikat disimpan oleh Kapiten. Setelah itu dibuat kontrak "Porsi Kepemilikan" yang akan direvisi setiap tahunnya. Ketika kondisi sudah terpenuhi, kontrak MMQ akan berakhir.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                </div> <!-- / panel-group -->
-                 
-            </div> <!-- /col-md-4 -->
-    	</div> <!--/ .row -->
-    </div>    
-  </div>
+<section class="explaining-kapiten">
+    <div class="container">
+    	  <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <h2 class="fh5co-lead">Berjamaah dalam bermuamalah</h2>
+                <p class="fh5co-sub-lead">
+                    Sikapiten adalah komunitas yang bertujuan untuk membantu keluarga memiliki rumah melalui aktifitas investasi.
+                </p>
+            </div>
+    	  </div> <!--/ .row -->
+          <div class="spacing"></div>
+          <div class="row">
+              <div class="col-md-4">
+                  
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6 goleft">
+                  <h4>Musyarakah sebagai akadnya</h4>
+                  <p>ar far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right .</p>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-4">
+                  
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6 goleft">
+                  <h4>Crowdfunding</h4>
+                  <p>ar far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right .</p>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6 col-md-offset-3 button-group get-offer-button-group">
+                <div class="col-md-1"></div>
+                <div class="col-sm-6 col-md-5">
+                    <%= link_to "Telusuri", '/how_it_works', class: 'btn btn-lg btn-primary' %>      
+                </div>
+                <div class="col-sm-6 col-md-5">
+                    <a class="btn btn-lg btn-success" ui-sref="how_it_works" href="/how-it-works">Learn more →</a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>          
+              <div class="spacing"></div>
+          </div>
+      </div>
 </section>
+
+
+<style type="text/css">
+    .fh5co-lead {
+        font-size: 50px;
+        font-weight: 300;
+        color: #484c50;
+        margin-bottom: 10px;
+    }
+    .fh5co-sub-lead {
+        font-size: 18px;
+        line-height: 32px;
+        font-weight: 300;
+        /*color: #666666;*/
+        color: #85919d;
+    }    
+    section.explaining-kapiten {
+        margin-top: 80px;        
+    }
+    .get-offer-button-group {
+        margin-top: 45px;
+        display: inline-flex; text-align: center;
+    }
+</style>
