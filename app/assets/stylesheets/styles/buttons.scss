@@ -2,6 +2,11 @@
 
 .btn-round-lg{
 border-radius: 22.5px;
+padding: 15px 60px;
+}
+.btn.btn-lg{
+border-radius: 22.5px;
+padding: 15px 60px;line-height: 1.33;
 }
 .btn-round{
 border-radius: 17px;
@@ -123,9 +128,6 @@ padding-right: 10px;
   &:hover { background-color: white; color: black;}
 }
 
-.btn.btn-lg {
-  padding: 10px 25px;
-}
 .btn:hover {
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;

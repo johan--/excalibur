@@ -29,75 +29,78 @@
         <%= render 'layouts/messages' %>
       </div>
       <div class="inner cover centered">
-        <h1 class="cover-heading">Meningkatkan kesejahteraan bersama dengan <strong>investasi properti</strong></h1>
+        <h1 class="cover-heading">Investasi properti <strong> yang halal, mudah, dan bermanfaat</strong></h1>
         <div class="spacing"></div>
-        <p class="lead">Kapiten adalah tempat dimana kamu bisa membantu sebuah keluarga memiliki rumah dengan berinvestasi menggunakan prinsip dan kontrak berbasis syariah. 
+        <p class="lead">Sikapiten adalah komunitas yang bertujuan untuk membantu keluarga memiliki rumah melalui aktifitas investasi.</p>
         <div class="spacing"></div>
-        <!-- <p class="lead"><a class="btn btn-lg btn-info" href="#works">Telusuri</a></p> -->
       </div>
 
     </div>
   </div>
 </div>
-<%= render 'pages/customers' %>
-<section class="section home-tour works" id="screens works">
-  <div class="grid">
-    <div class="section-heading text-center">
-      <h2 class="section-title">Manfaat</h2>
-      <h1 class="section-headline">Beberapa alasan untuk memilih berinvestasi di platform Kapiten</h1>
+<section class="explaining-kapiten padded centered extra-bottom-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="prose">
+          <h2 class="fh5co-lead">Berjamaah dalam bermuamalah</h2>
+          <h5 class="fh5co-sub-lead">Keuntungan Investasi di Sikapiten</h5>
+        </div>
+      </div>
     </div>
-    <div class="row tour-items">
-      <div class="benefit-item col-md-4 col-sm-12">                    
-        <!-- FEATURE ICON -->
-        <span><%= icon('star', class: 'fa-4x') %></span>
-        
-        <!-- FEATURE TITLE -->
-        <h5>Halal</h5>
-        
-        <!-- FEATURE DESCRIPTION -->
-        <p>Berdasarkan prinsip dan metode yang sesuai syariah Islam dan kontrak yang jelas.</p>
-        
+    <div class="spacing extra-bottom-margin"></div>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <ul class="row center-xs around-xs">
+          <li class="col-sm-4 col-xs-12 illustrated-point">
+            <%= image_tag('//res.cloudinary.com/instilla/image/upload/v1461390836/svg/paper-pin.svg') %>
+            <div class="illustrated-point-description">
+              <h4>Sesuai Syariah.</h4>
+              <p>Menggunakan Musyarakah sebagai akad dan mengikuti standar yang ditetapkan oleh AAOIFI.</p>
+            </div>
+          </li>
+          <li class="col-sm-4 col-xs-12 illustrated-point">
+            <%= image_tag('//res.cloudinary.com/instilla/image/upload/v1461391107/svg/couch.svg') %>
+            <div class="illustrated-point-description">
+              <h4>Mudah</h4>
+              <p>We'll handle everything, dari kontrak, serah terima, dan lain-lain.</p>
+            </div>
+          </li>
+          <li class="col-sm-4 col-xs-12 illustrated-point">
+            <%= image_tag('http://res.cloudinary.com/instilla/image/upload/v1461390717/svg/places-taj-mahal.svg') %>
+            <div class="illustrated-point-description">
+              <h4>Bermanfaat</h4>
+              <p>Mendapat keuntungan sekaligus membantu sesama menjauhi riba</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="benefit-item col-md-4 col-sm-12">                    
-        <!-- FEATURE ICON -->
-        <span><%= icon('gift', class: 'fa-4x') %></span>
-        
-        <!-- FEATURE TITLE -->
-        <h5>Berdampak Sosial</h5>
-        
-        <!-- FEATURE DESCRIPTION -->
-        <p>Selain mendapatkan keuntungan, investasimu membantu sebuah keluarga mempunyai rumah untuk pertama kalinya.</p>
-        
-      </div>
-      <div class="benefit-item col-md-4 col-sm-12">                    
-        <!-- FEATURE ICON -->
-        <span><%= icon('hotel', class: 'fa-4x') %></span>
-        
-        <!-- FEATURE TITLE -->
-        <h5>Nyaman</h5>
-        
-        <!-- FEATURE DESCRIPTION -->
-        <p>We'll handle everything, dari kontrak, serah terima, dan lain-lain.</p>
-        
-      </div>      
     </div>
   </div>
 </section>
-
-
+<%= render 'pages/customers' %>
+<section class="explaining-kapiten intro padded centered extra-bottom-margin">
+  <div class="container">
+    <div class="prose">
+      <h2>Bahu-membahu menjauhi riba</h2>
+      <h1 class="highlight">Pendaftaran untuk pengajuan proposal sudah dibuka</h1>
+    </div>
+    <div class="spacing"></div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= link_to "Telusuri →", '/how_it_works', class: 'btn btn-lg btn-primary' %>
+        <%= link_to "Telusuri →", '/how_it_works', class: 'btn btn-lg btn-primary' %>
+      </div> 
+    </div>
+  </div>
+</section>
 <!-- render sub jobs here when completed -->
 
 <section id="footerwrap" style="padding-top: 40px;padding-bottom: 40px;">
   <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 text-center">
-            <h2 class="section-heading">Ingin tahu lebih lanjut?</h2>
-            <hr class="primary">
-            <p>Jangan ragu untuk menghubungi kami dengan mengisi form di bawah ini </p>
-        </div>
-    </div>
-    <%= render 'elements/form_contact' %>
-    <br>
     <%= render 'layouts/disclaimer' %>
   </div>
 </section>
+
+<style type="text/css">
+</style>
