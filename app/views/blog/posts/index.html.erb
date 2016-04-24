@@ -6,7 +6,7 @@ meta title: "Blog",
 
 <div id="posts-list">
 <% @posts.each do |post| %>
-  <%= render partial: 'elements/post', locals: { post: post, multiple: true } %>
+  <%= render partial: 'post', locals: { post: post, multiple: true } %>
   <div class="spacing"></div>
 <% end %>
 </div>

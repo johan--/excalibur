@@ -15,7 +15,7 @@
 <div class="spacing"></div>
 <section class="inspect-itemize detail-box active extra-bottom-margin">
     <div class="container prose">
-        <div class="row text-center what-to-expect">
+        <div class="row centered what-to-expect">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h2>Apa saja manfaat<br> dari Program Hijrah oleh Kapiten?</h2>
             </div>
@@ -52,19 +52,25 @@
                 <p>We check all the doors, floors, stairways, counters, cabinetry,and windows, and appliances if applicable.</p>
             </div>
         </div>
-
-    <div class="row text-center">
-        <div class="col-xs-12">
+        <div class="spacing extra-bottom-margin"></div>
+        <div class="row centered extra-bottom-margin">
+            <h2>Ilustrasi Skema Hijrah</h2>
+            <div class="col-sm-8 col-sm-offset-2">
+                <%= image_tag('//res.cloudinary.com/instilla/image/upload/s--y2dlKwAu--/c_scale,w_400/v1461426824/svg/combination_of_contracts.svg', class: 'img-responsive')  %>
+            </div>                    
+        </div>
+        <div class="spacing extra-bottom-margin"></div>
+        <div class="row centered">
+            <div class="col-xs-12">
+                <%= link_to "Pelajari Skema", '/how_it_works', class: 'btn btn-lg btn-inverse' %>
+                <%= link_to '#', data: {toggle: "modal", target: "#buying_details"}, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
+                    <i class="fa fa-calculator fa-3x pull-left"></i>
+                    <span>Jalankan Simulasi</span><br><b>Untuk Hijrah</b>
+                <% end %>
           
-            <%= link_to '#', data: {toggle: "modal", target: "#buying_details"}, class: "btn btn-primary btn-round-lg", id: "BT2" do %>
-              <i class="fa fa-calculator fa-3x pull-left"></i>
-              <span>Jalankan Simulasi</span><br>
-              <b>Untuk Hijrah</b>
-            <% end %>
-          
+            </div>
         </div>
     </div>
-</div>
 </section>
 <section class="closing detail-box active" style="margin-top: 60px;">
   <div class="container prose">
@@ -86,7 +92,9 @@
 </section>      
 
 
-<%= render 'elements/buying_details' %>
+<%= render 'pages/buying_details' %>
+
+
 <script type="text/javascript">
   document.getElementById("BT2").addEventListener("click", function(){
       $("body").addClass("disable-nprogress");

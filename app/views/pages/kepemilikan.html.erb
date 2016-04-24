@@ -44,7 +44,7 @@
 <div class="section container-fluid">
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="overview">
-      <%= render 'pages/sub_jobs' %>
+      <%= render 'pages/kepemilikan_overview' %>
     </div>
     <div role="tabpanel" class="tab-pane" id="white_paper">
       <%= render 'pages/client_process' %>
@@ -53,32 +53,7 @@
       <section class="closing detail-box active">
         <div class="container prose">
           <div class="row">
-            <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-                <div class="col-xs-12">
-                    <h5>How does closing work?</h5>
-                    <h6>1 - Escrow account opened</h6>
-                    <p>Once you sign the contract, we’ll open an escrow account with a national title company. Escrow generally refers to money held by a third-party on behalf of transacting parties. To start the closing process, Opendoor will fund an earnest deposit to show our commitment to the purchase, and your escrow agent will ask you about your mortgage provider and reach out to your HOA.</p>
-                    <h6>2 - Signing closing documents</h6>
-                    <p>A few days before your close date, your escrow agent will reach out to you to find a time for you to sign the final closing documents and choose how you’d like to receive funds. You may sign the documents at the title company's local office or schedule a mobile notary to meet you where it’s most convenient for you.</p><br><br>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-5">
-                <div class="col-xs-12">
-                    <h6>3 - The final walkthrough</h6>
-                    <p>A day before the close date, we’ll schedule a final walkthrough of your house to ensure the condition of your house looks as it did upon inspection, and that all of your belongings are moved out. Leaving belongings behind could delay the closing process.</p>
-                    <h6>Day of closing</h6>
-                    <p>On the day of closing, the transaction is recorded on the public record and your escrow agent will distribute funds to you. And don’t worry, you don’t have to remember all of this now. We’ll be right there with you all the way through!</p><br>
-                    <div class="divider"></div>
-                    <p></p>
-                    <h4>We work with national title companies to facilitate the transaction.</h4>
-                    <p></p>
-                </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-              <%= render 'elements/faq' %>          
-            </div>
+            <%= render 'pages/client_faq' %> 
           </div>          
         </div>
       </section>    
