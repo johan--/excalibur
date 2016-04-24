@@ -1,31 +1,111 @@
-<section class="footer">
-  <div class="container ">
-    <div class="row"><hr>
-      <div class="col-lg-12 text-center">
-        <div class="col-md-3"></div>
-        <div class="col-md-3 col-xs-6">
-          <ul class="nav nav-pills nav-stacked">
+<footer id="fh5co-footer">
+  <div class="container">
+    <div class="row row-bottom-padded-md">
+      <div class="col-md-3 col-sm-6 col-xs-12 animate-box fadeInUp animated">
+        <div class="fh5co-footer-widget">
+          <h3>Company</h3>
+          <ul class="fh5co-links">
+            <li><%= link_to "Investasi Properti", root_url(subdomain: '') %></li>
+            <li><%= link_to "Cara Kerja", '/how_it_works' %></li>
             <li><%= link_to "Pembelian Rumah", '/kepemilikan' %></li>
-            <li><%= link_to "Investasi Properti", '/how_it_works' %></li>
             <li><%= link_to "Tentang Kapiten", '/about_us' %></li>  
+            <li><a href="#">Team</a></li>
           </ul>
-        </div>      
-        <div class="col-md-3 col-xs-6">
-          <ul class="nav nav-pills nav-stacked">
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12 animate-box fadeInUp animated">
+        <div class="fh5co-footer-widget">
+          <h3>Support</h3>
+          <ul class="fh5co-links">
             <li><%= link_to "Blog", root_url(subdomain: 'blog') %></li>
             <li><%= link_to "Kapitenpedia", wiki_all_path %></li>
           </ul>
+          <ul class="fh5co-social">
+            <li><a href="#"><i class="fa fa-2x fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-2x fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-2x fa-google-plus"></i></a></li>
+          </ul>          
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-xs-12">
-          <br>
-          <small>PT Kapiten Teknologi Indonesia © 2016
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-12 animate-box fadeInUp animated">
+        <div class="fh5co-footer-widget">
+          <h3>Hubungi Kami</h3>
+          <%= render 'elements/form_contact' %>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  <div class="fh5co-copyright animate-box fadeInUp animated">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="centered">
+            <small>PT Kapiten Teknologi Indonesia © 2016</small>
+          </p>
         </div>
       </div>
     </div>
+      <div class="row footer-background">
+        <%= image_tag "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png", class: "hidden-xs" %>
+        <%= image_tag "//res.cloudinary.com/instilla/image/upload/s--GP4lvlG2--/c_lfill,g_center,h_300,w_800/v1459597691/footer_a0ypny.png", class: "visible-xs" %>
+      </div>    
   </div>
-  <div class="row footer-background">
-    <%= image_tag "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png", class: "hidden-xs" %>
-    <%= image_tag "//res.cloudinary.com/instilla/image/upload/s--GP4lvlG2--/c_lfill,g_center,h_300,w_800/v1459597691/footer_a0ypny.png", class: "visible-xs" %>
-  </div>
-</section>
+</footer>
+
+<style type="text/css">
+section#footerwrap { padding: 7em 0; }
+#fh5co-footer { background-color: #fff; padding-bottom: 0; }
+
+.row-bottom-padded-md {
+    padding-bottom: 4em;
+}
+#fh5co-footer .fh5co-footer-widget h3 {
+    font-size: 18px; margin-bottom: 30px;
+    font-weight: 400; color: #6a7885;
+}
+#fh5co-footer .fh5co-footer-widget .fh5co-links {
+    padding: 0;
+    margin: 0;
+}
+#fh5co-footer .fh5co-copyright {
+    border-top: 1px solid #f0f2f3;
+}
+#fh5co-footer .fh5co-footer-widget .fh5co-links li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-bottom: 15px;
+    line-height: 24px;
+}
+#fh5co-footer .fh5co-footer-widget .fh5co-links li a {
+    color: #6a7885;
+}
+.fh5co-social {
+    padding: 0;
+    margin: 0;
+}
+.fh5co-social li {
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+#fh5co-footer .fh5co-copyright .fh5co-left {
+    float: left;
+}
+#fh5co-footer .fh5co-copyright p small {
+    font-size: 15px;
+}
+#fh5co-footer .fh5co-copyright a {
+    font-weight: 700;
+}
+#fh5co-footer .fh5co-copyright .fh5co-right {
+    float: right;
+}
+#fh5co-footer .fh5co-copyright p {
+    margin-bottom: 0; color: #85919d;
+}
+</style>
