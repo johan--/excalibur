@@ -6,6 +6,7 @@ version 1, "2016-02-09" do
     event :signed_up, "2016-02-09", "user signed up"
     event :open_simulation, "2016-02-09", "user opened simulation"
     event :simulate, "2016-02-09", "user run the simulation"
+    event :download, "2016-02-09", "user download a file"
   end
   category :visit do
   	event :blog, "2016-02-09", "someone visited the blog"

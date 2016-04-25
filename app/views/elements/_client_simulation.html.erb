@@ -7,9 +7,9 @@
     <div class="form-inputs">
       <%= f.input :tangible, as: :select, collection: [ "Rumah", "Apartemen" ], prompt: "pilih", label: "Jenis Properti", required: true %>
 
-      <%= f.input :maturity, as: :integer, input_html: { value: '5', min: '3', max: '10',step: '1' }, label: "Lama Syirkah", required: true %>
+      <%= f.input :maturity, as: :integer, input_html: { value: '5', min: '3', max: '10',step: '1' }, label: "Lama Syirkah (Tahun)", required: true %>
 
-      <%= f.input :contribution, as: :integer, input_html: { value: '20', min: '20', max: '80',step: '5' }, label: "Modal Kamu", required: true %>
+      <%= f.input :contribution, as: :integer, input_html: { value: '20', min: '20', max: '80',step: '5' }, label: "Modal Kamu (%)", hint: 'Dibandingkan dengan harga rumah', required: true %>
 
       <%= f.input :price, input_html: { class: "slide-input", :data => {'slider-min'=> "0", 'slider-max'=> "950000000", 'slider-value'=> "100000000", 'slider-step'=> "10000000"} }, label: "Harga", required: true %>      
     </div>

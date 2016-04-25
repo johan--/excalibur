@@ -52,6 +52,22 @@
     </div>    
   </div>
 </div>
+<div class="section padded detail-box">
+  <div class="container">
+    <div class="row centered prose">
+      <h4>Masih ragu atau bingung?</h4>
+      <h2>Silahkan Lihat Penjelasan Mendalam</h2>
+      <div class="col-xs-12">
+          <%= meta_events_tracked_link_to 'https://drive.google.com/uc?export=download&id=0B56oZhUexrPbTm9TaHUzd1pJSjQ', class: "btn btn-success btn-round-lg",
+            :meta_event => { :category => :user, :event => :download,
+                            :properties => { :file => 'investment_white_paper' } } do %>
+              <i class="fa fa-file-pdf-o fa-3x pull-left"></i>
+              <span>Lihat Versi</span><br><b>PDF</b>
+          <% end %>    
+      </div>
+    </div>  
+  </div>
+</div>
 <%= render 'pages/reminder' %>
 
 

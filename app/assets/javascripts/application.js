@@ -25,6 +25,7 @@
 //= require nprogress-ajax
 //= require bootstrap 
 //= require bootstrap-slider
+//= require meta_events
 //= require masonry
 //= require_tree ./houses
 //= require_tree ./sitewide

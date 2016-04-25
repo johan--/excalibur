@@ -18,8 +18,18 @@ private
       end
     when 'kepemilikan'
       @category = "ownership"
+      unless current_user.present?
+        meta_events_tracker.event!(:visit, :landing, { 
+          distinct_id: request.uuid }
+        )
+      end      
     when 'how_it_works'
       @category = "funding"
+      unless current_user.present?
+        meta_events_tracker.event!(:visit, :landing, { 
+          distinct_id: request.uuid }
+        )
+      end
     else
     end
   end
