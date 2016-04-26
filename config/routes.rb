@@ -66,8 +66,6 @@ Fustal::Application.routes.draw do
   get "/422" => "errors#unprocessable"
   get "/500" => "errors#internal_server_error"
 
-  get "/*id" => 'pages#show', format: false
-
   namespace :admin do
     root "base#index"
     get 'subscribers', to: "base#subscribers", as: :subscribers
@@ -110,6 +108,8 @@ Fustal::Application.routes.draw do
   post '/vanity/add_participant'
   get '/vanity/image'
 
+  get "/*id" => 'pages#show', format: false
+  
   # namespace :api,  defaults: { format: :json }  do  
   #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
   #     resources :users, only: [:index, :show, :create, :update]

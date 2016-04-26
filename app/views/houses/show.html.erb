@@ -77,7 +77,7 @@
                 <li><div class="feature-label">Dijual?:</div> <strong class=""><%= @house.for_sale %></strong>
                 </li>
                 <li><div class="feature-label">Disewa?:</div> <strong class=""><%= @house.for_rent %></strong></li>
-                <li><div class="feature-label">Hipotik:</div> <strong class="">Rp <%= mortgage_left(@house) %></strong></li>
+                <li><div class="feature-label">Hipotik:</div> <strong class=""><%= mortgage_left(@house) %></strong></li>
               </ul>
             </div>
             <div class="col-sm-5">
@@ -90,28 +90,15 @@
             <div class="row">
               <div class="col-xs-5">
                 <h3>
-                <svg class="svg-icon" viewBox="0 0 20 20">
-                  <path fill="none" d="M19.471,8.934L18.883,8.34c-2.096-2.14-4.707-4.804-8.903-4.804c-4.171,0-6.959,2.83-8.996,4.897L0.488,8.934c-0.307,0.307-0.307,0.803,0,1.109l0.401,0.403c2.052,2.072,4.862,4.909,9.091,4.909c4.25,0,6.88-2.666,8.988-4.807l0.503-0.506C19.778,9.737,19.778,9.241,19.471,8.934z M9.98,13.787c-3.493,0-5.804-2.254-7.833-4.3C4.182,7.424,6.493,5.105,9.98,5.105c3.536,0,5.792,2.301,7.784,4.332l0.049,0.051C15.818,11.511,13.551,13.787,9.98,13.787z"></path>
-                  <circle fill="none" cx="9.98" cy="9.446" r="1.629"></circle>
-                </svg>
+                <%= embedded_svg('spark-10-eye.svg', class: 'svg-icon') %>
                 <span class="count"><strong class=""><%= @view_count %></strong></span> views </h3>
               </div>
               <div class="col-xs-7">
                 <h3>
-                <svg class="svg-icon" viewBox="0 0 20 20">
-                  <path d="M17.453,12.691V7.723 M17.453,12.691V7.723 M1.719,12.691V7.723 M18.281,12.691V7.723 M12.691,12.484H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,12.484,12.691,12.484M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555 M12.691,12.484H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,12.484,12.691,12.484 M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555 M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555M12.691,12.484H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,12.484,12.691,12.484 M7.309,13.312h5.383c0.229,0,0.414-0.187,0.414-0.414s-0.186-0.414-0.414-0.414H7.309c-0.228,0-0.414,0.187-0.414,0.414S7.081,13.312,7.309,13.312 M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555 M16.625,6.066h-1.449V3.168c0-0.228-0.186-0.414-0.414-0.414H5.238c-0.228,0-0.414,0.187-0.414,0.414v2.898H3.375c-0.913,0-1.656,0.743-1.656,1.656v4.969c0,0.913,0.743,1.656,1.656,1.656h1.449v2.484c0,0.228,0.187,0.414,0.414,0.414h9.523c0.229,0,0.414-0.187,0.414-0.414v-2.484h1.449c0.912,0,1.656-0.743,1.656-1.656V7.723C18.281,6.81,17.537,6.066,16.625,6.066 M5.652,3.582h8.695v2.484H5.652V3.582zM14.348,16.418H5.652v-4.969h8.695V16.418z M17.453,12.691c0,0.458-0.371,0.828-0.828,0.828h-1.449v-2.484c0-0.228-0.186-0.414-0.414-0.414H5.238c-0.228,0-0.414,0.186-0.414,0.414v2.484H3.375c-0.458,0-0.828-0.37-0.828-0.828V7.723c0-0.458,0.371-0.828,0.828-0.828h13.25c0.457,0,0.828,0.371,0.828,0.828V12.691z M7.309,13.312h5.383c0.229,0,0.414-0.187,0.414-0.414s-0.186-0.414-0.414-0.414H7.309c-0.228,0-0.414,0.187-0.414,0.414S7.081,13.312,7.309,13.312M7.309,15.383h5.383c0.229,0,0.414-0.187,0.414-0.414s-0.186-0.414-0.414-0.414H7.309c-0.228,0-0.414,0.187-0.414,0.414S7.081,15.383,7.309,15.383 M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555 M12.691,12.484H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,12.484,12.691,12.484 M12.691,12.484H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,12.484,12.691,12.484M12.691,14.555H7.309c-0.228,0-0.414,0.187-0.414,0.414s0.187,0.414,0.414,0.414h5.383c0.229,0,0.414-0.187,0.414-0.414S12.92,14.555,12.691,14.555"></path>
-                </svg>
+                <%= embedded_svg('spark-10-fax.svg', class: 'svg-icon') %>
                 <span class="count"><small>diperbarui pada <strong class=""><%= @house.updated_at.strftime("%d-%m-%Y") %></strong></small></span> 
                 </h3>
               </div>
-<!--               <div class="col-xs-12">
-                <h5>
-                <svg class="svg-icon" viewBox="0 0 20 20">
-                  <path d="M10.25,2.375c-4.212,0-7.625,3.413-7.625,7.625s3.413,7.625,7.625,7.625s7.625-3.413,7.625-7.625S14.462,2.375,10.25,2.375M10.651,16.811v-0.403c0-0.221-0.181-0.401-0.401-0.401s-0.401,0.181-0.401,0.401v0.403c-3.443-0.201-6.208-2.966-6.409-6.409h0.404c0.22,0,0.401-0.181,0.401-0.401S4.063,9.599,3.843,9.599H3.439C3.64,6.155,6.405,3.391,9.849,3.19v0.403c0,0.22,0.181,0.401,0.401,0.401s0.401-0.181,0.401-0.401V3.19c3.443,0.201,6.208,2.965,6.409,6.409h-0.404c-0.22,0-0.4,0.181-0.4,0.401s0.181,0.401,0.4,0.401h0.404C16.859,13.845,14.095,16.609,10.651,16.811 M12.662,12.412c-0.156,0.156-0.409,0.159-0.568,0l-2.127-2.129C9.986,10.302,9.849,10.192,9.849,10V5.184c0-0.221,0.181-0.401,0.401-0.401s0.401,0.181,0.401,0.401v4.651l2.011,2.008C12.818,12.001,12.818,12.256,12.662,12.412">
-                  </path>
-                </svg>
-                <span class="count">terakhir diperbarui pada <strong class=""><%= @house.updated_at.strftime("%d-%m-%Y") %></strong></span></h5>
-              </div>    -->
             </div>
           </div>
         </section>
@@ -150,220 +137,8 @@
 </section>   -->
   <%= render 'upload_photo' %>
 </div>
+<div class="spacing extra-bottom-margin"></div>
 
 <style type="text/css">
-  .listing-address, .listing-prompt {
-    padding: 2.3em 0;
-    background: #f3f5f7;
-    margin-left: -100vw;
-    margin-right: -100vw;
-    padding-left: 100vw;
-    padding-right: 100vw;
-    margin-bottom: 0px; 
-  } 
-  .listing-address h4, h3, h2, p {
-    color: #595959; font-weight: 400;
-  } 
-  .listing-address h4, h2 {
-    font-weight: 400;
-  } 
-  .listing-address p {
-    font-weight: 300;
-  }     
-  .listing-address .address .street {
-    float: left; margin-right: 12px;
-    line-height: 36px;
-  }
-  .listing-address .address h4{
-    line-height: 36px;
-  }
-  .listing-remark { margin-top: 3em; }
-  .listing-remark .border-box {
-    padding: 1em 20px;
-    margin: 2em 0 0;
-    border: 1px solid #dedede;
-  }
-  .listing-section {
-      padding: 0; max-width: 1600px;
-      margin: 1.5em 0;
-  }
-  .at_a_glance {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(192, 192, 191, 0.3);    
-  }
-  .at_a_glance .features-container {
-    color: #9ba1a6;
-    font-weight: 500;
-    font-size: 14px  
-  }
-  .at_a_glance .features-container ul {
-    margin: 0;
-    padding: 0;
-    line-height: 1.6em;
-    }
-  .features-container .feature-label {
-      display: inline-block;
-  } 
-  .table-grid {
-      margin-top: 20px;
-  }
-  .table-grid .row:first-child {
-      border-top: 1px solid rgba(192, 192, 191, 0.3);
-  }
-  .table-grid .row {
-      margin-left: 0;
-      margin-right: 0;
-      border-bottom: 1px solid rgba(192, 192, 191, 0.3);
-      line-height: 1.6em;
-  }
-.listing_activity .table-grid div[class^="col-"] {
-    padding: 20px 20px;
-} 
-.table-grid .row div[class^="col-"]:first-child {
-    border-left: 1px solid rgba(192, 192, 191, 0.3);
-}
-.table-grid .title .table-content {
-    font-weight: 500;
-    font-size: 14px;
-}
-.table-grid .title { color: #9ba1a6; }
-.table-grid .row div[class^="col-"]:last-child {
-    border-right: 1px solid rgba(192, 192, 191, 0.3);
-}
-.table-grid .row div[class^="col-"] {
-    padding: 10px 20px;
-}
-.listing_activity .activity {
-    float: left;
-    margin-right: 15px;
-}
-.listing_activity span.count {
-    margin-top: 8px;
-    display: inline-block;
-}
-.listing_activity span.count small { font-size: 50%; }
-
-.estate h5 {
-  letter-spacing: 0.1em; font-weight: 400;
-  text-transform: uppercase;  
-}
-
-.content-item {
-    padding:30px 0;
-  background-color:#FFFFFF;
-}
-
-.content-item.grey {
-  background-color:#F0F0F0;
-  padding:50px 0;
-  height:100%;
-}
-
-.content-item h2 {
-  font-weight:700;
-  font-size:35px;
-  line-height:45px;
-  text-transform:uppercase;
-  margin:20px 0;
-}
-
-.content-item h3 {
-  font-weight:400;
-  font-size:20px;
-  color:#555555;
-  margin:10px 0 15px;
-  padding:0;
-}
-
-.content-headline {
-  height:1px;
-  text-align:center;
-  margin:20px 0 70px;
-}
-
-.content-headline h2 {
-  background-color:#FFFFFF;
-  display:inline-block;
-  margin:-20px auto 0;
-  padding:0 20px;
-}
-
-.grey .content-headline h2 {
-  background-color:#F0F0F0;
-}
-
-.content-headline h3 {
-  font-size:14px;
-  color:#AAAAAA;
-  display:block;
-}
-
-
-#gallery .row {
-    margin:0;
-}
-
-#gallery .row > div {
-  padding:0;
-}
-
-#gallery .overlay-wrapper:hover .overlay {
-  background-color:rgba(0,0,0,0.7);
-}
-
-#gallery-item h2 {
-  font-size:28px;
-  margin-top:0;
-}
-
-#gallery-item img {
-  background-color:#FFFFFF;
-  border:3px solid #999999;
-  padding:7px;
-}
-
-.overlay-wrapper {
-    position:relative;
-}
-
-.overlay-wrapper .overlay {
-    bottom:0;
-    left:0;
-    opacity:0;
-    overflow:hidden;
-    position:absolute;
-    right:0;
-    top:0;
-  text-align:center;
-  padding-top:25%;
-  transition:all 0.4s ease;
-}
-
-.overlay-wrapper .overlay a {
-  font-size:20px;
-  width:50px;
-  height:50px;
-  color:#FFFFFF;
-  display:inline-block;
-  text-align:center;
-  padding-top:12px;
-  border-radius:50%;
-  margin-right:15px;
-  opacity:0.8;
-}
-
-.overlay-wrapper .overlay a:last-child {
-  margin-right:0;
-}
-
-.overlay-wrapper .overlay a:hover {
-  background-color:#333333;
-  color:#FFFFFF;
-}
-
-.overlay-wrapper:hover .overlay {
-  background-color:rgba(0,0,0,0.5);
-  opacity:1;
-}
 
 </style>

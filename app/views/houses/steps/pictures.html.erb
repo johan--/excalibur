@@ -1,24 +1,24 @@
-<% body_class "disable-nprogress" %>
 
 <%= render layout: 'form' do  %>
   <%= form_for @house, url: house_step_path(@house, @step), method: :patch do |f| %>
 
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+      <div id="direct_upload" class="centered">
         <% if @no_avatar %>
           <h5 class="centered">Unggah Display Picture</h5>
           <p>Unggah foto yang akan menjadi display picture propertimu. Format yang diterima adalah .jpg atau .png maksimal 1 MB. <br><small>Klik 'Choose Files' untuk memulai memilih, kemudian tekan tombol kirim.</small></p>
+          <%= render 'houses/photos_fields', f: f %>
+          <div class="spacing"></div>
+          <p class="centered">Kirim gambar terlebih dahulu untuk melanjutkan</p>
         <% else %>
           <h5 class="centered">Display Picture Saat Ini</h5>
           <%= render_lg_house_display(@house, 'img-responsive') %>
-        <% end %>    
-    </div>
-    <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-      <%= render 'houses/photos_fields', f: f %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row">
-    <p class="centered">Kirim gambar terlebih dahulu untuk melanjutkan</p>
     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form-actions">
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">

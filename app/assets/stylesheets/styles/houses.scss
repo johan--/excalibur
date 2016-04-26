@@ -270,3 +270,217 @@
     display: inline-block;
   }
 }*/
+
+  .listing-address, .listing-prompt {
+    padding: 2.3em 0;
+    background: #f3f5f7;
+    margin-left: -100vw;
+    margin-right: -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+    margin-bottom: 0px; 
+  } 
+  .listing-address h4, h3, h2, p {
+    color: #595959; font-weight: 400;
+  } 
+  .listing-address h4, h2 {
+    font-weight: 400;
+  } 
+  .listing-address p {
+    font-weight: 300;
+  }     
+  .listing-address .address .street {
+    float: left; margin-right: 12px;
+    line-height: 36px;
+  }
+  .listing-address .address h4{
+    line-height: 36px;
+  }
+  .listing-remark { margin-top: 3em; }
+  .listing-remark .border-box {
+    padding: 1em 20px;
+    margin: 2em 0 0;
+    border: 1px solid #dedede;
+  }
+  .listing-section {
+      padding: 0; max-width: 1600px;
+      margin: 1.5em 0;
+  }
+  .at_a_glance {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(192, 192, 191, 0.3);    
+  }
+  .at_a_glance .features-container {
+    color: #9ba1a6;
+    font-weight: 500;
+    font-size: 14px  
+  }
+  .at_a_glance .features-container ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6em;
+    }
+  .features-container .feature-label {
+      display: inline-block;
+  } 
+  .table-grid {
+      margin-top: 20px;
+  }
+  .table-grid .row:first-child {
+      border-top: 1px solid rgba(192, 192, 191, 0.3);
+  }
+  .table-grid .row {
+      margin-left: 0;
+      margin-right: 0;
+      border-bottom: 1px solid rgba(192, 192, 191, 0.3);
+      line-height: 1.6em;
+  }
+.listing_activity .table-grid div[class^="col-"] {
+    padding: 20px 20px;
+} 
+.table-grid .row div[class^="col-"]:first-child {
+    border-left: 1px solid rgba(192, 192, 191, 0.3);
+}
+.table-grid .title .table-content {
+    font-weight: 500;
+    font-size: 14px;
+}
+.table-grid .title { color: #9ba1a6; }
+.table-grid .row div[class^="col-"]:last-child {
+    border-right: 1px solid rgba(192, 192, 191, 0.3);
+}
+.table-grid .row div[class^="col-"] {
+    padding: 10px 20px;
+}
+.listing_activity .activity {
+    float: left;
+    margin-right: 15px;
+}
+.listing_activity span.count {
+    margin-top: 8px;
+    display: inline-block;
+}
+.listing_activity span.count small { font-size: 50%; }
+
+.estate h5 {
+  letter-spacing: 0.1em; font-weight: 400;
+  text-transform: uppercase;  
+}
+
+.content-item {
+    padding:30px 0;
+  background-color:#FFFFFF;
+}
+
+.content-item.grey {
+  background-color:#F0F0F0;
+  padding:50px 0;
+  height:100%;
+}
+
+.content-item h2 {
+  font-weight:700;
+  font-size:35px;
+  line-height:45px;
+  text-transform:uppercase;
+  margin:20px 0;
+}
+
+.content-item h3 {
+  font-weight:400;
+  font-size:20px;
+  color:#555555;
+  margin:10px 0 15px;
+  padding:0;
+}
+
+.content-headline {
+  height:1px;
+  text-align:center;
+  margin:20px 0 70px;
+}
+
+.content-headline h2 {
+  background-color:#FFFFFF;
+  display:inline-block;
+  margin:-20px auto 0;
+  padding:0 20px;
+}
+
+.grey .content-headline h2 {
+  background-color:#F0F0F0;
+}
+
+.content-headline h3 {
+  font-size:14px;
+  color:#AAAAAA;
+  display:block;
+}
+
+
+#gallery .row {
+    margin:0;
+}
+
+#gallery .row > div {
+  padding:0;
+}
+
+#gallery .overlay-wrapper:hover .overlay {
+  background-color:rgba(0,0,0,0.7);
+}
+
+#gallery-item h2 {
+  font-size:28px;
+  margin-top:0;
+}
+
+#gallery-item img {
+  background-color:#FFFFFF;
+  border:3px solid #999999;
+  padding:7px;
+}
+
+.overlay-wrapper {
+    position:relative;
+}
+
+.overlay-wrapper .overlay {
+    bottom:0;
+    left:0;
+    opacity:0;
+    overflow:hidden;
+    position:absolute;
+    right:0;
+    top:0;
+  text-align:center;
+  padding-top:25%;
+  transition:all 0.4s ease;
+}
+
+.overlay-wrapper .overlay a {
+  font-size:20px;
+  width:50px;
+  height:50px;
+  color:#FFFFFF;
+  display:inline-block;
+  text-align:center;
+  padding-top:12px;
+  border-radius:50%;
+  margin-right:15px;
+  opacity:0.8;
+}
+
+.overlay-wrapper .overlay a:last-child {
+  margin-right:0;
+}
+
+.overlay-wrapper .overlay a:hover {
+  background-color:#333333;
+  color:#FFFFFF;
+}
+
+.overlay-wrapper:hover .overlay {
+  background-color:rgba(0,0,0,0.5);
+  opacity:1;
+}

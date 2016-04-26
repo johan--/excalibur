@@ -55,7 +55,7 @@ class HousesController < ApplicationController
   def destroy
     @house.destroy
     flash[:notice] = 'Rumah berhasil dihapuskan'
-    redirect_to admin_houses_path
+    redirect_to user_root_path
   end
 
 private

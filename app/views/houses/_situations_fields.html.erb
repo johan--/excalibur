@@ -15,10 +15,7 @@
   </div>
   <div class="row">
 	<div class="col-xs-6">
-	  <%= f.input :mortgage_period_left, as: :integer, input_html: { min: '0', step: '1' }, label: "Sisa Tenor Hutang", placeholder: "sisa bulan", required: true %>
-	</div>
-	<div class="col-xs-6">
-	  <%= f.input :outstanding_mortgage, as: :integer, input_html: { min: 50000000, step: 10000000 }, label: "Sisa Hutang", placeholder: "nilai (Rp)" %>
+	  <%= f.input :outstanding_mortgage, as: :select, collection: yes_no_options, prompt: "Pilih", label: "Ada KPR?", required: true %>
 	</div>  	
   </div>
   <%= f.input :description, label: "Deskripsi", placeholder: 'deskripsikan keunggulan dan fitur utama dari properti', required: true %>

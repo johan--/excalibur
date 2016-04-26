@@ -1,4 +1,4 @@
-<div id="direct_upload" class="centered">
+
   <div class="form_line">
     <%= f.label "Status:" %><br>
     <%= f.submit "0 % Uploading", class: "btn btn-coral", disabled: true %>
@@ -20,15 +20,27 @@
       </button>              
     </div>
   </div>
-</div>
+
 
 <script>
-  $(document).ready(function() {
-    $('.attachinary-input').attachinary({
-      dataType: 'json',
-      done: function (e, data) {
-        data.context.text('Upload finished.');
-      }      
-    })
-  });
+  // $(document).ready(function() {
+  //   $('.attachinary-input').attachinary({
+  //     dataType: 'json',
+  //     done: function (e, data) {
+  //       data.context.text('Upload finished.');
+  //     }      
+  //   })
+  // });
+$('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {  
+  $('.preview').html(
+    $.cloudinary.image(data.result.public_id, 
+      { format: data.result.format, version: data.result.version, 
+        crop: 'fill', width: 150, height: 100 })
+  );    
+  $('.image_public_id').val(data.result.public_id);    
+  return true;
+});
+  document.getElementsByClassName("attachinary-input")[0].addEventListener("click", function(){
+    $("body").addClass("disable-nprogress");
+  });  
 </script>      

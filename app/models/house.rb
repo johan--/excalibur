@@ -89,7 +89,7 @@ class House < ActiveRecord::Base
     # self.occupancy.holder.name unless self.occupancy.holder.nil?
   end
 
-  def self.access_granted?(user)
+  def access_granted?(user)
     if user == self.publisher || user.admin? then true else false end
   end
 
