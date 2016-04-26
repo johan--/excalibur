@@ -10,18 +10,20 @@ class House < ActiveRecord::Base
   
   belongs_to :publisher, polymorphic: true
   has_many :stocks
+  has_many :tenders, as: :tenderable
   has_one :occupancy
   has_many :comments, as: :commentable
   # has_many :tenders, through: :stocks
   has_attachments :photos, maximum: 6
 
   cattr_accessor :form_steps do
-    %w(place characteristics pictures situations)
+    %w(place characteristics situations pictures proposal)
   end
 
   HOUSE = ["rumah tunggal", "rumah gandeng", "town house"]
   APARTMENT = ["apartemen, rumah susun, flat"]
 
+  attr_accessor :proposed
 
   serialize :details, HashSerializer
   store_accessor :details, 
@@ -51,7 +53,7 @@ class House < ActiveRecord::Base
 
   before_create :set_default_values!
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
-  after_create :refresh_friendly_id!, :create_relation!
+  after_create :refresh_friendly_id!#, :create_relation!
   # after_update :refresh_tenders
 
   scope :vacancy, -> { 
@@ -122,35 +124,30 @@ private
     self.avatar = 'first'
   end
 
-  # def check_address
-  #   if self.address
-  # end
 
   def refresh_tenders
     self.tenders.map{ |tender| tender.touch }
   end
 
-  def create_relation!
-    if self.vacant? 
-      create_stock!
-    else
-      create_occupancy!
-      create_stock! #if self.for_sale
-    end
-  end
-
-  def create_stock!
-    Stock.create(
-      holder: self.publisher, house: self, initial: 'yes',
-      price: self.price/1000, volume: 1000
-    )
-  end
-
-  def create_occupancy!
-    Occupancy.create(
-      holder: self.publisher, house: self,
-      rental: false, started_at: Date.today,
-      annual_rental: self.price * 0.05, tradeable: true
-    )
-  end
+  # def create_relation!
+  #   if self.vacant? 
+  #     create_stock!
+  #   else
+  #     create_occupancy!
+  #     create_stock! #if self.for_sale
+  #   end
+  # end
+  # def create_stock!
+  #   Stock.create(
+  #     holder: self.publisher, house: self, initial: 'yes',
+  #     price: self.price/1000, volume: 1000
+  #   )
+  # end
+  # def create_occupancy!
+  #   Occupancy.create(
+  #     holder: self.publisher, house: self,
+  #     rental: false, started_at: Date.today,
+  #     annual_rental: self.price * 0.05, tradeable: true
+  #   )
+  # end
 end

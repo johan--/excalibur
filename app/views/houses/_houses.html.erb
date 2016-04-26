@@ -1,5 +1,10 @@
+<div class="col-xs-12">
+  <p>Sudah punya rumah yang diincar? Silahkan daftarkan sendiri dengan menekan tombol di bawah ini.</p>
+  <%= link_to "Daftarkan Rumah Baru", houses_path(build: 'true'), method: :post, class: "btn btn-inverse" %>
+</div>
+<div class="clearfix"></div>
 <% houses.each do |house| %>
-  <div class="col-md-6">
-    <%= render partial: "houses/house", locals:{house: house} %>
+  <div class="col-md-8">
+    <%= render partial: "elements/house_item_view", locals: {house: house} %>
   </div>
 <% end %>

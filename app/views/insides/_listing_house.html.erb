@@ -1,5 +1,5 @@
 <h4 class="lggrey centered">Rumah yang kamu daftarkan</h4><hr>
-<% unless current_user.has_houses? %>
+<% if current_user.has_houses? %>
   <div class="row">
     <div class="col-xs-12">
       <% @houses.each do |house| %>
@@ -19,7 +19,6 @@
     <div class="spacious">
       <h5><%= "Belum ada rumah yang kamu daftarkan" %></h5>
       <h3><i class="ion ion-android-home"></i></h3>
-      <%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

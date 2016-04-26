@@ -1,10 +1,10 @@
-class TendersController < ApplicationController
+class Trading::TendersController < ApplicationController
   before_filter :inside_app
 
-  def index
-    @title = "Bursa"
-    @tenders = Tender.published
-  end
+  # def index
+  #   @title = "Bursa"
+  #   @tenders = Tender.published
+  # end
 
   def show
     set_tender
@@ -44,27 +44,26 @@ class TendersController < ApplicationController
   end
 
   def create
-    if params[:house_id]
-      @house = House.friendly.find(params[:house_id])
-      @tender = Tender.new(starter: current_user, 
-        tenderable: @house.stocks.initial, draft: 'yes', 
-        category: "fundraising", annum: 10, 
-        aqad: "Musyarakah Mutanaqishah", participate: 'yes')
+    @tender = Tender.new(tender_params)
+    if params[:tender][:asset] == 'House'
+      @asset = House.friendly.find(params[:tender][:asset_id])
     else
-      @tender = Tender.new(tender_params)
-      @tender.starter = current_user
-      @tender.tenderable = @house.stocks.initial
+      # @asset = Stock.friendly.find(params[:asset_id])
     end
+    if params[:tender][:category] == 'fundraising'
+      @tender.volume = 1000
+      @tender.price = @asset.price / 1000      
+    end
+
+    @tender.assign_attributes(starter: current_user, tenderable: @asset)
         
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
-      # redirect_to tender_build_path(@tender, Tender.builds.first)
-      redirect_to user_root_path
     else
-      redirect_to new_tender_path
       flash[:danger] = 'Proposal gagal dibuat'
       Rails.logger.info(@tender.errors.inspect) 
     end
+    redirect_to user_root_path
   end
 
   def update

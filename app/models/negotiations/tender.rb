@@ -150,19 +150,9 @@ class Tender < ActiveRecord::Base
 
 private
   def set_default_values!
-    set_tender_unit!
-    if self.category == 'fundraising'
-      stock = self.tenderable
-      self.volume =  stock.volume
-      self.price = stock.price #if self.price.nil?
-      self.state = 'open' if self.state.blank?
-    end
+    self.unit = 'ownership'
+    self.state = 'open' if self.state.blank?
     self.draft = 'no' if self.draft.blank?
-  end
-
-  def set_tender_unit!
-    self.unit = 'profit' if aqad?('murabaha')
-    self.unit = 'ownership' if aqad?('musharaka')
   end
 
   def create_musharaka_bid(volume)

@@ -11,18 +11,18 @@ class InsidesController < ApplicationController
     @tender = @tenders.first
     @bids = current_user.bids
     @documents = current_user.documents
-    @houses = current_user.houses
+    @houses = current_user.houses.includes(:photo_files)
+    # @houses = House.includes(:photo_files).all
     @houses_count = @houses.count 
     @tender_count = @tenders.count
     @bids_count = @bids.count
-
     if params[:not_done] == 'true'
       flash[:warning] = 'Data belum lengkap, mohon lanjutkan' 
     end
   end
 
   def choose
-    @houses = House.includes(:stocks).all
+    @houses = House.includes(:photo_files).all
   end
   def manage_tender
     @tender = Tender.friendly.find(params[:tender_id])

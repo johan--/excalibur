@@ -1,4 +1,4 @@
-class BidsController < ApplicationController
+class Trading::BidsController < ApplicationController
   before_action :set_bid, only: [:edit, :update, :destroy, :finalize]
   before_action :find_tender
   before_action :user_layout

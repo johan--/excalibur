@@ -9,14 +9,27 @@
       </div>            
     </div>
   </div>
-
+  <div class="spacing"></div>
+  <div class="form_line">
+    <div class="row">
+      <div class="form_controls col-sm-6 col-sm-offset-3">
+        <p class="centered">Kamu mau membuat proposal pendanaan untuk rumah ini?</p>
+        <div class="checkbox icheck">
+          <label>
+            <%= f.check_box :proposed %> <strong>Ajukan Proposal?</strong>
+          </label>
+          <p><small>Kosongkan bila tidak mau membuat proposal</small></p>
+        </div>
+      </div>            
+    </div>          
+  </div>
   <div class="form_line">
     <div class="form_controls">
     	<span class="status"></span>
       <div class="preview"></div>
       <div class="spacing"></div>
       <button class='btn btn-success centered'>
-        <i class='fa fa-plus-square'></i> Kirim
+        <i class='fa fa-plus-square'></i> Lanjutkan
       </button>              
     </div>
   </div>

@@ -32,12 +32,16 @@ Fustal::Application.routes.draw do
       put "remove_avatar"
     end    
   end
-  resources :tenders, path: 'bursa' do
-    member do
-      get "discuss"
+
+  scope module: 'trading' do
+    resources :tenders do
+      member do
+        get "discuss"
+      end
+      resources :bids
     end
-    resources :bids
   end
+
   resources :documents
   resources :houses do
     resources :steps, only: [:show, :update], controller: 'houses/steps'
