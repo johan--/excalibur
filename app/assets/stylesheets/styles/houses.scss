@@ -173,104 +173,30 @@
   }  
 }
 
-/*.listing-address, .listing-prompt {
-  padding: 2.3em 0;
-  background: #f3f5f7;
-  margin-left: -100vw;
-  margin-right: -100vw;
-  padding-left: 100vw;
-  padding-right: 100vw;
-  margin-bottom: 0px; 
-} 
-.listing-address {
-  h4, h2, p {
-    color: #595959; font-weight: 400;
-  }
-  h4, h2 {
-    font-weight: 400;
-  }   
-  p {
-    font-weight: 300;
-  }
-  .address {
-    .street {
-      float: left; margin-right: 12px; line-height: 36px;
-    }
-    h4 {line-height: 36px;}  
-  }
-} 
-
-.listing-remark { 
-  margin-top: 3em; 
-  .border-box {
-    padding: 1em 20px;
-    margin: 2em 0 0;
-    border: 1px solid #dedede;
-  }
-}
-  .listing-section {
-      padding: 0; max-width: 1600px;
-      margin: 1.5em 0;
-  }
-  .at_a_glance {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(192, 192, 191, 0.3);    
-    .features-container {
-      color: #9ba1a6;
-      font-weight: 500;
-      font-size: 14px  
-      ul {
-        margin: 0;
-        padding: 0;
-        line-height: 1.6em;
-      }
-      .feature-label { display: inline-block; } 
-    }
-  }
-
-.table-grid {
-  margin-top: 20px;
-  div[class^="col-"] {
-      padding: 20px 20px;
-  }   
-  .row {
-    margin-left: 0;
-    margin-right: 0;
-    border-bottom: 1px solid rgba(192, 192, 191, 0.3);
-    line-height: 1.6em;
-    &:first-child {
-      border-top: 1px solid rgba(192, 192, 191, 0.3);
-    }
-    div[class^="col-"] {
-      padding: 10px 20px;
-      &:first-child {
-          border-left: 1px solid rgba(192, 192, 191, 0.3);
-      }
-      &:last-child {
-          border-right: 1px solid rgba(192, 192, 191, 0.3);
-      }         
-    }    
-  }
-  .title {
-    color: #9ba1a6;
-    .table-content {
-      font-weight: 500;
+div.house-listing {
+  border-radius: 0px;
+  padding-left: 0px;padding-right: 0px;padding-top: 0px;
+  img { height: 300px; }
+  .caption {
+    background-color: white;
+    cursor: pointer;
+    padding: 14px 18px 0px;
+    .top-desc{
       font-size: 14px;
+      /*white-space: nowrap; text-overflow: ellipsis;*/
+      h3 { font-size: 1.5em; color: $brand-coral; } 
+      &.address {
+        font-weight: 500;
+      }      
+    }    
+    .city { 
+      margin-left: .5em; color: #70828f; font-size: 12px;
     }
-  }  
+      .price {
+        /*font-weight: 700; */color: $brand-primary;
+      }
+  }
 }
-
-.listing_activity {
-  .activity {
-    float: left;
-    margin-right: 15px;
-  }
-  span.count {
-    margin-top: 8px;
-    display: inline-block;
-  }
-}*/
-
   .listing-address, .listing-prompt {
     padding: 2.3em 0;
     background: #f3f5f7;
@@ -442,10 +368,12 @@
 }
 
 .overlay-wrapper {
-    position:relative;
-}
-
-.overlay-wrapper .overlay {
+  position:relative;
+  &:hover .overlay {
+    background-color:rgba(0,0,0,0.5);
+    opacity:1;
+  }
+  .overlay {
     bottom:0;
     left:0;
     opacity:0;
@@ -453,34 +381,31 @@
     position:absolute;
     right:0;
     top:0;
-  text-align:center;
-  padding-top:25%;
-  transition:all 0.4s ease;
-}
-
-.overlay-wrapper .overlay a {
-  font-size:20px;
-  width:50px;
-  height:50px;
-  color:#FFFFFF;
-  display:inline-block;
-  text-align:center;
-  padding-top:12px;
-  border-radius:50%;
-  margin-right:15px;
-  opacity:0.8;
-}
-
-.overlay-wrapper .overlay a:last-child {
-  margin-right:0;
-}
-
-.overlay-wrapper .overlay a:hover {
-  background-color:#333333;
-  color:#FFFFFF;
-}
-
-.overlay-wrapper:hover .overlay {
-  background-color:rgba(0,0,0,0.5);
-  opacity:1;
+    text-align:center;
+    padding-top:25%;
+    transition:all 0.4s ease;
+    svg.svg-white-icon {
+      width: 2em; height: 2em;
+      path { fill: white; }
+    }
+    img.svg-white-icon { 
+      width: 2em; height: 2em; color: white;
+    }
+    a {
+      font-size:20px; padding-top: 5px;
+      width:100px; height:100px;
+      color:#FFFFFF;
+      display:inline-block;
+      text-align:center;
+      padding-top:12px;
+      border-radius:50%;
+      margin-right:15px;
+      opacity:0.8;
+      &:last-child { margin-right:0; }
+      &:hover { 
+        color: $brand-primary; 
+        svg.svg-white-icon { path { fill: $brand-primary; } }
+      }
+    }  
+  }  
 }

@@ -1,7 +1,16 @@
 <% meta title: "Home" %>
  
 <div class="row">
-  <div id="home-view">
+  <div class="col-md-7 col-sm-8">
+    <h4 class="sub-title">Proposal <span class="badge"><%= @tenders.count %></span></h4>
+    <%= render 'request' %>
+  </div>
+  <div class="col-md-5 col-sm-4">
+    <%= render 'listing_house' %>
+  </div>
+</div>
+
+<!--   <div id="home-view">
     <div class="col-xs-12">
       <div class="x_panel">
         <div class="x_title mb">
@@ -25,18 +34,7 @@
   </div>
   <div id="returns" class="side-view"  style="display: none;">
     <%= link_to "Kembali Ke Portofolio", user_root_path, remote: true %>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
+  </div> -->
 
 
 

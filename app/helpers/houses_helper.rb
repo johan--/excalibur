@@ -9,6 +9,15 @@ module HousesHelper
   end
 
  def edit_link(house)
+   destination = edit_url_for_house(house)
+
+   link_to destination, data: {toggle: 'tooltip', 
+    placement: 'top', original_title: 'Edit'} do
+      content_tag(:i, '', class: "fa fa-pencil") + content_tag(:span, ' Edit', class: "hidden-xs")
+   end
+ end
+
+ def edit_url_for_house(house)
    if house.input_unfinished?
       if house.form_step.nil?
         destination = house_step_path(house, house.form_steps.first)
@@ -18,11 +27,7 @@ module HousesHelper
    else
      destination = edit_house_path(house)
    end
-
-   link_to destination, data: {toggle: 'tooltip', 
-    placement: 'top', original_title: 'Edit'} do
-      content_tag(:i, '', class: "fa fa-pencil") + content_tag(:span, ' Edit', class: "hidden-xs")
-   end
+   destination
  end
 
   def show_link(house)
