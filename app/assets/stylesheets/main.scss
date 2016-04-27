@@ -582,3 +582,7 @@ section.steps .number {
   box-sizing: border-box;
   border-radius: 2px;
 }
+
+.post-links { margin-bottom: 0; font-size: 12px; padding-left: 0; }
+.post-links>li { float: left; list-style: none; margin:8px; }
+.post-links>li>a { text-decoration: none; color: #999; }  

@@ -6,11 +6,15 @@
   <div class="blankslate backgroundless">
     <div class="spacious">
       <h4><%= "Ingin mengajukan pendanaan?" %></h4>
-      <small>Pilih rumah yang sudah didaftarkan di Kapiten atau daftarkan rumah yang kamu inginkan terlebih dahulu</small>
+      <small>Daftarkan rumah yang kamu inginkan terlebih dahulu</small>
       <h1><i class="ion ion-compose"></i></h1>
       <p>
-        <%= link_to "Pilih Rumah", choose_path, remote: true, class: "btn btn-lg btn-inverse" %>
+        <%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-lg btn-primary" %>
       </p>
+<!--       <p><small>Atau</small></p>
+      <p><strong>
+        <%= link_to "Pilih Rumah", choose_path, remote: true, class: "" %></strong>
+      </p> -->
     </div>
   </div>
 </div>

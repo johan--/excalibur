@@ -28,14 +28,9 @@ class Trading::TendersController < ApplicationController
   end
 
   def new
-    @houses = House.all
-    @stocks = Stock.all
-    # @category = params[:intent]
-    # @aqad = params[:akad]
-    # @asset_type = params[:asset]
-    # @asset_id = params[:asset_id]
-    # @asset = @asset_type.constantize.friendly.find(@asset_id)
-    @tender = Tender.new
+    @category = params[:intent]
+    @house = House.friendly.find(params[:house_id])
+    @tender = @house.tenders.build
   end
 
   def edit
@@ -46,12 +41,14 @@ class Trading::TendersController < ApplicationController
 
   def create
     @tender = Tender.new(tender_params)
-    if params[:tender][:asset] == 'House'
-      @asset = House.friendly.find(params[:tender][:asset_id])
+    if params[:house_id]
+      @asset = House.friendly.find(params[:house_id])
     else
       # @asset = Stock.friendly.find(params[:asset_id])
     end
     if params[:tender][:category] == 'fundraising'
+      @tender.participate = "yes"
+      @tender.aqad = "Musyarakah Mutanaqishah"
       @tender.volume = 1000
       @tender.price = @asset.price / 1000      
     end

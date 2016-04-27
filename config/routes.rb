@@ -45,7 +45,7 @@ Fustal::Application.routes.draw do
   resources :documents
   resources :houses do
     resources :steps, only: [:show, :update], controller: 'houses/steps'
-    resources :tenders, only: :create
+    resources :tenders, only: [:new, :create], controller: 'trading/tenders'
   end
   resources :comments
   # resources :groups

@@ -7,20 +7,15 @@
 
 <div class="col-md-5 col-sm-6">
   <center>
-    <%= simple_form_for(@tender, {html: { class: 'form-vertical' }, wrapper: :vertical_form }) do |f| %>
+    <%= simple_form_for([@house, @tender], {html: { class: 'form-vertical' }, wrapper: :vertical_form }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= render 'tenders/fundraising_fields', f: f %>
+      <%= render 'trading/tenders/fundraising_fields', f: f %>
     </div>
 
-    <%= f.input :category, :as => "hidden", :input_html => { value: @category } %>
-    <%= f.input :aqad, :as => "hidden", :input_html => { value: @aqad } %>
-    <%= f.input :participate, :as => "hidden", :input_html => { value: 'yes' } %>
-    <%= f.input :asset_id, :as => "hidden", :input_html => { value: @asset_id } %>
-    <%= f.input :asset, :as => "hidden", :input_html => { value: @asset_type } %>
     <div class="form-actions">
-      <%= button_tag "Buat", class: "btn btn-lg btn-primary btn-round-lg", data: {disable_with: "<i class='fa fa-spinner fa-pulse'>
+      <%= button_tag "Ajukan", class: "btn btn-lg btn-primary btn-round-lg", data: {disable_with: "<i class='fa fa-spinner fa-pulse'>
       </i> Sedang dibuat..."}  %>
     </div>
   <% end %>

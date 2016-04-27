@@ -43,11 +43,6 @@ FactoryGirl.define do
 		  end
 		end
 
-
-	    # after(:create) do |house|
-	    #   house.stocks << FactoryGirl.create :stock
-	    # end
-
 	    trait :by_developer do 
 	      association :publisher, factory: :business
 	    end 		

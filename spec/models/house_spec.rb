@@ -48,42 +48,42 @@ RSpec.describe House, :type => :model do
           expect(user.houses.first).to eq @house
         end
 
-        it "creates just one stock" do
-          expect(@house.stocks.count).to eq 1
-        end
+        # it "creates just one stock" do
+        #   expect(@house.stocks.count).to eq 1
+        # end
 
-        it "creates the stock of ownership" do
-          expect(@stock.category).to eq 'ownership'
-        end
+        # it "creates the stock of ownership" do
+        #   expect(@stock.category).to eq 'ownership'
+        # end
 
-        it "also set the stock price" do
-          expect(@stock.price).to eq @house.price / 1000
-        end
+        # it "also set the stock price" do
+        #   expect(@stock.price).to eq @house.price / 1000
+        # end
 
-        it "also set the stock as the initial stock" do
-          expect(@stock.initial).to eq 'yes'
-        end
+        # it "also set the stock as the initial stock" do
+        #   expect(@stock.initial).to eq 'yes'
+        # end
 
-        it "also set the stock as tradeable" do
-          expect(@stock.tradeable).to eq true
-        end
+        # it "also set the stock as tradeable" do
+        #   expect(@stock.tradeable).to eq true
+        # end
       end
     end
   end
 
-  describe "owned house" do
-    before { @house = FactoryGirl.create(:owned_house) }
-    subject { @house }
+  # describe "owned house" do
+  #   before { @house = FactoryGirl.create(:owned_house) }
+  #   subject { @house }
 
-    it { should be_valid }
+  #   it { should be_valid }
 
-    it "has an occupancy related" do
-      expect(@house.occupancy).to_not eq nil
-    end
+  #   it "has an occupancy related" do
+  #     expect(@house.occupancy).to_not eq nil
+  #   end
 
-    it "has a stock ownership related" do
-      expect(@house.stocks.count).to eq 1
-    end    
-  end
+  #   it "has a stock ownership related" do
+  #     expect(@house.stocks.count).to eq 1
+  #   end    
+  # end
 
 end

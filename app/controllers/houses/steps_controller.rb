@@ -29,7 +29,7 @@ class Houses::StepsController < ApplicationController
         @category = 'fundraising'
         @aqad = "Musyarakah Mutanaqishah"
         @asset_type = 'House'
-        @asset_id = @house.slug
+        @house_id = @house.slug
         @disable_link = true
     end    
     render_wizard
@@ -50,12 +50,7 @@ class Houses::StepsController < ApplicationController
       end
 
       @house.save
-
-      if @house.form_step == 'done'
-        flash[:notice] = 'Terima kasih, data sudah lengkap'
-      else
-        flash[:notice] = 'Data telah disimpan, lanjutkan'
-      end
+      flash[:notice] = 'Terima kasih, data telah disimpan'
 
     else 
       @house.errors
