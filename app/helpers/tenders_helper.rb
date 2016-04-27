@@ -1,5 +1,6 @@
 module TendersHelper
 
+
 	def type(tender)
 		tender.tenderable_type.downcase
 		# send "#{type(tender)}_tender_path", tender
@@ -80,11 +81,12 @@ module TendersHelper
 
   def render_progress_bar(value)
   	content_tag(:div, 
-  		content_tag(:span, "#{value}% Complete", class: "sr-only"), 
+  		content_tag(:span, "#{value}% Tercapai", class: "show"), 
   		class: "progress-bar", 
   		:"role" => "progressbar", 
   		:"aria-valuenow" => "#{value}", :"aria-valuemin" => "0",
-  		:"aria-valuemax" => "100", :"style" => "width: #{value}%;")
+  		:"aria-valuemax" => "100", :"style" => "width: #{value}%;"
+  	)
   end
 
   def calculate_progress(tender)

@@ -60,6 +60,7 @@ class House < ActiveRecord::Base
     where("houses.details->>'vacant' = 'yes'") 
   }
 
+
   def full_street_address
     "#{self.address}, #{self.city}, #{self.province}, #{self.country}"
   end

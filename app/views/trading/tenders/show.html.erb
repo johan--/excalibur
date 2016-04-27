@@ -1,76 +1,40 @@
 <% meta title: "Proposal #{@tender.ticker}" %>
 
-
-<div class="col-md-4">
+<section class="intro padded centered white-background card">
   <div class="container">
-    <div class="row">
-      <ul class="thumbnails list-unstyled">
-        <%= render @tender %>
-      </ul>
+    <div class="prose extra-bottom-margin">
+      <h2 class="fh5co-lead">Proposal #<%= @tender.ticker %></h2>
+      <h5 class="sub-title centered">
+        800 unit tersisa, <strong>@ <%= idr_money(@tender.price) %>/unit</strong>
+      </h5>
     </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: 'btn btn-lg btn-primary', disabled: @disable_bidding %>
+          <p class="grey">
+            <small class="centered">
+              <% if @disable_bidding %>
+                Kamu sudah mengajukan penawaran
+              <% else %>
+              <% end %>
+            </small>
+          </p>
+      </div>
+    </div>    
+    <div class="spacing"></div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="progress tender-progress">
+            <%= render_progress_bar(@tender.progress.to_i) %>
+          </div>        
+      </div>
+    </div> 
+    
   </div>
-</div>
+</section>
 
-<div class="col-md-8">
-  <!-- Nav tabs -->
-  <div class="material-card">
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active">
-        <a href="#cover" aria-controls="cover" role="tab" data-toggle="tab">Inti</a>
-      </li>
-      <li role="presentation">
-        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Komunikasi</a>
-      </li>
-      <li role="presentation">
-        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Progress</a>
-      </li>
-    </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="cover">
-        <div class="item">
-          <h4 class="grey">Pengajuan</h4>
-          <%= render partial: 'tender_info', locals: { tender: @tender } %>
-        </div>
-        <div class="spacing"></div>
-        <div class="item">
-          <h4 class="grey">Klien</h4>
-          <%= render  partial: 'users/user_info', locals: { user: @client } %>
-        </div>
-        <div class="item">
-          <h4 class="grey">Properti</h4>
-          <%= render 'houses/house_details', house: @tender.tenderable.house %>
-        </div>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="profile">
-        <div class="item">
-          <h4 class="grey">Penilaian</h4>
-          <% if @assessment.blank? %>
-              <div class="blankslate" id="comment-placeholder">
-              <div class="spacious">
-              <h3><%= "Belum Ada Analisis" %></h3>
-            <% if current_user.admin? %>
-              <p><%= link_to "Buat Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-            <% end %>
-            </div>
-              </div>
-          <% else %>
-              <%= render 'comments/assessment', comment: @assessment %>
-            <p><%= link_to "Tambah Analisis", new_admin_comment_path(commentable_type: 'User', commentable_id: @client.id, subject: "assessment"), class: "btn btn-primary btn btn-round-xs" %></p>
-          <% end %>
-          <div class="item">
-            <h4 class="grey">Interaksi</h4>
-            <%= render 'comments/comments', comments: @comments %>
-          </div>
-        </div>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="messages">
-        <div class="item">
-          <h4 class="grey"><%= @bids.count %> Penawaran diterima</h4>
-          <%= render partial: 'bids/bid', collection: @bids  %>
-        </div>
-      </div>
+<section class="intro padded">
+  <div class="container">
+    <%= render 'tender_overview' %>
   </div>
-</div>  
-</div>
+</section>

@@ -44,7 +44,7 @@ class Bid < ActiveRecord::Base
   after_touch :change_state
   before_destroy :reset_volume
 
-  scope :real, -> { where(deleted_at: nil) }
+  scope :usermade, -> { where(bidder_type: 'User') }
   scope :client, -> { where("bids.details->>'client' = :type", type: "yes")  }
   scope :completed, -> { where(
     "bids.details->>'state' = :type", type: "success")  

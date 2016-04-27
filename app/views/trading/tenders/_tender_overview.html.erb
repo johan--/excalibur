@@ -1,0 +1,44 @@
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-1 col-sm-5 extra-bottom-margin estate">
+    <h5 class="tender-heading">Klien</h5>
+    <%= render partial: "starter_card", locals: {user: @tender.starter} %>
+  </div>
+  <div class="col-md-6 col-sm-7 extra-bottom-margin estate">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 extra-bottom-margin">
+        <h5 class="tender-heading">Objek Syirkah</h5>
+        <%= render partial: 'houses/house', locals: {house: @tender.tenderable} %>
+      </div>
+      <div class="col-xs-12 col-sm-10 extra-bottom-margin">
+        <h5 class="tender-heading">Laporan</h5>
+        <% if @assessment.blank? %>
+          <div class="blankslate card" id="comment-placeholder">
+            <div class="spacious">
+              <h3><%= "Belum Ada Analisis" %></h3>
+            </div>
+          </div>
+        <% else %>
+          <%= render 'comments/assessment', comment: @assessment %>
+        <% end %>      
+      </div>
+      <div class="col-xs-12 col-sm-10 extra-bottom-margin">
+        <h5 class="tender-heading">Tawaran</h5>
+        <%= render 'trading/bids/bids'  %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .tender-starter-widget .font-bold{
+    color: white;
+  }
+  .tender-heading {
+    margin-bottom: 10px; text-align: center;
+  }
+  img.center {
+    display: block;
+    margin: 0 auto;
+  }
+</style>

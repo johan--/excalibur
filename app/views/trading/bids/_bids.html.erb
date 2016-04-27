@@ -1,23 +1,27 @@
-<div class="widget-box">
-  <div class="widget-header bordered-bottom bordered-themesecondary">
-    <i class="widget-icon fa fa-tags themesecondary"></i>
-    <h5 class="widget-caption themesecondary">Pendana</h5>
-  </div><!--Widget Header-->
-  <div class="widget-body">
-    <div class="widget-main no-padding">
-      <div class="tickets-container">
-      <% if bids.empty? %>
-      <div class="blankslate">
-        <div class="spacious">
-          <h3><%= "Belum Ada Pendana" %></h3>
-        </div>
-      </div>                
-      <% else %>
-        <ul class="tickets-list">
-          <%= render bids  %>
-        </ul>
-      <% end %>
-      </div>
-    </div>
+<div class="x_panel card">
+  <div class="x_title">
+    <h4>Daftar Tawaran <small></small></h4>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <table class="table table-striped">
+      <thead>
+        <tr style="font-size: 13px; font-weight: 300;">
+          <th>Nama</th>
+          <th>Unit</th>
+          <th>Nilai</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bids.each do |bid| %>
+          <tr>
+            <td><%= bid.bidder.name %></td>
+            <td><%= bid.volume %></td>
+            <td><%= idr_money(bid.contribution) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   </div>
 </div>

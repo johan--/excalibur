@@ -1,0 +1,21 @@
+<div class="tender-starter-widget card">
+  <div class="widget-head-color-box lazur-bg p-lg">
+      <div class="m-b-md centered">
+        <h2 class="font-bold no-margins">
+            <%= user.name.titleize %>
+        </h2>
+      </div>
+      <%= render_user_thumb(user, 'img-circle circle-border m-b-md center') %>
+      <div class="centered">
+        <span><%= user.documents.count %> berkas dokumen</span> |
+        <span><%= user.tenders.count %> proposal dibuat</span>
+      </div>
+  </div>
+  <div class="widget-text-box">
+    <p class="grey centered">Belum ada hasil verifikasi</p>
+<!--     <div class="text-right">
+      <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>
+      <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
+    </div> -->
+  </div>
+</div>  

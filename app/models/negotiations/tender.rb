@@ -55,6 +55,10 @@ class Tender < ActiveRecord::Base
   # Pagination
   paginates_per 30
 
+  def to_partial_path
+    'trading/tenders/tender'
+  end
+
   def target
     (self.price * self.volume)
   end
@@ -86,11 +90,7 @@ class Tender < ActiveRecord::Base
   # }
 
   def access_granted?(user)
-    if self.starter_type == 'User'
-      self.tender_owner?(user)
-    else
-      self.member_of_tenderable?(user)
-    end
+    if user == self.starter || user.admin? then true else false end
   end
 
   def tender_owner?(user)
@@ -98,13 +98,8 @@ class Tender < ActiveRecord::Base
     return false if self.starter != user
   end
 
-  def member_of_tenderable?(user)
-    return true if starter.team.has_as_member?(user)
-    return false if !starter.team.has_as_member?(user)
-  end
-
   def check_contribution
-    value = self.bids.real.map{ |bid| bid.contribution }.compact.sum
+    value = self.bids.map{ |bid| bid.contribution }.compact.sum
     return value
   end
 

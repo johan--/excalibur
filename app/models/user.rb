@@ -91,10 +91,10 @@ class User < ActiveRecord::Base
       return false
     end
   end
-  # def has_bids?
-  #   return true if self.bids.count != 0
-  #   return  false if self.bids.count == 0
-  # end  
+
+  def already_bid?(tender)
+    if tender.bids.usermade.where(bidder_id: self.id).first then true else false end
+  end  
 
   def has_documents?(doc)
     if self.documents.by_types(doc).count != 0

@@ -8,6 +8,7 @@ class Trading::TendersController < ApplicationController
 
   def show
     set_tender
+    @disable_bidding = current_user.already_bid?(@tender)
     @assessment = Comment.assessments.user_as_subject(@client).first
     @comments = @tender.comments
     @comment = Comment.new
