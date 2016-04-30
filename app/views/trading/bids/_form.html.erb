@@ -2,11 +2,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.input :volume, as: :integer, input_html: { min: '1', max: '1000', step: '1' }, label: "Jumlah Saham", required: true, hint: "Maksimal = 1000 saham  |  Harga 1 saham = #{idr_money(@tender.price)}" %>
-	<%= f.input :message, label: "Pesan", required: false %>
+	<%= f.input :volume, as: :integer, input_html: { min: '10', max: '1000', step: '1', value: '10' }, label: "Jumlah Saham", required: true, hint: "Maksimal = 1000 saham  |  Harga 1 saham = #{idr_money(@tender.price)}" %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Simpan", class: "btn btn-outlined btn-black" %>
+    <%= f.submit "Kirim", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
+
+<!--          <%= form_for [@tender, @bid], html: {role: "form"}, class: "col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1", id: 'landing-subscriber' do |f| %>
+            <div class="input-group input-group-lg text-center">
+              <%= f.number_field :volume, html: {min: 10, max: 1000, step: 1, value: 10, class: "form-control input-lg"} %>
+              <span class="input-group-btn">
+                <button class="btn btn-primary" >Kirim</button>
+              </span>
+             </div>
+         <% end %>           -->

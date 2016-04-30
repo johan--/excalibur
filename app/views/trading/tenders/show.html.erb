@@ -1,40 +1,56 @@
 <% meta title: "Proposal #{@tender.ticker}" %>
 
-<section class="intro padded centered white-background card">
-  <div class="container">
-    <div class="prose extra-bottom-margin">
-      <h2 class="fh5co-lead">Proposal #<%= @tender.ticker %></h2>
-      <h5 class="sub-title centered">
-        800 unit tersisa, <strong>@ <%= idr_money(@tender.price) %>/unit</strong>
-      </h5>
-    </div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <%= link_to "Buat Tawaran", new_tender_bid_path(@tender), class: 'btn btn-lg btn-primary', disabled: @disable_bidding %>
-          <p class="grey">
-            <small class="centered">
-              <% if @disable_bidding %>
-                Kamu sudah mengajukan penawaran
-              <% else %>
-              <% end %>
-            </small>
-          </p>
-      </div>
-    </div>    
-    <div class="spacing"></div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-          <div class="progress tender-progress">
-            <%= render_progress_bar(@tender.progress.to_i) %>
-          </div>        
-      </div>
-    </div> 
-    
-  </div>
-</section>
+<%= render 'tender_header' %>
 
-<section class="intro padded">
+<div class="white-background">
+<section class="intro padded bordered-section ">
   <div class="container">
-    <%= render 'tender_overview' %>
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="row">
+        <div class="col-md-12"><h2>Objek Syirkah</h2></div>
+        <div class="col-md-8">
+          
+          <div class="product-description u-fontSize16" style="line-height: 28px;">
+            <p>Syirkah dibentuk dengan tujuan bekerja sama membeli dan memiliki properti yang diajukan oleh Klien dengan spesifikasi sebagai berikut:</p>
+            <p><i class="fa fa-home"></i> <%= @asset.address %>, <%= @asset.city %></p>
+            <p><i class="fa fa-tag"></i> <span id="asset-price"> <%= idr_money(@asset.price) %></span></p>
+            <p><i class="fa fa-info-circle"></i> <%= @asset.bedrooms %> kamar tidur <%= @asset.bathrooms %> kamar mandi · <%= @asset.property_size %>m² · <%= @asset.lot_size %>m² tanah</p>            
+          </div>
+        </div>
+        <div class="col-md-4">
+          <%= render partial: 'houses/house_display', locals: {house: @asset} %>
+        </div>
+        <div class="col-xs-12">
+          <%= link_to "Lihat Properti", house_path(@asset), class: 'btn btn-md btn-default' %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+<section class="intro padded bordered-section ">
+  <div class="container">
+    <div class="inner-skeleton">
+      <h2>Klien</h2>
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <%= render partial: "starter_card", locals: {user: @tender.starter} %>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="intro padded ">
+  <div class="container">
+    <div class="inner-skeleton">
+      <h2>Pembentukan Syirkah</h2>
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <%= render 'trading/bids/bids'  %>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<style type="text/css">
+  .bordered-section {
+    padding: 42px 0;
+    border-bottom: 1px solid #e7e9eB;
+  }
+</style>

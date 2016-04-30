@@ -32,6 +32,7 @@ $nprogress-zindex: 10100;
   .spinner { display: none; }  .bar { display: none; }
 }
 
+.top-section { margin-top: -20px; }
 #classic-navbar {
   border-color: white; padding-left: 10px;padding-right: 10px;
   .navbar-brand {
@@ -173,6 +174,8 @@ h1.highlight {
 .white { color: white; }
 .danger-link { color: #BE371F; }
 .primary{ color: $brand-primary; }
+.secondary{ color: $brand-secondary; }
+.third{ color: $brand-third; }
 .grey{ color: $brand-grey; }
 .lggrey{ color: #BBBBBB; }
 .coral { color: $brand-coral; }

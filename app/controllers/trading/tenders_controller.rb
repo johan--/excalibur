@@ -8,13 +8,12 @@ class Trading::TendersController < ApplicationController
 
   def show
     set_tender
-    @disable_bidding = current_user.already_bid?(@tender)
     @assessment = Comment.assessments.user_as_subject(@client).first
     @comments = @tender.comments
     @comment = Comment.new
     @type = @tender.class.name
     @commentable_id = @tender.id
-    @subject = "interaction"        
+    @subject = "interaction"
   end
 
   def discuss
@@ -30,13 +29,14 @@ class Trading::TendersController < ApplicationController
   def new
     @category = params[:intent]
     @house = House.friendly.find(params[:house_id])
-    @tender = @house.tenders.build
+    @tender = Tender.new
   end
 
   def edit
     set_tender
     @category = @tender.category
     @asset = @tender.tenderable
+    @documents = current_user.documents
   end
 
   def create
@@ -67,7 +67,7 @@ class Trading::TendersController < ApplicationController
   def update
     set_tender
     if @tender.update(tender_params)
-      flash[:notice] = 'Proposal berhasil dikoreksi'
+      flash[:notice] = 'Proposal berhasil diperbarui'
       redirect_to user_root_path
     else
       # render :edit
@@ -79,9 +79,11 @@ class Trading::TendersController < ApplicationController
 
 private
   def set_tender
-    @tender = Tender.includes(:bids).friendly.find(params[:id])
+    @tender = Tender.friendly.find(params[:id])
     @client = @tender.starter 
-    @bids = @tender.bids    
+    @asset = @tender.tenderable
+    @bids = @tender.bids
+    @disable_bidding = current_user.already_bid?(@tender)
   end
 
   def tender_params

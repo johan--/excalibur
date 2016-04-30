@@ -11,16 +11,16 @@ feature "UserEditsHouses", :type => :feature do
 
   describe "editing complete house" do  	
     before do
-	  click_link("Edit")
-	  fill_in "house_price", with: 250000000
-	  click_button "Simpan"
-	end
+	    click_link("Edit")
+	    fill_in "house_price", with: 250000000
+	    click_button "Simpan"
+	  end
 
   	it { should have_content('Rumah berhasil dikoreksi') }
 
-	context "should have correct information on tender show page" do
-	  it { should have_css('#house-price', text: "Rp 250 jt") }
-	end
+	  context "should have correct information on tender show page" do
+	    it { should have_content("Rp 250.000.000") }
+	  end
   end
 
 

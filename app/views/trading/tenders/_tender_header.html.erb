@@ -1,0 +1,53 @@
+<section class="intro padded centered white-background top-section bordered-section">
+  <div class="container">
+    <div class="prose extra-bottom-margin">
+      <h2 class="fh5co-lead">Proposal #<%= @tender.ticker %></h2>
+      <h5 class="sub-title centered">
+        800 unit tersisa, <strong>@ <%= idr_money(@tender.price) %>/unit</strong>
+      </h5>
+    </div>
+    <div class="spacing"></div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% unless current_user == @client %>
+          <div id="tender-bidding">
+            <%= form_tag tender_bids_path(@tender), method: 'post', html: {role: "form"}, class: "col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" do %>
+               <div class="input-group input-group-lg text-center">
+                <%= number_field_tag :volume, '', within: 10...800, step: 5, class: "form-control input-lg" %>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" >Kirim</button>
+                </span>
+               </div>
+            <% end %>
+         </div>
+         <div class="col-xs-12">
+            <p class="grey">
+              <small class="centered">
+                <% if @disable_bidding %>
+                  Kamu sudah mengajukan penawaran
+                <% else %>
+                  Ajukan penawaran dengan mengisi jumlah lembar saham yang ingin kamu pesan
+                <% end %>
+              </small>
+            </p>
+          </div>
+        <% else %>
+          <% if params[:action] == 'edit' %>
+            <%= link_to "Ke Halaman Proposal", tender_path(@tender), class: 'btn btn-lg btn-inverse' %>
+          <% else %>
+            <%= link_to "Kelola Proposal", edit_tender_path(@tender), class: 'btn btn-lg btn-primary' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>    
+    <div class="spacing"></div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="progress tender-progress">
+            <%= render_progress_bar(@tender.progress.to_i) %>
+          </div>        
+      </div>
+    </div> 
+    
+  </div>
+</section>

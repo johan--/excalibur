@@ -14,8 +14,8 @@ class Trading::BidsController < ApplicationController
   end
 
   def create
-    @bid = @tender.bids.build(bid_params)
-    @bid.bidder = current_user
+    @bid = @tender.bids.build()
+    @bid.assign_attributes(bidder: current_user, volume: params[:volume], tender: @tender)
 
     if @bid.save
       redirect_to @tender, notice: 'Tawaran berhasil diajukan'

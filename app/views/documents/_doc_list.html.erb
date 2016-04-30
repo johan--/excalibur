@@ -1,52 +1,45 @@
-<h2 class="">Dokumen</h2>
-<!-- start project list -->
-<table class="table table-striped projects">
-  <thead>
-    <tr>
-      <th style="width: 1%">#</th>
-      <th style="width: 24%">Nama</th>
-      <th style="width: 15%">Status</th>
-      <th style="width: 60%">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
+<ul class="document-listing" style="padding-left: 0px;">
   <% if @documents.present? %>  
     <% @documents.each_with_index do |doc, index| %>
-      <tr>
-        <td><%= index %></td>
-        <td>
-          <a><%= doc.ticker %></a>
-          <br />
-          <small>Diperbarui <%= doc.updated_at %></small>
-        </td>
-        <td>
-          <span class="label label-default"><%= doc.state %></span>
-        </td>
-        <td>
-          <%= link_to document_path(doc), class: "btn btn-primary btn-xs" do %>
-              <i class="fa fa-search-plus"></i> Edit
-          <% end %>
-          <%= link_to edit_document_path(doc), class: "btn btn-info btn-xs" do %>
-            <i class="fa fa-pencil"></i> Edit
-          <% end %> 
-          <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'}, class: "btn btn-danger btn-xs" do %>
-            <i class="fa fa-trash"></i> Hapus
-          <% end %>        
-        </td>
-      </tr>
+      <li class="">
+        <div class="row listing-container">
+        <div class="col-md-4 left-detail">
+          <div class="s-grid-inner">
+            <%= doc.category %>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="s-grid-outer">
+            <div class="s-grid-inner">
+              <div class="col-xs-8" style="padding-left: 0px;">
+                <%= link_to doc.ticker, document_path(doc) %>
+                <p class="listing-data">Last modified was <%= time_ago_in_words(doc.updated_at) %> ago</p>
+              </div>
+              <div class="col-xs-4 listing-actions float-right">
+              <%= link_to edit_document_path(doc), class: "btn btn-info btn-xs" do %>
+                <i class="fa fa-pencil"></i> Edit
+              <% end %>                   
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>  
+      </li>
     <% end %>
+    <li class="centered grey">
+      <p>
+        <%= link_to "Tambah Dokumen", new_document_path, class: "btn btn-primary" %>
+      </p>
+    </li>    
   <% else %>
-    <tr>
-      <td></td>
-      <td><h5 class=" grey">Belum ada dokumen</h5></td>
-      <td><h5 class=" grey">yang diunggah</h5></td>
-      <td>
-        <%= link_to new_document_path, remote: true, class: "btn btn-primary btn-xs" do %>
-          <i class="fa fa-cloud"></i> Unggah
-        <% end %>         
-      </td>
-    </tr>
+    <li class="centered grey">
+      <h4><%= "Belum ada dokumen" %></h4>
+      <small>Unggah dokumen untuk meneruskan proses pengajuanmu</small>
+      <h1><i class="ion ion-compose"></i></h1>
+      <p>
+        <%= link_to "Unggah Dokumen", new_document_path, class: "btn btn-primary" %>
+      </p>
+
+    </li>
   <% end %>
-  </tbody>
-</table>
-<!-- end project list --> 
+</ul>

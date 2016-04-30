@@ -1,14 +1,12 @@
 class TenderStateMachine
   include Statesman::Machine
 
-  state :request, initial: true
-  state :open
+  state :open, initial: true
   state :closed
   state :success
   state :done
   state :failed
 
-  transition from: :request, to: [:open, :failed]
   transition from: :open, to: [:success, :closed, :failed]
   transition from: :closed, to: [:open, :success, :failed]
   transition from: :success, to: [:done, :failed]

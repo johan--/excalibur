@@ -6,27 +6,17 @@ FactoryGirl.define do
     annum 8
     seed_capital 20
     draft "no"
-    message "Lorem ipsum dolor cassus"
 
-    factory :house_purchase_murabaha do
-      house_purchase
-      murabaha
-      with_stock
-      full
-    end
-
-    factory :incomplete_house_purchase_musharaka do
+    factory :fresh_house_purchase_musharaka do
       house_purchase
       musharaka
       full
-      with_stock
       as_member
     end
 
     factory :house_purchase_musharaka do
       house_purchase
       musharaka
-      with_stock
       full
       as_member
 
@@ -44,6 +34,7 @@ FactoryGirl.define do
 
     trait :house_purchase do
       category "fundraising"
+      with_house
     end
 
     trait :share_purchase do
@@ -61,6 +52,13 @@ FactoryGirl.define do
       end
     end 
 
+    trait :with_house do
+      after(:build) do |tender|
+        asset = FactoryGirl.create(:complete_house)
+        tender.tenderable = asset
+      end      
+    end
+
     trait :as_member do
       participate 'yes'
     end
@@ -76,11 +74,6 @@ FactoryGirl.define do
     trait :musharaka do
       aqad "musharaka"
       unit "ownership"
-    end
-
-    trait :murabaha do
-      aqad "murabaha"
-      unit "profit"
     end
 
     trait :half do

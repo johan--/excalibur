@@ -3,11 +3,12 @@
 
 // Color system
 $brand-primary: #00eef2;
-$brand-secondary: #AFEEEE;
+$brand-secondary: #03256C;
+$brand-third: #2541B2;
 $brand-success: #5cb85c;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
-$brand-info: #5bc0de;
+$brand-info: #1768AC;
 $brand-coral: #FA396f;
 $brand-lightgrey: #f9f9f9;
 $brand-grey: #6C7A89;
@@ -69,8 +70,8 @@ $btn-link-disabled-color: #cccccc;
 
 // Buttons: Default
 $btn-default-color: #ffffff;
-$btn-default-bg: #bbbbbb;
-$btn-default-border: #cccccc;
+$btn-default-bg: $brand-secondary;
+$btn-default-border: darken($btn-default-bg, 5%);
 
 // Buttons: Primary
 $btn-primary-color: $btn-default-color;

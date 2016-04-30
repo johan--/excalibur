@@ -49,7 +49,6 @@ class Bid < ActiveRecord::Base
   scope :completed, -> { where(
     "bids.details->>'state' = :type", type: "success")  
   }
-  alias_attribute :worth, :contribution
 
 
   def bidder?(user)
@@ -65,18 +64,17 @@ class Bid < ActiveRecord::Base
   end
 
   def contribution
-    (self.price * self.volume)
+    price * volume
   end
 
   def reset_volume
-    vol = self.volume
-    update(volume: 0, last_volume: vol)
+    update(volume: 0, last_volume: volume)
   end
 
   def transfer_ownership!
     @tenderable = self.tender.tenderable
     @stock = Stock.create(holder: self.bidder, house: @tenderable.house,
-      initial: 'no', price: @tenderable.price, volume: self.volume)
+      initial: 'no', price: @tenderable.price, volume: volume)
     @stock.move_to_child_of(@tenderable)
     self.acquisitions.create(acquireable: @stock)
   end

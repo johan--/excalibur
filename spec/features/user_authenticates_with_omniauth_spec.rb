@@ -49,7 +49,7 @@ feature "UserAuthenticatesWithOmniauth", :type => :feature do
       click_link 'Facebook'
     end
 
-    it { should have_content('Authentication failed because') }
+    it { should have_content('Sign in') }
   end
 
 end

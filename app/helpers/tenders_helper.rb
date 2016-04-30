@@ -81,7 +81,7 @@ module TendersHelper
 
   def render_progress_bar(value)
   	content_tag(:div, 
-  		content_tag(:span, "#{value}% Tercapai", class: "show"), 
+  		content_tag(:span, "#{value}% Tercapai", class: "show", id: 'progress-info'), 
   		class: "progress-bar", 
   		:"role" => "progressbar", 
   		:"aria-valuenow" => "#{value}", :"aria-valuemin" => "0",

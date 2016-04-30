@@ -4,7 +4,7 @@
 <div class="col-xs-12">
   <div class="form-inputs">
     <% if @category == 'fundraising' %>
-      <%= render 'tenders/fundraising_fields', f: f %>
+      <%= render 'trading/tenders/fundraising_fields', f: f %>
     <% else %>
     <% end %>
     <% if current_user.admin? %>

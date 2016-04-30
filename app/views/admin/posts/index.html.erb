@@ -13,7 +13,7 @@
 
 <div id="posts-list">
 <% @posts.each do |post| %>
-  <%= render partial: 'elements/post', locals: { post: post } %>
+  <%= render partial: 'blog/posts/post', locals: { post: post } %>
   <div class="spacing"></div>
 <% end %>
 </div>

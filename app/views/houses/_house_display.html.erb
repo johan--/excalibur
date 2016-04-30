@@ -1,0 +1,21 @@
+<div class="overlay-wrapper">
+    <%= render_lg_house_display(house, 'img-responsive') %>
+    <% unless @disable_link %>
+        <span class="overlay">
+            <%= link_to house_path(house) do %>
+              <%= embedded_svg('spark-10-zoom.svg', class: 'svg-white-icon') %> 
+              <h5> Lihat</h5>
+            <% end %>
+            <% if house.try(:access_granted?, current_user) %>
+                <%= link_to edit_url_for_house(house) do %>
+                  <%= embedded_svg('spark-10-pencil.svg', class: 'svg-white-icon') %> 
+                  <h5> Edit</h5>
+                <% end %>
+            <% end %>            
+            <%= link_to new_house_tender_path(house, intent: 'fundraising') do %>
+              <%= embedded_svg('spark-10-writing.svg', class: 'svg-white-icon') %> 
+              <h5> Ajukan</h5>
+            <% end %>
+        </span>
+    <% end %>
+</div>

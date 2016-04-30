@@ -1,27 +1,56 @@
-<div class="x_panel card">
-  <div class="x_title">
-    <h4>Daftar Tawaran <small></small></h4>
-    <div class="clearfix"></div>
-  </div>
-  <div class="x_content">
-    <table class="table table-striped">
-      <thead>
-        <tr style="font-size: 13px; font-weight: 300;">
-          <th>Nama</th>
-          <th>Unit</th>
-          <th>Nilai</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bids.each do |bid| %>
-          <tr>
-            <td><%= bid.bidder.name %></td>
-            <td><%= bid.volume %></td>
-            <td><%= idr_money(bid.contribution) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<ul class="document-listing" id="bid-list" style="padding-left: 0px;">
+  <% if @bids.present? %>  
+    <% @bids.each_with_index do |bid, index| %>
+      <li class="bid-item">
+        <div class="row listing-container">
+        <div class="col-md-4 left-detail">
+          <div class="s-grid-inner">
+            <%= bid.price %><br>
+            <small><%= bid.volume %> lembar</small>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="s-grid-outer">
+            <div class="s-grid-inner">
+              <div class="col-xs-8" style="padding-left: 0px;">
+                <%= bid.ticker %>
+                <p class="listing-data">Last modified was <%= time_ago_in_words(bid.updated_at) %> ago</p>
+              </div>
+              <div class="col-xs-4 listing-actions float-right">
+                <% if bid.bidder?(current_user) %>
+                  <%= link_to edit_tender_bid_path(@tender, bid), remote: true, class: "btn btn-info btn-xs" do %>
+                    <i class="fa fa-pencil"></i> Edit
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>  
+      </li>
+    <% end %>
+    <% unless current_user == @client || @disable_bidding %>
+      <li class="centered grey">
+        <p>
+          <%= link_to "Ajukan Tawaran", new_tender_bid_path(@tender), class: "btn btn-primary" %>
+        </p>
+      </li>
+    <% end %>
+  <% else %>
+    <li class="centered grey">
+      <h4><%= "Belum ada tawaran" %></h4>
+      <small>Ajukan tawaran secara gratis</small>
+      <h1><i class="ion ion-compose"></i></h1>
+      <p>
+        <%= link_to "Ajukan Tawaran", new_tender_bid_path(@tender), class: "btn btn-primary" %>
+      </p>
 
-  </div>
-</div>
+    </li>
+  <% end %>
+</ul>
+
+<style type="text/css">
+  .s-grid-inner small {
+    color: #BBBBBB;
+  }
+</style>

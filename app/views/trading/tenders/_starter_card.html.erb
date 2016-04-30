@@ -1,11 +1,11 @@
-<div class="tender-starter-widget card">
-  <div class="widget-head-color-box lazur-bg p-lg">
+<div class="tender-starter-widget">
+  <div class="widget-head-color-box">
       <div class="m-b-md centered">
-        <h2 class="font-bold no-margins">
+        <h2 class="font-bold no-margins secondary">
             <%= user.name.titleize %>
         </h2>
       </div>
-      <%= render_user_thumb(user, 'img-circle circle-border m-b-md center') %>
+      <%= render_user_thumb(user, 'img-circle circle-border m-b-md img-center') %>
       <div class="centered">
         <span><%= user.documents.count %> berkas dokumen</span> |
         <span><%= user.tenders.count %> proposal dibuat</span>
