@@ -421,3 +421,69 @@ section#footerwrap { padding: 7em 0; }
 #fh5co-footer .fh5co-copyright p {
     margin-bottom: 0; color: #85919d;
 }
+
+.bottom-navigation-box {
+  background: white;
+  box-shadow: 0 0 1px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.1);
+  border-radius: 5px; border-top: 0px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+  h2 {
+    color: $brand-primary;
+    font-size: (14/16) + em;
+  }
+  p {
+    font-size: (12/16) + em;
+    color: #7d7d7d;
+  }
+  &.nav {
+    margin-bottom: 0px;
+    a {
+      text-decoration: none;
+      color: #cccccc;
+      text-shadow: 1px 1px 1px rgba(255,255,255,.5);
+      font-size: (12/16) + em;
+    }
+    i {
+      font-size: (24/12) + em;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+    }
+    li {
+      display: inline-block;
+      a {
+        display: block;
+        padding: 20px 18px;
+        &.active {
+          i { color: $brand-primary; }
+        }
+        &:hover {
+          i { color: $brand-grey; }
+        }              
+      }
+    }
+  }
+  &.locations {
+    padding: 30px;  
+    text-align: center;
+    .avatar {
+      border-radius: 50%;
+      img {
+        border-radius: 50%;
+      }
+    }
+    .details {
+      margin-top: 30px;
+      a { margin: 20px; }
+    }
+    .btn {
+      margin-top: 30px;
+    }
+  }
+}

@@ -2,7 +2,7 @@ class House < ActiveRecord::Base
   extend FriendlyId
   include RefreshSlug
   include WannabeBool::Attributes
-  protokoll :ticker, :pattern => "RUM#y%m####"
+  protokoll :ticker, :pattern => "RUM#y%m##"
   friendly_id :slug_candidates, use: :slugged
   monetize :price_sens
   acts_as_paranoid
@@ -42,41 +42,28 @@ class House < ActiveRecord::Base
   attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
   geocoded_by :full_street_address 
 
-  # with_options if: -> { required_for_step?(:characteristics) } do |step|
-  #   step.validates :bedrooms, presence: true
-  #   step.validates :bathrooms, presence: true
-  #   step.validates :level, presence: true
-  #   step.validates :garages, presence: true
-  #   step.validates :property_size, presence: true
-  #   step.validates :lot_size, presence: true
-  # end
-
   before_create :set_default_values!
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   after_create :refresh_friendly_id!#, :create_relation!
   # after_update :refresh_tenders
 
-  scope :vacancy, -> { 
-    where("houses.details->>'vacant' = 'yes'") 
-  }
+  scope :vacancy, -> { where("houses.details->>'vacant' = 'yes'") }
 
 
   def full_street_address
-    "#{self.address}, #{self.city}, #{self.province}, #{self.country}"
+    "#{address}, #{city}, #{province}, #{country}"
   end
-
 
   def address_changed?
     return true if self.address != self.address_was
     return false if self.address == self.address_was
   end
 
-  def initial_stock
-    self.stocks.first
+  def placeholder_path
+    "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png"
   end
-
-  def placeholder
-    "//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_175,w_175/v1452508512/asset/2000px-House_Silhouette.png"
+  def placeholder_id
+    "footer_a0ypny.png"
   end
 
   def display_picture
@@ -100,12 +87,8 @@ class House < ActiveRecord::Base
     ["for sale", "vacant", "for rent"]
   end
 
-  def price_ticker
-      price_sens / 100000000
-  end
-
   def slug_candidates
-    [:ticker]
+    [:ticker, :city]
   end
 
   def required_for_step?(step)

@@ -1,5 +1,5 @@
 $('#home-view').hide();
-$('#choose').html("<%= j (render partial: 'houses/houses', 
+$('#choose').html("<%= j (render partial: 'elements/house_item_view', 
 	locals: { houses: @houses } ) %>");
 $('#returns').show();
 $('#choose').show();

@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="accordion" id="home-accordion">
+    <div class="panel-group" id="accordion1">
+
+      <div class="panel panel-default">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-9" style="padding-right: 0px;">
+                <h2 class="panel-title">Rumah</h2>
+                <p><span class="primary strong"><%= @houses_count %></span> Rumah yang telah kamu daftarkan</p>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="panel-title">
+                  <i class="fa fa-chevron-right fa-3x pull-right"></i>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div id="collapseTwo1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="media accordion-inner">
+              <div class="pull-left">
+              </div>
+              <div class="media-body">
+                <%= render 'listing_house' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-9" style="padding-right: 0px;">
+                <h2 class="panel-title">Pengajuan Pendanaan</h2>
+                <p><span class="primary strong"><%= @tender_count %></span> proposal pendanaan yang telah kamu ajukan</p>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="panel-title">
+                  <i class="fa fa-chevron-right fa-3x pull-right"></i>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div id="collapseOne1" class="panel-collapse collapse ">
+          <div class="panel-body">
+            <%= render 'request' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-9" style="padding-right: 0px;">
+                <h2 class="panel-title">Tawaran</h2>
+                <p><span class="primary strong"> <%= @bids_count %></span> Tawaran yang telah kamu buat</p>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="panel-title">
+                  <i class="fa fa-chevron-right fa-3x pull-right"></i>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div id="collapseThree1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <% unless @bids.empty? %>
+              
+              <%= render @bids %>
+              
+
+            <% else %>
+              <div class="blankslate backgroundless">
+                <div class="spacious less-space">
+                  <h4><%= "Belum ada tawaran" %></h4>
+                  <h1><i class="ion ion-compose"></i></h1>
+
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div><!--/#accordion1-->
+  </div>
+  <!-- Accordion END -->        
+  
+</div>
+<div class="row">
+
+</div>

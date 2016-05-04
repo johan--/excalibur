@@ -260,32 +260,7 @@ hr.style {
     background: #999;
 }
 
-.box {
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-box-shadow: 0 1px 0 1px #e4e6eb;
-    -moz-box-shadow: 0 1px 0 1px #e4e6eb;
-    box-shadow: 0 1px 0 1px #e4e6eb;
-    margin: 0 0 10px 0;
-}
 
-.box .box-header {
-/*    background: #36a9e1;
-    color: white;*/
-    font-size: 16px;
-    overflow: hidden;
-    -webkit-border-radius: 2px 2px 0 0;
-    -moz-border-radius: 2px 2px 0 0;
-    border-radius: 2px 2px 0 0;
-}
-.box .box-content {
-    padding: 10px;
-    background: white;
-    -webkit-border-radius: 0 0 2px 2px;
-    -moz-border-radius: 0 0 2px 2px;
-    border-radius: 0 0 2px 2px;
-}
 .quick-button-small {
     border: 1px solid #ddd;
     padding: 10px 0 0 0;

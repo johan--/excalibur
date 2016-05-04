@@ -2,10 +2,10 @@ module UsersHelper
 	def render_user_auth_choice(user)
 	  if user.using_omniauth?
 	  	  content_tag(:i, '', class: "fa fa-#{user.auth_with}") +
-	  	  " Kamu menggunakan akun #{user.auth_with}"
+	  	  " Kamu masuk menggunakan akun #{user.auth_with}"
 	  else
-	  	  content_tag(:i, '', class: "fa fa-square-o") +
-	  	  " Kamu menggunakan akun Kapiten"
+	  	  content_tag(:i, '', class: "fa fa-info-circle") +
+	  	  " Kamu masuk menggunakan akun SiKapiten"
 	  end
 	end
 

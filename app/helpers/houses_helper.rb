@@ -56,10 +56,9 @@ module HousesHelper
 
   def render_house_display_for_tender(house, string)
     if house.display_picture.blank?
-    image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_200,w_300/v1452508512/asset/2000px-House_Silhouette.png',
-      style: 'width: 100%;')
+      cl_image_tag(house.placeholder_id, house_tender_options(string))
     else
-      cl_image_tag(house.display_picture.path, house_tender_options('private', string))
+      cl_image_tag(house.display_picture.path, house_tender_options(string))
     end
   end    
 

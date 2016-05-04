@@ -45,3 +45,22 @@
   <div class="side-view" id="profile" style="display: none;">
   </div>
 </div>
+
+<section class="intro padded bordered-section ">
+  <div class="container">
+    <div id="home-view" style="">
+      <div class="col-md-7 col-sm-8 extra-bottom-margin">
+        <h4 class="sub-title centered">Proposal <span class="badge"><%= @tenders.count %></span></h4>
+        <%= render 'request' %>
+      </div>
+      <div class="col-md-5 col-sm-4">
+        <%= render 'listing_house' %>
+      </div>
+    </div>
+    <div id="choose" class="side-view" style="display: none;">
+    </div>  
+    <div id="returns" class="side-view"  style="display: none;">
+      <%= link_to "Kembali Ke Portofolio", user_root_path, remote: true %>
+    </div>
+  </div>
+</section>

@@ -321,3 +321,33 @@ ul.project_files li a i {
   max-width: 45px;
 }
 
+/* theming */
+
+.alert-success {
+  color: #ffffff;
+  background-color: rgba(38, 185, 154, 0.88);
+  border-color: rgba(38, 185, 154, 0.88);
+}
+.alert-info {
+  color: #E9EDEF;
+  background-color: rgba(52, 152, 219, 0.88);
+  border-color: rgba(52, 152, 219, 0.88);
+}
+.alert-warning {
+  color: #E9EDEF;
+  background-color: rgba(243, 156, 18, 0.88);
+  border-color: rgba(243, 156, 18, 0.88);
+}
+.alert-danger, .alert-error {
+  color: #E9EDEF;
+  background-color: rgba(231, 76, 60, 0.88);
+  border-color: rgba(231, 76, 60, 0.88);
+}
+.alert-dark, .btn-dark {
+  color: #E9EDEF;
+  background-color: rgba(52, 73, 94, 0.88);
+  border-color: rgba(52, 73, 94, 0.88);
+}
+.btn-dark:hover {
+  color: #F7F7F7;
+}

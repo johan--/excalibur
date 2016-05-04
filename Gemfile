@@ -92,6 +92,7 @@ group :development do
   gem "awesome_print", require:"ap"
   gem "better_errors"
   gem "binding_of_caller"
+  gem "quiet_assets"
 end
 
 group :development, :test do
@@ -104,6 +105,8 @@ group :development, :test do
   gem 'figaro', '1.0.0'
   gem 'spring', '1.2.0'
   gem 'with_model'
+  gem "bullet"
+  gem "bundler-audit", require: false  
 end
 
 group :test, :development do

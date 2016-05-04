@@ -1,31 +1,45 @@
-<section class="widget card">
-  <div class="widget-body">
-      <div class="post-user mt-n-xs">
-          <span class="thumb pull-left mr">
-            <%= render_user_thumb(tender.starter, 'img-circle') %>
-          </span>
-          <h5 class="mb-xs mt-xs"><%= tender.starter.name %> </h5>
-          <p class="fs-mini text-muted"><time><%= time_ago_in_words(tender.updated_at) %> ago</time> 
-      </div>
-      <div class="widget-middle-overflow windget-padding-md clearfix bg-info white">
-          <h3 class="mt-lg mb-lg">Proposal <span class="fw-semi-bold">#<%= tender.ticker %></span></h3>
-          <ul class="tags text-white pull-right">
-              <li><a href="#"><%= tender.category %></a></li>
-              <li><a href="#">@<%= idr_concat(tender.price, 1000) %>rb/unit</a></li>
-          </ul>
-      </div>
-        <div class="progress tender-progress">
-          <%= render_progress_bar(tender.progress.to_i) %>
-        </div>
-  </div>
-  <footer class="bg-body-light">
-      <ul class="post-links">
-        <li><%= link_to "Lihat", tender_path(tender) %></li>
+
+<!-- Widget: user widget style 1 -->
+<div class="box box-widget widget-user capped-size card">
+  <!-- Add the bg color to the header using any of the bg-* classes -->
+  <div class="widget-user-header" style="background: url('http://lorempixel.com/image_output/city-q-c-603-446-3.jpg') center center;">
+    <h4 class="widget-user-username goleft"><span class="colored">#<%= tender.ticker %></h4>
+    <h5 class="widget-user-desc goleft"><span class="colored">by <%= tender.starter.name %></span></h5>
+      <ul class="tags white pull-right">
+        <li class="primary-background"><%= link_to "Lihat", tender_path(tender) %></li>
         <% if tender.access_granted?(current_user) %>
-          <li><%= link_to "Kelola", edit_tender_path(tender), class: 'coral' %></li>
+          <li class="coral-background"><%= link_to "Kelola", edit_tender_path(tender) %></li>
         <% else %>
-          <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> Danai</span></a></li>
+          <li class="coral-background"><%= link_to "Dukung", new_bid_tender_path(tender) %></a></li>
         <% end %>
-      </ul>
-  </footer>
-</section>
+      </ul>        
+  </div>
+  <div class="widget-user-image">
+    <%= render_user_thumb(tender.starter, 'img-circle') %>
+  </div>      
+  <div class="box-footer">
+    <div class="row">
+      <div class="col-xs-4 border-right no-padding">
+        <div class="description-block">
+          <h5 class="description-header">Kategori</h5>
+          <span class="description-text"><%= tender.category %></span>
+        </div><!-- /.description-block -->
+      </div><!-- /.col -->
+      <div class="col-xs-4 border-right no-padding">
+        <div class="description-block">
+          <h5 class="description-header">Harga</h5>
+          <span class="description-text"><%= idr_concat(tender.price, 1000) %>rb/unit</span>
+        </div><!-- /.description-block -->
+      </div><!-- /.col -->
+      <div class="col-xs-4 no-padding">
+        <div class="description-block">
+          <h5 class="description-header">Target</h5>
+          <span class="description-text"><%= idr_money(tender.target) %></span>
+        </div><!-- /.description-block -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div>
+  <div class="progress tender-progress">
+    <%= render_progress_bar(tender.progress.to_i) %>
+  </div>      
+</div><!-- /.widget-user -->

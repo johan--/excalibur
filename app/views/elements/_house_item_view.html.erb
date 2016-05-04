@@ -1,32 +1,44 @@
-<div class="wp-block-item property-list">
-  <div class="body">
-    <div class="wp-block-img">
-      <%= link_to house_path(house) do %>
-          <%= render_house_display(house, '') %>
-      <% end %>
-    </div>
-    <div class="wp-block-content">
-      <h5><%= house.address %>  <small><%= house.city %></small></h5>
-      <small class="lggrey">
-    	  Pendaftaran: <strong><%= house.form_step %></strong> <sup><strong>.</strong></sup> Status: <strong><%= house.state %></strong>
-      </small> <br>
-      <small>
-         <%= sale_label(house) %> <%= rent_label(house) %> <%= vacant_label(house) %>
-      </small><br>
-      <span class="pull-left">
-      </span>
-      <span class="pull-right coral">
-          <strong><%= idr_money(house.price.to_i) %></strong>
-      </span>
-    </div>
-  </div>
-  <footer class="bg-body-light">
-      <ul class="post-links">
-        <li><%= link_to "Lihat", '#' %></li>
+<p>Punya rumah pilihan sendiri? Silahkan daftarkan terlebih dahulu</p>
+<p><%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-md btn-inverse" %></p><br>
 
-          <li><%= link_to "Kelola", '#', class: 'coral' %></li>
+<div id="property-listings">
+<% houses.each do |house| %>
+  <div class="brdr bgc-fff box-shad btm-mrg-20 property-listing">
+    <div class="media">
+      <%= render_house_display_for_tender(house, 'col-xs-5 col-sm-4') %>
 
-          <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> Danai</span></a></li>
-      </ul>
-  </footer>  
+      <!-- <div class="clearfix visible-sm"></div> -->
+      <div class="col-xs-7 col-sm-8 media-outer-right">
+        <div class="media-body fnt-smaller">
+          <a href="#" target="_parent"></a>
+
+          <h4 class="media-heading">
+            <%= idr_money house.price %> 
+            <small class="pull-right">
+               <%= sale_label(house) %> <%= rent_label(house) %> <%= vacant_label(house) %>            
+            </small>
+          </h4>
+
+          <p><%= house.address %></p>
+          <ul class="list-inline mrg-0 clr-535353">
+            <li><%= house.lot_size %>m2</li>
+            <li style="list-style: none">|</li>
+            <li> <span class="hidden-xs hidden-sm"><%= house.bedrooms %> Kamar tidur</span> <i class="fa fa-bed visible-xs visible-sm"> <%= house.bedrooms %></i></li>
+            <li style="list-style: none">|</li>
+            <li><span class="hidden-xs hidden-sm"><%= house.bathrooms %> Kamar mandi</span><i class="fa fa-tint visible-xs visible-sm"> <%= house.bathrooms %></i></li>
+          </ul>
+
+          <p>
+            <span class="lggrey pull-left hidden-xs">
+              <small class="">
+                Pendaftaran: <strong><%= house.form_step %></strong> <sup><strong>.</strong></sup> Status: <strong><%= house.state %></strong>
+              </small>
+            </span>
+            <%= link_to "Pilih", new_house_tender_path(house), class: "btn btn-xs btn-primary pull-right" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Listing-->  
+<% end %>
 </div>

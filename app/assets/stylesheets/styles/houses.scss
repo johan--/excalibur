@@ -4,173 +4,58 @@
     letter-spacing: 0.1em; font-weight: 400;
     text-transform: uppercase;  
   }  
-  .primary-image {
-    border: 1px solid #e0eded;
-    padding: 5px;
-    .product-info {
-      padding-left: 15px;padding-right: 15px;
+
+}
+
+/*House list for tender selection*/
+#property-listings {
+  .list-inline>li { padding: 0 10px 0 0; }
+  .bgc-fff { background-color: #fff!important; }
+  .box-shad {
+      -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+      box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  }
+  .brdr { border: 1px solid #ededed; }
+
+  /* Font changes */
+  .fnt-smaller {font-size: .9em; }
+  .fnt-lighter { color: #bbb; }
+
+  /* Color  */
+  .clr-535353 { color: #535353; }
+  .property-listing {
+    .media img {
+      padding-left: 0px; padding-right: 0px; padding-top: 1.2em;
     }
+    .media-outer-right { padding-top: 15px;}    
   }
-  .thumbnail-images {
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 25px;
-    a {
-      display: table-cell;
-      width: 100px;
-      padding: 5px;
-      border: 1px solid #e0eded;
-      border-top: 0;
-      img {
-        width: 100%;
-      }      
-    }    
-  }
-  .product-info h3 {
-    font-weight: 500;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  .no-border {
-    border: 0 !important;
-  }  
-  .rating span.star {
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    float: left;
-    padding: 0 1px;
-    cursor: pointer;
-  }
-
-  p {
-    line-height: 30px;
-    margin-bottom: 10px;
-  }
-
-  ol, ul {
-    list-style: none;
-  }
-
-  .tabs-framed {
-    border: 1px solid #e0eded;
-  }
-
-  .tabs li a {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    padding: 12px 25px;
-    margin: 0 -1px;
-    border-bottom: 3px solid transparent;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .boxed {
-    background: #fff;
-    border: 1px solid #e0eded;
-    position: relative;
-  }
-
-  .tabs {
-    border-bottom: 1px solid #e0eded;
-  }
-
-  .tabs li {
-    float: left;
-    border-right: 1px solid #e0eded;
-    margin-bottom: -1px;
-  }
-
-  .tab-body {
-    padding: 15px;
-  }                
-
-  .house-item:hover {
-    opacity: 1;
-  }  
 }
 
-.wp-block {
-  /*margin: 0 0 15px 0;*/
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
-  position: relative;
-  cursor: default;
-  border-radius: 2px;
-  &.property.list {
-    border: 1px solid #e0eded;
-    .wp-block-content {
-      .description {
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e0eded;
-      }      
-      .content-title {
-        font-size: 20px;
-        color: #3498db;
-        margin-bottom: 5px;
+
+/**** MEDIA QUERIES ****/
+@media (max-width: 767px) {
+  #property-listings {
+    .property-listing {
+      padding: 5px!important;
+      a { margin: 0; }
+      .media-body { 
+        padding: 4px; 
+        h4 { font-size: 16px; }
+        p { font-size: 12px; }
+      }  
+      .media-outer-right {
+        padding-left: 5px; padding-right: 5px; padding-top: 0px;
       }
-      .price {
-        font-size: 22px;
-        color: #9cd70e;
-        font-weight: 600;
-      }
-      .period {
-        margin-left: 5px;
-        color: #999;
-      }
-      .capacity {
-        font-size: 16px;
-        color: #999;
-      }      
+    }
+    .list-inline>li {
+      padding: 0 4px 0 0; font-size: 14px; margin: 0;
     }    
-  }  
+  }
+}
+@media only screen and (min-width: 992px) {
+  #property-listings .property-listing img { max-width: 600px; }
 }
 
-.mb-15 {
-  margin-bottom: 15px;
-}
-
-.mt-15 {
-  margin-top: 15px;
-}
-
-.wp-block-footer {
-  &.style2 ul.aux-info {
-    display: table;
-    width: 100%;
-    border: 1px solid #e0eded;
-    li {
-      padding: 10px 10px;
-      font-size: 11px;
-      text-align: center;
-    }    
-  }  
-  ul.aux-info {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: block;
-    background: #fcfcfc;
-    border-top: 1px solid #e0eded;
-    li {
-      display: table-cell;
-      padding: 10px 15px;
-      vertical-align: middle;
-      border-right: 1px solid #e0eded;
-      i {
-        display: block;
-        font-size: 18px;
-        margin-right: 8px;
-        color: #333;        
-      }      
-    }    
-  }  
-}
 
 div.house-listing {
   border-radius: 0px;
@@ -407,4 +292,103 @@ div.house-listing {
       }
     }  
   }  
+}
+
+/*House show page header*/
+.bg-custom-lg {
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover; min-height: 500px;
+  .padding-md { padding: 2em !important; }
+  .bg-black-trans {
+    margin-top: 4em;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 2px;
+  }
+  .bg-info {
+    background-color: white; 
+  }
+}
+.border-default {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bdc3c7;
+}
+.section-xs {
+  padding: 1em 0;
+  .top-desc{
+    h3 { font-size: 1.5em; color: $brand-coral; } 
+    p { margin-bottom: 3px; }
+    .words{
+      font-size: 0.9em;
+    }
+  }
+  .bg-white { background-color: white; }
+}
+#house-photos{
+  .photo-box{ padding-left: 0px; padding-right: 0px;}
+  .blankslate {
+    background-color: white; 
+     border: 1px solid white; 
+     box-shadow: inset 0 0 10px white;
+  }
+}
+
+.tile_count {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.tile_count {
+
+  div:last-child {
+    border: 0;
+  }
+}
+.tile_stats_count {
+  border-left: 0px solid #333; padding: 0; padding-bottom: 10px; 
+  margin-bottom: 10px; border-bottom: 1px solid #333;
+  .left {
+    width: 15%;
+    float: left;
+    height: 65px;
+    /*border-left: 2px solid #ADB2B5;*/
+    margin-top: 10px;
+  }
+  .right {
+    padding-left: 10px;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .count_top {
+    color: $brand-dark;
+  }
+  .count_bottom {
+    color: $brand-grey;
+    i { width: 12px;  }
+  }  
+  .count {
+    font-size: 40px; color: $brand-dark;
+    line-height: 47px;
+    font-weight: 600;
+    small {
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 600;
+    }  
+  }
+}
+
+.center-xs {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
 }

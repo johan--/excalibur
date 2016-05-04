@@ -1,7 +1,6 @@
-<h4 class="lggrey sub-title centered">Rumah yang kamu daftarkan</h4>
 <% if current_user.has_houses? %>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
       <% @houses.each do |house| %>
         <%= render partial: "houses/house", locals: {house: house} %>
       <% end %>
@@ -16,9 +15,10 @@
 <% else %>
 <div class="card">
   <div class="blankslate">
-    <div class="spacious">
+    <div class="spacious less-space">
       <h5><%= "Belum ada rumah yang kamu daftarkan" %></h5>
       <h3><i class="ion ion-android-home"></i></h3>
+      <p><%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-lg btn-primary" %></p>
     </div>
   </div>
 </div>

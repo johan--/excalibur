@@ -1,30 +1,31 @@
-<section class="widget card">
-    <% unless @display_it %>
-        <div class="widget-controls">
-            <a href="#"><i class="fa fa-refresh"></i></a>
-            <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-        </div>
-    <% end %>
-    <div class="widget-body">
-        <div class="widget-middle-overflow windget-padding-md clearfix bg-danger text-white">
-            <h3 class="mt-lg mb-lg">#<%= bid.ticker %> - <span class="fw-semi-bold"><%= idr_money(bid.contribution) %></span></h3>
-            <ul class="tags text-white pull-right">
-                <li><a href="#"><%= bid.volume %> lembar</a></li>
-            </ul>
-        </div>
-        <p class="text-light fs-mini mt-sm">Lots of cool stuff is happening around you. Just calm down for a sec and listen. Colors, sounds,
-            thoughts, ideas. </p>
-    </div>
-    <footer class="bg-body-light">
-        <ul class="post-links">
-            <li><a href="#">1 hour</a></li>
-            <li>
-                <%= link_to bid.tender.ticker, tender_path(bid.tender) %>
+<div class="quantumCard">
+  <div class="quantumCardAccent"></div>
+
+  <div class="quantumCardContent">
+    <div class="row">
+      <div class="col-xs-9" style="padding-top: 10px;">
+        <h5>#<%= bid.ticker %></h5>
+        <h3><%= idr_money(bid.contribution) %></h3>
+        <p><%= bid.volume %> lembar for #<%= bid.tender.ticker %> </small></p>
+      </div>
+      <div class="col-xs-3">
+        <div class="social">
+          <ul>
+            <li style="width:33%;">
+              <%= link_to tender_path(bid.tender) do %>
+                <span class="fa fa-search-plus"></span>
+              <% end %>
             </li>
-            <li><%= link_to "Edit", edit_tender_path(bid.tender) %></li>
-            <li>
-                <%= link_to "Hapus", tender_bid_path(bid.tender, bid), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan tawaran', toggle: 'tooltip', placement: 'top', original_title: 'Hapus'} %>
+            <li style="width:34%;">
+              <%= link_to edit_tender_bid_path(bid.tender, bid) do %>
+                <span class="fa fa-pencil"></span>
+              <% end %>
             </li>
-        </ul>
-    </footer>
-</section>
+            <li style="width:34%;">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>          
+  </div>
+</div>

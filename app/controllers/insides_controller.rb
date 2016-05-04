@@ -8,11 +8,9 @@ class InsidesController < ApplicationController
   def home
     @title = "Beranda"
     @tenders = current_user.tenders.offering
-    @tender = @tenders.first
     @bids = current_user.bids
     @documents = current_user.documents
     @houses = current_user.houses.includes(:photo_files)
-    # @houses = House.includes(:photo_files).all
     @houses_count = @houses.count 
     @tender_count = @tenders.count
     @bids_count = @bids.count

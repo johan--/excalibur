@@ -50,6 +50,9 @@ class Bid < ActiveRecord::Base
     "bids.details->>'state' = :type", type: "success")  
   }
 
+  def to_partial_path
+    'trading/bids/bid'
+  end
 
   def bidder?(user)
     return true if self.bidder == user
