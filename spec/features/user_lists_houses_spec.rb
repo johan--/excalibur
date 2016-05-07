@@ -75,7 +75,7 @@ feature "UserListsHouses", :type => :feature do
 		click_button "Lanjutkan"
 		
 		click_link "Home"
-		click_link("Edit")
+		find('#house-edit').click
   	end
 
   	it { should_not have_content('Unggah Display Picture') }

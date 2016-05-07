@@ -13,7 +13,7 @@ feature "UserBidsATender", :type => :feature do
   end
   # after { page.driver.reset! }
 
-  describe "making a bid" do
+  context "making a bid" do
   	before(:each) do
       # click_link proposal.ticker
       within(:div, '#tender-bidding') do
@@ -21,13 +21,13 @@ feature "UserBidsATender", :type => :feature do
         click_button "Kirim"
       end
   	end
+    
 
     it "should display the right message" do
       expect(page).to have_content 'Tawaran berhasil diajukan'
     end
 
     it "should display the progress to be complete" do
-      # expect(page).to have_css '#progress-info', text: '100% Tercapai'
       expect(page).to have_content '100% Tercapai'
     end
 
@@ -42,10 +42,6 @@ feature "UserBidsATender", :type => :feature do
     # it "should change the shares left", :retry => 3, :retry_wait => 10 do
     #   expect(page).to have_css('#shares-left', text: 0)
     # end
-
-    
-    # it "should have the name of the bidder" do
-    #   expect(page).to have_css('.bidder-name', text: bidder.name)
-    # end
   end
+
 end

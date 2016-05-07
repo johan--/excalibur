@@ -6,7 +6,7 @@
               <%= embedded_svg('spark-10-zoom.svg', class: 'svg-white-icon') %> 
               <h5> Lihat</h5>
             <% end %>
-            <% if house.try(:access_granted?, current_user) %>
+            <% if current_user.present? && house.access_granted?(current_user) %>
                 <%= link_to edit_url_for_house(house) do %>
                   <%= embedded_svg('spark-10-pencil.svg', class: 'svg-white-icon') %> 
                   <h5> Edit</h5>

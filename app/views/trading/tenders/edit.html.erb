@@ -1,30 +1,22 @@
 
-
 <%= render 'tender_header' %>
 <section class="intro padded">
   <div class="container">
   	<div class="inner-skeleton">
-  	  <h2>Berkas Dokumen</h2>
+  	  <h2>Pengelolaan Proposal</h2>
   	  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
   	  	<%= render 'documents/doc_list' %>
   	  </div>
-  	</div>
-  </div>
-</section>
-<section class="intro padded">
-  <div class="container">
-  	<div class="inner-skeleton">
-  	  <h2>Profil</h2>
-  	  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 grey centered">
-  	  	<div class="spacious">
-	      <h4><%= "Belum ada laporan profil" %></h4>
-	      <small>Lakukan interview untuk meneruskan proses pengajuanmu</small>
-	      <h1><i class="ion ion-compose"></i></h1>
-	      <p>
-	        <%= link_to "Lakukan Interview", '#', class: "btn btn-primary", disabled: true %>
-	      </p>
-	    </div>
-  	  </div>
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 grey centered">
+        <div class="spacious">
+          <h4><%= "Belum ada laporan profil" %></h4>
+          <small>Lakukan interview untuk meneruskan proses pengajuanmu</small>
+          <h1><i class="ion ion-compose"></i></h1>
+          <p>
+            <%= link_to "Isi Profil", edit_user_path(@client), class: "btn btn-primary" %>
+          </p>
+        </div>
+      </div>      
   	</div>
   </div>
 </section>

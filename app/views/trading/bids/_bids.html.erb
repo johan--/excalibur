@@ -1,3 +1,7 @@
+<% if Rails.env.test? %>
+  <h3>Total Tawaran: <%= @tender.check_contribution %> </h3>
+  <h3># Tawaran: <%= @tender.bids.count %> </h3>
+<% end %>
 <ul class="document-listing" id="bid-list" style="padding-left: 0px;">
   <% if @bids.present? %>  
     <% @bids.each_with_index do |bid, index| %>
@@ -5,7 +9,7 @@
         <div class="row listing-container">
         <div class="col-md-4 left-detail">
           <div class="s-grid-inner">
-            <%= bid.price %><br>
+            <span id=""><%= idr_money(bid.contribution) %></span><br>
             <small><%= bid.volume %> lembar</small>
           </div>
         </div>
@@ -29,24 +33,21 @@
         </div>  
       </li>
     <% end %>
-    <% unless current_user == @client || @disable_bidding %>
-      <li class="centered grey">
-        <p>
-          <%= link_to "Ajukan Tawaran", new_tender_bid_path(@tender), class: "btn btn-primary" %>
-        </p>
-      </li>
-    <% end %>
   <% else %>
     <li class="centered grey">
       <h4><%= "Belum ada tawaran" %></h4>
       <small>Ajukan tawaran secara gratis</small>
       <h1><i class="ion ion-compose"></i></h1>
+      <p></p>
+    </li>
+  <% end %>
+  <% if @can_bid %>
+    <li class="centered grey">
       <p>
         <%= link_to "Ajukan Tawaran", new_tender_bid_path(@tender), class: "btn btn-primary" %>
       </p>
-
     </li>
-  <% end %>
+  <% end %>  
 </ul>
 
 <style type="text/css">

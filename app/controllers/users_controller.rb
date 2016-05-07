@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :inside_app
   before_action :set_user
-
+  
   def show
     @documents = @user.documents
     @groups = @documents.group_by { |doc| doc.category }

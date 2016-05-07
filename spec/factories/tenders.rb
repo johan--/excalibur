@@ -21,7 +21,7 @@ FactoryGirl.define do
       as_member
 
       after(:create) do |tender|
-        FactoryGirl.create(:bid, :nameless, :success, tender: tender, volume: 800)
+        FactoryGirl.create(:bid, tender: tender, volume: 800)
       end      
     end
 
@@ -56,6 +56,7 @@ FactoryGirl.define do
       after(:build) do |tender|
         asset = FactoryGirl.create(:complete_house)
         tender.tenderable = asset
+        tender.price = 300000
       end      
     end
 

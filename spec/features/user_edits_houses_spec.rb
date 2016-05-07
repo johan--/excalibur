@@ -11,7 +11,8 @@ feature "UserEditsHouses", :type => :feature do
 
   describe "editing complete house" do  	
     before do
-	    click_link("Edit")
+	    # click_link("Edit")
+      find('#house-edit').click
 	    fill_in "house_price", with: 250000000
 	    click_button "Simpan"
 	  end

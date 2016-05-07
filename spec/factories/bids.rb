@@ -4,7 +4,6 @@ FactoryGirl.define do
     association :tender, factory: :tender
     association :bidder, factory: :user
     volume 1000
-    message "lorem ipsum dolor casus molar"
 
     factory :bid_for_purchase_musharaka do
       for_purchase_musharaka

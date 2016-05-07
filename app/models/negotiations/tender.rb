@@ -60,7 +60,7 @@ class Tender < ActiveRecord::Base
   end
 
   def target
-    (self.price * self.volume)
+    (price * volume)
   end
 
   def fulfilled?

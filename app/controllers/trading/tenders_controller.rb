@@ -8,12 +8,12 @@ class Trading::TendersController < ApplicationController
 
   def show
     set_tender
-    @assessment = Comment.assessments.user_as_subject(@client).first
-    @comments = @tender.comments
-    @comment = Comment.new
-    @type = @tender.class.name
-    @commentable_id = @tender.id
-    @subject = "interaction"
+    # @assessment = Comment.assessments.user_as_subject(@client).first
+    # @comments = @tender.comments
+    # @comment = Comment.new
+    # @type = @tender.class.name
+    # @commentable_id = @tender.id
+    # @subject = "interaction"
   end
 
   def discuss
@@ -83,7 +83,6 @@ private
     @client = @tender.starter 
     @asset = @tender.tenderable
     @bids = @tender.bids
-    @disable_bidding = current_user.already_bid?(@tender)
   end
 
   def tender_params

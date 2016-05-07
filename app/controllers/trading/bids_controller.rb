@@ -8,9 +8,11 @@ class Trading::BidsController < ApplicationController
 
   def new
     @bid = @tender.bids.build
+    @volume = 10
   end
 
   def edit
+    @volume = @bid.volume
   end
 
   def create
@@ -26,7 +28,7 @@ class Trading::BidsController < ApplicationController
 
   def update
     if @bid.update(bid_params)
-      redirect_to @tender, notice: 'Tawaran berhasil dikoreksi'
+      redirect_to user_root_path, notice: 'Tawaran berhasil dikoreksi'
     else
       render :edit
     end
@@ -34,7 +36,7 @@ class Trading::BidsController < ApplicationController
 
   def destroy
     @bid.destroy
-    redirect_to @tender, notice: 'Tawaran berhasil ditarik'
+    redirect_to user_root_path, notice: 'Tawaran berhasil ditarik'
   end
 
   def finalize

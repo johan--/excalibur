@@ -9,22 +9,24 @@
     <div class="spacing"></div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <% unless current_user == @client %>
+        <% if current_user != @client  %>
           <div id="tender-bidding">
             <%= form_tag tender_bids_path(@tender), method: 'post', html: {role: "form"}, class: "col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" do %>
                <div class="input-group input-group-lg text-center">
                 <%= number_field_tag :volume, '', within: 10...800, step: 5, class: "form-control input-lg" %>
                 <span class="input-group-btn">
-                  <button class="btn btn-primary" >Kirim</button>
+                  <%= button_tag "Kirim", class: "btn btn-primary", disabled: @tender.progress.to_i == 100 %>
                 </span>
                </div>
             <% end %>
          </div>
          <div class="col-xs-12">
-            <p class="grey">
+            <p class="grey" id="status-text">
               <small class="centered">
-                <% if @disable_bidding %>
+                <% if current_user.already_bid?(@tender) %>
                   Kamu sudah mengajukan penawaran
+                <% elsif @tender.progress.to_i == 100 %>
+                  Target pesanan sudah tercapai
                 <% else %>
                   Ajukan penawaran dengan mengisi jumlah lembar saham yang ingin kamu pesan
                 <% end %>

@@ -1,12 +1,12 @@
-<div class="quantumCard">
+<div class="quantumCard bid-card">
   <div class="quantumCardAccent"></div>
 
   <div class="quantumCardContent">
     <div class="row">
       <div class="col-xs-9" style="padding-top: 10px;">
         <h5>#<%= bid.ticker %></h5>
-        <h3><%= idr_money(bid.contribution) %></h3>
-        <p><%= bid.volume %> lembar for #<%= bid.tender.ticker %> </small></p>
+        <h3 class="bid-value"><%= idr_money(bid.contribution) %></h3>
+        <p><span class="bid-volume"><%= bid.volume %></span> lembar for #<%= bid.tender.ticker %> </small></p>
       </div>
       <div class="col-xs-3">
         <div class="social">
@@ -17,7 +17,7 @@
               <% end %>
             </li>
             <li style="width:34%;">
-              <%= link_to edit_tender_bid_path(bid.tender, bid) do %>
+              <%= link_to edit_tender_bid_path(bid.tender, bid), remote: true do %>
                 <span class="fa fa-pencil"></span>
               <% end %>
             </li>

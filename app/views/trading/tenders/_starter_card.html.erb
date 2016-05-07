@@ -1,8 +1,8 @@
-<div class="tender-starter-widget">
+<div class="tender-starter-widget" id="client-section">
   <div class="widget-head-color-box">
       <div class="m-b-md centered">
-        <h2 class="font-bold no-margins secondary">
-            <%= user.name.titleize %>
+        <h2 class="font-bold no-margins secondary" id="client-name">
+            <%= user.name.titleize %> <%= current_user.name if Rails.env.test? %>
         </h2>
       </div>
       <%= render_user_thumb(user, 'img-circle circle-border m-b-md img-center') %>

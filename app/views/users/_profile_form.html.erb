@@ -1,18 +1,34 @@
-<%= simple_form_for(user, html: { class: 'form-horizontal' },
-        wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for(@user, html: { class: 'form-vertical' },
+        wrapper: :vertical_form) do |f| %>
   <%= f.error_notification %>
 
-    <%= f.input :address, as: :text, input_html: { rows: 3 }, label: "Alamat"  %>    
-	  <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: user.last_education, label: "Pendidikan Terakhir", required: true %>
-	  <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: user.marital_status, label: "Status Pernikahan", required: true %>
-    <%= f.input :number_dependents, label: "Jumlah Individu Tanggungan", required: true %>    
-    <%= f.input :occupation, label: "Pekerjaan", required: true %>
-    <%= f.input :work_experience, as: :text, input_html: { rows: 5 }, label: "Pengalaman Kerja", placeholder: "pisahkan tiap pengalaman dengan ';' (koma titik)" %>    
-    <%= f.input :monthly_income, label: "Penghasilan Bulanan", required: false %>
-    <%= f.input :monthly_expense, label: "Pengeluaran Bulanan", required: false %>    
-    <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Kamu"  %>    
-  
-
+  <%= f.input :address, as: :text, input_html: { rows: 3 }, label: "Alamat"  %>
+  <div class="row">
+    <div class="col-xs-6">  
+      <%= f.input :last_education, collection: last_education_options, prompt: "Pilih", selected: @user.last_education, label: "Pendidikan Terakhir", required: true %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :marital_status, collection: marital_status_options, prompt: "Pilih", selected: @user.marital_status, label: "Status Pernikahan", required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :number_dependents, label: "Jumlah Tanggungan", required: true %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :occupation, label: "Pekerjaan", required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :monthly_income, label: "Penghasilan Bulanan", required: false %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.input :monthly_expense, label: "Pengeluaran Bulanan", required: false %>
+    </div>
+  </div>
+  <%= f.input :work_experience, as: :text, input_html: { rows: 5 }, label: "Pengalaman Kerja", placeholder: "pisahkan tiap pengalaman dengan ';' (koma titik)" %>    
+  <%= f.input :about, as: :text, input_html: { rows: 5 }, label: "Sekilas Tentang Kamu"  %>    
   
   	<%= f.button :submit, "Simpan", class: "btn btn-primary" %>
   
