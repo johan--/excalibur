@@ -14,8 +14,6 @@ class Bid < ActiveRecord::Base
   has_one    :invoice, as: :invoiceable
   delegate :paid?, :payments, to: :invoice, prefix: true
   monetize :price_sens
-  groupify :group_member
-  groupify :named_group_member  
 
   serialize :details, HashSerializer
   store_accessor :details, 

@@ -44,13 +44,42 @@ module UsersHelper
 	  	render_user_display(user, string)
 	  end
 	end
+
 	# Failed, undefined method each for String
 	# def user_career(user)
-	# 	unless user.work_experience.nil? || user.work_experience == ''
-	# 		user.work_experience.each do |exp|
-	# 			content_tag(:span, exp, class: "tags")
-	# 		end
+	#   # if user.work_experience.nil? || user.work_experience == ''
+	#   # 	content_tag(:p, "belum diisi") 
+	#   # else
+	#   	# user.work_experience.split(";").each{|split| "<p>#{split}</p>" }.join("\n")
+	# 	# output = ''
+	# 	user.work_experience.split(";").each do |w|
+	# 	  return content_tag(:p, w)
 	# 	end
+	# 	# content_tag(:p, output) 
+	#   # end
 	# end
 
+	def user_education(user)
+	  education = if user.last_education.nil? then 'belum diisi' else user.last_education end
+	  content_tag(:p, education, id: 'user-education')
+	end
+
+	def user_occupation(user)
+	  occupation = if user.occupation.nil? then 'belum diisi' else user.occupation end
+	  content_tag(:p, occupation, id: 'user-occupation')
+	end
+
+	def user_family(user)
+	  if user.marital_status.nil?
+	  	text = 'belum diisi'
+	  else
+		text = "#{user.marital_status} dan memiliki #{user.number_dependents} individu sebagai tanggungan"
+	  end
+	  content_tag(:p, text, id: 'user-family')
+	end
+
+	def user_bio(user)
+	  bio = if user.about.nil? then 'belum diisi' else user.about end
+	  content_tag(:p, bio, id: 'user-bio')
+	end	
 end

@@ -5,7 +5,6 @@ FactoryGirl.define do
     association :starter, factory: :user
     annum 8
     seed_capital 20
-    draft "no"
 
     factory :fresh_house_purchase_musharaka do
       house_purchase

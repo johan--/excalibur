@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "UserBidsATender", :type => :feature do
+feature "UserBidsTenders", :type => :feature do
   subject { page }
   let!(:bidder) { FactoryGirl.create(:user) } 
   let!(:user) { FactoryGirl.create(:user) }

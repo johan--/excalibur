@@ -19,4 +19,17 @@ feature "UserManagesTenders", :type => :feature do
 
   	it { should have_content('Proposal berhasil diperbarui') }
   end
+
+  describe "via tender show page" do
+    before { click_link "Kelola Proposal", match: :first }
+
+    context "destroying proposal" do
+      before do 
+        click_link "Hapus Proposal"
+      end
+
+      it { should have_content('Proposal berhasil dihapus') }
+    end
+  end
+
 end

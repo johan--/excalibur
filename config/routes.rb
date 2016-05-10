@@ -3,7 +3,6 @@ require 'subdomain'
 
 Fustal::Application.routes.draw do
   wiki_root '/wiki'
-  # apipie
 
   mount SubscriberPreview => 'subscriber_view' if Rails.env.development?
   mount Attachinary::Engine => "/attachinary"
@@ -48,7 +47,6 @@ Fustal::Application.routes.draw do
     resources :tenders, only: [:new, :create], controller: 'trading/tenders'
   end
   resources :comments
-  # resources :groups
   # resources :invoices do
   #   resources :payments
   # end
@@ -57,9 +55,7 @@ Fustal::Application.routes.draw do
   root "pages#landing"
   
   get "home", to: "insides#home", as: :user_root
-  # get "bursa", to: "insides#marketplace", as: :marketplace
   get "profil", to: "insides#profile", as: :profile
-  get "portofolio", to: "insides#portofolio", as: :portofolio
   get "pilih", to: "insides#choose", as: :choose
   post "/emailconfirmation", to: "insides#email", as: "email_confirmation"
   post "/subscribe", to: "insides#subscribe", as: "subscribe"
@@ -112,17 +108,11 @@ Fustal::Application.routes.draw do
   post '/vanity/add_participant'
   get '/vanity/image'
 
+  scope module: 'trading' do
+    resources :tenders, path: '' do
+      resources :bids
+    end
+  end
+
   get "/*id" => 'pages#show', format: false
-  
-  # namespace :api,  defaults: { format: :json }  do  
-  #   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-  #     resources :users, only: [:index, :show, :create, :update]
-  #     resources :sessions, only: [:create, :destroy]
-  #     resources :relationships, only: [:index, :show, :create, :destroy]
-  #     resources :businesses, only: [:index, :show, :create, :update, :destroy]
-  #     resources :tenders, only: [:index, :show, :create, :update, :destroy]
-  #     resources :bids, only: [:index, :show, :create, :update, :destroy]
-  #     resources :rosters, only: [:show, :create, :update, :destroy]
-  #   end
-  # end
 end

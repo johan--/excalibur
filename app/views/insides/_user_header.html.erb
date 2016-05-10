@@ -1,0 +1,46 @@
+<section class="intro bordered-section white-background top-section">
+  <div class="container" id="home-cover">
+    <div class="prose extra-bottom-margin centered">
+      <% if defined?(profile) %>
+
+        <h1 class="fh5co-lead">Profil</h1>
+        <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
+        <h4><%= current_user.name.titleize %></h4>
+
+        <div class="spacing"></div>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="p-1x">
+                <span class="headline"><strong><%= @tenders_count %></strong></span>
+                <p>Proposal</p>
+              </div>
+            </div><!-- /.cols -->
+            <div class="col-xs-4">
+              <div class="p-1x">
+                <span class="headline"><strong><%= @documents.count %></strong></span>
+                <p>Berkas</p>
+              </div>
+            </div><!-- /.cols -->
+            <div class="col-xs-4">
+              <div class="p-1x">
+                <span class="headline"><strong>30</strong></span>
+                <p>Dukungan</p>
+              </div>
+            </div><!-- /.cols -->
+          </div><!-- /.row -->
+        </div>
+
+      <% else %>
+
+        <h2 class="fh5co-lead">Hai, <%= current_user.name %>!</h2>
+        <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
+        <h5 class="sub-title centered">
+          <%= render_user_auth_choice(current_user) %>
+        </h5>  
+
+      <% end %> 
+    </div>
+    <div class="spacing"></div>
+  </div>
+</section>

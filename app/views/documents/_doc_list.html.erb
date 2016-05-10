@@ -1,4 +1,8 @@
 <ul class="document-listing" style="padding-left: 0px;">
+  <li class="centered grey">
+    <h4><%= "Berkas Pengajuan" %></h4>
+    <small>Unggah dokumen untuk meneruskan proses pengajuanmu</small>
+  </li> 
   <% if @documents.present? %>  
     <% @documents.each_with_index do |doc, index| %>
       <li class="">
@@ -28,18 +32,15 @@
     <% end %>
     <li class="centered grey">
       <p>
-        <%= link_to "Tambah Dokumen", new_document_path, class: "btn btn-primary" %>
+        <%= link_to "Tambah Dokumen", edit_user_path(current_user, upload_document: true), class: "btn btn-primary" %>
       </p>
     </li>    
   <% else %>
+  <% end %>
     <li class="centered grey">
-      <h4><%= "Belum ada dokumen" %></h4>
-      <small>Unggah dokumen untuk meneruskan proses pengajuanmu</small>
       <h1><i class="ion ion-compose"></i></h1>
       <p>
-        <%= link_to "Unggah Dokumen", new_document_path, class: "btn btn-primary" %>
+        <%= link_to "Unggah Berkas", edit_user_path(current_user, upload_document: true), class: "btn btn-primary" %>
       </p>
-
-    </li>
-  <% end %>
+    </li>  
 </ul>

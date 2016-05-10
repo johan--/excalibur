@@ -15,7 +15,7 @@ class Document < ActiveRecord::Base
   # Pagination
   paginates_per 30
 
-  def self.categories
+  cattr_accessor :categories do
     %w(identitas penghasilan pengeluaran kepemilikan lain-lain)
   end
 
@@ -52,6 +52,7 @@ class Document < ActiveRecord::Base
     #   end
     # end
   end
+
 
 private
   def slug_candidates

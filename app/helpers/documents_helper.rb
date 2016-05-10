@@ -2,7 +2,7 @@ module DocumentsHelper
 
 
 	def document_checklist(doc)
-		if current_user.has_documents?(doc)
+		if doc.check_if_uploaded?
 			content_tag(:span, "v", class: "badge badge-success", 
 				:"data-toggle" => "tooltip", :"data-placement" => "left",
 				:"title" => "sudah")

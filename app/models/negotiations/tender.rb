@@ -20,9 +20,6 @@ class Tender < ActiveRecord::Base
   has_many :bids
   has_many :tender_transitions
   has_many :comments, as: :commentable
-
-  groupify :group_member
-  groupify :named_group_member
   
   attr_accessor :asset_id, :asset
 

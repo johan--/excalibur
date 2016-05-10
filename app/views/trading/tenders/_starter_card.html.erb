@@ -2,7 +2,7 @@
   <div class="widget-head-color-box">
       <div class="m-b-md centered">
         <h2 class="font-bold no-margins secondary" id="client-name">
-            <%= user.name.titleize %> <%= current_user.name if Rails.env.test? %>
+          <%= link_to user.name.titleize, user_path(user) %>
         </h2>
       </div>
       <%= render_user_thumb(user, 'img-circle circle-border m-b-md img-center') %>
@@ -11,11 +11,10 @@
         <span><%= user.tenders.count %> proposal dibuat</span>
       </div>
   </div>
-  <div class="widget-text-box">
-    <p class="grey centered">Belum ada hasil verifikasi</p>
-<!--     <div class="text-right">
-      <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>
-      <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-    </div> -->
+  <div class="spacing"></div>
+  <div class="widget-text-box centered">
+    <strong><%= user_occupation user %></strong>
+    <%= user_bio user %>
+    <p class="strong"><%= link_to "Lihat Profil", user_path(user) %></p>
   </div>
 </div>  

@@ -8,23 +8,15 @@ class DocumentsController < ApplicationController
 
   def new
   	@document = Document.new
-    # ahoy.track "Attempting Document Upload", 
-    #   title: "#{current_user.name}", 
-    #   category: "Document", important: "Client"
   end
 
   def create
-  	@document = Document.new(document_params)
-  	@document.owner = current_user
+  	@document = current_user.documents.build(document_params)
 
   	if @document.save
-      ahoy.track "Document Created", 
-        title: "#{@document.owner.name} - #{@document.doc_type}", 
-        category: "Document", important: "Client"
 	    redirect_to user_root_path
 	    flash[:notice] = 'Dokumen berhasil disimpan'
 	  else
-      ahoy.track "FAIL Document Created", title: "#{@document.owner.name}: #{@document.doc_type} |Client|", category: "Document"
 		  render :new
 	  end
   end

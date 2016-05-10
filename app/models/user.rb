@@ -31,10 +31,6 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :comments, as: :commentable
-  groupify :group_member
-  groupify :named_group_member
-  acts_as_group_member
-  acts_as_named_group_member
   has_many :tenders, as: :starter
   has_many :bids, as: :bidder
   has_many :stocks, as: :holder

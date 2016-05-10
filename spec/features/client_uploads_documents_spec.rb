@@ -1,35 +1,34 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# feature "ClientUploadsDocuments", :type => :feature do
-#   # subject { page }
-#   # let!(:consumer) { FactoryGirl.create(:user) }
+feature "ClientUploadsDocuments", :type => :feature do
+  let!(:client) { FactoryGirl.create(:user) }
+  let!(:proposal) { FactoryGirl.create(:fresh_house_purchase_musharaka, 
+                                        starter: client) }  
+  subject { page }
 
-#   # before { sign_in consumer }
+  before { sign_in client }
 
-#   # describe "in the home page" do
-#   # 	it { should have_link('Unggah Berkas', href: new_document_path) }
-#   # end
+  describe "uploading file", js: true do
+  	before do 
+  	  click_link "Kelola"
+  	  click_link('Pilih File') 
+      click_link("", href: '#identity')
+  	  # fill_in "document_name", with: "KTP Galih"
+  	  attach_file('file', file_upload_fixture)
+  	  select "KTP", from: "document_doc_type"
+  	  click_button "Simpan"
+  	end
 
-#   # describe "uploading file", js: true do
-#   # 	before do 
-#   # 		click_link('Unggah Berkas') 
-#   #     click_link("", href: '#identity')
-#   # 		# fill_in "document_name", with: "KTP Galih"
-#   # 		attach_file('file', file_upload_fixture)
-#   # 		select "KTP", from: "document_doc_type"
-#   # 		click_button "Simpan"
-#   # 	end
+	  it { should have_content("Dokumen berhasil disimpan") }
 
-# 	 #  it { should have_content("Dokumen berhasil disimpan") }
-
-#   #   describe "looking into the profile page" do
-#   #     before do
-#   #       click_link "Lihat"
-#   #       click_link("", href: '#portlet_tab2')
-#   #     end
+    describe "looking into the profile page" do
+      before do
+        click_link "Lihat"
+        click_link("", href: '#portlet_tab2')
+      end
       
-#   #     it { should have_content("KTP #{consumer.name}") }
-#   #   end
-#   # end
+      it { should have_content("KTP #{client.name}") }
+    end
+  end
 
-# end
+end

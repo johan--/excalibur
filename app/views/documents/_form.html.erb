@@ -1,29 +1,6 @@
-<div class="col-sm-4">
-  <% if defined?(types) %>
-  <div class="" style="max-height: 300px;overflow: auto;">
-    <ul class="list-group checked-list-box hidden-xs">
-      <li class="list-group-item">
-        <strong>Daftar Jenis Dokumen</strong>
-      </li>
-      <% types.each do |doc| %>
-        <li class="list-group-item">
-          <small><%= doc %></small>  <%= document_checklist(doc) %>
-        </li>
-      <% end %>
-    </ul>
-    <div class="visible-xs">
-      <% types.each do |doc| %>
-        <span class="label label-primary" style="margin-right: 5px;">
-          <%= doc %>  <%= document_checklist(doc) %>
-        </span>
-      <% end %>
-    </div>    
-  </div>
-  <% end %>
-</div>
-<div class="col-sm-8">
+
   <div id="direct_upload">
-    <h3>Unggah Bukti <%= category.titleize %></h3>
+    <h4>Unggah Bukti <%= category.titleize %></h4>
     <p>Format yang diterima adalah .jpg, .png, dan .pdf. Bisa dengan mengklik tombol 'Unggah' atau dengan drag dan drop ke dalam area bergaris</p>
     <%= form_for(@document) do |f| %>
       <% if defined?(edit) && edit %>
@@ -38,7 +15,7 @@
         <%= f.label :image_id, "Dokumen:" %>
         <div class="form_controls">
           <div class="upload_button_holder">
-            <%= link_to("Unggah", "#", :class => "upload_button") %>
+            <%= link_to("Pilih File", "#", :class => "upload_button") %>
             <%= f.cl_image_upload :image_id, upload_preset: "ftisnjlh", :return_delete_token=>true, class: "cloudinary-fileupload" %>
           </div>
           <span class="status"></span>
@@ -56,9 +33,10 @@
           <div class="preview"></div>
         </div>
       </div>
+      <div class="spacing"></div>
       <div class="form_line">
         <div class="form_controls">
-          <%= f.submit "Simpan", class: "btn btn-outlined btn-theme" %>
+          <%= f.submit "Simpan", class: "btn btn-success btn-md" %>
           <% if @error %><span class="error"><%= @error %></span><% end %>
         </div>
       </div>
@@ -67,7 +45,7 @@
       <%= f.hidden_field :category, value: category, readonly: true, required: true %>
     <% end %>
   </div>
-</div>
+
 
 
 <div id="info"></div>

@@ -67,22 +67,6 @@ RSpec.describe Tender, :type => :model do
 	  end	
   end
 
- #  describe "trading for musharaka share purchase" do
-	# before { @tender = FactoryGirl.build(:musharaka_share_sale, 
- #  	  								starter: user) }
-	# subject { @tender }	
-
-	# it { should be_valid }
-
-	# describe "after save" do
-	#   before(:each) { @tender.save }
-
-	#   it "has the tenderable" do
-	#     expect(@tender.tenderable).to_not eq nil
-	#   end
-	# end	
- #  end
-
 
   # describe "scoping tender" do
   # 	let!(:tender_1) { FactoryGirl.create(:house_purchase_murabaha_tender) }

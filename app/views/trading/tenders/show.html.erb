@@ -1,7 +1,18 @@
 <% meta title: "Proposal #{@tender.ticker}" %>
 
 <%= render 'tender_header' %>
-
+<section class="intro action-section ">
+  <div class="container">
+          
+    <div class="col-xs-6 col-sm-4 centered">
+      <%= link_to "Lihat Objek Syirkah", house_path(@asset), class: 'btn btn-xs btn-default' %>
+    </div><!-- /.cols -->
+    <div class="col-xs-6 col-sm-4 col-sm-offset-4 centered">
+      <%= link_to "Share", house_path(@asset), class: 'btn btn-xs btn-default' %>
+    </div><!-- /.cols -->
+      
+  </div>
+</section>
 <div class="white-background">
 <section class="intro padded bordered-section " id="asset-section">
   <div class="container">
@@ -21,7 +32,7 @@
           <%= render partial: 'houses/house_display', locals: {house: @asset} %>
         </div>
         <div class="col-xs-12">
-          <%= link_to "Lihat Properti", house_path(@asset), class: 'btn btn-md btn-default' %>
+          
         </div>
       </div>
     </div>

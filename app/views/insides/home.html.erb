@@ -1,17 +1,6 @@
 <% meta title: "Home" %>
 
-<section class="intro padded bordered-section white-background top-section">
-  <div class="container" id="home-cover">
-    <div class="prose extra-bottom-margin centered">
-      <h2 class="fh5co-lead">Hai, <%= current_user.name %>!</h2>
-      <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
-      <h5 class="sub-title centered">
-        <%= render_user_auth_choice(current_user) %>
-      </h5>      
-    </div>
-    <div class="spacing"></div>
-  </div>
-</section>
+<%= render 'insides/user_header' %>
 <div class="white-background">
   <div class="col-md-12 hidden-sm hidden-xs">
     <div class="spacing"></div>

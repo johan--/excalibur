@@ -18,13 +18,19 @@ feature "UserHandlesProfile", :type => :feature do
       fill_in "user_occupation", with: "Karyawan"
       fill_in "user_monthly_income", with: 1500000
       fill_in "user_monthly_expense", with: 1500000
-      select "D3/Sarjana", :from => 'user_last_education'
+      select "D3", :from => 'user_last_education'
   	  select "Belum Menikah", :from => 'user_marital_status'
-      fill_in "user_work_experience", with: "Lorem Ipsum Dolor Casuss"
+      fill_in "user_work_experience", with: "Lorem Ipsum; Dolor Casuss; Molar Molor"
       fill_in "user_about", with: "Lorem Ipsum Dolor Casuss"
   	  click_button "Simpan"
   	end
 
   	it { should have_content("Profil berhasil diperbaharui") }
+    it { is_expected.to have_selector('#user-occupation', text: "Karyawan") }
+    it { is_expected.to have_selector('#user-family', text: "Belum menikah dan memiliki 5 individu sebagai tanggungan") }
+    it { is_expected.to have_selector('#user-education', text: "D3") }
+    it { should have_content("blablablabla") }
   end
+
+
 end

@@ -37,7 +37,7 @@ module FormOptionsHelper
 	end
 
 	def last_education_options
-		[ "Di bawah SMP", "SMA", "D3/Sarjana", "S2", "Doktoral dan seterusnya" ]
+		[ "Di bawah SMP", "SMA", "D3", "S1", "S2", "Doktoral dan seterusnya" ]
 	end
 
 	def marital_status_options
