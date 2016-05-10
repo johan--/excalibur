@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "ClientUploadsDocuments", :type => :feature do
+feature "UserUploadsDocuments", :type => :feature do
   let!(:client) { FactoryGirl.create(:user) }
   let!(:proposal) { FactoryGirl.create(:fresh_house_purchase_musharaka, 
                                         starter: client) }  

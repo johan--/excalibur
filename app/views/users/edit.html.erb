@@ -36,7 +36,25 @@
 	    </div>
 	  </div>
 	</section>
-
+	<section class="intro padded">
+	  <div class="container">
+	    <div class="inner-skeleton centered">
+	      <% if @documents.present? %>
+	        <% @documents.each do |document| %>
+	          <div class="col-xs-6 col-sm-4">
+	            <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
+	          </div>
+	        <% end %>
+	      <% else %>
+	        <h5 class="centered">Belum ada Dokumen</h5>
+	      <% end %>
+		  <p><strong>
+		  		<%= link_to "Kembali ke Profil", user_path(current_user) %> |
+		  		<%= link_to "Kembali ke Beranda", user_root_path %>
+		  	</strong></p>
+		  </div>
+		</div>
+	</section>
 <% else %>
 
   <section class="intro padded no-vertical-padding bordered-section" style="margin-bottom: -30px;">
@@ -55,19 +73,3 @@
 	</section>
 
 <% end %>
-
-<section class="intro padded">
-  <div class="container">
-    <div class="inner-skeleton centered">
-        <% documents.each do |document| %>
-          <div class="col-xs-6 col-sm-4">
-            <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
-          </div>
-        <% end %>    
-	  	<p><strong>
-	  		<%= link_to "Kembali ke Profil", user_path(current_user) %> |
-	  		<%= link_to "Kembali ke Beranda", user_root_path %>
-	  	</strong></p>
-	  </div>
-	</div>
-</section>

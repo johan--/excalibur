@@ -7,15 +7,19 @@ require 'rspec/retry'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
-Capybara.server do |app, port|
-  require 'rack/handler/thin'
-  Rack::Handler::Thin.run(app, :Port => port)
-end
-options = { :js_errors => false, :timeout => 1000 }
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, options)
-end
+
+# Capybara.server do |app, port|
+#   require 'rack/handler/thin'
+#   Rack::Handler::Thin.run(app, :Port => port)
+# end
+# options = { :js_errors => false, :timeout => 1000 }
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(app, options)
+# end
+# Capybara.register_driver :poltergeist_debug do |app|
+#   Capybara::Poltergeist::Driver.new(app, :inspector => true)
+# end
+
 require 'support/omniauth_macros'
 require 'support/features_helpers'
 require 'support/requests_helpers'
@@ -50,6 +54,17 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  config.include Capybara::DSL  
+  Capybara.javascript_driver = :poltergeist
+  Capybara.always_include_port = true
+  Capybara.default_host = "http://localhost:57456"
+  
+  options = { :js_errors => false, :timeout => 1000 }
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, options)
+  end  
+   #fixes issues with capybara not detecting db changes made during tests
+   
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

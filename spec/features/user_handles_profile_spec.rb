@@ -27,9 +27,9 @@ feature "UserHandlesProfile", :type => :feature do
 
   	it { should have_content("Profil berhasil diperbaharui") }
     it { is_expected.to have_selector('#user-occupation', text: "Karyawan") }
-    it { is_expected.to have_selector('#user-family', text: "Belum menikah dan memiliki 5 individu sebagai tanggungan") }
+    it { is_expected.to have_selector('#user-family', text: "Belum Menikah dan memiliki 5 individu sebagai tanggungan") }
     it { is_expected.to have_selector('#user-education', text: "D3") }
-    it { should have_content("blablablabla") }
+    # it { should have_content("blablablabla") }
   end
 
 

@@ -8,19 +8,19 @@
       <div class="spacious less-space">
         <h4><%= "Ingin mengajukan pendanaan?" %></h4>
         <h1><i class="ion ion-compose"></i></h1>
-          <% if current_user.has_houses? %>
-            <p><small>Pilih rumah yang akan kamu ajukan untuk didanai</small></p>
-            <p><%= link_to "Pilih Rumah", choose_path, remote: true, class: "btn btn-lg btn-primary" %></p>
-          <% else %>
-            <p><small>Daftarkan rumah yang kamu inginkan terlebih dahulu</small></p>
-            <p><%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-lg btn-primary" %></p>
-          <% end %>
+        <% if current_user.has_houses? %>
+          <p><small>Pilih rumah yang akan kamu ajukan untuk didanai</small></p>
+          <p><%= link_to "Pilih Rumah", choose_path, remote: true, class: "btn btn-lg btn-primary" %></p>
+        <% else %>
+          <p><small>Daftarkan rumah yang kamu inginkan terlebih dahulu</small></p>
+          <p><%= link_to "Daftarkan Rumah", houses_path(build: 'true'), method: :post, class: "btn btn-lg btn-primary" %></p>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 <div id="choose" class="side-view" style="display: none;">
 </div>  
-<div id="returns" class="side-view" style="display: none;">
+<div id="returns" class="side-view" style="display: none; margin-top: 30px;">
   <%= link_to "Kembali", user_root_path, remote: true %>
 </div>
