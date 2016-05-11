@@ -68,14 +68,14 @@
                   <div class="row listing-container">
                   <div class="col-md-4 left-detail">
                     <div class="s-grid-inner">
-                      <span id=""><%= document.category %></span>
+                      <span class="category"><%= document.category %></span>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="s-grid-outer">
                       <div class="s-grid-inner">
                         <div class="col-xs-8" style="padding-left: 0px;">
-                          <%= document.doc_type %>
+                          <span class="doc_type"><%= document.doc_type %></span>
                           <p class="listing-data">Last modified was <%= time_ago_in_words(document.updated_at) %> ago</p>
                         </div>
                         <div class="col-xs-4 listing-actions float-right">

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def edit
     @documents = current_user.documents
-    @document = current_user.documents.build
+    @document = Document.new
   end
 
   def update

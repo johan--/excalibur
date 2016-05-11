@@ -1,57 +1,78 @@
+<% meta title: "Unggah Berkas" %>
 
-  <div id="direct_upload">
-    <h4>Unggah Bukti <%= category.titleize %></h4>
-    <p>Format yang diterima adalah .jpg, .png, dan .pdf. Bisa dengan mengklik tombol 'Unggah' atau dengan drag dan drop ke dalam area bergaris</p>
-    <%= form_for(@document) do |f| %>
-      <% if defined?(edit) && edit %>
+<div id="direct_upload">
+  <p>Format yang diterima adalah .jpg, .png, dan .pdf. Bisa dengan mengklik tombol 'Pilih File' atau dengan drag dan drop ke dalam area bergaris</p>
+  <%= form_for(@document) do |f| %>
+    <% if defined?(edit) && edit %>
       <div class="form_line">
-        <%= f.label :image_id, "Dokumen:" %>
+        <%= f.label :image_id, "Berkas" %>
         <div class="form_controls">
           <%= render partial: "documents/document", locals: { document: @document, thumbnail: true } %>
         </div>
       </div>      
-      <% else %>
-      <div class="form_line">
-        <%= f.label :image_id, "Dokumen:" %>
+    <% else %>
+      <div class="form_line centered" style="margin-top: 35px;">
+        <%= f.label :image_id, "Berkas" %>
         <div class="form_controls">
           <div class="upload_button_holder">
-            <%= link_to("Pilih File", "#", :class => "upload_button") %>
+            <%= link_to("Pilih File", "#", :class => "upload_button btn-lg") %>
             <%= f.cl_image_upload :image_id, upload_preset: "ftisnjlh", :return_delete_token=>true, class: "cloudinary-fileupload" %>
           </div>
           <span class="status"></span>
         </div>
       </div>
-      <% end %>
-      <div class="form_line">
-        <%= f.label :doc_type, "Jenis Dokumen:" %>
-        <div class="form_controls">
-          <%= f.select :doc_type, types, selected: @document.doc_type, prompt: "Pilih", required: true %>
-        </div>
-      </div>    
-      <div class="form_line">
-        <div class="form_controls">
-          <div class="preview"></div>
-        </div>
-      </div>
-      <div class="spacing"></div>
-      <div class="form_line">
-        <div class="form_controls">
-          <%= f.submit "Simpan", class: "btn btn-success btn-md" %>
-          <% if @error %><span class="error"><%= @error %></span><% end %>
-        </div>
-      </div>
-      <%= f.hidden_field :bytes %>
-      <%= f.hidden_field :public_id %>
-      <%= f.hidden_field :category, value: category, readonly: true, required: true %>
     <% end %>
-  </div>
 
+    <div class="tabbable-panel">
+      <div class="tabbable-line">
+        <div class="tab-content centered" style="margin-top: 35px;">
+          <div class="tab-pane active" id="identity">
+            <div class="form_line centered">
+              <p><%= f.label :doc_type, "Jenis Berkas" %></p>
+              <p>
+                <%= f.select :doc_type, grouped_options_for_select(grouped_docs), prompt: "Pilih", required: true %>
+              </p>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form_line">
+      <div class="form_controls">
+        <div class="preview"></div>
+      </div>
+    </div>
+    <div class="spacing"></div>
+    <div class="form_line centered">
+      <div class="form_controls">
+        <%= f.submit "Simpan", class: "btn btn-success btn-lg" %>
+        <% if @error %><span class="error"><%= @error %></span><% end %>
+      </div>
+    </div>
+    <%= f.hidden_field :bytes %>
+    <%= f.hidden_field :public_id %>
+  <% end %>
+</div>  
 
 
 <div id="info"></div>
 
 <script>
   $(document).ready(function() {
+  $("#document_category_identitas").click(function(){
+    if ($("#document_category_identitas").is(":checked")) {
+      $("#trading-help").show("fast");
+      $("#service-help").hide("fast");
+      $("#manufacture-help").hide("fast");
+    }
+    else {
+      // Otherwise, hide it
+      $("#trading-help").hide("fast");
+    }
+  });
+
+
     // Cloudinary jQuery integration library uses jQuery File Upload widget
     // (see http://blueimp.github.io/jQuery-File-Upload/).
     // Any file input field with cloudinary-fileupload class is automatically

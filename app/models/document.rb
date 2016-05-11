@@ -16,9 +16,11 @@ class Document < ActiveRecord::Base
   paginates_per 30
 
   cattr_accessor :categories do
-    %w(identitas penghasilan pengeluaran kepemilikan lain-lain)
+    %w(identitas penghasilan pengeluaran kepemilikan)
   end
-
+  
+  # validates :public_id, :presence => true
+  
   before_create :set_default
 
   scope :verifieds, -> { 
@@ -53,6 +55,33 @@ class Document < ActiveRecord::Base
     # end
   end
 
+  cattr_accessor :identity_proofs do
+    ["KTP", "SIM," "Passport", "NPWP", "Kartu Keluarga"]
+  end
+  cattr_accessor :earning_proofs do
+    ["Slip Gaji", "Surat Keterangan Masa Kerja", 
+      "Laporan Keuangan Bisnis", "Akta Perusahaan", "SIUP", "TDP",
+      "Surat Izin Praktek", "Sertifikat Profesi"]
+  end
+  cattr_accessor :expense_proofs do
+    ["Buku Tabungan", "Bukti Bayar Listrik", "Lain-lain"]
+  end
+  cattr_accessor :collateral_proofs do
+    ["BPKB", "Girik", "SHGB", "SHGB", "SHM"]
+  end      
+  # def identity_proof
+  #   ["KTP", "SIM", "Passport", "NPWP", "Kartu Keluarga"]
+  # end
+
+  def earning_proof
+  end
+
+  def expense_proof
+  end
+
+  def collateral_proof
+    
+  end
 
 private
   def slug_candidates
@@ -63,6 +92,19 @@ private
     self.checked = 'no'
     self.flagged = 'no'
     self.state = 'new'
+    self.category = check_category
+  end
+
+  def check_category
+    if self.identity_proofs.include? self.doc_type
+      return 'identitas'
+    elsif  self.earning_proofs.include? self.doc_type
+      return 'penghasilan'
+    elsif  self.expense_proofs.include? self.doc_type
+      return 'pengeluaran'
+    elsif  self.collateral_proofs.include? self.doc_type
+      return 'kepemilikan'
+    end
   end
 
 end

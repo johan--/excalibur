@@ -11,10 +11,12 @@ class DocumentsController < ApplicationController
   end
 
   def create
-  	@document = current_user.documents.build(document_params)
+  	@document = Document.new(document_params)
+    @document.assign_attributes(public_id: params[:document][:image_id],
+      owner: current_user)
 
   	if @document.save
-	    redirect_to user_root_path
+	    redirect_to user_path(current_user)
 	    flash[:notice] = 'Dokumen berhasil disimpan'
 	  else
 		  render :new
