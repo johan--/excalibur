@@ -1,5 +1,5 @@
 
-<%= render 'insides/user_header' %>
+<%= render layout: 'user_layout' do  %>
 <% if params[:upload_document] %>	
 	<section class="intro padded bordered-section ">
 	  <div class="container">
@@ -14,17 +14,7 @@
 	<section class="intro padded">
 	  <div class="container">
 	    <div class="inner-skeleton centered">
-	      <h3>Dokumen yang sudah kamu unggah</h3>	
-	      <% unless @documents.blank? %>
-	        <% @documents.each do |document| %>
-	          <div class="col-xs-6 col-sm-4">
-	            <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
-	          </div>
-	        <% end %>
-	      <% else %>
-	      	<div class="spacing"></div>
-	        <h5 class="centered">Belum ada </h5>
-	      <% end %>
+	      <%= render 'documents/documents' %>
 		</div>
 	  </div>
 	</section>
@@ -57,6 +47,8 @@
 		  </div>
 		</div>
 	</section>
+
+<% end %>
 
 <style type="text/css">
   .upload_button_holder:hover {

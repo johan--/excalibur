@@ -1,46 +1,50 @@
-<ul class="document-listing" style="padding-left: 0px;">
-  <li class="centered grey">
-    <h4><%= "Berkas Pengajuan" %></h4>
-    <small>Unggah dokumen untuk meneruskan proses pengajuanmu</small>
-  </li> 
-  <% if @documents.present? %>  
-    <% @documents.each_with_index do |doc, index| %>
-      <li class="">
-        <div class="row listing-container">
-        <div class="col-md-4 left-detail">
-          <div class="s-grid-inner">
-            <%= doc.category %>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="s-grid-outer">
+<div class="col-md-10 col-md-offset-1" id="documents-view">
+  <h2>Berkas</h2>
+  <ul class="document-listing" id="bid-list" style="padding-left: 0px;">
+    <% if @documents.present? %>  
+      <% @documents.each_with_index do |document, index| %>
+        <li class="bid-item">
+          <div class="row listing-container">
+          <div class="col-md-4 left-detail">
             <div class="s-grid-inner">
-              <div class="col-xs-8" style="padding-left: 0px;">
-                <%= link_to doc.ticker, document_path(doc) %>
-                <p class="listing-data">Last modified was <%= time_ago_in_words(doc.updated_at) %> ago</p>
-              </div>
-              <div class="col-xs-4 listing-actions float-right">
-              <%= link_to edit_document_path(doc), class: "btn btn-info btn-xs" do %>
-                <i class="fa fa-pencil"></i> Edit
-              <% end %>                   
+              <span class="category"><%= document.category %></span>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="s-grid-outer">
+              <div class="s-grid-inner">
+                <div class="col-xs-8" style="padding-left: 0px;">
+                  <span class="doc_type"><%= document.doc_type %></span>
+                  <p class="listing-data">Last modified was <%= time_ago_in_words(document.updated_at) %> ago</p>
+                </div>
+                <div class="col-xs-4 listing-actions float-right">
+                  <strong><%= document.state %></strong>
+                  <p class="listing-data">Status</p>
+                </div>              
               </div>
             </div>
           </div>
-        </div>
-        </div>  
+          </div>  
+        </li>
+      <% end %>
+    <% else %>
+      <li class="centered grey">
+        <h4><%= "Belum ada berkas" %></h4>
+        <h1><i class="ion ion-compose"></i></h1>
+        <p></p>
       </li>
     <% end %>
-    <li class="centered grey">
-      <p>
-        <%= link_to "Tambah Berkas", edit_user_path(current_user, upload_document: true), class: "btn btn-primary" %>
-      </p>
-    </li>    
-  <% else %>
-  <% end %>
-    <li class="centered grey">
-      <h1><i class="ion ion-compose"></i></h1>
-      <p>
-        <%= link_to "Unggah Berkas", edit_user_path(current_user, upload_document: true), class: "btn btn-primary" %>
-      </p>
-    </li>  
-</ul>
+  </ul>
+</div>
+<div id="documents-manage" style="display: none;">
+</div>
+<% if current_user == @user %>
+  <div class="col-xs-6 col-xs-offset-3 centered">
+    <p id="manage-button">
+      <%= link_to "Kelola Berkas", edit_user_path(current_user, manage_document: true), remote: true, class: 'btn btn-inverse btn-md' %>
+    </p>
+    <p id="show-button" style="display: none;">
+    <%= link_to "Lihat Index", user_path(current_user), remote: true, class: 'btn btn-inverse btn-md'  %>
+    </p>
+  </div>
+<% end %>

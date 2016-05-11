@@ -12,8 +12,7 @@ class DocumentsController < ApplicationController
 
   def create
   	@document = Document.new(document_params)
-    @document.assign_attributes(public_id: params[:document][:image_id],
-      owner: current_user)
+    @document.assign_attributes(owner: current_user)
 
   	if @document.save
 	    redirect_to user_path(current_user)

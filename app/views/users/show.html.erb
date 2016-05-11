@@ -1,107 +1,28 @@
 <% meta title: "Profil #{@user.name}" %>
 
-<%= render partial: 'insides/user_header', locals: {profile: true} %>
-<section class="intro action-section ">
-  <div class="container">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-      <div class="row">
-        <div class="col-xs-6 col-sm-4 col-sm-offset-2 centered">
-          <% unless current_user == @user %>
-            <%= link_to "Approve", '#', class: 'btn btn-success btn-block' %>
-          <% else %>
-            <%= link_to "Isi Profil", edit_user_path(current_user), class: "btn btn-primary btn-block" %>
-          <% end %>
-        </div><!-- /.cols -->
-        <div class="col-xs-6 col-sm-4 centered">
-          <% unless current_user == @user %>
-            <%= link_to "Message", '#', class: 'btn btn-info btn-block' %>
-          <% else %>
-            <%= link_to "Unggah Berkas", edit_user_path(current_user, upload_document: true), class: "btn btn-info btn-block" %>
-          <% end %>        
-        </div><!-- /.cols -->
-      </div>
-    </div>     
-  </div>
-</section>
-<div class="white-background">
-  <section class="intro bordered-section">
-    <div class="container">
-      <div class="inner-skeleton">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="profile-info centered">
-            <h2>Info</h2>
-            <h5>Pekerjaan</h5>
-            <%= user_occupation @user %>
+<%= render layout: 'user_layout' do  %>
 
-            <h5>Pengalaman Kerja</h5>
-            <% if @user.work_experience.nil? || @user.work_experience == '' %>
-              <p>Belum Diisi</p>
-            <% else %>
-              <% @user.work_experience.split(";").each do |w| %>
-                <p class="user-career"><%= w %></p>
-              <% end %>
-            <% end %>
-
-            <h5>Pendidikan</h5>
-            <%= user_education @user %>
-
-            <h5>Keluarga</h5>
-            <%= user_family @user %>
-
-            <h5>Bio</h5>
-            <%= user_bio @user %>
+  <div class="white-background">
+    <section class="intro bordered-section">
+      <div class="container">
+        <div class="inner-skeleton">
+          <div class="col-md-10 col-md-offset-1">
+            <%= render 'profile' %>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="intro bordered-section" style="margin-bottom: -30px;">
-    <div class="container">
-      <div class="inner-skeleton">
-        <div class="col-md-10 col-md-offset-1">
-
-          <h2>Berkas</h2>
-          <ul class="document-listing" id="bid-list" style="padding-left: 0px;">
-            <% if @documents.present? %>  
-              <% @documents.each_with_index do |document, index| %>
-                <li class="bid-item">
-                  <div class="row listing-container">
-                  <div class="col-md-4 left-detail">
-                    <div class="s-grid-inner">
-                      <span class="category"><%= document.category %></span>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="s-grid-outer">
-                      <div class="s-grid-inner">
-                        <div class="col-xs-8" style="padding-left: 0px;">
-                          <span class="doc_type"><%= document.doc_type %></span>
-                          <p class="listing-data">Last modified was <%= time_ago_in_words(document.updated_at) %> ago</p>
-                        </div>
-                        <div class="col-xs-4 listing-actions float-right">
-                          <%= document.state %>
-                        </div>              
-                      </div>
-                    </div>
-                  </div>
-                  </div>  
-                </li>
-              <% end %>
-            <% else %>
-              <li class="centered grey">
-                <h4><%= "Belum ada berkas" %></h4>
-                <h1><i class="ion ion-compose"></i></h1>
-                <p></p>
-              </li>
-            <% end %>
-          </ul>
-
-
+    </section>
+    <section class="intro bordered-section" style="margin-bottom: -30px;">
+      <div class="container">
+        <div class="inner-skeleton">
+          <%= render 'documents/doc_list' %>
         </div>
       </div>
-    </div>
-  </section>  
-</div>
+    </section>  
+  </div>
+
+<% end %>
+
 
 <style type="text/css">
 

@@ -1,3 +1,7 @@
-$("#inner-home-modal").html("<%= j (render partial: 'users/edit_profile', 
-	locals: { user: @user }) %>")
-$("#home-modal").modal("show")
+<% if params[:manage_document] %>
+  $("#documents-manage").html("<%= j (render 'documents/documents') %>")
+<% end %>
+$("#documents-view").hide();
+$("#manage-button").hide();
+$("#documents-manage").show();
+$("#show-button").show();

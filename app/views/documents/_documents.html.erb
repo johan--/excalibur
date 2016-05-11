@@ -1,17 +1,17 @@
-<% @groups.each do |category, documents| %>
-  <h5 class="primary"><%= category.titleize %></h5><hr>
-  <div class="row">
-    <div class="col-xs-12">
-      <% docs_per_category(category).each do |doc| %>
-        <span class="label label-primary" style="margin-right: 5px;">
-          <%= doc %>  <%= document_checklist(doc) %>
-        </span>
-      <% end %>
-    </div>
-    <% documents.each do |document| %>
-      <div class="col-xs-6 col-sm-4">
+<h2>Pengelolaan Berkas</h2>
+
+<% unless @documents.blank? %>
+  <div class="col-xs-12">
+    <% @documents.each do |document| %>
+      <div class="col-xs-6 col-sm-4 col-md-3">
         <%= render partial: "documents/document", locals: { document: document, thumbnail: true } %>
       </div>
     <% end %>
+  </div>  
+<% else %>
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+    <div class="spacing"></div>
+    <h5 class="centered">Belum ada </h5>
   </div>
+
 <% end %>
