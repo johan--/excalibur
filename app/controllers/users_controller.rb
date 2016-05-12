@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user
   
   def show
-    @tenders_count = @user.tenders.count
+    @tenders = @user.tenders
     @documents = @user.documents
   end
 

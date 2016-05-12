@@ -3,7 +3,7 @@
     <div class="prose extra-bottom-margin centered">
       <% if defined?(profile) %>
 
-        <h1 class="fh5co-lead">Profil</h1>
+        <h2 class="fh5co-lead">Profil</h2>
         <%= render_user_thumb(@user, 'img-circle circle-border m-b-md img-center') %>
         <h4><%= @user.name.titleize %></h4>
 
@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-xs-4">
               <div class="p-1x">
-                <span class="headline"><strong><%= @tenders_count %></strong></span>
+                <span class="headline"><strong><%= @tenders.count %></strong></span>
                 <p>Proposal</p>
               </div>
             </div><!-- /.cols -->
@@ -24,7 +24,7 @@
             </div><!-- /.cols -->
             <div class="col-xs-4">
               <div class="p-1x">
-                <span class="headline" id="followers"><strong><%= @user.likers_count %></strong></span>
+                <span class="headline" id="likers"><strong><%= @user.likers_count %></strong></span>
                 <p>Dukungan</p>
               </div>
             </div><!-- /.cols -->
@@ -33,7 +33,7 @@
 
       <% else %>
 
-        <h2 class="fh5co-lead">Hai, <%= current_user.name %>!</h2>
+        <h2 class="fh5co-lead">Hai, <%= link_to current_user.name, user_path(current_user) %>!</h2>
         <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
         <h5 class="sub-title centered">
           <%= render_user_auth_choice(current_user) %>

@@ -1,6 +1,7 @@
 <% meta title: "Home" %>
 
 <%= render 'insides/user_header' %>
+<%= render partial: 'insides/user_actions', locals: {user: current_user } %>
 <div class="white-background">
   <div class="col-md-12 hidden-sm hidden-xs">
     <div class="spacing"></div>
@@ -18,7 +19,3 @@
   </section>
 </div>
 <%= render 'trading/tenders/tender_modal' %>
-<style type="text/css">
-
-
-</style>

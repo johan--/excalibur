@@ -5,4 +5,4 @@
   $("#unlike-button").hide();
   $("#like-form").html("<%= escape_javascript(render partial: 'users/like_button', locals: { user: @likeable }) %>")
 <% end %>
-$("#followers").html('<%= @likeable.likers(User).count %>')
+$("#likers").html('<%= @likeable.likers(User).count %>')

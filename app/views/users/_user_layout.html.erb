@@ -1,22 +1,5 @@
 <%= render partial: 'insides/user_header', locals: {profile: true} %>
-<section class="intro action-section ">
-  <div class="container">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-      <div class="row">
-        <div class="col-xs-6 col-sm-4 col-sm-offset-2 centered">
-          <%= render 'support_form' %>
-        </div><!-- /.cols -->
-        <div class="col-xs-6 col-sm-4 centered">
-          <% unless current_user == @user %>
-            <%= link_to "Message", '#', class: 'btn btn-info btn-block' %>
-          <% else %>
-            <%= link_to "Unggah Berkas", edit_user_path(@user, upload_document: true), class: "btn btn-info btn-block" %>
-          <% end %>        
-        </div><!-- /.cols -->
-      </div>
-    </div>     
-  </div>
-</section>
+<%= render partial: 'insides/user_actions', locals: {user: @user } %>
 
 <%= yield %>
 

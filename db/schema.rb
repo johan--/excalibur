@@ -437,6 +437,7 @@ ActiveRecord::Schema.define(version: 20160511103558) do
     t.datetime "updated_at",                                null: false
     t.integer  "seed_capital"
     t.date     "deadline"
+    t.integer  "likers_count",              default: 0
   end
 
   add_index "tenders", ["deleted_at"], name: "index_tenders_on_deleted_at", using: :btree
@@ -473,8 +474,6 @@ ActiveRecord::Schema.define(version: 20160511103558) do
     t.string   "auth_token",             default: "",    null: false
     t.string   "slug"
     t.integer  "likers_count",           default: 0
-    t.integer  "followees_count",        default: 0
-    t.integer  "followers_count",        default: 0
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
