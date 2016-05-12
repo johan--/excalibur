@@ -22,9 +22,6 @@ class InsidesController < ApplicationController
   def choose
     @houses = House.includes(:photo_files).all
   end
-  def manage_tender
-    @tender = Tender.friendly.find(params[:tender_id])
-  end
 
   # def profile
   #   @user = User.friendly.find_by_id(current_user.id)
@@ -90,6 +87,23 @@ class InsidesController < ApplicationController
     l = I18n.default_locale unless I18n.available_locales.include?(l)
     cookies.permanent[:user_locale] = l
     redirect_to request.referer || root_url
+  end
+
+  def socialize
+    @sub = params[:sub]
+    if params[:category] == 'like'
+      @likeable = params[:type].classify.safe_constantize.find_by_id(params[:counter])
+      if @sub == 'for'
+        current_user.like!(@likeable)
+      elsif @sub == 'against'
+        current_user.unlike!(@likeable)
+      end
+      # redirect_to user_path(@likeable)
+    end
+    respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.js  #{ render js: { count: @comment.votes.size } }
+    end    
   end
 
 

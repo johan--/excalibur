@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   acts_as_commentable
   acts_as_paranoid
 
+  acts_as_liker
+  acts_as_likeable
+
   TEMP_EMAIL_PREFIX = 'change_me'
   TEMP_EMAIL_REGEX = /\Achange_me/
 
@@ -121,6 +124,13 @@ class User < ActiveRecord::Base
       user.auth_with  = auth.provider
       user.understanding = 'yes'
     end
+  end
+
+  def approve_of_this_user(user)
+    self.like!(user)
+  end
+  def retract_approval_of_this_user(user)
+    self.unlike!(user)
   end
 
 # private

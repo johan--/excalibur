@@ -3,15 +3,18 @@ class UsersController < ApplicationController
   before_action :set_user
   
   def show
-    @tenders_count = current_user.tenders.count
+    @tenders_count = @user.tenders.count
     @documents = @user.documents
-    # @groups = Document.categories
-    @verifieds = @documents.verifieds
   end
 
   def edit
-    @documents = current_user.documents
-    @document = Document.new
+    if current_user != @user
+      flash[:warning] = 'Maaf, kamu tidak mempunyai kewenangan'
+      redirect_to user_root_path
+    else
+      @documents = @user.documents
+      @document = Document.new
+    end
   end
 
   def update
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
     end
     redirect_to user_root_path
   end
+
 
 
 private

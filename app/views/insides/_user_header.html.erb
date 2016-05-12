@@ -4,8 +4,8 @@
       <% if defined?(profile) %>
 
         <h1 class="fh5co-lead">Profil</h1>
-        <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
-        <h4><%= current_user.name.titleize %></h4>
+        <%= render_user_thumb(@user, 'img-circle circle-border m-b-md img-center') %>
+        <h4><%= @user.name.titleize %></h4>
 
         <div class="spacing"></div>
         <div class="col-md-8 col-md-offset-2">
@@ -24,7 +24,7 @@
             </div><!-- /.cols -->
             <div class="col-xs-4">
               <div class="p-1x">
-                <span class="headline"><strong>30</strong></span>
+                <span class="headline" id="followers"><strong><%= @user.likers_count %></strong></span>
                 <p>Dukungan</p>
               </div>
             </div><!-- /.cols -->

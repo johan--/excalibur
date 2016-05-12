@@ -22,6 +22,11 @@ module ApplicationHelper
     end
   end
 
+  def current_user?(user)
+    if current_user == @user then true else false end
+  end
+
+
   def link_to_in_li(body, url, html_options = {})
     active = "active" if current_page?(url)
     content_tag :li, class: "mt" do

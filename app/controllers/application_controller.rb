@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   # before_filter :resource_params, if: :devise_controller?
   # use_vanity :current_user
 
+
   def meta_events_tracker
     @meta_events_tracker ||= MetaEvents::Tracker.new(
       current_user.try(:id), request.remote_ip

@@ -57,7 +57,7 @@ gem 'protokoll', '1.0.2'
 # gem 'groupify', '0.7.1'
 gem 'wicked', '1.2.1'
 gem 'pacecar', '2.0.0' #https://github.com/thoughtbot/pacecar
-# gem "socialization", "~> 1.2.0"
+gem "socialization", "~> 1.2.0"
 
 # Complementary
 gem 'nprogress-rails', '0.1.6.7'
@@ -102,7 +102,6 @@ group :test, :development do
 	gem 'factory_girl_rails', '4.5.0'
   # gem 'faker', '~> 1.4.3'
   # gem 'phantomjs', :require => 'phantomjs/poltergeist'
-  # gem 'selenium-webdriver', '~> 2.45.0'
 end
 
 group :test do

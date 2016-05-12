@@ -59,6 +59,7 @@ Fustal::Application.routes.draw do
   get "pilih", to: "insides#choose", as: :choose
   post "/emailconfirmation", to: "insides#email", as: "email_confirmation"
   post "/subscribe", to: "insides#subscribe", as: "subscribe"
+  post "/socialize", to: "insides#socialize", as: "socialize"
   get "/simulasi", to: "insides#simulation", as: "simulation"
   get '/change_locale/:locale', to: 'insides#change_locale', as: :change_locale
 
