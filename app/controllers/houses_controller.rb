@@ -16,6 +16,10 @@ class HousesController < ApplicationController
     unless current_user.present? && @house.access_granted?(current_user)
       impressionist(@house) 
     end
+    @hash = Gmaps4rails.build_markers(@house) do |house, marker|
+      marker.lat house.latitude
+      marker.lng house.longitude
+    end    
   end
 
   # def new

@@ -27,5 +27,7 @@
 //= require bootstrap-slider
 //= require meta_events
 //= require masonry
+//= require underscore
+//= require gmaps/google
 //= require_tree ./houses
 //= require_tree ./sitewide

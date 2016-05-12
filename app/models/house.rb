@@ -40,10 +40,13 @@ class House < ActiveRecord::Base
                  :mortgage_period_left, :outstanding_mortgage
 
   attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
-  geocoded_by :full_street_address 
 
   before_create :set_default_values!
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  before_save :check_address!
+
+  geocoded_by :full_street_address 
+  after_validation :geocode, if: ->(obj){ obj.address.present? or obj.address_was.present? }
+  
   after_create :refresh_friendly_id!#, :create_relation!
   # after_update :refresh_tenders
 
@@ -51,7 +54,7 @@ class House < ActiveRecord::Base
 
 
   def full_street_address
-    "#{address}, #{city}, #{province}, #{country}"
+     [address, city, province, country].compact.join(', ')
   end
 
   def address_changed?
@@ -108,6 +111,9 @@ private
     self.avatar = 'first'
   end
 
+  def check_address!
+    
+  end
 
   def refresh_tenders
     self.tenders.map{ |tender| tender.touch }

@@ -6,6 +6,7 @@ gem "rails", "~> 4.2.0"
 gem 'sass-rails', '5.0.2'
 gem 'uglifier', '2.6.0'
 gem 'coffee-rails', '4.1.0'
+gem 'coffee-script-source', '1.8.0'
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jquery-turbolinks'
@@ -71,7 +72,7 @@ gem 'geocoder', '1.2.14'
 gem 'ionicons-rails'
 gem 'active_link_to', '1.0.3'
 gem 'impressionist'
-# gem 'gmaps4rails'
+gem 'gmaps4rails'
 # gem "rails-settings-cached", "~> 0.4.0"
 
 
