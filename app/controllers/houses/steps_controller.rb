@@ -59,7 +59,7 @@ class Houses::StepsController < ApplicationController
     end
 
     if step == 'pictures'
-       if params[:proposed] == true || 'true'
+       if params[:proposed] == true || params[:proposed] == 'true'
         render_wizard @house
       else
         redirect_to finish_wizard_path
