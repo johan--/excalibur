@@ -5,6 +5,12 @@ development:
   api_secret: <%= ENV["CLY_API_SEC"] %>
   enhance_image_tag: true
   static_image_support: false
+staging:
+  cloud_name: instilla
+  api_key: <%= ENV["CLY_API_KEY"] %>
+  api_secret: <%= ENV["CLY_API_SEC"] %>
+  enhance_image_tag: true
+  static_image_support: false  
 production:
   cloud_name: instilla
   api_key: <%= ENV["CLY_API_KEY"] %>
