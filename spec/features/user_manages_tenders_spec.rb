@@ -21,12 +21,13 @@ feature "UserManagesTenders", :type => :feature do
   end
 
   describe "via tender show page" do
-    before { click_link "Kelola Proposal", match: :first }
+    before do
+      click_link "Lihat"
+      click_link "Kelola Proposal"
+    end
 
     context "destroying proposal" do
-      before do 
-        click_link "Hapus Proposal"
-      end
+      before { click_link "Hapus Proposal" }
 
       it { should have_content('Proposal berhasil dihapus') }
     end

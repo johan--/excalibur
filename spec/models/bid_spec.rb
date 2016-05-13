@@ -56,10 +56,9 @@ RSpec.describe Bid, :type => :model do
         expect(tender.progress.to_i).to eq 100
       end
 
-      it "should change its state to closed" do
-        expect(bid.tender.state).to eq "closed"
-      end
-
+      # it "should change its state to closed" do
+      #   expect(bid.tender.state).to eq "closed"
+      # end
     end
 
     describe "if destroyed" do
@@ -71,8 +70,8 @@ RSpec.describe Bid, :type => :model do
         expect(Bid.with_deleted.count).to eq 2
       end
 
-      it "should set the volume of the object to 0" do
-        expect(bid.volume).to eq 0
+      it "should not have 0 shares left" do
+        expect(tender.progress.to_i).to_not eq 100
       end
 
       it "should affect the tender associated with it" do

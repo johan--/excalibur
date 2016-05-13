@@ -1,19 +1,30 @@
+<% meta title: "Pengelolaan Proposal #{@tender.ticker}" %>
 
 <%= render 'tender_header' %>
 <section class="intro padded">
   <div class="container">
   	<div class="inner-skeleton">
-  	  <h2>Pengelolaan Proposal</h2>
+  	  <h2>Kredibilitas Pengajuan</h2>
   	  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-  	  	<%= render 'documents/doc_list' %>
+        <div class="grey centered">
+          <h4>Berkas</h4>
+          <p>Unggah berkas untuk meningkatkan kredibilitasmu</p>
+          <small>Berkas tidak dapat dilihat oleh pengguna lain dan dapat kamu hapus kapan saja</small>
+        </div>
+        <div class="spacing"></div>
+  	  	<%= render partial: 'documents/doc_list', locals: { documents: @documents, user: @client } %>
+          <p class="centered">
+            <%= link_to "Unggah berkas", edit_user_path(@client, upload_document: true), class: "btn btn-primary" %>
+          </p>        
   	  </div>
+      <div class="col-xs-12 spacing"></div>
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 grey centered">
         <div class="spacious">
           <h4><%= "Profil Pemohon" %></h4>
           <small>Isi profil untuk meningkatkan kredibilitasmu</small>
           <h1><i class="ion ion-compose"></i></h1>
           <p>
-            <%= link_to "Isi Profil", edit_user_path(@client), class: "btn btn-primary" %>
+            <%= link_to "Isi profil", edit_user_path(@client), class: "btn btn-primary" %>
           </p>
         </div>
       </div>      
@@ -22,15 +33,33 @@
 </section>
 <section class="intro padded">
   <div class="container">
-	<div class="inner-skeleton">
+	  <div class="inner-skeleton">
 	  <h2>Koreksi Proposal</h2>
 	  	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 	  	  <%= render 'form' %>
 	  	</div>
-	</div>
+	  </div>
+  </div>
+</section>
+<section class="intro padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <div class="inner-skeleton danger-zone">
+          <h2>Danger Zone <br><small>Pertimbangkan dengan matang sebelum kamu menghapus proposal ini</small></h2>
+          <p></p>
+          <p>
+            <%= link_to tender_path(@tender), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan proposal'}, class: 'btn btn-danger btn-lg' do %>
+                <span class="glyphicon glyphicon-trash reset-link"></span> Hapus Proposal
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style type="text/css">
-
+.danger-zone { border: 1px solid red; padding: 30px; }
+.danger-zone p { text-align: center; }
 </style>

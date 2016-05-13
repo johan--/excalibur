@@ -1,8 +1,7 @@
 <div class="col-md-10 col-md-offset-1" id="documents-view">
-  <h2>Berkas</h2>
   <ul class="document-listing" id="bid-list" style="padding-left: 0px;">
-    <% if @documents.present? %>  
-      <% @documents.each_with_index do |document, index| %>
+    <% if documents.present? %>  
+      <% documents.each_with_index do |document, index| %>
         <li class="bid-item">
           <div class="row listing-container">
           <div class="col-md-4 left-detail">
@@ -36,15 +35,3 @@
     <% end %>
   </ul>
 </div>
-<div id="documents-manage" style="display: none;">
-</div>
-<% if current_user == @user %>
-  <div class="col-xs-6 col-xs-offset-3 centered">
-    <p id="manage-button">
-      <%= link_to "Kelola Berkas", edit_user_path(current_user, manage_document: true), remote: true, class: 'btn btn-inverse btn-md' %>
-    </p>
-    <p id="show-button" style="display: none;">
-    <%= link_to "Lihat Index", user_path(current_user), remote: true, class: 'btn btn-inverse btn-md'  %>
-    </p>
-  </div>
-<% end %>

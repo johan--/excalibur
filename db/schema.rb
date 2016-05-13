@@ -11,27 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511103558) do
+ActiveRecord::Schema.define(version: 20160512131740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "acquisitions", force: :cascade do |t|
-    t.integer  "benefactor_id"
-    t.string   "benefactor_type"
-    t.integer  "bid_id",                        null: false
-    t.integer  "acquireable_id"
-    t.string   "acquireable_type"
-    t.string   "slug"
-    t.jsonb    "details",          default: {}
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "acquisitions", ["acquireable_type", "acquireable_id"], name: "index_acquisitions_on_acquireable_type_and_acquireable_id", using: :btree
-  add_index "acquisitions", ["benefactor_type", "benefactor_id"], name: "index_acquisitions_on_benefactor_type_and_benefactor_id", using: :btree
-  add_index "acquisitions", ["bid_id"], name: "index_acquisitions_on_bid_id", using: :btree
-  add_index "acquisitions", ["details"], name: "index_acquisitions_on_details", using: :gin
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -105,23 +88,6 @@ ActiveRecord::Schema.define(version: 20160511103558) do
   add_index "comments", ["details"], name: "index_comments_on_details", using: :gin
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "contracts", force: :cascade do |t|
-    t.integer  "tender_id",  null: false
-    t.string   "type"
-    t.string   "ticker",     null: false
-    t.string   "slug"
-    t.jsonb    "details"
-    t.date     "begin_at"
-    t.date     "end_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "contracts", ["deleted_at"], name: "index_contracts_on_deleted_at", using: :btree
-  add_index "contracts", ["slug"], name: "index_contracts_on_slug", using: :btree
-  add_index "contracts", ["tender_id"], name: "index_contracts_on_tender_id", using: :btree
-
   create_table "custom_auto_increments", force: :cascade do |t|
     t.string   "counter_model_name"
     t.integer  "counter",            default: 0
@@ -172,52 +138,29 @@ ActiveRecord::Schema.define(version: 20160511103558) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "group_memberships", force: :cascade do |t|
-    t.integer  "member_id",       null: false
-    t.string   "member_type",     null: false
-    t.integer  "group_id"
-    t.string   "group_type"
-    t.string   "group_name"
-    t.string   "membership_type"
-    t.jsonb    "details"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "group_memberships", ["details"], name: "index_group_memberships_on_details", using: :gin
-  add_index "group_memberships", ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
-  add_index "group_memberships", ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
-
-  create_table "groups", force: :cascade do |t|
-    t.string "type"
-    t.string "name",    null: false
-    t.string "slug"
-    t.jsonb  "details"
-  end
-
-  add_index "groups", ["details"], name: "index_groups_on_details", using: :gin
-  add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
-  add_index "groups", ["slug"], name: "index_groups_on_slug", using: :btree
-
   create_table "houses", force: :cascade do |t|
-    t.integer  "publisher_id",                             null: false
-    t.string   "publisher_type",                           null: false
-    t.integer  "price_sens",     limit: 8, default: 0
-    t.string   "price_currency",           default: "IDR", null: false
+    t.integer  "publisher_id",                              null: false
+    t.string   "publisher_type",                            null: false
+    t.integer  "price_sens",      limit: 8, default: 0
+    t.string   "price_currency",            default: "IDR", null: false
     t.string   "ticker"
     t.float    "longitude"
     t.float    "latitude"
-    t.jsonb    "details",                  default: {}
+    t.jsonb    "details",                   default: {}
     t.text     "description"
     t.string   "avatar"
     t.string   "slug"
     t.datetime "deleted_at"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.jsonb    "location"
     t.jsonb    "condition"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "followers_count",           default: 0
   end
 
+  add_index "houses", ["address", "city"], name: "index_houses_on_address_and_city", unique: true, using: :btree
   add_index "houses", ["deleted_at"], name: "index_houses_on_deleted_at", using: :btree
   add_index "houses", ["publisher_type", "publisher_id"], name: "index_houses_on_publisher_type_and_publisher_id", using: :btree
   add_index "houses", ["slug"], name: "index_houses_on_slug", using: :btree
@@ -309,28 +252,6 @@ ActiveRecord::Schema.define(version: 20160511103558) do
 
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
-
-  create_table "occupancies", force: :cascade do |t|
-    t.integer  "house_id",                                         null: false
-    t.integer  "holder_id"
-    t.string   "holder_type"
-    t.string   "slug"
-    t.string   "ticker"
-    t.boolean  "rental",                                           null: false
-    t.date     "started_at",                                       null: false
-    t.integer  "annual_rental_sens",     limit: 8, default: 0,     null: false
-    t.string   "annual_rental_currency",           default: "IDR", null: false
-    t.boolean  "tradeable"
-    t.jsonb    "details"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-  end
-
-  add_index "occupancies", ["deleted_at"], name: "index_occupancies_on_deleted_at", using: :btree
-  add_index "occupancies", ["holder_type", "holder_id"], name: "index_occupancies_on_holder_type_and_holder_id", using: :btree
-  add_index "occupancies", ["house_id"], name: "index_occupancies_on_house_id", using: :btree
-  add_index "occupancies", ["slug"], name: "index_occupancies_on_slug", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "invoice_id"
@@ -562,6 +483,5 @@ ActiveRecord::Schema.define(version: 20160511103558) do
   add_index "wiki_pages", ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
   add_index "wiki_pages", ["slug"], name: "index_wiki_pages_on_slug", using: :btree
 
-  add_foreign_key "acquisitions", "bids"
   add_foreign_key "identities", "users"
 end

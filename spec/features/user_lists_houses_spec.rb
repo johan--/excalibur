@@ -13,6 +13,8 @@ feature "UserListsHouses", :type => :feature do
 	    fill_in "Alamat", with: "Lorem No. 99"
 	    fill_in "Kota", with: "Jakarta Selatan"
 	    fill_in "Provinsi", with: "DKI Jakarta"
+	    select "no", from: "Perumahan?"
+	    fill_in "Infrastruktur Transportasi", with: "Lorem Ipsum; Dolor Casuss; Molar Molor"
 	    click_button "Lanjutkan"
 
 	    select "rumah", from: "house_category"
@@ -31,7 +33,7 @@ feature "UserListsHouses", :type => :feature do
 	    fill_in "Tahun Dibangun", with: 2015
 	    select "no", from: "Ada Sisa KPR"
 	    click_button "Lanjutkan"
-		# attach_file('house_photos', file_upload_fixture)
+		attach_file('house_photos', file_upload_fixture)
 	end
 		
 	context "then finish the wizard" do

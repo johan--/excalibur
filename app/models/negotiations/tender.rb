@@ -2,7 +2,6 @@ class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
-  include RefreshSlug
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
@@ -25,7 +24,7 @@ class Tender < ActiveRecord::Base
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :unit, :draft, :seed_capital, :participate,
+                 :unit, :draft, :participate,
                  :state,  :pushed
 
   attr_wannabe_bool :draft, :participate, :pushed
@@ -44,7 +43,6 @@ class Tender < ActiveRecord::Base
   # validates_presence_of :aqad, :category, :tenderable, :seed_capital, :starter
 
   before_create :set_default_values!
-  after_create :refresh_friendly_id!
   after_save :connect_with_bid
   # after_update  :touch_bid!, 
   after_touch :set_state!
@@ -110,7 +108,7 @@ class Tender < ActiveRecord::Base
   end
 
   def progress
-    (check_contribution / target * 100)
+    check_contribution / target * 100
   end
 
   def to_window_closed
@@ -194,4 +192,8 @@ private
   def tenderable_name
     self.starter.name
   end
+
+  def should_generate_new_friendly_id?
+    ticker_changed? || super
+  end  
 end

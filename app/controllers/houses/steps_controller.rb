@@ -41,12 +41,12 @@ class Houses::StepsController < ApplicationController
     @house.assign_attributes(house_params(step))
 
     if @house.valid?
-      unless @form_step == 'done'
-        if next_step == Wicked::FINISH_STEP || 'proposal'
+      unless @house.form_step == 'done'
+        if next_step == 'proposal'
           @house.form_step = 'done' 
         else
           @house.form_step = next_step
-        end
+        end        
       end
 
       @house.save

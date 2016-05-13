@@ -38,7 +38,7 @@ class DocumentsController < ApplicationController
     #   title: "#{@document.owner.name} - #{@document.doc_type}", 
     #   category: "Document", important: "Client"
     
-    flash[:notice] = 'Dokumen berhasil dihapuskan'
+    flash[:notice] = 'Dokumen berhasil dihapus'
     redirect_to user_path(current_user)
   end
 

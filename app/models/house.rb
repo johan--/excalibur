@@ -1,9 +1,8 @@
 class House < ActiveRecord::Base
   extend FriendlyId
-  include RefreshSlug
   include WannabeBool::Attributes
-  protokoll :ticker, :pattern => "RUM#y%m##"
-  friendly_id :slug_candidates, use: :slugged
+  protokoll :ticker, :pattern => '%y####%m'
+  friendly_id :slug_candidates, use: [:slugged, :history]
   monetize :price_sens
   acts_as_paranoid
   is_impressionable
@@ -31,8 +30,7 @@ class House < ActiveRecord::Base
                  :greenery, :garages, :property_size, :lot_size
   serialize :location, HashSerializer
   store_accessor :location, 
-                 :address, :address_was, :city, :complex,
-                 :province, :country
+                 :province, :country, :complex, :schools, :transportations
   serialize :condition, HashSerializer
   store_accessor :condition,
                  :form_step, :state, :for_sale, :for_rent, 
@@ -42,13 +40,9 @@ class House < ActiveRecord::Base
   attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
 
   before_create :set_default_values!
-  before_save :check_address!
-
   geocoded_by :full_street_address 
-  after_validation :geocode, if: ->(obj){ obj.address.present? or obj.address_was.present? }
-  
-  after_create :refresh_friendly_id!#, :create_relation!
-  # after_update :refresh_tenders
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  # after_create :refresh_friendly_id!#, :create_relation!
 
   scope :vacancy, -> { where("houses.details->>'vacant' = 'yes'") }
 
@@ -57,9 +51,8 @@ class House < ActiveRecord::Base
      [address, city, province, country].compact.join(', ')
   end
 
-  def address_changed?
-    return true if self.address != self.address_was
-    return false if self.address == self.address_was
+  def short_address
+    "#{address} of #{city}"
   end
 
   def placeholder_path
@@ -77,9 +70,16 @@ class House < ActiveRecord::Base
     if form_step != 'done' then true else false end
   end
 
+  def redirect_when_undone(link)
+    if self.input_unfinished?
+      house_step_path(self, self.form_step)
+    else
+      link
+    end
+  end
+
   def house_owner
-    publisher.name if self.occupancy.holder.nil? 
-    # self.occupancy.holder.name unless self.occupancy.holder.nil?
+    publisher.name #if self.occupancy.holder.nil? 
   end
 
   def access_granted?(user)
@@ -91,7 +91,9 @@ class House < ActiveRecord::Base
   end
 
   def slug_candidates
-    [:ticker, :city]
+    [ :short_address, 
+      [:short_address, :province], [:short_address, :province, :ticker]
+    ]
   end
 
   def required_for_step?(step)
@@ -106,19 +108,17 @@ private
   def set_default_values!
     self.country = 'indonesia'
     self.state = 'pending' if self.state.nil?
-    self.address_was = self.address
-    self.for_rent = 'no'
+    self.for_rent = 'no' if self.for_rent.nil?
     self.avatar = 'first'
-  end
-
-  def check_address!
-    
   end
 
   def refresh_tenders
     self.tenders.map{ |tender| tender.touch }
   end
 
+  def should_generate_new_friendly_id?
+    address_changed? || city_changed? || super
+  end
   # def create_relation!
   #   if self.vacant? 
   #     create_stock!

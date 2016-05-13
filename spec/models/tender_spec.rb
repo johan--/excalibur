@@ -34,21 +34,21 @@ RSpec.describe Tender, :type => :model do
   	  expect(@tender.state).to eq 'open'
   	end
 
-	it "automatically create a bid on the behalf of starter" do
-	  expect(@tender.bids.count).to eq 1
-	end
+		it "automatically create a bid on the behalf of starter" do
+		  expect(@tender.bids.count).to eq 1
+		end
 
-	it "sets its unit to ownership" do
-	  expect(@tender.unit).to eq 'ownership'
-	end
+		it "sets its unit to ownership" do
+		  expect(@tender.unit).to eq 'ownership'
+		end
 
-	it "sets the price to that of its tenderable" do
-	  expect(@tender.price).to eq @tender.tenderable.price / 1000
-	end
+		it "sets the price to that of its tenderable" do
+		  expect(@tender.price).to eq @tender.tenderable.price / 1000
+		end
 
-	it "sets the volume to the max" do
-	  expect(@tender.volume).to eq 1000
-	end
+		it "sets the volume to the max" do
+		  expect(@tender.volume).to eq 1000
+		end
 
 	  describe "determining access and authorization for a tender" do
 	  	describe ".access_granted?(user)" do
@@ -65,6 +65,22 @@ RSpec.describe Tender, :type => :model do
 	  	  end
 	  	end
 	  end	
+
+	  describe "if bid to the max" do
+	  	before { @bid = FactoryGirl.create(:bid, tender: @tender, volume: 800) }
+
+      it "should have 100 progress" do
+        expect(@tender.progress.to_i).to eq 100
+      end
+
+      it "should have bid associated with it" do
+        expect(@tender.bids.count).to eq 2
+      end
+
+      it "should have bid associated with it" do
+        expect(@tender.check_contribution).to eq 300000000
+      end
+	  end
   end
 
 

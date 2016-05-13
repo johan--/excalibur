@@ -10,15 +10,13 @@ feature "UserHandlesProfile", :type => :feature do
 
   describe "user fresh after registration" do
   	before do
-      click_link '', :href => '#collapseOne1'
-      click_link "Kelola"
-  	  click_link "Isi Profil"
-  	  fill_in "user_about", with: "Lorem Ipsum Dolor Casuss"
+  	  click_link "Lihat profil"
+      click_link "Isi profil"
       fill_in "user_number_dependents", with: "5"
       fill_in "user_occupation", with: "Karyawan"
       fill_in "user_monthly_income", with: 1500000
       fill_in "user_monthly_expense", with: 1500000
-      select "D3", :from => 'user_last_education'
+      fill_in 'user_last_education', with: "D3"
   	  select "Belum Menikah", :from => 'user_marital_status'
       fill_in "user_work_experience", with: "Lorem Ipsum; Dolor Casuss; Molar Molor"
       fill_in "user_about", with: "Lorem Ipsum Dolor Casuss"

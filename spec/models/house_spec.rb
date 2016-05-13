@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe House, :type => :model do
-  let!(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe "empty house" do
     before { @house = FactoryGirl.build(:complete_house, publisher: user) }
@@ -21,53 +21,47 @@ RSpec.describe House, :type => :model do
     it { should be_valid }  	
 
     describe "when saved" do
-    	before(:each) { @house.save }
+    	before { @house.save }      
       
-      describe "before create callback" do
-        it "has a slug" do
-        	expect(@house.slug).to_not eq nil
-        end
-
-        it "has set the category" do
-        	expect(@house.category).to_not eq nil
-        end
-
-        it "has a money object" do
-          expect(@house.price_currency).to eq "IDR"
-        end
-
+      it "has a slug" do
+      	expect(@house.slug).to_not eq nil
       end
-      describe "after create callback" do
-        before(:each) { @stock = @house.stocks.first }
 
-        it "the user now has one house" do
-          expect(user.houses.count).to eq 1
-        end
-
-        it "listed the user as the publisher" do
-          expect(user.houses.first).to eq @house
-        end
-
-        # it "creates just one stock" do
-        #   expect(@house.stocks.count).to eq 1
-        # end
-
-        # it "creates the stock of ownership" do
-        #   expect(@stock.category).to eq 'ownership'
-        # end
-
-        # it "also set the stock price" do
-        #   expect(@stock.price).to eq @house.price / 1000
-        # end
-
-        # it "also set the stock as the initial stock" do
-        #   expect(@stock.initial).to eq 'yes'
-        # end
-
-        # it "also set the stock as tradeable" do
-        #   expect(@stock.tradeable).to eq true
-        # end
+      it "has a ticker" do
+        expect(@house.slug).to_not eq nil
       end
+
+      it "has set the category" do
+      	expect(@house.category).to_not eq nil
+      end
+
+      it "has a money object" do
+        expect(@house.price_currency).to eq "IDR"
+      end
+    
+      it "the user now has one house" do
+        expect(user.houses.count).to eq 1
+      end
+
+      it "listed the user as the publisher" do
+        expect(user.houses.first).to eq @house
+      end
+
+      it "has been geocoded" do
+        expect(@house.longitude).to_not eq nil
+        expect(@house.latitude).to_not eq nil
+      end
+    
+      describe "updating it" do
+        before(:each) do
+          @house.update(address: 'Margonda Raya', city: 'Depok')
+        end
+
+        it "has set new slug" do
+          expect(@house.slug).to_not eq nil
+        end        
+      end
+      
     end
   end
 

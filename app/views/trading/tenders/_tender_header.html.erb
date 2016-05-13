@@ -1,10 +1,15 @@
 <section class="intro padded centered white-background top-section bordered-section">
   <div class="container">
     <div class="prose extra-bottom-margin">
-      <h2 class="fh5co-lead">Proposal #<%= @tender.ticker %></h2>
-      <h5 class="sub-title centered">
+      <% if params[:action] == 'edit' %>
+        <h2 class="fh5co-lead">Proposal Management</h2>
+        <h5 class="sub-title centered">Proposal #<%= @tender.ticker %></h5>
+      <% else %>
+        <h2 class="fh5co-lead">Proposal #<%= @tender.ticker %></h2>
+        <h5 class="sub-title centered">
         800 unit tersisa, <strong>@ <%= idr_money(@tender.price) %>/unit</strong>
-      </h5>
+        </h5>
+      <% end %>
     </div>
     <div class="spacing"></div>
     <div class="row">

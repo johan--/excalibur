@@ -33,12 +33,12 @@
 
       <% else %>
 
-        <h2 class="fh5co-lead">Hai, <%= link_to current_user.name, user_path(current_user) %>!</h2>
+        <h2 class="fh5co-lead">Hai, <%= link_to current_user.name.titleize, user_path(current_user) %>!</h2>
         <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
         <h5 class="sub-title centered">
           <%= render_user_auth_choice(current_user) %>
         </h5>  
-
+        <p><%= link_to "Lihat profil", user_path(current_user), class: "btn btn-success btn-md" %></p>
       <% end %> 
     </div>
   </div>

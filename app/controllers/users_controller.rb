@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       flash[:warning] = 'Maaf, kamu tidak mempunyai kewenangan'
       redirect_to user_root_path
     else
+      @tenders = @user.tenders
       @documents = @user.documents
       @document = Document.new
     end
@@ -55,7 +56,7 @@ private
   end
 
   def profile_params
-    [ :image_id, :about, :last_education, :marital_status, 
+    [ :image_id, :about, :location, :last_education, :marital_status, 
     :address, :work_experience, :occupation,
     :monthly_income, :monthly_expense, :number_dependents ]
   end

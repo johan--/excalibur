@@ -1,3 +1,9 @@
-  <%= f.input :address, as: :string, label: "Alamat", required: true  %>
-  <%= f.input :city, as: :string, label: "Kota", required: true  %>
-  <%= f.input :province, as: :string, label: "Provinsi", required: true  %>
+<%= f.input :address, as: :string, label: "Alamat", hint: "Nama jalan (tanpa 'Jl'), RT/RW, kelurahan, kecamatan ", required: true, autofocus: true  %>
+<%= f.input :city, as: :string, label: "Kota", required: true  %>
+<%= f.input :province, as: :string, label: "Provinsi", required: true  %>
+<%= f.input :complex, collection: yes_no_options, prompt: 'pilih', selected: @house.complex, label: "Perumahan?", required: true, hint: 'apa properti berada di lokasi perumahan atau kluster?'  %>
+<%= f.input :transportations, as: :text, input_html: { rows: 5 }, label: "Infrastruktur Transportasi", placeholder: 'Nama fasilitas terdekat, gerbang tol, stasiun, atau halte', hint: "pisahkan tiap fasilitas dengan ';' (koma titik)" %>
+
+<style type="text/css">
+	
+</style>

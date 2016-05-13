@@ -1,9 +1,8 @@
 class Bid < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
-  include RefreshSlug
   extend FriendlyId
-  protokoll :ticker, :pattern => "BID%y%m%d####"
+  protokoll :ticker, :pattern => 'BID%m####'
   friendly_id :slug_candidates, use: :slugged
   acts_as_paranoid
 
@@ -37,10 +36,8 @@ class Bid < ActiveRecord::Base
   validates_associated :tender
 
   before_create :set_default_values!
-  after_create :refresh_friendly_id!
-  after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
+  # after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
   after_touch :change_state
-  before_destroy :reset_volume
 
   scope :usermade, -> { where(bidder_type: 'User') }
   scope :client, -> { where("bids.details->>'client' = :type", type: "yes")  }
@@ -65,11 +62,7 @@ class Bid < ActiveRecord::Base
   end
 
   def contribution
-    price * volume
-  end
-
-  def reset_volume
-    update(volume: 0, last_volume: volume)
+    (price * volume)
   end
 
   def transfer_ownership!
@@ -103,7 +96,7 @@ private
   def set_default_values!
 	  self.state = "pending" if self.state.nil?
     self.draft = "no" if self.draft.nil?
-    self.price = self.tender.price# if self.price.nil?
+    self.price = self.tender.price
   end
 
   def touch_tender!
@@ -127,5 +120,9 @@ private
       self.approving!
     else
     end
+  end
+
+  def should_generate_new_friendly_id?
+    ticker_changed? || super
   end
 end

@@ -8,34 +8,53 @@ module HousesHelper
     end
   end
 
- def edit_link(house)
-   destination = edit_url_for_house(house)
 
-   link_to destination, data: {toggle: 'tooltip', 
-    placement: 'top', original_title: 'Edit'} do
-      content_tag(:i, '', class: "fa fa-pencil") + content_tag(:span, ' Edit', class: "hidden-xs")
-   end
- end
+  def show_footer_link_for_house(house)
+    unless house.input_unfinished?
+      content_tag(:li) do
+        link_to "Lihat", house_path(house)
+      end
+    end
+  end
 
- def edit_url_for_house(house)
-   if house.input_unfinished?
+  def edit_footer_link_for_house(house)
+    if current_user && house.access_granted?(current_user)
+      content_tag(:li) do
+        link_to "Edit", edit_url_for_house(house), id: 'house-edit'
+      end
+    end
+  end
+
+  def edit_url_for_house(house)
+    if house.input_unfinished?
       if house.form_step.nil?
         destination = house_step_path(house, house.form_steps.first)
       else
         destination = house_step_path(house, house.form_step)
       end
-   else
+    else
      destination = edit_house_path(house)
    end
    destination
- end
-
-  def show_link(house)
-    link_to house_path(house), data: {toggle: 'tooltip', 
-      placement: 'top', original_title: 'Telusuri'} do
-        content_tag(:i, '', class: "fa fa-search-plus") + content_tag(:span, 'Telusuri', class: "hidden-xs")
-    end  	
   end
+
+  def fundraising_footer_link(house)
+    unless house.input_unfinished?
+      content_tag(:li) do
+        link_to fundraising_purchase_url_for_house(house) do
+          content_tag(:span, class: 'text-danger') do
+            embedded_svg('spark-10-writing.svg', class: 'svg-icon') + 'Buat Proposal'
+          end
+        end
+
+      end
+    end    
+  end
+
+  def fundraising_purchase_url_for_house(house)
+    new_house_tender_path(house, intent: 'fundraising')
+  end 
+
 
   def render_lg_house_display(house, string)
     if house.display_picture.blank?

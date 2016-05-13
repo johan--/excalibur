@@ -114,6 +114,7 @@ Fustal::Application.routes.draw do
       resources :bids
     end
   end
+  resources :users, only: :show, path: 'id'
 
   get "/*id" => 'pages#show', format: false
 end

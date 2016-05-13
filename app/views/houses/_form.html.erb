@@ -1,7 +1,7 @@
 <%= simple_form_for(@house, html: { class: 'form-vertical' }, wrapper: :vertical_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes })  do |f| %>
   <%= f.error_notification %>
 
-<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+
   <div class="form-inputs">
     <%= render 'houses/place_fields', f: f %>
     <%= render 'houses/characteristics_fields', f: f %>
@@ -14,11 +14,11 @@
   <h5>Display Picture</h5>
   <%= render partial: 'elements/direct_photo_upload', locals: { f: f } %>
   <hr>
-</div>
 
-<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 form-actions">
+
+
   <%= submit_tag "Simpan", class: "btn btn-success" %>
-</div>
+
 
 <% end %>
 

@@ -27,19 +27,11 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-      <ul class="post-links">
-        <li><%= link_to "Lihat", house_path(house) %></li>
-        <% if current_user && house.access_granted?(current_user) %>
-        <li><%= link_to "Edit", edit_house_path(house), id: "house-edit" %></li>
-        <li>
-            <%= link_to new_house_tender_path(house, intent: 'fundraising'), data: {toggle: 'tooltip', placement: 'top', original_title: 'Buat pengajuan pendanaan'} do %>
-                <span class="text-danger">
-                    <%= embedded_svg('spark-10-writing.svg', class: 'svg-icon') %>  Pengajuan
-                </span>
-            <% end %>
-        </li>
-        <% end %>
-      </ul>                    
+              <ul class="post-links">
+                <%= show_footer_link_for_house(house) %>
+                <%= fundraising_footer_link(house) %>
+                <%= edit_footer_link_for_house(house) %>
+              </ul>
             </div>
         </div>        
     </div>

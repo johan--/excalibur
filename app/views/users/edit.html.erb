@@ -1,3 +1,4 @@
+<% meta title: "Pengelolaan Pengguna #{@user.name}" %>
 
 <%= render layout: 'user_layout' do  %>
 <% if params[:upload_document] %>	
@@ -26,7 +27,7 @@
 		    <div class="inner-skeleton">
 					<div class="col-md-10 col-md-offset-1">
 					  <center>
-					  	<h3 class="">Pengisian Profil Klien</h3>
+					  	<h3 class="">Pengisian Profil</h3>
 					    <%= render 'profile_form' %>
 					  </center>
 					</div>
@@ -42,7 +43,7 @@
 	    <div class="inner-skeleton centered">
 		  <p><strong>
 		  		<%= link_to "Kembali ke Profil", user_path(current_user) %> |
-		  		<%= link_to "Kembali ke Beranda", user_root_path %>
+		  		<%= link_to "Kembali ke Home", user_root_path %>
 		  	</strong></p>
 		  </div>
 		</div>

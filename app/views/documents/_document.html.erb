@@ -30,13 +30,13 @@
             <% end %>
         <% else %>
             <% unless defined?(zoomed) && zoomed %>
-                <%= link_to document_path(document), remote: true do %>
+                <%= link_to document_path(document), remote: true, class: 'zoom-link' do %>
                     <span class="glyphicon glyphicon-zoom-in"></span>
                 <% end %>
             <% end %>
         <% end %>
         <% unless defined?(zoomed) && zoomed %>
-            <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'} do %>
+            <%= link_to document_path(document), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan dokumen'}, class: 'delete-link' do %>
                 <span class="glyphicon glyphicon-trash reset-link"></span>
             <% end %>
         <% end %>

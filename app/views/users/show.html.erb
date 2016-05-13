@@ -15,7 +15,20 @@
     <section class="intro bordered-section" style="margin-bottom: -30px;">
       <div class="container">
         <div class="inner-skeleton">
-          <%= render 'documents/doc_list' %>
+          <h2>Berkas</h2>
+          <%= render partial: 'documents/doc_list', locals: { documents: @documents, user: @user } %>
+          <div id="documents-manage" style="display: none;">
+          </div>
+          <% if current_user? @user %>
+            <div class="col-xs-6 col-xs-offset-3 centered">
+              <p id="manage-button">
+                <%= link_to "Kelola Berkas", edit_user_path(current_user, manage_document: true), remote: true, class: 'btn btn-inverse btn-md' %>
+              </p>
+              <p id="show-button" style="display: none;">
+              <%= link_to "Lihat Index", user_path(current_user), remote: true, class: 'btn btn-inverse btn-md'  %>
+              </p>
+            </div>
+          <% end %>          
         </div>
       </div>
     </section>  
