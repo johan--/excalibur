@@ -58,21 +58,10 @@
 
 <div id="info"></div>
 
+<% unless Rails.env.test? %>
+  
 <script>
   $(document).ready(function() {
-  $("#document_category_identitas").click(function(){
-    if ($("#document_category_identitas").is(":checked")) {
-      $("#trading-help").show("fast");
-      $("#service-help").hide("fast");
-      $("#manufacture-help").hide("fast");
-    }
-    else {
-      // Otherwise, hide it
-      $("#trading-help").hide("fast");
-    }
-  });
-
-
     // Cloudinary jQuery integration library uses jQuery File Upload widget
     // (see http://blueimp.github.io/jQuery-File-Upload/).
     // Any file input field with cloudinary-fileupload class is automatically
@@ -145,3 +134,5 @@
           .append($("<table>").append(rows)));
     }
 </script>
+
+<% end %>

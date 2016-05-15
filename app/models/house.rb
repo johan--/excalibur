@@ -54,15 +54,20 @@ class House < ActiveRecord::Base
     "#{address} of #{city}"
   end
 
-  def placeholder_path
-    "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png"
-  end
-  def placeholder_id
-    "footer_a0ypny.png"
+  def placeholder(type)
+    if type == 'path'
+      "http://res.cloudinary.com/instilla/image/upload/v1463307900/asset/png/house_2.png"
+    else
+      "asset/png/house_2"
+    end
   end
 
-  def display_picture
-    photos.first
+  def display_picture(type)
+    if photos.count != 0
+      if type == 'path' then photos.first.path else photos.first.public_id end
+    else
+      if type == 'path' then placeholder('path') else placeholder('id') end
+    end
   end
 
   def input_unfinished?

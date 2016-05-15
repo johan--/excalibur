@@ -49,9 +49,11 @@
         </div>
       </div>
     </div>
+    <% if params[:controller] == 'pages' %>
       <div class="row footer-background">
         <%= image_tag "//res.cloudinary.com/instilla/image/upload/v1459597691/footer_a0ypny.png", class: "hidden-xs" %>
         <%= image_tag "//res.cloudinary.com/instilla/image/upload/s--GP4lvlG2--/c_lfill,g_center,h_300,w_800/v1459597691/footer_a0ypny.png", class: "visible-xs" %>
-      </div>    
+      </div>
+    <% end %>
   </div>
 </footer>

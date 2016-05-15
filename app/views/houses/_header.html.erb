@@ -1,13 +1,13 @@
 <section class="bg-custom-lg">
+
 </section>
 
 
-<% unless @house.display_picture.nil? %>
+
   <style type="text/css">
     .bg-custom-lg {
-      background: #252931 url("<%= cl_image_path(@house.display_picture.path, house_header_options) %>");
+      background: white url("<%= cl_image_path(@house.display_picture('path'), house_header_options) %>");
       background-repeat:no-repeat;
       background-position: center center;
     }
   </style>
-<% end %>

@@ -55,30 +55,12 @@ module HousesHelper
     new_house_tender_path(house, intent: 'fundraising')
   end 
 
-
   def render_lg_house_display(house, string)
-    if house.display_picture.blank?
-      image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_300,w_450/v1452508512/asset/2000px-House_Silhouette.png')
-    else
-      cl_image_tag(house.display_picture.path, house_avatar_options(string))
-    end
+    cl_image_tag(house.display_picture('id'), house_avatar_options(string))
   end
 
-  def render_house_display(house, string)
-    if house.display_picture.blank?
-    image_tag('//res.cloudinary.com/instilla/image/upload/s--iftDNybA--/c_scale,h_160,w_240/v1452508512/asset/2000px-House_Silhouette.png',
-      class: 'img-responsive thumbnail')
-    else
-      cl_image_tag(house.display_picture.path, house_avatar_options(string))
-    end
-  end  
-
   def render_house_display_for_tender(house, string)
-    if house.display_picture.blank?
-      cl_image_tag(house.placeholder_id, house_tender_options(string))
-    else
-      cl_image_tag(house.display_picture.path, house_tender_options(string))
-    end
+    cl_image_tag(house.display_picture('id'), house_tender_options(string))
   end    
 
   def house_tender_options(string)
@@ -87,7 +69,7 @@ module HousesHelper
   end  
 
   def house_avatar_options(string)
-  { :width => 500, :height => 300, 
+  { :width => 500, :height => 300, format: :png,
     :crop => :lfill, gravity: :center, class: "#{string}" }
   end
 
