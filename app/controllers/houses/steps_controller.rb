@@ -49,24 +49,24 @@ class Houses::StepsController < ApplicationController
         end        
       end
 
-      @house.save
       flash[:notice] = 'Terima kasih, data telah disimpan'
+      case step
+      when 'pictures'
+        if params[:house][:proposed] == '1'
+          render_wizard @house
+        else
+          @house.save
+          redirect_to finish_wizard_path
+        end
+      else
+        render_wizard @house
+      end
 
     else 
       @house.errors
       flash[:warning] = 'Data gagal disimpan, mohon ulangi'
       render_wizard @house
     end
-
-    if step == 'pictures'
-      if params[:proposed] == true || params[:proposed] == 'true'
-        redirect_to finish_wizard_path
-      else
-        render_wizard @house
-      end
-    else
-      render_wizard @house
-    end    
   end
 
 

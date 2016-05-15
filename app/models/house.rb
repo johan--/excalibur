@@ -34,7 +34,7 @@ class House < ActiveRecord::Base
   serialize :condition, HashSerializer
   store_accessor :condition,
                  :form_step, :state, :for_sale, :for_rent, 
-                 :vacant, :anno, :inspected,
+                 :vacant, :anno, :inspected, #:proposed,
                  :mortgage_period_left, :outstanding_mortgage
 
   attr_wannabe_bool :for_sale, :for_rent, :vacant, :inspected
