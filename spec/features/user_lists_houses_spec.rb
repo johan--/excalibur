@@ -33,7 +33,7 @@ feature "UserListsHouses", :type => :feature do
 	    fill_in "Tahun Dibangun", with: 2015
 	    select "no", from: "Ada Sisa KPR"
 	    click_button "Lanjutkan"
-		attach_file('house_photos', file_upload_fixture)
+		attach_file('house_photos', file_upload_fixture)		
 	end
 		
 	context "then finish the wizard" do
@@ -47,7 +47,6 @@ feature "UserListsHouses", :type => :feature do
 		before do 
 			check 'house_proposed'
 			click_button "Lanjutkan"
-
 			fill_in "tender_annum", with: 10
 			fill_in "tender_seed_capital", with: 20
 			click_button "Ajukan"

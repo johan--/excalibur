@@ -2,6 +2,7 @@ class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
   include ProfitMargin
+  include RefreshSlug
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
@@ -43,8 +44,9 @@ class Tender < ActiveRecord::Base
   # validates_presence_of :aqad, :category, :tenderable, :seed_capital, :starter
 
   before_create :set_default_values!
+  after_create :refresh_friendly_id!
   after_save :connect_with_bid
-  # after_update  :touch_bid!, 
+  # after_update  :touch_bid!
   after_touch :set_state!
 
   # Pagination
@@ -61,11 +63,6 @@ class Tender < ActiveRecord::Base
   def fulfilled?
     return true if check_contribution == self.target
     return false if check_contribution != self.target
-  end
-
-  def aqad?(aqad)
-    return true if self.aqad == aqad
-    return false if self.aqad != aqad
   end
 
   scope :open, -> { where(
@@ -86,11 +83,6 @@ class Tender < ActiveRecord::Base
 
   def access_granted?(user)
     if user == self.starter || user.admin? then true else false end
-  end
-
-  def tender_owner?(user)
-    return true if self.starter == user
-    return false if self.starter != user
   end
 
   def check_contribution
@@ -136,7 +128,10 @@ class Tender < ActiveRecord::Base
   end  
 ####
 
-
+  def tender_owner?(user)
+    return true if self.starter == user
+    return false if self.starter != user
+  end
 
 private
   def set_default_values!
@@ -183,10 +178,7 @@ private
   end
 
   def slug_candidates
-    [
-      :ticker, 
-      [:ticker, :tenderable_name]
-    ]
+    [ :ticker, [:ticker, :tenderable_name]  ]
   end
 
   def tenderable_name

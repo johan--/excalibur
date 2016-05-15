@@ -4,6 +4,7 @@ meta title: "Blog",
      keywords: %w(ekonomi keuangan syariah islam kesuksesan kebahagiaan)
 %>
 
+<h4>Artikel Blog</h4><hr>
 <div id="posts-list">
 <% @posts.each do |post| %>
   <%= render partial: 'post', locals: { post: post, multiple: true } %>

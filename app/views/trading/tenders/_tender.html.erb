@@ -10,7 +10,7 @@
         <% if tender.access_granted?(current_user) %>
           <li class="coral-background"><%= link_to "Kelola", edit_tender_path(tender) %></li>
         <% else %>
-          <li class="coral-background"><%= link_to "Dukung", new_bid_tender_path(tender) %></a></li>
+          <li class="coral-background"><%= link_to "Dukung", '#' %></a></li>
         <% end %>
       </ul>        
   </div>

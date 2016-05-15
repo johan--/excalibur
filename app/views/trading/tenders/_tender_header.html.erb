@@ -28,7 +28,7 @@
          <div class="col-xs-12">
             <p class="grey" id="status-text">
               <small class="centered">
-                <% if current_user.already_bid?(@tender) %>
+                <% if current_user.try(:already_bid?, @tender) %>
                   Kamu sudah mengajukan penawaran
                 <% elsif @tender.progress.to_i == 100 %>
                   Target pesanan sudah tercapai

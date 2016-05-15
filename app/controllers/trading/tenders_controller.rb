@@ -1,19 +1,13 @@
 class Trading::TendersController < ApplicationController
   before_filter :inside_app
+  skip_before_action :authenticate_user!, only: [ :show ]
 
-  # def index
-  #   @title = "Bursa"
-  #   @tenders = Tender.published
-  # end
+  def index
+    @tenders = Tender.all
+  end
 
   def show
     set_tender
-    # @assessment = Comment.assessments.user_as_subject(@client).first
-    # @comments = @tender.comments
-    # @comment = Comment.new
-    # @type = @tender.class.name
-    # @commentable_id = @tender.id
-    # @subject = "interaction"
   end
 
   def discuss
@@ -70,8 +64,8 @@ class Trading::TendersController < ApplicationController
       flash[:notice] = 'Proposal berhasil diperbarui'
       redirect_to user_root_path
     else
-      # render :edit
-      redirect_to user_root_path
+      render :edit
+      flash[:warning] = 'Proposal gagal dikoreksi'
       Rails.logger.info(@tender.errors.inspect) 
     end
   end

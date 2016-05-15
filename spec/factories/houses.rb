@@ -1,7 +1,7 @@
 FactoryGirl.define do
 	factory :house do
 		association :publisher, factory: :user
-		sequence(:address) { |n| "Cipete Raya Cipete Selatan, Cilandak"}
+		sequence(:address) { |n| "Cipete Raya No. #{n} Cipete Selatan, Cilandak"}
 		city "Jakarta Selatan" 
 
 		trait :place do

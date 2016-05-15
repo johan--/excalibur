@@ -34,6 +34,10 @@ RSpec.describe Tender, :type => :model do
   	  expect(@tender.state).to eq 'open'
   	end
 
+  	it "is able to find the new object" do
+  	  expect(Tender.friendly.find(@tender.slug)).to_not eq nil
+  	end
+
 		it "automatically create a bid on the behalf of starter" do
 		  expect(@tender.bids.count).to eq 1
 		end

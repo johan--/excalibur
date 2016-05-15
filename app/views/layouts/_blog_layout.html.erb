@@ -1,20 +1,27 @@
 <!-- BLUE WRAP -->
-<div id="blue">
-    <div class="container">
-		<div class="row white centered">
-		  <h2>Blog siKapiten</h2>
-		  <p>Untuk mengikuti perkembangan atau artikel terbaru,<br> follow @si_kapiten di Twitter dan like halaman sikapiten syariah di Facebook </p>
-		  <%= link_to "Ke Halaman Utama", root_url(subdomain: ""), class: "btn btn-sm btn-outlined btn-white" %>
-		  <%= link_to "Ke Halaman Blog", root_url(subdomain: "blog"), class: "btn btn-sm btn-outlined btn-white" unless @index %>
-		  <%= link_to "Ke Beranda", user_root_url(subdomain: ""), class: "btn btn-sm btn-white" if user_signed_in? %>
-		</div><!-- /row -->
-    </div> <!-- /container -->
-</div><!-- /blue -->
- 
-<!-- BLOG CONTENT -->
-<div id="blog-body">
+<section class="intro padded bordered-section white-background top-section" id="blog-header">
+  <div class="container" id="home-cover">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="prose extra-bottom-margin centered">
+		    <h1>Jurnal Kapiten</h1>
+		    <h4>Pengetahuan tentang ekonomi & keuangan syariah</h4>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="post-nav" style="border-bottom: 1px solid #C6C6C6;;">
+  <div class="container">
+    <ul id="post-tabs" class="nav nav-tabs centered">
+      <%= active_link_to 'Blog', blog_path, :wrap_tag => :li %>
+      <%= active_link_to 'Wiki', wiki_all_path, :active => :exclusive, :wrap_tag => :li %>
+    </ul><!--/post-tabs-->
+  </div>
+</section>
 
-<div class="container mtb">
+<!-- BLOG CONTENT -->
+
+
+<div id="blog-body" class="container mtb">
   <div class="row">
  	<%= render 'layouts/messages' %>
  	<% if @index %>
@@ -26,13 +33,6 @@
 	    <!-- SIDEBAR -->
 	 	<div class="col-md-5">
 	 	  
-			<div class="blankslate">
-				<div class="spacious">
-					<h3><%= "Kapitenpedia" %></h3>
-					<p><%= "untuk kamu yang ingin mendalami muamalah" %></p>
-					<%= link_to 'Telusuri', wiki_all_path, class: "btn btn-primary"  %>
-				</div>
-			</div> 	  
 	 	  
 		  <div class="spacing"></div>
 	 	</div>
@@ -41,19 +41,7 @@
 	 	  <%= render partial: 'elements/modal_placeholder', locals: { modal_name: "blog" } %>
 		  <%= yield %>
 			<div class="spacing"></div>
-		</div>
-	 	<div class="col-md-10 col-md-offset-1">
-	 	  
-			<div class="blankslate">
-				<div class="spacious">
-					<h3><%= "Kapitenpedia" %></h3>
-					<p><%= "untuk kamu yang ingin mendalami muamalah" %></p>
-					<%= link_to 'Telusuri', wiki_all_path, class: "btn btn-primary"  %>
-				</div>
-			</div> 	  
-	 	  
-		  <div class="spacing"></div>
-	 	</div>			
+		</div>		
 	<% end %>
   </div><!-- <! row  -->
 </div>
@@ -61,3 +49,21 @@
 
 <!-- FOOTER -->
 <%= render 'layouts/footer' %>
+
+<style type="text/css">
+	#blog-header {
+		background: url('http://res.cloudinary.com/instilla/image/upload/s--Y7ApUb9---/c_scale,w_1200/v1456927292/asset/pexels-photo-25109.jpg') no-repeat center center scroll;
+/*  background: 
+    url('//res.cloudinary.com/instilla/image/upload/s--BdUvbz2j--/c_scale,w_1200/v1458692370/man-hands-working-technology_2_sestkk.jpg') no-repeat center center scroll;*/
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+    min-height: 400px;
+  .overlay{    
+    background: rgb(0, 236, 240); background: rgba(0, 236, 240, 0.5);
+  }
+
+
+</style>

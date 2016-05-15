@@ -42,7 +42,6 @@ class House < ActiveRecord::Base
   before_create :set_default_values!
   geocoded_by :full_street_address 
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
-  # after_create :refresh_friendly_id!#, :create_relation!
 
   scope :vacancy, -> { where("houses.details->>'vacant' = 'yes'") }
 

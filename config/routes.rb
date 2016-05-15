@@ -16,7 +16,7 @@ Fustal::Application.routes.draw do
   #   get "/masukbeta" => "devise/sessions#new"
   # end
 
-  namespace :blog, path: '/', constraints: { subdomain: 'blog' } do
+  namespace :blog, path: '/blog' do
     get "find", to: "posts#find_posts", as: "find_posts"
     get "diskusi", to: "posts#discussion_room", as: "discussion"
     resources :posts do
@@ -110,7 +110,7 @@ Fustal::Application.routes.draw do
   get '/vanity/image'
 
   scope module: 'trading' do
-    resources :tenders, path: '' do
+    resources :tenders, path: 'bursa' do
       resources :bids
     end
   end

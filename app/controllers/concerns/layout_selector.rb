@@ -1,7 +1,7 @@
 module LayoutSelector
   def inside_app
     @inside = true
-    @body_class = "mobile-navbar"
+    @body_class = "mobile-navbar" if current_user.present?
   end
   
   def set_as_static

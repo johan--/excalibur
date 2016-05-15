@@ -1,11 +1,13 @@
+<% meta title: "Pengajuan Proposal Pendanaan" %>
+
 <h3 class="centered">Proposal Pendanaan</h3>
 
-<div class="col-md-1"></div>
-<div class="col-md-5 col-sm-6">
+<div class="col-md-2"></div>
+<div class="col-md-4 col-sm-6">
   <%= render partial: 'houses/house', locals: { house: @house } %>
 </div>
 
-<div class="col-md-5 col-sm-6">
+<div class="col-md-4 col-sm-6">
   <center>
     <%= simple_form_for([@house, @tender], {html: { class: 'form-vertical' }, wrapper: :vertical_form }) do |f| %>
     <%= f.error_notification %>

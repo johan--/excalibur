@@ -28,7 +28,11 @@ RSpec.describe House, :type => :model do
       end
 
       it "has a ticker" do
-        expect(@house.slug).to_not eq nil
+        expect(@house.ticker).to_not eq nil
+      end
+
+      it "is able to find the new object" do
+        expect(House.friendly.find(@house.slug)).to_not eq nil
       end
 
       it "has set the category" do

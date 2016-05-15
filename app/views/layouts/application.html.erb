@@ -19,24 +19,33 @@
   <%= render 'elements/mixpanel_script' %>
 </head>
 <body class="<%= yield (:body_class) %> <%= @body_class %>">
-  <% if @inside %>
-    <% if @admin_layout %>  
-        <%= render 'layouts/admin_layout' %>
-    <% else %>
-      <%= render 'layouts/mobile_navbar' %>
-    <% end %>
-  
-  <% else %>
-    <% if @static %>
-      <%= render 'layouts/classic_navbar' %>
-      <%= render 'layouts/footer' %>
-    <% elsif @blog_layout %>
-      <%= render 'layouts/blog_layout' %>    
-    <% elsif @wiki_layout %>
-      <%= render 'wiki_pages/wiki_layout' %>
-    <% end %>
+  <% if @admin_layout %>
+    <%= render 'layouts/admin_layout' %>
     
+  <% else %>
+  <!-- Header, Navbar -->
+    <% if user_signed_in? %>
+      <%= render 'layouts/mobile_navbar' %>
+    <% else %>
+      <%= render 'layouts/classic_navbar' %>
+    <% end %>
+
+  <!-- Wrapper, Content/sec -->
+
+    <% if @inside %>
+      <%= render 'layouts/restricted_layout' %>
+
+    <% elsif @blog_layout || @wiki_layout  %>
+      <%= render 'layouts/blog_layout' %>
+
+    <% else %>
+      <div class="row"><%= render 'layouts/messages' %></div> 
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    <% end %>
+
   <% end %>
+<!-- Modal -->
   <%= render 'elements/large_modal' %>
 </body>
 </html>

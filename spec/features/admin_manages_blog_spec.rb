@@ -7,13 +7,10 @@ feature "AdminManagesBlog", :type => :feature do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:post1) { FactoryGirl.create(:post_with_user, :dummy_keywords) }
 
-  before(:each) do
-    sign_in admin
-  end
+  before(:each) { sign_in admin }
 
   describe "create a post" do
     before do
-      # visit new_admin_post_path
       click_link "Telusuri posts"
       click_link "New post"
     end
@@ -35,8 +32,6 @@ feature "AdminManagesBlog", :type => :feature do
 
   describe "editing a single blog post" do
     before do 
-      # visit admin_posts_path
-      # click_link("Edit", match: :first)
       visit edit_admin_post_path(post1)
       fill_in "Konten (Markdown)", with: "Cech monreal almunia bellerin per mertesacker arteta"
       click_button "Simpan"

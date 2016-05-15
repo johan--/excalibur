@@ -22,10 +22,6 @@ class HousesController < ApplicationController
     end    
   end
 
-  # def new
-  #   @house = House.new
-  # end
-
   def edit
     @house = House.friendly.find(params[:id])
     redirect_to house_step_path(@house, @house.form_step) if @house.input_unfinished?

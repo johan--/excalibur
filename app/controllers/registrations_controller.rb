@@ -22,14 +22,22 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
+  # def after_sign_up_path_for(resource)
+  #   if resource.admin?
+  #     admin_root_url(subdomain: '')
+  #   else
+  #     user_root_url(subdomain: '')
+  #   end          
+  # end
+
   def after_sign_up_path_for(resource)
-    if resource.admin?
-      admin_root_url(subdomain: '')
-    else
-      user_root_url(subdomain: '')
-    end          
+    signed_in_root_path(resource)
   end
 
+  def after_update_path_for(resource)
+    signed_in_root_path(resource)
+  end
+    
   def resource_params
     devise_parameter_sanitizer.for(:sign_up) {|user| user.permit(
       :first_name, :last_name, :email, :password, :password_confirmation,

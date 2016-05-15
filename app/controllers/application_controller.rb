@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with:  :null_session
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
   before_filter :reject_locked!, if: :devise_controller?
+  # before_filter :store_location
   before_filter :authenticate_user!#, unless: :devise_controller?  
   before_filter :disable_background, if: :devise_controller?
   before_filter :switch_browser_prompt, if: :devise_controller?
@@ -77,6 +78,20 @@ private
       request.variant = :desktop
     end
   end  
+
+  def store_location
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    return unless request.get? 
+    if (request.path != "/users/sign_in" &&
+        request.path != "/users/sign_up" &&
+        request.path != "/users/password/new" &&
+        request.path != "/users/password/edit" &&
+        request.path != "/users/confirmation" &&
+        request.path != "/users/sign_out" &&
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath 
+    end
+  end
 
   def set_locale
     # I18n.locale = params[:locale] if params[:locale].present?

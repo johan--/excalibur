@@ -19,10 +19,19 @@ class SessionsController < Devise::SessionsController
 
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    if resource.admin?
-      admin_root_url(subdomain: '')
+    # if resource.admin?
+    #   admin_root_url(subdomain: '')
+    # else
+    #   session["user_return_to"] || user_root_url(subdomain: '')
+    # end      
+    sign_in_url = new_user_session_url
+    # basic_root = 
+    if request.referer == sign_in_url
+      if resource.admin? then admin_root_path else super end 
     else
-      user_root_url(subdomain: '')
-    end      
-  end      
+      stored_location_for(resource) || request.referer || root_path
+    end
+  end
+
+
 end

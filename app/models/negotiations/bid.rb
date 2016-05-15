@@ -1,6 +1,7 @@
 class Bid < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
+  include RefreshSlug
   extend FriendlyId
   protokoll :ticker, :pattern => 'BID%m####'
   friendly_id :slug_candidates, use: :slugged
@@ -36,7 +37,8 @@ class Bid < ActiveRecord::Base
   validates_associated :tender
 
   before_create :set_default_values!
-  # after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
+  after_create :refresh_friendly_id!
+  after_save  :touch_tender!, if: ->(obj){ obj.volume_changed? }
   after_touch :change_state
 
   scope :usermade, -> { where(bidder_type: 'User') }
