@@ -92,4 +92,8 @@ module TendersHelper
   def calculate_progress(tender)
     (tender.check_contribution / tender.target)
   end  
+
+  def render_tender_thumb(tender, string)
+  	cl_image_tag(tender.tenderable.display_picture('id'), house_tender_options(string))
+  end  
 end

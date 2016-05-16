@@ -23,14 +23,16 @@ feature "UserCreatesFundraisingFromHouse", :type => :feature do
     before do
       click_link '', :href => '#collapseOne1'
       click_link "Pilih Rumah", match: :prefer_exact
-      click_link "Pilih", match: :prefer_exact
-      fill_in "tender[annum]", with: 10
-      fill_in "tender[seed_capital]", with: 20
-      click_button "Ajukan"        
-      # page.find_field('#duration').set(10)
-      # page.find_field('#seed').set(20)
+      find('.pick-house').click
+      # click_link "Pilih", href: new_house_tender_path(house)
+      # fill_in "tender[annum]", with: 10
+      # fill_in "tender[seed_capital]", with: 20
+      fill_in "Lama Syirkah (Tahun)", with: 10
+      fill_in "Modal Kamu (%)", with: 20      
+      click_button "Ajukan"
     end
     # after { page.driver.reset! }
+
     it { should have_content('Proposal berhasil dibuat') }
   end  
 end

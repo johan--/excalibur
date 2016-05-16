@@ -109,12 +109,14 @@ Fustal::Application.routes.draw do
   post '/vanity/add_participant'
   get '/vanity/image'
 
-  scope module: 'trading' do
-    resources :tenders, path: 'bursa' do
-      resources :bids
-    end
+  # scope module: 'trading' do
+  #   resources :tenders, path: 'bursa' do
+  #     resources :bids
+  #   end
+  # end
+  resources :users, only: :show, path: '' do
+    resources :tenders
   end
-  resources :users, only: :show, path: 'id'
 
   get "/*id" => 'pages#show', format: false
 end

@@ -1,8 +1,13 @@
 <div id="home-view">
   <% if current_user.has_proposals? %>
     <%= render @tenders %>
-    <p><small>Maksimal 3 proposal yang dapat kamu ajukan.</small></p>
-    <p><%= link_to "Tambah Proposal", choose_path, remote: true, class: "btn btn-md btn-inverse" %></p>
+    <% unless @tender_count == 3 %>
+      <div class="col-md-4">
+        <div class="spacing"></div>
+        <p><small>Maksimal 3 proposal yang dapat kamu ajukan.</small></p>
+        <p><%= link_to "Tambah Proposal", choose_path, remote: true, class: "btn btn-md btn-inverse" %></p>
+      </div>
+    <% end %>
   <% else %>
     <div class="blankslate backgroundless">
       <div class="spacious less-space">

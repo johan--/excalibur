@@ -64,7 +64,7 @@ module HousesHelper
   end    
 
   def house_tender_options(string)
-    { :width => 300, :height => 200, 
+    { :width => 300, :height => 200, format: :png, 
       :crop => :lfill, gravity: :center, class: "#{string}" }
   end  
 

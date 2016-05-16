@@ -7,29 +7,34 @@
     <% @bids.each_with_index do |bid, index| %>
       <li class="bid-item">
         <div class="row listing-container">
-        <div class="col-md-4 left-detail">
-          <div class="s-grid-inner">
-            <span id=""><%= idr_money(bid.contribution) %></span><br>
-            <small><%= bid.volume %> lembar</small>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="s-grid-outer">
+          <div class="col-md-4 col-sm-5 col-xs-6 no-pad left-detail">
             <div class="s-grid-inner">
-              <div class="col-xs-8" style="padding-left: 0px;">
-                <%= bid.ticker %>
-                <p class="listing-data">Last modified was <%= time_ago_in_words(bid.updated_at) %> ago</p>
-              </div>
-              <div class="col-xs-4 listing-actions float-right">
-                <% if bid.bidder?(current_user) %>
-                  <%= link_to edit_tender_bid_path(@tender, bid), remote: true, class: "btn btn-info btn-xs" do %>
-                    <i class="fa fa-pencil"></i> Edit
+              <span id=""><%= idr_money(bid.contribution) %></span><br>
+              <small><%= bid.volume %> lembar</small>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-7 col-xs-6 no-pad">
+            <div class="s-grid-outer">
+              <div class="s-grid-inner">
+                <div class="col-xs-12 col-sm-7 col-md-8" style="padding-left: 0px;">
+                  <%= bid.ticker %>
+                  <p class="listing-data">Last modified was <%= time_ago_in_words(bid.updated_at) %> ago</p>
+                </div>
+                <div class="hidden-xs col-sm-5 col-md-4 listing-actions float-right">
+                  <% if bid.bidder?(current_user) %>
+                    <%= link_to edit_tender_bid_path(@tender, bid), remote: true, class: "btn btn-info btn-xs" do %>
+                      <i class="fa fa-pencil"></i> Edit
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <div class="col-xs-12 visible-xs">
+            <%= link_to edit_tender_bid_path(@tender, bid), remote: true, class: "btn btn-info btn-block" do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>            
+          </div> 
         </div>  
       </li>
     <% end %>

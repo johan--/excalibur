@@ -11,7 +11,8 @@ feature "UserManagesTenders", :type => :feature do
 
   describe "via request dashboard" do
   	before do
-  	  click_link "Kelola", match: :first
+  	  # click_link "Kelola", match: :first
+      page.find('.edit-proposal').click
 		  fill_in "tender_annum", with: 8
 		  fill_in "tender_seed_capital", with: 25
 		  click_button "Kirim"
@@ -22,7 +23,7 @@ feature "UserManagesTenders", :type => :feature do
 
   describe "via tender show page" do
     before do
-      click_link "Lihat"
+      click_link proposal.ticker
       click_link "Kelola Proposal"
     end
 
