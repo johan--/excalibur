@@ -179,8 +179,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mail_view (2.0.4)
-      tilt
     meta_events (1.2.1)
       activesupport (>= 3.0, <= 4.99.99)
       json (~> 1.0)
@@ -406,7 +404,6 @@ DEPENDENCIES
   jquery-rails (= 4.0.3)
   jquery-turbolinks
   kaminari (= 0.16.2)
-  mail_view (~> 2.0.4)
   meta_events (= 1.2.1)
   metamagic (= 3.1.7)
   mixpanel-ruby (= 2.2.0)

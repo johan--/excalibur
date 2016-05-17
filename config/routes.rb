@@ -4,7 +4,10 @@ require 'subdomain'
 Fustal::Application.routes.draw do
   wiki_root '/wiki'
 
-  mount SubscriberPreview => 'subscriber_view' if Rails.env.development?
+  # if Rails.env.development?
+  #   mount SubscriberPreview => 'subscriber_view' 
+  #   mount MailPreview => 'mail_view'
+  # end  
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
@@ -109,14 +112,11 @@ Fustal::Application.routes.draw do
   post '/vanity/add_participant'
   get '/vanity/image'
 
-  # scope module: 'trading' do
-  #   resources :tenders, path: 'bursa' do
-  #     resources :bids
-  #   end
-  # end
+
+  get "/pages/*id" => 'pages#show', format: false
+
   resources :users, only: :show, path: '' do
-    resources :tenders
+    resources :tenders, only: :show, path: ''
   end
 
-  get "/*id" => 'pages#show', format: false
 end

@@ -2,8 +2,11 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>Kapiten</b></a>
+    <b>Masuk</b>
   </div><!-- /.login-logo -->
+  <p class="centered">
+    Belum pernah mendaftar? <%= link_to "Klik di sini", new_user_registration_url(subdomain: '') %>
+  </p>
 
   <div class="login-box-body">
     <div class="social-auth-links text-center">
@@ -38,8 +41,8 @@
       </div>
     <% end %>
 
-    <a href="#">I forgot my password</a><br>
-    <%= link_to "Buat Akun", new_user_session_url(subdomain: ''), class: "text-center" %>
+    <!-- <a href="#">I forgot my password</a><br> -->
 
   </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
+<div class="spacing"></div>

@@ -7,17 +7,39 @@
     <ul class="nav nav-pills pull-right">
       <li role="presentation">
         <%= active_link_to root_path, :active => :exclusive do %>
-              Investasi <span class="hidden-xs">Properti</span>
+          Investasi <span class="hidden-xs">Properti</span>
         <% end %>
       </li>
       <li role="presentation">
-        <%= active_link_to '/kepemilikan', :active => :inclusive do %>
+        <%= active_link_to page_path('kepemilikan'), :active => :inclusive do %>
           Beli <span class="hidden-xs">Rumah</span>
-        <% end %>      
+        <% end %>
       </li>
-      <li role="presentation">
-        <%= active_link_to "Home", user_root_url(subdomain: ''), :active => :exclusive if user_signed_in? %>      
-      </li>
-    </ul>    
+      <li class="dropdown" id="extra-menu">
+        <a href="#" class="dropdown-toggle" id="extra-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <% if user_signed_in? %>
+            <%= "Menu" %><span class="caret"></span>
+          <% else %>
+            <%= "Masuk" %><span class="caret"></span>
+          <% end %>
+        </a>
+        <ul class="dropdown-menu">
+          <% if user_signed_in? %>
+            <%= active_link_to "Home", user_root_path, :wrap_tag => :li %>
+            <%= active_link_to "Akun", edit_user_registration_path, :wrap_tag => :li %>
+            <% if current_user.admin? %>
+              <li role="separator" class="divider"></li>
+              <%= active_link_to "Admin", admin_root_path, :wrap_tag => :li  %>
+            <% end %>
+            <li role="separator" class="divider"></li>
+            <%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "white btn btn-secondary", :wrap_tag => :li %>
+          <% else %>
+            <%= active_link_to "Log in", new_user_session_path, :wrap_tag => :li %>
+            <li role="separator" class="divider"></li>
+            <%= active_link_to "Sign up", new_user_registration_path, :wrap_tag => :li %>
+          <% end %>
+        </ul>
+      </li>      
+    </ul>
   </div>
 </nav>

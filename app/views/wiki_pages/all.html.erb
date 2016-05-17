@@ -1,16 +1,9 @@
 <%= wiki_page_style -%>
 
 <% if current_user.try(:admin) %>
-  <%= link_to new_wiki_page_path, class: "btn btn-primary btn-round-lg" do %>
-    <i class="fa fa-pencil-square-o fa-3x pull-left"></i>
-    <span>Buat Halaman</span><br>
-    <b>Wiki Baru</b>        
+  <%= link_to new_wiki_page_path, class: "btn btn-md btn-inverse" do %>
+    <span>Buat Halaman</span><b>Wiki Baru</b>        
   <% end %>
-  <%= link_to admin_root_url(subdomain: ''), class: "btn btn-info btn-round-lg" do %>
-    <i class="fa fa-dashboard fa-3x pull-left"></i>
-    <span>Ke Dashboard</span><br>
-    <b>Admin</b>        
-  <% end %>  
   <div class="spacing"></div>
 <% end %>
 

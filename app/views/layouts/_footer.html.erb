@@ -6,10 +6,9 @@
           <h3>Company</h3>
           <ul class="fh5co-links">
             <li><%= link_to "Investasi Properti", root_url(subdomain: '') %></li>
-            <li><%= link_to "Cara Kerja", '/how_it_works' %></li>
-            <li><%= link_to "Pembelian Rumah", '/kepemilikan' %></li>
-            <li><%= link_to "Tentang Kapiten", '/about_us' %></li>  
-            <li><a href="#">Team</a></li>
+            <li><%= link_to "Cara Kerja", page_path('how_it_works') %></li>
+            <li><%= link_to "Pembelian Rumah", page_path('kepemilikan') %></li>
+            <li><%= link_to "Tentang Kapiten", page_path('about_us') %></li>
           </ul>
         </div>
       </div>
@@ -18,7 +17,7 @@
         <div class="fh5co-footer-widget">
           <h3>Support</h3>
           <ul class="fh5co-links">
-            <li><%= link_to "Blog", blog_posts_path %></li>
+            <li><%= link_to "Blog", blog_path %></li>
             <li><%= link_to "Kapitenpedia", wiki_all_path %></li>
           </ul>
 <!--           <ul class="fh5co-social">

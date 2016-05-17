@@ -77,7 +77,7 @@ gem 'gmaps4rails'
 
 
 group :development do
-  gem "mail_view", "~> 2.0.4"
+  # gem "mail_view", "~> 2.0.4"
   gem "awesome_print", require:"ap"
   gem "better_errors", '2.1.1'
   gem "binding_of_caller", '0.7.2'

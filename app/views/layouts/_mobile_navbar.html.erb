@@ -3,13 +3,18 @@
 	<div class="container navbar-more visible-xs">
 		<ul class="nav navbar-nav">
 			<li>
-				<%= active_link_to user_url(current_user) do %>
+				<%= active_link_to page_path('/kepemilikan'), :active => :inclusive do %>
+					<span class="menu-icon fa fa-user"></span>Kepemilikan Rumah
+				<% end %>
+			</li>
+			<li>
+				<%= active_link_to edit_user_registration_url(subdomain: '') do %>
 					<span class="menu-icon fa fa-user"></span>Akun
 				<% end %>
 			</li>
 			<li>
 				<%= active_link_to destroy_user_session_path, data:{method: :delete}, class: "btn btn-secondary" do %>
-					<span class="menu-icon fa fa-sign-out white"> Sign out</span>
+					<span class="menu-icon fa fa-sign-out"> Sign out</span>
 				<% end %>
 			</li>			
 			<% if current_user.admin? %>
@@ -49,7 +54,7 @@
 			    <% end %>
 		        <li role="separator" class="divider"></li>
 		        <li><%= active_link_to "Sign out", destroy_user_session_path, data:{method: :delete}, class: "white btn btn-secondary" %>
-		        </li>		        
+		        </li>
 		      </ul>
 		    </li>
 			<li class="visible-xs">

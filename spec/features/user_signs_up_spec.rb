@@ -5,7 +5,13 @@ feature "UserSignsUp", :type => :feature do
 	subject { page }
 	
 	describe "Signing_Up" do
-		before { visit new_user_registration_path }
+		before do 
+		  visit root_path
+		  find('#extra-link').click
+		  within(:li, '#extra-menu') do
+		  	click_link "Sign up"
+		  end		  
+		end
 
 		describe "as beta-listed client with valid information" do
 			before do

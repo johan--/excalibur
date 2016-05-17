@@ -158,8 +158,20 @@ section#reminder {
     padding-top: 40px;
   }
   .site-wrapper {
-    background: url('//res.cloudinary.com/instilla/image/upload/s--BdUvbz2j--/c_scale,q_60,w_800/v1458692370/man-hands-working-technology_2_sestkk.jpg') no-repeat center center scroll;
+    background: 
+    linear-gradient(
+        rgba(0, 243, 255, 0.45), 
+        rgba(0, 0, 0, 0.45)
+      ),      
+      url('//res.cloudinary.com/instilla/image/upload/s--BdUvbz2j--/c_scale,q_60,w_800/v1458692370/man-hands-working-technology_2_sestkk.jpg') no-repeat center center scroll;
   }  
+  #classic-navbar {
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 10px 10px;
+    }    
+  }
 }
 /*
  * Affix and center
@@ -486,4 +498,25 @@ section#footerwrap { padding: 7em 0; }
       margin-top: 30px;
     }
   }
+}
+
+
+section.detail-box.active {
+    display: block;
+}
+section.inspect-itemize .checkmark {
+    width: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+section.inspect-itemize h5 {
+    margin-top: 30px;
+}
+
+.box-faq {
+    margin-bottom: 60px;
+}
+.box-faq h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
 }

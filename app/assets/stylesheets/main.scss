@@ -53,7 +53,26 @@ h1.highlight {
     padding: .15em .2em;
     margin-bottom: 20px;
 }
-
+.fh5co-lead {
+    font-size: 50px;
+    font-weight: 300;
+    color: #484c50;
+    margin-bottom: 10px;
+}
+.fh5co-sub-lead {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 300;
+    /*color: #666666;*/
+    color: #85919d;
+}    
+section.explaining-kapiten, section.explaining-kapiten{
+    margin-top: 80px;        
+}
+.get-offer-button-group {
+    margin-top: 45px;
+    display: inline-flex; text-align: center;
+}
 
 /*Helpers*/
 .red { color: $brand-red }

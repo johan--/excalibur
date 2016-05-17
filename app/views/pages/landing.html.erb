@@ -35,24 +35,29 @@
     </div>
   </div>
 </div>
+
 <%= render 'pages/benefits' %>
 <%= render 'pages/customers' %>
 
-<!-- <section class="explaining-kapiten intro padded centered extra-bottom-margin">
+<section class="explaining-kapiten intro padded centered extra-bottom-margin">
   <div class="container">
     <div class="prose">
       <h2>Bahu-membahu menjauhi riba</h2>
       <h1 class="highlight">Pendaftaran untuk pengajuan proposal sudah dibuka</h1>
     </div>
     <div class="spacing"></div>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= link_to "Telusuri →", '/how_it_works', class: 'btn btn-lg btn-primary' %>
-        <%= link_to "Telusuri →", '/how_it_works', class: 'btn btn-lg btn-primary' %>
-      </div> 
+    <div class="col-md-8 col-md-offset-2">
+      <p>Untuk mengajukan proposal, silahkan mendaftar dengan menekan tombol di bawah ini</p>
+      <p>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-lg btn-success' %>   
+      </p><br><br>
+      <p><small>Atau silahkan tekan tombol di bawah apabila sudah pernah mendaftar</small> </p>
+      <p>
+        <%= link_to "Log in", new_user_session_path, class: 'btn btn-lg btn-inverse' %>   
+      </p>
     </div>
   </div>
-</section> -->
+</section>
 
 
 <section id="footerwrap" style="padding-bottom: 40px;">
@@ -60,6 +65,3 @@
     <%= render 'layouts/disclaimer' %>
   </div>
 </section>
-
-<style type="text/css">
-</style>
