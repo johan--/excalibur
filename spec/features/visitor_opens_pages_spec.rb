@@ -5,6 +5,14 @@ feature "VisitorOpensPages", type: :feature do
 
 
   context "unrestricted pages, open to public" do
+    describe "visit password edit page" do
+      before do 
+        visit new_user_password_path
+      end
+
+      it { is_expected.to have_title "Reset Password Page | SiKapiten" }
+    end
+
     describe "visit a house show page" do
     	let!(:house) { FactoryGirl.create(:complete_house) }
 

@@ -74,6 +74,8 @@ gem 'active_link_to', '1.0.3'
 gem 'impressionist'
 gem 'gmaps4rails'
 # gem "rails-settings-cached", "~> 0.4.0"
+gem 'premailer-rails'
+gem 'nokogiri'
 
 
 group :development do

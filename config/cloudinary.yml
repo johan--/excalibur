@@ -19,7 +19,7 @@ production:
   static_image_support: true
 test:
   cloud_name: instilla
-  api_key: "adsafafafafa"
-  api_secret: "adsafafafafasecevececeveve"
+  api_key: <%= ENV["CLY_API_KEY"] %>
+  api_secret: <%= ENV["CLY_API_SEC"] %>
   enhance_image_tag: true
   static_image_support: false
