@@ -10,28 +10,28 @@
           <div id="wizard" class="form_wizard wizard_horizontal">
             <ul class="wizard_steps">
               <li>
-                <%= active_link_to house_step_path(@house, :place) do %>
+                <%= active_link_to house_step_path(@house, :place), :active => /place/ do %>
                   <span class="step_no">1</span>
                   <span class="step_descr">Lokasi<br />
                   </span>
                 <% end %>
               </li>
               <li>
-                <%= active_link_to house_step_path(@house, :characteristics) do %>
+                <%= active_link_to house_step_path(@house, :characteristics), :active => /char/ do %>
                   <span class="step_no">2</span>
                   <span class="step_descr">Karakteristik<br />
                    </span>
                 <% end %>
               </li>
               <li>
-                <%= active_link_to house_step_path(@house, :situations) do %>
+                <%= active_link_to house_step_path(@house, :situations), :active => /situ/ do %>
                   <span class="step_no">3</span>
                   <span class="step_descr">Kondisi<br />
                   </span>
                 <% end %>
               </li>
               <li>
-                <%= active_link_to house_step_path(@house, :pictures) do %>
+                <%= active_link_to house_step_path(@house, :pictures), :active => /pict/ do %>
                   <span class="step_no">4</span>
                   <span class="step_descr">Display Picture<br />
                   </span>

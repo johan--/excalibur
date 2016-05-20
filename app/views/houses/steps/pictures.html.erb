@@ -3,7 +3,55 @@
   <%= form_for @house, url: house_step_path(@house, @step), method: :patch do |f| %>
 
     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-        <%= render 'houses/photos_fields', f: f %>
+      <% if @no_avatar %>
+        <div id="direct_upload" class="centered extra-bottom-margin">
+        <h5 class="centered">Unggah Display Picture</h5>
+        <p>Unggah foto yang akan menjadi display picture propertimu. Format yang diterima adalah .jpg atau .png maksimal 1 MB. <br><small>Klik 'Choose Files' untuk memulai memilih, kemudian tekan tombol kirim.</small></p>
+        <div class="form_line">
+          <%= f.label "Status:" %><br>
+          <%= f.submit "0 % Uploading", class: "btn btn-sm btn-coral", disabled: true %>
+          <div class="spacing"></div>
+          <div class="row">
+            <div class="form_controls col-sm-6 col-sm-offset-3">
+             <%= f.attachinary_file_field :photos, cloudinary: { type: :private } %>
+            </div>            
+          </div>
+        </div>
+        <div class="spacing"></div>
+      <% else %>
+        <h5 class="centered">Display Picture Saat Ini</h5>
+        <%= render_lg_house_display(@house, 'img-responsive') %>
+      <% end %>
+      </div>
+      <div id="proposal-prompt" class="centered ">
+        <% if params[:house_id] %>
+          <div class="form_line extra-bottom-margin">
+            <div class="row">
+              <div class="form_controls col-sm-6 col-sm-offset-3">
+                <h5 class="centered">Kamu mau membuat proposal pendanaan untuk rumah ini?</h5>
+                <div class="checkbox icheck">
+                  <label>
+                    <%= f.check_box :proposed %> <strong>Ajukan Proposal?</strong>
+                  </label>
+                  <p><small>Kosongkan bila tidak mau membuat proposal</small></p>
+                </div>
+              </div>            
+            </div>          
+          </div>
+        <% end %>
+        <div class="form_line extra-bottom-margin">
+          <div class="form_controls">
+            <span class="status"></span>
+            <div class="preview"></div>
+            <div class="spacing"></div>
+            <button class='btn btn-md btn-success centered'>
+              <i class='fa fa-plus-square'></i> Lanjutkan
+            </button>              
+          </div>
+        </div>
+      </div>
+      <div class="spacing"></div>
+      <div class="spacing extra-bottom-margin"></div>      
     </div>
 
     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 form-actions">
@@ -21,3 +69,17 @@
 
   <% end %>
 <% end %>
+
+<script>
+  // $(document).ready(function() {
+  //   $('.attachinary-input').attachinary({
+  //     dataType: 'json',
+  //     done: function (e, data) {
+  //       data.context.text('Upload finished.');
+  //     }      
+  //   })
+  // });
+  document.getElementsByClassName("attachinary-input")[0].addEventListener("click", function(){
+    $("body").addClass("disable-nprogress");
+  });
+</script>      

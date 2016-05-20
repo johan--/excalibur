@@ -1,5 +1,5 @@
 <div class="overlay-wrapper col-xs-6 col-sm-4">
-  <img class="img-responsive" src="<%= cl_image_path photo.path, house_tender_options('') %>" alt="image" />
+  <img class="img-responsive" src="<%= cl_image_path photo.path, house_tender_options_no_format('') %>" alt="image" />
   <span class="overlay">
     <%= link_to '#', data: { toggle: :modal, target: "#zoom_photo_#{photo.id}"} do %>
       <%= embedded_svg('spark-10-zoom.svg', class: 'svg-icon') %>

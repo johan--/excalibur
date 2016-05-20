@@ -73,17 +73,17 @@ RSpec.describe Tender, :type => :model do
 	  describe "if bid to the max" do
 	  	before { @bid = FactoryGirl.create(:bid, tender: @tender, volume: 800) }
 
-      it "should have 100 progress" do
-        expect(@tender.progress.to_i).to eq 100
-      end
+	    it "should have 100 progress" do
+	      expect(@tender.progress.to_i).to eq 100
+	    end
 
-      it "should have bid associated with it" do
-        expect(@tender.bids.count).to eq 2
-      end
+	    it "should have bid associated with it" do
+	      expect(@tender.bids.count).to eq 2
+	    end
 
-      it "should have bid associated with it" do
-        expect(@tender.check_contribution).to eq 300000000
-      end
+	    it "should have bid associated with it" do
+	      expect(@tender.check_contribution).to eq 300000000
+	    end
 	  end
   end
 

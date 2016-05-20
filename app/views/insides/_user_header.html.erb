@@ -3,7 +3,7 @@
     <div class="prose extra-bottom-margin centered">
       <% if defined?(profile) %>
 
-        <h2 class="fh5co-lead">Profil</h2>
+        <h2 class="fh5co-lead" style="font-size: 3em;">Profil</h2>
         <%= render_user_thumb(@user, 'img-circle circle-border m-b-md img-center') %>
         <h4><%= @user.name.titleize %></h4>
 
@@ -33,7 +33,7 @@
 
       <% else %>
 
-        <h2 class="fh5co-lead">Hai, <%= link_to current_user.name.titleize, user_path(current_user) %>!</h2>
+        <h2 class="fh5co-lead" style="font-size: 2em;">Hai, <%= link_to current_user.name.titleize, user_path(current_user) %>!</h2>
         <%= render_user_thumb(current_user, 'img-circle circle-border m-b-md img-center') %>
         <h5 class="sub-title centered">
           <%= render_user_auth_choice(current_user) %>

@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
 
     trait :for_purchase_musharaka do
-      association :tender, factory: :incomplete_house_purchase_musharaka
+      association :tender, factory: :fresh_house_purchase_musharaka
     end
 
     trait :bidder do

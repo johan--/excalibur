@@ -9,7 +9,6 @@ class InsidesController < ApplicationController
     @title = "Beranda"
     @tenders = current_user.tenders.offering
     @bids = current_user.bids
-    @documents = current_user.documents
     @houses = current_user.houses.includes(:photo_files)
     @houses_count = @houses.count 
     @tender_count = @tenders.count

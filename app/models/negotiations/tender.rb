@@ -72,6 +72,7 @@ class Tender < ActiveRecord::Base
     "tenders.details->>'state' = :type", type: "success")  
   }  
   scope :offering, -> { where(category: "fundraising") }
+  scope :housing, -> { where(tenderable_type: 'House') }
   scope :trading, -> { where(category: "trading") }
   scope :with_aqad, ->(aqad) { where(aqad: aqad) }
   scope :published, -> { 
@@ -86,12 +87,11 @@ class Tender < ActiveRecord::Base
   end
 
   def check_contribution
-    value = self.bids.map{ |bid| bid.contribution }.compact.sum
-    return value
+    bids.sum(:volume) * price
   end
 
   def shares_left
-    volume - self.bids.map{ |bid| bid.volume }.compact.sum
+    volume - bids.sum(:volume)
   end
 
   def expire_stock!

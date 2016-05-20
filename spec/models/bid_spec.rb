@@ -22,9 +22,9 @@ RSpec.describe Bid, :type => :model do
   	# before(:each) { bid.save }
 
   	describe "default values set by callback or database" do
-  	  # it "should sets properties of open to true" do
-  	  # 	expect(bid.broadcast?).to eq true
-  	  # end
+      it "has association with the tender object" do
+        expect(bid.tender).to eq tender
+      end
 
       it "has contribution value" do
         expect(bid.volume).to eq 800
@@ -53,9 +53,11 @@ RSpec.describe Bid, :type => :model do
 
     describe "it should affect the tender associated with the bid" do
       it "should have 0 shares left" do
-        expect(tender.progress.to_i).to eq 100
+        expect(tender.shares_left).to eq 0
       end
-
+      it "should have progress to 100 percent" do
+        expect(tender.progress).to eq 100
+      end
       # it "should change its state to closed" do
       #   expect(bid.tender.state).to eq "closed"
       # end
@@ -77,10 +79,6 @@ RSpec.describe Bid, :type => :model do
       it "should affect the tender associated with it" do
         expect(tender.fulfilled?).to eq false
       end
-
-      it "should change the tender state" do
-        expect(tender.state).to eq 'open'
-      end      
     end
 
     # describe "if transitioned to confirmed" do

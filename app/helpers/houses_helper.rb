@@ -40,14 +40,23 @@ module HousesHelper
 
   def fundraising_footer_link(house)
     unless house.input_unfinished?
-      content_tag(:li) do
-        link_to fundraising_purchase_url_for_house(house) do
-          content_tag(:span, class: 'text-danger') do
-            embedded_svg('spark-10-writing.svg', class: 'svg-icon') + 'Buat Proposal'
+      unless house.already_proposed_by_user? current_user
+        content_tag(:li) do
+          link_to fundraising_purchase_url_for_house(house) do
+            content_tag(:span, class: 'primary') do
+              embedded_svg('spark-10-writing.svg', class: 'svg-icon') + 'Buat Proposal'
+            end
           end
         end
-
       end
+    else
+      content_tag(:li) do
+        link_to house_path(house), method: :delete, :"data-confirm" => "Kamu yakin mau melanjutkan?", :"data-object" => "Penghapusan properti" do
+          content_tag(:span, class: 'text-danger') do
+            'Hapus Properti'
+          end
+        end
+      end      
     end    
   end
 
@@ -66,7 +75,12 @@ module HousesHelper
   def house_tender_options(string)
     { :width => 300, :height => 200, format: :png, 
       :crop => :lfill, gravity: :center, class: "#{string}" }
-  end  
+  end
+
+  def house_tender_options_no_format(string)
+    { :width => 300, :height => 200,
+      :crop => :lfill, gravity: :center, class: "#{string}" }
+  end
 
   def house_avatar_options(string)
   { :width => 500, :height => 300, format: :png,

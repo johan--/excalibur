@@ -22,4 +22,4 @@
 	  	<%= f.input :property_size, as: :integer, input_html: { min: '10', step: '1' }, label: "Luas Bangunan", placeholder: "meter persegi", required: true %>  
 	  </div>
   </div>
-    <%= f.input :description, label: "Deskripsi", placeholder: 'deskripsikan keunggulan dan fitur utama dari properti', required: true %>
+    <%= f.input :description, label: "Deskripsi", placeholder: 'deskripsikan keunggulan dan fitur utama dari properti', input_html: { rows: 5 }, required: true %>

@@ -20,7 +20,6 @@
         </div><!-- /.cols -->
         <div class="col-xs-6 col-sm-4 centered">
           <% unless current_user? user %>
-            <%= link_to "Message", '#', class: 'btn btn-info btn-block' %>
           <% else %>
             <%= link_to "Unggah berkas", edit_user_path(user, upload_document: true), class: "btn btn-info btn-block" %>
           <% end %>        

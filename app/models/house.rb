@@ -90,6 +90,14 @@ class House < ActiveRecord::Base
     if user == self.publisher || user.admin? then true else false end
   end
 
+  def already_proposed_by_user?(user)
+    if user.tenders.offering.housing.all.map(&:tenderable_id).include? self.id
+        true
+      else
+        false
+      end
+  end
+
   def states_of_house
     ["for sale", "vacant", "for rent"]
   end

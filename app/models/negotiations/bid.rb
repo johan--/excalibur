@@ -64,7 +64,7 @@ class Bid < ActiveRecord::Base
   end
 
   def contribution
-    (price * volume)
+    price * volume
   end
 
   def transfer_ownership!

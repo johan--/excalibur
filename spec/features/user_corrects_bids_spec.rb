@@ -15,23 +15,23 @@ feature "UserCorrectsBids", :type => :feature do
   end
   after { page.driver.reset! }
 
-	context "editing his/her bid", js: true do
-	  before do
-	    fill_in 'Jumlah Saham', with: 500
-	    find('#bid-form-button').click
-	    find('#bid-folder').click
-	  end
+	# context "editing his/her bid", js: true do
+	#   before do
+	#     fill_in 'Jumlah Saham', with: 500
+	#     find('#bid-form-button').click
+	#     find('#bid-folder').click
+	#   end
 	  
-	  it { is_expected.to have_content 'Tawaran berhasil dikoreksi'}
-	  it { is_expected.to have_css '.bid-volume', text: '500' }
-	  it { is_expected.to have_css '.bid-value', text: 'Rp 150.000.000' }
-	  it { is_expected.to have_selector '.bid-card', count: 1 }
-	end  
+	#   it { is_expected.to have_content 'Tawaran berhasil dikoreksi'}
+	#   it { is_expected.to have_css '.bid-volume', text: '500' }
+	#   it { is_expected.to have_css '.bid-value', text: 'Rp 150.000.000' }
+	#   it { is_expected.to have_selector '.bid-card', count: 1 }
+	# end  
 
 	context "withdrawing his/her bid", js: true do
 	  before do
 	    click_link "Tarik Tawaran"
-	    find('#bid-folder').click
+	    # find('#bid-folder').click
 	  end
 		
 	  it { is_expected.to have_content 'Tawaran berhasil ditarik'}
@@ -39,7 +39,5 @@ feature "UserCorrectsBids", :type => :feature do
 	  it { is_expected.to_not have_css '.bid-volume', text: '800' }
 	  it { is_expected.to_not have_css '.bid-value', text: 'Rp 240.000.000' }
 	  it { is_expected.to have_selector '.bid-card', count: 0 }
-	end
-
-  
+	end  
 end
