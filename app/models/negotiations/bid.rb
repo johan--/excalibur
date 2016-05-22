@@ -2,6 +2,7 @@ class Bid < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
   include RefreshSlug
+  include Pacecar
   extend FriendlyId
   protokoll :ticker, :pattern => 'BID%m####'
   friendly_id :slug_candidates, use: :slugged
@@ -12,7 +13,9 @@ class Bid < ActiveRecord::Base
   has_many   :bid_transitions
   has_many   :acquisitions
   has_one    :invoice, as: :invoiceable
-  delegate :paid?, :payments, to: :invoice, prefix: true
+
+  delegate :starter_name, :progress, :price, :ticker, to: :tender, prefix: true, allow_nil: true
+  # delegate :paid?, :payments, to: :invoice, prefix: true
   monetize :price_sens
 
   serialize :details, HashSerializer

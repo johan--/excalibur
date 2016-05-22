@@ -3,9 +3,9 @@
 </div>
 <div class="modal-body">
   <center>
-    <h3 class="media-heading">Tawaran untuk proposal <%= bid.tender.barcode %></h3>
+    <h3 class="media-heading">Tawaran untuk proposal <%= bid.tender.ticker %></h3>
   </center>
-    <p>Dibuat oleh <strong><%= bid.bidder_name %></strong> dengan nilai sebesar <strong><%= idr_money(bid.contribution) %></strong>, untuk proposal yang diajukan oleh <strong><%= bid.tenderable_name %></strong></p>
+    <p>Dibuat oleh <strong><%= bid.bidder.name %></strong> dengan nilai sebesar <strong><%= idr_money(bid.contribution) %></strong>, untuk proposal yang diajukan oleh <strong><%= bid.tender.starter.name %></strong></p>
 
 <%= simple_form_for([:admin, bid], html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { radio_buttons: :horizontal_radio_and_checkboxes }) do |f| %>
   <%= f.error_notification %>

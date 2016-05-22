@@ -11,7 +11,7 @@ feature "AdminManagesBlog", :type => :feature do
 
   describe "create a post" do
     before do
-      click_link "Telusuri posts"
+      click_link "Publications"
       click_link "New post"
     end
 

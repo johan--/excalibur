@@ -78,9 +78,7 @@ Fustal::Application.routes.draw do
     get 'inbox', to: "base#inbox", as: :inbox
     get 'events', to: "analytics#events", as: :events_analytics
     get 'visits', to: "analytics#visits", as: :visits_analytics
-    resources :users, skip: [:destroy]
-    resources :firms
-    resources :teams, only: [:index, :show, :destroy]
+    resources :users
     get "posts/drafts", to: "posts#drafts", as: "posts_drafts"
     resources :posts do
       member do
@@ -94,12 +92,7 @@ Fustal::Application.routes.draw do
     end
     resources :tenders, only: [:index, :edit, :update, :destroy]
     resources :bids, only: [:index, :edit, :update, :destroy]
-    resources :houses, skip: [:show] do
-      member do
-        get "upload", to: "houses#upload_photo", as: :upload_photo
-      end
-      resources :steps, only: [:show, :update], controller: 'house/steps'
-    end
+    resources :houses, skip: [:show]
     resources :comments
   end
 

@@ -11,11 +11,11 @@
   <tr>
     <th>#</th>
     <th>Klien</th>
-    <th>Akad</th>
+    <th>Kategori</th>
     <th>Updated At</th>
     <th>Status</th>
     <th>Harga</th>
-    <th>Volume</th>
+    <th>Progress</th>
     <th>Tawaran</th>
     <th></th>
   </tr>
@@ -23,13 +23,13 @@
   <% @tenders.each do |tender| %>
 
   <tr>
-    <td><%= link_to tender.ticker, show_tender_link(tender) %></td>
-    <td><%= link_to tender.starter.name, user_path(tender.starter) %></td>
-    <td><%= tender.aqad %></td>
+    <td><%= link_to tender.ticker, tender_path(tender) %></td>
+    <td><%= link_to tender.starter_name, user_path(tender.starter) %></td>
+    <td><%= tender.category %></td>
     <td><%= time_ago_in_words(tender.updated_at)%> ago</td>
     <td><%= tender.state %></td>
     <td><%= idr_money(tender.price) %></td>
-    <td><%= tender.volume %></td>
+    <td><%= tender.progress.to_i %></td>
     <td><%= link_to tender.bids.count, admin_bids_path(tender_id: tender.id) %></td>
     <td><%= link_to "Proses", edit_admin_tender_path(tender), remote: true %></td>
   </tr>

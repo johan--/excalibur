@@ -4,7 +4,7 @@
 <p><%= link_to "Back to Admin Root", admin_root_path %></p>
 
 <% if params[:tender_id] %>
-  <h4 class="primary">Tawaran Untuk Proposal <%= @tender.barcode %></h4>
+  <h4 class="primary">Tawaran Untuk Proposal <%= @tender.ticker %></h4>
 <% end %>
 
 <div class="text-center">
@@ -13,6 +13,7 @@
 
 <table class="table table-striped">
   <tr>
+    <th>#</th>
     <th>Proposal</th>
     <th>Penawar</th>
     <th>Updated At</th>
@@ -25,15 +26,12 @@
   <% @bids.each do |bid| %>
 
   <tr>
-    <td><%= link_to bid.tender.barcode, show_tender_link(bid.tender) %></td>
+    <td><%= bid.ticker %></td>
+    <td><%= link_to bid.tender_ticker, tender_path(bid.tender) %></td>
     <td><%= link_to bid.bidder.name, user_path(bid.bidder) %></td>
     <td><%= time_ago_in_words(bid.updated_at)%> ago</td>
-    <td><%= bid.shares %></td>
-    <% if Rails.env.test? %>
-      <td><%= bid.at_price %></td>
-    <% else %>
-      <td><%= idr_money(bid.at_price) %></td>
-    <% end %>
+    <td><%= bid.volume %></td>
+    <td><%= idr_money(bid.contribution) %></td>
     <td><%= bid.state %></td>
     <td><%= link_to "Proses", edit_admin_bid_path(bid), remote: true %></td>
   </tr>

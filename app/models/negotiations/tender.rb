@@ -1,8 +1,8 @@
 class Tender < ActiveRecord::Base
   include WannabeBool::Attributes
   include Statesman::Adapters::ActiveRecordQueries
-  include ProfitMargin
   include RefreshSlug
+  include Pacecar
   extend FriendlyId
   protokoll :ticker, :pattern => "PRO%y####%m"
   friendly_id :slug_candidates, use: :slugged
@@ -11,22 +11,19 @@ class Tender < ActiveRecord::Base
   acts_as_paranoid
   is_impressionable
   
-  cattr_accessor :form_steps do
-    %w(fill_proposal fill_profile upload_docs)
-  end
-  
   belongs_to :tenderable, polymorphic: true  
   belongs_to :starter, polymorphic: true  
   has_many :bids
   has_many :tender_transitions
   has_many :comments, as: :commentable
   
+  # delegate :starter_name, :progress, :price, :ticker, to: :bid, prefix: true, allow_nil: true
+
   attr_accessor :asset_id, :asset
 
   serialize :details, HashSerializer
   store_accessor :details, 
-                 :unit, :draft, :participate,
-                 :state,  :pushed
+                 :unit, :draft, :participate, :state,  :pushed
 
   attr_wannabe_bool :draft, :participate, :pushed
 
@@ -65,22 +62,12 @@ class Tender < ActiveRecord::Base
     return false if check_contribution != self.target
   end
 
-  scope :open, -> { where(
-    "tenders.details->>'state' = :type", type: "open")  
-  }
-  scope :completed, -> { where(
-    "tenders.details->>'state' = :type", type: "success")  
-  }  
+  scope :open, -> { where("tenders.details->>'state' = :type", type: "open")  }
+  scope :completed, -> { where( "tenders.details->>'state' = :type", type: "success")  }  
   scope :offering, -> { where(category: "fundraising") }
   scope :housing, -> { where(tenderable_type: 'House') }
   scope :trading, -> { where(category: "trading") }
-  scope :with_aqad, ->(aqad) { where(aqad: aqad) }
-  scope :published, -> { 
-    where("tenders.details->>'draft' = :type", type: "no") 
-  }  
-  # scope :with_aqad, ->(aqad) { 
-  #   where("tenders.details->>'aqad' = :type", type: "#{aqad}") 
-  # }
+  scope :published, -> { where("tenders.details->>'draft' = :type", type: "no") }
 
   def access_granted?(user)
     if user == self.starter || user.admin? then true else false end
@@ -131,6 +118,10 @@ class Tender < ActiveRecord::Base
   def tender_owner?(user)
     return true if self.starter == user
     return false if self.starter != user
+  end
+
+  def starter_name
+    starter.name
   end
 
 private

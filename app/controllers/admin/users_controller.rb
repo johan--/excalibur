@@ -16,6 +16,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
+    @documents = @user.documents
   end
 
   def update

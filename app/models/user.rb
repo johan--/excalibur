@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include WannabeBool::Attributes
   include UserAdmin
+  include Pacecar
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   acts_as_commentable

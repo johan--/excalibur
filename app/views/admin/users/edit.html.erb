@@ -1,65 +1,110 @@
 <% title("Edit User Id: #{@user.id}") %>
-<div class="row">
-  <div class="col-sm-6">
-    <h1>
-      Edit User <small><%= "#{@user.email} - id: #{@user.id}" %></small>
-    </h1>
-    <p><%= link_to "Back to Users", admin_users_path %></p>
+<section class="intro padded bordered-section ">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>User <small><%= "#{@user.name}" %></small></h1>
+      <p><%= link_to "Back to Users", admin_users_path %></p>
+      <p><%= link_to "Halaman Pengguna", user_path(@user), class: 'btn btn-md btn-primary' %></p>
+      <br>
+    </div> 
+    <div class="spacing"></div>
+    <div class="col-sm-6 col-md-4">
+      <%= render_user_thumb(@user, 'img-circle circle-border m-b-md img-center') %>
+    </div>
+    <div class="col-sm-6 col-md-8">
+      <h4>Edit Informasi Kunci</h4>
+      <%= form_for [:admin, @user], :html => { :role => "form" } do |f| %>
 
-    <%= form_for [:admin, @user], :html => { :role => "form" } do |f| %>
-
-    <div class="form-group">
-      <%= f.label :email %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.email_field :email, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.email_field :email, class: "form-control" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :password %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.password_field :password, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.password_field :password_confirmation, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <% unless current_user.id == @user.id %>
-    <div class="form-group">
+      <% unless current_user == @user %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= f.check_box :locked %> <%= f.label :locked, "Is Locked?" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= f.check_box :admin %> <%= f.label :admin, "Is Admin?" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col-sm-6">
-          <%= f.check_box :locked %> <%= f.label :locked, "Is Locked?" %>
+          <%= f.submit "Update User", class: "btn btn-danger" %>
         </div>
       </div>
+
+      <% end %>
+
     </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.check_box :admin %> <%= f.label :admin, "Is Admin?" %>
-        </div>
-      </div>
-    </div>
-    <% end %>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.submit "Update User", class: "btn btn-danger" %>
-      </div>
-    </div>
-
-    <% end %>
-
   </div>
-</div>
+</section>
+<section class="intro">
+  <div class="container">
+  <div class="inner-skeleton centered">
+    <h4>Berkas Yang Telah Diunggah</h4>
+    <% unless @documents.blank? %>
+      <% @documents.each do |document| %>
+        <div class="col-xs-6 col-sm-4">
+          <%= render partial: "documents/document", locals: { document: document, thumbnail: true, checking: true } %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="spacing"></div>
+        <h5 class="centered">Belum ada </h5>
+      </div>
+
+    <% end %>
+    </div>
+  </div>
+</section>
+<section class="intro padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <div class="inner-skeleton danger-zone">
+          <h2>Danger Zone <br><small>Pertimbangkan dengan matang sebelum kamu menghapus akun ini</small></h2>
+          <p></p>
+          <p>
+            <%= link_to admin_user_path(@user), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan pengguna'}, class: 'btn btn-danger btn-lg' do %>
+                <span class="glyphicon glyphicon-trash reset-link"></span> Hapus Pengguna
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

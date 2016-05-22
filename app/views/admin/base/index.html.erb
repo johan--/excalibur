@@ -1,124 +1,182 @@
 <% title("Admin Dashboard") %>
 <h1>Admin <small>Dashboard</small></h1>
 
-<!-- Small boxes (Stat box) -->
-  <div class="col-lg-3 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @tender_count %></h3>
-        <p>Proposal</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-bag"></i>
-      </div>
-      <%= link_to admin_tenders_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->
-  <div class="col-lg-3 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @bid_count %></h3>
-        <p>Tawaran</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-pie-graph"></i>
-      </div>
-      <%= link_to admin_bids_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->            
-  <div class="col-lg-3 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @doc_count %></h3>
-        <p>Document</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-stats-bars"></i>
-      </div>
-      <%= link_to admin_documents_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->
-  <div class="col-lg-3 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @user_count %></h3>
-        <p>Users</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-person-add"></i>
-      </div>
-      <%= link_to admin_users_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->
-  <div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @post_count %></h3>
-        <p>Posts</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-ios-paper"></i>
-      </div>
-      <%= link_to admin_posts_url(subdomain: ''), class: "small-box-footer" do %>
-        Telusuri posts <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->  
-  <div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @wiki_count %></h3>
-        <p>Wikis</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-ios-book"></i>
-      </div>
-      <%= link_to wiki_all_path, class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->    
-  <div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @house_count %></h3>
-        <p>Houses</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-home"></i>
-      </div>
-      <%= link_to admin_houses_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->    
-  <div class="col-lg-6 col-xs-6">
-    <!-- small box -->
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3><%= @assess_count %></h3>
-        <p>Assessments</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-ionic"></i>
-      </div>
-      <%= link_to admin_comments_url(subdomain: ''), class: "small-box-footer" do %>
-        More info <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div><!-- ./col -->      
+<section class="intro padded bordered-section " id="asset-section">
+  <div class="container">
+
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			  <div class="tile-stats">
+			    <div class="icon"><i class="fa fa-caret-square-o-right"></i>
+			    </div>
+			    <div class="count"><%= @users.count %></div>
+
+			    <h3>Total User</h3>
+			    <p>Lorem ipsum psdea itgum rixt.</p>
+			  </div>
+			</div>
+			<div class="col-md-8 col-sm-6 col-xs-12">
+			  <ul class="list-unstyled">
+			    <% @last_signups.each do |user| %>
+				    <div class="col-xs-6">
+					    <li class="list-padded-bottom">
+					      <%= link_to user.name, user_path(user) %><br/>
+					      <small><%= time_ago_in_words(user.created_at)%> ago</small>
+					    </li>
+				    </div>
+			    <% end %>
+			  </ul>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section class="intro padded bordered-section " id="asset-section">
+  <div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			  <div class="tile-stats">
+			    <div class="icon"><i class="fa fa-comments-o"></i>
+			    </div>
+			    <div class="count"><%=  %></div>
+
+			    <h3>Recent User Updates</h3>
+			    <p>Lorem ipsum psdea itgum rixt.</p>
+			  </div>
+			</div>
+			<div class="col-md-8 col-sm-6 col-xs-12">
+				<ul class="list-unstyled">
+				  <% @last_updated.each do |user| %>
+				  <div class="col-xs-6">
+				    <li class="list-padded-bottom">
+				      <%= link_to user.email, edit_admin_user_path(user) %><br/>
+				      <small>
+				        <%= user.name %>
+				      </small>
+				    </li>
+				  </div>
+				  <% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="intro padded bordered-section " id="asset-section">
+  <div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			  <div class="tile-stats">
+			    <div class="icon"><i class="fa fa-sort-amount-desc"></i>
+			    </div>
+			    <div class="count"><%= @tender_count %></div>
+			    <h3>Proposal</h3>
+			    <hr>
+			    <div class="count"><%= @bid_count %></div>
+			    <h3>Bid</h3>			    
+			  </div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+				  <ul class="list-unstyled">
+				    <% @recent_proposals.each do |tender| %>
+				    <li class="list-padded-bottom">
+				      <%= link_to tender.ticker, tender_path(tender) %><br/>
+				      <small>
+				        <%= time_ago_in_words(tender.updated_at)%> ago
+				      </small>
+				    </li>
+				    <% end %>
+				  </ul>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+				  <ul class="list-unstyled">
+				    <% @recent_bids.each do |bid| %>
+				    <li class="list-padded-bottom">
+				      <h5><%= bid.ticker %></h5>
+				      <small>
+				        <%= bid.tender.ticker %> - <span class="primary"><%= idr_money(bid.contribution) %></span>
+				      </small>
+				    </li>
+				    <% end %>
+				  </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<style type="text/css">
+.tile-stats {
+    position: relative;
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #E4E4E4;
+    -webkit-border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 5px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 5px;
+    -moz-background-clip: padding;
+    border-radius: 5px;
+    background-clip: padding-box;
+    background: #FFF;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.tile-stats:before, .tile-stats:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}  
+
+.tile-stats .icon {
+    color: #BAB8B8;
+    position: absolute;
+    right: 53px;
+    top: 22px;
+    z-index: 1;
+}
+
+
+.tile-stats .count, .tile-stats h3, .tile-stats p {
+    position: relative;
+    margin: 0;
+    margin-left: 10px;
+    z-index: 5;
+    padding: 0;
+}
+.tile-stats .count {
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 1.65857143;
+}
+
+.tile-stats h3 {
+    color: #BAB8B8;
+}
+.tile-stats .count, .tile-stats h3, .tile-stats p {
+    position: relative;
+    margin: 0;
+    margin-left: 10px;
+    z-index: 5;
+    padding: 0;
+}
+
+.tile-stats p {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.tile-stats .count, .tile-stats h3, .tile-stats p {
+    position: relative;
+    margin: 0;
+    margin-left: 10px;
+    z-index: 5;
+    padding: 0;
+}
+</style>

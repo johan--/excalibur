@@ -4,18 +4,15 @@ class Admin::BaseController < ApplicationController
   before_action :admin_layout
 
   def index
-    @last_signups = User.last_signups(10)
-    @last_signins = User.last_signins(10)
+    @users = User.all
+    @last_signups = User.by_created_at(:desc).limited(10)
+    @last_updated = User.by_updated_at(:desc).limited(15)
+    # @last_signins = User.by_last_sign_in_at(:desc).limited(10)
     @last_subscribers = Subscriber.last_subscribes(10)
-    @subs_count = Subscriber.count
-    @user_count = User.count
-    @post_count = Post.count
-    @house_count = House.count
-    @doc_count = Document.count
-    @tender_count = Tender.count
-    @bid_count = Bid.count
-    @wiki_count = WikiPage.count
-    @assess_count = Comment.count
+    @recent_proposals = Tender.by_updated_at.limited(10)
+    @recent_bids = Bid.by_updated_at.limited(10)
+    @tender_count = Tender.all.count
+    @bid_count = Bid.all.count
   end
 
   def inbox
