@@ -59,4 +59,7 @@ Fustal::Application.configure do
   # Do not suppress errors raised within 'after rollback' and 
   # 'after commit' callbacks
   config.active_record.raise_in_transactional_callbacks = true
+
+  # Fire event to mixpanel
+  MetaEvents::Tracker.default_event_receivers << MetaEvents::TestReceiver.new  
 end
