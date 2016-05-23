@@ -17,7 +17,7 @@ class Tender < ActiveRecord::Base
   has_many :tender_transitions
   has_many :comments, as: :commentable
   
-  # delegate :starter_name, :progress, :price, :ticker, to: :bid, prefix: true, allow_nil: true
+  delegate :address, :full_street_address, :short_address, :city, :price, to: :tenderable, prefix: true, allow_nil: true
 
   attr_accessor :asset_id, :asset
 
@@ -55,6 +55,11 @@ class Tender < ActiveRecord::Base
 
   def target
     (price * volume)
+  end
+
+  def description
+    "Proposal syirkah ini dibuat oleh #{self.starter_name} untuk membangun kerja sama investasi properti yang melibatkan pembelian 
+    dan kepemilikan bersama properti yang terletak di #{tenderable.short_address}"
   end
 
   def fulfilled?

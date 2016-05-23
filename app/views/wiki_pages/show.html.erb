@@ -13,4 +13,8 @@
 
 	  <%=wiki_content @page.content %>
 	</div>
+	<div class="single-column post-content">
+		<h5>Share This Article!</h5>
+		<%= social_share_button_tag(@page.title, url: wiki_page_url(@page), desc: truncate(@page.content, length: 120) ) %>
+	</div>	
 </div>

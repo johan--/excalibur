@@ -33,8 +33,9 @@ gem 'cloudinary', '~> 1.1.0'
 
 # Blog
 gem 'acts_as_commentable_with_threading'
-# gem 'social-share-button', '~> 0.1.6'
+gem 'social-share-button', '~> 0.2.1'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
+# gem 'social-share-button', '~> 0.1.6'
 
 
 # Necessities

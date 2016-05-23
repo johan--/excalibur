@@ -1,18 +1,32 @@
-<% meta title: "Proposal #{@tender.ticker}" %>
+<% meta title: "Proposal #{@tender.ticker}", description: @tender.description, keywords: [@tender.ticker, @tender.starter_name.titleize, @tender.tenderable_city, idr_money(@tender.target)]   %>
 
 <%= render 'tender_header' %>
+<section class="intro action-section ">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 centered" id="share-form">
+          <%= link_to "Share via media sosial", '#', class: "btn btn-success btn-block", id: "share-button" %>
+        </div><!-- /.cols -->
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 centered" id="share-options" style="display: none;">
+        <%= social_share_button_tag(@tender.ticker, url: user_tender_url(@client, @tender)) %>
+        </div>
+      </div>
+    </div>     
+  </div>
+</section>
 <div class="white-background">
 <section class="intro padded bordered-section " id="asset-section">
   <div class="container">
     <div class="col-sm-10 col-sm-offset-1">
       <div class="row">
-        <div class="col-md-12"><h2>Objek Syirkah</h2></div>
+        <div class="col-md-12"><h2>Deskripsi</h2></div>
         <div class="col-md-7">
           
           <div class="product-description u-fontSize16" style="line-height: 28px;">
-            <p>Syirkah dibentuk dengan tujuan bekerja sama membeli dan memiliki properti yang diajukan oleh Klien dengan spesifikasi sebagai berikut:</p>
-            <p id="asset-address"><i class="fa fa-home"></i> <%= @asset.address %>, <%= @asset.city %></p>
-            <p><i class="fa fa-tag"></i> <span id="asset-price"> <%= idr_money(@asset.price) %></span></p>
+            <p><%= @tender.description %></p>
+            <p id="asset-address"><i class="fa fa-home"></i> <%= @tender.tenderable_full_street_address %></p>
+            <p><i class="fa fa-tag"></i> <span id="asset-price"> <%= idr_money(@tender.tenderable_price) %></span></p>
             <p><i class="fa fa-info-circle"></i> <%= @asset.bedrooms %> kamar tidur <%= @asset.bathrooms %> kamar mandi · <%= @asset.property_size %>m² · <%= @asset.lot_size %>m² tanah</p>            
           </div>
         </div>
@@ -52,3 +66,11 @@
 <style type="text/css">
 
 </style>
+
+<script type="text/javascript">
+
+document.getElementById("share-button").addEventListener("click", function(){
+  $("#share-form").hide();
+  $("#share-options").show();
+});
+</script>

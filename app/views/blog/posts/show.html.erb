@@ -13,7 +13,7 @@
         fb: ENV["FB_APP_ID"] 
 %>
 
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1 no-padding">
 	<div class="outset-column no-select">
 	<% if request.variant.include? :phone %>
 	  <%= cl_image_tag(@post.meta_image, { :width => 300, :crop => :scale, type: 'upload', format: :jpg } ) %>
@@ -23,11 +23,15 @@
 	</div>
 	<div class="single-column post-content no-select">
 	  <p class="single-column post-content" style="margin-bottom: 0px;"><csmall>&nbsp;&nbsp;<%= @post.updated_at.strftime("%Y, %B %-d") %></csmall> | <csmall2>Oleh: <%= @post.user.name %></csmall2></p>
-	  <h1><%=h @post.title %></h1>
+	  <h1 class="single-column post-content"><%=h @post.title %></h1>
 	  
 	  <div class="spacing"></div>
 	  <div class="single-column post-content no-select">
 	  	<%= @post.content_html.html_safe %>
 	  </div>
+	</div>
+	<div class="single-column post-content">
+		<h5>Share This Article!</h5>
+		<%= social_share_button_tag(@post.title, url: blog_post_url(@post), desc: @post.meta_description) %>
 	</div>
 </div>
