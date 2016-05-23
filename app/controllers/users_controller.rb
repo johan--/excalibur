@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   def show
     @tenders = @user.tenders
     @documents = @user.documents
+    unless user_signed_in? && @user == current_user
+      meta_events_tracker.event!(:visit, :user, { visited: @user.name, referrer: request.referrer } )
+    end    
   end
 
   def edit
@@ -22,6 +25,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       flash[:notice] = 'Profil berhasil diperbaharui'
       redirect_to user_path(current_user)
+      meta_events_tracker.event!(:user, :filling_profile, { name: @user.name })
     else
       flash[:warning] = 'Profil gagal diperbaharui'
       render :edit

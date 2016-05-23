@@ -1,7 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
+  include Analyticable
   skip_before_filter :authenticate_user!, only: [:new, :create]
   before_filter :resource_params
   before_filter :inside_app, only: [:edit]
+  after_filter  :after_registration, :only => :create
 
   def new
     set_as_static
@@ -14,21 +16,17 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    if resource.save
-      meta_events_tracker.event!(:user, :signed_up, { auth: 'Kapiten' })
-    end
   end
 
 
-  private
+private
 
-  # def after_sign_up_path_for(resource)
-  #   if resource.admin?
-  #     admin_root_url(subdomain: '')
-  #   else
-  #     user_root_url(subdomain: '')
-  #   end          
-  # end
+  def after_registration
+    if resource.persisted?
+      meta_events_tracker.event!(:user, :signed_up, { auth: 'Kapiten', user_agent: request.user_agent })
+      mixpanel_tracker.alias(current_user.id, current_browser_id)
+    end
+  end
 
   def after_sign_up_path_for(resource)
     signed_in_root_path(resource)

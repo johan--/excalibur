@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include UrlHelper 
   include LayoutSelector
+  include Analyticable
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with:  :null_session
   before_action :detect_device_format, unless: Proc.new { |c| c.request.format.json? }
@@ -11,14 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :switch_browser_prompt, if: :devise_controller?
   # before_filter :set_locale
   # before_filter :resource_params, if: :devise_controller?
-  # use_vanity :current_user
 
-
-  def meta_events_tracker
-    @meta_events_tracker ||= MetaEvents::Tracker.new(
-      current_user.try(:id), request.remote_ip
-    )
-  end
 
   # Auto-sign out locked users
   def reject_locked!
@@ -61,6 +55,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_opera_mini?
 
 
+
 private
   def detect_device_format
     case request.user_agent
@@ -93,16 +88,16 @@ private
     end
   end
 
-  def set_locale
-    # I18n.locale = params[:locale] if params[:locale].present?
-    # I18n.locale = current_user.locale # alternative 1
-    # I18n.locale = request.subdomain  # alternative 2
-    if cookies[:user_locale] && I18n.available_locales.include?(cookies[:user_locale].to_sym)
-      l = cookies[:user_locale].to_sym
-    else
-      l = I18n.default_locale
-      cookies.permanent[:user_locale] = l
-    end
-    I18n.locale = l    
-  end
+  # def set_locale
+  #   # I18n.locale = params[:locale] if params[:locale].present?
+  #   # I18n.locale = current_user.locale # alternative 1
+  #   # I18n.locale = request.subdomain  # alternative 2
+  #   if cookies[:user_locale] && I18n.available_locales.include?(cookies[:user_locale].to_sym)
+  #     l = cookies[:user_locale].to_sym
+  #   else
+  #     l = I18n.default_locale
+  #     cookies.permanent[:user_locale] = l
+  #   end
+  #   I18n.locale = l    
+  # end
 end

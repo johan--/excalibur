@@ -8,17 +8,20 @@ class Trading::TendersController < ApplicationController
 
   def show
     set_tender
+    unless user_signed_in? && @tender.access_granted?(current_user)
+      meta_events_tracker.event!(:visit, :proposal, { proposal_ticker: @tender.ticker, client: @tender.starter_name, referrer: request.referrer } )
+    end
   end
 
-  def discuss
-    set_tender
+  # def discuss
+  #   set_tender
     
-    @comments = @tender.comments
-    @comment = Comment.new
-    @type = @tender.class.name
-    @commentable_id = @tender.id
-    @subject = "interaction"    
-  end
+  #   @comments = @tender.comments
+  #   @comment = Comment.new
+  #   @type = @tender.class.name
+  #   @commentable_id = @tender.id
+  #   @subject = "interaction"    
+  # end
 
   def new
     @category = params[:intent]
@@ -51,6 +54,7 @@ class Trading::TendersController < ApplicationController
         
     if @tender.save
       flash[:notice] = 'Proposal berhasil dibuat'
+      meta_events_tracker.event!(:user, :created_proposal, { ticker: @tender.ticker, target: @tender.target })
     else
       flash[:danger] = 'Proposal gagal dibuat'
       Rails.logger.info(@tender.errors.inspect) 

@@ -17,6 +17,7 @@ class DocumentsController < ApplicationController
   	if @document.save
 	    redirect_to user_path(current_user)
 	    flash[:notice] = 'Dokumen berhasil disimpan'
+      meta_events_tracker.event!(:user, :uploaded_document, { document_type: @document.doc_type, category: @document.category })
 	  else
 		  render :new
 	  end

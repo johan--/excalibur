@@ -13,8 +13,9 @@ class HousesController < ApplicationController
     set_as_static
     @photos = @house.photos
     @view_count = @house.impressionist_count(:filter=>:session_hash)
-    unless current_user.present? && @house.access_granted?(current_user)
-      impressionist(@house) 
+    unless user_signed_in? && @house.access_granted?(current_user)
+      impressionist(@house)
+      meta_events_tracker.event!(:visit, :house, { house_ticker: "RUM#{@house.ticker}", city: @house.city, price: @house.price_sens, referrer: request.referrer } )
     end
     @hash = Gmaps4rails.build_markers(@house) do |house, marker|
       marker.lat house.latitude

@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   include WannabeBool::Attributes
+  include RefreshSlug
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged  
   protokoll :ticker, :pattern => "DOC%y####%m"
@@ -22,7 +23,8 @@ class Document < ActiveRecord::Base
   # validates :public_id, :presence => true
   
   before_create :set_default
-
+  after_create :refresh_friendly_id!
+  
   scope :verifieds, -> { 
     where("documents.details->>'state' = :state", state: "verified") 
   }    

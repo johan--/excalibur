@@ -21,6 +21,7 @@ class Trading::BidsController < ApplicationController
 
     if @bid.save
       redirect_to @tender, notice: 'Tawaran berhasil diajukan'
+      meta_events_tracker.event!(:user, :tabled_bid, { proposal: @bid.tender_ticker, volume: @bid.volume })
     else
       render :new
     end
@@ -29,6 +30,7 @@ class Trading::BidsController < ApplicationController
   def update
     if @bid.update(bid_params)
       redirect_to user_root_path, notice: 'Tawaran berhasil dikoreksi'
+      meta_events_tracker.event!(:user, :modified_bid, { proposal: @bid.tender_ticker, volume: @bid.volume })
     else
       render :edit
     end
@@ -37,6 +39,7 @@ class Trading::BidsController < ApplicationController
   def destroy
     @bid.destroy
     redirect_to user_root_path, notice: 'Tawaran berhasil ditarik'
+    meta_events_tracker.event!(:user, :modified_bid, { proposal: @bid.tender_ticker, volume: 0 })
   end
 
   def finalize

@@ -57,6 +57,7 @@ class Houses::StepsController < ApplicationController
         else
           @house.save
           redirect_to finish_wizard_path
+          meta_events_tracker.event!(:user, :completed_house, { house_ticker: @house.ticker, city: @house.city, price: @house.price_sens  })
         end
       else
         render_wizard @house

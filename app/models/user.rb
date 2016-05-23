@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     :phone_number, :about, :last_education, :first_name, :last_name,
     :marital_status, :work_experience, :number_dependents, :occupation,
     :monthly_income, :monthly_expense, :address, :location, 
-    :auth_with, :google_url, :twitter_url
+    :auth_with, :browser_id
   
   attr_wannabe_bool :open, :understanding, :developer, :notification
   attr_accessor :image_id, :category

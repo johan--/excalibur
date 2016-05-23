@@ -10,9 +10,7 @@ class Blog::PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(7)
         
     unless current_user.present? && current_user.admin?
-      meta_events_tracker.event!(:visit, :blog, { 
-        distinct_id: request.uuid }
-      )
+      meta_events_tracker.event!(:visit, :blog, { page: 'blog page', referrer: request.referrer } )
     end
   end
   
@@ -20,10 +18,7 @@ class Blog::PostsController < ApplicationController
     @post = Post.friendly.find(params[:id])
 
     unless current_user.present? && current_user.admin?
-      meta_events_tracker.event!(:visit, :blogpost, {
-        title: @post.title, topic: @post.topic,
-        distinct_id: request.uuid } 
-      )
+      meta_events_tracker.event!(:visit, :blogpost, { title: @post.title, category: 'blog', referrer: request.referrer } )
     end
   rescue  
     redirect_to root_path(subdomain: "blog")
