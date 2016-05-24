@@ -2,20 +2,18 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <b>Masuk</b>
+    <b>Log In</b>
   </div><!-- /.login-logo -->
-  <p class="centered">
-    Belum pernah mendaftar? <%= link_to "Klik di sini", new_user_registration_url(subdomain: '') %>
-  </p>
 
   <div class="login-box-body">
     <div class="social-auth-links text-center">
+      <p class="login-box-msg">menggunakan akun media sosial</p>
       <%= render 'elements/omniauth_buttons', login: true  %>
     </div><!-- /.social-auth-links --><br>
 
-    <p class="text-center">- OR -</p><br>
+    <p class="text-center">- ATAU -</p><br>
 
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">menggunakan akun Kapiten</p>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
       <%= devise_error_messages! %>
@@ -41,6 +39,9 @@
       </div>
     <% end %>
     <div class="spacing"></div>
+    <p class="centered">
+      Belum pernah mendaftar? <%= link_to "Klik di sini", new_user_registration_url(subdomain: '') %>
+    </p>    
     <%= link_to "Lupa password kamu?", new_user_password_url(subdomain: '') %>
 
   </div><!-- /.login-box-body -->

@@ -25,7 +25,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # flash[:notice] = "Successfully linked that account!"
         redirect_to user_root_url, notice: "Successfully linked that account!"
       end
-      meta_events_tracker.event!(:user, :logged_in, { auth: @identity.provider, user_agent: request.user_agent })
+      meta_events_tracker.event!(:user, :logged_in, { auth: @identity.provider, device: request.variant })
     else
       if @identity.user.present?
         # The identity we found had a user associated with it so let's 
@@ -33,7 +33,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user = @identity.user
         flash.notice = "Signed in!"
         sign_in_and_redirect user
-        meta_events_tracker.event!(:user, :logged_in, { auth: @identity.provider, user_agent: request.user_agent })
+        meta_events_tracker.event!(:user, :logged_in, { auth: @identity.provider, device: request.variant })
       else
         # No user associated with the identity so we need to create a new one
         user = User.from_omniauth(auth)
@@ -41,7 +41,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @identity.update(user: user)
           flash.notice = "Signed in!"
           sign_in_and_redirect user
-          meta_events_tracker.event!(:user, :signed_up, { auth: @identity.provider, user_agent: request.user_agent })
+          meta_events_tracker.event!(:user, :signed_up, { auth: @identity.provider, device: request.variant })
           mixpanel_tracker.alias(user.id, current_browser_id)
         else
           @identity.destroy

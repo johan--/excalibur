@@ -23,7 +23,7 @@ private
 
   def after_login
     if user_signed_in?
-      meta_events_tracker.event!(:user, :logged_in, { auth: 'Kapiten', user_agent: request.user_agent })
+      meta_events_tracker.event!(:user, :logged_in, { auth: 'Kapiten', device: request.variant })
       # mixpanel_tracker.alias(current_user.id, current_browser_id)
     end
   end

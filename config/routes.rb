@@ -4,20 +4,12 @@ require 'subdomain'
 Fustal::Application.routes.draw do
   wiki_root '/wiki'
 
-  # if Rails.env.development?
-  #   mount SubscriberPreview => 'subscriber_view' 
-  #   mount MailPreview => 'mail_view'
-  # end  
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, :controllers => { 
     :registrations => "registrations", :sessions => "sessions", 
     :passwords => "passwords", :omniauth_callbacks => "omniauth_callbacks" 
   }
-  # devise_scope :user do
-  #   get "/daftarbeta" => "devise/registrations#new"
-  #   get "/masukbeta" => "devise/sessions#new"
-  # end
 
   namespace :blog, path: '/blog' do
     get "find", to: "posts#find_posts", as: "find_posts"
@@ -55,8 +47,7 @@ Fustal::Application.routes.draw do
   # end
 
   # Static Pages
-  root "pages#landing"
-  
+  # root "pages#landing"
   get "home", to: "insides#home", as: :user_root
   get "profil", to: "insides#profile", as: :profile
   get "pilih", to: "insides#choose", as: :choose
@@ -106,9 +97,10 @@ Fustal::Application.routes.draw do
   get '/vanity/image'
 
 
-  get "/*id" => 'pages#show', format: false
+  get "/*id" => 'pages#show', as: :page, format: false
+  root to: 'pages#show', id: 'landing'
 
-  resources :users, only: :show, path: 'id' do
+  resources :users, only: :show, path: '' do
     resources :tenders, only: :show, path: ''
   end
 
