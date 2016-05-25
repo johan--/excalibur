@@ -1,6 +1,7 @@
 <% if @sub == 'for' %>
   $("#like-button").hide();
   $("#like-form").html("<%= escape_javascript(render partial: 'users/unlike_button', locals: { user: @likeable }) %>")
+  $("#buying_details").modal('hide');
 <% else %>
   $("#unlike-button").hide();
   $("#like-form").html("<%= escape_javascript(render partial: 'users/like_button', locals: { user: @likeable }) %>")

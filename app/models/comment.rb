@@ -3,14 +3,14 @@ class Comment < ActiveRecord::Base
 
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
-  validates :subject, :presence => true
+  # validates :subject, :presence => true
   validates :user, :presence => true
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
-  #acts_as_votable
+  # acts_as_votable
 
-  belongs_to :commentable, :polymorphic => true  
+  belongs_to :commentable, :polymorphic => true
   belongs_to :user # NOTE: Comments belong to a user
 
   delegate :name, to: :user, prefix: true
@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
   attr_wannabe_bool :official, :flagged
   
   # Markdown
-  before_save :mark_it_down!
+  # before_save :mark_it_down!
 
   scope :assessments, -> { where(subject: 'assessment') } 
   scope :user_as_subject, ->(user) { where(commentable: user) } 

@@ -1,5 +1,7 @@
 /* ----- SimpleForm Styles ----- */
 
+form label { font-weight: 400; }
+
 .simple_form div.input {
   margin-bottom: 10px;
   clear: both; /* Required for Webkit, but not for Gecko */

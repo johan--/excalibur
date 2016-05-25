@@ -22,10 +22,6 @@ class InsidesController < ApplicationController
     @houses = House.includes(:photo_files).all
   end
 
-  # def profile
-  #   @user = User.friendly.find_by_id(current_user.id)
-  # end
-
   def email
     @name = params[:name]
     @email = params[:email]
@@ -93,14 +89,14 @@ class InsidesController < ApplicationController
     if params[:category] == 'like'
       @likeable = params[:type].classify.safe_constantize.find_by_id(params[:counter])
       if @sub == 'for'
-        current_user.like!(@likeable)
+        l = Like.create(liker: current_user, likeable: @likeable)
+        Comment.create(commentable_type: l.class.name, commentable_id: l.id, user: current_user, body_html: params[:message], subject: params[:relationship])
       elsif @sub == 'against'
         current_user.unlike!(@likeable)
       end
-      # redirect_to user_path(@likeable)
     end
     respond_to do |format|
-      format.html { redirect_to user_path(@user) }
+      format.html { redirect_to user_path(@likeable) }
       format.js  #{ render js: { count: @comment.votes.size } }
     end    
   end

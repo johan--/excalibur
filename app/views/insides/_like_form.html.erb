@@ -1,0 +1,41 @@
+<%= form_tag socialize_path, method: 'post', html: {role: "form"} do %>
+
+	<div class="form-group">
+	  <div class="row">
+	    <div class="col-xs-12">
+	    	<h5 class="goleft">Hubungan dengan pengguna</h5>
+
+				<div class="col-sm-4 col-md-3">
+					<%= radio_button_tag :relationship, 'keluarga' %>
+				  <%= label_tag :relationship, 'Keluarga', :value => 'keluarga' %>
+				</div>
+				<div class="col-sm-4 col-md-3">
+					<%= radio_button_tag :relationship, 'sahabat', true %>
+					<%= label_tag :relationship, 'Sahabat', :value => 'sahabat' %>
+				</div>
+				<div class="col-sm-4 col-md-3">
+					<%= radio_button_tag :relationship, 'kolega' %>
+					<%= label_tag :relationship, 'Kolega', :value => 'kolega' %>
+				</div>
+	    </div>
+	  </div>
+	  <div class="spacing"></div>
+	  <div class="row">	  
+	    <div class="col-xs-12">
+	    	<h5 class="goleft">Testimonial untuk pengguna</h5>
+	      <%= text_area_tag :message, '', placeholder: "Ceritakan karakter si pengguna dan hal lainnya untuk mendukung pengajuan proposal pengguna", rows: 5, class: "form-control", required: true %>
+	    </div>
+	  </div>
+	</div>
+
+	<%= hidden_field_tag :category, '', value: 'like' %>
+	<%= hidden_field_tag :sub, '', value: 'for' %>
+	<%= hidden_field_tag :type, '', value: 'user' %>
+	<%= hidden_field_tag :counter, '', value: user.id %>
+
+	<div class="row">
+	  <div class="col-xs-12 padded">
+	    <%= submit_tag 'Kirim', class: 'btn btn-md btn-success' %>
+	  </div>
+	</div>
+<% end %>

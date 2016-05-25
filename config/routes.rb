@@ -97,11 +97,11 @@ Fustal::Application.routes.draw do
   get '/vanity/image'
 
 
-  get "/*id" => 'pages#show', as: :page, format: false
+  get "/id/*id" => 'pages#show', as: :page, format: false
   root to: 'pages#show', id: 'landing'
 
   resources :users, only: :show, path: '' do
-    resources :tenders, only: :show, path: ''
+    # resources :tenders, only: :show, path: '', controller: 'trading/tenders'
   end
 
 end
