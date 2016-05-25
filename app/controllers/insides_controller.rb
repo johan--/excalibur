@@ -90,6 +90,7 @@ class InsidesController < ApplicationController
       @likeable = params[:type].classify.safe_constantize.find_by_id(params[:counter])
       if @sub == 'for'
         l = Like.create(liker: current_user, likeable: @likeable)
+        @likeable.increment!(:likers_count, 1)
         Comment.create(commentable_type: l.class.name, commentable_id: l.id, user: current_user, body_html: params[:message], subject: params[:relationship])
       elsif @sub == 'against'
         current_user.unlike!(@likeable)

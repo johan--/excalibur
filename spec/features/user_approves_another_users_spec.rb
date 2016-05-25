@@ -12,8 +12,11 @@ feature "UserApprovesAnotherUsers", type: :feature do
   
 
   context "approving a user", js: true do
-  	before { click_button "Dukung" }
-  	after { page.driver.reset! }
+  	before do
+      click_link "Dukung"
+      fill_in 'message', with: 'lorem ipsum dolor casus molar'
+      click_button "Kirim"
+    end
 
     it "should display the right button" do
       expect(page).to have_selector('#unlike-button')
@@ -21,6 +24,20 @@ feature "UserApprovesAnotherUsers", type: :feature do
     end
 
     it { is_expected.to have_selector('#likers', text: 1) }
+    # it { is_expected.to have_content('blablabla') }
+
+  	after { page.driver.reset! }
+
+    context "disapproving of user" do
+      before { click_button "Tarik Dukungan" }
+
+      it "should display the right button" do
+        expect(page).to_not have_selector('#unlike-button')
+        expect(page).to have_selector('#like-button')
+      end
+
+      it { is_expected.to have_selector('#likers', text: 0) } 
+    end
   end
 
 end

@@ -101,7 +101,7 @@ Fustal::Application.routes.draw do
   root to: 'pages#show', id: 'landing'
 
   resources :users, only: :show, path: '' do
-    # resources :tenders, only: :show, path: '', controller: 'trading/tenders'
+    resources :tenders, only: :show, path: '', controller: 'trading/tenders'
   end
 
 end
