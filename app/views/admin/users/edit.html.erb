@@ -71,8 +71,27 @@
     </div>
   </div>
 </section>
-<section class="intro">
-  <div class="container">
+<section class="intro padded">
+    <div class="inner-skeleton centered">
+      <div class="col-md-12">
+        <h4>Testimonial</h4>
+        <% if @comments.blank? %>
+          <center class="grey">
+            <h5><%= "Formulir Penilaian" %></h5><br>
+            <%= render 'admin/comments/form' %>
+          </center>
+        <% else %>
+          <div class="col-md-10 col-md-offset-1">
+            <ul class="list-unstyled msg_list">
+              <%= render partial: 'comments/comment', collection: @comments %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</section>
+<section class="padded"></section>
+<section class="intro padded">
   <div class="inner-skeleton centered">
     <h4>Berkas Yang Telah Diunggah</h4>
     <% unless @documents.blank? %>
@@ -86,25 +105,21 @@
         <div class="spacing"></div>
         <h5 class="centered">Belum ada </h5>
       </div>
-
     <% end %>
-    </div>
   </div>
 </section>
-<section class="intro padded">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-        <div class="inner-skeleton danger-zone">
-          <h2>Danger Zone <br><small>Pertimbangkan dengan matang sebelum kamu menghapus akun ini</small></h2>
-          <p></p>
-          <p>
-            <%= link_to admin_user_path(@user), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan pengguna'}, class: 'btn btn-danger btn-lg' do %>
-                <span class="glyphicon glyphicon-trash reset-link"></span> Hapus Pengguna
-            <% end %>
-          </p>
-        </div>
-      </div>
+<section class="intro padded bordered-section">
+
+  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+    <div class="inner-skeleton danger-zone">
+      <h2>Danger Zone <br><small>Pertimbangkan dengan matang sebelum kamu menghapus akun ini</small></h2>
+      <p></p>
+      <p>
+        <%= link_to admin_user_path(@user), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan pengguna'}, class: 'btn btn-danger btn-lg' do %>
+            <span class="glyphicon glyphicon-trash reset-link"></span> Hapus Pengguna
+        <% end %>
+      </p>
     </div>
   </div>
+
 </section>

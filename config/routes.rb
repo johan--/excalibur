@@ -84,7 +84,7 @@ Fustal::Application.routes.draw do
     resources :tenders, only: [:index, :edit, :update, :destroy]
     resources :bids, only: [:index, :edit, :update, :destroy]
     resources :houses, skip: [:show]
-    resources :comments
+    resources :comments, skip: [:show]
   end
 
   # Vanity AB TESTING FRAMEWORK

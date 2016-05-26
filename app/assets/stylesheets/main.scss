@@ -38,6 +38,9 @@ a:hover, a.selected, a:focus { color: #eb3812;}
 section.padded {
   padding: 6rem 0 5rem 0; h2 { color: $brand-dark; }
 }
+section.intro {
+  min-height: 400px;
+}
 .prose h1, h2, p {
   margin-top: 0;
   margin-bottom: 0.5em;

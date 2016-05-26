@@ -1,32 +1,26 @@
 class Admin::CommentsController < Admin::BaseController
-  before_action :set_comment, only: [:show, :edit]
+  before_action :set_comment, only: [:edit, :destroy]
 
   def index
     @comments = Comment.all
   end
 
-  def show
-  end
-
-  def new
-    @comment = Comment.new     
-    @type = params[:commentable_type]
-    @commentable_id = params[:commentable_id]
-    @subject = params[:subject]    
-  end
-
   def create
     @comment = Comment.new(comment_params)
+    @comment.assign_attributes(user_id: current_user.id)
 
     if @comment.save
-      redirect_to admin_comments_path
       flash[:notice] = 'Assessment berhasil dibuat'
     else
-      render :new
-    end 
+      flash[:warning] = 'Assessment gagal dibuat'
+    end
+    redirect_to :back
   end
 
   def edit
+    @type = @comment.commentable.class.name
+    @commentable_id = @comment.commentable.id
+    @subject = @comment.subject
   end
 
   def update
@@ -38,6 +32,12 @@ class Admin::CommentsController < Admin::BaseController
     else
       render :edit
     end   
+  end
+
+  def destroy
+    @comment.delete
+    flash[:notice] =  'Komentar berhasil dihapus'
+    redirect_to admin_comments_path
   end
 
 private

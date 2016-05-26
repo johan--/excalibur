@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :comments, as: :commentable
+  # has_many :assessments, -> { where(subject: 'kapiten') }, class_name: 'Comment'
   has_many :tenders, as: :starter
   has_many :bids, as: :bidder
   has_many :stocks, as: :holder

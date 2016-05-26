@@ -17,6 +17,11 @@ class Admin::UsersController < Admin::BaseController
 
   def edit
     @documents = @user.documents
+    @comment = Comment.new
+    @comments = Comment.find_comments_for_commentable(@user.class.name, @user.id)
+    @type = @user.class.name
+    @commentable_id = @user.id
+    @subject = 'kapiten'
   end
 
   def update

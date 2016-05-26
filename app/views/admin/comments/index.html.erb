@@ -11,22 +11,26 @@
 
 <table class="table table-striped">
   <tr>
+    <th>#</th>
     <th>Author</th>
     <th>On</th>
     <th>Subject</th>
     <th>Created At</th>
+    <th>Content</th>
     <th></th>
   </tr>
 
   <% @comments.each do |comment| %>
 
-  <tr>
-    <td><%= comment.user.name %></td>
-    <td><%= comment.commentable.class.name %></td>
-    <td><%= comment.subject %></td>
-    <td><%= comment.created_at.strftime("%Y/%m/%-d") %></td>
-    <td></td>
-  </tr>
+    <tr>
+      <td><%= link_to comment.id, edit_admin_comment_path(comment) %></td>
+      <td><%= link_to comment.user.name, admin_user_path(comment.user) %></td>
+      <td><%= comment.commentable.class.name %></td>
+      <td><%= comment.subject %></td>
+      <td><%= comment.created_at.strftime("%Y/%m/%-d") %></td>
+      <td><%= sanitize truncate(comment.body_html, length: 150, escape: false)%></td>
+      <td><%= link_to "Hapus", admin_comment_path(comment), method: :delete, data: {confirm: 'Kamu yakin mau melanjutkan?', object: 'Penghapusan komentar'} %></td>
+    </tr>
 
   <% end %>
 

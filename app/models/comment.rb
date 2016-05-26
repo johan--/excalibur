@@ -25,9 +25,9 @@ class Comment < ActiveRecord::Base
   end
   
   # Markdown
-  # before_save :mark_it_down!
+  before_save :mark_it_down!
 
-  scope :assessments, -> { where(subject: 'assessment') } 
+  scope :assessments, -> { where(subject: 'kapiten') } 
   scope :user_as_subject, ->(user) { where(commentable: user) } 
 
   # Helper class method that allows you to build a comment
@@ -54,7 +54,7 @@ class Comment < ActiveRecord::Base
   # Helper class method to look up all comments for
   # commentable class name and commentable id.
   scope :find_comments_for_commentable, lambda { |commentable_str, commentable_id|
-    where(:commentable_type => commentable_str.to_s, :commentable_id => commentable_id).order('created_at DESC')
+    where(:commentable_type => commentable_str, :commentable_id => commentable_id).order('created_at DESC')
   }
 
   # Helper class method to look up a commentable object
@@ -74,7 +74,7 @@ class Comment < ActiveRecord::Base
 
 private
   def mark_it_down!
-    MarkdownWriter.html_comment(self)
+    MarkdownWriter.html_comment(self) unless self.body_md.nil?
   end
 
 end

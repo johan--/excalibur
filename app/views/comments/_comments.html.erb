@@ -1,6 +1,12 @@
-<div class="chat-message">
-    <ul class="chat">
-      <%= render  partial: 'comments/comment', collection: comments %>
-    </ul>
-	<%= render 'comments/form' %>    
-</div>
+<% if comments.blank? %>
+  <center class="grey">
+    <h4><%= "Belum ada testimoni" %></h4>
+    <h1><i class="ion ion-compose"></i></h1>
+  </center>
+<% else %>
+  <ul class="list-unstyled msg_list">
+    <% comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  </ul>
+<% end %>

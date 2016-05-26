@@ -1,15 +1,14 @@
-<li class="left clearfix">
-	<span class="chat-img pull-left">
-		<!-- <img src="http://bootdey.com/img/Content/user_3.jpg" alt="User Avatar"> -->
-          <%= render_user_thumb(comment.user,'') %>
-	</span>
-	<div class="chat-body clearfix">
-		<div class="chat-header">
-			<strong class="primary-font"><%= comment.user_name.titleize %></strong>
-			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(comment.created_at) %> ago</small>
-		</div>
-		<p>
-		  <%= comment.body_md.html_safe %>
-		</p>
-	</div>
+<li class="testimonial-item">
+  <a>
+    <span class="image">
+      <%= render_user_thumb(comment.user, '') %>
+    </span>
+    <span>
+      <span><%= comment.user.name.titleize %> <small id="support-subject"><%= comment.subject %></small></span>
+      <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+    </span>
+    <span class="message">
+      <%= comment.body_html %>
+    </span>
+  </a>
 </li>

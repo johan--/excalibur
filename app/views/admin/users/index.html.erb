@@ -8,11 +8,11 @@
 </div>
 
 <%= form_tag admin_users_path, method: 'get', html: {role: "form"} do %>
-<p>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
-  <%= link_to "All", admin_users_path, {class: "btn btn-sm btn-link"} %>
-</p>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_users_path, {class: "btn btn-sm btn-link"} %>
+  </p>
 <% end %>
 
 <table class="table table-striped">
@@ -28,8 +28,8 @@
 
   <% @users.each do |user| %>
 
-  <tr>
-    <td><%= truncate(user.email, length: 25) %><br><%= link_to user.name, admin_user_path(user) %></td>
+  <tr id="no-<%= user.id %>">
+    <td><%= truncate(user.email, length: 25) %><br><%= link_to user.name, user_path(user) %></td>
     <td><%= user.admin? ? "<b>yes</b>".html_safe : "no" %></td>
     <td><%= user.locked? ? "<b>yes</b>".html_safe : "no" %></td>
     <td>
