@@ -20,6 +20,10 @@ class Comment < ActiveRecord::Base
                  :official, :flagged
   attr_wannabe_bool :official, :flagged
   
+  cattr_accessor :vouchers do
+    ["keluarga", "sahabat", "kolega"]
+  end
+  
   # Markdown
   # before_save :mark_it_down!
 

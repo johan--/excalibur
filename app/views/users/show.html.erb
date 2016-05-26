@@ -15,6 +15,40 @@
     <section class="intro bordered-section" style="margin-bottom: -30px;">
       <div class="container">
         <div class="inner-skeleton">
+          <h2>Testimonial</h2>
+          <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <% if @supports.blank? %>
+              <center class="grey">
+                <h4><%= "Belum ada testimoni" %></h4>
+                <h1><i class="ion ion-compose"></i></h1>
+              </center>
+            <% else %>
+              <ul class="list-unstyled msg_list">
+                <% @supports.each do |support| %>
+                  <li class="testimonial-item">
+                    <a>
+                      <span class="image">
+                        <%= render_user_thumb(support.user, '') %>
+                      </span>
+                      <span>
+                        <span><%= support.user.name.titleize %> <small id="support-subject"><%= support.subject %></small></span>
+                        <span class="time"><%= time_ago_in_words(support.created_at) %> ago</span>
+                      </span>
+                      <span class="message">
+                        <%= support.body_html %>
+                      </span>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>    
+    <section class="intro bordered-section" style="margin-bottom: -30px;">
+      <div class="container">
+        <div class="inner-skeleton">
           <h2>Berkas</h2>
           <%= render partial: 'documents/doc_list', locals: { documents: @documents, user: @user } %>
           <div id="documents-manage" style="display: none;">
@@ -31,12 +65,56 @@
           <% end %>          
         </div>
       </div>
-    </section>  
+    </section>
   </div>
 
 <% end %>
 
 
+<style type="text/css">
+  .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+  }
+ul.msg_list li {
+    border: 1px solid #f7f7f7;
+    padding: 5px;
+    display: flex;
+    margin: 6px 6px 0;
+    width: 96% !important;
+}
+ul.msg_list li a {
+  padding: 3px 5px !important;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+ul.msg_list li #support-subject {
+  font-style: italic;
+}
+ul.msg_list li:hover {
+  background-color: #f7f7f7;
+  color: black;
+}
+ul.msg_list li a .image img {
+    border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    float: left;
+    margin-right: 10px;
+    width: 11%;
+}
+ul.msg_list li a .time {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: bold;
+    position: absolute;
+    right: 35px;
+}
+ul.msg_list li a .message {
+    display: block !important;
+    font-size: 11px;
+}  
+</style>
 
 <script type="text/javascript">
   // $('#like-form').on('click','.socialize',function(e){

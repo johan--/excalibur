@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @tenders = @user.tenders
     @documents = @user.documents
+    @supports = Comment.where(commentable: @user)
     unless user_signed_in? && @user == current_user
       meta_events_tracker.event!(:visit, :user, { visited: @user.name, referrer: request.referrer } )
     end    

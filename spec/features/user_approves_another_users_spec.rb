@@ -24,7 +24,7 @@ feature "UserApprovesAnotherUsers", type: :feature do
     end
 
     it { is_expected.to have_selector('#likers', text: 1) }
-    # it { is_expected.to have_content('blablabla') }
+    it { is_expected.to have_selector('.message', text: 'lorem ipsum dolor casus molar') }
 
   	after { page.driver.reset! }
 
