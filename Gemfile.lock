@@ -72,6 +72,7 @@ GEM
       activerecord (>= 4.0.0, < 5)
     awesome_print (1.6.1)
     aws_cf_signer (0.1.3)
+    bcrypt (3.1.11)
     bcrypt (3.1.11-x86-mingw32)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -116,6 +117,7 @@ GEM
     coffee-script-source (1.8.0)
     columnize (0.9.0)
     concurrent-ruby (1.0.2)
+    crass (1.0.6)
     css_parser (1.4.1)
       addressable
     daemons (1.2.3)
@@ -133,6 +135,7 @@ GEM
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    eventmachine (1.2.0.1)
     eventmachine (1.2.0.1-x86-mingw32)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -179,7 +182,8 @@ GEM
     kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    loofah (2.0.3)
+    loofah (2.19.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
@@ -205,6 +209,8 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.11.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     nokogiri (1.6.7.2-x86-mingw32)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
@@ -233,6 +239,7 @@ GEM
       activerecord (>= 4.0.0)
     paranoia (2.1.5)
       activerecord (~> 4.0)
+    pg (0.18.4)
     pg (0.18.4-x86-mingw32)
     poltergeist (1.8.1)
       capybara (~> 2.1)
@@ -270,8 +277,8 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.4.4)
+      loofah (~> 2.19, >= 2.19.1)
     rails-i18n (4.0.8)
       i18n (~> 0.7)
       railties (~> 4.0)
@@ -291,6 +298,10 @@ GEM
     redcarpet (3.2.2)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rest-client (1.8.0-x86-mingw32)
       ffi (~> 1.9)
       http-cookie (>= 1.0.2, < 2.0)
@@ -360,6 +371,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.7.2)
     unf_ext (0.0.7.2-x86-mingw32)
     uniform_notifier (1.9.0)
     wannabe_bool (0.4.0)
@@ -381,6 +393,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
