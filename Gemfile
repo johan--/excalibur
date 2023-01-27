@@ -16,7 +16,7 @@ gem 'bootstrap-slider-rails', '6.0.6'
 gem "high_voltage", '2.4.0'
 
 # Authentication
-gem 'devise', '3.4.1'
+gem 'devise', '4.8.1'
 # gem 'omniauth'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-facebook', '2.0.1'
